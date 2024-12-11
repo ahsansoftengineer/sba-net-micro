@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  platformservice:
+    image: ahsansoftengineer/platformservice-a
+    ports:
+      - "8081:8081"
+    environment:
+      DOTNET_ENVIRONMENT: Development
