@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: depl-platforms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: platformservice-a
+  template:
+    metadata:
+      labels:
+        app: platformservice-a
+    spec:
+      containers:
+        - name: platformservice-a
+          image: ahsansoftengineer/platformservice-a:latest
+          ports:
+            - containerPort: 8081  # Replace with the actual port your container listens on
+          env:
+            - name: ENV
+              value: "development"  # Setting the environment to 'development'
+            # - name: 
