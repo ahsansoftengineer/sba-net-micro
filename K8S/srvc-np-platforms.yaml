@@ -11,10 +11,7 @@ spec:
       protocol: TCP
       port: 8081         # Cluster-wide service port
       targetPort: 8081   # Pod's application port
-      nodePort: 8081     # External Node port
-
-
-      In a Kubernetes Service configuration, the three ports—port, targetPort, and nodePort—each have specific roles:
+      nodePort: 30081     # External Node port
 
 # PORT
 # - Represents the port on the Service itself.
