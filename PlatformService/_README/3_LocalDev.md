@@ -13,8 +13,10 @@
 9. Directory files
 10. In-memory .NET objects
 
-### launchsettings.json
+### 1. Way 
+- launchsettings.json
 - By Default .Net Core Application uses Port from launchSettings.json
+- dotnet run
 ```json
 {
   "$schema": "https://json.schemastore.org/launchsettings.json",
@@ -41,8 +43,9 @@
 }
 
 ```
-### Environment Variables (Windows, Ubuntu, Linux etc...)
-- Supersede 
+### 2. Way 
+- Environment Variables (Windows, Ubuntu, Linux etc...)
+- Env Variables Supersede launchSetting.json
 ```bash
 ASPNETCORE_URLS=http://localhost:5000/
 ```
@@ -56,7 +59,8 @@ dotnet run --urls=http://localhost:5000/ # Command Line URL
 # Application will use Port of launchSettings.json
 
 ```
-### Code Supersede Every thing
+### Programmitically Setting up Port
+- Code Supersede Every thing
 ```c#
  public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
