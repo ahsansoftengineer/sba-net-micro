@@ -59,7 +59,8 @@ dotnet run --urls=http://localhost:5000/ # Command Line URL
 # Application will use Port of launchSettings.json
 
 ```
-### Programmitically Setting up Port
+### 3. Way 
+Programmitically Setting up Port
 - Code Supersede Every thing
 ```c#
  public static IHostBuilder CreateHostBuilder(string[] args) =>
