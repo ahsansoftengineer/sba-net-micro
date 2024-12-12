@@ -12,12 +12,14 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 
 # Set the environment variable for ASP.NET Core
-ENV ASPNETCORE_URLS=http://+:8081
+# Default Port of .Net Core is 5000 not 80
+ENV ASPNETCORE_URLS=http://+:5000
 
 # Set Env for Swagger & Developer Exception
 ENV DOTNET_ENVIRONMENT=Development
 
 # Expose the port
-EXPOSE 8081
+# No Default Port for Expose
+EXPOSE 5000
 
 ENTRYPOINT [ "dotnet", "PlatformService.dll"]
