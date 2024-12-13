@@ -11,13 +11,7 @@ public class PlatformsController : ControllerBase
   {
 
   }
-  [HttpGet]
-  public ActionResult TestInboundConnectionS()
-  {
-    Console.WriteLine("--> Inbound GET # Command Service");
-
-    return Ok("Inbound test of from Platforms Controller");
-  }
+  
   [HttpPost]
   public ActionResult TestInboundConnection()
   {
