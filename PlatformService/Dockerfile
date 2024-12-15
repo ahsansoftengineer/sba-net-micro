@@ -18,7 +18,6 @@ ENV ASPNETCORE_URLS=http://+:5101
 # Set Env for Swagger & Developer Exception
 ENV DOTNET_ENVIRONMENT=Docker
 
-# Expose the port
 # No Default Port for Expose
 EXPOSE 5101
 

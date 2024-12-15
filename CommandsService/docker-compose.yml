@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: DockerfileCompose
-    image: ahsansoftengineer/commandservice-b:latest
+    image: ahsansoftengineer/commandservice-b
     container_name: commandservice-b
     environment:
       - ASPNETCORE_URLS=http://+:8201

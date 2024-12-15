@@ -25,7 +25,14 @@ ENTRYPOINT [ "dotnet", "CommandsService.dll"]
 ```bash
 docker build -t ahsansoftengineer/commandservice-a .
 docker push ahsansoftengineer/commandservice-a
-docker run -p 8101:8101 -e ASPNETCORE_URLS=http://+:8101  -e DOTNET_ENVIRONMENT=Docker -d ahsansoftengineer/commandservice-a
+docker run
+docker run -d --name commandsservice -p 8101:8101 -e ASPNETCORE_URLS=http://+:8101  -e DOTNET_ENVIRONMENT=Docker ahsansoftengineer/commandservice-a
 
 docker exec -it d2d4
+```
+### appsettings.json
+```json
+{
+  "No JSON":""
+}
 ```

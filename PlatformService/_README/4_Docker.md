@@ -22,7 +22,6 @@ ENV ASPNETCORE_URLS=http://+:5101
 # Set Env for Swagger & Developer Exception
 ENV DOTNET_ENVIRONMENT=Docker
 
-# Expose the port
 # No Default Port for Expose
 EXPOSE 5101
 
@@ -37,4 +36,14 @@ docker run -p 5101:5101 -e ASPNETCORE_URLS=http://+:5101  -e DOTNET_ENVIRONMENT=
 docker exec -it d2d4 # Get Inside Container
 
 docker run  -p 5101:5101 your-image
+```
+
+### appsettings.Docker.json
+```json
+{
+  "NOTE-0" : "YOU can use local host when both app inside same container",
+  "NOTE-2" : "YOU have to create docker network TO NOT USE http://host.docker.internal",
+  "NOTE-1": "YOU cannot use localhost:8101",
+  "CommandService": "http://host.docker.internal:8101/api/c/platforms/"
+}
 ```

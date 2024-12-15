@@ -17,23 +17,32 @@ ENTRYPOINT [ "dotnet", "PlatformService.dll"]
 ```
 ### Docker Compose
 ```yml
-version: '3.8'
+version: "3.9"
+
 services:
-  webapp:
-    image: ahsansoftengineer/platformservice-a
+  platformservice:
     build:
       context: .
-      dockerfile: Dockerfile
-    ports:
-      - "5201:5201"  # Maps host port 9999 to container port 9999
+      dockerfile: DockerfileCompose
+    image: ahsansoftengineer/platformservice-b
+    container_name: platformservice-b
     environment:
-      - ASPNETCORE_URLS=http://+:5201  # Configures the app to listen on all network interfaces
-      - DOTNET_ENVIRONMENT=Development  # Optional: Sets the environment for .NET Core
+      - ASPNETCORE_URLS=http://+:5201
+      - DOTNET_ENVIRONMENT=DockerCompose
+    ports:
+      - "5201:5201" # Map host port 5201 to container port 5201
 ```
 
 ### Docker Compose CLI
 ```bash
 docker-compose up -d --build
-docker-compose up -p 5301:5301 -e ASPNETCORE_URLS=http://+:5301  -e DOTNET_ENVIRONMENT=Development -d --build
+docker-compose up -d --build -p 5201:5201 -e ASPNETCORE_URLS=http://+:5201  -e DOTNET_ENVIRONMENT=Development
 
-````
+```
+
+### appsettings.DockerComposeSolution.json
+```json
+{
+  "CommandService": "http://host.docker.internal:8201/api/c/platforms/"
+}
+```
