@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+  platformservice:
+    build:
+      context: ./PlatformService/
+      dockerfile: DockerfileCompose
+    image: ahsansoftengineer/platformservice-c:latest
+    container_name: ahsansoftengineer/platformservice-c
+    environment:
+      - ASPNETCORE_URLS=http://+:5301
+      - DOTNET_ENVIRONMENT=Docker
+    ports:
+      - "5301:5301" # Expose PlatformService on host port 5301
+    networks:
+      - app-network
+
+  commandsservice:
+    build:
+      context: ./CommandsService/
+      dockerfile: DockerfileCompose
+    image: ahsansoftengineer/commandservice-c:latest
+    container_name: ahsansoftengineer/commandservice-c
+    environment:
+      - ASPNETCORE_URLS=http://+:8301
+      - DOTNET_ENVIRONMENT=Docker
+    ports:
+      - "8301:8301" # Expose CommandsService on host port 8301
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

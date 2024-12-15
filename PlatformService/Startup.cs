@@ -1,9 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using PlatformService.Data;
+using PlatformService.SyncDataServices.Http;
 
 namespace PlatformService;
 public class Startup
 {
+  private readonly IConfiguration _config;
+
+  public Startup(IConfiguration config)
+  {
+    _config = config;
+  }
   public void ConfigureServices(IServiceCollection srvc)
   {
     srvc.AddDbContext<AppDbContext>(opt => {
@@ -13,14 +20,17 @@ public class Startup
     srvc.AddAutoMapper(
       AppDomain.CurrentDomain.GetAssemblies()
     );
-    srvc.AddTransient<IPlatformRepo, PlatformRepo>();
+    srvc.AddScoped<IPlatformRepo, PlatformRepo>();
+    srvc.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
+
     srvc.AddEndpointsApiExplorer(); 
     srvc.AddSwaggerGen();
+    Console.WriteLine($"--> CommandService Endpoint {_config["CommandService"]}");
   }
 
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
-    if (env.IsDevelopment())
+    if (env.IsDevelopment() || true)
     {
       app.UseDeveloperExceptionPage();
 
@@ -38,7 +48,8 @@ public class Startup
 
     app.UseEndpoints(endpoints =>
     {
-      endpoints.MapControllers(); // Map controller endpoints
+      endpoints.MapControllers(); 
+      // Map controller endpoints
     });
 
     PrepDb.PrepPopulation(app);

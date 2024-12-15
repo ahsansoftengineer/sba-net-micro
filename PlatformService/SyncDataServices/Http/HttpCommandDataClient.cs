@@ -1,7 +1,6 @@
 using System.Text;
 using System.Text.Json;
 using PlatformService.DTO;
-using PlatformService.SysnDataServices.Http;
 
 namespace PlatformService.SyncDataServices.Http;
 
@@ -25,7 +24,7 @@ public class HttpCommandDataClient : ICommandDataClient
       "application/json"
     );
     string? pathz = _config["CommandService"];
-    
+
     var response = await _httpClient.PostAsync(pathz, httpContent);
 
     if (response.IsSuccessStatusCode)

@@ -1,19 +1,14 @@
-version: '3.8'
+version: "3.9"
+
 services:
   platformservice:
-    image: ahsansoftengineer/platformservice-a
-    ports:
-      - "8081:80"
+    build:
+      context: .
+      dockerfile: DockerfileCompose
+    image: ahsansoftengineer/platformservice-b:latest
+    container_name: platformservice-b
     environment:
-      DOTNET_ENVIRONMENT: Development
-
-
-
-# version: '3.8'
-# services:
-#   platformservice:
-#     image: ahsansoftengineer/platformservice-a
-#     ports:
-#       - "8081:8081"
-#     environment:
-#       DOTNET_ENVIRONMENT: Development
+      - ASPNETCORE_URLS=http://+:5201
+      - DOTNET_ENVIRONMENT=DockerCompose
+    ports:
+      - "5201:5201" # Map host port 5201 to container port 5201

@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  commandservice:
+    build:
+      context: .
+      dockerfile: DockerfileCompose
+    image: ahsansoftengineer/commandservice-b:latest
+    container_name: commandservice-b
+    environment:
+      - ASPNETCORE_URLS=http://+:8201
+      - DOTNET_ENVIRONMENT=DockerCompose
+    ports:
+      - "8201:8201" # Map host port 8201 to container port 8201

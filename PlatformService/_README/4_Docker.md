@@ -17,10 +17,10 @@ COPY --from=build-env /app/out .
 
 # Set the environment variable for ASP.NET Core
 # Default Port of .Net Core is 5000 not 80
-# ENV ASPNETCORE_URLS=http://+:5101
+ENV ASPNETCORE_URLS=http://+:5101
 
 # Set Env for Swagger & Developer Exception
-# ENV DOTNET_ENVIRONMENT=Development
+ENV DOTNET_ENVIRONMENT=Docker
 
 # Expose the port
 # No Default Port for Expose
@@ -33,10 +33,8 @@ ENTRYPOINT [ "dotnet", "PlatformService.dll"]
 ```bash
 docker build -t ahsansoftengineer/platformservice-a .
 docker push ahsansoftengineer/platformservice-a
-docker run -p 5101:5101 -d ahsansoftengineer/platformservice-a
-docker run -p 5101:5101 -e ASPNETCORE_URLS=http://+:5101  -e DOTNET_ENVIRONMENT=Development -d ahsansoftengineer/platformservice-a
+docker run -p 5101:5101 -e ASPNETCORE_URLS=http://+:5101  -e DOTNET_ENVIRONMENT=Docker -d ahsansoftengineer/platformservice-a
 docker exec -it d2d4 # Get Inside Container
 
 docker run  -p 5101:5101 your-image
-
 ```
