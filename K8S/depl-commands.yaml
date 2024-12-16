@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: depl-platforms
+  name: depl-commands
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: platformservice-d
+      app: commandservice-d
   template:
     metadata:
       labels:
-        app: platformservice-d
+        app: commandservice-d
     spec:
       containers:
-        - name: platformservice-d
-          image: ahsansoftengineer/platformservice-d
+        - name: commandservice-d
+          image: ahsansoftengineer/commandservice-d
           ports:
             - containerPort: 8081  # Replace with the actual port your container listens on
           env:
@@ -27,13 +27,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: srv-clusterip-platforms
+  name: srv-clusterip-commands
 spec:
   type: ClusterIP
   selector:
-    app: platformservice-d
+    app: commandservice-d
   ports:
-  - name: platformservice
+  - name: commandservice
     protocol: TCP
     port: 80
     targetPort: 80
