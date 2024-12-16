@@ -29,7 +29,7 @@ ENTRYPOINT [ "dotnet", "PlatformService.dll"]
 
 ### Docker run
 ```bash
-docker build -t ahsansoftengineer/platformservice-a .
+docker build -t ahsansoftengineer/platformservice-a -f ./PlatformService/DockerfileENVPort .
 docker push ahsansoftengineer/platformservice-a
 docker run -p 5101:5101 -e ASPNETCORE_URLS=http://+:5101  -e DOTNET_ENVIRONMENT=Docker -d ahsansoftengineer/platformservice-a
 docker exec -it d2d4 # Get Inside Container

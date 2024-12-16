@@ -5,9 +5,9 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: commandservice-a
+    app: commandservice-d
   ports:
-    - name: commandservice-a
+    - name: commandservice-d
       protocol: TCP
       port: 8401         # Cluster-wide service port
       targetPort: 8401   # Pod's application port

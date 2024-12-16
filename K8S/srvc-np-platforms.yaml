@@ -5,9 +5,9 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: platformservice-a
+    app: platformservice-d
   ports:
-    - name: platformservice-a
+    - name: platformservice-d
       protocol: TCP
       port: 5401         # Cluster-wide service port
       targetPort: 5401   # Pod's application port

@@ -23,7 +23,7 @@ services:
   platformservice:
     build:
       context: .
-      dockerfile: DockerfileCompose
+      dockerfile: Dockerfile
     image: ahsansoftengineer/platformservice-b
     container_name: platformservice-b
     environment:
