@@ -1,4 +1,4 @@
-### Dockerfile PlatformService
+### 1. Dockerfile PlatformService
 - The Env Variable provided in Docker-Compose File
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build-env
@@ -15,14 +15,18 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 ENTRYPOINT [ "dotnet", "PlatformService.dll"]
 ```
-### PlatformService appsettings.DockerComposeSolution.json
+### 2. PlatformService appsettings.DockerComposeSolution.json
 ```json
 {
   "CommandService": "http://commandsservice:8301/api/c/platforms/"
 }
+```
+### 3. Build for K8S
+```bash
 
 ```
-### Dockerfile CommandsService
+
+### 1. Dockerfile CommandsService
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build-env
 WORKDIR /app
@@ -39,7 +43,7 @@ COPY --from=build-env /app/out .
 
 ENTRYPOINT [ "dotnet", "CommandsService.dll"]
 ```
-### Docker Compose
+### 2. Docker Compose
 ```yml
 version: "3.9"
 
@@ -78,7 +82,7 @@ networks:
 
 ```
 
-### Docker Compose CLI
+### 3. Docker Compose CLI
 ```bash
 docker-compose up -d --build
 ```

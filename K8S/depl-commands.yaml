@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: depl-commands
+  name: depl-commands-d
 spec:
   replicas: 1
   selector:
@@ -16,7 +16,7 @@ spec:
       - name: commandservice-d
         image: ahsansoftengineer/commandservice-d
         ports:
-          - containerPort: 8401  # Replace with the actual port your container listens on
+          - containerPort: 8401
         env:
         - name: DOTNET_ENVIRONMENT
           value: "DockerK8S"
@@ -37,3 +37,10 @@ spec:
     protocol: TCP
     port: 8401
     targetPort: 8401
+    nodePort: 30841 # 30000-32767 (Host Port)
+
+# Command to Run 
+# Make Build & Push
+#
+# Run Kubectl
+#

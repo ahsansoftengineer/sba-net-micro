@@ -1,5 +1,5 @@
 version: "3.9"
-# DEPLOYMENT THROUGH DOCKER COMPOSE
+# WAY 3 :- DEPLOYMENT THROUGH DOCKER COMPOSE
 services:
   platformservice:
     build:

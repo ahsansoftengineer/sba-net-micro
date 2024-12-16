@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: srvc-np-platforms
+  name: srvc-np-platforms-d
 spec:
   type: NodePort
   selector:
@@ -9,9 +9,9 @@ spec:
   ports:
     - name: platformservice-a
       protocol: TCP
-      port: 8081         # Cluster-wide service port
-      targetPort: 8081   # Pod's application port
-      nodePort: 30081     # External Node port
+      port: 5401         # Cluster-wide service port
+      targetPort: 5401   # Pod's application port
+      nodePort: 30541     # Range 30000-32767
 
 # PORT
 # - Represents the port on the Service itself.
