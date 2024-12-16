@@ -13,14 +13,15 @@ spec:
         app: platformservice-d
     spec:
       containers:
-        - name: platformservice-d
-          image: ahsansoftengineer/platformservice-d
-          ports:
-            - containerPort: 8081  # Replace with the actual port your container listens on
-          env:
-            - name: ENV
-              value: "development"  # Setting the environment to 'development'
-            # - name:
+      - name: platformservice-d
+        image: ahsansoftengineer/platformservice-d
+        ports:
+        - containerPort: 5401
+        env:
+        - name: DOTNET_ENVIRONMENT
+          value: "DockerK8S"
+        - name: ASPNETCORE_URLS
+          value: "http://+:8301"
 
 # CLUSTER IP CONFIG
 --- 
@@ -35,5 +36,5 @@ spec:
   ports:
   - name: platformservice
     protocol: TCP
-    port: 80
-    targetPort: 80
+    port: 5401
+    targetPort: 5401

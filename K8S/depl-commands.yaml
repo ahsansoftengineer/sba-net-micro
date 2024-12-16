@@ -13,14 +13,14 @@ spec:
         app: commandservice-d
     spec:
       containers:
-        - name: commandservice-d
-          image: ahsansoftengineer/commandservice-d
-          ports:
-            - containerPort: 8081  # Replace with the actual port your container listens on
-          env:
-            - name: ENV
-              value: "development"  # Setting the environment to 'development'
-            # - name:
+      - name: commandservice-d
+        image: ahsansoftengineer/commandservice-d
+        ports:
+          - containerPort: 8401  # Replace with the actual port your container listens on
+        env:
+        - name: DOTNET_ENVIRONMENT
+          value: "DockerK8S"
+
 
 # CLUSTER IP CONFIG
 --- 
@@ -35,5 +35,5 @@ spec:
   ports:
   - name: commandservice
     protocol: TCP
-    port: 80
-    targetPort: 80
+    port: 8401
+    targetPort: 8401
