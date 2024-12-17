@@ -1,4 +1,3 @@
-
 ### CommandsService Docker & K8S
 #### Dockerfile Commands Service
 ```dockerfile
@@ -18,6 +17,7 @@ COPY --from=build-env /app/out .
 ENTRYPOINT [ "dotnet", "CommandsService.dll"]
 ```
 #### BASH Dockerfile
+- Run Inside K8S Folder
 ```bash
 # -t tagname, -f file/reference, ./buildContext  
 docker build -t ahsansoftengineer/commandservice-d -f ./../CommandsService/Dockerfile ./../CommandsService
@@ -92,13 +92,7 @@ spec:
       nodePort: 30841     # Range 30000-32767
 ```
 #### BASH K8S SERVICE NODE PORT
-```bash
-kubectl apply -f srvc-np-commands.yaml
-kubectl get pods
-kubectl get deployments
-kubectl delete -f  srvc-np-commands.yaml
-```
-#### CommandService NodePort 
+- Run Inside K8S Folder
 ```bash
 kubectl apply -f srvc-np-commands.yaml
 kubectl get services

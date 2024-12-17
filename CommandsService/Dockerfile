@@ -11,6 +11,9 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 COPY --from=build-env /app/out .
 
-ENTRYPOINT [ "dotnet", "CommandsService.dll"]
+# SETUP (PORT & ENV) THROUGH (CLI, DOCKER-COMPOSE, K8S)
+# ENV ASPNETCORE_URLS=http://+:5101
+# ENV DOTNET_ENVIRONMENT=Docker
+# EXPOSE 5101
 
-# THIS FILE IS WORKING WITH DOCKER-COMPOSE & K8S
+ENTRYPOINT [ "dotnet", "CommandsService.dll"]

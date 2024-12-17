@@ -1,4 +1,3 @@
-# DOCKER-COMPOSE & K8S
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build-env
 WORKDIR /app
 
@@ -11,4 +10,10 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 COPY --from=build-env /app/out .
+
+# SETUP (PORT & ENV) THROUGH (CLI, DOCKER-COMPOSE, K8S)
+# ENV ASPNETCORE_URLS=http://+:5101
+# ENV DOTNET_ENVIRONMENT=Docker
+# EXPOSE 5101
+
 ENTRYPOINT [ "dotnet", "PlatformService.dll"]

@@ -17,6 +17,7 @@ COPY --from=build-env /app/out .
 ENTRYPOINT [ "dotnet", "PlatformService.dll"]
 ```
 #### BASH Dockerfile
+- Run Inside K8S Folder
 ```bash
 # -t tagname, -f file/reference, ./buildContext  
 docker build -t ahsansoftengineer/platformservice-d -f ./../PlatformService/Dockerfile ./../PlatformService
@@ -66,6 +67,7 @@ spec:
     targetPort: 5401
 ```
 #### BASH K8S Deployment
+- Run Inside K8S Folder
 ```bash
 kubectl apply -f depl-platforms.yaml
 kubectl get pods
@@ -91,11 +93,11 @@ spec:
       nodePort: 30541     # Range 30000-32767
 ```
 #### BASH K8S SERVICE NODE PORT
+- Run Inside K8S Folder
 ```bash
 kubectl apply -f srvc-np-platforms.yaml
 kubectl get pods
 kubectl get deployments
 kubectl delete -f  srvc-np-platforms.yaml
 ```
-
 #### http://localhost:30541/swagger/index.html
