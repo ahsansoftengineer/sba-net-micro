@@ -1,5 +1,5 @@
 
-### 1. PlatformService Docker & K8S
+### PlatformService Docker & K8S
 #### Dockerfile Platform Service
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build-env
@@ -64,8 +64,6 @@ spec:
     protocol: TCP
     port: 5401
     targetPort: 5401
-    # nodePort: 30541 # NodePort is not Valid Option for ClusterIP
-
 ```
 #### BASH K8S Deployment
 ```bash

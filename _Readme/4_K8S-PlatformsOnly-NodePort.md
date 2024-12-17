@@ -1,5 +1,5 @@
 
-### Testing
+### Testing Deployments
 - It won't work any more since the depl-platform.yaml has changed 
 ```bash
 docker build -t ahsansoftengineer/platformservice-a .
@@ -12,7 +12,7 @@ kubectl delete -f depl-platforms.yaml
 kubectl delete deployments app=depl-platforms # --all
 ```
 
-###
+### Testing Node Port
 ```bash
 kubectl apply -f srvc-np-platforms.yaml
 kubectl delete -f srvc-np-platforms.yaml

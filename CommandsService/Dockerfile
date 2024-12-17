@@ -12,3 +12,5 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 
 ENTRYPOINT [ "dotnet", "CommandsService.dll"]
+
+# THIS FILE IS WORKING WITH DOCKER-COMPOSE & K8S

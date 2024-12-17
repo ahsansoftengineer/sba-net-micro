@@ -4,7 +4,7 @@ services:
   commandservice:
     build:
       context: .
-      dockerfile: DockerfileCompose
+      dockerfile: Dockerfile
     image: ahsansoftengineer/commandservice-b
     container_name: commandservice-b
     environment:
