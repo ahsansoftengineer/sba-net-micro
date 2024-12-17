@@ -41,12 +41,12 @@ ENTRYPOINT [ "dotnet", "CommandsService.dll"]
 ### Docker Compose
 ```yml
 version: "3.9"
-
+# WAY 3 :- DEPLOYMENT THROUGH DOCKER COMPOSE
 services:
   platformservice:
     build:
-      context: ./PlatformService/
-      dockerfile: DockerfileCompose
+      context: ./../PlatformService/
+      dockerfile: Dockerfile
     image: ahsansoftengineer/platformservice-c
     container_name: platformservice-c
     environment:
@@ -59,8 +59,8 @@ services:
 
   commandsservice:
     build:
-      context: ./CommandsService/
-      dockerfile: DockerfileCompose
+      context: ./../CommandsService/
+      dockerfile: Dockerfile
     image: ahsansoftengineer/commandservice-c
     container_name: commandservice-c
     environment:
@@ -74,7 +74,6 @@ services:
 networks:
   app-network:
     driver: bridge
-
 ```
 
 ### Docker Compose CLI

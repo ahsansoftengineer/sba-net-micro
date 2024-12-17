@@ -4,7 +4,7 @@ services:
   platformservice:
     build:
       context: ./../PlatformService/
-      dockerfile: DockerfileCompose
+      dockerfile: Dockerfile
     image: ahsansoftengineer/platformservice-c
     container_name: platformservice-c
     environment:
@@ -18,7 +18,7 @@ services:
   commandsservice:
     build:
       context: ./../CommandsService/
-      dockerfile: DockerfileCompose
+      dockerfile: Dockerfile
     image: ahsansoftengineer/commandservice-c
     container_name: commandservice-c
     environment:
