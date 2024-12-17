@@ -18,6 +18,7 @@ ENTRYPOINT [ "dotnet", "PlatformService.dll"]
 ```
 #### BASH Dockerfile
 - Run Inside K8S Folder
+- We need ClusterIP for Inter Service Communication
 ```bash
 # -t tagname, -f file/reference, ./buildContext  
 docker build -t ahsansoftengineer/platformservice-d -f ./../PlatformService/Dockerfile ./../PlatformService
@@ -50,6 +51,7 @@ spec:
         - name: ASPNETCORE_URLS
           value: "http://+:5401"
 
+# We need ClusterIP for Inter Service Communication
 # CLUSTER IP CONFIG
 --- 
 apiVersion: v1
@@ -94,6 +96,7 @@ spec:
       nodePort: 30541     # Range 30000-32767
 ```
 #### BASH K8S SERVICE NODE PORT
+- We need Node Port to Access application via Host
 - Run Inside K8S Folder
 ```bash
 kubectl apply -f srvc-np-platforms.yaml

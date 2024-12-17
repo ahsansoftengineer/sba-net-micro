@@ -18,6 +18,7 @@ ENTRYPOINT [ "dotnet", "CommandsService.dll"]
 ```
 #### BASH Dockerfile
 - Run Inside K8S Folder
+- We need ClusterIP for Inter Service Communication
 ```bash
 # -t tagname, -f file/reference, ./buildContext  
 docker build -t ahsansoftengineer/commandservice-d -f ./../CommandsService/Dockerfile ./../CommandsService
@@ -51,6 +52,7 @@ spec:
           value: "http://+:8401"
 
 # CLUSTER IP CONFIG
+# We need ClusterIP for Inter Service Communication
 --- 
 apiVersion: v1
 kind: Service
@@ -93,6 +95,7 @@ spec:
       nodePort: 30841     # Range 30000-32767
 ```
 #### BASH K8S SERVICE NODE PORT
+- We need Node Port to Access application via Host
 - Run Inside K8S Folder
 ```bash
 kubectl apply -f srvc-np-commands.yaml
