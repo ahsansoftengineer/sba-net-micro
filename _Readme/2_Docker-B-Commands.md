@@ -25,10 +25,10 @@ ENTRYPOINT [ "dotnet", "CommandsService.dll"]
 ```bash
 docker build -t ahsansoftengineer/commandservice-a -f ./../CommandsService/Dockerfile ./../CommandsService
 docker push ahsansoftengineer/commandservice-a
-docker run
-docker run -d --name commandsservice -p 8101:8101 -e ASPNETCORE_URLS=http://+:8101  -e DOTNET_ENVIRONMENT=Docker ahsansoftengineer/commandservice-a
-
-docker exec -it d2d4
+# docker run
+docker run -d --name commandservice-a -p 8101:8101 -e ASPNETCORE_URLS=http://+:8101  -e DOTNET_ENVIRONMENT=Docker ahsansoftengineer/commandservice-a
+docker rm -f commandservice-a
+# docker exec -it d2d4 # Not Working Get Inside Container
 ```
 ### appsettings.json
 ```json

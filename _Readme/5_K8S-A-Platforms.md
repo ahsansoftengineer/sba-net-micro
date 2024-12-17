@@ -72,6 +72,7 @@ spec:
 kubectl apply -f depl-platforms.yaml
 kubectl get pods
 kubectl get deployments
+kubectl rollout restart deployement depl-platforms 
 kubectl delete -f depl-platforms.yaml
 ```
 

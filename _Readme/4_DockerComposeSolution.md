@@ -80,6 +80,7 @@ networks:
 - Run inside K8S Folder
 ```bash
 docker-compose up -d --build 
+docker-compose down
 # ✔ Container platformservice-c Running
 # ✔ Container commandservice-c  Running  
 ```
