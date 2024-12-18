@@ -19,9 +19,11 @@ spec:
         - containerPort: 5401
         env:
         - name: DOTNET_ENVIRONMENT
-          value: "DockerK8S"
+          value: DockerK8S
         - name: ASPNETCORE_URLS
-          value: "http://+:5401"
+          value: http://+:5401
+        # - name: CommandService
+        #   value: http://srv-clusterip-commands:8401/api/c/platforms/
 
 # CLUSTER IP CONFIG
 --- 
@@ -38,4 +40,3 @@ spec:
     protocol: TCP
     port: 5401
     targetPort: 5401
-    # nodePort: 30541 # NodePort is not Valid Option for ClusterIP

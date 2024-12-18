@@ -11,24 +11,4 @@ spec:
       protocol: TCP
       port: 5401         # Cluster-wide service port
       targetPort: 5401   # Pod's application port
-      nodePort: 30541     # Range 30000-32767
-
-# PORT
-# - Represents the port on the Service itself.
-# - This is the port your application will use when communicating within the cluster via the Service name.
-# - Other Pods in the cluster will connect to the Service on this port.
-# Example:
-# - - If a Pod wants to access the service srvc-np-platforms, it will connect to port 8081.
-
-# TARGET PORT
-# - Represents the port on the Pod where the application is actually running.
-# - It maps the traffic from the Service's port to the container's port.
-# Example:
-# - - If your application inside the Pod listens on port 8081, the targetPort should also be 8081.
-
-# NODE PORT
-# - Represents the port on the Node (physical or virtual machine) where the service is exposed externally.
-# - It maps the traffic from the Node to the Service's port.
-# - If you're accessing your application from outside the cluster, you'll use the nodePort.
-# Example:
-# - - If you access your application via <NodeIP>:8081, you're using the nodePort.
+      nodePort: 30541     # Host Access (Windows) Range 30000-32767

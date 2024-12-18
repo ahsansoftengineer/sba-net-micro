@@ -41,7 +41,6 @@ ENTRYPOINT [ "dotnet", "CommandsService.dll"]
 ### Docker Compose
 ```yml
 version: "3.9"
-# WAY 3 :- DEPLOYMENT THROUGH DOCKER COMPOSE
 services:
   platformservice:
     build:
@@ -52,6 +51,7 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:5301
       - DOTNET_ENVIRONMENT=DockerComposeSolution
+      # - CommandService=http://commandsservice:8301/api/c/platforms/
     ports:
       - "5301:5301" 
     networks:
@@ -77,7 +77,10 @@ networks:
 ```
 
 ### Docker Compose CLI
+- Run inside K8S Folder
 ```bash
 docker-compose up -d --build 
 docker-compose down
+# ✔ Container platformservice-c Running
+# ✔ Container commandservice-c  Running  
 ```

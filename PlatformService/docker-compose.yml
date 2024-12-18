@@ -10,5 +10,7 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:5201
       - DOTNET_ENVIRONMENT=DockerCompose
+      # - CommandService=http://host.docker.internal:8201/api/c/platforms/
+
     ports:
       - "5201:5201" # Map host port 5201 to container port 5201

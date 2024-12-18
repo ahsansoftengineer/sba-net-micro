@@ -47,11 +47,12 @@ spec:
         - containerPort: 5401
         env:
         - name: DOTNET_ENVIRONMENT
-          value: "DockerK8S"
+          value: DockerK8S
         - name: ASPNETCORE_URLS
-          value: "http://+:5401"
+          value: http://+:5401
+        # - name: CommandService
+        #   value: http://srv-clusterip-commands:8401/api/c/platforms/
 
-# We need ClusterIP for Inter Service Communication
 # CLUSTER IP CONFIG
 --- 
 apiVersion: v1

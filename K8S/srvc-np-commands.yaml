@@ -9,6 +9,6 @@ spec:
   ports:
     - name: commandservice-d
       protocol: TCP
-      port: 8401         # Cluster-wide service port
-      targetPort: 8401   # Pod's application port
-      nodePort: 30841     # Range 30000-32767
+      port: 8401
+      targetPort: 8401
+      nodePort: 30841

@@ -19,10 +19,9 @@ spec:
           - containerPort: 8401
         env:
         - name: DOTNET_ENVIRONMENT
-          value: "DockerK8S"
+          value: DockerK8S
         - name: ASPNETCORE_URLS
-          value: "http://+:8401"
-
+          value: http://+:8401
 
 # CLUSTER IP CONFIG
 --- 
@@ -40,9 +39,3 @@ spec:
     port: 8401
     targetPort: 8401
     # nodePort: 30841 # 30000-32767 (Host Port)
-
-# Command to Run 
-# Make Build & Push
-#
-# Run Kubectl
-#
