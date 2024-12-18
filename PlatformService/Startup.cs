@@ -13,17 +13,18 @@ public class Startup
   }
   public void ConfigureServices(IServiceCollection srvc)
   {
-    srvc.AddDbContext<AppDbContext>(opt => {
+    srvc.AddDbContext<AppDbContext>(opt =>
+    {
       opt.UseInMemoryDatabase("InMem");
     });
-    srvc.AddControllers(); 
+    srvc.AddControllers();
     srvc.AddAutoMapper(
       AppDomain.CurrentDomain.GetAssemblies()
     );
     srvc.AddScoped<IPlatformRepo, PlatformRepo>();
     srvc.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
 
-    srvc.AddEndpointsApiExplorer(); 
+    srvc.AddEndpointsApiExplorer();
     srvc.AddSwaggerGen();
     Console.WriteLine($"--> CommandService Endpoint {_config["CommandService"]}");
   }
@@ -38,7 +39,7 @@ public class Startup
       app.UseSwaggerUI(c =>
       {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Platform Service");
-        c.RoutePrefix =  "swagger"; // string.Empty; // Optional: Serve Swagger UI at the app's root
+        c.RoutePrefix = "swagger"; // string.Empty; // Optional: Serve Swagger UI at the app's root
       });
     }
 
@@ -48,10 +49,20 @@ public class Startup
 
     app.UseEndpoints(endpoints =>
     {
-      endpoints.MapControllers(); 
+      endpoints.MapControllers();
       // Map controller endpoints
     });
+    // Redirect root URL to Swagger
+    app.Use(async (context, next) =>
+    {
+      if (context.Request.Path == "/")
+      {
+        context.Response.Redirect("/swagger/index.html");
+        return;
+      }
 
+      await next();
+    });
     PrepDb.PrepPopulation(app);
   }
 }

@@ -6,12 +6,12 @@ public class Startup
     // srvc.AddDbContext<AppDbContext>(opt => {
     //   opt.UseInMemoryDatabase("InMem");
     // });
-    srvc.AddControllers(); 
+    srvc.AddControllers();
     // srvc.AddAutoMapper(
     //   AppDomain.CurrentDomain.GetAssemblies()
     // );
     // srvc.AddTransient<IPlatformRepo, PlatformRepo>();
-    srvc.AddEndpointsApiExplorer(); 
+    srvc.AddEndpointsApiExplorer();
     srvc.AddSwaggerGen();
   }
 
@@ -26,7 +26,7 @@ public class Startup
       {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Command Service");
         // string.Empty;  // Optional: Serve Swagger UI at the app's root
-        c.RoutePrefix =  "swagger"; 
+        c.RoutePrefix = "swagger";
       });
     }
 
@@ -36,10 +36,17 @@ public class Startup
 
     app.UseEndpoints(endpoints =>
     {
-      endpoints.MapControllers(); 
-      // Map controller endpoints
+      endpoints.MapControllers();
     });
+    app.Use(async (context, next) =>
+    {
+      if (context.Request.Path == "/")
+      {
+        context.Response.Redirect("/swagger/index.html");
+        return;
+      }
 
-    // PrepDb.PrepPopulation(app);
+      await next();
+    });
   }
 }
