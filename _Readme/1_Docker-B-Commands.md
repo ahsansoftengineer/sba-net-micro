@@ -30,9 +30,3 @@ docker run -d --name commandservice-a -p 8101:8101 -e ASPNETCORE_URLS=http://+:8
 docker rm -f commandservice-a
 # docker exec -it d2d4 # Not Working Get Inside Container
 ```
-### appsettings.json
-```json
-{
-  "No JSON":""
-}
-```

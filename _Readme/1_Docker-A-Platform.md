@@ -25,15 +25,7 @@ COPY --from=build-env /app/out .
 ENTRYPOINT [ "dotnet", "PlatformService.dll"]
 ```
 
-### Docker run
-```bash
-docker build -t ahsansoftengineer/platformservice-a -f ./../PlatformService/Dockerfile ./../PlatformService
-docker push ahsansoftengineer/platformservice-a
-# docker run
-docker run -d --name platformservice-a -p 5101:5101 -e ASPNETCORE_URLS=http://+:5101  -e DOTNET_ENVIRONMENT=Docker ahsansoftengineer/platformservice-a
-docker rm -f platformservice-a
-# docker exec -it d2d4 # Not Working Get Inside Container
-```
+
 
 ### appsettings.Docker.json
 - YOU can use local host when both app inside same container
@@ -43,4 +35,13 @@ docker rm -f platformservice-a
 {
   "CommandService": "http://host.docker.internal:8101/api/c/platforms/"
 }
+```
+### Docker run
+```bash
+docker build -t ahsansoftengineer/platformservice-a -f ./../PlatformService/Dockerfile ./../PlatformService
+docker push ahsansoftengineer/platformservice-a
+# docker run
+docker run -d --name platformservice-a -p 5101:5101 -e ASPNETCORE_URLS=http://+:5101  -e DOTNET_ENVIRONMENT=Docker ahsansoftengineer/platformservice-a
+docker rm -f platformservice-a
+# docker exec -it d2d4 # Not Working Get Inside Container
 ```
