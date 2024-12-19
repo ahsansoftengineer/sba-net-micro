@@ -32,8 +32,9 @@ kubectl get services --namespace=ingress-nginx
 - Nginx doing the Task of NodePort
 - Node Port Platform -> http://localhost:30541/
 - Node Port Commands -> http://localhost:30841/
-- Nginx Proxy (Platform / Commands ) -> ahsan.com/api/platform
-- Nginx Proxy (Platform / Commands ) -> ahsan.com/api/c/platforms
+- Nginx Proxy Platform -> ahsan.com/swagger
+- Nginx Proxy Platform -> ahsan.com/api/platform
+- Nginx Proxy Commands -> ahsan.com/api/c/platforms
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -42,27 +43,12 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: 'true'
+    # nginx.ingress.kubernetes.io/rewrite-target: /$1 # Rewrite target for matched paths
 spec:
-  # Routing Rules
   rules:
   - host: ahsan.com
     http:
       paths:
-      - path: /swag-platforms #~*^/swag-platforms.*
-        pathType: Prefix
-        backend:
-          service:
-            name: srv-clusterip-platforms # Cluster IP
-            port:
-              number: 5401
-      - path: /swag-commands
-        pathType: Prefix
-        backend:
-          service:
-            name: srv-clusterip-commands # Cluster IP
-            port:
-              number: 8401
-
       - path: /api/platform
         pathType: Prefix
         backend:
@@ -77,6 +63,13 @@ spec:
             name: srv-clusterip-commands # Cluster IP
             port:
               number: 8401
+      - path: /swagger
+        pathType: Prefix
+        backend:
+          service:
+            name: srv-clusterip-platforms # Cluster IP
+            port:
+              number: 5401
 ```
 ### RUN NGINX
 ```bash

@@ -5,28 +5,12 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: 'true'
-    nginx.ingress.kubernetes.io/rewrite-target: /$1 # Rewrite target for matched paths
+    # nginx.ingress.kubernetes.io/rewrite-target: /$1 # Rewrite target for matched paths
 spec:
-  # Routing Rules
   rules:
   - host: ahsan.com
     http:
       paths:
-      - path: /swag-platforms(/|$)(.*)
-        pathType: Prefix
-        backend:
-          service:
-            name: srv-clusterip-platforms # Cluster IP
-            port:
-              number: 5401
-      - path: /swag-commands(/|$)(.*)
-        pathType: Prefix
-        backend:
-          service:
-            name: srv-clusterip-commands # Cluster IP
-            port:
-              number: 8401
-
       - path: /api/platform
         pathType: Prefix
         backend:
@@ -41,3 +25,10 @@ spec:
             name: srv-clusterip-commands # Cluster IP
             port:
               number: 8401
+      - path: /swagger
+        pathType: Prefix
+        backend:
+          service:
+            name: srv-clusterip-platforms
+            port:
+              number: 5401

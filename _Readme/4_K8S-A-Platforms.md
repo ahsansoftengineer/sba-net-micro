@@ -103,6 +103,6 @@ spec:
 kubectl apply -f srvc-np-platforms.yaml
 kubectl get pods
 kubectl get deployments
-kubectl delete -f  srvc-np-platforms.yaml
+kubectl delete -f srvc-np-platforms.yaml
 ```
 #### http://localhost:30541/swagger/index.html

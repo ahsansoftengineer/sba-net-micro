@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using PlatformService.Data;
 using PlatformService.SyncDataServices.Http;
 
@@ -39,7 +40,7 @@ public class Startup
       app.UseSwaggerUI(c =>
       {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Platform Service");
-        c.RoutePrefix = "swag-platforms"; // string.Empty; // Optional: Serve Swagger UI at the app's root
+        c.RoutePrefix = "swagger"; // string.Empty; // Optional: Serve Swagger UI at the app's root
       });
     }
 
@@ -51,14 +52,14 @@ public class Startup
     {
       endpoints.MapControllers();
     });
+
     app.Use(async (context, next) =>
     {
       if (context.Request.Path == "/")
       {
-        context.Response.Redirect("/swag-platforms/index.html");
+        context.Response.Redirect("/swagger/index.html");
         return;
       }
-
       await next();
     });
     PrepDb.PrepPopulation(app);
