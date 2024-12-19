@@ -80,3 +80,13 @@ kubectl delete -f srvc-ingress.yaml
 
 ### Cluster IP
 - We Need Only Cluster IP for InterService Communication
+
+### To Run it use the Following
+- 4_K8S-A-Platforms.md (No Node Port)
+- 4_K8S-A-Commands.md (No Node Port)
+- 5_K8S-NGINX.md
+```bash
+kubectl apply -f depl-platforms.yaml
+kubectl apply -f depl-commands.yaml
+kubectl apply -f srvc-ingress.yaml
+```
