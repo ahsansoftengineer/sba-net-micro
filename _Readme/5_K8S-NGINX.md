@@ -1,6 +1,6 @@
 ### NGINX PROXY SERVER
 #### RESOURCE LINKS
-- (Nginx Docs)[https://kubernetes.github.io/ingress-nginx/deploy/#docker-desktop]
+- [Nginx Docs](https://kubernetes.github.io/ingress-nginx/deploy/#docker-desktop)
 - [Git Hub Nginx](https://github.com/kubernetes/ingress-nginx?tab=readme-ov-file)
 
 #### BASH TO ADD IN DOCKER
