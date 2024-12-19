@@ -39,7 +39,7 @@ public class Startup
       app.UseSwaggerUI(c =>
       {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Platform Service");
-        c.RoutePrefix = "swagger"; // string.Empty; // Optional: Serve Swagger UI at the app's root
+        c.RoutePrefix = "swag-platforms"; // string.Empty; // Optional: Serve Swagger UI at the app's root
       });
     }
 
@@ -50,14 +50,12 @@ public class Startup
     app.UseEndpoints(endpoints =>
     {
       endpoints.MapControllers();
-      // Map controller endpoints
     });
-    // Redirect root URL to Swagger
     app.Use(async (context, next) =>
     {
       if (context.Request.Path == "/")
       {
-        context.Response.Redirect("/swagger/index.html");
+        context.Response.Redirect("/swag-platforms/index.html");
         return;
       }
 

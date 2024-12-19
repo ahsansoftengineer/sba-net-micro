@@ -26,7 +26,7 @@ public class Startup
       {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Command Service");
         // string.Empty;  // Optional: Serve Swagger UI at the app's root
-        c.RoutePrefix = "swagger";
+        c.RoutePrefix = "swag-commands";
       });
     }
 
@@ -42,7 +42,7 @@ public class Startup
     {
       if (context.Request.Path == "/")
       {
-        context.Response.Redirect("/swagger/index.html");
+        context.Response.Redirect("/swag-commands/index.html");
         return;
       }
 
