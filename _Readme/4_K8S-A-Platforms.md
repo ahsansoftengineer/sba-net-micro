@@ -105,4 +105,11 @@ kubectl get pods
 kubectl get deployments
 kubectl delete -f srvc-np-platforms.yaml
 ```
-#### http://localhost:30541/swagger/index.html
+
+### ROUTES (K8S Node Port)
+- http://localhost:30541/swagger/index.html
+- http://localhost:30541/api/platform
+- http://localhost:30541/api/platform/1
+
+### InterService Comm (Cluster IP)
+- srv-clusterip-commands:8401/api/c/platforms/

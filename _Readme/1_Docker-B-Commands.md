@@ -30,3 +30,7 @@ docker run -d --name commandservice-a -p 8101:8101 -e ASPNETCORE_URLS=http://+:8
 docker rm -f commandservice-a
 # docker exec -it d2d4 # Not Working Get Inside Container
 ```
+
+### ROUTE (Docker Port Mapping)
+- http://localhost:8101/swagger/index.html
+- http://localhost:8101/api/c/platforms POST

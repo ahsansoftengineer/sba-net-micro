@@ -84,3 +84,14 @@ docker-compose down
 # ✔ Container platformservice-c Running
 # ✔ Container commandservice-c  Running  
 ```
+
+### ROUTE (Docker-Compose Bridge Network)
+- http://localhost:5301/swagger/index.html
+- http://localhost:5301/api/platform
+- http://localhost:5301/api/platform/1
+
+- http://localhost:8301/swagger/index.html
+- http://localhost:8301/api/c/platform POST
+
+### InterService Comm (Bridge Network)
+- http://commandsservice:8301/api/c/platforms/

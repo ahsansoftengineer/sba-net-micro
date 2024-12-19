@@ -38,3 +38,8 @@ services:
 docker-compose up -d --build
 docker-compose down
 ```
+
+### ROUTE (Docker Port Mapping)
+- http://localhost:8201/swagger/index.html
+- http://localhost:8201/api/c/platform POST
+

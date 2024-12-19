@@ -45,3 +45,11 @@ docker run -d --name platformservice-a -p 5101:5101 -e ASPNETCORE_URLS=http://+:
 docker rm -f platformservice-a
 # docker exec -it d2d4 # Not Working Get Inside Container
 ```
+
+### ROUTE (Docker Port Mapping)
+- http://localhost:5101/swagger/index.html
+- http://localhost:5101/api/platform
+- http://localhost:5101/api/platform/1
+
+### InterService Comm (Docker Host IP Name)
+- http://host.docker.internal:8101/api/c/platforms/

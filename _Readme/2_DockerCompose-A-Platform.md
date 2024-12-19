@@ -46,3 +46,11 @@ services:
 docker-compose up -d --build 
 docker-compose down
 ```
+
+### ROUTE (Docker Port Mapping)
+- http://localhost:5201/swagger/index.html
+- http://localhost:5201/api/platform
+- http://localhost:5201/api/platform/1
+
+### InterService Comm (Docker Host IP Name)
+- http://host.docker.internal:8201/api/c/platforms/

@@ -49,7 +49,7 @@ spec:
         - name: DOTNET_ENVIRONMENT
           value: "DockerK8S"
         - name: ASPNETCORE_URLS
-          value: "http://+:8401"
+          value: "+:8401"
 
 # CLUSTER IP CONFIG
 # We need ClusterIP for Inter Service Communication
@@ -103,8 +103,9 @@ kubectl get services
 kubectl get nodes -o wide # EXTERNAL-IP replace with localhost
 kubectl delete -f srvc-np-commands.yaml
 ```
+### ROUTES (K8S Node Port)
+- http://localhost:30841/swagger/index.html
+- http://localhost:30841/api/c/platforms POST
 
-#### http://localhost:30841/swagger/index.html
-
-#### CLUSTER IP pod to pod communication
-#### http://srv-clusterip-commands:8401/api/c/platforms/
+### Inter Service Comm (Cluster IP)
+- srv-clusterip-commands:8401/api/c/platforms/

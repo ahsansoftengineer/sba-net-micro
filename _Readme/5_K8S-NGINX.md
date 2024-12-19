@@ -29,12 +29,6 @@ kubectl get services --namespace=ingress-nginx
 # End of section
 ```
 #### Nginx Srvc Config
-- Nginx doing the Task of NodePort
-- Node Port Platform -> http://localhost:30541/
-- Node Port Commands -> http://localhost:30841/
-- Nginx Proxy Platform -> ahsan.com/swagger
-- Nginx Proxy Platform -> ahsan.com/api/platform
-- Nginx Proxy Commands -> ahsan.com/api/c/platforms
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -49,6 +43,13 @@ spec:
   - host: ahsan.com
     http:
       paths:
+      - path: /swagger
+        pathType: Prefix
+        backend:
+          service:
+            name: srv-clusterip-platforms # Cluster IP
+            port:
+              number: 5401
       - path: /api/platform
         pathType: Prefix
         backend:
@@ -63,16 +64,19 @@ spec:
             name: srv-clusterip-commands # Cluster IP
             port:
               number: 8401
-      - path: /swagger
-        pathType: Prefix
-        backend:
-          service:
-            name: srv-clusterip-platforms # Cluster IP
-            port:
-              number: 5401
+
 ```
 ### RUN NGINX
 ```bash
 kubectl apply -f srvc-ingress.yaml
 kubectl delete -f srvc-ingress.yaml
 ```
+### ROUTES
+- While u use Nginx you don't need Node Port
+- Nginx Proxy Platform -> http://ahsan.com/swagger
+- Nginx Proxy Platform -> http://ahsan.com/api/platform
+- Nginx Proxy Platform -> http://ahsan.com/api/platform/1
+- Nginx Proxy Commands -> http://ahsan.com/api/c/platforms
+
+### Cluster IP
+- We Need Only Cluster IP for InterService Communication
