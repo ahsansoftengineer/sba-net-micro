@@ -3,10 +3,11 @@ kind: Ingress
 metadata:
   name: srvc-ingress
   annotations:
-    kubernetes.io/ingress.class: nginx
+    # kubernetes.io/ingress.class: nginx # ingressClassName
     nginx.ingress.kubernetes.io/use-regex: 'true'
     # nginx.ingress.kubernetes.io/rewrite-target: /$1 # Rewrite target for matched paths
 spec:
+  ingressClassName: nginx
   rules:
   - host: ahsan.com
     http:
