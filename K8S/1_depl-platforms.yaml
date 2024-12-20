@@ -30,7 +30,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: srv-clusterip-platforms
+  name: srvc-clusterip-platforms
 spec:
   type: ClusterIP
   selector:

@@ -13,6 +13,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 kubectl get namespace
 kubectl get pods --namespace=ingress-nginx
 kubectl get services --namespace=ingress-nginx
+kubectl delete namespace ingress-nginx
 ```
 
 #### Update the Host file
@@ -33,7 +34,7 @@ kubectl get services --namespace=ingress-nginx
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-srv
+  name: srvc-ingress
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: 'true'
@@ -43,13 +44,6 @@ spec:
   - host: ahsan.com
     http:
       paths:
-      - path: /swagger
-        pathType: Prefix
-        backend:
-          service:
-            name: srv-clusterip-platforms # Cluster IP
-            port:
-              number: 5401
       - path: /api/platform
         pathType: Prefix
         backend:
@@ -64,12 +58,18 @@ spec:
             name: srv-clusterip-commands # Cluster IP
             port:
               number: 8401
-
+      - path: /swagger
+        pathType: Prefix
+        backend:
+          service:
+            name: srv-clusterip-platforms
+            port:
+              number: 5401
 ```
 ### RUN NGINX
 ```bash
-kubectl apply -f srvc-ingress.yaml
-kubectl delete -f srvc-ingress.yaml
+kubectl apply -f 3_srvc-ingress.yaml
+kubectl delete -f 3_srvc-ingress.yaml
 ```
 ### ROUTES
 - While u use Nginx you don't need Node Port
@@ -86,7 +86,7 @@ kubectl delete -f srvc-ingress.yaml
 - 4_K8S-A-Commands.md (No Node Port)
 - 5_K8S-NGINX.md
 ```bash
-kubectl apply -f depl-platforms.yaml
-kubectl apply -f depl-commands.yaml
-kubectl apply -f srvc-ingress.yaml
+kubectl apply -f 2_depl-platforms.yaml
+kubectl apply -f 2_depl-commands.yaml
+kubectl apply -f 3_srvc-ingress.yaml
 ```

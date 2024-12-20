@@ -72,11 +72,14 @@ spec:
 #### BASH K8S Deployment
 - Run Inside K8S Folder
 ```bash
-kubectl apply -f depl-platforms.yaml
+kubectl apply -f 1_depl-platforms.yaml
 kubectl get pods
 kubectl get deployments
-kubectl rollout restart deployments depl-platforms-d
-kubectl delete -f depl-platforms.yaml
+kubectl rollout restart deployments 1_depl-platforms-d
+kubectl delete -f 1_depl-platforms.yaml
+# Delete (Deployments & Service)
+kubectl delete deployments depl-platforms-d
+kubectl delete services srvc-clusterip-platforms
 ```
 
 #### SERVICE Node Port
@@ -100,10 +103,10 @@ spec:
 - We need Node Port to Access application via Host
 - Run Inside K8S Folder
 ```bash
-kubectl apply -f srvc-np-platforms.yaml
+kubectl apply -f 2_srvc-np-platforms.yaml
 kubectl get pods
 kubectl get deployments
-kubectl delete -f srvc-np-platforms.yaml
+kubectl delete -f 2_srvc-np-platforms.yaml
 ```
 
 ### ROUTES (K8S Node Port)

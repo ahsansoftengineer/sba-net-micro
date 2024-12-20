@@ -9,6 +9,6 @@ spec:
   ports:
     - name: platformservice-d
       protocol: TCP
-      port: 5401         # Cluster-wide service port
-      targetPort: 5401   # Pod's application port
-      nodePort: 30541     # Host Access (Windows) Range 30000-32767
+      port: 5401 # Cluster Port
+      targetPort: 5401 # Pod's App port
+      nodePort: 30541 # Host Access (Windows) Range 30000-32767

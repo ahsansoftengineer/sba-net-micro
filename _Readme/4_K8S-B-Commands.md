@@ -70,11 +70,14 @@ spec:
 ```
 #### BASH K8S Deployment
 ```bash
-kubectl apply -f depl-commands.yaml
+kubectl apply -f 1_depl-commands.yaml
 kubectl get pods
 kubectl get deployments
-kubectl rollout restart deployments depl-commands-d
-kubectl delete -f depl-commands.yaml
+kubectl rollout restart deployments 1_depl-commands-d
+kubectl delete -f 1_depl-commands.yaml
+# Delete (Deployments & Service)
+kubectl delete deployments depl-commands-d
+kubectl delete services srvc-clusterip-commands
 ```
 
 #### SERVICE Node Port
@@ -98,10 +101,10 @@ spec:
 - We need Node Port to Access application via Host
 - Run Inside K8S Folder
 ```bash
-kubectl apply -f srvc-np-commands.yaml
+kubectl apply -f 2_srvc-np-commands.yaml
 kubectl get services
 kubectl get nodes -o wide # EXTERNAL-IP replace with localhost
-kubectl delete -f srvc-np-commands.yaml
+kubectl delete -f 2_srvc-np-commands.yaml
 ```
 ### ROUTES (K8S Node Port)
 - http://localhost:30841/swagger/index.html

@@ -79,8 +79,8 @@ networks:
 ### Docker Compose CLI
 - Run inside K8S Folder
 ```bash
-docker-compose up -d --build 
-docker-compose down
+docker-compose -f 0_docker-compose.yaml up -d --build
+docker-compose -f 0_docker-compose.yaml down
 # ✔ Container platformservice-c Running
 # ✔ Container commandservice-c  Running  
 ```
