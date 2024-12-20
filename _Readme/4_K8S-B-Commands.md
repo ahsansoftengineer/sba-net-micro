@@ -73,7 +73,7 @@ spec:
 kubectl apply -f 1_depl-commands.yaml
 kubectl get pods
 kubectl get deployments
-kubectl rollout restart deployments 1_depl-commands-d
+kubectl rollout restart deployments depl-commands-d
 kubectl delete -f 1_depl-commands.yaml
 # Delete (Deployments & Service)
 kubectl delete deployments depl-commands-d
