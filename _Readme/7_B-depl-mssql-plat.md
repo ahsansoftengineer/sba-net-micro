@@ -1,6 +1,9 @@
 ### SECRET
+- Becareful with Password Complexity
 ```bash
-kubectl create secret generic mssql --from-literal=SA_PASSWORD="pa55w0rd!"
+kubectl create secret generic mssql --from-literal=SA_PASSWORD="Pa55w0rd!"
+kubectl get secret mssql
+kubectl delete secret mssql
 ```
 
 ### MS SQL
@@ -18,3 +21,8 @@ kubectl delete -f 5_depl-mssql-platform.yaml
 # service/srvc-clusterip-mssql created
 # service/srvc-loadbalancer-mssql created
 ```
+
+### Creadentials
+- 127.0.0.1,1433
+- sa
+- Pa55w0rd!
