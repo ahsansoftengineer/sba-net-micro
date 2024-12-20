@@ -48,21 +48,21 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: srv-clusterip-platforms # Cluster IP
+            name: srvc-clusterip-platforms # Cluster IP
             port:
               number: 5401
       - path: /api/c/platforms
         pathType: Prefix
         backend:
           service:
-            name: srv-clusterip-commands # Cluster IP
+            name: srvc-clusterip-commands # Cluster IP
             port:
               number: 8401
       - path: /swagger
         pathType: Prefix
         backend:
           service:
-            name: srv-clusterip-platforms
+            name: srvc-clusterip-platforms
             port:
               number: 5401
 ```

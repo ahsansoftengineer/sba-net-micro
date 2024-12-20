@@ -57,7 +57,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: srv-clusterip-platforms
+  name: srvc-clusterip-platforms
 spec:
   type: ClusterIP
   selector:
@@ -111,4 +111,4 @@ kubectl delete -f 2_srvc-np-commands.yaml
 - http://localhost:30841/api/c/platforms POST
 
 ### Inter Service Comm (Cluster IP)
-- srv-clusterip-commands:8401/api/c/platforms/
+- srvc-clusterip-commands:8401/api/c/platforms/

@@ -23,7 +23,7 @@ spec:
         - name: ASPNETCORE_URLS
           value: http://+:5401
         # - name: CommandService
-        #   value: http://srv-clusterip-commands:8401/api/c/platforms/
+        #   value: http://srvc-clusterip-commands:8401/api/c/platforms/
 
 # CLUSTER IP CONFIG
 --- 

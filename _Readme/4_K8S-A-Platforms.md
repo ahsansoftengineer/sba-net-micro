@@ -51,14 +51,14 @@ spec:
         - name: ASPNETCORE_URLS
           value: http://+:5401
         # - name: CommandService
-        #   value: http://srv-clusterip-commands:8401/api/c/platforms/
+        #   value: http://srvc-clusterip-commands:8401/api/c/platforms/
 
 # CLUSTER IP CONFIG
 --- 
 apiVersion: v1
 kind: Service
 metadata:
-  name: srv-clusterip-platforms
+  name: srvc-clusterip-platforms
 spec:
   type: ClusterIP
   selector:
@@ -115,4 +115,4 @@ kubectl delete -f 2_srvc-np-platforms.yaml
 - http://localhost:30541/api/platform/1
 
 ### InterService Comm (Cluster IP)
-- srv-clusterip-commands:8401/api/c/platforms/
+- srvc-clusterip-commands:8401/api/c/platforms/
