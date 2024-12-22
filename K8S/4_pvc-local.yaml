@@ -8,3 +8,7 @@ spec:
       storage: 500Mi
   accessModes:
   - ReadWriteMany
+
+## Master Slave Arch
+## Client Server
+## 
