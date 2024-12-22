@@ -1,23 +1,26 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
 using PlatformService.Data;
+using PlatformService.Static;
 using PlatformService.SyncDataServices.Http;
 
 namespace PlatformService;
 public class Startup
 {
   private readonly IConfiguration _config;
-
-  public Startup(IConfiguration config)
+  private readonly IWebHostEnvironment _env;
+  public Startup(IConfiguration config, IWebHostEnvironment env)
   {
     _config = config;
+    _env = env;
   }
   public void ConfigureServices(IServiceCollection srvc)
   {
+    Console.WriteLine("--> Using SqlServer DB");
     srvc.AddDbContext<AppDbContext>(opt =>
     {
-      opt.UseInMemoryDatabase("InMem");
+      opt.UseSqlServer(_config.GetConnectionString("PlatformConn"));
     });
+
     srvc.AddControllers();
     srvc.AddAutoMapper(
       AppDomain.CurrentDomain.GetAssemblies()
@@ -32,7 +35,8 @@ public class Startup
 
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
-    if (env.IsDevelopment() || true)
+    // env.IsDevelopment() || env.IsDev();
+    if (true)
     {
       app.UseDeveloperExceptionPage();
 
@@ -62,6 +66,9 @@ public class Startup
       }
       await next();
     });
-    PrepDb.PrepPopulation(app);
+    if (_env.IsDockerK8S())
+    {
+      PrepDb.PrepPopulation(app);
+    }
   }
 }
