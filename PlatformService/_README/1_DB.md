@@ -20,9 +20,9 @@ using Microsoft.EntityFrameworkCore;
 using PlatformService.Models;
 
 namespace PlatformService.Data;
-public class AppDbContext : DbContext
+public class AppDBContext : DbContext
 {
-  public AppDbContext(DbContextOptions<AppDbContext> opt) : base(opt)
+  public AppDBContext(DbContextOptions<AppDBContext> opt) : base(opt)
   {
     
   }
@@ -37,10 +37,10 @@ public static class PrepDb
   {
     using(var srvcScope = app.ApplicationServices.CreateScope())
     {
-      SeedData(srvcScope.ServiceProvider.GetService<AppDbContext>());
+      SeedData(srvcScope.ServiceProvider.GetService<AppDBContext>());
     }
   }
-  private static void SeedData(AppDbContext context)
+  private static void SeedData(AppDBContext context)
   {
     if(!context.Platforms.Any())
     {
@@ -90,9 +90,9 @@ public interface IPlatformRepo
 
 public class PlatformRepo : IPlatformRepo
 {
-  private readonly AppDbContext _context;
+  private readonly AppDBContext _context;
 
-  public PlatformRepo(AppDbContext context)
+  public PlatformRepo(AppDBContext context)
   {
     _context = context;
   }
@@ -125,7 +125,7 @@ public class PlatformRepo : IPlatformRepo
 ```csharp
 public void ConfigureServices(IServiceCollection srvc)
 {
-  srvc.AddDbContext<AppDbContext>(opt => {
+  srvc.AddDbContext<AppDBContext>(opt => {
     opt.UseInMemoryDatabase("InMem");
   });
   srvc.AddControllers(); 

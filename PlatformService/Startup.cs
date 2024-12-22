@@ -16,7 +16,7 @@ public class Startup
   public void ConfigureServices(IServiceCollection srvc)
   {
     Console.WriteLine("--> Using SqlServer DB");
-    srvc.AddDbContext<AppDbContext>(opt =>
+    srvc.AddDbContext<AppDBContext>(opt =>
     {
       opt.UseSqlServer(_config.GetConnectionString("PlatformConn"));
     });
@@ -66,9 +66,7 @@ public class Startup
       }
       await next();
     });
-    if (_env.IsDockerK8S())
-    {
+   
       PrepDb.PrepPopulation(app);
-    }
   }
 }

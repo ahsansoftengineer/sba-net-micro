@@ -3,7 +3,7 @@ public class Startup
 {
   public void ConfigureServices(IServiceCollection srvc)
   {
-    // srvc.AddDbContext<AppDbContext>(opt => {
+    // srvc.AddDbContext<AppDBContext>(opt => {
     //   opt.UseInMemoryDatabase("InMem");
     // });
     srvc.AddControllers();
