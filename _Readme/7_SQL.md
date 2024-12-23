@@ -3,8 +3,8 @@
 ```bash
 docker build -t sql-image -f ./../SQL/Dockerfile ./../
 docker push sql-image
-docker run -p 1433:1433 --name sql-dockerfile -d sql-image
-# docker run -p 1430:1430 --name sql-dockerfile -d -v D:/sql/_1430:/var/opt/mssql -d sql-image
+docker run -p 1430:1433 --name sql-dockerfile -d sql-image
+# docker run -p 1433:1433 --name sql-dockerfile -d -v D:/sql/_1430:/var/opt/mssql -d sql-image
 docker stop sql-dockerfile
 docker rm sql-dockerfile
 ```
