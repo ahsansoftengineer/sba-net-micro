@@ -36,6 +36,9 @@ ENTRYPOINT [ "dotnet", "PlatformService.dll"]
   "CommandService": "http://host.docker.internal:8101/api/c/platforms/"
 }
 ```
+### Migration
+- Before Runing Container Run Sql Container & Migrations
+
 ### Docker run
 ```bash
 docker build -t ahsansoftengineer/platformservice-a -f ./../PlatformService/Dockerfile ./../PlatformService
