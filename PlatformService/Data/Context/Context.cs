@@ -16,20 +16,17 @@ public partial class AppDBContext : DbContext
   // public override int SaveChanges()
   // {
   //   var entries = ChangeTracker.Entries<BaseBEntity>();
-
   //   foreach (var entry in entries)
   //   {
   //     if (entry.State == EntityState.Added)
   //     {
   //       entry.Entity.CreatedAt = DateTimeOffset.UtcNow;
   //     }
-
   //     if (entry.State == EntityState.Modified)
   //     {
   //       entry.Entity.UpdatedAt = DateTimeOffset.UtcNow;
   //     }
   //   }
-
   //   return base.SaveChanges();
   // }
 }

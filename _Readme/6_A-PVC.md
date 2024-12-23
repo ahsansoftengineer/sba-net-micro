@@ -1,4 +1,16 @@
-
+### PVC file
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: claim-mssql
+spec:
+  resources:
+    requests:
+      storage: 500Mi
+  accessModes:
+  - ReadWriteMany
+```
 ### Create Claims
 - This Task Done Only Once
 - Creating Claim for Database

@@ -6,7 +6,7 @@ ENV MSSQL_SA_PASSWORD=Pa55word!
 # Persistent Data (Container Dir)
 VOLUME /var/opt/mssql
 
-EXPOSE 1433
+EXPOSE 1430
 
 CMD ["/opt/mssql/bin/sqlservr"]
 

@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using PlatformService.Data;
-using PlatformService.Static;
 using PlatformService.SyncDataServices.Http;
 
 namespace PlatformService;
@@ -18,7 +17,17 @@ public class Startup
     Console.WriteLine("--> Using SqlServer DB");
     srvc.AddDbContext<AppDBContext>(opt =>
     {
-      opt.UseSqlServer(_config.GetConnectionString("PlatformConn"));
+      string connStr = _config.GetConnectionString("PlatformConn");
+      Console.WriteLine(connStr);
+      opt.UseSqlServer(connStr, sqlOptions =>
+        {
+          sqlOptions.EnableRetryOnFailure(
+            maxRetryCount: 1,
+            maxRetryDelay: TimeSpan.FromSeconds(3),
+            errorNumbersToAdd: null
+          );
+        });
+        opt.LogTo(Console.WriteLine, LogLevel.Information);
     });
 
     srvc.AddControllers();
@@ -67,6 +76,5 @@ public class Startup
       await next();
     });
    
-      PrepDb.PrepPopulation(app);
   }
 }
