@@ -1,0 +1,61 @@
+version: '3.9'
+
+services:
+  docker-sql-e:
+    build:
+      context: ./../PlatformService/
+      dockerfile: 501-DockerSQL
+    container_name: docker-sql-e
+    ports:
+      - "1433:1433"
+    networks:
+      - network-501
+    # healthcheck:
+    #   test: ["CMD", "sqlcmd", "-U", "sa", "-P", "P@55w0rd!123", "-Q", "SELECT 1"]
+    #   interval: 20s
+    #   retries: 2
+    volumes:
+      - sql-data:/var/opt/mssql
+
+  commandsservice-e:
+    build:
+      context: ./../CommandsService/
+      dockerfile: Dockerfile
+    image: ahsansoftengineer/commandservice-e
+    container_name: commandservice-e
+    environment:
+      - ASPNETCORE_URLS=http://+:8501
+      - DOTNET_ENVIRONMENT=Docker501
+    ports:
+      - "8501:8501"
+    networks:
+      - network-501
+
+  platformservice-e:
+    build:
+      context: ./../PlatformService/
+      dockerfile: 501-DockerPlatform
+    image: ahsansoftengineer/platformservice-e
+    container_name: platformservice-e
+    # depends_on:
+    #   docker-sql-e:
+    #     condition: service_healthy
+    environment:
+      - ConnectionStrings__PlatformConn="Server=docker-sql-e,1433;Database=PlatformDB;User=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+      - ASPNETCORE_URLS=http://+:5501
+      - DOTNET_ENVIRONMENT=Docker501
+      - CommandService=http://commandsservice-e:8501/api/c/platforms/
+    ports:
+      - "5501:5501"
+    networks:
+      - network-501
+
+networks:
+  network-501:
+    driver: bridge
+
+volumes:
+  sql-data:
+    driver: local
+
+# docker-compose -f 501-docker-compose.yaml up -d --build

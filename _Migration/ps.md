@@ -15,7 +15,7 @@ dotnet ef database drop --force
 dotnet run --project SB_Admin.Web
 dotnet ef migrations add NameOfMigration -p SB_Admin.Infra -s SB_Admin.Web --context DBCntx
 dotnet ef database update 
-dotnet ef database update -p SB_Admin.Infra -s SB_Admin.Web --connection "Server=.;Database=SB_Admin;User ID=sa;Password=Asdf@1234;TrustServerCertificate=True;"
+dotnet ef database update -p SB_Admin.Infra -s SB_Admin.Web --connection "Server=.;Database=SB_Admin;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=True;"
 dotnet ef migrations remove  -p SB_Admin.Infra -s SB_Admin.Web
 dotnet ef database drop --force  -p SB_Admin.Infra -s SB_Admin.Web
 # Trusted_Connection=True;Integrated Security=False;
