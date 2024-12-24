@@ -44,7 +44,7 @@ ENTRYPOINT [ "dotnet", "PlatformService.dll"]
 docker build -t ahsansoftengineer/platformservice-a -f ./../PlatformService/Dockerfile ./../PlatformService
 docker push ahsansoftengineer/platformservice-a
 # docker run
-docker run -d --name platformservice-a -p 5101:5101  --network network-docker-a -e ASPNETCORE_URLS=http://+:5101  -e DOTNET_ENVIRONMENT=Docker -e ConnectionStrings__PlatformConn="Server=docker-sql-a,1433;Initial Catalog=PlatformA;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;" ahsansoftengineer/platformservice-a
+docker run -d --name platformservice-a -p 5101:5101  --network network-docker-a -e ASPNETCORE_URLS=http://+:5101  -e DOTNET_ENVIRONMENT=Docker -e ConnectionStrings__PlatformConn="Server=docker-sql-a,1433;Initial Catalog=PlatformDB;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;" ahsansoftengineer/platformservice-a
 
 docker rm -f platformservice-a
 # docker exec -it d2d4 # Not Working Get Inside Container
