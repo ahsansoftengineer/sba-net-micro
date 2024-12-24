@@ -6,16 +6,17 @@ services:
       context: ./../PlatformService/
       dockerfile: 501-DockerSQL
     container_name: docker-sql-e
+    image: ahsansoftengineer/docker-sql-e
     ports:
       - "1433:1433"
-    networks:
-      - network-501
-    # healthcheck:
-    #   test: ["CMD", "sqlcmd", "-U", "sa", "-P", "P@55w0rd!123", "-Q", "SELECT 1"]
-    #   interval: 20s
-    #   retries: 2
     volumes:
       - sql-data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD", "sqlcmd", "-U", "sa", "-P", "P@55w0rd!123", "-Q", "SELECT 1"]
+      interval: 20s
+      retries: 2
+    networks:
+      - network-501
 
   commandsservice-e:
     build:
@@ -59,3 +60,5 @@ volumes:
     driver: local
 
 # docker-compose -f 501-docker-compose.yaml up -d --build
+# docker exec -it id sh
+# printenv DOTNET_ENVIRONMENT

@@ -40,6 +40,7 @@ public class Startup
     srvc.AddEndpointsApiExplorer();
     srvc.AddSwaggerGen();
     Console.WriteLine($"--> CommandService Endpoint {_config["CommandService"]}");
+    Console.WriteLine($"--> SQL Connection {_config.GetConnectionString("PlatformConn")}");
   }
 
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -1,12 +1,16 @@
-FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base 
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 WORKDIR /app
-# EXPOSE 5501
 
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
+
 COPY ["PlatformService.csproj", "./"]
 RUN dotnet restore "./PlatformService.csproj"
-COPY . .
+
+RUN dotnet tool install --global dotnet-ef
+
+
+COPY . . 
 WORKDIR "/src/."
 RUN dotnet build "PlatformService.csproj" -c Release -o /app/build
 
@@ -17,8 +21,12 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 COPY entrypoint.sh .
+
 RUN chmod +x ./entrypoint.sh
+# Add .NET tools to the PATH
+ENV PATH="${PATH}:/root/.dotnet/tools"
 
-# ENV ASPNETCORE_URLS=http://+:5501
-
+# Default command
+CMD ["dotnet", "--info"]
 ENTRYPOINT ["./entrypoint.sh"]
+# ENTRYPOINT [ "dotnet", "PlatformService.dll"]
