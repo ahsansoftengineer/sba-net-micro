@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  platformservice:
+  platformservice-c:
     build:
       context: ./../PlatformService/
       dockerfile: Dockerfile
@@ -15,7 +15,7 @@ services:
     networks:
       - app-network
 
-  commandsservice:
+  commandsservice-c:
     build:
       context: ./../CommandsService/
       dockerfile: Dockerfile

@@ -26,7 +26,7 @@ ENTRYPOINT [ "dotnet", "PlatformService.dll"]
 version: "3.9"
 
 services:
-  platformservice:
+  platformservice-b:
     build:
       context: .
       dockerfile: Dockerfile
@@ -35,6 +35,7 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:5201
       - DOTNET_ENVIRONMENT=DockerCompose
+      # - ConnectionStrings__PlatformConn=Server=127.0.0.1,1430;Initial Catalog=platformsdb;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;
       # - CommandService=http://host.docker.internal:8201/api/c/platforms/
 
     ports:

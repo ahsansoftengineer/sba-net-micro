@@ -20,7 +20,7 @@ ENTRYPOINT [ "dotnet", "CommandsService.dll"]
 version: "3.9"
 
 services:
-  commandservice:
+  commandservice-b:
     build:
       context: .
       dockerfile: Dockerfile
