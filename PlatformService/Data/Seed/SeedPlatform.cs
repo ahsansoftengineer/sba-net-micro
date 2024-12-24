@@ -7,8 +7,8 @@ public static partial class SeedData
   public static void SeedPlatform(this ModelBuilder builder)
   {
     Console.WriteLine("--> PlatformService Seeding Data ");
-    List<Platform> data = new List<Platform>();
-    data.AddRange(
+    List<Platform> data =
+    [
       new Platform()
       {
         ID = 1,
@@ -29,7 +29,8 @@ public static partial class SeedData
         Name = "Kubernetes",
         Publisher = "Cloud Native Computing Foundation",
         Cost = "Free"
-      });
+      },
+    ];
     builder.Entity<Platform>().HasData(data);
   }
 }

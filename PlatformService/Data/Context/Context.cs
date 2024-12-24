@@ -9,7 +9,7 @@ public partial class AppDBContext : DbContext
   {
     // mb.Entity<UserCreator>().ToTable("UserCreator");
     AppDBContextConfig(mb);
-    Seeder.Seed(mb);
+    mb.Seed();
     base.OnModelCreating(mb);
   }
 
