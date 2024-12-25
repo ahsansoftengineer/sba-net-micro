@@ -3,10 +3,9 @@ ENV ACCEPT_EULA=Y
 ENV MSSQL_PID=Express
 ENV MSSQL_SA_PASSWORD=P@55w0rd!123
 
-
-
-
 EXPOSE 1433
+
+CMD ["/opt/mssql/bin/sqlservr"]
 
 # Add a health check
 # HEALTHCHECK --interval=10s --timeout=10s --start-period=30s --retries=3 \ 

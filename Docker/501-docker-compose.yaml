@@ -11,10 +11,6 @@ services:
       - "1433:1433"
     volumes:
       - sql-data:/var/opt/mssql
-    healthcheck:
-      test: ["CMD", "sqlcmd", "-U", "sa", "-P", "P@55w0rd!123", "-Q", "SELECT 1"]
-      interval: 20s
-      retries: 2
     networks:
       - network-501
 
@@ -40,7 +36,6 @@ services:
     container_name: platformservice-e
     # depends_on:
     #   docker-sql-e:
-    #     condition: service_healthy
     environment:
       - ConnectionStrings__PlatformConn="Server=docker-sql-e,1433;Database=PlatformDB;User=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
       - ASPNETCORE_URLS=http://+:5501
