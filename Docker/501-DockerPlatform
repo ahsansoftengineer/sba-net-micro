@@ -13,8 +13,11 @@ RUN dotnet publish -c Release -o out
 # Generate Runtime Image
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
-EXPOSE 5101
+# EXPOSE 5101
 COPY --from=base /app/out .
+
+ENV ASPNETCORE_URLS="http://+:5101"
+ENV DOTNET_ENVIRONMENT="Docker-501"
 
 ENTRYPOINT ["dotnet", "PlatformService.dll"]
 

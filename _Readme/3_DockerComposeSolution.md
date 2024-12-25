@@ -51,7 +51,7 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:5301
       - DOTNET_ENVIRONMENT=DockerComposeSolution
-      # - CommandService=http://commandsservice-c:8301/api/c/platforms/
+      - CommandService="http://commandsservice-c:8301/api/c/platforms/"
     ports:
       - "5301:5301" 
     networks:

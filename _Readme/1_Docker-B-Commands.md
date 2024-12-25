@@ -15,8 +15,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 COPY --from=build-env /app/out .
 
-# ENV ASPNETCORE_URLS=http://+:8101
-# ENV DOTNET_ENVIRONMENT=Docker
+ENV ASPNETCORE_URLS=http://+:8101
+ENV DOTNET_ENVIRONMENT=Docker
 # EXPOSE 8101
 
 ENTRYPOINT [ "dotnet", "CommandsService.dll"]
@@ -26,7 +26,7 @@ ENTRYPOINT [ "dotnet", "CommandsService.dll"]
 docker build -t ahsansoftengineer/commandservice-a -f ./../CommandsService/Dockerfile ./../CommandsService
 docker push ahsansoftengineer/commandservice-a
 # docker run
-docker run -d --name commandservice-a -p 8101:8101 -e ASPNETCORE_URLS=http://+:8101  -e DOTNET_ENVIRONMENT=Docker ahsansoftengineer/commandservice-a
+docker run -d --name commandservice-a -p 8101:8101 -e DOTNET_ENVIRONMENT=Docker ahsansoftengineer/commandservice-a
 docker rm -f commandservice-a
 # docker exec -it d2d4 # Not Working Get Inside Container
 ```
