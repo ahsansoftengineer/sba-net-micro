@@ -1,7 +1,13 @@
+# Use the official Microsoft SQL Server image
 FROM mcr.microsoft.com/mssql/server:2022-latest
+
+# Set environment variables
 ENV ACCEPT_EULA=Y
 ENV MSSQL_PID=Express
-ENV MSSQL_SA_PASSWORD=P@55w0rd!123
+ENV SA_PASSWORD=P@55w0rd!123
 
+# Expose the default SQL Server port (1433)
 EXPOSE 1433
-CMD ["/opt/mssql/bin/sqlservr"]
+
+# Set the default entry point
+ENTRYPOINT ["/opt/mssql/bin/sqlservr"]

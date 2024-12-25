@@ -1,43 +1,33 @@
 version: '3.9'
 
 services:
-  docker-sql-e:
+  ms-sql-e:
+    image: ahsansoftengineer/ms-sql-e
+    container_name: ms-sql-e
     build:
-      context: ./../PlatformService/
-      dockerfile: 501-DockerSQL
-    container_name: docker-sql-e
-    image: ahsansoftengineer/docker-sql-e
-    ports:
-      - "1433:1433"
+        context: ./
+        dockerfile: DockerfileSQL
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Express
+      - SA_PASSWORD="P@55w0rd!123"
     volumes:
       - sql-data:/var/opt/mssql
-    networks:
-      - network-501
-
-  commandsservice-e:
-    build:
-      context: ./../CommandsService/
-      dockerfile: Dockerfile
-    image: ahsansoftengineer/commandservice-e
-    container_name: commandservice-e
-    environment:
-      - ASPNETCORE_URLS=http://+:8501
-      - DOTNET_ENVIRONMENT=Docker501
     ports:
-      - "8501:8501"
+      - "1433:1433"
     networks:
       - network-501
 
   platformservice-e:
+    image: ahsansoftengineer/platformservice-e
+    container_name: platformservice-e
     build:
       context: ./../PlatformService/
       dockerfile: 501-DockerPlatform
-    image: ahsansoftengineer/platformservice-e
-    container_name: platformservice-e
     # depends_on:
     #   docker-sql-e:
     environment:
-      - ConnectionStrings__PlatformConn="Server=docker-sql-e,1433;Database=PlatformDB;User=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+      - ConnectionStrings__PlatformConn="Server=ms-sql-e,1433;Database=PlatformDB;User=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
       - ASPNETCORE_URLS=http://+:5501
       - DOTNET_ENVIRONMENT=Docker501
       - CommandService=http://commandsservice-e:8501/api/c/platforms/
@@ -46,6 +36,19 @@ services:
     networks:
       - network-501
 
+  # commandsservice-e:
+  #   image: ahsansoftengineer/commandservice-e
+  #   container_name: commandservice-e
+  #   build:
+  #     context: ./../CommandsService/
+  #     dockerfile: Dockerfile
+  #   environment:
+  #     - ASPNETCORE_URLS=http://+:8501
+  #     - DOTNET_ENVIRONMENT=Docker501
+  #   ports:
+  #     - "8501:8501"
+  #   networks:
+  #     - network-501
 networks:
   network-501:
     driver: bridge
