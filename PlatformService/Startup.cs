@@ -44,19 +44,7 @@ public class Startup
 
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
-    // env.IsDevelopment() || env.IsDev();
-    if (true)
-    {
-      app.UseDeveloperExceptionPage();
-
-      app.UseSwagger();
-      app.UseSwaggerUI(c =>
-      {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Platform Service");
-        c.RoutePrefix = "swagger"; // string.Empty; // Optional: Serve Swagger UI at the app's root
-      });
-    }
-    app.Seed();
+    ConfigureCrossCuttingConcern(app, env);
     // app.UseHttpsRedirection();
 
     app.UseRouting();
@@ -76,5 +64,23 @@ public class Startup
       await next();
     });
    
+  }
+  public void ConfigureCrossCuttingConcern(IApplicationBuilder app, IWebHostEnvironment env)
+  {
+    // env.IsDevelopment() || env.IsDev();
+    if (true)
+    {
+      app.UseDeveloperExceptionPage();
+
+      app.UseSwagger();
+      app.UseSwaggerUI(c =>
+      {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Platform Service");
+        c.RoutePrefix = "swagger"; // string.Empty; // Optional: Serve Swagger UI at the app's root
+      });
+    }
+    if(!env.IsDevelopment()){
+      app.Seed();
+    }
   }
 }
