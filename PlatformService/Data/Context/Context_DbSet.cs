@@ -11,4 +11,5 @@ public partial class AppDBContext : DbContext
 
   // Prime
   public DbSet<Platform> Platforms { get; set; }
+  public DbSet<Employee> Employees { get; set; }
 }

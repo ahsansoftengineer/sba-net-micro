@@ -9,8 +9,7 @@ public partial class AppDBContext : DbContext
   {
     // mb.Entity<UserCreator>().ToTable("UserCreator");
     AppDBContextConfig(mb);
-    // XX Migration CMD
-    // mb.Seed();
+    mb.Seed();
     base.OnModelCreating(mb);
   }
 
