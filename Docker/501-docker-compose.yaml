@@ -58,6 +58,7 @@ volumes:
   sql-data:
     driver: local
 
+# -p project-5
 # docker-compose -f 501-docker-compose.yaml up -d --build
 # docker exec -it id sh
 # printenv DOTNET_ENVIRONMENT
