@@ -5,16 +5,30 @@ services:
     image: ahsansoftengineer/ms-sql-e
     container_name: ms-sql-e
     build:
-        context: ./
+        context: .
         dockerfile: DockerfileSQL
-    environment:
-      - ACCEPT_EULA=Y
-      - MSSQL_PID=Express
-      - SA_PASSWORD="P@55w0rd!123"
+    # environment:
+    #   - ACCEPT_EULA=Y
+    #   - MSSQL_PID=Express
+    #   - SA_PASSWORD=P@55w0rd!123
     volumes:
       - sql-data:/var/opt/mssql
     ports:
-      - "1433:1433"
+      - "1435:1433"
+    networks:
+      - network-501
+
+  commandsservice-e:
+    image: ahsansoftengineer/commandservice-e
+    container_name: commandservice-e
+    build:
+      context: ./../CommandsService/
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_URLS=http://+:8501
+      - DOTNET_ENVIRONMENT=Docker501
+    ports:
+      - "8501:8501"
     networks:
       - network-501
 
@@ -23,11 +37,11 @@ services:
     container_name: platformservice-e
     build:
       context: ./../PlatformService/
-      dockerfile: 501-DockerPlatform
+      dockerfile: Dockerfile-Reference
     # depends_on:
     #   docker-sql-e:
     environment:
-      - ConnectionStrings__PlatformConn="Server=ms-sql-e,1433;Database=PlatformDB;User=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+      - ConnectionStrings__PlatformConn=Server=ms-sql-e,1433;Database=PlatformDB;User=sa;Password=P@55w0rd!123;TrustServerCertificate=true;
       - ASPNETCORE_URLS=http://+:5501
       - DOTNET_ENVIRONMENT=Docker501
       - CommandService=http://commandsservice-e:8501/api/c/platforms/
@@ -36,19 +50,6 @@ services:
     networks:
       - network-501
 
-  # commandsservice-e:
-  #   image: ahsansoftengineer/commandservice-e
-  #   container_name: commandservice-e
-  #   build:
-  #     context: ./../CommandsService/
-  #     dockerfile: Dockerfile
-  #   environment:
-  #     - ASPNETCORE_URLS=http://+:8501
-  #     - DOTNET_ENVIRONMENT=Docker501
-  #   ports:
-  #     - "8501:8501"
-  #   networks:
-  #     - network-501
 networks:
   network-501:
     driver: bridge

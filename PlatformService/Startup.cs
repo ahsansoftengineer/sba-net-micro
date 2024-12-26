@@ -57,7 +57,7 @@ public class Startup
         c.RoutePrefix = "swagger"; // string.Empty; // Optional: Serve Swagger UI at the app's root
       });
     }
-
+    app.Seed();
     app.UseHttpsRedirection();
 
     app.UseRouting();

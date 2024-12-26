@@ -11,7 +11,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 COPY --from=base /app/out .
 
-# SETUP (PORT & ENV) THROUGH (CLI, DOCKER-COMPOSE, K8S)
+# OVERRIDE (PORT & ENV) THROUGH (CLI, DOCKER-COMPOSE, K8S)
 ENV ASPNETCORE_URLS=http://+:5101
 ENV DOTNET_ENVIRONMENT=Docker
 ENV CommandService=http://host.docker.internal:8101/api/c/platforms/
