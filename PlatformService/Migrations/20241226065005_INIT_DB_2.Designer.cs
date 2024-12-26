@@ -11,8 +11,8 @@ using PlatformService.Data;
 namespace PlatformService.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20241223083247_INIT_DB")]
-    partial class INIT_DB
+    [Migration("20241226065005_INIT_DB_2")]
+    partial class INIT_DB_2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,29 +47,6 @@ namespace PlatformService.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Platforms");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Cost = "Free",
-                            Name = "Dot Net",
-                            Publisher = "Microsoft"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Cost = "Free",
-                            Name = "SQL Server Express",
-                            Publisher = "Microsoft"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            Cost = "Free",
-                            Name = "Kubernetes",
-                            Publisher = "Cloud Native Computing Foundation"
-                        });
                 });
 #pragma warning restore 612, 618
         }

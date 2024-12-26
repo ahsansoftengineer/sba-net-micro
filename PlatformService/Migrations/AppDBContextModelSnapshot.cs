@@ -44,29 +44,6 @@ namespace PlatformService.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Platforms");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Cost = "Free",
-                            Name = "Dot Net",
-                            Publisher = "Microsoft"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Cost = "Free",
-                            Name = "SQL Server Express",
-                            Publisher = "Microsoft"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            Cost = "Free",
-                            Name = "Kubernetes",
-                            Publisher = "Cloud Native Computing Foundation"
-                        });
                 });
 #pragma warning restore 612, 618
         }
