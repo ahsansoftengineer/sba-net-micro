@@ -5,7 +5,6 @@ public static partial class SeedData
 {
   public static void SeedPlatform(this AppDBContext context)
   {
-    Console.WriteLine("--> PlatformService Seeding Data ");
     List<Platform> data =
     [
       new Platform()
@@ -27,9 +26,11 @@ public static partial class SeedData
         Cost = "Free"
       },
     ];
-    if(!context.Platforms.Any())
+    if(!context.Platforms.Any(x => x.ID > 0))
     {
+      Console.WriteLine("--> PlatformService Seeding Data ");
       context.Platforms.AddRange(data);
+      context.SaveChanges();
     }
   }
 }

@@ -18,7 +18,6 @@ public class Startup
     srvc.AddDbContext<AppDBContext>(opt =>
     {
       string connStr = _config.GetConnectionString("PlatformConn");
-      Console.WriteLine(connStr);
       opt.UseSqlServer(connStr, sqlOptions =>
         {
           sqlOptions.EnableRetryOnFailure(
@@ -58,7 +57,7 @@ public class Startup
       });
     }
     app.Seed();
-    app.UseHttpsRedirection();
+    // app.UseHttpsRedirection();
 
     app.UseRouting();
 

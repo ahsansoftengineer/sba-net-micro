@@ -7,9 +7,9 @@ public static partial class Seeder
   {
     using(var srvcScp = app.ApplicationServices.CreateScope())
     {
-      AppDBContext? context = 
-      srvcScp.ServiceProvider.GetService<AppDBContext>();
-      if (context != null){
+      AppDBContext? context = srvcScp.ServiceProvider.GetService<AppDBContext>();
+      if (context != null)
+      {
         Console.WriteLine("--> Applying Migrations");
         context.Database.Migrate();
         context.SeedPlatform();
