@@ -5,8 +5,8 @@ services:
     image: ahsansoftengineer/ms-sql-e
     container_name: ms-sql-e
     build:
-        context: .
-        dockerfile: DockerfileSQL
+      context: ../__K8S/
+      dockerfile: ../__K8S/DockerfileSQL
     # environment:
     #   - ACCEPT_EULA=Y
     #   - MSSQL_PID=Express
