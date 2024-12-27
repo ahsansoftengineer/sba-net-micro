@@ -7,6 +7,7 @@ public static partial class Seeder
   public static void Seed(this ModelBuilder mb)
   {
     mb.SeedPlatform();
+    mb.SeedEmployee();
   }
   // Prod (When Running Migration throw Automation)
   public static void Seed(this IApplicationBuilder app)
@@ -21,6 +22,7 @@ public static partial class Seeder
 
         {
           context.SeedPlatform();
+          context.SeedEmployee();
         }
       }
     }

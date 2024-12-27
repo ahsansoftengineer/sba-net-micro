@@ -34,6 +34,7 @@ public class Startup
       AppDomain.CurrentDomain.GetAssemblies()
     );
     srvc.AddScoped<IPlatformRepo, PlatformRepo>();
+    srvc.AddScoped<IEmployeeRepo, EmployeeRepo>();
     srvc.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
 
     srvc.AddEndpointsApiExplorer();
