@@ -12,8 +12,11 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 
 # SETUP (PORT & ENV) THROUGH (CLI, DOCKER-COMPOSE, K8S)
-# ENV ASPNETCORE_URLS=http://+:5101
-# ENV DOTNET_ENVIRONMENT=Docker
-# EXPOSE 5101
+ENV ASPNETCORE_URLS=http://+:8101
+ENV DOTNET_ENVIRONMENT=Docker
+ENV ConnectionStrings__SbPlatform=Server=127.0.0.1,1431;Initial Catalog=PlatformDB;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;
+
+
+EXPOSE 8101
 
 ENTRYPOINT [ "dotnet", "CommandsService.dll"]

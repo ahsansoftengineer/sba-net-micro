@@ -19,7 +19,7 @@ docker rm docker-sql-a -f
 ### ENV
 ```json
 "ConnectionStrings": {
-  "PlatformConn": "Server=127.0.0.1,1430;Initial Catalog=Platform;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+  "SbPlatform": "Server=127.0.0.1,1430;Initial Catalog=Platform;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
 }
 ```
 ### SSMS Connect

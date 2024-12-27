@@ -14,10 +14,10 @@ public class Startup
   }
   public void ConfigureServices(IServiceCollection srvc)
   {
-    Console.WriteLine("--> Using SqlServer DB");
+    Console.WriteLine("--> Using SqlServer SbPlatform");
     srvc.AddDbContext<AppDBContext>(opt =>
     {
-      string connStr = _config.GetConnectionString("PlatformConn");
+      string connStr = _config.GetConnectionString("SbPlatform");
       opt.UseSqlServer(connStr, sqlOptions =>
         {
           sqlOptions.EnableRetryOnFailure(
@@ -40,7 +40,7 @@ public class Startup
     srvc.AddEndpointsApiExplorer();
     srvc.AddSwaggerGen();
     Console.WriteLine($"--> CommandService Endpoint {_config["CommandService"]}");
-    Console.WriteLine($"--> SQL Connection {_config.GetConnectionString("PlatformConn")}");
+    Console.WriteLine($"--> SQL Connection {_config.GetConnectionString("SbPlatform")}");
   }
 
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -36,7 +36,7 @@ services:
       - ASPNETCORE_URLS=http://+:5201
       - DOTNET_ENVIRONMENT=DockerCompose
       - CommandService=http://host.docker.internal:8201/api/c/platforms/
-      - ConnectionStrings__PlatformConn="Server=127.0.0.1,1430;Initial Catalog=PlatformDB;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+      - ConnectionStrings__SbPlatform="Server=127.0.0.1,1430;Initial Catalog=PlatformDB;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
 
     ports:
       - "5201:5201"
