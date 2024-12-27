@@ -16,7 +16,6 @@ ENV ASPNETCORE_URLS=http://+:8101
 ENV DOTNET_ENVIRONMENT=Docker
 ENV ConnectionStrings__SbPlatform=Server=127.0.0.1,1431;Initial Catalog=PlatformDB;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;
 
-
 EXPOSE 8101
 
 ENTRYPOINT [ "dotnet", "CommandsService.dll"]

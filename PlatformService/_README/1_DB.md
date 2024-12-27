@@ -14,7 +14,7 @@ public class Platform
   public string Cost { get; set; }
 }
 ```
-2. App SbPlatform Context
+2. App DB Context
 ```csharp
 using Microsoft.EntityFrameworkCore;
 using PlatformService.Models;
