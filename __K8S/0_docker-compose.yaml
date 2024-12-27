@@ -1,34 +1,64 @@
 version: "3.9"
 services:
-  platformservice-c:
+  ms-sql-c:
+    image: ahsansoftengineer/ms-sql-c
+    container_name: ms-sql-c
     build:
-      context: ./../PlatformService/
-      dockerfile: Dockerfile
-    image: ahsansoftengineer/platformservice-c
-    container_name: platformservice-c
-    environment:
-      - ASPNETCORE_URLS=http://+:5301
-      - DOTNET_ENVIRONMENT=DockerComposeSolution
-      - CommandService=http://commandsservice:8301/api/c/platforms/
+      context: .
+      dockerfile: DockerfileSQL
+    # environment:
+    #   - ACCEPT_EULA=Y
+    #   - MSSQL_PID=Express
+    #   - SA_PASSWORD=P@55w0rd!123
+    volumes:
+      - sql-data:/var/opt/mssql
     ports:
-      - "5301:5301" 
+      - "1433:1433"
     networks:
-      - app-network
+      - network-5301
 
   commandsservice-c:
-    build:
-      context: ./../CommandsService/
-      dockerfile: Dockerfile
     image: ahsansoftengineer/commandservice-c
     container_name: commandservice-c
+    build:
+      context: ../CommandsService/
+      dockerfile: Dockerfile
     environment:
       - ASPNETCORE_URLS=http://+:8301
-      - DOTNET_ENVIRONMENT=DockerComposeSolution
+      - DOTNET_ENVIRONMENT=Docker5301
     ports:
       - "8301:8301"
     networks:
-      - app-network
+      - network-5301
+
+  platformservice-c:
+    image: ahsansoftengineer/platformservice-c
+    container_name: platformservice-c
+    build:
+      context: ../PlatformService/
+      dockerfile: Dockerfile
+    depends_on:
+      - ms-sql-c
+      - commandsservice-c
+    environment:
+      - ConnectionStrings__PlatformConn=Server=ms-sql-c,1433;Database=PlatformDB;User=sa;Password=P@55w0rd!123;TrustServerCertificate=true;
+      - ASPNETCORE_URLS=http://+:5301
+      - DOTNET_ENVIRONMENT=Docker5301
+      - CommandService=http://commandsservice-c:8301/api/c/platforms/
+    ports:
+      - "5301:5301"
+    networks:
+      - network-5301
 
 networks:
-  app-network:
+  network-5301:
     driver: bridge
+
+volumes:
+  sql-data:
+    driver: local
+
+# -p project-5
+# docker-compose -f 0_docker-compose.yaml up -d --build
+# docker exec -it id sh
+# printenv DOTNET_ENVIRONMENT
