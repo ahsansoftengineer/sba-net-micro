@@ -21,3 +21,24 @@ ENV ConnectionStrings__SbPlatform=Server=127.0.0.1,1431;Initial Catalog=Platform
 # # EXPOSE 5101 5102 5103 # Multiple Ports
 
 ENTRYPOINT [ "dotnet", "PlatformService.dll"]
+
+
+### Migration
+# - Before Runing Container Run Sql Container & Migrations
+
+## DOCKER RUNNING
+# docker build -t ahsansoftengineer/platformservice-a -f ../PlatformService/Dockerfile ../PlatformService
+# docker push ahsansoftengineer/platformservice-a
+# # docker run
+# docker run -d --name platformservice-a -p 5101:5101 --network network-docker-a -e DOTNET_ENVIRONMENT=Docker ahsansoftengineer/platformservice-a
+
+# docker rm -f platformservice-a
+# docker exec -it d2d4 # Not Working Get Inside Container
+
+# ### ROUTE (Docker Port Mapping)
+# - http://localhost:5101/swagger/index.html
+# - http://localhost:5101/api/platform
+# - http://localhost:5101/api/platform/1
+
+# ### InterService Comm (Docker Host IP Name)
+# - http://host.docker.internal:8101/api/c/platforms/

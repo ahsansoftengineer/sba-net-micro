@@ -39,3 +39,20 @@ spec:
     port: 8401
     targetPort: 8401
     # nodePort: 30841 # 30000-32767 (Host Port)
+
+## BASH BUILD Dockerfile CommandService
+# - We need ClusterIP for Inter Service Communication
+## -t tagname, -f file/reference, ./buildContext  
+# docker build -t ahsansoftengineer/commandservice-d -f ../CommandsService/Dockerfile ../CommandsService
+# docker push ahsansoftengineer/commandservice-d
+
+## BASH RUN Deployment CommandService
+# kubectl apply -f 1_depl-commands.yaml
+# kubectl get pods
+# kubectl get deployments
+# kubectl rollout restart deployments depl-commands-d
+# kubectl delete -f 1_depl-commands.yaml
+## Delete (Deployments & Service)
+# kubectl delete deployments depl-commands-d
+# kubectl delete services srvc-clusterip-commands
+

@@ -40,3 +40,23 @@ spec:
     protocol: TCP
     port: 5401
     targetPort: 5401
+
+
+## BASH Build PlatformService
+# # -t tagname, -f file/reference, ./buildContext  
+# docker build -t ahsansoftengineer/platformservice-d -f ../PlatformService/Dockerfile ../PlatformService
+# docker push ahsansoftengineer/platformservice-d
+
+## BASH Run Deployment & ClusterIP Binding
+# kubectl apply -f 1_depl-platforms.yaml
+# kubectl get pods
+# kubectl get deployments
+# kubectl rollout restart deployments depl-platforms-d
+# kubectl delete -f 1_depl-platforms.yaml
+
+## Delete (Deployments & Service)
+# kubectl delete deployments depl-platforms-d
+# kubectl delete services srvc-clusterip-platforms
+
+## InterService Comm (Cluster IP)
+# - srvc-clusterip-commands:8401/api/c/platforms/

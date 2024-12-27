@@ -12,3 +12,11 @@ services:
       - DOTNET_ENVIRONMENT=DockerCompose
     ports:
       - "8201:8201" # Map host port 8201 to container port 8201
+
+# ### Docker Compose CLI
+# docker-compose up -d --build
+# docker-compose down
+
+# ### ROUTE (Docker Port Mapping)
+# - http://localhost:8201/swagger/index.html
+# - http://localhost:8201/api/c/platform POST

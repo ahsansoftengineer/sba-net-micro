@@ -19,3 +19,15 @@ ENV ConnectionStrings__SbPlatform=Server=127.0.0.1,1431;Initial Catalog=Platform
 EXPOSE 8101
 
 ENTRYPOINT [ "dotnet", "CommandsService.dll"]
+
+## Docker Run Without Port & Env
+# docker build -t ahsansoftengineer/commandservice-a -f ../CommandsService/Dockerfile ../CommandsService
+# docker push ahsansoftengineer/commandservice-a
+## docker run
+# docker run -d --name commandservice-a -p 8101:8101 -e DOTNET_ENVIRONMENT=Docker ahsansoftengineer/commandservice-a
+# docker rm -f commandservice-a
+# # docker exec -it d2d4 # Not Working Get Inside Container
+
+# ### ROUTE (Docker Port Mapping)
+# - http://localhost:8101/swagger/index.html
+# - http://localhost:8101/api/c/platforms POST

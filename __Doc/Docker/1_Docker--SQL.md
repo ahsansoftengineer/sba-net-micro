@@ -8,7 +8,7 @@ docker network rm network-docker-a
 ### SQL Server
 - Local Dev
 ```bash
-docker build -t ahsansoftengineer/sql-image -f ./../PlatformService/DockerfileSQL ./../
+docker build -t ahsansoftengineer/sql-image -f ../PlatformService/DockerfileSQL ../
 docker push ahsansoftengineer/sql-image
 docker run -p 1430:1433 --name docker-sql-z -d ahsansoftengineer/sql-image
 

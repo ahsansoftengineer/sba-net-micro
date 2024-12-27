@@ -37,7 +37,7 @@
 
 #### BASH
 ```bash
-dotnet watch --project ./../PlatformService/
+dotnet watch --project ../PlatformService/
 ```
 
 ### Commands Service
@@ -71,6 +71,6 @@ dotnet watch --project ./../PlatformService/
 
 #### BASH
 ```bash
-dotnet watch --project ./../CommandsService/
+dotnet watch --project ../CommandsService/
 
 ```

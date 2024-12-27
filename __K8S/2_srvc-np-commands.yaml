@@ -12,3 +12,16 @@ spec:
       port: 8401
       targetPort: 8401
       nodePort: 30841
+
+## BASH K8S SERVICE NODE PORT
+# kubectl apply -f 2_srvc-np-commands.yaml
+# kubectl get services
+# kubectl get nodes -o wide # EXTERNAL-IP replace with localhost
+# kubectl delete -f 2_srvc-np-commands.yaml
+
+## ROUTES (K8S Node Port)
+# - http://localhost:30841/swagger/index.html
+# - http://localhost:30841/api/c/platforms POST
+
+## Inter Service Comm (Cluster IP)
+# - srvc-clusterip-commands:8401/api/c/platforms/
