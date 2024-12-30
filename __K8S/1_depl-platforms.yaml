@@ -13,17 +13,20 @@ spec:
         app: platformservice-d
     spec:
       containers:
-      - name: platformservice-d
-        image: ahsansoftengineer/platformservice-d
-        ports:
-        - containerPort: 5401
-        env:
-        - name: DOTNET_ENVIRONMENT
-          value: DockerK8S
-        - name: ASPNETCORE_URLS
-          value: http://+:5401
-        - name: CommandService
-          value: http://srvc-clusterip-commands:8401/api/c/platforms/
+        - name: platformservice-d
+          image: ahsansoftengineer/platformservice-d
+          ports:
+            - containerPort: 5401
+          env:
+            - name: DOTNET_ENVIRONMENT
+              value: DockerK8S
+            - name: ASPNETCORE_URLS
+              value: http://+:5401
+            - name: CommandService
+              value: http://srvc-clusterip-commands:8401/api/c/platforms/
+            - name: ConnectionStrings__SbPlatform
+              value: "Server=srvc-clusterip-mssql,1433;Initial Catalog=PlatformDB;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+
 
 # CLUSTER IP CONFIG
 --- 
@@ -36,10 +39,10 @@ spec:
   selector:
     app: platformservice-d
   ports:
-  - name: platformservice-d
-    protocol: TCP
-    port: 5401
-    targetPort: 5401
+    - name: platformservice-d
+      protocol: TCP
+      port: 5401
+      targetPort: 5401
 
 
 ## BASH Build PlatformService

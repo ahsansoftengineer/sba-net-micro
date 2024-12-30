@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/mssql/server:2022-latest
 ## Image is for All SQL Containers
 ENV ACCEPT_EULA=Y
 ENV MSSQL_PID=Express
-ENV SA_PASSWORD=P@55w0rd!123
+ENV SA_PASSWORD "P@55w0rd!123"
 
 EXPOSE 1433
 
