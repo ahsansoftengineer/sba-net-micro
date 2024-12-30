@@ -23,7 +23,7 @@ ENV ConnectionStrings__SbPlatform "Server=host.docker.internal,1433;Initial Cata
 ENTRYPOINT [ "dotnet", "PlatformService.dll"]
 
 ## SQL CONTAINER
-# docker run -e ACCEPT_EULA=Y -e MSSQL_PID=Express -e 'SA_PASSWORD=P@55w0rd!123' -p 1431:1433 --name ms-sql-a -d mcr.microsoft.com/mssql/server:2022-latest
+# docker run -p 1431:1433 --name ms-sql-a -d mcr.microsoft.com/mssql/server:2022-latest
 
 ### Migration
 # - Before Runing Container Run Sql Container & Migrations
