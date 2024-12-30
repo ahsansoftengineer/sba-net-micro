@@ -12,16 +12,18 @@ WORKDIR /app
 COPY --from=base /app/out .
 
 # OVERRIDE (PORT & ENV) THROUGH (CLI, DOCKER-COMPOSE, K8S)
-ENV ASPNETCORE_URLS=http://+:5101
-ENV DOTNET_ENVIRONMENT=Docker
-ENV CommandService=http://host.docker.internal:8101/api/c/platforms/
-ENV ConnectionStrings__SbPlatform=Server=127.0.0.1,1431;Initial Catalog=PlatformDB;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;
+ENV ASPNETCORE_URLS http://+:5101
+ENV DOTNET_ENVIRONMENT Docker
+ENV CommandService http://host.docker.internal:8101/api/c/platforms/
+ENV ConnectionStrings__SbPlatform "Server=host.docker.internal,1433;Initial Catalog=PlatformDB;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
 
 # EXPOSE 5101
 # # EXPOSE 5101 5102 5103 # Multiple Ports
 
 ENTRYPOINT [ "dotnet", "PlatformService.dll"]
 
+## SQL CONTAINER
+# docker run -e ACCEPT_EULA=Y -e MSSQL_PID=Express -e 'SA_PASSWORD=P@55w0rd!123' -p 1431:1433 --name ms-sql-a -d mcr.microsoft.com/mssql/server:2022-latest
 
 ### Migration
 # - Before Runing Container Run Sql Container & Migrations
@@ -29,8 +31,8 @@ ENTRYPOINT [ "dotnet", "PlatformService.dll"]
 ## DOCKER RUNNING
 # docker build -t ahsansoftengineer/platformservice-a -f ../PlatformService/Dockerfile ../PlatformService
 # docker push ahsansoftengineer/platformservice-a
-# # docker run
-# docker run -d --name platformservice-a -p 5101:5101 --network network-docker-a -e DOTNET_ENVIRONMENT=Docker ahsansoftengineer/platformservice-a
+# --network network-docker-a 
+# docker run -d --name platformservice-a -p 5101:5101 -e DOTNET_ENVIRONMENT=Docker ahsansoftengineer/platformservice-a
 
 # docker rm -f platformservice-a
 # docker exec -it d2d4 # Not Working Get Inside Container
