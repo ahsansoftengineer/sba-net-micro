@@ -85,8 +85,8 @@ spec:
 # kubectl delete secret mssql
 
 ## BASH
-# kubectl apply -f 5_depl-mssql-platform.yaml
-# kubectl delete -f 5_depl-mssql-platform.yaml
+# kubectl apply -f _1_depl-mssql-platform.yaml
+# kubectl delete -f _1_depl-mssql-platform.yaml
 
 # deployment.apps/depl-mssql-platform created
 # service/srvc-clusterip-mssql created
