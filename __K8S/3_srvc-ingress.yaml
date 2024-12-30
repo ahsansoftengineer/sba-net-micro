@@ -12,6 +12,13 @@ spec:
   - host: ahsan.com
     http:
       paths:
+      - path: /api/employee
+        pathType: Prefix
+        backend:
+          service:
+            name: srvc-clusterip-platforms # Cluster IP
+            port:
+              number: 5401
       - path: /api/platform
         pathType: Prefix
         backend:
