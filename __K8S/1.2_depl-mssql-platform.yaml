@@ -15,6 +15,8 @@ spec:
       containers:
         - name: mssql
           image: mcr.microsoft.com/mssql/server:2022-latest
+        # - name: mssql-platform-d
+        #   image: ahsansoftengineer/mssql-platform-d
           ports:
             - containerPort: 1433
           resources:
@@ -85,8 +87,8 @@ spec:
 # kubectl delete secret mssql
 
 ## BASH
-# kubectl apply -f _1_depl-mssql-platform.yaml
-# kubectl delete -f _1_depl-mssql-platform.yaml
+# kubectl apply -f 1.2_depl-mssql-platform.yaml
+# kubectl delete -f 1.2_depl-mssql-platform.yaml
 
 # deployment.apps/depl-mssql-platform created
 # service/srvc-clusterip-mssql created

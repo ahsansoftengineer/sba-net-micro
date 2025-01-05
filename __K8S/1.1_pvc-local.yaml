@@ -15,6 +15,6 @@ spec:
 # - This Task Done Only Once
 # - Creating Claim for Database
 
-# kubectl apply -f _0_pvc-local.yaml
+# kubectl apply -f 1.1_pvc-local.yaml
 # kubectl get pvc
-# kubectl delete -f _0_pvc-local.yaml
+# kubectl delete -f 1.1_pvc-local.yaml

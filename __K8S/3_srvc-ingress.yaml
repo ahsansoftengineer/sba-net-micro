@@ -58,8 +58,8 @@ spec:
 # - 4_K8S-A-Platforms.md (No Node Port)
 # - 4_K8S-A-Commands.md (No Node Port)
 # - 5_K8S-NGINX.md
-# kubectl apply -f 2_depl-platforms.yaml
-# kubectl apply -f 2_depl-commands.yaml
+# kubectl apply -f 1.3_depl-platforms.yaml
+# kubectl apply -f 1.4_depl-commands.yaml
 # kubectl apply -f 3_srvc-ingress.yaml
 
 
@@ -78,6 +78,7 @@ spec:
 # kubectl get services --namespace=ingress-nginx
 # kubectl delete namespace ingress-nginx
 
+################### WINDOWS ###########################
 ## Update the Host file
 # - C:\Windows\System32\drivers\etc
 # Added by Ahsan
@@ -90,4 +91,24 @@ spec:
 # 127.0.0.1 kubernetes.docker.internal
 # End of section
 ## Nginx Srvc Config
+################### WINDOWS ###########################
 
+
+################### UBUNTU ###########################
+### nano /etc/hosts
+### gedit /etc/hosts
+# 127.0.0.1 ahsan.com
+# 127.0.0.1	localhost
+# 127.0.1.1	pc
+
+# # The following lines are desirable for IPv6 capable hosts
+# ::1     ip6-localhost ip6-loopback
+# fe00::0 ip6-localnet
+# ff00::0 ip6-mcastprefix
+# ff02::1 ip6-allnodes
+# ff02::2 ip6-allrouters
+# # Added by Docker Desktop
+# # To allow the same kube context to work on the host and the container:
+# 127.0.0.1	kubernetes.docker.internal
+# # End of section
+################### UBUNTU ###########################
