@@ -14,7 +14,7 @@ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 ### MIGRATIONS CMD
 ```bash
 dotnet tool list --global
-dotnet tool install --global dotnet-ef -v 9.0
+dotnet tool install --global dotnet-ef -v 8.0
 Install-Package Microsoft.EntityFrameworkCore.Tools # Power Shell
 dotnet ef migrations add NameOfMigration
 dotnet ef database update 
