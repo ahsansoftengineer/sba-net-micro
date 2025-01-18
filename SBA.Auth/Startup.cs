@@ -1,4 +1,8 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.IdentityModel.Tokens;
+using SBA.Auth.Data;
 
 namespace SBA.Auth;
 public class Startup
@@ -12,10 +16,25 @@ public class Startup
   }
   public void ConfigureServices(IServiceCollection srvc)
   {
+    ConfigureServicesDB(srvc);
+    srvc.AddControllers();
+    // srvc.AddAutoMapper(
+    //   AppDomain.CurrentDomain.GetAssemblies()
+    // );
+    // srvc.AddScoped<IPlatformRepo, PlatformRepo>();
+    // srvc.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
+
+    srvc.AddEndpointsApiExplorer();
+    srvc.AddSwaggerGen();
+    Console.WriteLine($"--> CommandService Endpoint {_config["CommandService"]}");
+    Console.WriteLine($"--> SQL Connection {_config.GetConnectionString("SbPlatform")}");
+  }
+  public void ConfigureServicesDB(IServiceCollection srvc)
+  {
     Console.WriteLine("--> Using SqlServer SbPlatform");
+    string connStr = _config.GetConnectionString("SbPlatform");
     srvc.AddDbContext<AppDBContext>(opt =>
     {
-      string connStr = _config.GetConnectionString("SbPlatform");
       opt.UseSqlServer(connStr, sqlOptions =>
         {
           sqlOptions.EnableRetryOnFailure(
@@ -24,21 +43,37 @@ public class Startup
             errorNumbersToAdd: null
           );
         });
-        opt.LogTo(Console.WriteLine, LogLevel.Information);
+      opt.LogTo(Console.WriteLine, LogLevel.Information);
     });
 
-    srvc.AddControllers();
-    srvc.AddAutoMapper(
-      AppDomain.CurrentDomain.GetAssemblies()
-    );
-    srvc.AddScoped<IPlatformRepo, PlatformRepo>();
-    srvc.AddScoped<IEmployeeRepo, EmployeeRepo>();
-    srvc.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
+    // Add services to the container.
+    srvc.AddDbContext<AppDBContext>(options =>
+        options.UseSqlServer(connStr));
 
-    srvc.AddEndpointsApiExplorer();
-    srvc.AddSwaggerGen();
-    Console.WriteLine($"--> CommandService Endpoint {_config["CommandService"]}");
-    Console.WriteLine($"--> SQL Connection {_config.GetConnectionString("SbPlatform")}");
+    // srvc.AddIdentity<IdentityUser, IdentityRole>()
+    //     .AddEntityFrameworkStores<AppDBContext>()
+    //     .AddDefaultTokenProviders();
+
+    // srvc.AddAuthentication(options =>
+    // {
+    //   // options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    //   // options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    // })
+    // .AddJwtBearer(options =>
+    // {
+    //   options.TokenValidationParameters = new TokenValidationParameters
+    //   {
+    //     ValidateIssuer = true,
+    //     ValidateAudience = true,
+    //     ValidateLifetime = true,
+    //     ValidateIssuerSigningKey = true,
+    //     ValidIssuer = builder.Configuration["Jwt:Issuer"],
+    //     ValidAudience = builder.Configuration["Jwt:Audience"],
+    //     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+    //   };
+    // });
+
+    srvc.AddAuthorization();
   }
 
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -52,7 +87,8 @@ public class Startup
     {
       endpoints.MapControllers();
     });
-
+    app.UseAuthentication();
+    app.UseAuthorization();
     // app.Use(async (context, next) =>
     // {
     //   if (context.Request.Path == "/")
@@ -62,7 +98,7 @@ public class Startup
     //   }
     //   await next();
     // });
-   
+
   }
   public void ConfigureCrossCuttingConcern(IApplicationBuilder app, IWebHostEnvironment env)
   {
@@ -78,7 +114,8 @@ public class Startup
         c.RoutePrefix = "swagger"; // string.Empty; // Optional: Serve Swagger UI at the app's root
       });
     }
-    if(!env.IsDevelopment()){
+    if (!env.IsDevelopment())
+    {
       // app.Seed();
     }
   }
