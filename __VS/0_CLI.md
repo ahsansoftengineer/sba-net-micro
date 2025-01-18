@@ -40,17 +40,23 @@ dotnet sln add SBA.Orderz/SBA.Orderz.csproj
 dotnet sln add SBA.Userz/SBA.Userz.csproj
 
 ```
-### SETTING UP STARTUP PROJECTS
+### ADDING LOCAL CLASS LIBRARY
 ```bash
-
+dotnet build
+dotnet add ./GLOB.Infra/ reference ./GLOB.Apps/
+dotnet add ./GLOB.Apps/ reference ./GLOB.Domain/
 ```
+
 ### ADDING LOCAL PROJECTS
 ```bash
 dotnet build
-dotnet add .\Donation.Api\ reference .\Donation.Contracts\ .\Donation.Application\
-dotnet add .\Donation.Infrastructure\ reference .\Donation.Application\
-dotnet add .\Donation.Application\ reference .\Donation.Domain\
-dotnet add .\Donation.Api\ reference .\Donation.Infrastructure\
+dotnet add .\SBA.Auth\ reference .\GLOB.Contracts\ .\GLOB.Apps\
+dotnet add .\SBA.Auth\ reference .\GLOB.Infra\
+```
+
+### SETTING UP STARTUP PROJECTS
+```bash
+
 ```
 
 ### RUNNING PROJECTS

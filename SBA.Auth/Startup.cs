@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.IdentityModel.Tokens;
 using SBA.Auth.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace SBA.Auth;
 public class Startup
@@ -46,18 +47,17 @@ public class Startup
       opt.LogTo(Console.WriteLine, LogLevel.Information);
     });
 
-    // Add services to the container.
     srvc.AddDbContext<AppDBContext>(options =>
         options.UseSqlServer(connStr));
 
-    // srvc.AddIdentity<IdentityUser, IdentityRole>()
-    //     .AddEntityFrameworkStores<AppDBContext>()
-    //     .AddDefaultTokenProviders();
+    srvc.AddIdentity<IdentityUser, IdentityRole>()
+        // .AddEntityFrameworkStores<AppDBContext>()
+        .AddDefaultTokenProviders();
 
     // srvc.AddAuthentication(options =>
     // {
-    //   // options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    //   // options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    //   options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    //   options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     // })
     // .AddJwtBearer(options =>
     // {
