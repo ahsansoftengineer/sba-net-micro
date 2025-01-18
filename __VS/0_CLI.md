@@ -10,10 +10,10 @@ dotnet new sln -o SBA
 ```bash
 dotnet new webapi -o SBA.APIGateway
 dotnet new webapi -o SBA.Auth
-dotnet new webapi -o SBA.Order
+dotnet new webapi -o SBA.Orderz
 dotnet new webapi -o SBA.Userz
-dotnet new webapi -o SBA.Notify
 dotnet new webapi -o SBA.Jobz
+# dotnet new webapi -o SBA.Notify
 ```
 
 ### CLASS LIBRARY
@@ -35,16 +35,14 @@ dotnet sln add CommandsService/CommandsService.csproj
 
 dotnet sln add SBA.APIGateway/SBA.APIGateway.csproj
 dotnet sln add SBA.Auth/SBA.Auth.csproj
+dotnet sln add SBA.Jobz/SBA.Jobz.csproj
 dotnet sln add SBA.Orderz/SBA.Orderz.csproj
 dotnet sln add SBA.Userz/SBA.Userz.csproj
 
 ```
-### ADD / REMOVE PROJECTS
+### SETTING UP STARTUP PROJECTS
 ```bash
-dotnet sln add (ls -r **\*.csproj) # Powershell Command
-dotnet sln remove .\Donation.Contacts\Donation.Contacts.csproj # cmd
-dotnet format ./solution.sln # ??
-more.\SBA.sln # ??
+
 ```
 ### ADDING LOCAL PROJECTS
 ```bash
@@ -54,6 +52,7 @@ dotnet add .\Donation.Infrastructure\ reference .\Donation.Application\
 dotnet add .\Donation.Application\ reference .\Donation.Domain\
 dotnet add .\Donation.Api\ reference .\Donation.Infrastructure\
 ```
+
 ### RUNNING PROJECTS
 ```bash
 dotnet run --project .\Donation.Api\
