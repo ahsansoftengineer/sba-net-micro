@@ -59,6 +59,7 @@ dotnet add ./SBA.Auth/ reference ./GLOB.Infra/
 ```bash
 # Domain
 dotnet add ./GLOB.Domain/ package Microsoft.AspNetCore.Mvc.NewtonsoftJson
+
 # Infra
 dotnet add ./GLOB.Infra/ package Microsoft.Extensions.Configuration
 dotnet add ./GLOB.Infra/ package Microsoft.Extensions.Options.ConfigurationExtensions
