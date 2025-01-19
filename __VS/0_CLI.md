@@ -26,18 +26,18 @@ dotnet new classlib -o GLOB.Contracts
 ### Adding Projects to Commands Line
 ```bash
 dotnet sln add GLOB.Apps/GLOB.Apps.csproj
+dotnet sln add GLOB.Contracts/GLOB.Contracts.csproj
 dotnet sln add GLOB.Domain/GLOB.Domain.csproj
 dotnet sln add GLOB.Infra/GLOB.Infra.csproj
-dotnet sln add GLOB.Contracts/GLOB.Contracts.csproj
 
 dotnet sln add PlatformService/PlatformService.csproj
 dotnet sln add CommandsService/CommandsService.csproj
 
 dotnet sln add SBA.APIGateway/SBA.APIGateway.csproj
-dotnet sln add SBA.Auth/SBA.Auth.csproj
 dotnet sln add SBA.Jobz/SBA.Jobz.csproj
-dotnet sln add SBA.Orderz/SBA.Orderz.csproj
+dotnet sln add SBA.Auth/SBA.Auth.csproj
 dotnet sln add SBA.Userz/SBA.Userz.csproj
+dotnet sln add SBA.Orderz/SBA.Orderz.csproj
 
 ```
 ### ADDING LOCAL CLASS LIBRARY
@@ -57,6 +57,9 @@ dotnet add ./SBA.Auth/ reference ./GLOB.Infra/
 ### EXTERNAL PACKAGES
 - Adding Packages to Specific Project
 ```bash
+# Domain
+dotnet add ./GLOB.Domain/ package Microsoft.AspNetCore.Mvc.NewtonsoftJson
+# Infra
 dotnet add ./GLOB.Infra/ package Microsoft.Extensions.Configuration
 dotnet add ./GLOB.Infra/ package Microsoft.Extensions.Options.ConfigurationExtensions
 dotnet add ./GLOB.Infra/ package Microsoft.AspNetCore.Authentication.JwtBearer
@@ -64,6 +67,7 @@ dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore
 dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.Design
 
+# Apps
 dotnet add ./GLOB.Apps/ package OneOf # Drawback of Scalability used in Apps Layer
 dotnet add ./GLOB.Apps/ package FluentResults # It has Lack Some Ability of OneOf used in Apps Layer
 dotnet add ./GLOB.Apps/ package MediatR
