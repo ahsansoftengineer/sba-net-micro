@@ -43,7 +43,7 @@ dotnet sln add SBA.Userz/SBA.Userz.csproj
 ### ADDING LOCAL CLASS LIBRARY
 ```bash
 dotnet build
-dotnet add ./GLOB.Infra/ reference ./GLOB.Apps/
+dotnet add ./GLOB.Infra/ reference ./GLOB.Apps/ ./GLOB.Domain/
 dotnet add ./GLOB.Apps/ reference ./GLOB.Domain/
 ```
 
@@ -60,19 +60,19 @@ dotnet add ./SBA.Auth/ reference ./GLOB.Infra/
 dotnet add ./GLOB.Infra/ package Microsoft.Extensions.Configuration
 dotnet add ./GLOB.Infra/ package Microsoft.Extensions.Options.ConfigurationExtensions
 dotnet add ./GLOB.Infra/ package Microsoft.AspNetCore.Authentication.JwtBearer
-dotnet add GLOB.Infra package Microsoft.EntityFrameworkCore 
-dotnet add GLOB.Infra package Microsoft.EntityFrameworkCore.SqlServer
-dotnet add GLOB.Infra package Microsoft.EntityFrameworkCore.Design
+dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore 
+dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.Design
 
-dotnet add ./GLOB.Apps/ package OneOf // Drawback of Scalability used in Apps Layer
-dotnet add ./GLOB.Apps/ package FluentResults // It has Lack Some Ability of OneOf used in Apps Layer
+dotnet add ./GLOB.Apps/ package OneOf # Drawback of Scalability used in Apps Layer
+dotnet add ./GLOB.Apps/ package FluentResults # It has Lack Some Ability of OneOf used in Apps Layer
 dotnet add ./GLOB.Apps/ package MediatR
 dotnet add ./GLOB.Apps/ package MediatR.Extension.Microsoft.DependencyInjection
 dotnet add ./GLOB.Apps/ package Mapster
 dotnet add ./GLOB.Apps/ package FluentValidation
 dotnet add ./GLOB.Apps/ package FluentValidation.AspNetCore
 
-dotnet add ./GLOB.Domain/ package ErrorOr // Recommended and Final Approach
+dotnet add ./GLOB.Domain/ package ErrorOr # Recommended and Final Approach
 
 
 dotnet add SBA.Api package Microsoft.EntityFrameworkCore.Design
