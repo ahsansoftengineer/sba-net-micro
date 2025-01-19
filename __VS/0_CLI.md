@@ -23,7 +23,7 @@ dotnet new classlib -o GLOB.Apps
 dotnet new classlib -o GLOB.Infra
 dotnet new classlib -o GLOB.Contracts
 ```
-### Adding Projects to Commands Line
+### Adding Projects to Solution
 ```bash
 dotnet sln add GLOB.Apps/GLOB.Apps.csproj
 dotnet sln add GLOB.Contracts/GLOB.Contracts.csproj
@@ -59,14 +59,6 @@ dotnet add ./SBA.Auth/ reference ./GLOB.Infra/
 ```bash
 # Domain
 dotnet add ./GLOB.Domain/ package Microsoft.AspNetCore.Mvc.NewtonsoftJson
-
-# Infra
-dotnet add ./GLOB.Infra/ package Microsoft.Extensions.Configuration
-dotnet add ./GLOB.Infra/ package Microsoft.Extensions.Options.ConfigurationExtensions
-dotnet add ./GLOB.Infra/ package Microsoft.AspNetCore.Authentication.JwtBearer
-dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore 
-dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.SqlServer
-dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.Design
 
 # Apps
 dotnet add ./GLOB.Apps/ package OneOf # Drawback of Scalability used in Apps Layer

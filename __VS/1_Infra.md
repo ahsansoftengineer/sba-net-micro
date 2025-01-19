@@ -1,3 +1,25 @@
+### Packages for Infra
+```bash
+dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore
+dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.Design
+dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.DynamicLinq
+dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.Tools
+
+dotnet add ./GLOB.Infra/ package Microsoft.AspNetCore.Authentication.JwtBearer
+dotnet add ./GLOB.Infra/ package Microsoft.AspNetCore.Authentication.OpenIdConnect
+
+dotnet add ./GLOB.Infra/ package Microsoft.AspNetCore.Mvc.NewtonsoftJson
+dotnet add ./GLOB.Infra/ package Microsoft.Extensions.Configuration
+dotnet add ./GLOB.Infra/ package Microsoft.Extensions.Options.ConfigurationExtensions
+
+dotnet add ./GLOB.Infra/ package DynamicExpressions.NET
+dotnet add ./GLOB.Infra/ package LinqKit.Core
+dotnet add ./GLOB.Infra/ package X.PagedList
+dotnet add ./GLOB.Infra/ package X.PagedList.Mvc.Core
+
+```
+
 
 ### DOCKER
 ```bash
