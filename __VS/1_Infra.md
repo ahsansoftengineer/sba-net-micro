@@ -1,4 +1,4 @@
-### Packages for Infra
+### EXTERNAL PACKAGES INFRA
 ```bash
 dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore
 dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.Design

@@ -1,4 +1,6 @@
 
+using GLOB.Domain.Entity;
+using GLOB.Infra.Seed;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Common;
@@ -8,13 +10,11 @@ public class AppDBContext : DbContext
   { 
 
   }
-  protected override void OnModelCreating(ModelBuilder modelBuilder)
+  protected override void OnModelCreating(ModelBuilder mb)
   {
-    // SeedData.Villa(modelBuilder);
+    SeedData.Test1(mb);
     
-    base.OnModelCreating(modelBuilder);
+    base.OnModelCreating(mb);
   }
-//   public DbSet<Villa> Villas { get; set; }
-//   public DbSet<VillaNumber> VillaNumber { get; set; }
-//   public DbSet<Amenity> Amenity { get; set; }
+  public DbSet<Test1> Test1 { get; set; }
 }

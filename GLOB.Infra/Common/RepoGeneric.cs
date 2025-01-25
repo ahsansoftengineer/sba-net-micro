@@ -1,9 +1,8 @@
 using System.Linq.Expressions;
 using GLOB.Apps.Common;
-using GLOB.Infra.Common;
 using Microsoft.EntityFrameworkCore;
 
-namespace Lagoon.Infra.Repo;
+namespace GLOB.Infra.Common;
 public class RepoGeneric<T> : IRepoGeneric<T> where T : class
 {
   private readonly AppDBContext _db;
@@ -13,10 +12,17 @@ public class RepoGeneric<T> : IRepoGeneric<T> where T : class
     _db = db;
     dbSet = _db.Set<T>();
   }
+
   public void Add(T entity)
   {
     dbSet.Add(entity);
   }
+
+  public void Update(T entity)
+  {
+    dbSet.Update(entity);
+  }
+  
   public void Remove(T entity)
   {
     _db.Remove(entity);
@@ -67,8 +73,5 @@ public class RepoGeneric<T> : IRepoGeneric<T> where T : class
   {
     _db.SaveChanges();
   }
-  public void Update(T entity)
-  {
-    dbSet.Update(entity);
-  }
+
 }
