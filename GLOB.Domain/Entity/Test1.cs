@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GLOB.Domain.Entity;
-public class Userzz 
+public class Test1 
 {
   public int ID {get; set;}
   [MaxLength(50)]

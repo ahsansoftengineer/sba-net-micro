@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GLOB.Domain.VM;
-public class VM_Amenity : BaseVM<Userzz>
+public class VM_Test1 : BaseVM<Test1>
 {
   [ValidateNever]
-  public IEnumerable<SelectListItem> VillaList { get; set; }
+  public IEnumerable<SelectListItem> Test2 { get; set; }
 }
