@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using GLOB.Domain.Enums;
 using GLOB.Domain.Entity;
+using GLOB.Domain.Base;
 
 namespace GLOB.Infra.Common;
 public class CommonStatusConfigz<T> : IEntityTypeConfiguration<T>
