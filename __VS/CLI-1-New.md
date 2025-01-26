@@ -1,0 +1,57 @@
+## Dotnet Core CLI Commands
+- Note: For Bash You can Revert BackSlash \ to ForwardSlash /
+- Create a Folder for your project with that folder run the following commands
+
+### SOLUTION COMMANDS
+```bash
+dotnet new sln -o SBA
+```
+### PROJECTS
+```bash
+dotnet new webapi -o SBA.APIGateway
+dotnet new webapi -o SBA.Auth
+dotnet new webapi -o SBA.Orderz
+dotnet new webapi -o SBA.Userz
+dotnet new webapi -o SBA.Jobz
+# dotnet new webapi -o SBA.Notify
+```
+
+### CLASS LIBRARY
+```bash
+dotnet new classlib -o GLOB.Package
+dotnet new classlib -o GLOB.Domain
+dotnet new classlib -o GLOB.Apps
+dotnet new classlib -o GLOB.Infra
+dotnet new classlib -o GLOB.Contracts
+```
+### Adding Projects to Solution
+```bash
+dotnet sln add GLOB.Apps/GLOB.Apps.csproj
+dotnet sln add GLOB.Contracts/GLOB.Contracts.csproj
+dotnet sln add GLOB.Domain/GLOB.Domain.csproj
+dotnet sln add GLOB.Infra/GLOB.Infra.csproj
+
+dotnet sln add PlatformService/PlatformService.csproj
+dotnet sln add CommandsService/CommandsService.csproj
+
+dotnet sln add SBA.APIGateway/SBA.APIGateway.csproj
+dotnet sln add SBA.Jobz/SBA.Jobz.csproj
+dotnet sln add SBA.Auth/SBA.Auth.csproj
+dotnet sln add SBA.Userz/SBA.Userz.csproj
+dotnet sln add SBA.Orderz/SBA.Orderz.csproj
+
+```
+
+### ADDING LOCAL CLASS LIBRARY
+```bash
+dotnet build
+dotnet add ./GLOB.Infra/ reference ./GLOB.Apps/ ./GLOB.Domain/
+dotnet add ./GLOB.Apps/ reference ./GLOB.Domain/
+```
+
+### ADDING LOCAL PROJECTS
+```bash
+dotnet build
+dotnet add ./SBA.Auth/ reference ./GLOB.Contracts/ ./GLOB.Apps/
+dotnet add ./SBA.Auth/ reference ./GLOB.Infra/
+```
