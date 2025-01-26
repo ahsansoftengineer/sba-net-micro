@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using GLOB.Domain.Entity;
 
-namespace GLOB.Infra.Common;
+namespace GLOB.Infra.Helper;
 public class CommonConfigz<T> : IEntityTypeConfiguration<T>
   where T : BaseEntity, new()
 {

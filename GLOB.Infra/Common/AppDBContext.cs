@@ -12,9 +12,10 @@ public class AppDBContext : DbContext
   }
   protected override void OnModelCreating(ModelBuilder mb)
   {
-    SeedData.Test1(mb);
+    SeedData.TestParent(mb);
+    SeedData.TestChild(mb);
     
     base.OnModelCreating(mb);
   }
-  public DbSet<Test1> Test1 { get; set; }
+  public DbSet<TestChild> TestChilds { get; set; }
 }
