@@ -8,9 +8,9 @@ using X.PagedList;
 namespace GLOB.Infra.Common;
 public class RepoGenericz<T> : IRepoGenericz<T> where T : class
 {
-  private readonly DBCntxt _context;
+  private readonly AppDBContextz _context;
   private readonly DbSet<T> _db;
-  public RepoGenericz(DBCntxt context)
+  public RepoGenericz(AppDBContextz context)
   {
     _context = context;
     _db = context.Set<T>();

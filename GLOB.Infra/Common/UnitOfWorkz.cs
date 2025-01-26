@@ -5,8 +5,8 @@ using Microsoft.EntityFrameworkCore;
 namespace GLOB.Infra.Common;
 public partial class UnitOfWorkz
 {
-private readonly DBCntxt _context;
-public UnitOfWorkz(DBCntxt context)
+private readonly AppDBContextz _context;
+public UnitOfWorkz(AppDBContextz context)
 {
     _context = context;
 }

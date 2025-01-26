@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Common;
-public partial class DBCntxt : IdentityDbContext<TestApiUser>
+public partial class AppDBContextz : IdentityDbContext<TestApiUser>
 {
-  public DBCntxt(DbContextOptions options) : base(options) { }
+  public AppDBContextz(DbContextOptions options) : base(options) { }
   public DbSet<TestEntity> TestEntitys { get; set; }
   public DbSet<TestParent> TestParents { get; set; }
   public DbSet<TestChild> TestChilds { get; set; }
