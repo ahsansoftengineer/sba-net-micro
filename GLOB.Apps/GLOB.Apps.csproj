@@ -9,4 +9,8 @@
   <ItemGroup>
     <ProjectReference Include="..\GLOB.Domain\GLOB.Domain.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="10.5.7" />
+  </ItemGroup>
 </Project>

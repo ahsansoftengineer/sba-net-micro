@@ -6,13 +6,13 @@ namespace GLOB.Infra.Common;
 public class UnitOfWork : IUnitOfWork
 {
     private readonly AppDBContext _db;
-    public IRepoTest1 Test1 { get; private set; }
+    public IRepoTestEntity Test1 { get; private set; }
 
     public UnitOfWork(AppDBContext db)
     {
         _db = db;
 
-        Test1 = new RepoTest1(_db);
+        Test1 = new RepoTestEntity(_db);
     }
 
     public void Save()

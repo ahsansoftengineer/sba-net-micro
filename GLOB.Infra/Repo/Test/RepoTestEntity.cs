@@ -3,10 +3,10 @@ using GLOB.Domain.Entity;
 using GLOB.Infra.Common;
 
 namespace GLOB.Infra.Repo;
-public class RepoTest1 : RepoGeneric<Test1>, IRepoTest1
+public class RepoTestEntity : RepoGeneric<TestEntity>, IRepoTestEntity
 {
   private readonly AppDBContext _db;
-  public RepoTest1(AppDBContext db): base(db)
+  public RepoTestEntity(AppDBContext db): base(db)
   {
     _db = db;
   }
