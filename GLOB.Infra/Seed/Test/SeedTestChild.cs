@@ -12,18 +12,21 @@ public static partial class SeedData
         Id = 1,
         Title = "TestChild 1",
         Desc = "TestChild 1 Desc",
+        TestParentId = 1,
       },
       new TestChild
       {
         Id = 2,
         Title = "TestChild 2",
         Desc = "TestChild 2 Desc",
+        TestParentId = 2,
       },
       new TestChild
       {
         Id = 3,
         Title = "TestChild 3",
         Desc = "TestChild 3 Desc",
+        TestParentId = 1,
       }
     );
   }
