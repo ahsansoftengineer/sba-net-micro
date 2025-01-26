@@ -1,4 +1,4 @@
-namespace GLOB.Domain.VM;
+namespace GLOB.Domain.Base;
 public class BaseVM<T>
 where T : class
 {

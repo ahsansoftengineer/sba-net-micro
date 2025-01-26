@@ -1,6 +1,6 @@
 using GLOB.Domain.Enums;
 
-namespace GLOB.Domain.Entity;
+namespace GLOB.Domain.Base;
 public abstract class AlphaEntity
 {
   public int? Id { get; set; }
