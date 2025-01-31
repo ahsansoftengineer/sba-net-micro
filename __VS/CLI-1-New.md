@@ -51,9 +51,4 @@ dotnet add ./GLOB.Infra/ reference ./GLOB.Apps/ ./GLOB.Domain/
 dotnet add ./GLOB.Apps/ reference ./GLOB.Domain/
 ```
 
-### ADDING LOCAL PROJECTS
-```bash
-dotnet build
-dotnet add ./SBA.Auth/ reference ./GLOB.Contracts/ ./GLOB.Apps/
-dotnet add ./SBA.Auth/ reference ./GLOB.Infra/
-```
+

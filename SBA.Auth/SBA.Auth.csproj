@@ -29,9 +29,11 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
-    <PackageReference Include="X.PagedList" Version="10.0.3" />
-    <PackageReference Include="X.PagedList.Mvc.Core" Version="10.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GLOB.Infra\GLOB.Infra.csproj" />
   </ItemGroup>
 
 </Project>

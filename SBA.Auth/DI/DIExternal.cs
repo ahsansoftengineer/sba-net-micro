@@ -1,4 +1,7 @@
 using AspNetCoreRateLimit;
+using GLOB.Domain.Common;
+using GLOB.Domain.Entity;
+using GLOB.Infra.Common;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.FileProviders;
@@ -105,13 +108,13 @@ public static partial class DIExternal
   public static IServiceCollection ConfigureIdentity(this IServiceCollection services)
   {
     var builder = services
-    .AddIdentityCore<ApiUser>(q => q.User.RequireUniqueEmail = true);
+    .AddIdentityCore<TestApiUser>(q => q.User.RequireUniqueEmail = true);
     builder = new IdentityBuilder(
     builder.UserType,
     typeof(IdentityRole), services);
 
     builder
-    .AddEntityFrameworkStores<DBCntxt>()
+    .AddEntityFrameworkStores<AppDBContext>()
       .AddDefaultTokenProviders();
     return services;
   }
@@ -174,6 +177,6 @@ public static partial class DIExternal
     });
 
     //services.AddHttpContextAccessor();// Already Configured
-    services.AddScoped<FileUploderz, FileUploderz>();
+    // services.AddScoped<FileUploderz, FileUploderz>();
   }
 }

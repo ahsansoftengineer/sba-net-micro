@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.IdentityModel.Tokens;
 using SBA.Auth.Data;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace SBA.Auth;
 public class Startup
