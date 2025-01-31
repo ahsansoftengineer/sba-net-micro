@@ -8,12 +8,13 @@ dotnet new sln -o SBA
 ```
 ### PROJECTS
 ```bash
+dotnet new webapi -o GLOB.API
 dotnet new webapi -o SBA.APIGateway
 dotnet new webapi -o SBA.Auth
+dotnet new webapi -o SBA.Hierarchy
 dotnet new webapi -o SBA.Orderz
 dotnet new webapi -o SBA.Userz
 dotnet new webapi -o SBA.Jobz
-dotnet new webapi -o SBA.Hierarchy
 # dotnet new webapi -o SBA.Notify
 ```
 
@@ -31,6 +32,7 @@ dotnet sln add GLOB.Apps/GLOB.Apps.csproj
 dotnet sln add GLOB.Contracts/GLOB.Contracts.csproj
 dotnet sln add GLOB.Domain/GLOB.Domain.csproj
 dotnet sln add GLOB.Infra/GLOB.Infra.csproj
+dotnet sln add GLOB.API/GLOB.API.csproj
 
 dotnet sln add PlatformService/PlatformService.csproj
 dotnet sln add CommandsService/CommandsService.csproj
@@ -47,8 +49,12 @@ dotnet sln add SBA.Orderz/SBA.Orderz.csproj
 ### ADDING LOCAL CLASS LIBRARY
 ```bash
 dotnet build
-dotnet add ./GLOB.Infra/ reference ./GLOB.Apps/ ./GLOB.Domain/
 dotnet add ./GLOB.Apps/ reference ./GLOB.Domain/
+dotnet add ./GLOB.Infra/ reference ./GLOB.Apps/ # ./GLOB.Domain/
+dotnet add ./SBA.API/ reference ./GLOB.Infra/
 ```
+### EXTERNAL PACKAGES TO API
+```bash
 
+```
 

@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SBA.Orderz", "SBA.Orderz\SB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SBA.Hierarchy", "SBA.Hierarchy\SBA.Hierarchy.csproj", "{4397AAC3-BFE8-4854-9BC3-C71C93B5819A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLOB.API", "GLOB.API\GLOB.API.csproj", "{E8B69FC5-6051-4658-95D2-6740DD8D7A2B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,5 +86,9 @@ Global
 		{4397AAC3-BFE8-4854-9BC3-C71C93B5819A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4397AAC3-BFE8-4854-9BC3-C71C93B5819A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4397AAC3-BFE8-4854-9BC3-C71C93B5819A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8B69FC5-6051-4658-95D2-6740DD8D7A2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8B69FC5-6051-4658-95D2-6740DD8D7A2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8B69FC5-6051-4658-95D2-6740DD8D7A2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8B69FC5-6051-4658-95D2-6740DD8D7A2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

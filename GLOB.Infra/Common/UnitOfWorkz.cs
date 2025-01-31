@@ -3,7 +3,7 @@ using GLOB.Domain.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Common;
-public partial class UnitOfWorkz
+public partial class UnitOfWorkz : IUnitOfWorkz
 {
 private readonly AppDBContextz _context;
 public UnitOfWorkz(AppDBContextz context)
