@@ -41,4 +41,16 @@ dotnet add ./GLOB.Infra/ package X.PagedList
 dotnet add ./GLOB.Infra/ package X.PagedList.Mvc.Core
 
 ```
+### EXTERNAL PACKAGES API
+```bash
+dotnet add ./GLOB.API/ package AspNetCoreRateLimit
+dotnet add ./GLOB.API/ package AutoMapper.Extensions.Microsoft.DependencyInjection
+dotnet add ./GLOB.API/ package Marvin.Cache.Headers
+dotnet add ./GLOB.API/ package Microsoft.AspNetCore.Mvc.Versioning
+dotnet add ./GLOB.API/ package Microsoft.AspNetCore.OpenApi
+dotnet add ./GLOB.API/ package Microsoft.AspNetCore.StaticFiles
+dotnet add ./GLOB.API/ package Microsoft.Extensions.Configuration
+dotnet add ./GLOB.API/ package Microsoft.Extensions.Options.ConfigurationExtensions
+dotnet add ./GLOB.API/ package Swashbuckle.AspNetCore
+```
 
