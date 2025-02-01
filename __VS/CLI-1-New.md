@@ -20,6 +20,7 @@ dotnet new webapi -o SBA.Jobz
 
 ### CLASS LIBRARY
 ```bash
+dotnet new classlib -o GLOB.APIz
 dotnet new classlib -o GLOB.Package
 dotnet new classlib -o GLOB.Domain
 dotnet new classlib -o GLOB.Apps

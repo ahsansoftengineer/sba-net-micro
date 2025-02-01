@@ -8,4 +8,5 @@ public partial class UnitOfWorkz
   private IRepoGenericz<TestEntity>? _testEntity;
   private IRepoGenericz<TestParent>? _testParent;
   private IRepoGenericz<TestChild>? _testChild;
+  private IRepoGenericz<TestStatus>? _testStatus;
 }
