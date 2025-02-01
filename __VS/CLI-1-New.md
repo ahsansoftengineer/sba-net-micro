@@ -47,11 +47,11 @@ dotnet sln add PlatformService/PlatformService.csproj
 dotnet sln add CommandsService/CommandsService.csproj
 
 dotnet sln add SBA.APIGateway/SBA.APIGateway.csproj
-dotnet sln add SBA.Jobz/SBA.Jobz.csproj
-dotnet sln add SBA.Hierarchy/SBA.Hierarchy.csproj
 dotnet sln add SBA.Auth/SBA.Auth.csproj
+dotnet sln add SBA.Hierarchy/SBA.Hierarchy.csproj
 dotnet sln add SBA.Userz/SBA.Userz.csproj
 dotnet sln add SBA.Orderz/SBA.Orderz.csproj
+dotnet sln add SBA.Jobz/SBA.Jobz.csproj
 
 ```
 

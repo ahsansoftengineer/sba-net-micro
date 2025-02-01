@@ -1,5 +1,7 @@
+using GLOB.API.Config;
+
 namespace GLOB.API;
-public class MapInitFull : MapperInitializerCommon
+public class MapInitFull : MapInitBase
 {
   public MapInitFull() : base()
   {

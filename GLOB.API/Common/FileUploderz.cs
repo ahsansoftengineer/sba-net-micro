@@ -1,4 +1,6 @@
 using AutoMapper;
+using GLOB.API.Controllers.Base;
+using GLOB.Apps.Common;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection;
 
@@ -11,7 +13,7 @@ public class FileUploderz : AlphaController<FileUploderz>
   public FileUploderz(
   ILogger<FileUploderz> logger,
   IMapper mapper,
-  IUnitOfWork unitOfWork,
+  IUnitOfWorkz unitOfWork,
   IWebHostEnvironment hostingEnvironment
   ) :
 
