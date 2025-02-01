@@ -14,7 +14,7 @@ dotnet new classlib -o GLOB.Domain
 dotnet new classlib -o GLOB.Apps
 dotnet new classlib -o GLOB.Infra
 dotnet new classlib -o GLOB.Contracts
-dotnet new classlib -o GLOB.APIz
+# dotnet new classlib -o GLOB.APIz
 ```
 
 ### LOCAL PROJECTS
@@ -60,6 +60,6 @@ dotnet sln add SBA.Orderz/SBA.Orderz.csproj
 dotnet build
 dotnet add ./GLOB.Apps/ reference ./GLOB.Domain/
 dotnet add ./GLOB.Infra/ reference ./GLOB.Apps/ # ./GLOB.Domain/
-dotnet add ./SBA.API/ reference ./GLOB.Infra/ # ClassLib
-dotnet add ./SBA.APIz/ reference ./GLOB.Infra/ # WEB API
+dotnet add ./SBA.API/ reference ./GLOB.Infra/ # WEB API
+# dotnet add ./SBA.APIz/ reference ./GLOB.Infra/ # ClassLib
 ```
