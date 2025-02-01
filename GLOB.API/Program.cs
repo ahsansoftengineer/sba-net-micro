@@ -1,44 +1,35 @@
-// var builder = WebApplication.CreateBuilder(args);
+namespace GLOB.API
+{
+  public class Program
+  {
+    public static void Main(string[] args)
+    {
+      //Log.Logger = new LoggerConfiguration()
+      //  .WriteTo.File(
+      //    path: "d:\\Trevoir\\logs\\log-.txt",
+      //    outputTemplate: "{Timestamp:dd-MM-yyyy HH:mm:ss} [{Level:u3}] {Message: 1j}{NewLine}{Exception}",
+      //    rollingInterval: RollingInterval.Day,
+      //    restrictedToMinimumLevel: LogEventLevel.Information
+      //).CreateLogger(); //
+      try
+      {
+        //Log.Information("Application is Starting"); // 
+        CreateHostBuilder(args).Build().Run();
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine(e.Message);
 
-// // Add services to the container.
-// // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-// builder.Services.AddEndpointsApiExplorer();
-// builder.Services.AddSwaggerGen();
+        //Log.Fatal(e, "Application Failed to start"); //
+      }
+    }
 
-// var app = builder.Build();
-
-// // Configure the HTTP request pipeline.
-// if (app.Environment.IsDevelopment())
-// {
-//     app.UseSwagger();
-//     app.UseSwaggerUI();
-// }
-
-// app.UseHttpsRedirection();
-
-// var summaries = new[]
-// {
-//     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-// };
-
-// app.MapGet("/weatherforecast", () =>
-// {
-//     var forecast =  Enumerable.Range(1, 5).Select(index =>
-//         new WeatherForecast
-//         (
-//             DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-//             Random.Shared.Next(-20, 55),
-//             summaries[Random.Shared.Next(summaries.Length)]
-//         ))
-//         .ToArray();
-//     return forecast;
-// })
-// .WithName("GetWeatherForecast")
-// .WithOpenApi();
-
-// app.Run();
-
-// record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-// {
-//     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-// }
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+      Host.CreateDefaultBuilder(args)
+      //.UseSerilog()
+      .ConfigureWebHostDefaults(webBuilder =>
+      {
+        webBuilder.UseStartup<Startup>();
+      });
+  }
+}

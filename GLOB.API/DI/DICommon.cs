@@ -48,13 +48,13 @@ public static partial class DICommon
       });
 
   }
-  public static void ConfigureSwagger(this IServiceCollection services)
+  public static void ConfigureSwagger(this IServiceCollection services, string title = "Micro")
   {
     services.AddSwaggerGen(c =>
     {
       c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
       {
-        Title = "Micro",
+        Title = title,
         Version = "v1"
       });
       //c.IgnoreObsoleteProperties();
