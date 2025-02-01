@@ -29,8 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SBA.Hierarchy", "SBA.Hierar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLOB.API", "GLOB.API\GLOB.API.csproj", "{E8B69FC5-6051-4658-95D2-6740DD8D7A2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLOB.APIz", "GLOB.APIz\GLOB.APIz.csproj", "{6201EFD0-FB49-477E-92F3-B58632D44B3C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,9 +90,5 @@ Global
 		{E8B69FC5-6051-4658-95D2-6740DD8D7A2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8B69FC5-6051-4658-95D2-6740DD8D7A2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8B69FC5-6051-4658-95D2-6740DD8D7A2B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6201EFD0-FB49-477E-92F3-B58632D44B3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6201EFD0-FB49-477E-92F3-B58632D44B3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6201EFD0-FB49-477E-92F3-B58632D44B3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6201EFD0-FB49-477E-92F3-B58632D44B3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
