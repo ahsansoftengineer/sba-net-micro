@@ -6,27 +6,30 @@
 ```bash
 dotnet new sln -o SBA
 ```
+
+### CLASS LIBRARY
+```bash
+dotnet new classlib -o GLOB.Package
+dotnet new classlib -o GLOB.Domain
+dotnet new classlib -o GLOB.Apps
+dotnet new classlib -o GLOB.Infra
+dotnet new classlib -o GLOB.Contracts
+dotnet new classlib -o GLOB.APIz
+```
+
 ### PROJECTS
 ```bash
-dotnet new webapi -o GLOB.API
 dotnet new webapi -o SBA.APIGateway
-dotnet new webapi -o SBA.Auth
+dotnet new webapi -o GLOB.API
 dotnet new webapi -o SBA.Hierarchy
+dotnet new webapi -o SBA.Auth
 dotnet new webapi -o SBA.Orderz
 dotnet new webapi -o SBA.Userz
 dotnet new webapi -o SBA.Jobz
 # dotnet new webapi -o SBA.Notify
 ```
 
-### CLASS LIBRARY
-```bash
-dotnet new classlib -o GLOB.APIz
-dotnet new classlib -o GLOB.Package
-dotnet new classlib -o GLOB.Domain
-dotnet new classlib -o GLOB.Apps
-dotnet new classlib -o GLOB.Infra
-dotnet new classlib -o GLOB.Contracts
-```
+
 ### Adding Projects to Solution
 ```bash
 dotnet sln add GLOB.Apps/GLOB.Apps.csproj
@@ -53,7 +56,8 @@ dotnet sln add SBA.Orderz/SBA.Orderz.csproj
 dotnet build
 dotnet add ./GLOB.Apps/ reference ./GLOB.Domain/
 dotnet add ./GLOB.Infra/ reference ./GLOB.Apps/ # ./GLOB.Domain/
-dotnet add ./SBA.API/ reference ./GLOB.Infra/
+dotnet add ./SBA.API/ reference ./GLOB.Infra/ # CLASS LIB
+dotnet add ./SBA.APIz/ reference ./GLOB.Infra/ # WEB API
 ```
 ### EXTERNAL PACKAGES TO API
 ```bash
