@@ -1,4 +1,6 @@
 using AutoMapper;
+using GLOB.Domain.Base;
+using GLOB.Domain.Common;
 using System.Net;
 using X.PagedList;
 

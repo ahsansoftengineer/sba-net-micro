@@ -2,6 +2,7 @@ using AutoMapper;
 using GLOB.Apps.Common;
 using GLOB.Domain.Base;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using X.PagedList;
 
 namespace GLOB.API.Controllers.Base;

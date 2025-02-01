@@ -5,6 +5,11 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.FileProviders;
 using Swashbuckle.AspNetCore.SwaggerUI;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Hosting;
 
 namespace GLOB.API.DI;
 public static partial class DIExternal
@@ -176,6 +181,6 @@ public static partial class DIExternal
     });
 
     // services.AddHttpContextAccessor();// Already Configured
-    // services.AddScoped<FileUploderz, FileUploderz>();
+    services.AddScoped<FileUploderz, FileUploderz>();
   }
 }

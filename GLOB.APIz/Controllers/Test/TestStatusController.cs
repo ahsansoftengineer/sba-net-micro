@@ -3,6 +3,7 @@ using GLOB.API.Controllers.Base;
 using GLOB.Apps.Common;
 using GLOB.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace GLOB.API.Controllers.Test;
 [Route("api/[controller]")]

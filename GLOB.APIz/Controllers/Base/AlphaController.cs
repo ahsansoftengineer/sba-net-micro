@@ -1,6 +1,7 @@
 using AutoMapper;
 using GLOB.Apps.Common;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace GLOB.API.Controllers.Base;
 [Route("api/[controller]")]

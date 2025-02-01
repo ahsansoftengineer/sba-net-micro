@@ -4,6 +4,7 @@ using GLOB.Apps.Common;
 using GLOB.Domain.DTOs;
 using GLOB.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace GLOB.API.Controllers.Test
 {

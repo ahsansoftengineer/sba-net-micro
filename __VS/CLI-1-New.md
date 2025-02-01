@@ -34,6 +34,7 @@ dotnet sln add GLOB.Contracts/GLOB.Contracts.csproj
 dotnet sln add GLOB.Domain/GLOB.Domain.csproj
 dotnet sln add GLOB.Infra/GLOB.Infra.csproj
 dotnet sln add GLOB.API/GLOB.API.csproj
+dotnet sln add GLOB.APIz/GLOB.APIz.csproj
 
 dotnet sln add PlatformService/PlatformService.csproj
 dotnet sln add CommandsService/CommandsService.csproj
