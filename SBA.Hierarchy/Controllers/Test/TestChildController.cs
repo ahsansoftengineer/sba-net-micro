@@ -5,8 +5,8 @@ using GLOB.Domain.DTOs;
 using GLOB.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GLOB.API.Controllers.Test;
-[Route("api/Test/[controller]")]
+namespace SBA.Hierarchy.Controllers.Test;
+[Route("api/Hierarchy/Test/[controller]")]
 [ApiController]
 public class TestChildController : BaseController<
   TestChildController, TestChild, TestChildDtoSearch, TestChildDto, TestChildDtoCreate>
