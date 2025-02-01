@@ -14,15 +14,15 @@ public static partial class DIExternal
     services
       .ConfigureIdentity()
       .ConfigureVersioning()
-      //.ConfigureHttpCacheHeaders() // Enable on Production
+      .ConfigureHttpCacheHeaders() // Enable on Production
       .ConfigureRateLimiting();
-    services.ConfigureFileHandling();
+    // services.ConfigureFileHandling();
     return services;
   }
   public static IApplicationBuilder AddExternalConfiguration(this IApplicationBuilder app,
     IWebHostEnvironment env)
   {
-    app.ConfigureStaticFilesHandling();
+    // app.ConfigureStaticFilesHandling();
     app.ConfigureDevEnv(env);
     app.ConfigureExceptionHandler();
     app.UseHttpsRedirection();
@@ -30,12 +30,12 @@ public static partial class DIExternal
     app.UseCors("CorsPolicyAllowAll");
 
     // API Caching 2. Setting up Caching
-    //app.UseResponseCaching(); // Enable Production
+    // app.UseResponseCaching(); // Enable Production
     // API Caching 7. Setting up Caching Profile at Globally
-    //app.UseHttpCacheHeaders(); // Enable Production
+    app.UseHttpCacheHeaders(); // Enable Production
     // API Throttling 4. Setting up Middleware
     // This is giving error while running
-    //app.UseIpRateLimiting(); // Prevent Unnecessary Http Call from same User
+    // app.UseIpRateLimiting(); // Prevent Unnecessary Http Call from same User
 
     app.UseRouting();
     app.UseAuthorization();

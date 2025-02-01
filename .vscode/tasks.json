@@ -29,8 +29,20 @@
       "label": "watch",
       "command": "dotnet",
       "type": "process",
-      "args": ["watch", "run", "--project", "${workspaceFolder}/SBA.sln"],
+      "args": [
+        "watch",
+        "run",
+        "--project",
+        "${workspaceFolder}/SBA.sln"
+      ],
       "problemMatcher": "$msCompile"
+    },
+    {
+      "type": "dotnet",
+      "task": "watch SBA.Hierarchy",
+      "file": "/home/ahsan/dev-net/sb-micro/SBA.Hierarchy/SBA.Hierarchy.csproj",
+      "problemMatcher": [],
+      "label": "dotnet: watch SBA.Hierarchy"
     }
   ]
 }

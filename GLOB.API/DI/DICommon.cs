@@ -19,7 +19,7 @@ public static partial class DICommon
     // services.ConfigureCors();
     //services.AddAutoMapper(typeof(MapperInitializer)); // Later
     // Transient Means Fresh Copy
-    services.ConfigureSwagger();
+    // services.ConfigureSwagger();
     services.ConfigureControllerz();
     // services.ConfigureVersioning();
     // services.ConfigureFileHandling();

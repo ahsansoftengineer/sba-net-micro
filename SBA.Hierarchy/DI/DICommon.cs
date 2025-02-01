@@ -1,4 +1,5 @@
 using GLOB.API.DI;
+using SBA.Hierarchy.Config;
 
 namespace SBA.Hirarchy.DI;
 public static partial class DICommon
@@ -16,10 +17,10 @@ public static partial class DICommon
     // services.AddAuthentication();
     // services.ConfigureIdentity();
     // services.ConfigureCors();
-    //services.AddAutoMapper(typeof(MapperInitializer)); // Later
+    services.AddAutoMapper(typeof(MapInitProj)); // Later
     // Transient Means Fresh Copy
-    services.ConfigureSwagger();
-    services.ConfigureControllerz();
+    services.ConfigureSwagger("Hierarchy");
+    // services.ConfigureControllerz();
     // services.ConfigureVersioning();
     // services.ConfigureFileHandling();
     return services;

@@ -1,4 +1,3 @@
-
 using GLOB.API.DI;
 
 namespace GLOB.API;
@@ -13,16 +12,16 @@ public class Startup
 
   public void ConfigureServices(IServiceCollection services)
   {
-    // services.AddDICommon();
-    // services.AddAutoMapper(typeof(MapInitFull));
-    // services.AddExternalServices();
+    services.AddDICommon();
+    services.AddAutoMapper(typeof(MapInitFull));
+    services.AddExternalServices();
     // services.AddInfrastructure(Configuration);
 
   }
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
-    // app.AddExternalConfiguration(env);
-    // app.UseCors("CorsPolicyAllowAll");
-    // app.UseHttpsRedirection();
+    app.AddExternalConfiguration(env);
+    app.UseCors("CorsPolicyAllowAll");
+    app.UseHttpsRedirection();
   }
 }

@@ -7,9 +7,9 @@ public static partial class DIExternal
   public static IServiceCollection AddExternalServices(this IServiceCollection services)
   {
     services
-      .ConfigureIdentity()
       .ConfigureVersioning()
-      //.ConfigureHttpCacheHeaders() // Enable on Production
+      .ConfigureIdentity()
+      .ConfigureHttpCacheHeaders() // Enable on Production
       .ConfigureRateLimiting();
     services.ConfigureFileHandling();
     return services;
@@ -18,12 +18,12 @@ public static partial class DIExternal
     public static IApplicationBuilder AddExternalConfiguration(this IApplicationBuilder app,
     IWebHostEnvironment env)
   {
-    app.ConfigureStaticFilesHandling();
+    // app.ConfigureStaticFilesHandling();
     app.ConfigureDevEnv(env);
     app.ConfigureExceptionHandler();
     app.UseHttpsRedirection();
 
-    app.UseCors("CorsPolicyAllowAll");
+    // app.UseCors("CorsPolicyAllowAll");
 
     // API Caching 2. Setting up Caching
     //app.UseResponseCaching(); // Enable Production
@@ -34,7 +34,7 @@ public static partial class DIExternal
     //app.UseIpRateLimiting(); // Prevent Unnecessary Http Call from same User
 
     app.UseRouting();
-    app.UseAuthorization();
+    // app.UseAuthorization();
     app.UseEndpoints(ep =>
     {
       // This Routing is useful for MVC type application
