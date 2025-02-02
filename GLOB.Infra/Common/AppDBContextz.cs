@@ -5,7 +5,7 @@ namespace GLOB.Infra.Common;
 // public partial class AppDBContextz : 
 public partial class AppDBContextz
 {
-  public DbSet<TestEntityInfra> TestEntityInfras { get; set; }
+  public DbSet<TestInfra> TestInfras { get; set; }
   // public DbSet<TestStatus> TestStatuss { get; set; }
   // public DbSet<TestParent> TestParents { get; set; }
   // public DbSet<TestChild> TestChilds { get; set; }

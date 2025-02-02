@@ -9,9 +9,7 @@ public static partial class Seeder
   // Dev (When Running Migration throw CLI)
   public static void Seed(this ModelBuilder mb)
   {
-    mb.SeedTestStatus();
-    mb.SeedTestParent();
-    mb.SeedTestChild();
+    mb.SeedTestInfra();
   }
   // Prod (When Running Migration throw Automation)
   public static void Seed(this IApplicationBuilder app)
@@ -24,9 +22,7 @@ public static partial class Seeder
         Console.WriteLine("--> Applying Migrations Not Development");
         context.Database.Migrate();
         {
-          context.SeedTestStatus();
-          context.SeedTestParent();
-          context.SeedTestChild();
+          context.SeedTestInfra();
         }
       }
     }
