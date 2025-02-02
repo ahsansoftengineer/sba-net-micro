@@ -48,8 +48,8 @@ dotnet sln add SBA.Userz/SBA.Userz.csproj
 dotnet sln add SBA.Orderz/SBA.Orderz.csproj
 dotnet sln add SBA.Jobz/SBA.Jobz.csproj
 
-dotnet sln add PlatformService/PlatformService.csproj
-dotnet sln add CommandsService/CommandsService.csproj
+# dotnet sln add PlatformService/PlatformService.csproj
+# dotnet sln add CommandsService/CommandsService.csproj
 ```
 
 ### LOCAL CLASS LIBRARY RELATION
