@@ -33,18 +33,13 @@ dotnet new webapi -o SBA.Jobz
 ### LOCAL LIBRARY TO SOLUTION
 ```bash
 dotnet sln add GLOB.Apps/GLOB.Apps.csproj
-dotnet sln add GLOB.Contracts/GLOB.Contracts.csproj
 dotnet sln add GLOB.Domain/GLOB.Domain.csproj
 dotnet sln add GLOB.Infra/GLOB.Infra.csproj
-# dotnet sln add GLOB.APIz/GLOB.APIz.csproj
 ```
 
 ### LOCAL PROJECTS TO SOLUTION
 ```bash
 dotnet sln add GLOB.API/GLOB.API.csproj
-
-dotnet sln add PlatformService/PlatformService.csproj
-dotnet sln add CommandsService/CommandsService.csproj
 
 dotnet sln add SBA.APIGateway/SBA.APIGateway.csproj
 dotnet sln add SBA.Auth/SBA.Auth.csproj
@@ -53,6 +48,8 @@ dotnet sln add SBA.Userz/SBA.Userz.csproj
 dotnet sln add SBA.Orderz/SBA.Orderz.csproj
 dotnet sln add SBA.Jobz/SBA.Jobz.csproj
 
+dotnet sln add PlatformService/PlatformService.csproj
+dotnet sln add CommandsService/CommandsService.csproj
 ```
 
 ### LOCAL CLASS LIBRARY RELATION
