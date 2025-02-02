@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace GLOB.Infra.Seed;
 public static partial class SeedData
 {
-  public static void TestChild(ModelBuilder mb)
+  public static void SeedTestChild(this ModelBuilder mb)
   {
     mb.Entity<TestChild>().HasData(
       new TestChild
