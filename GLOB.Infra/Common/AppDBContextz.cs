@@ -7,6 +7,7 @@ public partial class AppDBContextz : IdentityDbContext<TestApiUser>
 {
   public AppDBContextz(DbContextOptions options) : base(options) { }
   public DbSet<TestEntity> TestEntitys { get; set; }
+  public DbSet<TestStatus> TestStatuss { get; set; }
   public DbSet<TestParent> TestParents { get; set; }
   public DbSet<TestChild> TestChilds { get; set; }
   

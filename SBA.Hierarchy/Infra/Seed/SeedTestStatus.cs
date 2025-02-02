@@ -3,7 +3,7 @@ using GLOB.Domain.Enums;
 using GLOB.Infra.Common;
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Seed;
+namespace SBA.Hierarchy.Infra;
 public static partial class Seeder
 {
   public static void SeedTestStatus(this AppDBContextz context)

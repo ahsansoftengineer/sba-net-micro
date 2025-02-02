@@ -1,4 +1,3 @@
-
 using GLOB.Domain.Entity;
 using GLOB.Infra.Seed;
 using Microsoft.EntityFrameworkCore;
@@ -12,8 +11,9 @@ public class AppDBContext : DbContext
   }
   protected override void OnModelCreating(ModelBuilder mb)
   {
-    SeedData.TestParent(mb);
-    SeedData.TestChild(mb);
+    mb.SeedTestStatus();
+    mb.SeedTestParent();
+    mb.SeedTestChild();
     
     base.OnModelCreating(mb);
   }

@@ -2,7 +2,7 @@ using GLOB.Domain.Entity;
 using GLOB.Infra.Common;
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Seed;
+namespace SBA.Hierarchy.Infra;
 public static partial class Seeder
 {
   // For K8S Dev
