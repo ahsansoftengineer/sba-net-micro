@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
 namespace GLOB.API.Controllers.Base;
-public class BaseController<TController, TEntity, DtoSearch, DtoResponse, DtoCreate>
+public abstract class BaseController<TController, TEntity, DtoSearch, DtoResponse, DtoCreate>
 : AlphaController<TController>
 //where TEntity : class
 where TEntity : AlphaEntity
@@ -25,7 +25,7 @@ where TController : class
   {
     try
     {
-      var list = await Repo.Gets(filter);
+      var list = await Repo.GetsPaginate(filter);
       var result = Mapper.Map<IPagedList<TEntity>, PaginateResponse<DtoResponse>>(list);
       return Ok(result);
     }

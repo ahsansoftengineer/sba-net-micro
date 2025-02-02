@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GLOB.API.Controllers.Base;
 [Route("api/[controller]")]
 [ApiController]
-public class CommonController<TController, TEntity> : BaseController<
+public abstract class CommonController<TController, TEntity> : BaseController<
     TController, 
     TEntity, 
     CommonDtoSearch, 

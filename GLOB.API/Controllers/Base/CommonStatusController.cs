@@ -8,14 +8,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace GLOB.API.Controllers.Base;
 [Route("api/[controller]")]
 [ApiController]
-public class CommonStatusController<TController, TEntity> : BaseController<
-TController,
-TEntity,
-CommonStatusDtoSearch,
-CommonStatusDto,
-CommonStatusDtoCreate>
-where TController : class
-where TEntity : BaseStatusEntity
+public abstract class CommonStatusController<TController, TEntity> : BaseController<
+    TController,
+    TEntity,
+    CommonStatusDtoSearch,
+    CommonStatusDto,
+    CommonStatusDtoCreate>
+  where TController : class
+  where TEntity : BaseStatusEntity
 {
   public CommonStatusController(
     ILogger<TController> logger,
