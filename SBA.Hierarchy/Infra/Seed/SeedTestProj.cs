@@ -39,6 +39,6 @@ public static partial class Seeder
       Title = "TestProj 3",
       Desc = "TestProj 3 Desc",
     }
-];
+  ];
 
 }

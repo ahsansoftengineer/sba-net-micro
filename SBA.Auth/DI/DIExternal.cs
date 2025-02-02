@@ -55,9 +55,9 @@ public static partial class DIExternal
   public static void ConfigureStaticFilesHandling(this IApplicationBuilder app)
   {
     app.UseStaticFiles(); // Enable static file serving
-                // https://localhost:5001/FooterImg348db3b7-e6dc-47f6-8bcd-74f6a35e7859.jpg
-                // https://localhost:5001/assets/ouz/FooterImg348db3b7-e6dc-47f6-8bcd-74f6a35e7859.jpg
-                // Optional: Serve files from a custom directory
+    // https://localhost:5001/FooterImg348db3b7-e6dc-47f6-8bcd-74f6a35e7859.jpg
+    // https://localhost:5001/assets/ouz/FooterImg348db3b7-e6dc-47f6-8bcd-74f6a35e7859.jpg
+    // Optional: Serve files from a custom directory
     var staticFilesPath = Path.Combine(Directory.GetCurrentDirectory(), "assets");
     app.UseStaticFiles(new StaticFileOptions
     {
