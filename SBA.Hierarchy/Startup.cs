@@ -1,7 +1,5 @@
 using GLOB.API;
 using GLOB.API.DI;
-using GLOB.Infra;
-using SBA.Hierarchy.DI;
 
 namespace SBA.Hierarchy;
 public class Startup
@@ -17,14 +15,11 @@ public class Startup
   {
     services.AddDICommon();
     services.AddAutoMapper(typeof(MapInitFull));
-    services.AddExternalServices();
-    services.AddInfra(_config);
+    services.AddDefaultExternalServices();
 
   }
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
-    app.AddExternalConfiguration(env);
-    app.UseCors("CorsPolicyAllowAll");
-    app.UseHttpsRedirection();
+    app.AddDefaultExternalConfiguration(env);
   }
 }
