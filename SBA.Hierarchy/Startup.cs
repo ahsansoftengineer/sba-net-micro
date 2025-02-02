@@ -1,14 +1,16 @@
 using GLOB.API;
 using GLOB.API.DI;
+using GLOB.Infra;
+using SBA.Hierarchy.DI;
 
 namespace SBA.Hierarchy;
 public class Startup
 {
-  public IConfiguration Configuration { get; }
+  private IConfiguration _config { get; }
 
-  public Startup(IConfiguration configuration)
+  public Startup(IConfiguration config)
   {
-    Configuration = configuration;
+    _config = config;
   }
 
   public void ConfigureServices(IServiceCollection services)
@@ -16,7 +18,7 @@ public class Startup
     services.AddDICommon();
     services.AddAutoMapper(typeof(MapInitFull));
     services.AddExternalServices();
-    // services.AddInrastr(Configuration);
+    services.AddInfra(_config);
 
   }
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
