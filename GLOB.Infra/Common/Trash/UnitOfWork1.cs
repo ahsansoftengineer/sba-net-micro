@@ -10,7 +10,7 @@
 //   {
 //     _db = db;
 
-//     TestEntity = new RepoTestEntity(_db);
+//     TestEntityInfra = new RepoTestEntityInfra(_db);
 //   }
 //   public void Save()
 //   {

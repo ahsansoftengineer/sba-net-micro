@@ -4,5 +4,5 @@
 // namespace GLOB.Infra.Common;
 // public partial class AppDBContextzIdentity : IdentityDbContext<TestApiUser>
 // {
-//   public DbSet<TestEntity> TestEntitys { get; set; }
+//   public DbSet<TestEntityInfra> TestEntityInfras { get; set; }
 // }

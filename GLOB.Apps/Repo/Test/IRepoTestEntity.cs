@@ -2,7 +2,7 @@
 // using GLOB.Domain.Entity;
 
 // namespace GLOB.App.Repo;
-// public interface IRepoTestEntity: IRepoGeneric<TestEntity>
+// public interface IRepoTestEntityInfra: IRepoGeneric<TestEntityInfra>
 // {
 // //   void Update(Test1 entity);
 // }

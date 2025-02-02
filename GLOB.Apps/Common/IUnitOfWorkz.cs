@@ -4,9 +4,8 @@ namespace GLOB.Apps.Common;
 public interface IUnitOfWorkz : IDisposable
 {
   Task Save();
-  // Testz
-  IRepoGenericz<TestEntity> TestEntitys { get; } // Alternate of OrgRepo
-  IRepoGenericz<TestParent> TestParents { get; }
-  IRepoGenericz<TestChild> TestChilds { get; }
-  IRepoGenericz<TestStatus> TestStatus { get; }
+  IRepoGenericz<TestEntityInfra> TestEntityInfras { get; } // Alternate of OrgRepo
+  // IRepoGenericz<TestParent> TestParents { get; }
+  // IRepoGenericz<TestChild> TestChilds { get; }
+  // IRepoGenericz<TestStatus> TestStatus { get; }
 }

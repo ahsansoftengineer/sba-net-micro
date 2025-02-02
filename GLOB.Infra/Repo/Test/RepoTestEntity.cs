@@ -3,10 +3,10 @@
 // using GLOB.Infra.Common;
 
 // namespace GLOB.Infra.Repo;
-// public class RepoTestEntity : RepoGeneric<TestEntity>, IRepoTestEntity
+// public class RepoTestEntityInfra : RepoGeneric<TestEntityInfra>, IRepoTestEntityInfra
 // {
 //   private readonly AppDBContext _db;
-//   public RepoTestEntity(AppDBContext db): base(db)
+//   public RepoTestEntityInfra(AppDBContext db): base(db)
 //   {
 //     _db = db;
 //   }

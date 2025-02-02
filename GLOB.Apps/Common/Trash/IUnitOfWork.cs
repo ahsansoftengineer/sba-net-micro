@@ -3,5 +3,5 @@
 // namespace GLOB.Apps.Common;
 // public interface IUnitOfWork
 // {
-//    IRepoTestEntity TestEntity { get; }
+//    IRepoTestEntityInfra TestEntityInfra { get; }
 // }

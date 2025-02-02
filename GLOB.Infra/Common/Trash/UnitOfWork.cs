@@ -5,6 +5,6 @@
 // namespace GLOB.Infra.Common;
 // public partial class UnitOfWork : IUnitOfWork
 // {
-//   public IRepoTestEntity TestEntity { get; private set; }
+//   public IRepoTestEntityInfra TestEntityInfra { get; private set; }
 
 // }

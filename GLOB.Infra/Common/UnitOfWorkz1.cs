@@ -1,14 +1,47 @@
 using GLOB.Apps.Common;
-using GLOB.Domain.Entity;
+using GLOB.Domain.Base;
+using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Common;
-public partial class UnitOfWorkz
+public partial class UnitOfWorkz : IUnitOfWorkz
 {
+  public readonly AppDBContextz _context;
+  public UnitOfWorkz(AppDBContextz context)
+  {
+    _context = context;
+  }
   // Hierarchy
-  public IRepoGenericz<TestEntity> TestEntitys => _testEntity ??= new RepoGenericz<TestEntity>(_context);
-  public IRepoGenericz<TestParent> TestParents => _testParent ??= new RepoGenericz<TestParent>(_context);
-  public IRepoGenericz<TestChild> TestChilds => _testChild ??= new RepoGenericz<TestChild>(_context);
-  public IRepoGenericz<TestStatus> TestStatus => _testStatus ??= new RepoGenericz<TestStatus>(_context);
 
+  public async Task Save()
+  {
+    AddTimestamps();
+    await _context.SaveChangesAsync();
+  }
+  // Handling CreatedAt & UpdatedAt
+  private void AddTimestamps()
+  {
+    var entities = _context.ChangeTracker.Entries()
+      .Where(x => x.Entity is BaseEntity && (x.State == EntityState.Added || x.State == EntityState.Modified));
 
+    foreach (var entity in entities)
+    {
+      var now = DateTime.UtcNow; // current datetime
+      Console.WriteLine(entity.State);
+      if (entity.State == EntityState.Added)
+      {
+        ((BaseEntity)entity.Entity).CreatedAt = now;
+      }
+    //EntityState.Detached, EntityState.Deleted, EntityState.Unchanged
+    ((BaseEntity)entity.Entity).UpdatedAt = now;
+    }
+  }
+  private IRepoGenericz<T> Got<T>() where T : class
+  {
+    return new RepoGenericz<T>(_context);
+  }
+  public void Dispose()
+  {
+    _context.Dispose();
+    GC.SuppressFinalize(this);
+  }
 }
