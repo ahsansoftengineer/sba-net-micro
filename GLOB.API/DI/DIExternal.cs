@@ -1,44 +1,17 @@
 using AspNetCoreRateLimit;
-using GLOB.Common.API;
 using GLOB.Domain.Common;
+using GLOB.Domain.Entity;
+using GLOB.Infra.Common;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.FileProviders;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace GLOB.API.DI;
-public static partial class DIExternal
+public static partial class DICommon
 {
-  public static IServiceCollection AddExternalServices(this IServiceCollection services)
+  public static void Config_EP(this IApplicationBuilder app)
   {
-    services
-      .ConfigureIdentity()
-      .ConfigureVersioning()
-      .ConfigureHttpCacheHeaders() // Enable on Production
-      .ConfigureRateLimiting();
-    // services.ConfigureFileHandling();
-    return services;
-  }
-  public static IApplicationBuilder AddExternalConfiguration(this IApplicationBuilder app,
-    IWebHostEnvironment env)
-  {
-    // app.ConfigureStaticFilesHandling();
-    app.ConfigureDevEnv(env);
-    app.ConfigureExceptionHandler();
-    app.UseHttpsRedirection();
-
-    app.UseCors("CorsPolicyAllowAll");
-
-    // API Caching 2. Setting up Caching
-    // app.UseResponseCaching(); // Enable Production
-    // API Caching 7. Setting up Caching Profile at Globally
-    app.UseHttpCacheHeaders(); // Enable Production
-    // API Throttling 4. Setting up Middleware
-    // This is giving error while running
-    // app.UseIpRateLimiting(); // Prevent Unnecessary Http Call from same User
-
-    app.UseRouting();
-    app.UseAuthorization();
     app.UseEndpoints(ep =>
     {
       // This Routing is useful for MVC type application
@@ -48,23 +21,20 @@ public static partial class DIExternal
       //  pattern: "{controller=Home}/{action=Index}/{id?}"); //
       ep.MapControllers();
     });
-
-    return app;
   }
-  public static void ConfigureStaticFilesHandling(this IApplicationBuilder app)
+  public static void Config_Identity(this IServiceCollection srvc)
   {
-    app.UseStaticFiles(); // Enable static file serving
-                // https://localhost:5001/FooterImg348db3b7-e6dc-47f6-8bcd-74f6a35e7859.jpg
-                // https://localhost:5001/assets/ouz/FooterImg348db3b7-e6dc-47f6-8bcd-74f6a35e7859.jpg
-                // Optional: Serve files from a custom directory
-    var staticFilesPath = Path.Combine(Directory.GetCurrentDirectory(), "assets");
-    app.UseStaticFiles(new StaticFileOptions
-    {
-      FileProvider = new PhysicalFileProvider(staticFilesPath),
-      RequestPath = "/assets"
-    });
+    var builder = srvc
+      .AddIdentityCore<TestApiUser>(q => q.User.RequireUniqueEmail = true);
+    builder = new IdentityBuilder(
+      builder.UserType,
+      typeof(IdentityRole), srvc);
+
+    builder
+      .AddEntityFrameworkStores<AppDBContextz>()
+      .AddDefaultTokenProviders();
   }
-  public static void ConfigureDevEnv(this IApplicationBuilder app, IWebHostEnvironment env)
+  public static void Config_DevEnv(this IApplicationBuilder app, IWebHostEnvironment env)
   {
 
     if (env.IsDevelopment())
@@ -79,7 +49,7 @@ public static partial class DIExternal
       });
     }
   }
-  public static IApplicationBuilder ConfigureExceptionHandler(this IApplicationBuilder app)
+  public static void Config_ExceptionHandler(this IApplicationBuilder app)
   {
     app.UseExceptionHandler(error =>
     {
@@ -101,52 +71,57 @@ public static partial class DIExternal
         }
       });
     });
-    return app;
   }
-  // NOTE: Provide Implementation in Child Project
-  public static IServiceCollection ConfigureIdentity(this IServiceCollection services)
-  {
-    // var builder = services
-    //   .AddIdentityCore<ApiUser>(q => q.User.RequireUniqueEmail = true);
-    // builder = new IdentityBuilder(
-    //   builder.UserType,
-    //   typeof(IdentityRole), services);
 
-    // builder
-    //   .AddEntityFrameworkStores<DBCntxt>()
-    //   .AddDefaultTokenProviders();
-    return services;
-  }
-  // Version URI, Query, Headers
-  public static IServiceCollection ConfigureVersioning(this IServiceCollection services)
+  // FILES HANDING ###############
+  public static void Config_StaticFilesHandling(this IApplicationBuilder app)
   {
-    services.AddApiVersioning(opt =>
+    // https://localhost:5001/FooterImg348db3b7-e6dc-47f6-8bcd-74f6a35e7859.jpg
+    // https://localhost:5001/assets/ouz/FooterImg348db3b7-e6dc-47f6-8bcd-74f6a35e7859.jpg
+    // Optional: Serve files from a custom directory
+
+    app.UseStaticFiles();
+    var staticFilesPath = Path.Combine(Directory.GetCurrentDirectory(), "assets");
+    app.UseStaticFiles(new StaticFileOptions
+    {
+      FileProvider = new PhysicalFileProvider(staticFilesPath),
+      RequestPath = "/assets"
+    });
+  }
+  public static void Config_FileHandling(this IServiceCollection srvc)
+  {
+    srvc.Configure<IISServerOptions>(options =>
+    {
+      options.MaxRequestBodySize = int.MaxValue; // Set the maximum request body size (e.g., unlimited)
+    });
+
+    // srvc.AddHttpContextAccessor();// Already Config_d
+    // srvc.AddScoped<FileUploderz, FileUploderz>();
+  }
+  // CACHING VERSIONING ######################
+  public static void Config_Caching(this IApplicationBuilder app)
+  {
+
+    // API Caching 2. Setting up Caching
+    // app.UseResponseCaching(); // Enable Production
+    // API Caching 7. Setting up Caching Profile at Globally
+    app.UseHttpCacheHeaders(); 
+    // Enable Production
+    // API Throttling 4. Setting up Middleware
+    // This is giving error while running
+    // app.UseIpRateLimiting(); // Prevent Unnecessary Http Call from same User
+  }
+  public static void Config_Versioning(this IServiceCollection srvc)
+  {
+    srvc.AddApiVersioning(opt =>
     {
       opt.ReportApiVersions = true;
       opt.AssumeDefaultVersionWhenUnspecified = true;
       opt.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
     });
-    return services;
-  }
-  // API Caching : 5 with Marvin.Cache.Headers
-  public static IServiceCollection ConfigureHttpCacheHeaders(this IServiceCollection services)
-  {
-    services.AddResponseCaching();
-    services.AddHttpCacheHeaders(
-      (expirationOpt) =>
-      {
-        expirationOpt.MaxAge = 65;
-        expirationOpt.CacheLocation = Marvin.Cache.Headers.CacheLocation.Private;
-      },
-      (validationOpt) =>
-      {
-        validationOpt.MustRevalidate = true;
-      }
-      );
-    return services;
   }
   // API Throttling 2: 
-  public static IServiceCollection ConfigureRateLimiting(this IServiceCollection services)
+  public static void Config_RateLimiting(this IServiceCollection srvc)
   {
     var rateLimitRules = new List<RateLimitRule>
     {
@@ -158,24 +133,28 @@ public static partial class DIExternal
     }
     };
 
-    services.Configure<IpRateLimitOptions>(opt =>
+    srvc.Configure<IpRateLimitOptions>(opt =>
     {
       opt.GeneralRules = rateLimitRules;
     });
-    services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
-    services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
-    services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
-
-    return services;
+    srvc.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+    srvc.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
+    srvc.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
   }
-  public static void ConfigureFileHandling(this IServiceCollection services)
+  // API Caching : 5 with Marvin.Cache.Headers
+  public static void Config_HttpCacheHeaders(this IServiceCollection srvc)
   {
-    services.Configure<IISServerOptions>(options =>
-    {
-      options.MaxRequestBodySize = int.MaxValue; // Set the maximum request body size (e.g., unlimited)
-    });
-
-    // services.AddHttpContextAccessor();// Already Configured
-    // services.AddScoped<FileUploderz, FileUploderz>();
+    srvc.AddResponseCaching();
+    srvc.AddHttpCacheHeaders(
+      (expirationOpt) =>
+      {
+        expirationOpt.MaxAge = 65;
+        expirationOpt.CacheLocation = Marvin.Cache.Headers.CacheLocation.Private;
+      },
+      (validationOpt) =>
+      {
+        validationOpt.MustRevalidate = true;
+      }
+      );
   }
 }

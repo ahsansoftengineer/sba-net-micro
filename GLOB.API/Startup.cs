@@ -9,18 +9,15 @@ public class Startup
   {
     Configuration = configuration;
   }
-
-  public void ConfigureServices(IServiceCollection services)
+  public void ConfigureServices(IServiceCollection srvc)
   {
-    services.AddDICommon();
-    services.AddAutoMapper(typeof(MapInitFull));
-    services.AddExternalServices();
-    // services.AddInfrastructure(Configuration);
-
+    srvc.AddDICommon();
+    srvc.AddAutoMapper(typeof(MapInitFull));
+    srvc.AddDefaultExternalServices();
   }
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
-    app.AddExternalConfiguration(env);
+    app.AddDefaultExternalConfiguration(env);
     app.UseCors("CorsPolicyAllowAll");
     app.UseHttpsRedirection();
   }

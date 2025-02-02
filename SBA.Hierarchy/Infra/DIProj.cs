@@ -1,5 +1,3 @@
-using GLOB.Apps.Common;
-using GLOB.Infra.Common;
 using Microsoft.EntityFrameworkCore;
 using SBA.Hierarchy.App;
 using SBA.Hierarchy.Infra;
@@ -7,20 +5,26 @@ using SBA.Hierarchy.Infra;
 namespace GLOB.Infra;
 public static class DI
 {
-  public static IServiceCollection AddInfra(this IServiceCollection services, IConfiguration Configuration)
+  public static void AddInfra(this IServiceCollection srvc, IConfiguration Configuration)
   {
-    services
+    srvc
       .AddPersistence(Configuration);
-    return services;
   }
-  public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration Configuration)
+  public static void AddPersistence(this IServiceCollection srvc, IConfiguration _config)
   {
-    services.AddDbContext<AppDBContextz>(options =>
+    srvc.AddDbContext<AppDBContextProj>(opt =>
     {
-      options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"));
+      string connStr = _config.GetConnectionString("SqlConnection");
+      opt.UseSqlServer(connStr, sqlOptions =>
+        {
+          sqlOptions.EnableRetryOnFailure(
+            maxRetryCount: 1,
+            maxRetryDelay: TimeSpan.FromSeconds(3),
+            errorNumbersToAdd: null
+          );
+        });
+        opt.LogTo(Console.WriteLine, LogLevel.Information);
     });
-    services.AddTransient<IUOW, UOW>();
-
-    return services;
+    srvc.AddTransient<IUOW, UOW>();
   }
 }

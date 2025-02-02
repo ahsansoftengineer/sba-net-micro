@@ -5,29 +5,29 @@ namespace ProjectName.API.DI;
 public static partial class DICommon
 {
 
-  public static IServiceCollection AddDICommon(this IServiceCollection services)
+  public static IServiceCollection AddDICommon(this IServiceCollection srvc)
   {
     // API Throttling 1: Adding Service
-    services.AddMemoryCache(); // Enable Production
+    srvc.AddMemoryCache(); // Enable Production
                    // API Throttling 3
-    services.ConfigureRateLimiting();
-    services.AddHttpContextAccessor();
+    srvc.ConfigureRateLimiting();
+    srvc.AddHttpContextAccessor();
     // API Caching 6: Adding Services Extensions
-    services.ConfigureHttpCacheHeaders();
-    services.AddAuthentication();
-    services.ConfigureIdentity();
-    services.ConfigureCors();
-    //services.AddAutoMapper(typeof(MapperInitializer)); // Later
+    srvc.ConfigureHttpCacheHeaders();
+    srvc.AddAuthentication();
+    srvc.ConfigureIdentity();
+    srvc.ConfigureCors();
+    //srvc.AddAutoMapper(typeof(MapperInitializer)); // Later
     // Transient Means Fresh Copy
-    services.ConfigureSwagger();
-    services.ConfigureControllerz();
-    services.ConfigureVersioning();
-    services.ConfigureFileHandling();
-    return services;
+    srvc.ConfigureSwagger();
+    srvc.ConfigureControllerz();
+    srvc.ConfigureVersioning();
+    srvc.ConfigureFileHandling();
+    return srvc;
   }
-  public static void ConfigureControllerz(this IServiceCollection services)
+  public static void ConfigureControllerz(this IServiceCollection srvc)
   {
-    services
+    srvc
       // API Caching 3. Defining Cache Profile
       .AddControllers(config =>
       {
@@ -48,9 +48,9 @@ public static partial class DICommon
       });
 
   }
-  public static void ConfigureSwagger(this IServiceCollection services)
+  public static void ConfigureSwagger(this IServiceCollection srvc)
   {
-    services.AddSwaggerGen(c =>
+    srvc.AddSwaggerGen(c =>
     {
       c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
       {
@@ -61,9 +61,9 @@ public static partial class DICommon
       //c.SchemaFilter<MySwaggerSchemaFilter>(); // Failed to apply this
     });
   }
-  public static void ConfigureCors(this IServiceCollection services)
+  public static void ConfigureCors(this IServiceCollection srvc)
   {
-    services.AddCors(option =>
+    srvc.AddCors(option =>
     {
       option
       .AddPolicy("CorsPolicyAllowAll", builder =>
@@ -74,12 +74,12 @@ public static partial class DICommon
       //.AllowCredentials()
       );
     });
-    services.AddHttpsRedirection(options =>
+    srvc.AddHttpsRedirection(options =>
     {
       options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
       options.HttpsPort = 443; // Replace with your HTTPS port number if different
     });
-    //services.AddCors(options =>
+    //srvc.AddCors(options =>
     //{
     //  options.AddPolicy(MyAllowSpecificOrigins,
     //            policy =>

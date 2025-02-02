@@ -7,45 +7,45 @@
 // namespace GLOB.Infra;
 // public static class DI
 // {
-//   public static IServiceCollection AddInfra(this IServiceCollection services, IConfiguration Configuration)
+//   public static IServiceCollection AddInfra(this IServiceCollection srvc, IConfiguration Configuration)
 //   {
-//     services
+//     srvc
 //       //.AddAuth(Configuration)
 //       .AddPersistence(Configuration);
-//     return services;
+//     return srvc;
 //   }
-//   public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration Configuration)
+//   public static IServiceCollection AddPersistence(this IServiceCollection srvc, IConfiguration Configuration)
 //   {
-//     services.AddDbContext<AppDBContextz>(options =>
+//     srvc.AddDbContext<AppDBContextz>(options =>
 //     {
 //       // TrustServerCertificate=true | Encrypt=false
 //       //options.UseSqlServer("SERVER=localhost;DATABASE=Donation;USER=sa;PASSWORD=asdf1234;Encrypt=false");
 //       options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"));
 //     });
 //     // Transient Means Fresh Copy
-//     //services.AddSingleton<IGenericRepo, GenericRepo>(); // Done in UnitOfWork No Need
-//     services.AddTransient<IUnitOfWorkz, UnitOfWorkz>();
-//     //services.AddTransient<SignInManager<ApiUser>, SignInManager<ApiUser>>(); // Infrastructure
-//     //services.AddScoped<IOrgRepo, OrgRepo>(); //
+//     //srvc.AddSingleton<IGenericRepo, GenericRepo>(); // Done in UnitOfWork No Need
+//     srvc.AddTransient<IUnitOfWorkz, UnitOfWorkz>();
+//     //srvc.AddTransient<SignInManager<ApiUser>, SignInManager<ApiUser>>(); // Infrastructure
+//     //srvc.AddScoped<IOrgRepo, OrgRepo>(); //
 
-//     return services;
+//     return srvc;
 //   }
 
-//   //public static IServiceCollection AddAuth(this IServiceCollection services, ConfigurationManager Configuration)
+//   //public static IServiceCollection AddAuth(this IServiceCollection srvc, ConfigurationManager Configuration)
 //   //{
 //   //  var jwtSettings = new JwtSettings();
 //   //  Configuration.Bind(JwtSettings.SectionName, jwtSettings);
 
-//   //  //services.Configure<JwtSettings>(Configuration.GetSection(JwtSettings.SectionName));
+//   //  //srvc.Configure<JwtSettings>(Configuration.GetSection(JwtSettings.SectionName));
 //   //  //Configuration[JwtSettings.Issuer] to access with above code
 
 //   //  // shorthand syntax for accessing configuration
-//   //  services.AddSingleton(Options.Create(jwtSettings));
+//   //  srvc.AddSingleton(Options.Create(jwtSettings));
 
 //   //  // 1. Interface are Coming From Application Layer
 //   //  // 2. Classes Coming From Infrastructure
-//   //  services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
-//   //  services
+//   //  srvc.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
+//   //  srvc
 //   //  .AddAuthentication(options =>
 //   //  {
 //   //    //  options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -79,6 +79,6 @@
 
 //   //    };
 //   //  });
-//   //  return services;
+//   //  return srvc;
 //   //}
 // }

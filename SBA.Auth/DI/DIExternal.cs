@@ -10,15 +10,15 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 namespace ProjectName.API.DI;
 public static partial class DIExternal
 {
-  public static IServiceCollection AddExternalServices(this IServiceCollection services)
+  public static IServiceCollection AddExternalServices(this IServiceCollection srvc)
   {
-    services
+    srvc
     .ConfigureIdentity()
     .ConfigureVersioning()
     //.ConfigureHttpCacheHeaders() // Enable on Production
     .ConfigureRateLimiting();
-    services.ConfigureFileHandling();
-    return services;
+    srvc.ConfigureFileHandling();
+    return srvc;
   }
   public static IApplicationBuilder AddExternalConfiguration(this IApplicationBuilder app,
     IWebHostEnvironment env)
@@ -105,35 +105,35 @@ public static partial class DIExternal
     return app;
   }
   // Entity Framework Identity
-  public static IServiceCollection ConfigureIdentity(this IServiceCollection services)
+  public static IServiceCollection ConfigureIdentity(this IServiceCollection srvc)
   {
-    var builder = services
+    var builder = srvc
     .AddIdentityCore<TestApiUser>(q => q.User.RequireUniqueEmail = true);
     builder = new IdentityBuilder(
     builder.UserType,
-    typeof(IdentityRole), services);
+    typeof(IdentityRole), srvc);
 
     builder
       .AddEntityFrameworkStores<AppDBContextz>()
       .AddDefaultTokenProviders();
-    return services;
+    return srvc;
   }
   // Version URI, Query, Headers
-  public static IServiceCollection ConfigureVersioning(this IServiceCollection services)
+  public static IServiceCollection ConfigureVersioning(this IServiceCollection srvc)
   {
-    services.AddApiVersioning(opt =>
+    srvc.AddApiVersioning(opt =>
     {
       opt.ReportApiVersions = true;
       opt.AssumeDefaultVersionWhenUnspecified = true;
       opt.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
     });
-    return services;
+    return srvc;
   }
   // API Caching : 5 with Marvin.Cache.Headers
-  public static IServiceCollection ConfigureHttpCacheHeaders(this IServiceCollection services)
+  public static IServiceCollection ConfigureHttpCacheHeaders(this IServiceCollection srvc)
   {
-    services.AddResponseCaching();
-    services.AddHttpCacheHeaders(
+    srvc.AddResponseCaching();
+    srvc.AddHttpCacheHeaders(
     (expirationOpt) =>
     {
       expirationOpt.MaxAge = 65;
@@ -144,10 +144,10 @@ public static partial class DIExternal
       validationOpt.MustRevalidate = true;
     }
     );
-    return services;
+    return srvc;
   }
   // API Throttling 2: 
-  public static IServiceCollection ConfigureRateLimiting(this IServiceCollection services)
+  public static IServiceCollection ConfigureRateLimiting(this IServiceCollection srvc)
   {
     var rateLimitRules = new List<RateLimitRule>
   {
@@ -159,24 +159,24 @@ public static partial class DIExternal
   }
   };
 
-    services.Configure<IpRateLimitOptions>(opt =>
+    srvc.Configure<IpRateLimitOptions>(opt =>
     {
       opt.GeneralRules = rateLimitRules;
     });
-    services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
-    services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
-    services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+    srvc.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+    srvc.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
+    srvc.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 
-    return services;
+    return srvc;
   }
-  public static void ConfigureFileHandling(this IServiceCollection services)
+  public static void ConfigureFileHandling(this IServiceCollection srvc)
   {
-    services.Configure<IISServerOptions>(options =>
+    srvc.Configure<IISServerOptions>(options =>
     {
       options.MaxRequestBodySize = int.MaxValue; // Set the maximum request body size (e.g., unlimited)
     });
 
-    //services.AddHttpContextAccessor();// Already Configured
-    // services.AddScoped<FileUploderz, FileUploderz>();
+    //srvc.AddHttpContextAccessor();// Already Configured
+    // srvc.AddScoped<FileUploderz, FileUploderz>();
   }
 }
