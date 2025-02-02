@@ -114,7 +114,7 @@ public static partial class DIExternal
     typeof(IdentityRole), services);
 
     builder
-    .AddEntityFrameworkStores<AppDBContext>()
+      .AddEntityFrameworkStores<AppDBContextz>()
       .AddDefaultTokenProviders();
     return services;
   }
