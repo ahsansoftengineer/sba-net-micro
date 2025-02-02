@@ -4,7 +4,6 @@ using GLOB.Domain.Entity;
 namespace GLOB.Infra.Common;
 public partial class UnitOfWorkz
 {
-
   // ??= C# 9 Short-hand Syntax
   // Hierarchy
   public IRepoGenericz<TestEntity> TestEntitys => _testEntity ??= new RepoGenericz<TestEntity>(_context);
