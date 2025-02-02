@@ -1,5 +1,6 @@
 using GLOB.API;
 using GLOB.API.DI;
+using GLOB.Infra;
 using SBA.Hierarchy.Infra;
 
 namespace SBA.Hierarchy;
@@ -16,7 +17,8 @@ public class Startup
   {
     
     srvc.AddDICommon();
-    srvc.AddAutoMapper(typeof(MapInitFull));
+    // srvc.AddAutoMapper(typeof(MapInitFull));
+    srvc.AddSrvc(_config);
     srvc.AddDefaultExternalServices();
 
   }

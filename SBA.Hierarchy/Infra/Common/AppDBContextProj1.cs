@@ -5,15 +5,15 @@ namespace SBA.Hierarchy.Infra;
 // public partial class AppDBContextz : 
 public partial class AppDBContextProj : AppDBContextz
 {
-  public AppDBContextProj(DbContextOptions options) : base(options) { }
-  protected override void OnModelCreating(ModelBuilder builder)
+  public AppDBContextProj(DbContextOptions<AppDBContextProj> options) : base(options) { }
+  protected override void OnModelCreating(ModelBuilder mb)
   {
     // Step 2 Recalling Base OnModelCreating 
-    //builder.ApplyConfiguration(new OrgConfig()); //
-    //builder.Entity<Country>().HasData(SeedCountry.Data); //
-    base.OnModelCreating(builder);
-    //builder.Entity<Gender>().HasNoKey();
-    //builder.Entity<Status>().HasNoKey();
-    //builder.AddInitialEntityData();
+    //mb.ApplyConfiguration(new OrgConfig()); //
+    //mb.Entity<Country>().HasData(SeedCountry.Data); //
+    base.OnModelCreating(mb);
+    //mb.Entity<Gender>().HasNoKey();
+    //mb.Entity<Status>().HasNoKey();
+    //mb.AddInitialEntityData();
   }
 }

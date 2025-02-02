@@ -9,10 +9,10 @@ public static partial class DICommon
       // API Throttling 1: Adding Service
       // srvc.AddMemoryCache(); // Enable Production
       // API Throttling 3
-      // srvc.ConfigureRateLimiting();
-      // srvc.AddHttpContextAccessor();
+      srvc.Config_RateLimiting();
+      srvc.AddHttpContextAccessor();
       // API Caching 6: Adding Services Extensions
-      // srvc.ConfigureHttpCacheHeaders();
+      srvc.Config_HttpCacheHeaders();
   }
   public static void Config_Controllerz(this IServiceCollection srvc)
   {

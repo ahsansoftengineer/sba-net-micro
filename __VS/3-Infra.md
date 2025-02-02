@@ -8,7 +8,7 @@ docker ps
 // Below Command Run After SQL Container Runs (Keys are Case Insensitive & their alternatives are available)
 
 
-dotnet ef database update -p GLOB.Infrastructure -s SBA.Api --connection "server=localhost;Database=SBA;User Id=sa;password=asdf1234;TrustServerCertificate=true"
+dotnet ef database update -p GLOB.Infra -s SBA.Api --connection "server=localhost;Database=SBA;User Id=sa;password=asdf1234;TrustServerCertificate=true"
  // This Command won't work b/c of Certificate & Swagger (Run using f5)
 ```
 ### MIGRATION
@@ -17,14 +17,14 @@ dotnet tool install --global dotnet-ef
 dotnet tool list --global
 
 
-dotnet ef database add MigrationName --project GLOB.Infrastructure --startup-project SBA.Api --connection "SERVER=127.0.0.1,1433;DATABASE=SBA;USER=sa;PASSWORD=asdf1234;Encrypt=false"
+dotnet ef database add MigrationName --project GLOB.Infra --startup-project SBA.Api --connection "SERVER=127.0.0.1,1433;DATABASE=SBA;USER=sa;PASSWORD=asdf1234;Encrypt=false"
 
 # ADD
-dotnet ef migrations add InitialCreate -p GLOB.Infrastructure -s SBA.Api
+dotnet ef migrations add InitialCreate -p GLOB.Infra -s SBA.Api
 # REMOVE
-dotnet ef migrations remove  -p GLOB.Infrastructure -s SBA.Api
+dotnet ef migrations remove  -p GLOB.Infra -s SBA.Api
 # UPDATE
-dotnet ef database update -p GLOB.Infrastructure -s SBA.Api --connection "Server=localhost;Database=SBA;User Id=sa;Password=asdf1234;Encrypt=false"
+dotnet ef database update -p GLOB.Infra -s SBA.Api --connection "Server=localhost;Database=SBA;User Id=sa;Password=asdf1234;Encrypt=false"
 # RUN
 dotnet run --project SBA.Api
 ```

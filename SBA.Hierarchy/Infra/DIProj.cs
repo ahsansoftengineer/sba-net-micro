@@ -5,16 +5,15 @@ using SBA.Hierarchy.Infra;
 namespace GLOB.Infra;
 public static class DI
 {
-  public static void AddInfra(this IServiceCollection srvc, IConfiguration Configuration)
+  public static void AddSrvc(this IServiceCollection srvc, IConfiguration config)
   {
-    srvc
-      .AddPersistence(Configuration);
+    srvc.AddPersistence(config);
   }
-  public static void AddPersistence(this IServiceCollection srvc, IConfiguration _config)
+  public static void AddPersistence(this IServiceCollection srvc, IConfiguration config)
   {
     srvc.AddDbContext<AppDBContextProj>(opt =>
     {
-      string connStr = _config.GetConnectionString("SqlConnection");
+      string connStr = config.GetConnectionString("SqlConnection");
       opt.UseSqlServer(connStr, sqlOptions =>
         {
           sqlOptions.EnableRetryOnFailure(

@@ -1,5 +1,4 @@
 using GLOB.Domain.Entity;
-using GLOB.Infra.Common;
 using Microsoft.EntityFrameworkCore;
 using SBA.Hierarchy.Infra;
 
