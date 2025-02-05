@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using GLOB.Domain.Base;
 
-namespace GLOB.Domain.DTOs.Hierarchy;
+namespace GLOB.Domain.DTOs;
 public class OUDtoCreate : BaseDtoCreate
 {
   public int LEId { get; set; }

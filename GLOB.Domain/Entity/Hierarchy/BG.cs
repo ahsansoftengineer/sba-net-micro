@@ -1,7 +1,7 @@
-// using GLOB.Domain.Base;
+using GLOB.Domain.Base;
 
-// namespace GLOB.Domain.Entity;
-// public class BG : BaseEntity
-// {
-//   public virtual IList<LE>? LEs { get; set; }
-// }
+namespace GLOB.Domain.Entity;
+public class BG : BaseEntity
+{
+  public virtual IList<LE>? LEs { get; set; }
+}

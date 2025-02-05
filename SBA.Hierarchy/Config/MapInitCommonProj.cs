@@ -7,5 +7,7 @@ public class MapInitCommonProj : MapInitCommon
   public MapInitCommonProj() : base()
   {
       CreateMapCommon<TestProj>();
+      CreateMapCommon<Org>();
+      CreateMapCommon<BG>();
   }
 }
