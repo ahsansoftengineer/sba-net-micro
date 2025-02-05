@@ -1,6 +1,6 @@
-using GLOB.API;
 using GLOB.API.DI;
 using GLOB.Infra;
+using SBA.Hierarchy.Config;
 using SBA.Hierarchy.Infra;
 
 namespace SBA.Hierarchy;
@@ -17,7 +17,8 @@ public class Startup
   {
     
     srvc.AddDICommon();
-    // srvc.AddAutoMapper(typeof(MapInitFull));
+    srvc.AddAutoMapper(typeof(MapInitCommonProj));
+    srvc.AddAutoMapper(typeof(MapInitFullProj));
     srvc.AddSrvc(_config);
     srvc.AddDefaultExternalServices();
 
@@ -25,6 +26,7 @@ public class Startup
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
     app.AddDefaultExternalConfiguration(env);
+     Console.WriteLine($"Current Environment: {env.EnvironmentName}");
     if(!env.IsDevelopment()){
       app.Seed();
     }

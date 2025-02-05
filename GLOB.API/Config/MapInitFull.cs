@@ -6,8 +6,8 @@ public class MapInitFull : MapInitBase
   public MapInitFull() : base()
   {
 
-    //   CreateMapAll<LE, LEDto, LEDtoCreate, LEDtoSearch>();
-    //   CreateMap<OUDtoCreate, OUDtoCreateToEntity>();
+    // CreateMapAll<TestInfra, CommonDto, CommonDtoCreate, CommonDtoSearch>();
+    // CreateMap<OUDtoCreate, OUDtoCreateToEntity>();
     //.ForMember(d => d.LogoImg, c => c.MapFrom(y => y.LogoImg.Name))
     //.ForMember(d => d.TopImg, c => c.MapFrom(y => y.TopImg.Name))
     //.ForMember(d => d.WarningImg, c => c.MapFrom(y => y.WarningImg.Name))

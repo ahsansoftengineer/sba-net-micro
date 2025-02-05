@@ -58,14 +58,14 @@ dotnet build
 dotnet add ./GLOB.Apps/ reference ./GLOB.Domain/
 dotnet add ./GLOB.Infra/ reference ./GLOB.Apps/ # ./GLOB.Domain/
 dotnet add ./GLOB.API/ reference ./GLOB.Infra/ # WEB API
-dotnet add ./GLOB.Package/ reference ./GLOB.API/ # Common Packages
+# dotnet add ./GLOB.Package/ reference ./GLOB.API/ # Common Packages
 # dotnet add ./SBA.APIz/ reference ./GLOB.Infra/ # ClassLib
 ```
 ### Web API PACKAGES
 ```bash
 dotnet add ./SBA.Auth/ reference ./GLOB.Package/ # WEB API
 dotnet add ./SBA.Hierarchy/ reference ./GLOB.Package/ # WEB API
-dotnet add ./SBA.Userz/ reference ./GLOB.Package/ # WEB API
-dotnet add ./SBA.Orderz/ reference ./GLOB.Package/ # WEB API
+# dotnet add ./SBA.Userz/ reference ./GLOB.Package/ # WEB API
+# dotnet add ./SBA.Orderz/ reference ./GLOB.Package/ # WEB API
 
 ```

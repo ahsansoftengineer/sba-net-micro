@@ -9,7 +9,7 @@ public static partial class DICommon
       // API Throttling 1: Adding Service
       // srvc.AddMemoryCache(); // Enable Production
       // API Throttling 3
-      srvc.Config_RateLimiting();
+      // srvc.Config_RateLimiting();
       srvc.AddHttpContextAccessor();
       // API Caching 6: Adding Services Extensions
       srvc.Config_HttpCacheHeaders();
@@ -54,20 +54,21 @@ public static partial class DICommon
   {
     srvc.AddCors(option =>
     {
-      option
-      .AddPolicy("CorsPolicyAllowAll", builder =>
-        builder
-        .AllowAnyOrigin()
-        .AllowAnyMethod()
-        .AllowAnyHeader()
-      //.AllowCredentials()
-      );
+      option.AddDefaultPolicy(option => option.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
+      // option
+      // .AddPolicy("CorsPolicyAllowAll", builder =>
+      //   builder
+      //   .AllowAnyOrigin()
+      //   .AllowAnyMethod()
+      //   .AllowAnyHeader()
+      // .AllowCredentials()
+      // );
     });
-    srvc.AddHttpsRedirection(options =>
-    {
-      options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
-      options.HttpsPort = 443; // Replace with your HTTPS port number if different
-    });
+    // srvc.AddHttpsRedirection(options =>
+    // {
+    //   options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+    //   options.HttpsPort = 443; // Replace with your HTTPS port number if different
+    // });
     //srvc.AddCors(options =>
     //{
     //  options.AddPolicy(MyAllowSpecificOrigins,

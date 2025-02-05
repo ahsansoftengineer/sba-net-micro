@@ -7,7 +7,7 @@ public static partial class DICommon
     // srvc.AddAuthentication();
     // srvc.AddAuthorization();
     srvc.Config_Cors();
-    //srvc.AddAutoMapper(typeof(MapperInitializer)); // Later
+    srvc.AddAutoMapper(typeof(MapInitFull)); // Later
     // Transient Means Fresh Copy
     srvc.Config_Controllerz();
     srvc.Config_Swagger();

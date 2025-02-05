@@ -1,5 +1,5 @@
 
-##-# Class Library vs Web API Parent
+### Class Library vs Web API Parent
 
 | Feature	                    | Class Library 📦      | Web API 🌐
 | ------------------------------|-----------------------|---------------|

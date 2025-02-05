@@ -9,14 +9,14 @@ public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDBContextProj>
     var optionsBuilder = new DbContextOptionsBuilder<AppDBContextProj>();
 
     // Read connection string from appsettings.json
-    var configuration = new ConfigurationBuilder()
-      .SetBasePath(Directory.GetCurrentDirectory())
-      .AddJsonFile("appsettings.json")
-      .Build();
+    // var configuration = new ConfigurationBuilder()
+    //   .SetBasePath(Directory.GetCurrentDirectory())
+    //   .AddJsonFile("appsettings.json")
+    //   .Build();
 
-    var connectionString = configuration.GetConnectionString("SqlConnection");
+    // var connectionString = configuration.GetConnectionString("SqlConnection");
 
-    optionsBuilder.UseSqlServer(connectionString);
+    // optionsBuilder.UseSqlServer(connectionString);
 
     return new AppDBContextProj(optionsBuilder.Options);
   }

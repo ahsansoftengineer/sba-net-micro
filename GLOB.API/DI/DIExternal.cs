@@ -1,9 +1,11 @@
 using AspNetCoreRateLimit;
+using GLOB.Apps.Common;
 using GLOB.Domain.Common;
 using GLOB.Domain.Entity;
 using GLOB.Infra.Common;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
@@ -33,6 +35,23 @@ public static partial class DICommon
     builder
       .AddEntityFrameworkStores<AppDBContextz>()
       .AddDefaultTokenProviders();
+  }
+  public static void Config_DB_SQL(this IServiceCollection srvc, IConfiguration config)
+  {
+    srvc.AddDbContext<AppDBContextz>(opt =>
+    {
+      string connStr = config.GetConnectionString("SqlConnection");
+      opt.UseSqlServer(connStr, sqlOptions =>
+        {
+          sqlOptions.EnableRetryOnFailure(
+            maxRetryCount: 1,
+            maxRetryDelay: TimeSpan.FromSeconds(3),
+            errorNumbersToAdd: null
+          );
+        });
+        opt.LogTo(Console.WriteLine, LogLevel.Information);
+    });
+    srvc.AddTransient<IUnitOfWorkz, UnitOfWorkz>();
   }
   public static void Config_DevEnv(this IApplicationBuilder app, IWebHostEnvironment env)
   {
@@ -105,7 +124,7 @@ public static partial class DICommon
     // API Caching 2. Setting up Caching
     // app.UseResponseCaching(); // Enable Production
     // API Caching 7. Setting up Caching Profile at Globally
-    app.UseHttpCacheHeaders(); 
+    // app.UseHttpCacheHeaders(); 
     // Enable Production
     // API Throttling 4. Setting up Middleware
     // This is giving error while running
