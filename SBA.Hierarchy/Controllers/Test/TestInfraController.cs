@@ -12,7 +12,7 @@
 //   public TestInfraController(
 //     ILogger<TestInfraController> logger,
 //     IMapper mapper,
-//     UOW uow) : base(logger, mapper, uow)
+//     IUOW uow) : base(logger, mapper, uow)
 //   {
 //     Repo = uow.TestInfras;
 

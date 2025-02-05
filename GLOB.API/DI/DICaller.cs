@@ -7,12 +7,10 @@ public static partial class DICommon
     // srvc.AddAuthentication();
     // srvc.AddAuthorization();
     srvc.Config_Cors();
-    srvc.AddAutoMapper(typeof(MapInitFull)); // Later
-    // Transient Means Fresh Copy
+    // srvc.AddAutoMapper(typeof(MapInitFull));
     srvc.Config_Controllerz();
     srvc.Config_Swagger();
     // srvc.Config_Versioning();
-    // srvc.Config_FileHandling();
   }
   public static void AddDefaultExternalServices(this IServiceCollection srvc)
   {

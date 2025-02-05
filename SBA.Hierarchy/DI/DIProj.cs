@@ -1,13 +1,16 @@
+using GLOB.API.DI;
 using Microsoft.EntityFrameworkCore;
 using SBA.Hierarchy.App;
 using SBA.Hierarchy.Infra;
 
-namespace GLOB.Infra;
+namespace SBA.Hierarchy.DI;
 public static class DI
 {
   public static void AddSrvc(this IServiceCollection srvc, IConfiguration config)
   {
-    srvc.AddPersistence(config);
+    AddPersistence(srvc, config);
+    srvc.AddScoped<IUOW, UOW>();
+    srvc.Config_DB_SQL(config);
   }
   public static void AddPersistence(this IServiceCollection srvc, IConfiguration config)
   {
@@ -22,8 +25,7 @@ public static class DI
             errorNumbersToAdd: null
           );
         });
-        opt.LogTo(Console.WriteLine, LogLevel.Information);
+      opt.LogTo(Console.WriteLine, LogLevel.Information);
     });
-    srvc.AddTransient<IUOW, UOW>();
   }
 }

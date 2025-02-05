@@ -1,6 +1,7 @@
 using GLOB.API.DI;
 using GLOB.Infra;
 using SBA.Hierarchy.Config;
+using SBA.Hierarchy.DI;
 using SBA.Hierarchy.Infra;
 
 namespace SBA.Hierarchy;

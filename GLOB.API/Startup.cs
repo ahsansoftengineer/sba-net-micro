@@ -1,24 +1,27 @@
 using GLOB.API.DI;
 
 namespace GLOB.API;
+// Note: Servicies are required when not in Micro Arch
+// Current IOC Containers of Child Are being Used
 public class Startup
 {
-  public IConfiguration Configuration { get; }
+  public IConfiguration _config { get; }
 
-  public Startup(IConfiguration configuration)
+  public Startup(IConfiguration config)
   {
-    Configuration = configuration;
+    _config = config;
   }
   public void ConfigureServices(IServiceCollection srvc)
   {
-    srvc.AddDICommon();
-    srvc.AddAutoMapper(typeof(MapInitFull));
-    srvc.AddDefaultExternalServices();
+    // srvc.AddDICommon();
+    // srvc.Config_DB_SQL(_config);
+    // srvc.AddAutoMapper(typeof(MapInitFull));
+    // srvc.AddDefaultExternalServices();
   }
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
-    app.AddDefaultExternalConfiguration(env);
-    app.UseCors("CorsPolicyAllowAll");
-    app.UseHttpsRedirection();
+    // app.AddDefaultExternalConfiguration(env);
+    // app.UseCors("CorsPolicyAllowAll");
+    // app.UseHttpsRedirection();
   }
 }

@@ -51,7 +51,7 @@ public static partial class DICommon
         });
         opt.LogTo(Console.WriteLine, LogLevel.Information);
     });
-    srvc.AddTransient<IUnitOfWorkz, UnitOfWorkz>();
+    srvc.AddScoped<IUnitOfWorkz, UnitOfWorkz>();
   }
   public static void Config_DevEnv(this IApplicationBuilder app, IWebHostEnvironment env)
   {
