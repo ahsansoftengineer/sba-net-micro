@@ -1,3 +1,6 @@
+
+
+
 ### COMMON
 ```bash
 otnet ef migrations add Init -p GLOB.Infra -s SBA.Hierarchy --context DBCntx

@@ -9,7 +9,6 @@ dotnet new sln -o SBA
 
 ### LOCAL LIBRARY
 ```bash
-dotnet new classlib -o GLOB.Package
 dotnet new classlib -o GLOB.Domain
 dotnet new classlib -o GLOB.Apps
 dotnet new classlib -o GLOB.Infra
@@ -58,14 +57,12 @@ dotnet build
 dotnet add ./GLOB.Apps/ reference ./GLOB.Domain/
 dotnet add ./GLOB.Infra/ reference ./GLOB.Apps/ # ./GLOB.Domain/
 dotnet add ./GLOB.API/ reference ./GLOB.Infra/ # WEB API
-# dotnet add ./GLOB.Package/ reference ./GLOB.API/ # Common Packages
-# dotnet add ./SBA.APIz/ reference ./GLOB.Infra/ # ClassLib
 ```
 ### Web API PACKAGES
 ```bash
-dotnet add ./SBA.Auth/ reference ./GLOB.Package/ # WEB API
-dotnet add ./SBA.Hierarchy/ reference ./GLOB.Package/ # WEB API
-# dotnet add ./SBA.Userz/ reference ./GLOB.Package/ # WEB API
-# dotnet add ./SBA.Orderz/ reference ./GLOB.Package/ # WEB API
+dotnet add ./SBA.Auth/ reference ./GLOB.API/ # WEB API
+dotnet add ./SBA.Hierarchy/ reference ./GLOB.API/ # WEB API
+# dotnet add ./SBA.Userz/ reference ./GLOB.API/ # WEB API
+# dotnet add ./SBA.Orderz/ reference ./GLOB.API/ # WEB API
 
 ```

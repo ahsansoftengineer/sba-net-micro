@@ -1,3 +1,11 @@
+### DOCKER SQL
+```bash
+docker pull mcr.microsoft.com/mssql/server:2022-latest
+docker image ls
+docker run -e 'HOMEBREW_NO_ENV_FILTERING=1' -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=asdf1234' -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest
+docker container ls
+docker ps
+```
 
 ### UBUNTU DOTNET INSTALLATION
 ```bash
@@ -64,4 +72,11 @@ sudo apt-get update
 sudo apt-get autoremove
 sudo apt-get clean
 
+```
+
+
+### EF TOOLS
+```bash
+dotnet tool install --global dotnet-ef
+dotnet tool list --global
 ```
