@@ -1,6 +1,7 @@
 using GLOB.Domain.Base;
 using GLOB.Proj.Seed;
 using Microsoft.EntityFrameworkCore;
+using SBA.Hierarchy.Seed;
 
 namespace SBA.Hierarchy.Infra;
 public static partial class Seeder
@@ -9,7 +10,9 @@ public static partial class Seeder
   public static void Seed(this ModelBuilder mb)
   {
     mb.SeedTestProj();
-    mb.Seed();
+    mb.SeedOrg();
+    mb.SeedSystemz();
+    mb.SeedBG();
     mb.SeedLE();
     mb.SeedOU();
     mb.SeedSU();
