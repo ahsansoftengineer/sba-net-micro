@@ -10,14 +10,12 @@ public static partial class Seeder
   {
     if (!context.TestProjs.Any(x => x.Id > 0))
     {
-      Console.WriteLine("--> Seeding Data TestProj (Context)");
       context.TestProjs.AddRange(SeederInfra.SeedDataBaseEntity<TestProj>());
       context.SaveChanges();
     }
   }
   public static void SeedTestProj(this ModelBuilder builder)
   {
-    Console.WriteLine("--> Seeding Data TestProj (ModelBuilder)");
     builder.Entity<TestProj>().HasData(SeederInfra.SeedDataBaseEntity<TestProj>());
   }
   
