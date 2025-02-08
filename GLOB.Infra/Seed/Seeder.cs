@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GLOB.Infra.Seed;
-public static partial class Seeder
+public static partial class SeederInfra
 {
   // Dev (When Running Migration throw CLI)
   public static void Seed(this ModelBuilder mb)

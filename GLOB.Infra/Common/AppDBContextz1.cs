@@ -5,6 +5,7 @@ public partial class AppDBContextz : DbContext
 {
   public AppDBContextz(DbContextOptions options) : base(options) { }
 
+  // TODO: NOTE: Here we need to work for Seeding Data
   protected override void OnModelCreating(ModelBuilder builder)
   {
     // Step 2 Recalling Base OnModelCreating 

@@ -1,4 +1,5 @@
 using GLOB.Domain.Entity;
+using GLOB.Infra.Seed;
 using Microsoft.EntityFrameworkCore;
 using SBA.Hierarchy.Infra;
 
@@ -10,34 +11,15 @@ public static partial class Seeder
     if (!context.TestProjs.Any(x => x.Id > 0))
     {
       Console.WriteLine("--> Seeding Data TestProj (Context)");
-      context.TestProjs.AddRange(DataTestProj);
+      context.TestProjs.AddRange(SeederInfra.SeedDataBaseEntity<TestProj>());
       context.SaveChanges();
     }
   }
   public static void SeedTestProj(this ModelBuilder builder)
   {
     Console.WriteLine("--> Seeding Data TestProj (ModelBuilder)");
-    builder.Entity<TestProj>().HasData(DataTestProj);
+    builder.Entity<TestProj>().HasData(SeederInfra.SeedDataBaseEntity<TestProj>());
   }
-  public static List<TestProj> DataTestProj = [
-    new TestProj
-    {
-      Id = 1,
-      Title = "TestProj 1",
-      Desc = "TestProj 1 Desc",
-    },
-    new TestProj
-    {
-      Id = 2,
-      Title = "TestProj 2",
-      Desc = "TestProj 2 Desc",
-    },
-    new TestProj
-    {
-      Id = 3,
-      Title = "TestProj 3",
-      Desc = "TestProj 3 Desc",
-    }
-  ];
+  
 
 }

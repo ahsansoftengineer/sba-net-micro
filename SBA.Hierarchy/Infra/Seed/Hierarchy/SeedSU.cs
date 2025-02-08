@@ -2,45 +2,36 @@ using GLOB.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 using SBA.Hierarchy.Infra;
 
-namespace GLOB.Proj.Seed;
+namespace SBA.Hierarchy.Seed;
 public static partial class Seeder
 {
   public static void SeedSU(this AppDBContextProj context)
   {
     if (!context.SUs.Any(x => x.Id > 0))
     {
-      Console.WriteLine("--> Seeding Data SU (Context)");
-      context.SUs.AddRange(DataSU);
+      context.SUs.AddRange(SeedDataSU<SU>());
       context.SaveChanges();
     }
   }
   public static void SeedSU(this ModelBuilder builder)
   {
-    Console.WriteLine("--> Seeding Data SU (ModelBuilder)");
-    builder.Entity<SU>().HasData(DataSU);
+    builder.Entity<SU>().HasData(SeedDataSU<SU>());
   }
-  public static List<SU> DataSU = [
-    new SU
+ public static List<T> SeedDataSU<T>() where T : SU, new()
+  {
+    string className = typeof(T).Name;
+    List<T> list = new List<T>();
+    for (int i = 0; i < 3; i++)
     {
-      Id = 1,
-      Title = "SU 1",
-      Desc = "SU 1 Desc",
-      OUId = 1,
-    },
-    new SU
-    {
-      Id = 2,
-      Title = "SU 2",
-      Desc = "SU 2 Desc",
-      OUId = 2,
-    },
-    new SU
-    {
-      Id = 3,
-      Title = "SU 3",
-      Desc = "SU 3 Desc",
-      OUId = 2,
+      list.Add(new T()
+      {
+        Id = i,
+        Title = $"{className} {i}",
+        Desc = $"{className} {i} Desc",
+        OUId = i
+      });
     }
-  ];
+    return list;
+  }
 
 }

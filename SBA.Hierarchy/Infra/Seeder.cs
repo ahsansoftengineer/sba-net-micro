@@ -1,3 +1,4 @@
+using GLOB.Domain.Base;
 using GLOB.Proj.Seed;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +9,11 @@ public static partial class Seeder
   public static void Seed(this ModelBuilder mb)
   {
     mb.SeedTestProj();
+    mb.Seed();
+    mb.SeedLE();
+    mb.SeedOU();
+    mb.SeedSU();
+
   }
   // Prod (When Running Migration throw Automation)
   public static void Seed(this IApplicationBuilder app)
@@ -25,4 +31,5 @@ public static partial class Seeder
       }
     }
   }
+ 
 }

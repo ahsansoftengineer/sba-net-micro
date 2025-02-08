@@ -2,66 +2,42 @@ using GLOB.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 using SBA.Hierarchy.Infra;
 
-namespace GLOB.Proj.Seed;
+namespace SBA.Hierarchy.Seed;
 public static partial class Seeder
 {
-    public static void SeedOU(this AppDBContextProj context)
+  public static void SeedOU(this AppDBContextProj context)
+  {
+    if (!context.OUs.Any(x => x.Id > 0))
     {
-        if (!context.OUs.Any(x => x.Id > 0))
-        {
-            Console.WriteLine("--> Seeding Data OU (Context)");
-            context.OUs.AddRange(DataOU);
-            context.SaveChanges();
-        }
+      context.OUs.AddRange(SeedDataOU<OU>());
+      context.SaveChanges();
     }
-    public static void SeedOU(this ModelBuilder builder)
+  }
+  public static void SeedOU(this ModelBuilder builder)
+  {
+    builder.Entity<OU>().HasData(SeedDataOU<OU>());
+  }
+  public static List<T> SeedDataOU<T>() where T : OU, new()
+  {
+    string className = typeof(T).Name;
+    List<T> list = new List<T>();
+    for (int i = 0; i < 3; i++)
     {
-        Console.WriteLine("--> Seeding Data OU (ModelBuilder)");
-        builder.Entity<OU>().HasData(DataOU);
+      list.Add(new T()
+      {
+        Id = i,
+        Title = $"{className} {i}",
+        Desc = $"{className} {i} Desc",
+        LEId = i,
+        Law = className + "Law",
+        Address = className + "Address",
+        Deposit = className + "Deposit",
+        LogoImg = className + "LogoImg",
+        TopImg = className + "TopImg",
+        WarningImg = className + "WarningImg",
+        FooterImg = className + "FooterImg"
+      });
     }
-    public static List<OU> DataOU = [
-      new OU
-        {
-            Id = 1,
-            Title = "OU 1",
-            Desc = "OU 1 Desc",
-            LEId = 1,
-            Law = "Ahsan",
-            Address = "Korangi",
-            Deposit = "3500",
-            LogoImg = "LogoImg.jpg",
-            TopImg = "TopImg.jpg",
-            WarningImg = "WarningImg.jpg",
-            FooterImg = "FooterImg.jpg"
-        },
-    new OU
-    {
-        Id = 2,
-        Title = "OU 2",
-        Desc = "OU 2 Desc",
-        LEId = 2,
-        Law = "Ahsan",
-        Address = "Korangi",
-        Deposit = "3500",
-        LogoImg = "LogoImg.jpg",
-        TopImg = "TopImg.jpg",
-        WarningImg = "WarningImg.jpg",
-        FooterImg = "FooterImg.jpg"
-    },
-    new OU
-    {
-        Id = 3,
-        Title = "OU 3",
-        Desc = "OU 3 Desc",
-        LEId = 2,
-        Law = "Ahsan",
-        Address = "Korangi",
-        Deposit = "3500",
-        LogoImg = "LogoImg.jpg",
-        TopImg = "TopImg.jpg",
-        WarningImg = "WarningImg.jpg",
-        FooterImg = "FooterImg.jpg"
-    }
-    ];
-
+    return list;
+  }
 }
