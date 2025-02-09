@@ -12,7 +12,7 @@ public partial class AppDBContextz : DbContext
     // mb.ApplyConfiguration(new OrgConfig()); //
     // mb.Entity<Country>().HasData(SeedCountry.Data); //
     AppDBContextConfig(mb);
-    mb.Seed();
+    // mb.Seed();
     base.OnModelCreating(mb);
     //mb.Entity<Gender>().HasNoKey();
     //mb.Entity<Status>().HasNoKey();

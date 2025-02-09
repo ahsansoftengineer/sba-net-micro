@@ -1,4 +1,5 @@
 using GLOB.API.DI;
+using GLOB.Apps.Common;
 using GLOB.Infra.Common;
 
 namespace GLOB.API;

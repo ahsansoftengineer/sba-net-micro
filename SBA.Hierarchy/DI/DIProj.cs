@@ -16,9 +16,11 @@ public static class DI
   {
     srvc.AddDbContext<AppDBContextProj>(opt =>
     {
+      opt.EnableSensitiveDataLogging(true);
       string connStr = config.GetConnectionString("SqlConnection");
       opt.UseSqlServer(connStr, sqlOptions =>
         {
+          
           sqlOptions.EnableRetryOnFailure(
             maxRetryCount: 1,
             maxRetryDelay: TimeSpan.FromSeconds(3),

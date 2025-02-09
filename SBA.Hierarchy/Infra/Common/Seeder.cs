@@ -10,9 +10,7 @@ public static partial class Seeder
   // Dev (When Running Migration throw CLI)
   public static void Seed(this ModelBuilder mb)
   {
-    Seederz.Seed(mb);
-    Console.WriteLine("--> Applying Migrations ModelBuilder");
-    mb.SeedTestProj();
+    Console.WriteLine("--> Hierarchy -> Applying Migrations ModelBuilder");
     mb.SeedOrg();
     mb.SeedSystemz();
     mb.SeedBG();
@@ -29,10 +27,10 @@ public static partial class Seeder
       AppDBContextProj? context = srvcScp.ServiceProvider.GetService<AppDBContextProj>();
       if (context != null)
       {
-        Console.WriteLine("--> Applying Migrations Context");
+        Console.WriteLine("--> Hierarchy -> Applying Migrations AppBuilder");
         context.Database.Migrate();
         {
-          Seederz.Seed(app);
+          // Seederz.Seed(app);
           context.SeedTestProj();
         }
       }

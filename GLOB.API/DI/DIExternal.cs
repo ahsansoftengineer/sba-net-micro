@@ -41,6 +41,7 @@ public static partial class DICommon
     srvc.AddDbContext<AppDBContextz>(opt =>
     {
       string connStr = config.GetConnectionString("SqlConnection");
+      opt.EnableSensitiveDataLogging(true);
       opt.UseSqlServer(connStr, sqlOptions =>
         {
           sqlOptions.EnableRetryOnFailure(
