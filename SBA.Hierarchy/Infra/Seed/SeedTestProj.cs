@@ -1,9 +1,9 @@
 using GLOB.Domain.Entity;
 using GLOB.Infra.Seed;
 using Microsoft.EntityFrameworkCore;
-using SBA.Hierarchy.Infra;
+using SBA.Hierarchy.Common;
 
-namespace GLOB.Proj.Seed;
+namespace SBA.Hierarchy.Seed;
 public static partial class Seeder
 {
   public static void SeedTestProj(this AppDBContextProj context)

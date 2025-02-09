@@ -1,15 +1,15 @@
 using GLOB.Infra.Common;
 using Microsoft.EntityFrameworkCore;
 
-namespace SBA.Hierarchy.Infra;
-// public partial class AppDBContextz : 
+namespace SBA.Hierarchy.Common;
 public partial class AppDBContextProj : AppDBContextz
 {
   public AppDBContextProj(DbContextOptions<AppDBContextProj> options) : base(options) { }
   protected override void OnModelCreating(ModelBuilder mb)
   {
-    AppDBContextConfig(mb);
-    mb.Seed();
+    AppDBContextConfigProj(mb);
+    Seeder.Seed(mb);
+    // Seeder.(mb);
     base.OnModelCreating(mb);
   }
 

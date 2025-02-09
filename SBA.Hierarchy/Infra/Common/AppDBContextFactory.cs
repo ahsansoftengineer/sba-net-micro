@@ -1,7 +1,7 @@
 // using Microsoft.EntityFrameworkCore;
 // using Microsoft.EntityFrameworkCore.Design;
 
-// namespace SBA.Hierarchy.Infra;
+// namespace SBA.Hierarchy.Common;
 // public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDBContextProj>
 // {
 //   public AppDBContextProj CreateDbContext(string[] args)

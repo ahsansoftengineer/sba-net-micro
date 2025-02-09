@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 namespace GLOB.Infra.Common;
 public partial class AppDBContextz : DbContext
 {
- private static void AppDBContextConfig(ModelBuilder mb)
+  private static void EntityMappingConfig(ModelBuilder mb)
   {
     // ConfigOneToMany(mb);
   }

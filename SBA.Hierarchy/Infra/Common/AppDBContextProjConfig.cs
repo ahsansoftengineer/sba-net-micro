@@ -1,11 +1,10 @@
 using GLOB.Infra.Common;
 using Microsoft.EntityFrameworkCore;
 
-namespace SBA.Hierarchy.Infra;
-// public partial class AppDBContextz : 
+namespace SBA.Hierarchy.Common;
 public partial class AppDBContextProj
 {
-  private static void AppDBContextConfig(ModelBuilder mb)
+  private static void AppDBContextConfigProj(ModelBuilder mb)
   {
     // ConfigOneToMany(mb);
   }

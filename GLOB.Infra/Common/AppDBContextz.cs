@@ -8,15 +8,14 @@ public partial class AppDBContextz : DbContext
   // TODO: NOTE: Here we need to work for Seeding Data
   protected override void OnModelCreating(ModelBuilder mb)
   {
-    // Step 2 Recalling Base OnModelCreating 
-    // mb.ApplyConfiguration(new OrgConfig()); //
-    // mb.Entity<Country>().HasData(SeedCountry.Data); //
-    AppDBContextConfig(mb);
-    // mb.Seed();
+
+    // EntityMappingConfig(mb);
+
+    // mb.ApplyConfiguration(new OrgConfig());
+    // mb.Entity<Country>().HasData(SeedCountry.Data);
+    // mb.Entity<Gender>().HasNoKey();
+
     base.OnModelCreating(mb);
-    //mb.Entity<Gender>().HasNoKey();
-    //mb.Entity<Status>().HasNoKey();
-    // mb.AddInitialEntityData();
   }
 }
 

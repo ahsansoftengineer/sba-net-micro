@@ -1,7 +1,7 @@
 using GLOB.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 
-namespace SBA.Hierarchy.Infra;
+namespace SBA.Hierarchy.Common;
 public partial class AppDBContextProj 
 {
   public DbSet<TestProj> TestProjs { get; set; }
