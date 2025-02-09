@@ -36,9 +36,13 @@ public static partial class DICommon
       .AddEntityFrameworkStores<AppDBContextz>()
       .AddDefaultTokenProviders();
   }
-  public static void Config_DB_SQL(this IServiceCollection srvc, IConfiguration config)
+  public static void Config_DB_SQL<TContext, TIUOW, TUOW>(this IServiceCollection srvc, IConfiguration config) 
+    where TContext : AppDBContextz
+    where TIUOW : class, IUnitOfWorkz
+    where TUOW : UnitOfWorkz, TIUOW
+
   {
-    srvc.AddDbContext<AppDBContextz>(opt =>
+    srvc.AddDbContext<TContext>(opt =>
     {
       string connStr = config.GetConnectionString("SqlConnection");
       opt.EnableSensitiveDataLogging(true);
@@ -52,7 +56,7 @@ public static partial class DICommon
         });
         opt.LogTo(Console.WriteLine, LogLevel.Information);
     });
-    srvc.AddScoped<IUnitOfWorkz, UnitOfWorkz>();
+    srvc.AddScoped<TIUOW, TUOW>();
   }
   public static void Config_DevEnv(this IApplicationBuilder app, IWebHostEnvironment env)
   {

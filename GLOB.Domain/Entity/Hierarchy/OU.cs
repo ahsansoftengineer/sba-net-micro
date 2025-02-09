@@ -7,6 +7,7 @@ public class OU : BaseEntity
   [ForeignKey(nameof(LE))]
   public int LEId { get; set; }
   public virtual LE? LE { get; set; }
+  public virtual ICollection<SU>? SUs { get; set; }
   public string? Law { get; set; }
   public string? Address { get; set; }
   public string? Deposit { get; set; }
