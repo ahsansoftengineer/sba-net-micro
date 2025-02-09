@@ -8,7 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace GLOB.API.Controllers.Base;
 [Route("api/[controller]")]
 [ApiController]
-public abstract class CommonStatusController<TController, TEntity> : BaseController<
+public abstract class CommonStatusController<TController, TEntity> 
+  : BetaController<
     TController,
     TEntity,
     CommonStatusDtoSearch,
