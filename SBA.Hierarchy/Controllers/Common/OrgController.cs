@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using SBA.Hierarchy.App;
 
 namespace SBA.Hierarchy.Controllers.Test;
-[Route("api/Hierarchy/Test/[controller]")]
+[Route("api/Hierarchy/[controller]")]
 [ApiController]
 public class OrgController : CommonController<OrgController, Org>
 {

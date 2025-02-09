@@ -7,27 +7,27 @@ using Microsoft.AspNetCore.Mvc;
 using SBA.Hierarchy.App;
 using X.PagedList;
 
-namespace SBA.Hierarchy.Controllers;
+namespace SBA.Hierarchy.Controllers.Test;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class SystemzController : BaseController<SystemzController, Systemz>
+public class LEController : BaseController<LEController, LE>
 {
-  public SystemzController(
-    ILogger<SystemzController> logger,
+  public LEController(
+    ILogger<LEController> logger,
     IMapper mapper,
     IUOW uow) : base(logger, mapper, uow)
   {
-    Repo = uow.Systemzs;
+    Repo = uow.LEs;
 
   }
 
   [HttpGet]
-  public async Task<IActionResult> Gets([FromQuery] PaginateRequestFilter<Systemz, SystemzDtoSearch?> filter)
+  public async Task<IActionResult> Gets([FromQuery] PaginateRequestFilter<LE, LEDtoSearch?> filter)
   {
     try
     {
       var list = await Repo.GetsPaginate(filter);
-      var result = Mapper.Map<IPagedList<Systemz>, PaginateResponse<SystemzDto>>(list);
+      var result = Mapper.Map<IPagedList<LE>, PaginateResponse<LEDto>>(list);
       return Ok(result);
     }
     catch (Exception ex)
@@ -43,17 +43,17 @@ public class SystemzController : BaseController<SystemzController, Systemz>
       q => q.Id == id
      //, new List<string> { "Org" }
      );
-    var result = Mapper.Map<BaseDtoSingle<SystemzDto>>(single);
+    var result = Mapper.Map<BaseDtoSingle<LEDto>>(single);
     return Ok(result);
   }
 
   [HttpPost]
-  public async Task<IActionResult> Create([FromBody] SystemzDtoCreate data)
+  public async Task<IActionResult> Create([FromBody] LEDtoCreate data)
   {
     if (!ModelState.IsValid) return CreateInvalid();
     try
     {
-      var result = Mapper.Map<Systemz>(data);
+      var result = Mapper.Map<LE>(data);
       await Repo.Insert(result);
       await UnitOfWork.Save();
       return Ok(result);
@@ -65,7 +65,7 @@ public class SystemzController : BaseController<SystemzController, Systemz>
   }
 
   [HttpPut("{id:int}")]
-  public async Task<IActionResult> Update(int id, [FromBody] SystemzDtoCreate data)
+  public async Task<IActionResult> Update(int id, [FromBody] LEDtoCreate data)
   {
     if (!ModelState.IsValid || id < 1) return UpdateInvalid();
     try
@@ -73,6 +73,7 @@ public class SystemzController : BaseController<SystemzController, Systemz>
       var item = await Repo.Get(q => q.Id == id);
 
       if (item == null) return UpdateNull();
+
       var result = Mapper.Map(data, item);
       Repo.Update(item);
       await UnitOfWork.Save();

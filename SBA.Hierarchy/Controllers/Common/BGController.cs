@@ -5,16 +5,16 @@ using Microsoft.AspNetCore.Mvc;
 using SBA.Hierarchy.App;
 
 namespace SBA.Hierarchy.Controllers.Test;
-[Route("api/Hierarchy/Test/[controller]")]
+[Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class TestProjController : CommonController<TestProjController, TestProj>
+public class BGController : CommonController<BGController, BG>
 {
-  public TestProjController(
-    ILogger<TestProjController> logger,
+  public BGController(
+    ILogger<BGController> logger,
     IMapper mapper,
     IUOW uow) : base(logger, mapper, uow)
   {
-    Repo = uow.TestProjs;
+    Repo = uow.BGs;
 
   }
 }
