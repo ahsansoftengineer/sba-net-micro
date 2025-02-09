@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace SBA.Hierarchy.Migrations
+namespace GLOB.Infra.Migrations
 {
     /// <inheritdoc />
     public partial class Init : Migration
@@ -26,22 +26,6 @@ namespace SBA.Hierarchy.Migrations
                 {
                     table.PrimaryKey("PK_TestInfras", x => x.Id);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "TestProjs",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TestProjs", x => x.Id);
-                });
         }
 
         /// <inheritdoc />
@@ -49,9 +33,6 @@ namespace SBA.Hierarchy.Migrations
         {
             migrationBuilder.DropTable(
                 name: "TestInfras");
-
-            migrationBuilder.DropTable(
-                name: "TestProjs");
         }
     }
 }

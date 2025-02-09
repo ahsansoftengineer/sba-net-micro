@@ -1,5 +1,6 @@
 using GLOB.API.DI;
 using GLOB.Infra;
+using SBA.Hierarchy.Common;
 using SBA.Hierarchy.Config;
 using SBA.Hierarchy.DI;
 using SBA.Hierarchy.Infra;
@@ -27,7 +28,7 @@ public class Startup
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
     app.AddDefaultExternalConfiguration(env);
-     Console.WriteLine($"Current Environment: {env.EnvironmentName}");
+    Console.WriteLine($"Current Environment: {env.EnvironmentName}");
     if(!env.IsDevelopment()){
       app.Seed();
     }

@@ -1,4 +1,5 @@
 using GLOB.API.DI;
+using GLOB.Infra.Common;
 
 namespace GLOB.API;
 // Note: Servicies are required when not in Micro Arch
@@ -22,6 +23,10 @@ public class Startup
   {
     // app.AddDefaultExternalConfiguration(env);
     // app.UseCors("CorsPolicyAllowAll");
+   
     // app.UseHttpsRedirection();
+    // if(!env.IsDevelopment()){
+    //   app.Seed();
+    // }
   }
 }

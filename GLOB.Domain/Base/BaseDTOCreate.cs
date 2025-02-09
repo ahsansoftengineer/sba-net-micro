@@ -4,9 +4,9 @@ namespace GLOB.Domain.Base;
 public class BaseDtoCreate
 {
   [Required]
-  [StringLength(maximumLength: 50, ErrorMessage = "Title is Too Long")]
+  [StringLength(maximumLength: 50, ErrorMessage = "Max Characters 50 Allowed")]
   public string Title { get; set; } = "";
-  [StringLength(maximumLength: 100, ErrorMessage = "Description is Too Long")]
+  [StringLength(maximumLength: 100, ErrorMessage = "Max Characters 100 Allowed")]
   public string? Desc { get; set; }
 
 }
