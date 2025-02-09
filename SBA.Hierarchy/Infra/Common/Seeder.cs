@@ -30,8 +30,12 @@ public static partial class Seeder
         Console.WriteLine("--> Hierarchy -> Applying Migrations AppBuilder");
         context.Database.Migrate();
         {
-          // Seederz.Seed(app);
-          context.SeedTestProj();
+          context.SeedOrg();
+          context.SeedSystemz();
+          context.SeedBG();
+          context.SeedLE();
+          context.SeedOU();
+          context.SeedSU();
         }
       }
     }
