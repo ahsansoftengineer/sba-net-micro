@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SBA.Hierarchy.Infra;
+using SBA.Hierarchy.Common;
 
 #nullable disable
 
 namespace SBA.Hierarchy.Migrations
 {
     [DbContext(typeof(AppDBContextProj))]
-    [Migration("20250209080017_Init")]
-    partial class Init
+    [Migration("20250209103955_Init3")]
+    partial class Init3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,6 +48,26 @@ namespace SBA.Hierarchy.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BGs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Desc = "BG 1 Desc",
+                            Title = "BG 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Desc = "BG 2 Desc",
+                            Title = "BG 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Desc = "BG 3 Desc",
+                            Title = "BG 3"
+                        });
                 });
 
             modelBuilder.Entity("GLOB.Domain.Entity.LE", b =>
@@ -78,6 +98,29 @@ namespace SBA.Hierarchy.Migrations
                     b.HasIndex("BGId");
 
                     b.ToTable("LEs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BGId = 1,
+                            Desc = "LE 1 Desc",
+                            Title = "LE 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BGId = 2,
+                            Desc = "LE 2 Desc",
+                            Title = "LE 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BGId = 3,
+                            Desc = "LE 3 Desc",
+                            Title = "LE 3"
+                        });
                 });
 
             modelBuilder.Entity("GLOB.Domain.Entity.OU", b =>
@@ -129,6 +172,50 @@ namespace SBA.Hierarchy.Migrations
                     b.HasIndex("LEId");
 
                     b.ToTable("OUs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "OUAddress",
+                            Deposit = "OUDeposit",
+                            Desc = "OU 1 Desc",
+                            FooterImg = "OUFooterImg",
+                            LEId = 1,
+                            Law = "OULaw",
+                            LogoImg = "OULogoImg",
+                            Title = "OU 1",
+                            TopImg = "OUTopImg",
+                            WarningImg = "OUWarningImg"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "OUAddress",
+                            Deposit = "OUDeposit",
+                            Desc = "OU 2 Desc",
+                            FooterImg = "OUFooterImg",
+                            LEId = 2,
+                            Law = "OULaw",
+                            LogoImg = "OULogoImg",
+                            Title = "OU 2",
+                            TopImg = "OUTopImg",
+                            WarningImg = "OUWarningImg"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "OUAddress",
+                            Deposit = "OUDeposit",
+                            Desc = "OU 3 Desc",
+                            FooterImg = "OUFooterImg",
+                            LEId = 3,
+                            Law = "OULaw",
+                            LogoImg = "OULogoImg",
+                            Title = "OU 3",
+                            TopImg = "OUTopImg",
+                            WarningImg = "OUWarningImg"
+                        });
                 });
 
             modelBuilder.Entity("GLOB.Domain.Entity.Org", b =>
@@ -154,6 +241,26 @@ namespace SBA.Hierarchy.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Orgs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Desc = "Org 1 Desc",
+                            Title = "Org 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Desc = "Org 2 Desc",
+                            Title = "Org 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Desc = "Org 3 Desc",
+                            Title = "Org 3"
+                        });
                 });
 
             modelBuilder.Entity("GLOB.Domain.Entity.SU", b =>
@@ -184,6 +291,29 @@ namespace SBA.Hierarchy.Migrations
                     b.HasIndex("OUId");
 
                     b.ToTable("SUs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Desc = "SU 1 Desc",
+                            OUId = 1,
+                            Title = "SU 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Desc = "SU 2 Desc",
+                            OUId = 2,
+                            Title = "SU 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Desc = "SU 3 Desc",
+                            OUId = 3,
+                            Title = "SU 3"
+                        });
                 });
 
             modelBuilder.Entity("GLOB.Domain.Entity.Systemz", b =>
@@ -214,6 +344,29 @@ namespace SBA.Hierarchy.Migrations
                     b.HasIndex("OrgId");
 
                     b.ToTable("Systemzs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Desc = "Systemz 1 Desc",
+                            OrgId = 1,
+                            Title = "Systemz 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Desc = "Systemz 2 Desc",
+                            OrgId = 2,
+                            Title = "Systemz 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Desc = "Systemz 3 Desc",
+                            OrgId = 3,
+                            Title = "Systemz 3"
+                        });
                 });
 
             modelBuilder.Entity("GLOB.Domain.Entity.TestInfra", b =>
@@ -244,26 +397,20 @@ namespace SBA.Hierarchy.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 2, 9, 8, 0, 17, 398, DateTimeKind.Utc).AddTicks(9984),
                             Desc = "TestInfra 1 Desc",
-                            Title = "TestInfra 1",
-                            UpdatedAt = new DateTime(2025, 2, 9, 8, 0, 17, 398, DateTimeKind.Utc).AddTicks(9987)
+                            Title = "TestInfra 1"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 2, 9, 8, 0, 17, 399, DateTimeKind.Utc).AddTicks(32),
                             Desc = "TestInfra 2 Desc",
-                            Title = "TestInfra 2",
-                            UpdatedAt = new DateTime(2025, 2, 9, 8, 0, 17, 399, DateTimeKind.Utc).AddTicks(33)
+                            Title = "TestInfra 2"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 2, 9, 8, 0, 17, 399, DateTimeKind.Utc).AddTicks(35),
                             Desc = "TestInfra 3 Desc",
-                            Title = "TestInfra 3",
-                            UpdatedAt = new DateTime(2025, 2, 9, 8, 0, 17, 399, DateTimeKind.Utc).AddTicks(36)
+                            Title = "TestInfra 3"
                         });
                 });
 
@@ -290,15 +437,33 @@ namespace SBA.Hierarchy.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TestProjs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Desc = "TestProj 1 Desc",
+                            Title = "TestProj 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Desc = "TestProj 2 Desc",
+                            Title = "TestProj 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Desc = "TestProj 3 Desc",
+                            Title = "TestProj 3"
+                        });
                 });
 
             modelBuilder.Entity("GLOB.Domain.Entity.LE", b =>
                 {
                     b.HasOne("GLOB.Domain.Entity.BG", "BG")
                         .WithMany("LEs")
-                        .HasForeignKey("BGId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BGId");
 
                     b.Navigation("BG");
                 });
@@ -306,10 +471,8 @@ namespace SBA.Hierarchy.Migrations
             modelBuilder.Entity("GLOB.Domain.Entity.OU", b =>
                 {
                     b.HasOne("GLOB.Domain.Entity.LE", "LE")
-                        .WithMany()
-                        .HasForeignKey("LEId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("OUs")
+                        .HasForeignKey("LEId");
 
                     b.Navigation("LE");
                 });
@@ -317,10 +480,8 @@ namespace SBA.Hierarchy.Migrations
             modelBuilder.Entity("GLOB.Domain.Entity.SU", b =>
                 {
                     b.HasOne("GLOB.Domain.Entity.OU", "OU")
-                        .WithMany()
-                        .HasForeignKey("OUId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("SUs")
+                        .HasForeignKey("OUId");
 
                     b.Navigation("OU");
                 });
@@ -329,9 +490,7 @@ namespace SBA.Hierarchy.Migrations
                 {
                     b.HasOne("GLOB.Domain.Entity.Org", "Org")
                         .WithMany("Systemzs")
-                        .HasForeignKey("OrgId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrgId");
 
                     b.Navigation("Org");
                 });
@@ -339,6 +498,16 @@ namespace SBA.Hierarchy.Migrations
             modelBuilder.Entity("GLOB.Domain.Entity.BG", b =>
                 {
                     b.Navigation("LEs");
+                });
+
+            modelBuilder.Entity("GLOB.Domain.Entity.LE", b =>
+                {
+                    b.Navigation("OUs");
+                });
+
+            modelBuilder.Entity("GLOB.Domain.Entity.OU", b =>
+                {
+                    b.Navigation("SUs");
                 });
 
             modelBuilder.Entity("GLOB.Domain.Entity.Org", b =>

@@ -1,3 +1,4 @@
+using GLOB.Infra.Seed;
 using Microsoft.EntityFrameworkCore;
 using SBA.Hierarchy.Seed;
 
@@ -8,6 +9,8 @@ public static partial class Seeder
   public static void Seed(this ModelBuilder mb)
   {
     Console.WriteLine("--> Hierarchy -> Applying Migrations ModelBuilder");
+    // mb.SeedTestInfra();
+    mb.SeedTestProj();
     mb.SeedOrg();
     mb.SeedSystemz();
     mb.SeedBG();
@@ -27,6 +30,8 @@ public static partial class Seeder
         Console.WriteLine("--> Hierarchy -> Applying Migrations AppBuilder");
         context.Database.Migrate();
         {
+          // context.SeedTestInfra();
+          context.SeedTestProj();
           context.SeedOrg();
           context.SeedSystemz();
           context.SeedBG();

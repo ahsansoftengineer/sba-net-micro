@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SBA.Hierarchy.Common;
 
@@ -11,9 +12,11 @@ using SBA.Hierarchy.Common;
 namespace SBA.Hierarchy.Migrations
 {
     [DbContext(typeof(AppDBContextProj))]
-    partial class AppDBContextProjModelSnapshot : ModelSnapshot
+    [Migration("20250209102339_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,20 +53,26 @@ namespace SBA.Hierarchy.Migrations
                         new
                         {
                             Id = 1,
+                            CreatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3867),
                             Desc = "BG 1 Desc",
-                            Title = "BG 1"
+                            Title = "BG 1",
+                            UpdatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3867)
                         },
                         new
                         {
                             Id = 2,
+                            CreatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3875),
                             Desc = "BG 2 Desc",
-                            Title = "BG 2"
+                            Title = "BG 2",
+                            UpdatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3876)
                         },
                         new
                         {
                             Id = 3,
+                            CreatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3880),
                             Desc = "BG 3 Desc",
-                            Title = "BG 3"
+                            Title = "BG 3",
+                            UpdatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3881)
                         });
                 });
 
@@ -101,22 +110,28 @@ namespace SBA.Hierarchy.Migrations
                         {
                             Id = 1,
                             BGId = 1,
+                            CreatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3928),
                             Desc = "LE 1 Desc",
-                            Title = "LE 1"
+                            Title = "LE 1",
+                            UpdatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3928)
                         },
                         new
                         {
                             Id = 2,
                             BGId = 2,
+                            CreatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3938),
                             Desc = "LE 2 Desc",
-                            Title = "LE 2"
+                            Title = "LE 2",
+                            UpdatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3938)
                         },
                         new
                         {
                             Id = 3,
                             BGId = 3,
+                            CreatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3943),
                             Desc = "LE 3 Desc",
-                            Title = "LE 3"
+                            Title = "LE 3",
+                            UpdatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3943)
                         });
                 });
 
@@ -175,6 +190,7 @@ namespace SBA.Hierarchy.Migrations
                         {
                             Id = 1,
                             Address = "OUAddress",
+                            CreatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3990),
                             Deposit = "OUDeposit",
                             Desc = "OU 1 Desc",
                             FooterImg = "OUFooterImg",
@@ -183,12 +199,14 @@ namespace SBA.Hierarchy.Migrations
                             LogoImg = "OULogoImg",
                             Title = "OU 1",
                             TopImg = "OUTopImg",
+                            UpdatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3990),
                             WarningImg = "OUWarningImg"
                         },
                         new
                         {
                             Id = 2,
                             Address = "OUAddress",
+                            CreatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(4011),
                             Deposit = "OUDeposit",
                             Desc = "OU 2 Desc",
                             FooterImg = "OUFooterImg",
@@ -197,12 +215,14 @@ namespace SBA.Hierarchy.Migrations
                             LogoImg = "OULogoImg",
                             Title = "OU 2",
                             TopImg = "OUTopImg",
+                            UpdatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(4011),
                             WarningImg = "OUWarningImg"
                         },
                         new
                         {
                             Id = 3,
                             Address = "OUAddress",
+                            CreatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(4017),
                             Deposit = "OUDeposit",
                             Desc = "OU 3 Desc",
                             FooterImg = "OUFooterImg",
@@ -211,6 +231,7 @@ namespace SBA.Hierarchy.Migrations
                             LogoImg = "OULogoImg",
                             Title = "OU 3",
                             TopImg = "OUTopImg",
+                            UpdatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(4018),
                             WarningImg = "OUWarningImg"
                         });
                 });
@@ -243,20 +264,26 @@ namespace SBA.Hierarchy.Migrations
                         new
                         {
                             Id = 1,
+                            CreatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3661),
                             Desc = "Org 1 Desc",
-                            Title = "Org 1"
+                            Title = "Org 1",
+                            UpdatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3665)
                         },
                         new
                         {
                             Id = 2,
+                            CreatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3717),
                             Desc = "Org 2 Desc",
-                            Title = "Org 2"
+                            Title = "Org 2",
+                            UpdatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3717)
                         },
                         new
                         {
                             Id = 3,
+                            CreatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3722),
                             Desc = "Org 3 Desc",
-                            Title = "Org 3"
+                            Title = "Org 3",
+                            UpdatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3722)
                         });
                 });
 
@@ -293,23 +320,29 @@ namespace SBA.Hierarchy.Migrations
                         new
                         {
                             Id = 1,
+                            CreatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(4066),
                             Desc = "SU 1 Desc",
                             OUId = 1,
-                            Title = "SU 1"
+                            Title = "SU 1",
+                            UpdatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(4067)
                         },
                         new
                         {
                             Id = 2,
+                            CreatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(4076),
                             Desc = "SU 2 Desc",
                             OUId = 2,
-                            Title = "SU 2"
+                            Title = "SU 2",
+                            UpdatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(4077)
                         },
                         new
                         {
                             Id = 3,
+                            CreatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(4081),
                             Desc = "SU 3 Desc",
                             OUId = 3,
-                            Title = "SU 3"
+                            Title = "SU 3",
+                            UpdatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(4081)
                         });
                 });
 
@@ -346,23 +379,29 @@ namespace SBA.Hierarchy.Migrations
                         new
                         {
                             Id = 1,
+                            CreatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3791),
                             Desc = "Systemz 1 Desc",
                             OrgId = 1,
-                            Title = "Systemz 1"
+                            Title = "Systemz 1",
+                            UpdatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3791)
                         },
                         new
                         {
                             Id = 2,
+                            CreatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3804),
                             Desc = "Systemz 2 Desc",
                             OrgId = 2,
-                            Title = "Systemz 2"
+                            Title = "Systemz 2",
+                            UpdatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3805)
                         },
                         new
                         {
                             Id = 3,
+                            CreatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3809),
                             Desc = "Systemz 3 Desc",
                             OrgId = 3,
-                            Title = "Systemz 3"
+                            Title = "Systemz 3",
+                            UpdatedAt = new DateTime(2025, 2, 9, 10, 23, 38, 778, DateTimeKind.Utc).AddTicks(3810)
                         });
                 });
 
@@ -389,26 +428,6 @@ namespace SBA.Hierarchy.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TestInfras");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Desc = "TestInfra 1 Desc",
-                            Title = "TestInfra 1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Desc = "TestInfra 2 Desc",
-                            Title = "TestInfra 2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Desc = "TestInfra 3 Desc",
-                            Title = "TestInfra 3"
-                        });
                 });
 
             modelBuilder.Entity("GLOB.Domain.Entity.TestProj", b =>
@@ -434,26 +453,6 @@ namespace SBA.Hierarchy.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TestProjs");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Desc = "TestProj 1 Desc",
-                            Title = "TestProj 1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Desc = "TestProj 2 Desc",
-                            Title = "TestProj 2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Desc = "TestProj 3 Desc",
-                            Title = "TestProj 3"
-                        });
                 });
 
             modelBuilder.Entity("GLOB.Domain.Entity.LE", b =>

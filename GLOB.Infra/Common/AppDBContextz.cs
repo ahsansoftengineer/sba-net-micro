@@ -9,12 +9,10 @@ public partial class AppDBContextz : DbContext
   protected override void OnModelCreating(ModelBuilder mb)
   {
 
-    // EntityMappingConfig(mb);
+    EntityMappingConfig(mb);
 
-    // mb.ApplyConfiguration(new OrgConfig());
-    // mb.Entity<Country>().HasData(SeedCountry.Data);
-    // mb.Entity<Gender>().HasNoKey();
-
+    mb.Seed();
+    
     base.OnModelCreating(mb);
   }
 }
