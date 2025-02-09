@@ -6,13 +6,13 @@ using X.PagedList;
 
 namespace GLOB.API.Controllers.Base;
 public abstract class BaseController<TController, TEntity, DtoSearch, DtoResponse, DtoCreate>
-: AlphaController<TController>
-//where TEntity : class
-where TEntity : AlphaEntity
-where DtoSearch : class
-where DtoResponse : class
-where DtoCreate : class
-where TController : class
+  : AlphaController<TController>
+    //where TEntity : class
+    where TEntity : AlphaEntity
+    where DtoSearch : class
+    where DtoResponse : class
+    where DtoCreate : class
+    where TController : class
 {
   protected IRepoGenericz<TEntity> Repo = null;
   public BaseController(ILogger<TController> logger, IMapper mapper, IUnitOfWorkz unitOfWork) : base(logger, mapper, unitOfWork)
