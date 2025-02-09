@@ -21,7 +21,7 @@ public static partial class Seeder
   {
     string className = typeof(T).Name;
     List<T> list = new List<T>();
-    for (int i = 0; i < 3; i++)
+    for (int i = 1; i <= 3; i++)
     {
       list.Add(new T()
       {

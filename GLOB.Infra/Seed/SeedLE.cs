@@ -4,7 +4,7 @@
 // using Microsoft.EntityFrameworkCore;
 
 // namespace GLOB.Infra.Seed;
-// public static partial class SeederInfra
+// public static partial class Seederz
 // {
 //   public static void SeedLE(this AppDBContextz context)
 //   {
@@ -22,7 +22,7 @@
 //   {
 //     string className = typeof(T).Name;
 //     List<T> list = new List<T>();
-//     for (int i = 0; i < 3; i++)
+//     for (int i = 1; i <= 3; i++)
 //     {
 //       list.Add(new T()
 //       {

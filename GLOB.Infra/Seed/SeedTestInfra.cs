@@ -4,7 +4,7 @@ using GLOB.Infra.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Seed;
-public static partial class SeederInfra
+public static partial class Seederz
 {
   public static void SeedTestInfra(this AppDBContextz context)
   {
@@ -16,14 +16,13 @@ public static partial class SeederInfra
   }
   public static void SeedTestInfra(this ModelBuilder builder)
   {
-    Console.WriteLine("--> Seeding Data TestInfra (ModelBuilder)");
-    builder.Entity<TestProj>().HasData(SeedDataBaseEntity<TestInfra>());
+    builder.Entity<TestInfra>().HasData(SeedDataBaseEntity<TestInfra>());
   }
   public static List<T> SeedDataBaseEntity<T>() where T : BaseEntity, new()
   {
     string className = typeof(T).Name;
     List<T> list = new List<T>();
-    for (int i = 0; i < 3; i++)
+    for (int i = 1; i <= 3; i++)
     {
       list.Add(new T()
       {

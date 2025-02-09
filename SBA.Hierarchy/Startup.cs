@@ -30,7 +30,7 @@ public class Startup
     app.AddDefaultExternalConfiguration(env);
     Console.WriteLine($"Current Environment: {env.EnvironmentName}");
     if(!env.IsDevelopment()){
-      app.Seed();
+      // app.Seed();
     }
   }
 }

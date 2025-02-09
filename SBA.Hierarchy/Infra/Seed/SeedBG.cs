@@ -10,13 +10,13 @@ public static partial class Seeder
   {
     if (!context.BGs.Any(x => x.Id > 0))
     {
-      context.BGs.AddRange(SeederInfra.SeedDataBaseEntity<BG>());
+      context.BGs.AddRange(Seederz.SeedDataBaseEntity<BG>());
       context.SaveChanges();
     }
   }
   public static void SeedBG(this ModelBuilder builder)
   {
-    builder.Entity<BG>().HasData(SeederInfra.SeedDataBaseEntity<BG>());
+    builder.Entity<BG>().HasData(Seederz.SeedDataBaseEntity<BG>());
   }
   
 
