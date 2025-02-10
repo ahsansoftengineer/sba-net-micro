@@ -1,3 +1,5 @@
+using GLOB.Domain.Enum;
+
 namespace GLOB.Domain.Entity;
 public class OrderStandard : BaseOrder
 {

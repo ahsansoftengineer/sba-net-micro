@@ -1,7 +1,9 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using GLOB.Domain.Base;
+using GLOB.Domain.Enum;
 
 namespace GLOB.Domain.Entity;
-public class Transactionz : BaseBaseEntity
+public class Transactionz : BetaEntity
 {
   public int TransactionSimpaisaID { get; set; }
   // Order Price Info

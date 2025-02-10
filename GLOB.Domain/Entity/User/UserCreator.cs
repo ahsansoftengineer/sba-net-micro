@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 namespace GLOB.Domain.Entity;
 public class UserCreator : UserNormal

@@ -1,5 +1,7 @@
+using GLOB.Domain.Base;
+
 namespace GLOB.Domain.Entity;
-public class SocialLink : BaseBaseEntity
+public class SocialLink : BetaEntity
 {
   public int? UserCreatorID { get; set; }
   public UserCreator? UserCreator { get; set; }

@@ -1,4 +1,3 @@
-
 using System.ComponentModel.DataAnnotations.Schema;
 namespace GLOB.Domain.Entity;
 public abstract class UserNormal : BaseUser

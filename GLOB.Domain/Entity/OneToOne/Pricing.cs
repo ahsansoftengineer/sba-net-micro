@@ -1,8 +1,8 @@
-
 using System.ComponentModel.DataAnnotations.Schema;
+using GLOB.Domain.Base;
 
 namespace GLOB.Domain.Entity;
-public class Pricing : BaseBaseEntity
+public class Pricing : BetaEntity
 {
   public int? UserCreatorID { get; set; }
   public UserCreator? UserCreator { get; set; }
