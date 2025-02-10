@@ -14,7 +14,7 @@ public abstract class BetaController<TController, TEntity, DtoSearch, DtoRespons
   where DtoCreate : class
   where TController : class
 {
-  protected IRepoGenericz<TEntity> Repo = null;
+  // protected new IRepoGenericz<TEntity> Repo = null;
   public BetaController(ILogger<TController> logger, IMapper mapper, IUnitOfWorkz unitOfWork) : 
     base(logger, mapper, unitOfWork)
   {

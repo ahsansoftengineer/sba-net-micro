@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GLOB.API.Controllers.Base;
 public abstract class BaseController<TController, TEntity>
   : AlphaController<TController>
-    //where TEntity : class
+    // where TEntity : class
     where TEntity : AlphaEntity
     where TController : class
 {
