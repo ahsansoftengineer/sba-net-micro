@@ -11,9 +11,9 @@ public abstract class BetaEntity : AlphaEntity
 {
 
   [Column("Created_At")]
-  public DateTimeOffset? CreatedAt { get; set; } = DateTimeOffset.Parse("2024-10-15T08:21:57");
+  public DateTimeOffset? CreatedAt { get; set; } = DateTimeOffset.Parse("2025-02-10T08:21:57");
   [Column("Updated_At")]
-  public DateTimeOffset? UpdatedAt { get; set; } = DateTimeOffset.Parse("2024-10-15T08:21:57");
+  public DateTimeOffset? UpdatedAt { get; set; } = DateTimeOffset.Parse("2025-02-10T08:21:57");
 }
 
 public abstract class BaseEntity : BetaEntity
