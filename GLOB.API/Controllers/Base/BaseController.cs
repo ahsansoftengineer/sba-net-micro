@@ -2,16 +2,12 @@ using AutoMapper;
 using GLOB.Apps.Common;
 using GLOB.Domain.Base;
 using Microsoft.AspNetCore.Mvc;
-using X.PagedList;
 
 namespace GLOB.API.Controllers.Base;
-public abstract class BaseController<TController, TEntity, DtoSearch, DtoResponse, DtoCreate>
+public abstract class BaseController<TController, TEntity>
   : AlphaController<TController>
     //where TEntity : class
     where TEntity : AlphaEntity
-    where DtoSearch : class
-    where DtoResponse : class
-    where DtoCreate : class
     where TController : class
 {
   protected IRepoGenericz<TEntity> Repo = null;

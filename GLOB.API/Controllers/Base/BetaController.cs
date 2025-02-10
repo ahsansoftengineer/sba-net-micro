@@ -6,7 +6,7 @@ using X.PagedList;
 
 namespace GLOB.API.Controllers.Base;
 public abstract class BetaController<TController, TEntity, DtoSearch, DtoResponse, DtoCreate>
-  : BaseController<TController, TEntity, DtoSearch, DtoResponse, DtoCreate>
+  : BaseController<TController, TEntity>
   //where TEntity : class
   where TEntity : AlphaEntity
   where DtoSearch : class
