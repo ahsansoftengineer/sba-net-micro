@@ -1,4 +1,5 @@
 using GLOB.API.Config;
+using GLOB.Domain.Common;
 using GLOB.Domain.Entity;
 
 namespace SBA.Hierarchy.Config;
@@ -8,6 +9,7 @@ public class MapInitCommonProj : MapInitCommon
   {
       CreateMapCommon<TestProj>();
       CreateMapCommon<Org>();
+      CreateMapPagedList<Org, CommonDto>();
       CreateMapCommon<BG>();
   }
 }

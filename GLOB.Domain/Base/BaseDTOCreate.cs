@@ -13,8 +13,8 @@ public class BaseDtoCreate
 public class BaseDtoFull : BaseDtoCreate
 {
   public int? Id { get; set; } = null;
-  public DateTime? CreatedAt { get; set; }
-  public DateTime? UpdatedAt { get; set; }
+  public DateTimeOffset? CreatedAt { get; set; }
+  public DateTimeOffset? UpdatedAt { get; set; }
 }
 public class BaseDtoRelation
 {
