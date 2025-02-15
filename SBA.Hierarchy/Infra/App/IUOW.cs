@@ -20,4 +20,5 @@ public interface IUOW : IUnitOfWorkz
   IRepoGenericz<LE> LEs { get; }
   IRepoGenericz<OU> OUs { get; }
   IRepoGenericz<SU> SUs { get; }
+  IRepoGenericz<City> Citys { get; }
 }

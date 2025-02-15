@@ -21,4 +21,5 @@ public partial class UOW
   public IRepoGenericz<OU> OUs => _OU ??= new RepoGenericz<OU>(_context);
   public IRepoGenericz<SU> SUs => _SU ??= new RepoGenericz<SU>(_context);
   public IRepoGenericz<Systemz> Systemzs => _Systemz ??= new RepoGenericz<Systemz>(_context);
+  public IRepoGenericz<City> Citys => _City ??= new RepoGenericz<City>(_context);
 }
