@@ -5,10 +5,10 @@ namespace GLOB.Domain.Entity;
 public class Industry : BaseEntity
 {
   [NotMapped]
-  public ICollection<UserBusinessIndustry>? UserBusinessIndustrys { get; set; } = new List<UserBusinessIndustry>();
+  public ICollection<Mapping_UserBusinessIndustry>? UserBusinessIndustrys { get; set; } = new List<Mapping_UserBusinessIndustry>();
   [NotMapped]
-  public ICollection<UserCreatorIndustry>? UserCreatorIndustrys { get; set; } = new List<UserCreatorIndustry>();
+  public ICollection<Mapping_UserCreatorIndustry>? UserCreatorIndustrys { get; set; } = new List<Mapping_UserCreatorIndustry>();
   [NotMapped]
-  public ICollection<UserCreatorProfession>? UserCreatorProfessions { get; set; } = new List<UserCreatorProfession>();
+  public ICollection<Mapping_UserCreatorProfession>? UserCreatorProfessions { get; set; } = new List<Mapping_UserCreatorProfession>();
 
 }

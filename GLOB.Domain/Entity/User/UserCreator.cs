@@ -31,7 +31,9 @@ public class UserCreator : UserNormal
 
 
   // *-* Relationship
-  public ICollection<UserCreatorIndustry>? UserCreatorIndustrys { get; set; } = null;
-  public ICollection<UserCreatorProfession>? UserCreatorProfessions { get; set; } = null;
+  [NotMapped]
+  public ICollection<Mapping_UserCreatorIndustry>? UserCreatorIndustrys { get; set; } = null;
+  [NotMapped]
+  public ICollection<Mapping_UserCreatorProfession>? UserCreatorProfessions { get; set; } = null;
 
 }

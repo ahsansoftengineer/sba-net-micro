@@ -5,6 +5,6 @@ namespace GLOB.Domain.Entity;
 public class Profession : BaseEntity
 {
   [NotMapped]
-  public ICollection<UserCreatorProfession>? UserCreatorProfessions { get; set; } = new List<UserCreatorProfession>();
+  public ICollection<Mapping_UserCreatorProfession>? UserCreatorProfessions { get; set; } = new List<Mapping_UserCreatorProfession>();
 
 }
