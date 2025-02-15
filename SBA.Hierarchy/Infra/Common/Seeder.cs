@@ -11,9 +11,12 @@ public static partial class Seeder
     Console.WriteLine("--> Hierarchy -> Applying Migrations ModelBuilder");
     // mb.SeedTestInfra();
     mb.SeedTestProj();
+    // .-*
     mb.SeedOrg();
-    mb.SeedSystemz();
     mb.SeedBG();
+
+    // *-.
+    mb.SeedSystemz();
     mb.SeedLE();
     mb.SeedOU();
     mb.SeedSU();
