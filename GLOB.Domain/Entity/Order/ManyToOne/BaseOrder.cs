@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using GLOB.Domain.Base;
 using GLOB.Domain.Enum;
 namespace GLOB.Domain.Entity;
@@ -5,6 +6,7 @@ public abstract class BaseOrder : BetaEntity
 {
   public required string Message { get; set; } // Business Iquriy, (Standard / Custom) Order Message
   // ID = InquiryID
+  [NotMapped]
   public UserCreator? UserCreator { get; set; }
   public int? UserCreatorID { get; set; }
   public SHOUTOUT_TYPE? ShoutoutType { get; set; }

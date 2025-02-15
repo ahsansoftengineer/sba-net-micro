@@ -34,6 +34,7 @@ public class OrderBusiness : BaseOrder
 
   // *-.
   public int? UserBusinessID { get; set; }
+  [NotMapped]
   public UserBusiness? UserBusiness { get; set; }
   public int? OrderBusinessMultiID { get; set; }
   public OrderBusinessMulti? OrderBusinessMulti { get; set; }
