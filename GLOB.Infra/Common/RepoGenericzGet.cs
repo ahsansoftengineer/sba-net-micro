@@ -7,20 +7,9 @@ using X.PagedList;
 namespace GLOB.Infra.Common;
 public partial class RepoGenericz<T> 
 {
-  public async Task<T> Get(
-   int Id,
-   List<string>? includes = null)
+  public async Task<T> Get(int Id, List<string>? includes = null)
   {
-    IQueryable<T> query = _db;
-    if (includes != null)
-    {
-      foreach (var item in includes)
-      {
-        query = query.Include(item);
-      }
-    }
-    var result = await query.AsNoTracking().FirstOrDefaultAsync(x => x.Id == Id); 
-    return result; //if (result != null) return result; //
+    return Get(x => x.Id == Id, includes);
   }
   public async Task<T> Get(
    Expression<Func<T, bool>> expression,

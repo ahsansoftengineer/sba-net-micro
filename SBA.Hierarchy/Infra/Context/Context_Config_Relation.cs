@@ -7,7 +7,9 @@ public partial class AppDBContextProj
  
   private static void ConfigMicroServiceArch(ModelBuilder mb)
   {
-     mb.Entity<UserBusinessIndustry>()
+    mb.Entity<Mapping_UserBusinessIndustry>()
+      .HasNoKey();
+    mb.Entity<Mapping_UserBusinessProfession>()
       .HasNoKey();
       // .HasKey(cs => new { cs.UserBusinessID, cs.IndustryID })
   }
