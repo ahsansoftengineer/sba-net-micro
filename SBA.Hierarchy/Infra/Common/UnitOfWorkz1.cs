@@ -11,6 +11,11 @@ public partial class UOW : UnitOfWorkz, IUOW
   private IRepoGenericz<TestProj>? _testProj;
   private IRepoGenericz<Org>? _Orgs;
   private IRepoGenericz<Systemz>? _Systemz;
+  private IRepoGenericz<State>? _State;
+  private IRepoGenericz<Bank>? _Bank;
+  private IRepoGenericz<Brand>? _Brand;
+  private IRepoGenericz<Industry>? _Industry;
+  private IRepoGenericz<Profession>? _Profession;
   private IRepoGenericz<BG>? _BG;
   private IRepoGenericz<LE>? _LE;
   private IRepoGenericz<OU>? _OU;
