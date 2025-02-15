@@ -8,7 +8,7 @@ namespace GLOB.API.Controllers.Base;
 public abstract class BetaController<TController, TEntity, DtoSearch, DtoResponse, DtoCreate>
   : BaseController<TController, TEntity>
   //where TEntity : class
-  where TEntity : AlphaEntity
+  where TEntity : BetaEntity
   where DtoSearch : class
   where DtoResponse : class
   where DtoCreate : class
@@ -42,10 +42,7 @@ public abstract class BetaController<TController, TEntity, DtoSearch, DtoRespons
   [HttpGet("{id:int}")]
   public async Task<IActionResult> Get(int id)
   {
-    var single = await Repo.Get(
-      q => q.Id == id
-     //, new List<string> { "Org" }
-     );
+    var single = await Repo.Get(id);
     var result = Mapper.Map<BaseDtoSingle<DtoResponse>>(single);
     return Ok(result);
   }
@@ -73,7 +70,7 @@ public abstract class BetaController<TController, TEntity, DtoSearch, DtoRespons
     if (!ModelState.IsValid || id < 1) return UpdateInvalid();
     try
     {
-      var item = await Repo.Get(q => q.Id == id);
+      var item = await Repo.Get(id);
 
       if (item == null) return UpdateNull();
 

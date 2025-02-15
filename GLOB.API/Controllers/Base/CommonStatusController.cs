@@ -29,7 +29,7 @@ public abstract class CommonStatusController<TController, TEntity>
     if (!ModelState.IsValid || id < 1) return StatusInvalid();
     try
     {
-      var item = await Repo.Get(q => q.Id == id);
+      var item = await Repo.Get(id);
 
       if (item == null) return UpdateNull();
 

@@ -7,7 +7,7 @@ namespace GLOB.API.Controllers.Base;
 public abstract class BaseController<TController, TEntity>
   : AlphaController<TController>
     // where TEntity : class
-    where TEntity : AlphaEntity
+    where TEntity : BetaEntity
     where TController : class
 {
   protected IRepoGenericz<TEntity> Repo = null;
@@ -21,7 +21,7 @@ public abstract class BaseController<TController, TEntity>
   {
     if (id < 1) return DeleteInvalid();
 
-    var search = await Repo.Get(q => q.Id == id);
+    var search = await Repo.Get(id);
     if (search == null) return DeleteNull();
 
     try
