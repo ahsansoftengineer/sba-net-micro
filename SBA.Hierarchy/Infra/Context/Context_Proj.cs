@@ -8,6 +8,7 @@ public partial class AppDBContextProj : AppDBContextz
   protected override void OnModelCreating(ModelBuilder mb)
   {
     ConfigManyToOne(mb);
+    ConfigMicroServiceArch(mb);
     Seeder.Seed(mb);
     // Seeder.(mb);
     base.OnModelCreating(mb);

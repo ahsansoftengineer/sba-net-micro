@@ -5,12 +5,10 @@ namespace SBA.Hierarchy.Common;
 public partial class AppDBContextProj
 {
  
-  // private static void ConfigManyToOne(ModelBuilder mb)
-  // {
-  //   mb.Entity<City>()
-  //     .HasOne(e => e.State)
-  //     .WithMany(e => e.Citys)
-  //     .HasForeignKey(e => e.StateId)
-  //     .IsRequired(false);
-  // }
+  private static void ConfigMicroServiceArch(ModelBuilder mb)
+  {
+     mb.Entity<UserBusinessIndustry>()
+      .HasNoKey();
+      // .HasKey(cs => new { cs.UserBusinessID, cs.IndustryID })
+  }
 }
