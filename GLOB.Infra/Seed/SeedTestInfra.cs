@@ -29,6 +29,7 @@ public static partial class Seederz
         Id = i,
         Title = $"{className} {i}",
         Desc = $"{className} {i} Desc",
+        
       });
     }
     return list;

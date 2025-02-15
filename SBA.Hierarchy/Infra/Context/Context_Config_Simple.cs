@@ -4,12 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace SBA.Hierarchy.Common;
 public partial class AppDBContextProj
 {
-  private static void EntityMappingConfig(ModelBuilder mb)
-  {
-    ConfigOneToMany(mb);
-  }
-
-  private static void ConfigOneToMany(ModelBuilder mb)
+  private static void ConfigManyToOne(ModelBuilder mb)
   {
     mb.Entity<Systemz>()
       .HasOne(e => e.Org)

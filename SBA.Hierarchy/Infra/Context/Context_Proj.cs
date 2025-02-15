@@ -7,7 +7,7 @@ public partial class AppDBContextProj : AppDBContextz
   public AppDBContextProj(DbContextOptions<AppDBContextProj> options) : base(options) { }
   protected override void OnModelCreating(ModelBuilder mb)
   {
-    EntityMappingConfig(mb);
+    ConfigManyToOne(mb);
     Seeder.Seed(mb);
     // Seeder.(mb);
     base.OnModelCreating(mb);

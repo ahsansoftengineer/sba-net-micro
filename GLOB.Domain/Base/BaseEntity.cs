@@ -1,10 +1,12 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using GLOB.Domain.Enums;
 
 namespace GLOB.Domain.Base;
 public abstract class AlphaEntity
 {
-  [Column(Order = 0)]
+  [Column(Order = 1)]
+  [Key]
   public int? Id { get; set; }
 }
 public abstract class BetaEntity : AlphaEntity
@@ -18,8 +20,17 @@ public abstract class BetaEntity : AlphaEntity
 
 public abstract class BaseEntity : BetaEntity
 {
-  public string? Title { get; set; }
+  // required
+  [Column(Order = 2)]
+  public string Title { get; set; }
+  [Column(Order = 3)]
+  public bool? IsActive { get; set; } = false;
+  [Column(Order = 4)]
+  public bool? IsDeleted { get; set; } = false;
+  [Column(Order = 4)]
   public string? Desc { get; set; }
+  [NotMapped]
+  public bool? IsSelected { get; set; } = false;
 }
 public abstract class BaseStatusEntity : BaseEntity
 {

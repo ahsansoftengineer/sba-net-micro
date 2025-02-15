@@ -6,4 +6,5 @@ namespace GLOB.Infra.Common;
 public partial class AppDBContextz
 {
   public DbSet<TestInfra> TestInfras { get; set; }
+  
 }
