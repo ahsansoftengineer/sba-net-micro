@@ -9,7 +9,12 @@ public class MapInitCommonProj : MapInitCommon
   {
       CreateMapCommon<TestProj>();
       CreateMapCommon<Org>();
-      CreateMapPagedList<Org, CommonDto>();
       CreateMapCommon<BG>();
+      CreateMapCommon<Bank>();
+      CreateMapCommon<Brand>();
+      CreateMapCommon<Industry>();
+      CreateMapCommon<Profession>();
+      CreateMapCommon<State>();
+      // CreateMapPagedList<Org, CommonDto>();
   }
 }

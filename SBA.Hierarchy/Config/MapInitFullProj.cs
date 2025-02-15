@@ -11,5 +11,6 @@ public class MapInitFullProj : MapInitFull
     CreateMapAll<LE, LEDto, LEDtoCreate, LEDtoSearch>();
     CreateMapAll<OU, OUDto, OUDtoCreate, OUDtoSearch>();
     CreateMapAll<SU, SUDto, SUDtoCreate, SUDtoSearch>();
+    CreateMapAll<City, CityDto, CityDtoCreate, CityDtoSearch>();
   }
 }

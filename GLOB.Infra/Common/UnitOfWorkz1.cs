@@ -35,7 +35,7 @@ public partial class UnitOfWorkz : IUnitOfWorkz
     ((BaseEntity)entity.Entity).UpdatedAt = now;
     }
   }
-  private IRepoGenericz<T> Got<T>() where T : class
+  private IRepoGenericz<T> Got<T>() where T : BaseEntity
   {
     return new RepoGenericz<T>(_context);
   }

@@ -41,7 +41,6 @@ public class CityController : BaseController<CityController, City>
   {
     var single = await Repo.Get(
       q => q.Id == id
-     //, new List<string> { "Org" }
      );
     var result = Mapper.Map<BaseDtoSingle<CityDto>>(single);
     return Ok(result);

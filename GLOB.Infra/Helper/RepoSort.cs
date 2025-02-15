@@ -5,7 +5,7 @@ namespace GLOB.Infra.Helper;
 public static class GenericSort
 {
   public static IQueryable<T> OrderByGeneric<T>(this IQueryable<T> query, Sort? sort)
-    where T : class
+    where T : BetaEntity
   {
     if (sort == null ||
       Order.Unspecified == sort.Order ||
