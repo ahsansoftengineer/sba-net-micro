@@ -9,7 +9,8 @@ public partial class RepoGenericz<T>
 {
   public async Task<T> Get(int Id, List<string>? includes = null)
   {
-    return Get(x => x.Id == Id, includes);
+    var result = await this.Get(x => x.Id == Id, includes);
+    return result;
   }
   public async Task<T> Get(
    Expression<Func<T, bool>> expression,
