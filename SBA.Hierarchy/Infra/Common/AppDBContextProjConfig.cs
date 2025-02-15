@@ -17,6 +17,12 @@ public partial class AppDBContextProj
       .HasForeignKey(e => e.OrgId)
       .IsRequired(false);
 
+    mb.Entity<City>()
+      .HasOne(e => e.State)
+      .WithMany(e => e.Citys)
+      .HasForeignKey(e => e.StateId)
+      .IsRequired(false);
+
     mb.Entity<LE>()
       .HasOne(e => e.BG)
       .WithMany(e => e.LEs)
