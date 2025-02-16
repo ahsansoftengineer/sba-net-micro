@@ -19,7 +19,6 @@ public static partial class Seeder
     mb.SeedBrand();
     mb.SeedIndustry();
     mb.SeedProfession();
-    mb.SeedState();
 
     // *-.
     mb.SeedSystemz();
@@ -49,7 +48,6 @@ public static partial class Seeder
           context.SeedBrand();
           context.SeedIndustry();
           context.SeedProfession();
-          context.SeedState();
 
           // *-.
           context.SeedSystemz();

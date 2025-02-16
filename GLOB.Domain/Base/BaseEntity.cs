@@ -20,14 +20,13 @@ public abstract class BetaEntity : AlphaEntity
 
 public abstract class BaseEntity : BetaEntity
 {
-  // required
-  [Column(Order = 2)]
+  [Column(Order = 2)] // required
   public string Title { get; set; }
   [Column(Order = 3)]
   public bool? IsActive { get; set; } = false;
   [Column(Order = 4)]
   public bool? IsDeleted { get; set; } = false;
-  [Column(Order = 4)]
+  [Column(Order = 5)]
   public string? Desc { get; set; }
   [NotMapped]
   public bool? IsSelected { get; set; } = false;
