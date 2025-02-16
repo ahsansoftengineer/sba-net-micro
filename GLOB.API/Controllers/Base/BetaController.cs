@@ -25,6 +25,7 @@ public abstract class BetaController<TController, TEntity, DtoSearch, DtoRespons
   {
     try
     {
+      // var result = Repo.GetDBSet().Where(x => x.)
       var list = await Repo.Gets();
       // var result = Mapper.Map<IPagedList<TEntity>, PaginateResponse<DtoResponse>>(list);
       return Ok(list);

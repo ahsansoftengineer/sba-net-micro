@@ -2,63 +2,63 @@
 	"folders": [
 		{
 			"name": "sb-micro",
-			"path": "../"
-		},
-		{
-			"name": "__K8S",
-			"path": "../__K8S"
-		},
-		{
-			"name": "__Doc",
-			"path": "../__Doc"
-		},
-		{
-			"name": "__VS",
 			"path": "."
 		},
 		{
+			"name": "__K8S",
+			"path": "__K8S"
+		},
+		{
+			"name": "__Doc",
+			"path": "__Doc"
+		},
+		{
+			"name": "__VS",
+			"path": "__VS"
+		},
+		{
 			"name": "GLOB.Apps",
-			"path": "../GLOB.Apps"
+			"path": "GLOB.Apps"
 		},
 		{
 			"name": "GLOB.Domain",
-			"path": "../GLOB.Domain"
+			"path": "GLOB.Domain"
 		},
 		{
 			"name": "GLOB.Infra",
-			"path": "../GLOB.Infra"
+			"path": "GLOB.Infra"
 		},
 		{
 			"name": "GLOB.API",
-			"path": "../GLOB.API"
+			"path": "GLOB.API"
 		},
 		{
 			"name": "SBA.APIGateway",
-			"path": "../SBA.APIGateway"
+			"path": "SBA.APIGateway"
 		},
 		{
 			"name": "SBA.Auth",
-			"path": "../SBA.Auth"
+			"path": "SBA.Auth"
 		},
 		{
 			"name": "SBA.Jobz",
-			"path": "../SBA.Jobz"
+			"path": "SBA.Jobz"
 		},
 		{
 			"name": "SBA.Hierarchy",
-			"path": "../SBA.Hierarchy"
+			"path": "SBA.Hierarchy"
 		},
 		{
 			"name": "PlatformService",
-			"path": "../PlatformService"
+			"path": "PlatformService"
 		},
 		{
 			"name": "SBA.Userz",
-			"path": "../SBA.Userz"
+			"path": "SBA.Userz"
 		},
 		{
 			"name": "SBA.Orderz",
-			"path": "../SBA.Orderz"
+			"path": "SBA.Orderz"
 		}
 	],
 	"settings": {}
