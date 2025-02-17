@@ -9,9 +9,9 @@ public partial class AppDBContextz : DbContext
   protected override void OnModelCreating(ModelBuilder mb)
   {
 
-    // EntityMappingConfig(mb);
+    EntityMappingConfig(mb);
 
-    // mb.Seed();
+    mb.Seed();
     
     base.OnModelCreating(mb);
   }
