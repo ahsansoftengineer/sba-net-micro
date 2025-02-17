@@ -10,7 +10,6 @@ public partial class AppDBContextProj : AppDBContextz
     ConfigManyToOne(mb);
     // ConfigMicroServiceArch(mb);
     Seeder.Seed(mb);
-    // Seeder.(mb);
     base.OnModelCreating(mb);
   }
 
