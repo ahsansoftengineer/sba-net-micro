@@ -1,12 +1,12 @@
 using GLOB.Domain.Base;
 using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
+// using Microsoft.EntityFrameworkCore;
 using X.PagedList;
 
 namespace GLOB.Apps.Common;
 public interface IRepoGenericz<T> where T : class
 {
-  DbSet<T> GetDBSet();
+  // DbSet<T> GetDBSet();
   bool Any(Expression<Func<T, bool>>? filter = null);
   Task<T> Get(Expression<Func<T, bool>> expression, List<string>? includes = null);
   Task<T> Get(int Id, List<string>? includes = null);

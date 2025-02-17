@@ -1,8 +1,5 @@
-using GLOB.Domain.Base;
-using GLOB.Infra.Helper;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using X.PagedList;
 
 namespace GLOB.Infra.Common;
 public partial class RepoGenericz<T> 
