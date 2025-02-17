@@ -1,6 +1,6 @@
 using GLOB.API.DI;
 using SBA.Hierarchy.App;
-using SBA.Hierarchy.Common;
+using SBA.Hierarchy.Context;
 using SBA.Hierarchy.Infra;
 
 namespace SBA.Hierarchy.DI;

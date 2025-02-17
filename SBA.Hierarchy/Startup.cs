@@ -1,9 +1,6 @@
 using GLOB.API.DI;
-using GLOB.Infra;
-using SBA.Hierarchy.Common;
 using SBA.Hierarchy.Config;
 using SBA.Hierarchy.DI;
-using SBA.Hierarchy.Infra;
 
 namespace SBA.Hierarchy;
 public class Startup

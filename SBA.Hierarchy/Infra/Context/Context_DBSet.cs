@@ -1,7 +1,7 @@
 using GLOB.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 
-namespace SBA.Hierarchy.Common;
+namespace SBA.Hierarchy.Context;
 public partial class AppDBContextProj 
 {
 

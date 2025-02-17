@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SBA.Hierarchy.Seed;
 
-namespace SBA.Hierarchy.Common;
+namespace SBA.Hierarchy.Context;
 public static partial class Seeder
 {
   // Dev (When Running Migration throw CLI)

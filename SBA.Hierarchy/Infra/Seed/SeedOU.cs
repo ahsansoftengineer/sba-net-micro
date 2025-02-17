@@ -1,6 +1,6 @@
 using GLOB.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
-using SBA.Hierarchy.Common;
+using SBA.Hierarchy.Context;
 
 namespace SBA.Hierarchy.Seed;
 public static partial class Seeder
