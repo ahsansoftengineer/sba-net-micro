@@ -1,7 +1,7 @@
 using GLOB.Domain.Base;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using X.PagedList;
+using GLOB.Domain.Common;
 
 namespace GLOB.Apps.Common;
 public interface IRepoGenericz<T> where T : class
@@ -17,7 +17,7 @@ public interface IRepoGenericz<T> where T : class
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
     List<string>? includes = null);
   // Task<IPagedList<T>> Gets(BasePagination req, List<string>? includes = null);
-  Task<IPagedList<T>> GetsPaginate<TDto>(PaginateRequestFilter<T, TDto?> req)
+  Task<PaginateResponse<T>> GetsPaginate<TDto>(PaginateRequestFilter<T, TDto?> req)
     where TDto : class;
 
   Task Insert(T entity);

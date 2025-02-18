@@ -5,7 +5,6 @@ using GLOB.Domain.DTOs;
 using GLOB.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
 using SBA.Hierarchy.App;
-using X.PagedList;
 
 namespace SBA.Hierarchy.Controllers;
 [Route("api/Hierarchy/[controller]")]
@@ -27,8 +26,8 @@ public class SystemzController : BaseController<SystemzController, Systemz>
     try
     {
       var list = await Repo.GetsPaginate(filter);
-      var result = Mapper.Map<IPagedList<Systemz>, PaginateResponse<SystemzDto>>(list);
-      return Ok(result);
+      // var result = Mapper.Map<PaginateResponse<Systemz>, PaginateResponse<SystemzDto>>(list);
+      return Ok(list);
     }
     catch (Exception ex)
     {

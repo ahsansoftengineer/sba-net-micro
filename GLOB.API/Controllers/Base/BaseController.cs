@@ -21,8 +21,8 @@ public abstract class BaseController<TController, TEntity>
   {
     if (id < 1) return DeleteInvalid();
 
-    var search = await Repo.Get(id);
-    if (search == null) return DeleteNull();
+    var item = await Repo.Get(id);
+    if (item == null) return DeleteNull();
 
     try
     {
