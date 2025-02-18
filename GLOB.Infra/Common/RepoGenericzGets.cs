@@ -19,14 +19,8 @@ public partial class RepoGenericz<T>
       query = query.Where(expression);
     }
 
-    if (includes != null)
-    {
-      foreach (var item in includes)
-      {
-        query = query.Include(item);
-      }
-    }
-
+    query = query.IncluesByGeneric(includes);
+    
     if (orderBy != null)
     {
       query = orderBy(query);

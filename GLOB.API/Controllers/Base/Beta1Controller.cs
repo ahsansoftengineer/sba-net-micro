@@ -2,10 +2,11 @@ using AutoMapper;
 using GLOB.Apps.Common;
 using GLOB.Domain.Base;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using X.PagedList;
 
 namespace GLOB.API.Controllers.Base;
-public abstract class BetaController<TController, TEntity, DtoSearch, DtoResponse, DtoCreate>
+public abstract partial class BetaController<TController, TEntity, DtoSearch, DtoResponse, DtoCreate>
   : BaseController<TController, TEntity>
   //where TEntity : class
   where TEntity : BetaEntity
@@ -20,26 +21,11 @@ public abstract class BetaController<TController, TEntity, DtoSearch, DtoRespons
   {
 
   }
-  [HttpGet]
-  public async Task<IActionResult> Gets([FromQuery] PaginateRequestFilter<TEntity, DtoSearch?> filter)
-  {
-    try
-    {
-      // var result = Repo.GetDBSet().Where(x => x.)
-      var list = await Repo.Gets();
-      // var result = Mapper.Map<IPagedList<TEntity>, PaginateResponse<DtoResponse>>(list);
-      return Ok(list);
-    }
-    catch (Exception ex)
-    {
-      return CatchException(ex, nameof(Gets));
-    }
-  }
 
   [HttpGet("{id:int}")]
-  public async Task<IActionResult> Get(int id)
+  public async Task<IActionResult> Get(int id, List<string> includes = null)
   {
-    var single = await Repo.Get(id);
+    var single = await Repo.Get(id, includes);
     var result = Mapper.Map<BaseDtoSingle<DtoResponse>>(single);
     return Ok(result);
   }

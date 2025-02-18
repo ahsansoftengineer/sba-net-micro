@@ -1,5 +1,6 @@
 using GLOB.API.DI;
 using SBA.Hierarchy.Config;
+using SBA.Hierarchy.Context;
 using SBA.Hierarchy.DI;
 
 namespace SBA.Hierarchy;
@@ -27,7 +28,7 @@ public class Startup
     app.AddDefaultExternalConfiguration(env);
     Console.WriteLine($"Current Environment: {env.EnvironmentName}");
     if(!env.IsDevelopment()){
-      // app.Seed();
+      app.Seed();
     }
   }
 }
