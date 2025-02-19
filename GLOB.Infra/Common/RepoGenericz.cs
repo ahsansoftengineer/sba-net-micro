@@ -1,5 +1,6 @@
 using GLOB.Apps.Common;
 using GLOB.Domain.Base;
+using GLOB.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 

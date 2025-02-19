@@ -1,9 +1,7 @@
 using AutoMapper;
 using GLOB.Domain.Base;
 using GLOB.Domain.Common;
-using GLOB.Domain.Entity;
 using System.Net;
-using X.PagedList;
 
 namespace GLOB.API.Config;
 public class MapInitBase : Profile
@@ -23,7 +21,7 @@ public class MapInitBase : Profile
     //CreateMap<BaseDtoCreate, Org>(); //.ReverseMap()
 
     // CreateMap(typeof(PagedList<>), typeof(PagedList<>));
-    CreateMap(typeof(IPagedList<>), typeof(PaginateResponse<>));
+    // CreateMap(typeof(IPagedList<>), typeof(PaginateResponse<>));
   }
 
 
