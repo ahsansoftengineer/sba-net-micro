@@ -1,25 +1,27 @@
+using GLOB.Domain.Base;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;
 public abstract partial class BaseController<TController, TEntity, DtoResponse>
 {
-  [HttpDelete("{id:int}")]
-  public async Task<IActionResult> Delete(int id)
+ [HttpGet("{id:int}")]
+  public async Task<IActionResult> Get(int id, List<string> includes = null)
   {
-    if (id < 1) return DeleteInvalid();
-
-    var item = await Repo.Get(id);
-    if (item == null) return DeleteNull();
-
+    var single = await Repo.Get(id, includes);
+    var result = Mapper.Map<BaseDtoSingle<DtoResponse>>(single);
+    return Ok(result);
+  }
+  [HttpGet]
+  public async Task<IActionResult> Gets(List<string> includes)
+  {
     try
     {
-      await Repo.Delete(id);
-      await UnitOfWork.Save();
+      var list = await Repo.Gets(includes: includes);
+      return Ok(list);
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(Delete));
+      return CatchException(ex, nameof(Gets));
     }
-    return NoContent();
   }
 }

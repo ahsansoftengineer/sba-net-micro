@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace GLOB.API.Controllers.Base;
 public abstract partial class BaseController<TController, TEntity, DtoResponse>
   : AlphaController<TController>
-    // where TEntity : class
     where TEntity : BetaEntity
     where TController : class
     where DtoResponse : class
@@ -16,24 +15,24 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
   {
 
   }
-  [HttpGet("{id:int}")]
-  public async Task<IActionResult> Get(int id, List<string> includes = null)
+  [HttpDelete("{id:int}")]
+  public async Task<IActionResult> Delete(int id)
   {
-    var single = await Repo.Get(id, includes);
-    var result = Mapper.Map<BaseDtoSingle<DtoResponse>>(single);
-    return Ok(result);
-  }
-  [HttpGet]
-  public async Task<IActionResult> Gets(List<string> includes)
-  {
+    if (id < 1) return DeleteInvalid();
+
+    var item = await Repo.Get(id);
+    if (item == null) return DeleteNull();
+
     try
     {
-      var list = await Repo.Gets(includes: includes);
-      return Ok(list);
+      await Repo.Delete(id);
+      await UnitOfWork.Save();
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(Gets));
+      return CatchException(ex, nameof(Delete));
     }
+    return NoContent();
   }
+  
 }
