@@ -1,7 +1,7 @@
 using AspNetCoreRateLimit;
 using GLOB.Domain.Common;
 using GLOB.Domain.Entity;
-using GLOB.Infra.Common;
+using GLOB.Infra.Context;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.FileProviders;
