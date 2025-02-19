@@ -20,29 +20,29 @@ public class CityController : BaseController<CityController, City, CityDto>
 
   }
 
-  [HttpGet]
-  public async Task<IActionResult> Gets([FromQuery] PaginateRequestFilter<City, CityDtoSearch?> filter)
-  {
-    try
-    {
-      var list = await Repo.GetsPaginate(filter);
-      return Ok(list);
-    }
-    catch (Exception ex)
-    {
-      return CatchException(ex, nameof(Gets));
-    }
-  }
+  // [HttpGet]
+  // public async Task<IActionResult> Gets([FromQuery] PaginateRequestFilter<City, CityDtoSearch?> filter)
+  // {
+  //   try
+  //   {
+  //     var list = await Repo.GetsPaginate(filter);
+  //     return Ok(list);
+  //   }
+  //   catch (Exception ex)
+  //   {
+  //     return CatchException(ex, nameof(Gets));
+  //   }
+  // }
 
-  [HttpGet("{id:int}")]
-  public async Task<IActionResult> Get(int id)
-  {
-    var single = await Repo.Get(
-      q => q.Id == id
-     );
-    var result = Mapper.Map<BaseDtoSingle<CityDto>>(single);
-    return Ok(result);
-  }
+  // [HttpGet("{id:int}")]
+  // public async Task<IActionResult> Get(int id)
+  // {
+  //   var single = await Repo.Get(
+  //     q => q.Id == id
+  //    );
+  //   var result = Mapper.Map<BaseDtoSingle<CityDto>>(single);
+  //   return Ok(result);
+  // }
 
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] CityDtoCreate data)

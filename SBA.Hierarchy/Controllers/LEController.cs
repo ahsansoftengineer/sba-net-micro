@@ -20,30 +20,30 @@ public class LEController : BaseController<LEController, LE, LEDto>
 
   }
 
-  [HttpGet]
-  public async Task<IActionResult> Gets([FromQuery] PaginateRequestFilter<LE, LEDtoSearch> filter)
-  {
-    try
-    {
-      var list = await Repo.GetsPaginate(filter);
-      return Ok(list);
-    }
-    catch (Exception ex)
-    {
-      return CatchException(ex, nameof(Gets));
-    }
-  }
+  // [HttpGet]
+  // public async Task<IActionResult> Gets([FromQuery] PaginateRequestFilter<LE, LEDtoSearch> filter)
+  // {
+  //   try
+  //   {
+  //     var list = await Repo.GetsPaginate(filter);
+  //     return Ok(list);
+  //   }
+  //   catch (Exception ex)
+  //   {
+  //     return CatchException(ex, nameof(Gets));
+  //   }
+  // }
 
-  [HttpGet("{id:int}")]
-  public async Task<IActionResult> Get(int id)
-  {
-    var single = await Repo.Get(
-      q => q.Id == id
-     //, new List<string> { "Org" }
-     );
-    var result = Mapper.Map<BaseDtoSingle<LEDto>>(single);
-    return Ok(result);
-  }
+  // [HttpGet("{id:int}")]
+  // public async Task<IActionResult> Get(int id)
+  // {
+  //   var single = await Repo.Get(
+  //     q => q.Id == id
+  //    //, new List<string> { "Org" }
+  //    );
+  //   var result = Mapper.Map<BaseDtoSingle<LEDto>>(single);
+  //   return Ok(result);
+  // }
 
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] LEDtoCreate data)

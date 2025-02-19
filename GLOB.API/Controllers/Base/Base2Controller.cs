@@ -5,14 +5,14 @@ namespace GLOB.API.Controllers.Base;
 public abstract partial class BaseController<TController, TEntity, DtoResponse>
 {
  [HttpGet("{id:int}")]
-  public async Task<IActionResult> Get(int id, List<string> includes = null)
+  public async Task<IActionResult> Get(int id, [FromQuery] List<string> includes = null)
   {
     var single = await Repo.Get(id, includes);
     var result = Mapper.Map<BaseDtoSingle<DtoResponse>>(single);
     return Ok(result);
   }
-  [HttpGet]
-  public async Task<IActionResult> Gets(List<string> includes)
+  [HttpGet("GetAll")]
+  public async Task<IActionResult> Gets([FromQuery] List<string> includes)
   {
     try
     {
