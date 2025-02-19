@@ -9,19 +9,19 @@ using SBA.Hierarchy.App;
 namespace SBA.Hierarchy.Controllers;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class SystemzController : BaseController<SystemzController, Systemz, SystemzDto>
+public class CityController : BaseController<CityController, City, CityDto>
 {
-  public SystemzController(
-    ILogger<SystemzController> logger,
+  public CityController(
+    ILogger<CityController> logger,
     IMapper mapper,
     IUOW uow) : base(logger, mapper, uow)
   {
-    Repo = uow.Systemzs;
+    Repo = uow.Citys;
 
   }
 
   [HttpGet]
-  public async Task<IActionResult> Gets([FromQuery] PaginateRequestFilter<Systemz, SystemzDtoSearch?> filter)
+  public async Task<IActionResult> Gets([FromQuery] PaginateRequestFilter<City, CityDtoSearch?> filter)
   {
     try
     {
@@ -39,19 +39,18 @@ public class SystemzController : BaseController<SystemzController, Systemz, Syst
   {
     var single = await Repo.Get(
       q => q.Id == id
-     //, new List<string> { "Org" }
      );
-    var result = Mapper.Map<BaseDtoSingle<SystemzDto>>(single);
+    var result = Mapper.Map<BaseDtoSingle<CityDto>>(single);
     return Ok(result);
   }
 
   [HttpPost]
-  public async Task<IActionResult> Create([FromBody] SystemzDtoCreate data)
+  public async Task<IActionResult> Create([FromBody] CityDtoCreate data)
   {
     if (!ModelState.IsValid) return CreateInvalid();
     try
     {
-      var result = Mapper.Map<Systemz>(data);
+      var result = Mapper.Map<City>(data);
       await Repo.Insert(result);
       await UnitOfWork.Save();
       return Ok(result);
@@ -63,7 +62,7 @@ public class SystemzController : BaseController<SystemzController, Systemz, Syst
   }
 
   [HttpPut("{id:int}")]
-  public async Task<IActionResult> Update(int id, [FromBody] SystemzDtoCreate data)
+  public async Task<IActionResult> Update(int id, [FromBody] CityDtoCreate data)
   {
     if (!ModelState.IsValid || id < 1) return UpdateInvalid();
     try

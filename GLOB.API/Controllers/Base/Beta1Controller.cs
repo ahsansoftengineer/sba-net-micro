@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;
 public abstract partial class BetaController<TController, TEntity, DtoSearch, DtoResponse, DtoCreate>
-  : BaseController<TController, TEntity>
+  : BaseController<TController, TEntity, DtoResponse>
   //where TEntity : class
   where TEntity : BetaEntity
   where DtoSearch : class
@@ -18,14 +18,6 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
     base(logger, mapper, unitOfWork)
   {
 
-  }
-
-  [HttpGet("{id:int}")]
-  public async Task<IActionResult> Get(int id, List<string> includes = null)
-  {
-    var single = await Repo.Get(id, includes);
-    var result = Mapper.Map<BaseDtoSingle<DtoResponse>>(single);
-    return Ok(result);
   }
 
   [HttpPost]

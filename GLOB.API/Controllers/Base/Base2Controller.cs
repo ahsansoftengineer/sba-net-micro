@@ -1,21 +1,8 @@
-using AutoMapper;
-using GLOB.Apps.Common;
-using GLOB.Domain.Base;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;
-public abstract class BaseController<TController, TEntity>
-  : AlphaController<TController>
-    // where TEntity : class
-    where TEntity : BetaEntity
-    where TController : class
+public abstract partial class BaseController<TController, TEntity, DtoResponse>
 {
-  protected IRepoGenericz<TEntity> Repo = null;
-  public BaseController(ILogger<TController> logger, IMapper mapper, IUnitOfWorkz unitOfWork) : base(logger, mapper, unitOfWork)
-  {
-
-  }
-
   [HttpDelete("{id:int}")]
   public async Task<IActionResult> Delete(int id)
   {

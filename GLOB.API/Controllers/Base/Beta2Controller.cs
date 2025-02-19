@@ -13,7 +13,7 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
 {
 
   [HttpGet]
-  public async Task<IActionResult> Gets([FromQuery] PaginateRequestFilter<TEntity, DtoSearch?> filter)
+  public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<TEntity, DtoSearch?> filter)
   {
     try
     {
@@ -22,7 +22,7 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(Gets));
+      return CatchException(ex, nameof(GetsPaginate));
     }
   }
 }
