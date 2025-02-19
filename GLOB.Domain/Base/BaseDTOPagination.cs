@@ -1,5 +1,4 @@
 using System.Net;
-using GLOB.Domain.Enums;
 
 namespace GLOB.Domain.Base;
 public enum Order
@@ -15,11 +14,11 @@ public class Sort
 
 }
 
-public class PaginateRequestFilter<TEntity, TDto>
+public class PaginateRequestFilter<TEntity, TDtoSearch>
 {
   public int PageNo { get; set;} = 1;
   public int PageSize { get; set;} = 10;
-  public TDto? Filter { get; set; }
+  public TDtoSearch? Filter { get; set; }
   public Sort? Sort { get; set; }
   public List<string>? includes { get; set; }
 }
@@ -27,9 +26,9 @@ public class PaginateRequestFilter<TEntity, TDto>
 public class PaginateResponse<T>
 {
   public List<T> Records { get; private set; }
-  public int Count { get; private set; }
-  public int PageSize { get; private set; }
-  public int PageNo { get; private set; }
+  public int Count { get; private set; } = 0;
+  public int PageSize { get; private set; } = 10;
+  public int PageNo { get; private set; } = 1;
   public int TotalPages => (int)Math.Ceiling(Count / (double)PageSize);
 
   public bool HasPreviousPage => PageNo > 1;

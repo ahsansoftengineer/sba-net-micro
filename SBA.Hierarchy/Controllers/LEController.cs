@@ -21,7 +21,7 @@ public class LEController : BaseController<LEController, LE, LEDto>
   }
 
   [HttpGet("GetsPaginate")]
-  public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<LE, LEDto> req)
+  public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<LE, LEDtoSearch> req)
   {
     try
     {
