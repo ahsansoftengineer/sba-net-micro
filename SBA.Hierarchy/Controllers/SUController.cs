@@ -20,31 +20,6 @@ public class SUController : BaseController<SUController, SU, SUDto>
 
   }
 
-  // [HttpGet]
-  // public async Task<IActionResult> Gets([FromQuery] PaginateRequestFilter<SU, SUDtoSearch?> filter)
-  // {
-  //   try
-  //   {
-  //     var list = await Repo.GetsPaginate(filter);
-  //     return Ok(list);
-  //   }
-  //   catch (Exception ex)
-  //   {
-  //     return CatchException(ex, nameof(Gets));
-  //   }
-  // }
-
-  // [HttpGet("{id:int}")]
-  // public async Task<IActionResult> Get(int id)
-  // {
-  //   var single = await Repo.Get(
-  //     q => q.Id == id
-  //    //, new List<string> { "Org" }
-  //    );
-  //   var result = Mapper.Map<BaseDtoSingle<SUDto>>(single);
-  //   return Ok(result);
-  // }
-
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] SUDtoCreate data)
   {

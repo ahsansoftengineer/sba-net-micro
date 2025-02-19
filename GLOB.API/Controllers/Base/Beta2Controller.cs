@@ -12,11 +12,11 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
 {
 
   [HttpGet("GetsPaginate")]
-  public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<TEntity, DtoSearch?> filter)
+  public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<TEntity, DtoSearch?> req)
   {
     try
     {
-      var list = await Repo.GetsPaginate(filter);
+      var list = await Repo.GetsPaginate(req);
       return Ok(list);
     }
     catch (Exception ex)

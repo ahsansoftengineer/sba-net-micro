@@ -21,11 +21,11 @@ public class LEController : BaseController<LEController, LE, LEDto>
   }
 
   [HttpGet("GetsPaginate")]
-  public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<LE, LEDtoSearch> filter)
+  public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<LE, LEDto> req)
   {
     try
     {
-      var list = await Repo.GetsPaginate(filter);
+      var list = await Repo.GetsPaginate(req);
       return Ok(list);
     }
     catch (Exception ex)

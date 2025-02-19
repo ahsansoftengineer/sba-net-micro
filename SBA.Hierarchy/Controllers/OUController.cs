@@ -20,31 +20,6 @@ public class OUController : BaseController<OUController, OU, OUDto>
 
   }
 
-  // [HttpGet]
-  // public async Task<IActionResult> Gets([FromQuery] PaginateRequestFilter<OU, OUDtoSearch?> filter)
-  // {
-  //   try
-  //   {
-  //     var list = await Repo.GetsPaginate(filter);
-  //     return Ok(list);
-  //   }
-  //   catch (Exception ex)
-  //   {
-  //     return CatchException(ex, nameof(Gets));
-  //   }
-  // }
-
-  // [HttpGet("{id:int}")]
-  // public async Task<IActionResult> Get(int id)
-  // {
-  //   var single = await Repo.Get(
-  //     q => q.Id == id
-  //    //, new List<string> { "Org" }
-  //    );
-  //   var result = Mapper.Map<BaseDtoSingle<OUDto>>(single);
-  //   return Ok(result);
-  // }
-
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] OUDtoCreate data)
   {

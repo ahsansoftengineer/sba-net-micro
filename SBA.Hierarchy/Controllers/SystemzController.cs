@@ -1,6 +1,5 @@
 using AutoMapper;
 using GLOB.API.Controllers.Base;
-using GLOB.Domain.Base;
 using GLOB.Domain.DTOs;
 using GLOB.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
@@ -19,31 +18,6 @@ public class SystemzController : BaseController<SystemzController, Systemz, Syst
     Repo = uow.Systemzs;
 
   }
-
-  // [HttpGet]
-  // public async Task<IActionResult> Gets([FromQuery] PaginateRequestFilter<Systemz, SystemzDtoSearch?> filter)
-  // {
-  //   try
-  //   {
-  //     var list = await Repo.GetsPaginate(filter);
-  //     return Ok(list);
-  //   }
-  //   catch (Exception ex)
-  //   {
-  //     return CatchException(ex, nameof(Gets));
-  //   }
-  // }
-
-  // [HttpGet("{id:int}")]
-  // public async Task<IActionResult> Get(int id)
-  // {
-  //   var single = await Repo.Get(
-  //     q => q.Id == id
-  //    //, new List<string> { "Org" }
-  //    );
-  //   var result = Mapper.Map<BaseDtoSingle<SystemzDto>>(single);
-  //   return Ok(result);
-  // }
 
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] SystemzDtoCreate data)

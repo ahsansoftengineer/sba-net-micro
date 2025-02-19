@@ -28,18 +28,15 @@ public partial class RepoGenericz<T>
   }
 
   // Filter, OrderBy, Include, Pagination
-  public async Task<PaginateResponse<T>> GetsPaginate<TDto>(
-    PaginateRequestFilter<T, TDto>? req
-  )
-    where TDto : class
+  public async Task<PaginateResponse<T>> GetsPaginate<TDtoSearch>(PaginateRequestFilter<T, TDtoSearch>? req)
+    where TDtoSearch : class
   {
     IQueryable<T> query = _db;
-    // //query = query.FilterByGeneric<T, TDto>(req.Search);
-    // //query = query.OrderByGeneric<T>(req.Sort);
-    // // Simplified Form
-    // query = query.FilterByGeneric(req.Filter);
+
+    query = query.FilterByGeneric(req.Filter);
     query = query.OrderByGeneric(req.Sort);
     query = query.IncluesByGeneric(req?.includes);
+
     return await query
       .AsNoTracking()
       .ToPaginateAsync(req?.PageNo ?? 1, req?.PageSize ?? 10);

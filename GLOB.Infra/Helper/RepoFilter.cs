@@ -6,13 +6,13 @@ using System.Reflection;
 namespace GLOB.Infra.Helper;
 public static class RepoFilter
 {
-  public static IQueryable<T> FilterByGeneric<T, TDto>(this IQueryable<T> source, TDto? searchObject)
+  public static IQueryable<T> FilterByGeneric<T, TDtoSearch>(this IQueryable<T> source, TDtoSearch? searchObject)
     where T : class
-    where TDto : class
+    where TDtoSearch : class
   {
     if (searchObject == null) return source;
 
-    //var dtoParam = Expression.Parameter(typeof(TDto), "TDto"); //
+    //var dtoParam = Expression.Parameter(typeof(TDtoSearch), "TDtoSearch"); //
     var entityParam = Expression.Parameter(typeof(T), "TEntity");
     var dtoPropInfos = searchObject.GetType()
       .GetProperties(BindingFlags.Public | BindingFlags.Instance)
