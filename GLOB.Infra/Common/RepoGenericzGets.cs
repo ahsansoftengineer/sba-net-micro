@@ -2,7 +2,6 @@ using GLOB.Domain.Base;
 using GLOB.Infra.Helper;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using X.PagedList;
 
 namespace GLOB.Infra.Common;
 public partial class RepoGenericz<T> 
@@ -19,14 +18,8 @@ public partial class RepoGenericz<T>
       query = query.Where(expression);
     }
 
-    if (includes != null)
-    {
-      foreach (var item in includes)
-      {
-        query = query.Include(item);
-      }
-    }
-
+    query = query.IncluesByGeneric(includes);
+    
     if (orderBy != null)
     {
       query = orderBy(query);
@@ -35,34 +28,35 @@ public partial class RepoGenericz<T>
   }
 
   // Filter, OrderBy, Include, Pagination
-  public async Task<IPagedList<T>> GetsPaginate<TDto>(
+  public async Task<PaginateResponse<T>> GetsPaginate<TDto>(
     PaginateRequestFilter<T, TDto>? req
   )
     where TDto : class
   {
-    if (req == null)
-    {
-      req = new PaginateRequestFilter<T, TDto>()
-      {
-        PageNo = 1,
-        PageSize = 10,
-        Sort = null,
-        Search = null
-      };
-    }
+    // if (req == null)
+    // {
+    //   req = new PaginateRequestFilter<T, TDto>()
+    //   {
+    //     PageNo = 1,
+    //     PageSize = 10,
+    //     Sort = new Sort() {
+    //       By = "UpdatedAt",
+    //       Order = Order.Descending
+    //     },
+    //     Filter = null
+    //   };
+    // }
 
     IQueryable<T> query = _db;
-    //query = query.FilterByGeneric<T, TDto>(req.Search);
-    //query = query.OrderByGeneric<T>(req.Sort);
-    // Simplified Form
-    query = query.FilterByGeneric(req.Search);
-    query = query.OrderByGeneric(req.Sort);
-    query = query.IncluesByGeneric(req.includes);
-    return null;
-    // return await query
-    //   .AsNoTracking()
-    //   .ToListAsync()
-    //   .ToPagedListAsync(req.PageNo, req.PageSize);
+    // //query = query.FilterByGeneric<T, TDto>(req.Search);
+    // //query = query.OrderByGeneric<T>(req.Sort);
+    // // Simplified Form
+    // query = query.FilterByGeneric(req.Filter);
+    // query = query.OrderByGeneric(req.Sort);
+    // query = query.IncluesByGeneric(req.includes);
+    return await query
+      .AsNoTracking()
+      .ToPaginateAsync(req?.PageNo ?? 1, req?.PageSize ?? 10);
   }
 }
 

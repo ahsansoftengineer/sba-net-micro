@@ -5,12 +5,11 @@ using GLOB.Domain.DTOs;
 using GLOB.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
 using SBA.Hierarchy.App;
-using X.PagedList;
 
 namespace SBA.Hierarchy.Controllers;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class OUController : BaseController<OUController, OU>
+public class OUController : BaseController<OUController, OU, OUDto>
 {
   public OUController(
     ILogger<OUController> logger,
@@ -27,8 +26,7 @@ public class OUController : BaseController<OUController, OU>
     try
     {
       var list = await Repo.GetsPaginate(filter);
-      var result = Mapper.Map<IPagedList<OU>, PaginateResponse<OUDto>>(list);
-      return Ok(result);
+      return Ok(list);
     }
     catch (Exception ex)
     {

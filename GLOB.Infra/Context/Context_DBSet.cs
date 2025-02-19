@@ -1,7 +1,7 @@
 using GLOB.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Common;
+namespace GLOB.Infra.Context;
 // public partial class AppDBContextz : 
 public partial class AppDBContextz
 {

@@ -5,12 +5,11 @@ using GLOB.Domain.DTOs;
 using GLOB.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
 using SBA.Hierarchy.App;
-using X.PagedList;
 
 namespace SBA.Hierarchy.Controllers.Test;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class LEController : BaseController<LEController, LE>
+public class LEController : BaseController<LEController, LE, LEDto>
 {
   public LEController(
     ILogger<LEController> logger,
@@ -22,13 +21,12 @@ public class LEController : BaseController<LEController, LE>
   }
 
   [HttpGet]
-  public async Task<IActionResult> Gets([FromQuery] PaginateRequestFilter<LE, LEDtoSearch?> filter)
+  public async Task<IActionResult> Gets([FromQuery] PaginateRequestFilter<LE, LEDtoSearch> filter)
   {
     try
     {
       var list = await Repo.GetsPaginate(filter);
-      var result = Mapper.Map<IPagedList<LE>, PaginateResponse<LEDto>>(list);
-      return Ok(result);
+      return Ok(list);
     }
     catch (Exception ex)
     {

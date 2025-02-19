@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GLOB.Infra.Common;
+namespace GLOB.Infra.Context;
 public static partial class Seederz
 {
   public static void Seed(this ModelBuilder mb)

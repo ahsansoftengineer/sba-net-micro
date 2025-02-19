@@ -1,4 +1,4 @@
-using GLOB.Infra.Common;
+using GLOB.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Hierarchy.Context;

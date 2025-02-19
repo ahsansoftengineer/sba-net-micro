@@ -5,12 +5,11 @@ using GLOB.Domain.DTOs;
 using GLOB.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
 using SBA.Hierarchy.App;
-using X.PagedList;
 
 namespace SBA.Hierarchy.Controllers;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class SUController : BaseController<SUController, SU>
+public class SUController : BaseController<SUController, SU, SUDto>
 {
   public SUController(
     ILogger<SUController> logger,
@@ -27,8 +26,7 @@ public class SUController : BaseController<SUController, SU>
     try
     {
       var list = await Repo.GetsPaginate(filter);
-      var result = Mapper.Map<IPagedList<SU>, PaginateResponse<SUDto>>(list);
-      return Ok(result);
+      return Ok(list);
     }
     catch (Exception ex)
     {

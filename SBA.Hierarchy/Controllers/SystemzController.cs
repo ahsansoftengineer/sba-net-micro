@@ -5,12 +5,11 @@ using GLOB.Domain.DTOs;
 using GLOB.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
 using SBA.Hierarchy.App;
-using X.PagedList;
 
 namespace SBA.Hierarchy.Controllers;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class SystemzController : BaseController<SystemzController, Systemz>
+public class SystemzController : BaseController<SystemzController, Systemz, SystemzDto>
 {
   public SystemzController(
     ILogger<SystemzController> logger,
@@ -27,8 +26,7 @@ public class SystemzController : BaseController<SystemzController, Systemz>
     try
     {
       var list = await Repo.GetsPaginate(filter);
-      var result = Mapper.Map<IPagedList<Systemz>, PaginateResponse<SystemzDto>>(list);
-      return Ok(result);
+      return Ok(list);
     }
     catch (Exception ex)
     {

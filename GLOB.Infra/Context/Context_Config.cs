@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Common;
+namespace GLOB.Infra.Context;
 public partial class AppDBContextz : DbContext
 {
   private static void EntityMappingConfig(ModelBuilder mb)

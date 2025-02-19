@@ -1,9 +1,7 @@
 using AutoMapper;
 using GLOB.Domain.Base;
 using GLOB.Domain.Common;
-using GLOB.Domain.Entity;
 using System.Net;
-using X.PagedList;
 
 namespace GLOB.API.Config;
 public class MapInitBase : Profile
@@ -23,7 +21,7 @@ public class MapInitBase : Profile
     //CreateMap<BaseDtoCreate, Org>(); //.ReverseMap()
 
     // CreateMap(typeof(PagedList<>), typeof(PagedList<>));
-    CreateMap(typeof(IPagedList<>), typeof(PaginateResponse<>));
+    // CreateMap(typeof(IPagedList<>), typeof(PaginateResponse<>));
   }
 
 
@@ -43,7 +41,7 @@ public class MapInitBase : Profile
   protected void CreateMapAll<Entity, Dto, Create, Search>() // Relation
   {
     CreateMap<Entity, Dto>();
-    CreateMapPagedList<Entity, Dto>();
+    // CreateMapPagedList<Entity, Dto>(); // As per my Own Implementation No Need to Mapped
     CreateMapSingle<Entity, Dto>();
     CreateMap<Entity, BaseDtoRelation>();
     CreateMap<Entity, Search>();
@@ -58,10 +56,10 @@ public class MapInitBase : Profile
 
   protected void CreateMapPagedList<Src, Dest>()
   {
-    CreateMap<IPagedList<Src>, PaginateResponse<Dest>>()
-      .ForMember(d => d.Records, c => c.MapFrom(y => y.ToList()))
-      .ForMember(d => d.Count, c => c.MapFrom(s => s.TotalItemCount))
-      .ForMember(d => d.PageNo, c => c.MapFrom(s => s.PageNumber))
+    CreateMap<PaginateResponse<Src>, PaginateResponse<Dest>>()
+      .ForMember(d => d.Records, c => c.MapFrom(y => y.Records))
+      .ForMember(d => d.Count, c => c.MapFrom(s => s.Count))
+      .ForMember(d => d.PageNo, c => c.MapFrom(s => s.PageNo))
       .ForMember(d => d.PageSize, c => c.MapFrom(s => s.PageSize))
       .ForMember(d => d.Status, c => c.MapFrom(s => HttpStatusCode.OK));
   }
