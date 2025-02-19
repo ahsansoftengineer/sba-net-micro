@@ -8,21 +8,22 @@ public static class GenericSort
   public static IQueryable<T> OrderByGeneric<T>(this IQueryable<T> query, Sort? sort)
     where T : BetaEntity
   {
-    if (sort != null && Order.Unspecified == sort.Order || sort.Order == null)
+    if (sort == null || string.IsNullOrEmpty(sort?.By))
     {
-      sort.Order = Order.Ascending;
+      sort = new Sort()
+      {
+        By = "none",
+        Order = Order.Unspecified
+      };
     }
 
-    if (sort == null || !sort.By.HasValidProperty<T>())
-    {
-      query.OrderByDescending(x => x.UpdatedAt);
-      return query;
-    }
-
-    string sortOrder = sort.Order == Order.Ascending ? "asc" : "desc";
-
+    string sortOrder = sort?.Order == Order.Descending ? "desc" : "asc";
     try
     {
+      if (!sort.By.HasValidProperty<T>())
+      {
+        return query.OrderBy($"UpdatedAt {sortOrder}");
+      }
       return query.OrderBy($"{sort.By} {sortOrder}");
     }
     catch (Exception ex)
@@ -31,5 +32,5 @@ public static class GenericSort
       return query;
     }
   }
- 
+
 }

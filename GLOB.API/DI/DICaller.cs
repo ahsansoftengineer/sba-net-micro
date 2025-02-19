@@ -1,3 +1,5 @@
+using GLOB.API.Middlewarez;
+
 namespace GLOB.API.DI;
 public static partial class DICommon
 {
@@ -24,6 +26,7 @@ public static partial class DICommon
     IWebHostEnvironment env)
   {
     // app.Config_StaticFilesHandling();
+    app.UseMiddleware<GlobalExceptionMiddleware>();
     app.Config_DevEnv(env);
     app.Config_ExceptionHandler();
     app.UseHttpsRedirection();

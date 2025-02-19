@@ -9,7 +9,7 @@ public static class RepoIncludes
   public static IQueryable<T> IncluesByGeneric<T>(this IQueryable<T> source, List<string>? includes)
     where T : class
   {
-    if (includes == null) return source;
+    if (includes == null || includes?.Count < 1) return source;
 
     Type entityType = typeof(T);
     IEnumerable<PropertyInfo> navigationProperty = entityType.GetProperties()
