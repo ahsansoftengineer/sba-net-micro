@@ -1,12 +1,11 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using GLOB.Domain.Enums;
-using GLOB.Domain.Entity;
 using GLOB.Domain.Base;
 
 namespace GLOB.Infra.Common;
 public class CommonStatusConfigz<T> : IEntityTypeConfiguration<T>
-  where T : BaseStatusEntity, new()
+  where T : BaseEntity, new()
 {
   public void Configure(EntityTypeBuilder<T> builder)
   {
@@ -24,14 +23,21 @@ public class CommonStatusConfigz<T> : IEntityTypeConfiguration<T>
         Id = 2,
         Title = className + " 2 Title",
         Desc = className + " 2 Desc",
-        Status = Status.Activate,
+        Status = Status.Active,
       },
       new T
       {
         Id = 3,
         Title = className + " 3 Title",
         Desc = className + " 3 Desc",
-        Status = Status.DeActivate,
+        Status = Status.DeActive,
+      },
+      new T
+      {
+        Id = 4,
+        Title = className + " 4 Title",
+        Desc = className + " 4 Desc",
+        Status = Status.Delete,
       }
     );
   }

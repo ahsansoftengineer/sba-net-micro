@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;
 public abstract partial class BetaController<TController, TEntity, DtoSearch, DtoResponse, DtoCreate>
-  where TEntity : BetaEntity
+  where TEntity : BaseEntity
   where DtoSearch : class
   where DtoResponse : class
   where DtoCreate : class
