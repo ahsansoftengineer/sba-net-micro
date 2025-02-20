@@ -1,10 +1,10 @@
 using GLOB.Domain.Base;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using GLOB.Domain.Common;
+using GLOB.Domain.Enums;
 
 namespace GLOB.Apps.Common;
-public interface IRepoGenericz<T> where T : class
+public interface IRepoGenericz<T> where T : BaseEntity
 {
   DbSet<T> GetDBSet();
   bool Any(Expression<Func<T, bool>>? filter = null);
@@ -25,5 +25,6 @@ public interface IRepoGenericz<T> where T : class
   Task Delete(int id);
   void DeleteRange(IEnumerable<T> entities);
   void Update(T entity);
+  void UpdateStatus(T entity, Status status);
 
 }

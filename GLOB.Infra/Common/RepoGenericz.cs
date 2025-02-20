@@ -1,11 +1,12 @@
 using GLOB.Apps.Common;
 using GLOB.Domain.Base;
+using GLOB.Domain.Enums;
 using GLOB.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace GLOB.Infra.Common;
-public partial class RepoGenericz<T> : IRepoGenericz<T> where T : BetaEntity
+public partial class RepoGenericz<T> : IRepoGenericz<T> where T : BaseEntity
 {
   private readonly AppDBContextz _context;
   private readonly DbSet<T> _db;
@@ -48,5 +49,17 @@ public partial class RepoGenericz<T> : IRepoGenericz<T> where T : BetaEntity
   {
     _db.Attach(entity);
     _context.Entry(entity).State = EntityState.Modified;
+  }
+  public void UpdateStatus(T entity, Status status)
+  {
+    if (typeof(BaseEntity).IsAssignableFrom(typeof(T)))
+    {
+      if (entity is BaseEntity baseEntity)
+      {
+        baseEntity.Status = status;
+        _db.Attach(entity);
+        _context.Entry(entity).State = EntityState.Modified;
+      }
+    }
   }
 }

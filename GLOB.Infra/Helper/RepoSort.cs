@@ -13,7 +13,7 @@ public static class GenericSort
       sort = new Sort()
       {
         By = "none",
-        Order = Order.Unspecified
+        Order = Order.Ascending
       };
     }
 
@@ -22,6 +22,7 @@ public static class GenericSort
     {
       if (!sort.By.HasValidProperty<T>())
       {
+        sortOrder = "desc";
         return query.OrderBy($"UpdatedAt {sortOrder}");
       }
       return query.OrderBy($"{sort.By} {sortOrder}");

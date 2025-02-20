@@ -14,8 +14,9 @@ public enum Gender
 public enum Status
 {
   None,
-  Activate,
-  DeActivate
+  Active,
+  DeActive,
+  Delete
 }
 public enum YesNo
 {
