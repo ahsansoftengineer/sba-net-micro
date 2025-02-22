@@ -40,9 +40,13 @@ public class LEController : BasezController<LEController, LE, LEDto>
     if (!ModelState.IsValid) return BadRequestz();
     try
     {
+      bool hasParent = uOW.BGs.AnyId(data.BGId);
+      if(!hasParent) return InvalidId("Invalid Business Group");
+
       var result = Mapper.Map<LE>(data);
+
       await Repo.Insert(result);
-      await UnitOfWork.Save();
+      await uOW.Save();
       return Ok(result);
     }
     catch (Exception ex)
@@ -58,12 +62,14 @@ public class LEController : BasezController<LEController, LE, LEDto>
     try
     {
       var item = await Repo.Get(q => q.Id == id);
-
       if (item == null) return InvalidId();
+      
+      bool hasParent = uOW.BGs.AnyId(data.BGId);
+      if(!hasParent) return InvalidId("Invalid State");
 
       var result = Mapper.Map(data, item);
       Repo.Update(item);
-      await UnitOfWork.Save();
+      await uOW.Save();
       return Ok(result);
     }
     catch (Exception ex)
