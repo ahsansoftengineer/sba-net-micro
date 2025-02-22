@@ -26,20 +26,6 @@ public partial class AppDBContextz
 //     // Simple
 //     AddStatusEnum<TestProj>(mb);
 //     AddStatusEnum<Org>(mb);
-//     AddStatusEnum<BG>(mb);
-//     AddStatusEnum<State>(mb);
-//     AddStatusEnum<Bank>(mb);
-//     AddStatusEnum<Brand>(mb);
-//     AddStatusEnum<Industry>(mb);
-//     AddStatusEnum<Profession>(mb);
-
-//     // -*
-
-//     AddStatusEnum<Systemz>(mb);
-//     AddStatusEnum<City>(mb);
-//     AddStatusEnum<LE>(mb);
-//     AddStatusEnum<OU>(mb);
-//     AddStatusEnum<SU>(mb);
    
 //   }
 //   private static void AddStatusEnum<TEntity>(ModelBuilder mb)

@@ -4,7 +4,7 @@ using GLOB.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
 using SBA.Hierarchy.App;
 
-namespace SBA.Hierarchy.Controllers.Test;
+namespace SBA.Hierarchy.Controllers.Prime;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
 public class StateController : CommonController<StateController, State>
