@@ -11,25 +11,12 @@ public partial class AppDBContextz : DbContext
 
     EntityMappingConfig(mb);
     // OnModelCreatingEnumConfig(mb);
+    // ConfigEnums(mb);
     mb.Seed();
 
     base.OnModelCreating(mb);
   }
-  protected virtual void OnModelCreatingEnumConfig(ModelBuilder mb)
-  {
-    foreach (var entityType in mb.Model.GetEntityTypes())
-    {
-      var properties = entityType.ClrType.GetProperties()
-          .Where(p => p.Name == "Status" && p.PropertyType.IsEnum);
 
-      foreach (var property in properties)
-      {
-        mb.Entity(entityType.ClrType)
-          .Property(property.Name)
-          .HasConversion<string>();
-      }
-    }
-  }
 
 
 }

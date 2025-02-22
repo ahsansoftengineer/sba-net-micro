@@ -1,4 +1,5 @@
 using AutoMapper;
+using GLOB.Domain.Base;
 using GLOB.Domain.DTOs;
 using GLOB.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,20 @@ public class CityController : BasezController<CityController, City, CityDto>
     IUOW uow) : base(logger, mapper, uow)
   {
     Repo = uow.Citys;
+  }
+
+  [HttpGet("GetsPaginate")]
+  public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<City, CityDtoSearch> req)
+  {
+    try
+    {
+      var list = await Repo.GetsPaginate(req);
+      return Ok(list);
+    }
+    catch (Exception ex)
+    {
+      return CatchException(ex, nameof(Gets));
+    }
   }
 
   [HttpPost]
