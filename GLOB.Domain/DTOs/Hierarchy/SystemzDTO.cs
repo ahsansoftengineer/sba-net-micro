@@ -4,7 +4,7 @@ namespace GLOB.Domain.DTOs;
 public class SystemzDto : BaseDtoFull
 {
   public int OrgId { get; set; }
-  public BaseDtoRelation? Org { get; set; }
+  public BaseDtoSelect? Org { get; set; }
 }
 public class SystemzDtoCreate : BaseDtoCreate
 {

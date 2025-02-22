@@ -8,7 +8,7 @@ public class LEDtoCreate : BaseDtoCreate
 public class LEDto : BaseDtoFull
 {
   public int BGId { get; set; }
-  public BaseDtoRelation? BG { get; set; }
+  public BaseDtoSelect? BG { get; set; }
 }
 public class LEDtoSearch : BaseDtoSearchFull
 {

@@ -23,7 +23,7 @@ public class PaginateRequestFilter<TEntity, TDtoSearch>
   public List<string>? includes { get; set; }
 }
 
-public class PaginateResponse<T>
+public class BaseDtoPageRes<T>
 {
   public List<T> Records { get; private set; }
   public int Count { get; private set; } = 0;
@@ -35,7 +35,7 @@ public class PaginateResponse<T>
   public bool HasNextPage => PageNo < TotalPages;
   public HttpStatusCode Status = HttpStatusCode.OK;
 
-  public PaginateResponse(List<T> record, int count, int pageNo, int pageSize)
+  public BaseDtoPageRes(List<T> record, int count, int pageNo, int pageSize)
   {
     
     Records = record;

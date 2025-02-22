@@ -8,7 +8,7 @@ public class TestChildDtoCreate : BaseDtoCreate
 public class TestChildDto : BaseDtoFull
 {
   public int TestParentId { get; set; }
-  public BaseDtoRelation? TestParent { get; set; }
+  public BaseDtoSelect? TestParent { get; set; }
 }
 public class TestChildDtoSearch : BaseDtoSearchFull
 {

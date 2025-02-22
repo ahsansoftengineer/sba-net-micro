@@ -19,7 +19,7 @@ public class BaseDtoFull : BaseDtoCreate
   public Status? Status { get; set; } // = Status.None;
 
 }
-public class BaseDtoRelation
+public class BaseDtoSelect
 {
   public int Id { get; set; }
   public string Title { get; set; } = "";

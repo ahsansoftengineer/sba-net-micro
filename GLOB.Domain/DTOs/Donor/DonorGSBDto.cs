@@ -52,9 +52,9 @@ public class DonorGSBDto : DonorBasicDto
       if (value != null) DonationOptionData = JsonConvert.SerializeObject(value);
     }
   }
-  public virtual BaseDtoRelation? SU { get; set; }
-  public virtual BaseDtoRelation? Department { get; set; }
-  public virtual BaseDtoRelation? Branch { get; set; }
+  public virtual BaseDtoSelect? SU { get; set; }
+  public virtual BaseDtoSelect? Department { get; set; }
+  public virtual BaseDtoSelect? Branch { get; set; }
 }
 public class DonorGSBDtoCreate : DonorBasicDtoCreate
 {

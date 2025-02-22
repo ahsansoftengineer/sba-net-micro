@@ -28,7 +28,7 @@ public partial class RepoGenericz<T>
   }
 
   // Filter, OrderBy, Include, Pagination
-  public async Task<PaginateResponse<T>> GetsPaginate<TDtoSearch>(PaginateRequestFilter<T, TDtoSearch>? req)
+  public async Task<BaseDtoPageRes<T>> GetsPaginate<TDtoSearch>(PaginateRequestFilter<T, TDtoSearch>? req)
     where TDtoSearch : class
   {
     IQueryable<T> query = _db;

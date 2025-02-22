@@ -4,7 +4,7 @@ namespace GLOB.Domain.DTOs;
 public class CityDto : BaseDtoFull
 {
   public int StateId { get; set; }
-  public BaseDtoRelation? State { get; set; }
+  public BaseDtoSelect? State { get; set; }
 }
 public class CityDtoCreate : BaseDtoCreate
 {

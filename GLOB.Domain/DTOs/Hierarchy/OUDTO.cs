@@ -27,7 +27,7 @@ public class OUDtoCreateToEntity : BaseDtoCreate
 public class OUDto : BaseDtoFull
 {
   public int LEId { get; set; }
-  public BaseDtoRelation? LE { get; set; }
+  public BaseDtoSelect? LE { get; set; }
   public string? Law { get; set; }
   public string? Address { get; set; }
   public string? Deposit { get; set; }

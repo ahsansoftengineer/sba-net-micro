@@ -18,7 +18,7 @@ public interface IRepoGenericz<T> where T : class, IBaseEntity
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
     List<string>? includes = null);
   // Task<IPagedList<T>> Gets(BasePagination req, List<string>? includes = null);
-  Task<PaginateResponse<T>> GetsPaginate<TDto>(PaginateRequestFilter<T, TDto?> req)
+  Task<BaseDtoPageRes<T>> GetsPaginate<TDto>(PaginateRequestFilter<T, TDto?> req)
     where TDto : class;
 
   Task Insert(T entity);

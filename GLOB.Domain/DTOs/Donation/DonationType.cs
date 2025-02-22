@@ -4,13 +4,13 @@ namespace GLOB.Domain.DTOs.Donation;
 public class DonationTypeDto : BaseDtoFull
 {
   public int SysmanAccountId { get; set; }
-  public BaseDtoRelation? SysmanAccount { get; set; }
+  public BaseDtoSelect? SysmanAccount { get; set; }
 
   public int COAId { get; set; }
-  public BaseDtoRelation? COA { get; set; }
+  public BaseDtoSelect? COA { get; set; }
 
   public int DonationCategoryId { get; set; }
-  public BaseDtoRelation? DonationCategory { get; set; }
+  public BaseDtoSelect? DonationCategory { get; set; }
 }
 public class DonationTypeDtoCreate : BaseDtoCreate
 {

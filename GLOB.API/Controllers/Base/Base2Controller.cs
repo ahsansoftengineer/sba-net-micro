@@ -8,7 +8,7 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
   public async Task<IActionResult> Get(int id, [FromQuery] List<string> includes = null)
   {
     var single = await Repo.Get(id, includes);
-    var result = Mapper.Map<BaseDtoSingle<DtoResponse>>(single);
+    var result = Mapper.Map<BaseDtoSingleRes<DtoResponse>>(single);
     return Ok(result);
   }
   [HttpGet()]
@@ -17,7 +17,22 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
     try
     {
       var list = await Repo.Gets(includes: includes);
-      return Ok(list);
+    var result = Mapper.Map<BaseDtoMultiRes<BaseDtoSelect>>(list);
+      return Ok(result);
+    }
+    catch (Exception ex)
+    {
+      return CatchException(ex, nameof(Gets));
+    }
+  }
+  [HttpGet("Select")]
+  public async Task<IActionResult> Select()
+  {
+    try
+    {
+      var list = await Repo.Gets();
+    var result = Mapper.Map<BaseDtoMultiRes<BaseDtoSelect>>(list);
+      return Ok(result);
     }
     catch (Exception ex)
     {

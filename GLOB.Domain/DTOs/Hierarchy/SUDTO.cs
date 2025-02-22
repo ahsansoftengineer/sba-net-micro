@@ -9,7 +9,7 @@ public class SUDtoCreate : BaseDtoCreate
 public class SUDto : BaseDtoFull
 {
   public int OUId { get; set; }
-  public BaseDtoRelation? OU { get; set; }
+  public BaseDtoSelect? OU { get; set; }
 }
 public class SUDtoSearch : BaseDtoSearchFull
 {
