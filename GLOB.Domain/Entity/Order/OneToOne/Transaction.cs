@@ -38,7 +38,7 @@ public class Transactionz : BetaEntity
 
   // Detail of Payment
   public OPERATOR OperatorID { get; set; }
-  public STATUS_PAY? Status { get; set; }
+  public STATUS_PAY? StatusPay { get; set; }
   public int? WalletDeduction { get; set; }
   public int? TransactionzPayment { get; set; }
   [NotMapped]

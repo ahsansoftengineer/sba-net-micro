@@ -5,7 +5,6 @@ namespace GLOB.Domain.Entity;
 public class OrderBusiness : BaseOrder
 {
   // User Values
-  public required string Title { get; set; } // Business Name
   public required string Phone { get; set; }
   public required string Email { get; set; }
   public required string UrlBusinessWebsite { get; set; }

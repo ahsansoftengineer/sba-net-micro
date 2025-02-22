@@ -41,7 +41,6 @@ public interface IBetaEntity
 
 public interface IBaseEntity : IBetaEntity
 {
-    string Title { get; set; }
     string? Desc { get; set; }
     bool? IsSelected { get; set; }
 }

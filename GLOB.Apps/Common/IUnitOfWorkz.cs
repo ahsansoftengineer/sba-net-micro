@@ -1,3 +1,4 @@
+using GLOB.Domain.Base;
 using GLOB.Domain.Entity;
 
 namespace GLOB.Apps.Common;

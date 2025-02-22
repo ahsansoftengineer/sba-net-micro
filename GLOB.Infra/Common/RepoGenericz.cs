@@ -6,7 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace GLOB.Infra.Common;
-public partial class RepoGenericz<T> : IRepoGenericz<T> where T : class, IBaseEntity
+public partial class RepoGenericz<T> : IRepoGenericz<T> 
+  where T : class, IBaseEntity
 {
   private readonly DBCntxt _context;
   private readonly DbSet<T> _db;
