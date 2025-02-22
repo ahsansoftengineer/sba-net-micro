@@ -5,13 +5,13 @@ using Microsoft.Extensions.DependencyInjection;
 namespace GLOB.Infra.Context;
 public static partial class SeederIdentity
 {
-  public static void Seed(this ModelBuilder mb)
+  public static void SeedIdentity(this ModelBuilder mb)
   {
     Console.WriteLine("--> Infra -> Applying Migrations ModelBuilder");
     // mb.SeedTestInfra();
     // mb.SeedLE();
   }
-  public static void Seed(this IApplicationBuilder app)
+  public static void SeedIdentity(this IApplicationBuilder app)
   {
     using(var srvcScp = app.ApplicationServices.CreateScope())
     {

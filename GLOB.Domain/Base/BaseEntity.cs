@@ -10,6 +10,8 @@ public abstract class AlphaEntity
   public int? Id { get; set; }
   [Column(Order = 2)]
   public Status? Status { get; set; }  = Enums.Status.None;
+  [Column(Order = 3)] // required
+  public string Title { get; set; }
 }
 public abstract class BetaEntity : AlphaEntity
 {
@@ -21,8 +23,6 @@ public abstract class BetaEntity : AlphaEntity
 
 public abstract class BaseEntity : BetaEntity, IBaseEntity
 {
-  [Column(Order = 3)] // required
-  public string Title { get; set; }
 
   [Column(Order = 4)]
   public string? Desc { get; set; }
@@ -30,13 +30,18 @@ public abstract class BaseEntity : BetaEntity, IBaseEntity
   public bool? IsSelected { get; set; } = false;
 }
 
-public interface IBaseEntity
+public interface IBetaEntity
 {
     int? Id { get; set; }
+    Status? Status { get; set; }
+    string Title { get; set; }
     DateTimeOffset? CreatedAt { get; set; }
     DateTimeOffset? UpdatedAt { get; set; }
+}
+
+public interface IBaseEntity : IBetaEntity
+{
     string Title { get; set; }
-    Status? Status { get; set; }
     string? Desc { get; set; }
     bool? IsSelected { get; set; }
 }
