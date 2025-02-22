@@ -20,10 +20,10 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
   [HttpDelete("{id:int}")]
   public async Task<IActionResult> Delete(int id)
   {
-    if (id < 1) return DeleteInvalid();
+    if (id < 1) return InvalidId();
 
     var item = await Repo.Get(id);
-    if (item == null) return DeleteNull();
+    if (item == null) return InvalidId();
 
     try
     {
@@ -39,12 +39,12 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
   [HttpPut("status/{id:int}")]
   public async Task<IActionResult> Status(int id, [FromBody] Status status)
   {
-    if (!ModelState.IsValid || id < 1) return StatusInvalid();
+    if (!ModelState.IsValid || id < 1) return InvalidStatus();
     try
     {
       var item = await Repo.Get(id);
 
-      if (item == null) return UpdateNull();
+      if (item == null) return InvalidId();
 
       Repo.UpdateStatus(item, status);
       await UnitOfWork.Save();

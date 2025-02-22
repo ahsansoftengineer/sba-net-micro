@@ -22,7 +22,7 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] DtoCreate data)
   {
-    if (!ModelState.IsValid) return CreateInvalid();
+    if (!ModelState.IsValid) return BadRequestz();
     try
     {
       var result = Mapper.Map<TEntity>(data);
@@ -39,12 +39,12 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
   [HttpPut("{id:int}")]
   public async Task<IActionResult> Update(int id, [FromBody] DtoCreate data)
   {
-    if (!ModelState.IsValid || id < 1) return UpdateInvalid();
+    if (!ModelState.IsValid || id < 1) return InvalidId();
     try
     {
       var item = await Repo.Get(id);
 
-      if (item == null) return UpdateNull();
+      if (item == null) return InvalidId();
 
       var result = Mapper.Map(data, item);
       Repo.Update(item);

@@ -1,7 +1,6 @@
 using AutoMapper;
 using GLOB.Apps.Common;
 using GLOB.Domain.Base;
-using GLOB.Domain.Common;
 
 namespace GLOB.API.Controllers.Base;
 public abstract class CommonController<TController, TEntity> 

@@ -18,41 +18,34 @@ public abstract class AlphaController<TController> : ControllerBase
     Logger.LogError(ex, $"Something went wrong in the {methodName}");
     return StatusCode(500, "Internal Server Error, Please try again later");
   }
-  protected ObjectResult FileInvalid(string message = $"Invalid POST attempt in Create")
+  protected ObjectResult BadRequestz(string message = $"Bad Request fail to Process")
   {
     Logger.LogError(message);
-    return BadRequest(ModelState);
-  }
-  protected ObjectResult CreateInvalid(string message = $"Invalid POST attempt in Create")
-  {
-    Logger.LogError(message);
-    return BadRequest(ModelState);
-  }
-  protected ObjectResult UpdateInvalid(string message = $"Invalid UPDATE attempt in Update")
-  {
-    Logger.LogError(message);
-    return BadRequest(ModelState);
-  }
-  protected ObjectResult StatusInvalid(string message = $"Invalid STATUS attempt in Update")
-  {
-    Logger.LogError(message);
-    return BadRequest(ModelState);
-  }
-  protected ObjectResult UpdateNull(string message = $"Invalid UPDATE attempt in Update")
-  {
-    Logger.LogError(message);
-    return BadRequest("Submit Data is Invalid");
-  }
 
-  protected ObjectResult DeleteInvalid(string message = $"Invalid DELETE attempt in Delete")
-  {
-    Logger.LogError(message);
-    return BadRequest("Submit id is Negative");
+    return BadRequest(ModelState);
   }
-  protected ObjectResult DeleteNull(string message = $"Invalid DELETE attempt in Delete")
+  protected ObjectResult NotFound(string message = $"No Record Found")
   {
-    Logger.LogError(message);
-    return BadRequest("Submit id is Invalid");
-
+    return BadRequestz(message);
+  }
+  protected ObjectResult NotAuthorised(string message = $"You are not allow to make this request")
+  {
+    return BadRequestz(message);
+  }
+  protected ObjectResult InvalidId(string message = $"Invalid Id Record not Updated")
+  {
+    return BadRequestz(message);
+  }
+  protected ObjectResult FileInvalid(string message = $"Invalid File Extension")
+  {
+    return BadRequestz(message);
+  }
+  protected ObjectResult InvalidStatus(string message = $"Status not Updated")
+  {
+    return BadRequestz(message);
+  }
+  protected ObjectResult InvalidDelete(string message = $"Record not Deleted")
+  {
+    return BadRequestz(message);
   }
 }

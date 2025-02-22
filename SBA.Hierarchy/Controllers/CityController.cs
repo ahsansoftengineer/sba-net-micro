@@ -21,9 +21,12 @@ public class CityController : BasezController<CityController, City, CityDto>
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] CityDtoCreate data)
   {
-    if (!ModelState.IsValid) return CreateInvalid();
+    if (!ModelState.IsValid) return BadRequestz();
     try
     {
+      bool hasParent = uOW.States.AnyId(data.StateId);
+      if(!hasParent) return InvalidId("Invalid State");
+
       var result = Mapper.Map<City>(data);
       await Repo.Insert(result);
       await UnitOfWork.Save();
@@ -38,14 +41,14 @@ public class CityController : BasezController<CityController, City, CityDto>
   [HttpPut("{id:int}")]
   public async Task<IActionResult> Update(int id, [FromBody] CityDtoCreate data)
   {
-    if (!ModelState.IsValid || id < 1) return UpdateInvalid();
+    if (!ModelState.IsValid || id < 1) return InvalidId();
     try
     {
       var item = await Repo.Get(q => q.Id == id);
-      if (item == null) return UpdateNull();
+      if (item == null) return InvalidId();
       
-      bool hasParent = uOW.States.AnyId(item.StateId);
-      if(!hasParent) return UpdateInvalid("Invalid State Id");
+      bool hasParent = uOW.States.AnyId(data.StateId);
+      if(!hasParent) return InvalidId("Invalid State");
 
       var result = Mapper.Map(data, item);
       Repo.Update(item);

@@ -22,7 +22,7 @@ public class SystemzController : BasezController<SystemzController, Systemz, Sys
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] SystemzDtoCreate data)
   {
-    if (!ModelState.IsValid) return CreateInvalid();
+    if (!ModelState.IsValid) return BadRequestz();
     try
     {
       var result = Mapper.Map<Systemz>(data);
@@ -39,12 +39,12 @@ public class SystemzController : BasezController<SystemzController, Systemz, Sys
   [HttpPut("{id:int}")]
   public async Task<IActionResult> Update(int id, [FromBody] SystemzDtoCreate data)
   {
-    if (!ModelState.IsValid || id < 1) return UpdateInvalid();
+    if (!ModelState.IsValid || id < 1) return InvalidId();
     try
     {
       var item = await Repo.Get(q => q.Id == id);
 
-      if (item == null) return UpdateNull();
+      if (item == null) return InvalidId();
       var result = Mapper.Map(data, item);
       Repo.Update(item);
       await UnitOfWork.Save();
