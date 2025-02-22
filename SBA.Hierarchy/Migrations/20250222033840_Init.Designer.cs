@@ -12,7 +12,7 @@ using SBA.Hierarchy.Context;
 namespace SBA.Hierarchy.Migrations
 {
     [DbContext(typeof(AppDBContextProj))]
-    [Migration("20250220055846_Init")]
+    [Migration("20250222033840_Init")]
     partial class Init
     {
         /// <inheritdoc />

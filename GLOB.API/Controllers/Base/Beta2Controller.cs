@@ -1,14 +1,8 @@
 using GLOB.Domain.Base;
-using GLOB.Domain.Common;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;
 public abstract partial class BetaController<TController, TEntity, DtoSearch, DtoResponse, DtoCreate>
-  where TEntity : BaseEntity
-  where DtoSearch : class
-  where DtoResponse : class
-  where DtoCreate : class
-  where TController : class
 {
 
   [HttpGet("GetsPaginate")]

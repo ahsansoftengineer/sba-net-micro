@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace GLOB.API.Controllers.Base;
 public abstract partial class BetaController<TController, TEntity, DtoSearch, DtoResponse, DtoCreate>
   : BaseController<TController, TEntity, DtoResponse>
+  where TController : class
   where TEntity : BaseEntity
+  where DtoCreate : class
   where DtoSearch : class
   where DtoResponse : class
-  where DtoCreate : class
-  where TController : class
 {
   // protected new IRepoGenericz<TEntity> Repo = null;
   public BetaController(ILogger<TController> logger, IMapper mapper, IUnitOfWorkz unitOfWork) : 

@@ -1,15 +1,15 @@
 using AutoMapper;
-using GLOB.API.Controllers.Base;
 using GLOB.Domain.Base;
 using GLOB.Domain.DTOs;
 using GLOB.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
 using SBA.Hierarchy.App;
+using SBA.Hierarchy.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers.Test;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class LEController : BaseController<LEController, LE, LEDto>
+public class LEController : BasezController<LEController, LE, LEDto>
 {
   public LEController(
     ILogger<LEController> logger,

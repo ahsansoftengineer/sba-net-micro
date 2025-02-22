@@ -1,14 +1,14 @@
 using AutoMapper;
-using GLOB.API.Controllers.Base;
 using GLOB.Domain.DTOs;
 using GLOB.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
 using SBA.Hierarchy.App;
+using SBA.Hierarchy.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class SystemzController : BaseController<SystemzController, Systemz, SystemzDto>
+public class SystemzController : BasezController<SystemzController, Systemz, SystemzDto>
 {
   public SystemzController(
     ILogger<SystemzController> logger,

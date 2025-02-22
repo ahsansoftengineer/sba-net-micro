@@ -23,8 +23,11 @@ public partial class RepoGenericz<T> : IRepoGenericz<T> where T : BaseEntity
   {
     return _db.Any(filter);
   }
-
-  public async Task Delete(int id)
+  public bool AnyId(int? Id)
+  {
+    return Any(x => x.Id == Id);
+  }
+  public async Task Delete(int? id)
   {
     var entity = await _db.FindAsync(id);
     if (entity != null) _db.Remove(entity);

@@ -2,11 +2,8 @@ using AutoMapper;
 using GLOB.Apps.Common;
 using GLOB.Domain.Base;
 using GLOB.Domain.Common;
-using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;
-[Route("api/[controller]")]
-[ApiController]
 public abstract class CommonController<TController, TEntity> 
   : BetaController<TController, TEntity, CommonDtoSearch, CommonDto, CommonDtoCreate>
     where TController : class

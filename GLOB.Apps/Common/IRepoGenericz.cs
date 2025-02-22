@@ -8,8 +8,9 @@ public interface IRepoGenericz<T> where T : BaseEntity
 {
   DbSet<T> GetDBSet();
   bool Any(Expression<Func<T, bool>>? filter = null);
+  bool AnyId(int? Id);
   Task<T> Get(Expression<Func<T, bool>> expression, List<string>? includes = null);
-  Task<T> Get(int Id, List<string>? includes = null);
+  Task<T> Get(int? Id, List<string>? includes = null);
   
   
   Task<List<T>> Gets(
@@ -22,7 +23,7 @@ public interface IRepoGenericz<T> where T : BaseEntity
 
   Task Insert(T entity);
   Task InsertRange(IEnumerable<T> entities);
-  Task Delete(int id);
+  Task Delete(int? id);
   void DeleteRange(IEnumerable<T> entities);
   void Update(T entity);
   void UpdateStatus(T entity, Status status);

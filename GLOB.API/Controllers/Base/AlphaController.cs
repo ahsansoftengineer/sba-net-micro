@@ -3,18 +3,14 @@ using GLOB.Apps.Common;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;
-[Route("api/[controller]")]
-[ApiController]
 public abstract class AlphaController<TController> : ControllerBase
 {
   protected ILogger<TController> Logger { get; }
   protected IMapper Mapper { get; }
-  protected IUnitOfWorkz UnitOfWork { get; }
-  public AlphaController(ILogger<TController> logger, IMapper mapper, IUnitOfWorkz unitOfWork)
+  public AlphaController(ILogger<TController> logger, IMapper mapper)
   {
     Logger = logger;
     Mapper = mapper;
-    UnitOfWork = unitOfWork;
   }
 
   protected ObjectResult CatchException(Exception ex, string methodName)

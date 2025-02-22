@@ -1,15 +1,14 @@
 using AutoMapper;
-using GLOB.API.Controllers.Base;
-using GLOB.Domain.Base;
 using GLOB.Domain.DTOs;
 using GLOB.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
 using SBA.Hierarchy.App;
+using SBA.Hierarchy.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class SUController : BaseController<SUController, SU, SUDto>
+public class SUController : BasezController<SUController, SU, SUDto>
 {
   public SUController(
     ILogger<SUController> logger,

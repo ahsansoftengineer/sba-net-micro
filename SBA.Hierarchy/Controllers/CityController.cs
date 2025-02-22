@@ -1,15 +1,14 @@
 using AutoMapper;
-using GLOB.API.Controllers.Base;
-using GLOB.Domain.Base;
 using GLOB.Domain.DTOs;
 using GLOB.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
 using SBA.Hierarchy.App;
+using SBA.Hierarchy.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class CityController : BaseController<CityController, City, CityDto>
+public class CityController : BasezController<CityController, City, CityDto>
 {
   public CityController(
     ILogger<CityController> logger,
@@ -17,7 +16,6 @@ public class CityController : BaseController<CityController, City, CityDto>
     IUOW uow) : base(logger, mapper, uow)
   {
     Repo = uow.Citys;
-
   }
 
   [HttpPost]
@@ -44,8 +42,11 @@ public class CityController : BaseController<CityController, City, CityDto>
     try
     {
       var item = await Repo.Get(q => q.Id == id);
-
       if (item == null) return UpdateNull();
+      
+      bool hasParent = uOW.States.AnyId(item.StateId);
+      if(!hasParent) return UpdateInvalid("Invalid State Id");
+
       var result = Mapper.Map(data, item);
       Repo.Update(item);
       await UnitOfWork.Save();

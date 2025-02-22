@@ -12,10 +12,11 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
     where DtoResponse : class
 {
   protected IRepoGenericz<TEntity> Repo = null;
-  public BaseController(ILogger<TController> logger, IMapper mapper, IUnitOfWorkz unitOfWork) : base(logger, mapper, unitOfWork)
+  protected IUnitOfWorkz UnitOfWork { get; }
+  public BaseController(ILogger<TController> logger, IMapper mapper, IUnitOfWorkz unitOfWork) : base(logger, mapper)
   {
-
-  }
+    UnitOfWork = unitOfWork;
+  } 
   [HttpDelete("{id:int}")]
   public async Task<IActionResult> Delete(int id)
   {
