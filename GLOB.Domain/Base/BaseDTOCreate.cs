@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using GLOB.Domain.Enums;
 
 namespace GLOB.Domain.Base;
 public class BaseDtoCreate
@@ -15,6 +16,8 @@ public class BaseDtoFull : BaseDtoCreate
   public int? Id { get; set; } = null;
   public DateTimeOffset? CreatedAt { get; set; }
   public DateTimeOffset? UpdatedAt { get; set; }
+  public Status? Status { get; set; } // = Status.None;
+
 }
 public class BaseDtoRelation
 {

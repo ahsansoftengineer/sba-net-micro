@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 namespace GLOB.Infra.Common;
 public partial class RepoGenericz<T> 
 {
-  public async Task<T> Get(int Id, List<string>? includes = null)
+  public async Task<T> Get(int? Id, List<string>? includes = null)
   {
     var result = await this.Get(x => x.Id == Id, includes);
     return result;

@@ -34,6 +34,7 @@ public static partial class DICommon
       {
         opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
         opt.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+        opt.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
       });
 
   }

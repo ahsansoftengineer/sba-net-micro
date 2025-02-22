@@ -27,12 +27,9 @@ public class MapInitBase : Profile
 
   protected void CreateMapCommon<Entity>()
   {
-    this.CreateMapAll<Entity, CommonDto, CommonDtoCreate, CommonDtoSearch>();
+    this.CreateMapAll<Entity, BaseDtoFull, BaseDtoCreate, BaseDtoSearchFull>();
   }
-  protected void CreateMapCommonStatus<Entity>()
-  {
-    this.CreateMapAll<Entity, CommonStatusDto, CommonStatusDtoCreate, CommonStatusDtoSearch>();
-  }
+
   protected void CreateMapAllWithChild<Entity, Dto, Create, Search, Child>() // Relation
   {
     CreateMapAll<Entity, Dto, Create, Search>();

@@ -11,7 +11,7 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
     var result = Mapper.Map<BaseDtoSingle<DtoResponse>>(single);
     return Ok(result);
   }
-  [HttpGet("GetAll")]
+  [HttpGet()]
   public async Task<IActionResult> Gets([FromQuery] List<string> includes)
   {
     try

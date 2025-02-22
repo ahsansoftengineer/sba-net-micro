@@ -15,6 +15,6 @@ public class MapInitCommonProj : MapInitCommon
     CreateMapCommon<Industry>();
     CreateMapCommon<Profession>();
     CreateMapCommon<State>();
-    // CreateMapPagedList<Org, CommonDto>();
+    // CreateMapPagedList<Org, BaseDtoFull>();
   }
 }

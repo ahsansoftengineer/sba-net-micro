@@ -5,7 +5,7 @@ using GLOB.Domain.Common;
 
 namespace GLOB.API.Controllers.Base;
 public abstract class CommonController<TController, TEntity> 
-  : BetaController<TController, TEntity, CommonDtoSearch, CommonDto, CommonDtoCreate>
+  : BetaController<TController, TEntity, BaseDtoSearchFull, BaseDtoFull, BaseDtoCreate>
     where TController : class
     where TEntity : BaseEntity
 {

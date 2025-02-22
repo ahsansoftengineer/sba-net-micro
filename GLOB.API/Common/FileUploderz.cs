@@ -13,11 +13,10 @@ public class FileUploderz : AlphaController<FileUploderz>
   public FileUploderz(
   ILogger<FileUploderz> logger,
   IMapper mapper,
-  IUnitOfWorkz unitOfWork,
   IWebHostEnvironment hostingEnvironment
   ) :
 
-  base(logger, mapper, unitOfWork)
+  base(logger, mapper)
   {
     hostEnv = hostingEnvironment;
   }
