@@ -39,7 +39,8 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
   [HttpPut("status/{id:int}")]
   public async Task<IActionResult> Status(int id, [FromBody] Status status)
   {
-    if (!ModelState.IsValid || id < 1) return InvalidStatus();
+    if (!ModelState.IsValid) return BadRequestz();
+    if(!Enum.IsDefined(status)) return InvalidStatus();
     try
     {
       var item = await Repo.Get(id);
