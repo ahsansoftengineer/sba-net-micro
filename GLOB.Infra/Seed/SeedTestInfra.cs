@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace GLOB.Infra.Seed;
 public static partial class Seederz
 {
-  public static void SeedTestInfra(this AppDBContextz context)
+  public static void SeedTestInfra(this DBCntxt context)
   {
     if (!context.TestInfras.Any(x => x.Id > 0))
     {

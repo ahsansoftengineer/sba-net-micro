@@ -6,7 +6,7 @@
 // namespace GLOB.Infra.Seed;
 // public static partial class Seederz
 // {
-//   public static void SeedLE(this AppDBContextz context)
+//   public static void SeedLE(this DBCntxt context)
 //   {
 //     if (!context.LEs.Any(x => x.Id > 0))
 //     {

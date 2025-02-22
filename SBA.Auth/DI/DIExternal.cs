@@ -114,7 +114,7 @@ public static partial class DIExternal
     typeof(IdentityRole), srvc);
 
     builder
-      .AddEntityFrameworkStores<AppDBContextz>()
+      .AddEntityFrameworkStores<DBCntxt>()
       .AddDefaultTokenProviders();
     return srvc;
   }

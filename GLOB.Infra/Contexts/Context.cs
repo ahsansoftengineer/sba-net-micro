@@ -1,18 +1,19 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Context;
-public partial class DBCntxt : DbContext
+public partial class DBCntxtIdentity : IdentityDbContext
 {
-  public DBCntxt(DbContextOptions options) : base(options) { }
+  public DBCntxtIdentity(DbContextOptions options) : base(options) { }
 
   // TODO: NOTE: Here we need to work for Seeding Data
   protected override void OnModelCreating(ModelBuilder mb)
   {
 
-    EntityMappingConfig(mb);
+    // EntityMappingConfig(mb);
     // OnModelCreatingEnumConfig(mb);
     // ConfigEnums(mb);
-    mb.Seed();
+    // mb.Seed();
 
     base.OnModelCreating(mb);
   }

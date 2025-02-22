@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace GLOB.Infra.Common;
-public partial class RepoGenericz<T> : IRepoGenericz<T> where T : BaseEntity
+public partial class RepoGenericz<T> : IRepoGenericz<T> where T : class, IBaseEntity
 {
-  private readonly AppDBContextz _context;
+  private readonly DBCntxt _context;
   private readonly DbSet<T> _db;
-  public RepoGenericz(AppDBContextz context)
+  public RepoGenericz(DBCntxt context)
   {
     _context = context;
     _db = context.Set<T>();

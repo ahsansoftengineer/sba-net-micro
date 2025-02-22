@@ -34,11 +34,11 @@ public static partial class DICommon
       typeof(IdentityRole), srvc);
 
     builder
-      .AddEntityFrameworkStores<AppDBContextz>()
+      .AddEntityFrameworkStores<DBCntxt>()
       .AddDefaultTokenProviders();
   }
   public static void Config_DB_SQL<TContext, TIUOW, TUOW>(this IServiceCollection srvc, IConfiguration config) 
-    where TContext : AppDBContextz
+    where TContext : DBCntxt
     where TIUOW : class, IUnitOfWorkz
     where TUOW : UnitOfWorkz, TIUOW
 

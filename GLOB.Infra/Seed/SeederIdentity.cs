@@ -16,7 +16,7 @@
 //   }
 //   public static IServiceCollection AddPersistence(this IServiceCollection srvc, IConfiguration Configuration)
 //   {
-//     srvc.AddDbContext<AppDBContextz>(options =>
+//     srvc.AddDbContext<DBCntxt>(options =>
 //     {
 //       // TrustServerCertificate=true | Encrypt=false
 //       //options.UseSqlServer("SERVER=localhost;DATABASE=Donation;USER=sa;PASSWORD=asdf1234;Encrypt=false");

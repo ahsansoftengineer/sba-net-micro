@@ -2,7 +2,7 @@ using GLOB.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Hierarchy.Context;
-public partial class AppDBContextProj : AppDBContextz
+public partial class AppDBContextProj : DBCntxt
 {
   public AppDBContextProj(DbContextOptions<AppDBContextProj> options) : base(options) { }
   protected override void OnModelCreating(ModelBuilder mb)

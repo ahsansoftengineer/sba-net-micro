@@ -6,8 +6,8 @@ using Microsoft.EntityFrameworkCore;
 namespace GLOB.Infra.Common;
 public partial class UnitOfWorkz : IUnitOfWorkz
 {
-  public readonly AppDBContextz _context;
-  public UnitOfWorkz(AppDBContextz context)
+  public readonly DBCntxt _context;
+  public UnitOfWorkz(DBCntxt context)
   {
     _context = context;
   }

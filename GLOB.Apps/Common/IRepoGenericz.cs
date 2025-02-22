@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using GLOB.Domain.Enums;
 
 namespace GLOB.Apps.Common;
-public interface IRepoGenericz<T> where T : BaseEntity
+public interface IRepoGenericz<T> where T : class, IBaseEntity
 {
   DbSet<T> GetDBSet();
   bool Any(Expression<Func<T, bool>>? filter = null);

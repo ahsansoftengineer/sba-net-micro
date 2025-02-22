@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Context;
-public partial class AppDBContextz
+public partial class DBCntxt
 {
   // Enums using Reflections to Store as String in DB
   protected virtual void OnModelCreatingEnumConfig(ModelBuilder mb)
