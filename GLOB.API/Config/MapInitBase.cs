@@ -40,7 +40,7 @@ public class MapInitBase : Profile
     CreateMap<Entity, Dto>();
     // CreateMapPagedList<Entity, Dto>(); // As per my Own Implementation No Need to Mapped
     CreateMapSingle<Entity, Dto>();
-    CreateMap<Entity, BaseDtoSelect>();
+    CreateMapMulti<Entity,  BaseDtoSelect>();
     CreateMap<Entity, Search>();
     CreateMap<Create, Entity>();
   }
@@ -50,14 +50,12 @@ public class MapInitBase : Profile
       .ForMember(d => d.Record, c => c.MapFrom(y => y))
       .ForMember(d => d.Status, c => c.MapFrom(y => HttpStatusCode.OK));
   }
-
-  protected void CreateMapPagedList<Src, Dest>()
+  protected void CreateMapMulti<Src, Dest>()
   {
-    CreateMap<BaseDtoPageRes<Src>, BaseDtoPageRes<Dest>>()
-      .ForMember(d => d.Records, c => c.MapFrom(y => y.Records))
-      .ForMember(d => d.Count, c => c.MapFrom(s => s.Count))
-      .ForMember(d => d.PageNo, c => c.MapFrom(s => s.PageNo))
-      .ForMember(d => d.PageSize, c => c.MapFrom(s => s.PageSize))
-      .ForMember(d => d.Status, c => c.MapFrom(s => HttpStatusCode.OK));
+    CreateMap<List<Src>, BaseDtoMultiRes<Dest>>()
+      .ForMember(d => d.Records, c => c.MapFrom(y => y))
+      .ForMember(d => d.Status, c => c.MapFrom(y => HttpStatusCode.OK));
   }
+   
+
 }
