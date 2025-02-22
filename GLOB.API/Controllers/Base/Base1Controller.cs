@@ -37,7 +37,7 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
     }
     return NoContent();
   }
-  [HttpPut("status/{id:int}")]
+  [HttpPatch("{id:int}")]
   public async Task<IActionResult> Status(int id, [FromBody] Status status)
   {
     if (!ModelState.IsValid) return BadRequestz();

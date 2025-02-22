@@ -6,6 +6,5 @@ public class MapInitCommon : MapInitBase
   public MapInitCommon() : base()
   {
     CreateMapCommon<TestInfra>();
-    // CreateMapCommonStatus<TestStatus>();
   }
 }
