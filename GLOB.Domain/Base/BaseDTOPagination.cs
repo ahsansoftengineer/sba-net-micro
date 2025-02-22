@@ -19,7 +19,7 @@ public class PaginateRequestFilter<TEntity, TDtoSearch>
 {
   public int PageNo { get; set;} = 1;
   public int PageSize { get; set;} = 10;
-  public bool IsMapped { get ; set; } = false;
+  // public bool IsMapped { get ; set; } = false;
   public TDtoSearch? Filter { get; set; }
   public Sort? Sort { get; set; }
   public List<string>? Include { get; set; }
@@ -42,15 +42,6 @@ public class BaseDtoPageRes<T>
   {
     
     Records = record;
-    Count = count;
-    PageSize = pageSize;
-    PageNo = pageNo;
-  }
-
-  public BaseDtoPageRes(List<BaseDtoSelect> record, int count, int pageNo, int pageSize)
-  {
-    
-    Options = record;
     Count = count;
     PageSize = pageSize;
     PageNo = pageNo;

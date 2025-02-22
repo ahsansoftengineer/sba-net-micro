@@ -28,39 +28,17 @@ public partial class RepoGenericz<T>
   }
 
   // Filter, OrderBy, Include, Pagination,
-  private IQueryable<T> ExtQuery<TDto>(PaginateRequestFilter<T, TDto>? req)
+  public async Task<BaseDtoPageRes<T>> GetsPaginate<TDto>(PaginateRequestFilter<T, TDto>? req)
     where TDto: class
   {
     IQueryable<T> query = _db;
 
     query = query.ToExtFilter(req.Filter);
     query = query.ToExtOrderBy(req.Sort);
-    if (req.IsMapped == false)
-
-      query = query.ToExtInclues(req?.Include);
-    return query;
-  }
-  public async Task<BaseDtoPageRes<T>> GetsPaginate<TDto>(PaginateRequestFilter<T, TDto>? req)
-    where TDto: class
-  {
-    IQueryable<T> query = ExtQuery(req);
-
+    query = query.ToExtInclues(req?.Include);
     return await query.AsNoTracking()
             .ToExtPaginateAsync(req?.PageNo ?? 1, req?.PageSize ?? 10);
   }
-  public async Task<BaseDtoPageRes<BaseDtoSelect>> GetsPaginateSelect<TDto>(PaginateRequestFilter<T, TDto>? req)
-    where TDto: class
-  {
-    IQueryable<T> query = ExtQuery(req);
-    var querSelect = query.ToExtMapping();
-
-    return await querSelect
-      .AsNoTracking()
-      .ToExtPaginateAsync(req?.PageNo ?? 1, req?.PageSize ?? 10);
-  }
-
-
-
 }
 
 

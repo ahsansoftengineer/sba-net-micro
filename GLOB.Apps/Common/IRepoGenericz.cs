@@ -20,9 +20,6 @@ public interface IRepoGenericz<T>
     List<string>? Include = null);
   Task<BaseDtoPageRes<T>> GetsPaginate<TDto>(PaginateRequestFilter<T, TDto?> req)
     where TDto: class;
-  Task<BaseDtoPageRes<BaseDtoSelect>> GetsPaginateSelect<TDto>(PaginateRequestFilter<T, TDto>? req)
-    where TDto: class;
-
   Task Insert(T entity);
   Task InsertRange(IEnumerable<T> entities);
   Task Delete(int? id);
