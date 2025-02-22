@@ -1,17 +1,12 @@
-using AutoMapper;
-using GLOB.Apps.Common;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace GLOB.API.Controllers.Base;
 public abstract class AlphaController<TController> : ControllerBase
 {
   protected ILogger<TController> Logger { get; }
-  protected IMapper Mapper { get; }
-  public AlphaController(ILogger<TController> logger, IMapper mapper)
+  public AlphaController(ILogger<TController> logger)
   {
     Logger = logger;
-    Mapper = mapper;
   }
 
   protected ObjectResult CatchException(Exception ex, string methodName)

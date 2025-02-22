@@ -1,30 +1,33 @@
 using AutoMapper;
 using GLOB.API.Controllers.Base;
-using GLOB.Apps.Common;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Reflection;
+using System.Reflection.Metadata.Ecma335;
 
 namespace GLOB.Common.API;
 [ApiExplorerSettings(IgnoreApi = true)]
-public class FileUploderz : AlphaController<FileUploderz>
+public class FileUploderz
 {
   private readonly IWebHostEnvironment hostEnv;
-  private string storageFiles = "/assets/ouz";
+    private readonly ModelStateDictionary ms;
+    private string storageFiles = "/assets/ouz";
   public FileUploderz(
-  ILogger<FileUploderz> logger,
-  IMapper mapper,
-  IWebHostEnvironment hostingEnvironment
-  ) :
-
-  base(logger, mapper)
+  IWebHostEnvironment hostingEnvironment,
+  ModelStateDictionary ms
+  )
   {
     hostEnv = hostingEnvironment;
-  }
+        this.ms = ms;
+    }
   // Async Methods Cannot have output parameters
   // Don't use this methods
-  public async Task<IActionResult> UploadFile(IFormFile file, string fileName)
+  public async Task<string> UploadFile(IFormFile file, string fileName)
   {
-    if (file == null || file.Length == 0) return BadRequest("Invalid file");
+    if (file == null || file.Length == 0){
+      ms.AddModelError(fileName, "Invalid File");
+      return "";
+    } 
 
     // Specify the directory where you want to save the file
     //var uploadDirectory = "D:/Directory";
@@ -40,7 +43,8 @@ public class FileUploderz : AlphaController<FileUploderz>
     string allowedExtensions = ".png .jpeg .webp .jpg";
     if (allowedExtensions.IndexOf(extension) == -1)
     {
-      return FileInvalid($"Invalid File Type {file.FileName} Only {allowedExtensions} allowed");
+      ms.AddModelError(fileName, $"Invalid File Type {file.FileName} Only {allowedExtensions} allowed");
+      return "";
     }
     fileName += Guid.NewGuid().ToString() + extension;
 
@@ -52,17 +56,19 @@ public class FileUploderz : AlphaController<FileUploderz>
     {
       await file.CopyToAsync(stream);
     }
-    return Ok(this.storageFiles + "/" + fileName);
+    return this.storageFiles + "/" + fileName;
   }
 
-  public async Task<IActionResult> UploadFileReflection(
+  public async Task<string> UploadFileReflection(
   IFormFile file,
   string propertyName,
   object obj
   )
   {
-    if (file == null || file.Length == 0) return BadRequest("Invalid file");
-
+    if (file == null || file.Length == 0){
+      ms.AddModelError(propertyName, "Invalid File");
+      return "";
+    } 
     // Specify the directory where you want to save the file
     //var uploadDirectory = "D:/Directory";
     var uploadDirectory = hostEnv.ContentRootPath + storageFiles;
@@ -77,7 +83,7 @@ public class FileUploderz : AlphaController<FileUploderz>
     string allowedExtensions = ".png .jpeg .webp .jpg";
     if (allowedExtensions.IndexOf(extension) == -1)
     {
-      return FileInvalid($"Invalid File Type {file.FileName} Only {allowedExtensions} allowed");
+      ms.AddModelError(propertyName, $"Invalid File Type {file.FileName} Only {allowedExtensions} allowed");
     }
     PropertyInfo propertyInfo = obj.GetType().GetProperty(propertyName);
     propertyName += Guid.NewGuid().ToString() + extension;
@@ -95,6 +101,6 @@ public class FileUploderz : AlphaController<FileUploderz>
     {
       propertyInfo.SetValue(obj, this.storageFiles + "/" + propertyName);
     }
-    return Ok("Worked Correctly");
+    return this.storageFiles + "/" + propertyName;
   }
 }

@@ -11,9 +11,10 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
     where TController : class
     where DtoResponse : class
 {
+  protected IMapper Mapper { get; }
   protected IRepoGenericz<TEntity> Repo = null;
   protected IUnitOfWorkz UnitOfWork { get; }
-  public BaseController(ILogger<TController> logger, IMapper mapper, IUnitOfWorkz unitOfWork) : base(logger, mapper)
+  public BaseController(ILogger<TController> logger, IMapper mapper, IUnitOfWorkz unitOfWork) : base(logger)
   {
     UnitOfWork = unitOfWork;
   } 
