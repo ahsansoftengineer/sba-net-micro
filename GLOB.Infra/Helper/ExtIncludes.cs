@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace GLOB.Infra.Helper;
-public static class RepoIncludes
+public static partial class RepoExtensionActions
 {
-  public static IQueryable<T> IncluesByGeneric<T>(this IQueryable<T> source, List<string>? includes)
+  public static IQueryable<T> ToExtInclues<T>(this IQueryable<T> source, List<string>? Include)
     where T : class
   {
-    if (includes == null || includes?.Count < 1) return source;
+    if (Include == null || Include?.Count < 1) return source;
 
     Type entityType = typeof(T);
     IEnumerable<PropertyInfo> navigationProperty = entityType.GetProperties()
@@ -18,7 +18,7 @@ public static class RepoIncludes
       property.GetAccessors().Any(a => a.IsVirtual)
       );
     IEqualityComparer<string> comparer = new CustomStringEqualityComparer();
-    var matchingProperties = navigationProperty.Select(x => x.Name).Intersect(includes, comparer);
+    var matchingProperties = navigationProperty.Select(x => x.Name).Intersect(Include, comparer);
 
     if (matchingProperties != null)
     {

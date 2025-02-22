@@ -2,9 +2,9 @@ using GLOB.Domain.Base;
 using GLOB.Domain.Common;
 using Microsoft.EntityFrameworkCore;
 
-public static class IQueryableExtensions
+public static partial class RepoExtensionActions
 {
-    public static async Task<BaseDtoPageRes<T>> ToPaginateAsync<T>(this IQueryable<T> source, int pageNo = 1, int pageSize = 10)
+    public static async Task<BaseDtoPageRes<T>> ToExtPaginateAsync<T>(this IQueryable<T> source, int pageNo = 1, int pageSize = 10)
     {
         if(pageNo < 1) pageNo = 1;
         if(pageSize < 1) pageSize = 10;

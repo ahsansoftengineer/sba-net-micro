@@ -5,9 +5,9 @@ using System.Linq.Expressions;
 using System.Reflection;
 
 namespace GLOB.Infra.Helper;
-public static class RepoFilter
+public static partial class RepoExtensionActions
 {
-  public static IQueryable<T> FilterByGeneric<T, TDtoSearch>(this IQueryable<T> source, TDtoSearch? DtoSearch)
+  public static IQueryable<T> ToExtFilter<T, TDtoSearch>(this IQueryable<T> source, TDtoSearch? DtoSearch)
     where T : class
     where TDtoSearch : class
   {

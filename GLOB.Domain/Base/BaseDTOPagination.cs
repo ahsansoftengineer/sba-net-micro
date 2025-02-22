@@ -1,4 +1,5 @@
 using System.Net;
+using Microsoft.Extensions.Options;
 
 namespace GLOB.Domain.Base;
 public enum Order
@@ -18,14 +19,16 @@ public class PaginateRequestFilter<TEntity, TDtoSearch>
 {
   public int PageNo { get; set;} = 1;
   public int PageSize { get; set;} = 10;
+  public bool IsMapped { get ; set; } = false;
   public TDtoSearch? Filter { get; set; }
   public Sort? Sort { get; set; }
-  public List<string>? includes { get; set; }
+  public List<string>? Include { get; set; }
 }
 
 public class BaseDtoPageRes<T>
 {
   public List<T> Records { get; private set; }
+  public List<BaseDtoSelect> Options { get; private set; }
   public int Count { get; private set; } = 0;
   public int PageSize { get; private set; } = 10;
   public int PageNo { get; private set; } = 1;
@@ -39,6 +42,15 @@ public class BaseDtoPageRes<T>
   {
     
     Records = record;
+    Count = count;
+    PageSize = pageSize;
+    PageNo = pageNo;
+  }
+
+  public BaseDtoPageRes(List<BaseDtoSelect> record, int count, int pageNo, int pageSize)
+  {
+    
+    Options = record;
     Count = count;
     PageSize = pageSize;
     PageNo = pageNo;

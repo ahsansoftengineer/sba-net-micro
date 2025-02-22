@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace GLOB.Infra.Common;
-public partial class RepoGenericz<T> 
+public partial class RepoGenericz<T>
 {
   // Filter, OrderBy, Include
   public async Task<List<T>> Gets(
     Expression<Func<T, bool>>? expression = null,
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
-    List<string>? includes = null)
+    List<string>? Include = null)
   {
     IQueryable<T> query = _db;
     if (expression != null)
@@ -18,8 +18,8 @@ public partial class RepoGenericz<T>
       query = query.Where(expression);
     }
 
-    query = query.IncluesByGeneric(includes);
-    
+    query = query.ToExtInclues(Include);
+
     if (orderBy != null)
     {
       query = orderBy(query);
@@ -27,19 +27,28 @@ public partial class RepoGenericz<T>
     return await query.AsNoTracking().ToListAsync();
   }
 
-  // Filter, OrderBy, Include, Pagination
+  // Filter, OrderBy, Include, Pagination,
   public async Task<BaseDtoPageRes<T>> GetsPaginate<TDtoSearch>(PaginateRequestFilter<T, TDtoSearch>? req)
     where TDtoSearch : class
   {
-    IQueryable<T> query = _db;
-
-    query = query.FilterByGeneric(req.Filter);
-    query = query.OrderByGeneric(req.Sort);
-    query = query.IncluesByGeneric(req?.includes);
+    IQueryable<T> query = ExtQuery(req);
 
     return await query
       .AsNoTracking()
-      .ToPaginateAsync(req?.PageNo ?? 1, req?.PageSize ?? 10);
+      .ToExtPaginateAsync(req?.PageNo ?? 1, req?.PageSize ?? 10);
+  }
+
+  private IQueryable<T> ExtQuery<TDtoSearch>(PaginateRequestFilter<T, TDtoSearch>? req) where TDtoSearch : class
+  {
+    IQueryable<T> query = _db;
+
+    query = query.ToExtFilter(req.Filter);
+    query = query.ToExtOrderBy(req.Sort);
+    if (req?.IsMapped != null && req.IsMapped)
+      query = query.ToExtMapping();
+    else
+      query = query.ToExtInclues(req?.Include);
+    return query;
   }
 }
 

@@ -3,9 +3,9 @@ using GLOB.Domain.Base;
 using GLOB.Domain.Extension;
 
 namespace GLOB.Infra.Helper;
-public static class GenericSort
+public static partial class RepoExtensionActions
 {
-  public static IQueryable<T> OrderByGeneric<T>(this IQueryable<T> query, Sort? sort)
+  public static IQueryable<T> ToExtOrderBy<T>(this IQueryable<T> query, Sort? sort)
     where T : class, IBetaEntity
   {
     if (sort == null || string.IsNullOrEmpty(sort?.By))

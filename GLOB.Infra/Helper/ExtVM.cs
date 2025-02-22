@@ -1,10 +1,10 @@
 using System.Net;
 using GLOB.Domain.Base;
 
-namespace GLOB.API.Config;
+namespace GLOB.Infra.Helper;
 public static class Extension
 {
-    public static BaseVMMulti<TEntity> ToBaseVMMulti<TEntity>(this List<TEntity>? list)
+    public static BaseVMMulti<TEntity> ToExtVMMulti<TEntity>(this List<TEntity>? list)
     where TEntity : class, IBaseEntity
     {
         var vm = new BaseVMMulti<TEntity>()
@@ -14,7 +14,7 @@ public static class Extension
         };
         return vm;
     }
-    public static BaseVMSelect ToBaseVMSelect<TEntity>(this List<TEntity>? list)
+    public static BaseVMSelect ToExtVMSelect<TEntity>(this List<TEntity>? list)
     where TEntity : class, IBaseEntity
     {
         var vm = new BaseVMSelect()
@@ -33,7 +33,7 @@ public static class Extension
         return vm;
     }
 
-    public static BaseVMSingle<TEntity> ToBaseDtoSingle<TEntity>(this TEntity? item)
+    public static BaseVMSingle<TEntity> ToExtVMSingle<TEntity>(this TEntity? item)
     where TEntity : class, IBaseEntity
     {
         var vm = new BaseVMSingle<TEntity>()
