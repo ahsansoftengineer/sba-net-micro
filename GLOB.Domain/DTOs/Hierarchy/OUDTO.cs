@@ -37,7 +37,7 @@ public class OUDto : DtoRead
   public string? FooterImg { get; set; }
 
 }
-public class OUDtoSearch : BaseDtoSearchFull
+public class OUDtoSearch : DtoSearch
 {
   public int? LEId { get; set; }
   public string? Law { get; set; }

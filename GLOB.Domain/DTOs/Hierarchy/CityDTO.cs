@@ -10,7 +10,7 @@ public class CityDtoCreate : DtoCreate
 {
   public int StateId { get; set; }
 }
-public class CityDtoSearch : BaseDtoSearchFull
+public class CityDtoSearch : DtoSearch
 {
   public int? StateId { get; set; }
 }

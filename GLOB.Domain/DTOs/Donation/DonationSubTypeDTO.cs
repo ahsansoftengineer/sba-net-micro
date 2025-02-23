@@ -13,7 +13,7 @@ public class DonationSubTypeDtoCreate : DtoCreate
   //public int DonationCategoryId { get; set; }
   public int DonationTypeId { get; set; }
 }
-public class DonationSubTypeDtoSearch : BaseDtoSearchFull
+public class DonationSubTypeDtoSearch : DtoSearch
 {
   //public int? DonationCategoryId { get; set; }
   public int? DonationTypeId { get; set; }

@@ -25,7 +25,7 @@ public class TargetAssignmentDtoCreate : DtoCreate
   public int MajlisId { get; set; }
   public int SUId { get; set; }
 }
-public class TargetAssignmenteDtoSearch : BaseDtoSearchFull
+public class TargetAssignmenteDtoSearch : DtoSearch
 {
   public DateTime? TargetFrom { get; set; }
   public DateTime? TargetFor { get; set; }

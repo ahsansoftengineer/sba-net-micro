@@ -11,7 +11,7 @@ public class SUDto : DtoRead
   public int OUId { get; set; }
   public DtoSelect? OU { get; set; }
 }
-public class SUDtoSearch : BaseDtoSearchFull
+public class SUDtoSearch : DtoSearch
 {
   public int? OUId { get; set; }
 }

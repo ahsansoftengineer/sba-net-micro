@@ -24,7 +24,7 @@ public class DtoSelect
   public int Id { get; set; }
   public string Title { get; set; } = "";
 }
-public class BaseDtoSearchFull
+public class DtoSearch
 {
   public int? Id { get; set; } = null;
   public string? Title { get; set; }

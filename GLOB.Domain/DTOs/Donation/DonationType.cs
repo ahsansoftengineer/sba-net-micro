@@ -18,7 +18,7 @@ public class DonationTypeDtoCreate : DtoCreate
   public int COAId { get; set; }
   public int DonationCategoryId { get; set; }
 }
-public class DonationTypeDtoSearch : BaseDtoSearchFull
+public class DonationTypeDtoSearch : DtoSearch
 {
   public int? SysmanAccountId { get; set; }
   public int? COAId { get; set; }

@@ -10,7 +10,7 @@ public class LEDto : DtoRead
   public int BGId { get; set; }
   public DtoSelect? BG { get; set; }
 }
-public class LEDtoSearch : BaseDtoSearchFull
+public class LEDtoSearch : DtoSearch
 {
   public int? BGId { get; set; }
 }

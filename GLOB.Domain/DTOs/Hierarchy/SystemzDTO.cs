@@ -10,7 +10,7 @@ public class SystemzDtoCreate : DtoCreate
 {
   public int OrgId { get; set; }
 }
-public class SystemzDtoSearch : BaseDtoSearchFull
+public class SystemzDtoSearch : DtoSearch
 {
   public int? OrgId { get; set; }
 }

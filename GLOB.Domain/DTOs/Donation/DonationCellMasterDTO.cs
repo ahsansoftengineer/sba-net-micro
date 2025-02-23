@@ -27,7 +27,7 @@ public class DonationCellMasterDtoCreate : DtoCreate
   //public int OUId { get; set; }
   public int SUId { get; set; }
 }
-public class DonationCellMasterDtoSearch : BaseDtoSearchFull
+public class DonationCellMasterDtoSearch : DtoSearch
 {
   public string? Address { get; set; }
   public int? LocationzId { get; set; }

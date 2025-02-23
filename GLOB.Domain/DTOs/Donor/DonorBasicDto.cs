@@ -30,7 +30,7 @@ public class DonorBasicDtoCreate : DtoCreate
   public int OrgId { get; set; }
   public int CityId { get; set; }
 }
-public class DonorBasicDtoSearch : BaseDtoSearchFull
+public class DonorBasicDtoSearch : DtoSearch
 {
   public string? Mobile { get; set; }
   public string? Email { get; set; }
