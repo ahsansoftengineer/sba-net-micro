@@ -1,5 +1,5 @@
 using GLOB.API.DI;
-using SBA.Proj.Data;
+using SBA.Projectz.Data;
 
 namespace SBA.Hierarchy.DI;
 public static class DI
