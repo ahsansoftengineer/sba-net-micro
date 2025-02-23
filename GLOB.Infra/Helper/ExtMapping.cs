@@ -10,7 +10,7 @@ public static partial class RepoExtensionActions
     Console.WriteLine("-->>>>>> Select Called");
     return source.Select(x => new DtoSelect
     {
-      Id = x.Id ?? 0,
+      Id = x.Id,
       Title = x.Title,
       Status = x.Status
     });

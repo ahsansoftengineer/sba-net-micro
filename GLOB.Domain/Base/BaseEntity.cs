@@ -7,7 +7,7 @@ public abstract class AlphaEntity
 {
   [Column(Order = 1)]
   [Key]
-  public int? Id { get; set; }
+  public int Id { get; set; }
   [Column(Order = 2)]
   public Status? Status { get; set; } = Enums.Status.None;
   [Column(Order = 3)] // required
@@ -32,7 +32,7 @@ public abstract class BaseEntity : BetaEntity, IBaseEntity
 
 public interface IBetaEntity
 {
-  int? Id { get; set; }
+  int Id { get; set; }
   Status? Status { get; set; }
   string Title { get; set; }
   DateTimeOffset? CreatedAt { get; set; }

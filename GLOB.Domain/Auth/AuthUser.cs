@@ -3,9 +3,8 @@ using GLOB.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 
 namespace GLOB.Domain.Auth;
-public class AuthUser : IdentityUser, IBetaEntity
+public class AuthUser : IdentityUser
 {
-    int? IBetaEntity.Id { get; set; }
     public Status? Status { get; set; }
     public string Title { get; set; }
     public DateTimeOffset? CreatedAt { get; set; }
