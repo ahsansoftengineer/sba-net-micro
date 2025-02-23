@@ -1,5 +1,5 @@
 // using GLOB.Apps.Common;
-// using GLOB.Infra.Common;
+// using GLOB.Infra.Repo;
 // using Microsoft.EntityFrameworkCore;
 
 // namespace SBA.Hierarchy.Data;

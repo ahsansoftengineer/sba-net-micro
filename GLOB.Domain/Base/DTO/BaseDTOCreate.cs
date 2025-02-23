@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using GLOB.Domain.Enums;
 
 namespace GLOB.Domain.Base;
-public class BaseDtoCreate
+public class DtoCreate
 {
   [Required]
   [StringLength(maximumLength: 50, ErrorMessage = "Max Characters 50 Allowed")]
@@ -11,7 +11,7 @@ public class BaseDtoCreate
   public string? Desc { get; set; }
 
 }
-public class BaseDtoFull : BaseDtoCreate
+public class DtoRead : DtoCreate
 {
   public int? Id { get; set; } = null;
   public DateTimeOffset? CreatedAt { get; set; }
@@ -19,12 +19,8 @@ public class BaseDtoFull : BaseDtoCreate
   public Status? Status { get; set; } // = Status.None;
 
 }
-public class BaseDtoSelect
+public class DtoSelect
 {
   public int Id { get; set; }
   public string Title { get; set; } = "";
-}
-public class BaseDtoUpdateFull : BaseDtoCreate
-{
-  //public IList<CreateHotelDTO> Hotels { get; set; } //
 }

@@ -5,7 +5,7 @@ using GLOB.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace GLOB.Infra.Common;
+namespace GLOB.Infra.Repo;
 public partial class RepoGenericz<T> : IRepoGenericz<T> 
   where T : class, IBaseEntity
 {

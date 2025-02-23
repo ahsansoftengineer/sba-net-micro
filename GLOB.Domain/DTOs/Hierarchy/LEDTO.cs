@@ -1,14 +1,14 @@
 using GLOB.Domain.Base;
 
 namespace GLOB.Domain.DTOs;
-public class LEDtoCreate : BaseDtoCreate
+public class LEDtoCreate : DtoCreate
 {
   public int BGId { get; set; }
 }
-public class LEDto : BaseDtoFull
+public class LEDto : DtoRead
 {
   public int BGId { get; set; }
-  public BaseDtoSelect? BG { get; set; }
+  public DtoSelect? BG { get; set; }
 }
 public class LEDtoSearch : BaseDtoSearchFull
 {

@@ -3,7 +3,7 @@ using GLOB.Infra.Helper;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace GLOB.Infra.Common;
+namespace GLOB.Infra.Repo;
 public partial class RepoGenericz<T>
 {
   // Filter, OrderBy, Include

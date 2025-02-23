@@ -28,7 +28,7 @@ public class PaginateRequestFilter<TEntity, TDtoSearch>
 public class BaseDtoPageRes<T>
 {
   public List<T> Records { get; private set; }
-  public List<BaseDtoSelect> Options { get; private set; }
+  public List<DtoSelect> Options { get; private set; }
   public int Count { get; private set; } = 0;
   public int PageSize { get; private set; } = 10;
   public int PageNo { get; private set; } = 1;

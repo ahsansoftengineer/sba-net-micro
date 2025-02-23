@@ -14,7 +14,7 @@ public class BaseVMSingle<T>
 }
 public class BaseVMSelect
 {
-  public List<BaseDtoSelect>? Records { get; set; }
+  public List<DtoSelect>? Records { get; set; }
   public HttpStatusCode Status { get; set; }
 }
 public class BaseVMMulti<T>

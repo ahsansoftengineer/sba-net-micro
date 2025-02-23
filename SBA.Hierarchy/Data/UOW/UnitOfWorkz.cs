@@ -1,6 +1,6 @@
 using GLOB.Apps.Common;
 using GLOB.Domain.Entity;
-using GLOB.Infra.Common;
+using GLOB.Infra.Repo;
 
 namespace SBA.Hierarchy.Data;
 public partial class UOW

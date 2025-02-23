@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Http;
 using GLOB.Domain.Base;
 
 namespace GLOB.Domain.DTOs;
-public class OUDtoCreate : BaseDtoCreate
+public class OUDtoCreate : DtoCreate
 {
   public int LEId { get; set; }
   public string? Law { get; set; }
@@ -13,7 +13,7 @@ public class OUDtoCreate : BaseDtoCreate
   public IFormFile? WarningImg { get; set; }
   public IFormFile? FooterImg { get; set; }
 }
-public class OUDtoCreateToEntity : BaseDtoCreate
+public class OUDtoCreateToEntity : DtoCreate
 {
   public int LEId { get; set; }
   public string? Law { get; set; }
@@ -24,10 +24,10 @@ public class OUDtoCreateToEntity : BaseDtoCreate
   public string? WarningImg { get; set; }
   public string? FooterImg { get; set; }
 }
-public class OUDto : BaseDtoFull
+public class OUDto : DtoRead
 {
   public int LEId { get; set; }
-  public BaseDtoSelect? LE { get; set; }
+  public DtoSelect? LE { get; set; }
   public string? Law { get; set; }
   public string? Address { get; set; }
   public string? Deposit { get; set; }

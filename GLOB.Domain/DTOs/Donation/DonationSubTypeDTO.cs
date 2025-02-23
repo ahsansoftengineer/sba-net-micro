@@ -1,14 +1,14 @@
 using GLOB.Domain.Base;
 
 namespace GLOB.Domain.DTOs.Donation;
-public class DonationSubTypeDto : BaseDtoFull
+public class DonationSubTypeDto : DtoRead
 {
   //public int DonationCategoryId { get; set; }
-  //public BaseDtoSelect? DonationCategory { get; set; }
+  //public DtoSelect? DonationCategory { get; set; }
   public int DonationTypeId { get; set; }
-  public BaseDtoSelect? DonationType { get; set; }
+  public DtoSelect? DonationType { get; set; }
 }
-public class DonationSubTypeDtoCreate : BaseDtoCreate
+public class DonationSubTypeDtoCreate : DtoCreate
 {
   //public int DonationCategoryId { get; set; }
   public int DonationTypeId { get; set; }

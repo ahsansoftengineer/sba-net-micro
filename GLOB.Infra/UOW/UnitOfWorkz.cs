@@ -1,9 +1,10 @@
 using GLOB.Apps.Common;
 using GLOB.Domain.Base;
 using GLOB.Infra.Context;
+using GLOB.Infra.Repo;
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Common;
+namespace GLOB.Infra.UOW;
 public partial class UnitOfWorkz : IUnitOfWorkz
 {
   public readonly DBCntxt _context;

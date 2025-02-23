@@ -1,18 +1,18 @@
 using GLOB.Domain.Base;
 
 namespace GLOB.Domain.DTOs.Donation;
-public class DonationTypeDto : BaseDtoFull
+public class DonationTypeDto : DtoRead
 {
   public int SysmanAccountId { get; set; }
-  public BaseDtoSelect? SysmanAccount { get; set; }
+  public DtoSelect? SysmanAccount { get; set; }
 
   public int COAId { get; set; }
-  public BaseDtoSelect? COA { get; set; }
+  public DtoSelect? COA { get; set; }
 
   public int DonationCategoryId { get; set; }
-  public BaseDtoSelect? DonationCategory { get; set; }
+  public DtoSelect? DonationCategory { get; set; }
 }
-public class DonationTypeDtoCreate : BaseDtoCreate
+public class DonationTypeDtoCreate : DtoCreate
 {
   public int SysmanAccountId { get; set; }
   public int COAId { get; set; }

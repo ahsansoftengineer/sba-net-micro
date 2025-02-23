@@ -19,12 +19,12 @@ public static class Extension
     {
         var vm = new BaseVMSelect()
         {
-            Records = new List<BaseDtoSelect>(),
+            Records = new List<DtoSelect>(),
             Status = HttpStatusCode.OK
         };
         if (list == null) return vm;
 
-        var result = list.Select(x => new BaseDtoSelect
+        var result = list.Select(x => new DtoSelect
         {
             Id = x.Id ?? 0,
             Title = x.Title
