@@ -1,6 +1,6 @@
 using GLOB.API.DI;
 using GLOB.Apps.Common;
-using GLOB.Infra.Common;
+using GLOB.Infra.Repo;
 
 namespace GLOB.API;
 // Note: Servicies are required when not in Micro Arch

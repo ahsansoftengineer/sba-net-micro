@@ -1,8 +1,8 @@
 using GLOB.Apps.Common;
-using GLOB.Domain.Base;
 using GLOB.Domain.Entity;
+using GLOB.Infra.Repo;
 
-namespace GLOB.Infra.Common;
+namespace GLOB.Infra.UOW;
 public partial class UnitOfWorkz 
 {
   private IRepoGenericz<TestInfra>? _testInfra;

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using GLOB.Domain.Enums;
 using GLOB.Domain.Base;
 
-namespace GLOB.Infra.Common;
+namespace GLOB.Infra.Repo;
 public class CommonStatusConfigz<T> : IEntityTypeConfiguration<T>
   where T : BaseEntity, new()
 {

@@ -1,6 +1,6 @@
 // using GLOB.Domain.Base;
 // using GLOB.Domain.Entity;
-// using GLOB.Infra.Common;
+// using GLOB.Infra.Repo;
 // using Microsoft.EntityFrameworkCore;
 
 // namespace GLOB.Infra.Seed;

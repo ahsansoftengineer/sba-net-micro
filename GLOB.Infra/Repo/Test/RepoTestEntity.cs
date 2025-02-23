@@ -1,6 +1,6 @@
 // using GLOB.App.Repo;
 // using GLOB.Domain.Entity;
-// using GLOB.Infra.Common;
+// using GLOB.Infra.Repo;
 
 // namespace GLOB.Infra.Repo;
 // public class RepoTestEntityInfra : RepoGeneric<TestEntityInfra>, IRepoTestEntityInfra
