@@ -24,3 +24,11 @@ public class DtoSelect
   public int Id { get; set; }
   public string Title { get; set; } = "";
 }
+public class BaseDtoSearchFull
+{
+  public int? Id { get; set; } = null;
+  public string? Title { get; set; }
+  public string? Desc { get; set; }
+  public DateTimeOffset? DateFrom { get; set; }
+  public DateTimeOffset? DateTo { get; set; }
+}
