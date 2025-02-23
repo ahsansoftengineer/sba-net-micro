@@ -11,7 +11,6 @@ dotnet new sln -o SBA
 ```bash
 dotnet new classlib -o GLOB.Domain
 dotnet new classlib -o GLOB.Infra
-dotnet new classlib -o GLOB.Contracts
 # dotnet new classlib -o GLOB.APIz
 ```
 

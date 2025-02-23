@@ -36,9 +36,3 @@ dotnet add ./GLOB.API/ package Microsoft.Extensions.Configuration -v 8.0.7
 dotnet add ./GLOB.API/ package Microsoft.Extensions.Options.ConfigurationExtensions -v 8.0.7
 dotnet add ./GLOB.API/ package Swashbuckle.AspNetCore
 ```
-
-### EXTERNAL PACKAGES PACKAGE
-```bash
-dotnet add ./GLOB.Package/ package Microsoft.EntityFrameworkCore.Design -v 8.0.7
-```
-
