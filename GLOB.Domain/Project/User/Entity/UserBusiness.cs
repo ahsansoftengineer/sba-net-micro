@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using GLOB.Domain.Mappings;
 
 namespace GLOB.Domain.Hierarchy;
 public class UserBusiness : UserNormal

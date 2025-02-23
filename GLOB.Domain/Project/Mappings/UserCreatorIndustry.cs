@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using GLOB.Domain.Hierarchy;
 
-namespace GLOB.Domain.Hierarchy;
+namespace GLOB.Domain.Mappings;
 public class Mapping_UserCreatorIndustry
 {
   // public int ID { get; set; }

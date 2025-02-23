@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using GLOB.Domain.Mappings;
 using Microsoft.AspNetCore.Http;
 
 namespace GLOB.Domain.Hierarchy;

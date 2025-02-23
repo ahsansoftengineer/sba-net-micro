@@ -1,7 +1,6 @@
 using AspNetCoreRateLimit;
 using GLOB.Apps.Common;
 using GLOB.Domain.Common;
-using GLOB.Domain.Hierarchy;
 using GLOB.Infra.Context;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
@@ -9,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using GLOB.Infra.UOW;
+using GLOB.Domain.Test;
 
 namespace GLOB.API.DI;
 public static partial class DICommon

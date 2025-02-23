@@ -1,6 +1,6 @@
 using AspNetCoreRateLimit;
 using GLOB.Domain.Common;
-using GLOB.Domain.Hierarchy;
+using GLOB.Domain.Test;
 using GLOB.Infra.Context;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
