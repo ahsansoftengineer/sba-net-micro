@@ -1,4 +1,3 @@
-using GLOB.Apps.Common;
 using GLOB.Domain.Base;
 using GLOB.Domain.Enums;
 using GLOB.Infra.Context;

@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using GLOB.Domain.Enums;
 
-namespace GLOB.Apps.Common;
+namespace GLOB.Infra.Repo;
 public interface IRepoGenericz<T>
   where T : class, IBaseEntity
 {

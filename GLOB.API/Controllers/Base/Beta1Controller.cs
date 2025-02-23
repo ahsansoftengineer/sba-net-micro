@@ -1,6 +1,6 @@
 using AutoMapper;
-using GLOB.Apps.Common;
 using GLOB.Domain.Base;
+using GLOB.Infra.UOW;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;

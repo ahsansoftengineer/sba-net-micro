@@ -1,5 +1,4 @@
 using AspNetCoreRateLimit;
-using GLOB.Apps.Common;
 using GLOB.Domain.Common;
 using GLOB.Infra.Context;
 using Microsoft.AspNetCore.Diagnostics;

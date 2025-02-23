@@ -1,6 +1,6 @@
 using GLOB.API.DI;
-using GLOB.Apps.Common;
 using GLOB.Infra.Context;
+using GLOB.Infra.UOW;
 using SBA.Projectz.Data;
 
 namespace SBA.Projectz.DI;

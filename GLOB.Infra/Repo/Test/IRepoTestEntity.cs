@@ -1,4 +1,4 @@
-// using GLOB.Apps.Common;
+// using GLOB.Infra.Repo;
 // using GLOB.Domain.Hierarchy;
 
 // namespace GLOB.App.Repo;

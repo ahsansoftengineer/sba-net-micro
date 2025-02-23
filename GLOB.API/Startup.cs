@@ -1,8 +1,3 @@
-using GLOB.API.DI;
-using GLOB.API.Mapper;
-using GLOB.Apps.Common;
-using GLOB.Infra.Context;
-using GLOB.Infra.UOW;
 
 namespace GLOB.API;
 // Note: Servicies are required when not in Micro Arch

@@ -1,7 +1,6 @@
-using GLOB.Apps.Common;
+using GLOB.Infra.Repo;
 using GLOB.Domain.Base;
 using GLOB.Infra.Context;
-using GLOB.Infra.Repo;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.UOW;

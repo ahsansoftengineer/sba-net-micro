@@ -1,6 +1,7 @@
-using GLOB.Apps.Common;
+using GLOB.Infra.Repo;
 using GLOB.Domain.Hierarchy;
 using GLOB.Domain.Projectz;
+using GLOB.Infra.UOW;
 
 namespace SBA.Projectz.Data;
 public interface IUOW : IUnitOfWorkz
