@@ -1,7 +1,7 @@
 using GLOB.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace SBA.Hierarchy.Data;
+namespace SBA.Proj.Data;
 public partial class AppDBContextProj : DBCntxt
 {
   public AppDBContextProj(DbContextOptions<AppDBContextProj> options) : base(options) { }
@@ -12,21 +12,4 @@ public partial class AppDBContextProj : DBCntxt
     Seeder.Seed(mb);
     base.OnModelCreating(mb);
   }
-
-  // public override int SaveChanges()
-  // {
-  //   var entries = ChangeTracker.Entries<BaseBEntity>();
-  //   foreach (var entry in entries)
-  //   {
-  //     if (entry.State == EntityState.Added)
-  //     {
-  //       entry.Entity.CreatedAt = DateTimeOffset.UtcNow;
-  //     }
-  //     if (entry.State == EntityState.Modified)
-  //     {
-  //       entry.Entity.UpdatedAt = DateTimeOffset.UtcNow;
-  //     }
-  //   }
-  //   return base.SaveChanges();
-  // }
 }

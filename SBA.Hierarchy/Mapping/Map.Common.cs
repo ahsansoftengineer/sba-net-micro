@@ -1,11 +1,10 @@
 using GLOB.API.Config;
-using GLOB.Domain.Common;
 using GLOB.Domain.Hierarchy;
 
-namespace SBA.Hierarchy.Config;
-public class MapInitCommonProj : MapInitCommon
+namespace SBA.Proj.Mapper;
+public class MapCommonProj : MapCommon
 {
-  public MapInitCommonProj() : base()
+  public MapCommonProj() : base()
   {
     CreateMapCommon<TestProj>();
     CreateMapCommon<Org>();
@@ -15,6 +14,5 @@ public class MapInitCommonProj : MapInitCommon
     CreateMapCommon<Industry>();
     CreateMapCommon<Profession>();
     CreateMapCommon<State>();
-    // CreateMapPagedList<Org, DtoRead>();
   }
 }

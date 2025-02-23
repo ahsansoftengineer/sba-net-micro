@@ -2,7 +2,7 @@
 // using GLOB.API.Controllers.Base;
 // using GLOB.Domain.Hierarchy;
 // using Microsoft.AspNetCore.Mvc;
-// using SBA.Hierarchy.Data;
+// using SBA.Proj.Data;
 
 // namespace SBA.Hierarchy.Controllers.Prime;
 // [Route("api/Hierarchy/[controller]")]

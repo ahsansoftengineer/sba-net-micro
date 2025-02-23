@@ -2,7 +2,7 @@ using GLOB.Domain.Hierarchy;
 using GLOB.Infra.Seed;
 using Microsoft.EntityFrameworkCore;
 
-namespace SBA.Hierarchy.Data;
+namespace SBA.Proj.Data;
 public static partial class Seeder
 {
   public static void SeedBrand(this AppDBContextProj context)

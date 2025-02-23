@@ -2,7 +2,7 @@ using GLOB.Apps.Common;
 using GLOB.Domain.Hierarchy;
 using GLOB.Infra.Repo;
 
-namespace SBA.Hierarchy.Data;
+namespace SBA.Proj.Data;
 public partial class UOW
 {
   public IRepoGenericz<TestProj> TestProjs => _testProj ??= new RepoGenericz<TestProj>(_context);

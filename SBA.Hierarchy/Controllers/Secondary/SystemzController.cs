@@ -2,7 +2,7 @@
 // using GLOB.Domain.DTOs;
 // using GLOB.Domain.Hierarchy;
 // using Microsoft.AspNetCore.Mvc;
-// using SBA.Hierarchy.Data;
+// using SBA.Proj.Data;
 // using SBA.Hierarchy.Controllers.Base;
 
 // namespace SBA.Hierarchy.Controllers;

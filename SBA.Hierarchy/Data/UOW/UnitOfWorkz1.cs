@@ -3,7 +3,7 @@ using GLOB.Domain.Hierarchy;
 using GLOB.Infra.Repo;
 using GLOB.Infra.UOW;
 
-namespace SBA.Hierarchy.Data;
+namespace SBA.Proj.Data;
 public partial class UOW : UnitOfWorkz, IUOW
 {
   public UOW(AppDBContextProj context): base(context) { }

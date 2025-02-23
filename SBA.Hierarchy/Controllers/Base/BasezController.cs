@@ -1,7 +1,7 @@
 using AutoMapper;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Base;
-using SBA.Hierarchy.Data;
+using SBA.Proj.Data;
 
 namespace SBA.Hierarchy.Controllers.Base;
 public abstract partial class BasezController<TController, TEntity, DtoResponse>

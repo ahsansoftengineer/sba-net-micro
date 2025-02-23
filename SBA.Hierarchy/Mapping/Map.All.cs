@@ -1,11 +1,10 @@
 using GLOB.API;
-using GLOB.Domain.DTOs;
 using GLOB.Domain.Hierarchy;
 
-namespace SBA.Hierarchy.Config;
-public class MapInitFullProj : MapInitFull
+namespace SBA.Proj.Mapper;
+public class MapAllProj : MapAll
 {
-  public MapInitFullProj() : base()
+  public MapAllProj() : base()
   {
     CreateMapAll<Systemz, SystemzDto, SystemzDtoCreate, SystemzDtoSearch>();
     CreateMapAll<LE, LEDto, LEDtoCreate, LEDtoSearch>();

@@ -1,7 +1,7 @@
 using GLOB.Domain.Hierarchy;
 using Microsoft.EntityFrameworkCore;
 
-namespace SBA.Hierarchy.Data;
+namespace SBA.Proj.Data;
 public partial class AppDBContextProj
 {
   private static void ConfigManyToOne(ModelBuilder mb)
@@ -38,24 +38,4 @@ public partial class AppDBContextProj
 
    
   }
-  // private static void ConfigOneToMany(ModelBuilder mb)
-  // {
-  //   mb.Entity<BankAccount>()
-  //     .HasOne(e => e.Bank)
-  //     .WithMany(e => e.BankAccount)
-  //     .HasForeignKey(e => e.BankID)
-  //     .IsRequired(false);
-
-  //   mb.Entity<City>()
-  //     .HasOne(e => e.State)
-  //     .WithMany(e => e.Citys)
-  //     .HasForeignKey(e => e.StateID)
-  //     .IsRequired(false);
-
-  //   mb.Entity<WalletHistory>()
-  //     .HasOne(e => e.Wallet)
-  //     .WithMany(e => e.WalletHistorys)
-  //     .HasForeignKey(e => e.WalletID)
-  //     .IsRequired(false);
-  // }
 }

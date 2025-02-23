@@ -1,7 +1,8 @@
 using GLOB.API.DI;
-using SBA.Hierarchy.Config;
-using SBA.Hierarchy.Data;
+using SBA.Proj.Data;
 using SBA.Hierarchy.DI;
+using SBA.Proj.Mapper;
+using GLOB.API;
 
 namespace SBA.Hierarchy;
 public class Startup
@@ -17,8 +18,8 @@ public class Startup
   {
     
     srvc.AddDICommon();
-    srvc.AddAutoMapper(typeof(MapInitCommonProj));
-    srvc.AddAutoMapper(typeof(MapInitFullProj));
+    srvc.AddAutoMapper(typeof(MapCommonProj));
+    srvc.AddAutoMapper(typeof(MapAll));
     srvc.AddSrvc(_config);
     srvc.AddDefaultExternalServices();
 

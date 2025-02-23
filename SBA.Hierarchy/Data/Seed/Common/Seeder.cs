@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace SBA.Hierarchy.Data;
+namespace SBA.Proj.Data;
 public static partial class Seeder
 {
   // Dev (When Running Migration throw CLI)

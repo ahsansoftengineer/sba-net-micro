@@ -1,7 +1,7 @@
 using GLOB.Domain.Hierarchy;
 using Microsoft.EntityFrameworkCore;
 
-namespace SBA.Hierarchy.Data;
+namespace SBA.Proj.Data;
 public static partial class Seeder
 {
   public static void SeedSystemz(this AppDBContextProj context)
