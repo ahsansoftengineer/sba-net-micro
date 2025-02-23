@@ -2,11 +2,12 @@ using AutoMapper;
 using GLOB.Domain.Base;
 
 namespace GLOB.API.Mapper;
-public class MapBase : Profile
+public partial class MapBase : Profile
 {
   public MapBase()
   {
-    // CreateMap<TestInfra, DtoCreate>();
+    MapCommon();
+    MapAll();
   }
   protected void CreateMapCommon<Entity>()
   {

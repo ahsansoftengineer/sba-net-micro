@@ -1,11 +1,11 @@
-using GLOB.API.Mapper;
 using GLOB.Domain.Projectz;
 
 namespace SBA.Projectz.Mapper;
-public class MapCommonProj : MapCommon
+public partial class MapProj 
 {
-  public MapCommonProj() : base()
+  public override void MapCommon() 
   {
+    base.MapCommon();
     CreateMapCommon<TestProj>();
   }
 }

@@ -2,9 +2,9 @@ using GLOB.Domain.Base;
 using GLOB.Domain.Projectz;
 
 namespace GLOB.API.Mapper;
-public class MapCommon : MapBase
+public partial class MapBase 
 {
-  public MapCommon() : base()
+  public virtual void MapCommon()
   {
     CreateMapCommon<TestInfra>();
     // CreateMapCommon<IBetaEntity>();

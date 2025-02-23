@@ -2,9 +2,9 @@ using GLOB.Domain.Base;
 using GLOB.Domain.Projectz;
 
 namespace GLOB.API.Mapper;
-public class MapAll : MapCommon
+public partial class MapBase 
 {
-  public MapAll() : base()
+  public virtual void MapAll()
   {
 
     CreateMapAll<TestInfra, DtoRead, DtoCreate, DtoSearch>();

@@ -17,8 +17,7 @@ public class Startup
   {
     
     srvc.AddDICommon();
-    srvc.AddAutoMapper(typeof(MapCommonProj));
-    srvc.AddAutoMapper(typeof(MapAllProj));
+    srvc.AddAutoMapper(typeof(MapProj));
     srvc.AddSrvc(_config);
     srvc.AddDefaultExternalServices();
 

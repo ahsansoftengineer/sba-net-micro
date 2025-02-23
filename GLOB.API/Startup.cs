@@ -19,7 +19,7 @@ public class Startup
   {
     // srvc.AddDICommon();
     // srvc.Config_DB_SQL<DBCntxt, IUnitOfWorkz, UnitOfWorkz>(_config);
-    // srvc.AddAutoMapper(typeof(MapAll));
+    // srvc.AddAutoMapper(typeof(MapBase));
     // srvc.AddDefaultExternalServices();
   }
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
