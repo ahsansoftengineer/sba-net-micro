@@ -5,20 +5,6 @@ dotnet add ./GLOB.Domain/ package Microsoft.AspNetCore.Mvc.NewtonsoftJson
 dotnet add ./GLOB.Domain/ package ErrorOr # Recommended and Final Approach
 
 ```
-### EXTERNAL PACKAGES APPS
-```bash
-dotnet add ./GLOB.Apps/ package Microsoft.EntityFrameworkCore -v 8.0.7
-
-# dotnet add ./GLOB.Apps/ package OneOf # Drawback of Scalability used in Apps Layer
-# dotnet add ./GLOB.Apps/ package FluentResults # It has Lack Some Ability of OneOf used in Apps Layer
-# dotnet add ./GLOB.Apps/ package MediatR
-# dotnet add ./GLOB.Apps/ package MediatR.Extension.Microsoft.DependencyInjection
-# dotnet add ./GLOB.Apps/ package Mapster
-# dotnet add ./GLOB.Apps/ package FluentValidation
-# dotnet add ./GLOB.Apps/ package FluentValidation.AspNetCore
-
-```
-
 ### EXTERNAL PACKAGES INFRA
 ```bash
 dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore -v 8.0.7

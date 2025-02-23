@@ -5,20 +5,6 @@
 dotnet add ./GLOB.Domain/ package Microsoft.AspNetCore.Mvc.NewtonsoftJson -v 8.0.7
 dotnet add ./GLOB.Domain/ package ErrorOr
 ```
-
-### EXTERNAL PACKAGES APPS
-```bash
-# Apps
-dotnet add ./GLOB.Apps/ package OneOf
-dotnet add ./GLOB.Apps/ package FluentResults
-dotnet add ./GLOB.Apps/ package MediatR
-dotnet add ./GLOB.Apps/ package MediatR.Extension.Microsoft.DependencyInjection
-dotnet add ./GLOB.Apps/ package Mapster
-dotnet add ./GLOB.Apps/ package FluentValidation
-dotnet add ./GLOB.Apps/ package FluentValidation.AspNetCore
-
-```
-
 ### EXTERNAL PACKAGES API
 ```bash
 

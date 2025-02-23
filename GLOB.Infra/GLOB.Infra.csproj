@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GLOB.Apps\GLOB.Apps.csproj" />
     <ProjectReference Include="..\GLOB.Domain\GLOB.Domain.csproj" />
   </ItemGroup>
 
