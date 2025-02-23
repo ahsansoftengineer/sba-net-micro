@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace SBA.Projectz.Data;
 public static partial class Seeder
 {
-  public static void SeedCity(this AppDBContextProj context)
+  public static void SeedCity(this DBCntxtProj context)
   {
     if (!context.Citys.Any(x => x.Id > 0))
     {

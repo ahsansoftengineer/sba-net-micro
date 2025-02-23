@@ -31,7 +31,7 @@ public static partial class Seeder
   {
     using (var srvcScp = app.ApplicationServices.CreateScope())
     {
-      AppDBContextProj? context = srvcScp.ServiceProvider.GetService<AppDBContextProj>();
+      DBCntxtProj? context = srvcScp.ServiceProvider.GetService<DBCntxtProj>();
       if (context != null)
       {
         Console.WriteLine("--> Hierarchy -> Applying Migrations AppBuilder");

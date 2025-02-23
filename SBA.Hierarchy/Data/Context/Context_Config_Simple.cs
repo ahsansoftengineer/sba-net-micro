@@ -2,7 +2,7 @@ using GLOB.Domain.Hierarchy;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Projectz.Data;
-public partial class AppDBContextProj
+public partial class DBCntxtProj
 {
   private static void ConfigManyToOne(ModelBuilder mb)
   {

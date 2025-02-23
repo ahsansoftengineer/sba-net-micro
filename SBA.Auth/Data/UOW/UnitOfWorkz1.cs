@@ -5,7 +5,7 @@ using GLOB.Infra.UOW;
 namespace SBA.Projectz.Data;
 public partial class UOW : UnitOfWorkz, IUOW
 {
-  public UOW(AppDBContextProj context): base(context) { }
+  public UOW(DBCntxtProj context): base(context) { }
   private IRepoGenericz<TestProj>? _testProj;
 
     

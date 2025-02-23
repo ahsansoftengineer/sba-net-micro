@@ -9,10 +9,10 @@ dotnet run --project SBA.Api
 ```
 ### HIERARCHY
 ```bash
-dotnet ef migrations add Init -s SBA.Hierarchy --context AppDBContextProj
-dotnet ef database update -s SBA.Hierarchy --context AppDBContextProj
-dotnet ef migrations remove -s SBA.Hierarchy --context AppDBContextProj
-dotnet ef database drop --force -s SBA.Hierarchy --context AppDBContextProj
+dotnet ef migrations add Init -s SBA.Hierarchy --context DBCntxtProj
+dotnet ef database update -s SBA.Hierarchy --context DBCntxtProj
+dotnet ef migrations remove -s SBA.Hierarchy --context DBCntxtProj
+dotnet ef database drop --force -s SBA.Hierarchy --context DBCntxtProj
 ```
 
 ### AUTH
