@@ -1,11 +1,6 @@
 using GLOB.API.DI;
-using GLOB.Apps.Common;
-using GLOB.Infra.Common;
-using SBA.Hierarchy.App;
-using SBA.Hierarchy.Context;
-using SBA.Hierarchy.Infra;
 
-namespace SBA.Hierarchy.DI;
+namespace SBA.Hierarchy.Data;
 public static class DI
 {
   public static void AddSrvc(this IServiceCollection srvc, IConfiguration config)

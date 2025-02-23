@@ -1,9 +1,8 @@
 using GLOB.Domain.Entity;
 using GLOB.Infra.Seed;
 using Microsoft.EntityFrameworkCore;
-using SBA.Hierarchy.Context;
 
-namespace SBA.Hierarchy.Seed;
+namespace SBA.Hierarchy.Data;
 public static partial class Seeder
 {
   public static void SeedState(this AppDBContextProj context)

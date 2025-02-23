@@ -1,7 +1,7 @@
 using GLOB.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace SBA.Hierarchy.Context;
+namespace SBA.Hierarchy.Data;
 public partial class AppDBContextProj : DBCntxt
 {
   public AppDBContextProj(DbContextOptions<AppDBContextProj> options) : base(options) { }

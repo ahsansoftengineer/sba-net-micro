@@ -1,7 +1,7 @@
 using GLOB.Apps.Common;
 using GLOB.Domain.Entity;
 
-namespace SBA.Hierarchy.App;
+namespace SBA.Hierarchy.Data;
 public interface IUOW : IUnitOfWorkz
 {
   IRepoGenericz<TestProj> TestProjs { get; }

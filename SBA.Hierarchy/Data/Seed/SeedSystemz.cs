@@ -1,23 +1,22 @@
 using GLOB.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
-using SBA.Hierarchy.Context;
 
-namespace SBA.Hierarchy.Seed;
+namespace SBA.Hierarchy.Data;
 public static partial class Seeder
 {
-  public static void SeedCity(this AppDBContextProj context)
+  public static void SeedSystemz(this AppDBContextProj context)
   {
-    if (!context.Citys.Any(x => x.Id > 0))
+    if (!context.Systemzs.Any(x => x.Id > 0))
     {
-      context.Citys.AddRange(SeedDataCity<City>());
+      context.Systemzs.AddRange(SeedDataSystemz<Systemz>());
       context.SaveChanges();
     }
   }
-  public static void SeedCity(this ModelBuilder builder)
+  public static void SeedSystemz(this ModelBuilder builder)
   {
-    builder.Entity<City>().HasData(SeedDataCity<City>());
+    builder.Entity<Systemz>().HasData(SeedDataSystemz<Systemz>());
   }
-  public static List<T> SeedDataCity<T>() where T : City, new()
+  public static List<T> SeedDataSystemz<T>() where T : Systemz, new()
   {
     string className = typeof(T).Name;
     List<T> list = new List<T>();
@@ -28,7 +27,7 @@ public static partial class Seeder
         Id = i,
         Title = $"{className} {i}",
         Desc = $"{className} {i} Desc",
-        StateId = i
+        OrgId = i
       });
     }
     return list;

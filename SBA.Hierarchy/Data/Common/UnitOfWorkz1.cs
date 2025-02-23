@@ -1,10 +1,8 @@
 using GLOB.Apps.Common;
 using GLOB.Domain.Entity;
 using GLOB.Infra.Common;
-using SBA.Hierarchy.App;
-using SBA.Hierarchy.Context;
 
-namespace SBA.Hierarchy.Infra;
+namespace SBA.Hierarchy.Data;
 public partial class UOW : UnitOfWorkz, IUOW
 {
   public UOW(AppDBContextProj context): base(context) { }

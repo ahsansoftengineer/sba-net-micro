@@ -3,7 +3,7 @@
 // using GLOB.Domain.DTOs;
 // using GLOB.Domain.Entity;
 // using Microsoft.AspNetCore.Mvc;
-// using SBA.Hierarchy.App;
+// using SBA.Hierarchy.Data;
 // using SBA.Hierarchy.Controllers.Base;
 
 // namespace SBA.Hierarchy.Controllers.Test;
