@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using GLOB.Domain.Enums;
 
 namespace GLOB.Apps.Common;
-public interface IRepoGenericz<T> 
+public interface IRepoGenericz<T>
   where T : class, IBaseEntity
 {
   DbSet<T> GetDBSet();
@@ -18,9 +18,7 @@ public interface IRepoGenericz<T>
     Expression<Func<T, bool>>? expression = null,
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
     List<string>? Include = null);
-  Task<BaseDtoPageRes<T>> GetsPaginate<TDto>(PaginateRequestFilter<T, TDto?> req)
-    where TDto: class;
-  Task<BaseDtoPageRes<DtoSelect>> GetsPaginateSelect<TDto>(PaginateRequestFilter<T, TDto>? req)
+  Task<object> GetsPaginate<TDto>(PaginateRequestFilter<T, TDto?> req)
     where TDto : class;
   Task Insert(T entity);
   Task InsertRange(IEnumerable<T> entities);
