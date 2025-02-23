@@ -27,8 +27,7 @@ public static partial class DICommon
   }
   public static void Config_Identity(this IServiceCollection srvc)
   {
-    var builder = srvc
-      .AddIdentityCore<TestApiUser>(q => q.User.RequireUniqueEmail = true);
+    var builder = srvc.AddIdentityCore<TestApiUser>(q => q.User.RequireUniqueEmail = true);
     builder = new IdentityBuilder(
       builder.UserType,
       typeof(IdentityRole), srvc);

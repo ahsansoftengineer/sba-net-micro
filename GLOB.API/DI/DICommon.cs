@@ -23,7 +23,7 @@ public static partial class DICommon
         //config.Filters<Filters>();
         config.CacheProfiles.Add("120SecondsDuration", new CacheProfile
         {
-          Duration = 100
+          Duration = 5
           //,Location = ResponseCacheLocation.Client
           //,NoStore = true
           //,VaryByHeader = "I don't know which string"
