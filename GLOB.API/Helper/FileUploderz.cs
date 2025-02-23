@@ -1,9 +1,6 @@
-using AutoMapper;
-using GLOB.API.Controllers.Base;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Reflection;
-using System.Reflection.Metadata.Ecma335;
 
 namespace GLOB.Common.API;
 [ApiExplorerSettings(IgnoreApi = true)]

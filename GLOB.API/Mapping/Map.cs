@@ -10,7 +10,7 @@ public class MapInitBase : Profile
   }
   protected void CreateMapCommon<Entity>()
   {
-    this.CreateMapAll<Entity, BaseDtoFull, BaseDtoCreate, BaseDtoSearchFull>();
+    this.CreateMapAll<Entity, DtoRead, DtoCreate, BaseDtoSearchFull>();
   }
 
   protected void CreateMapAllWithChild<Entity, Dto, Create, Search, Child>()
