@@ -1,4 +1,5 @@
-using GLOB.API.Config;
+using GLOB.Domain.Base;
+using GLOB.Domain.Projectz;
 
 namespace GLOB.API.Mapper;
 public class MapAll : MapBase

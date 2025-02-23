@@ -1,5 +1,4 @@
 using GLOB.API.Mapper;
-using GLOB.Domain.Hierarchy;
 using GLOB.Domain.Projectz;
 
 namespace SBA.Projectz.Mapper;

@@ -1,7 +1,3 @@
-using GLOB.API.DI;
-using GLOB.Apps.Common;
-using GLOB.Infra.Repo;
-
 namespace GLOB.API;
 // Note: Servicies are required when not in Micro Arch
 // Current IOC Containers of Child Are being Used

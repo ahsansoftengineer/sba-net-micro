@@ -1,6 +1,5 @@
 using AutoMapper;
 using GLOB.Domain.Base;
-using GLOB.Domain.DTOs;
 using GLOB.Domain.Hierarchy;
 using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Data;
