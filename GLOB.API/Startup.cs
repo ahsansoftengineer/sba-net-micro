@@ -1,3 +1,9 @@
+using GLOB.API.DI;
+using GLOB.API.Mapper;
+using GLOB.Apps.Common;
+using GLOB.Infra.Context;
+using GLOB.Infra.UOW;
+
 namespace GLOB.API;
 // Note: Servicies are required when not in Micro Arch
 // Current IOC Containers of Child Are being Used
@@ -13,7 +19,7 @@ public class Startup
   {
     // srvc.AddDICommon();
     // srvc.Config_DB_SQL<DBCntxt, IUnitOfWorkz, UnitOfWorkz>(_config);
-    // srvc.AddAutoMapper(typeof(MapInitFull));
+    // srvc.AddAutoMapper(typeof(MapAll));
     // srvc.AddDefaultExternalServices();
   }
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

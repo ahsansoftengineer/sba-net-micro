@@ -7,7 +7,7 @@ namespace GLOB.API.Controllers.Base;
 public abstract partial class BetaController<TController, TEntity, DtoSearch, DtoResponse, DtoCreate>
   : BaseController<TController, TEntity, DtoResponse>
   where TController : class
-  where TEntity : BaseEntity
+  where TEntity : class, IBaseEntity
   where DtoCreate : class
   where DtoSearch : class
   where DtoResponse : class

@@ -2,7 +2,7 @@ using GLOB.API.Mapper;
 using GLOB.Domain.Hierarchy;
 
 namespace SBA.Projectz.Mapper;
-public class MapAllProj : MapAll
+public class MapAllProj : MapCommonProj
 {
   public MapAllProj() : base()
   {

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GLOB.API.Controllers.Base;
 public abstract partial class BaseController<TController, TEntity, DtoResponse>
   : AlphaController<TController>
-    where TEntity :class, IBaseEntity 
+    where TEntity : class, IBaseEntity 
     where TController : class
     where DtoResponse : class
 {
@@ -17,6 +17,7 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
   public BaseController(ILogger<TController> logger, IMapper mapper, IUnitOfWorkz unitOfWork) : base(logger)
   {
     UnitOfWork = unitOfWork;
+    Mapper = mapper;
   } 
   [HttpDelete("{id:int}")]
   public async Task<IActionResult> Delete(int id)

@@ -1,6 +1,5 @@
 using AutoMapper;
 using GLOB.Domain.Base;
-using GLOB.Domain.Projectz;
 
 namespace GLOB.API.Mapper;
 public class MapBase : Profile
@@ -21,8 +20,9 @@ public class MapBase : Profile
   }
   protected void CreateMapAll<Entity, Dto, Create, Search>()
   {
-    CreateMap<Entity, Dto>();
-    CreateMap<Entity, Search>();
-    CreateMap<Create, Entity>();
+    CreateMap<Entity, Dto>().ReverseMap();
+    CreateMap<Entity, Search>().ReverseMap();
+    CreateMap<Create, Entity>().ReverseMap();
+    CreateMap<Entity, DtoSelect>().ReverseMap();
   }
 }
