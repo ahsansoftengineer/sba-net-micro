@@ -1,8 +1,15 @@
 ### RUNNING PROJECTS
 ```bash
-dotnet run --project ./SBA.Api/
-dotnet watch run --project ./SBA.Api/
+# dotnet run --project ./SBA.Api/
+                                                # http, https
+dotnet watch run --project ./SBA.APIGateway/    # 5800 5801
+dotnet watch run --project ./SBA.Auth/          # 5802 5803
+dotnet watch run --project ./SBA.Jobz/          # 5804 5805
+dotnet watch run --project ./SBA.Hierarchy/     # 5806 5807
+dotnet watch run --project ./SBA.Userz/         # 5808 5809
+dotnet watch run --project ./SBA.Orderz/        # 5810 5011
 ```
+
 
 #### USER SECRETS
 ```bash 

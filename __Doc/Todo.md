@@ -1,11 +1,3 @@
-### Task 17-02-2025
-- Generic Listing Common
-- Generic Listing to Other Entity
-- Analyze Folder Structure and Naming Conventions
-
-### Task 18-02-2025
-- Hierarchy CRUD Functionality Testing
-
 ### Task 18-02-2025
 - Identity User
 
