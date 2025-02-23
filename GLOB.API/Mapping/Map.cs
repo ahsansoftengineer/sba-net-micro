@@ -1,10 +1,10 @@
 using AutoMapper;
 using GLOB.Domain.Base;
 
-namespace GLOB.API.Config;
-public class MapInitBase : Profile
+namespace GLOB.API.Mapper;
+public class MapBase : Profile
 {
-  public MapInitBase()
+  public MapBase()
   {
     //CreateMap<Org, OrgDto>();
   }

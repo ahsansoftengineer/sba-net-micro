@@ -1,9 +1,9 @@
 using GLOB.API.Config;
 
-namespace GLOB.API;
-public class MapInitFull : MapInitBase
+namespace GLOB.API.Mapper;
+public class MapAll : MapBase
 {
-  public MapInitFull() : base()
+  public MapAll() : base()
   {
 
     // CreateMapAll<TestInfra, DtoRead, DtoCreate, DtoSearch>();

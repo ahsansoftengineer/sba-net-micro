@@ -2,7 +2,7 @@
 // using GLOB.Infra.Repo;
 // using Microsoft.EntityFrameworkCore;
 
-// namespace SBA.Hierarchy.Data;
+// namespace SBA.Proj.Data;
 // public static class DI
 // {
 //   public static IServiceCollection AddInfra(

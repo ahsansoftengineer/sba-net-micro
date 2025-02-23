@@ -19,6 +19,7 @@ public partial class DBCntxt
       }
     }
   }
+  
   // Enum Setups
   
 //   private static void ConfigEnums(ModelBuilder mb)

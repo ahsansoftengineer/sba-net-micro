@@ -1,9 +1,9 @@
 using GLOB.Domain.Hierarchy;
 
-namespace GLOB.API.Config;
-public class MapInitCommon : MapInitBase
+namespace GLOB.API.Mapper;
+public class MapCommon : MapBase
 {
-  public MapInitCommon() : base()
+  public MapCommon() : base()
   {
     CreateMapCommon<TestInfra>();
   }

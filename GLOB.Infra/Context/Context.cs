@@ -1,3 +1,4 @@
+using GLOB.Domain.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Context;
@@ -16,24 +17,28 @@ public partial class DBCntxt : DbContext
 
     base.OnModelCreating(mb);
   }
+  
+  // // All below code Commented for future reference
+  // public override int SaveChanges()
+  // {
+  //   var entries = ChangeTracker.Entries<BetaEntity>();
+  //   foreach (var entry in entries)
+  //   {
+  //     if (entry.State == EntityState.Added)
+  //     {
+  //       entry.Entity.CreatedAt = DateTimeOffset.UtcNow;
+  //     }
+  //     if (entry.State == EntityState.Modified)
+  //     {
+  //       entry.Entity.UpdatedAt = DateTimeOffset.UtcNow;
+  //     }
+  //   }
+  //   return base.SaveChanges();
+  // }
 
-
-
+  // protected override void OnConfiguring(DbContextOptionsBuilder ob)
+  // {
+  //   ob.LogTo(Console.WriteLine);
+  //   base.OnConfiguring(ob);
+  // }
 }
-
-// All below code Commented for future reference
-// protected override void OnConfiguring(DbContextOptionsBuilder ob) //
-// {
-//  ob.LogTo(Console.WriteLine);
-// }
-// protected override void OnConfiguring(DbContextOptionsBuilder ob)
-// {
-//  base.OnConfiguring(ob);
-// }
-// protected override void OnModelCreating(ModelBuilder mb)
-// {
-//  mb.ApplyConfigurationsFromAssembly(
-//    typeof(DonationDbContext).Assembly
-//  );
-//  base.OnModelCreating(mb);
-// }    
