@@ -29,7 +29,7 @@ public partial class RepoGenericz<T>
 
   // Filter, OrderBy, Include, Pagination,
   public async Task<BaseDtoPageRes<T>> GetsPaginate<TDto>(PaginateRequestFilter<T, TDto>? req)
-    where TDto: class
+    where TDto : class
   {
     IQueryable<T> query = _db;
 
@@ -37,7 +37,21 @@ public partial class RepoGenericz<T>
     query = query.ToExtOrderBy(req.Sort);
     query = query.ToExtInclues(req?.Include);
     return await query.AsNoTracking()
-            .ToExtPaginateAsync(req?.PageNo ?? 1, req?.PageSize ?? 10);
+      .ToExtPaginateAsync(req?.PageNo ?? 1, req?.PageSize ?? 10);
+
+  }
+    public async Task<BaseDtoPageRes<DtoSelect>> GetsPaginateSelect<TDto>(PaginateRequestFilter<T, TDto>? req)
+    where TDto : class
+  {
+    IQueryable<T> query = _db;
+
+    query = query.ToExtFilter(req.Filter);
+    query = query.ToExtOrderBy(req.Sort);
+    
+    IQueryable<DtoSelect> qury = query.ToExtMapping();
+    return await qury.AsNoTracking()
+      .ToExtPaginateAsync(req?.PageNo ?? 1, req?.PageSize ?? 10);
+
   }
 }
 
