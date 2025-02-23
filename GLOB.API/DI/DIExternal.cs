@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using GLOB.Infra.UOW;
-using GLOB.Domain.Test;
+using GLOB.Domain.Projectz;
 
 namespace GLOB.API.DI;
 public static partial class DICommon

@@ -3,7 +3,7 @@ using SBA.Projectz.Data;
 using SBA.Projectz.DI;
 using SBA.Projectz.Mapper;
 
-namespace SBA.Hierarchy;
+namespace SBA.Auth;
 public class Startup
 {
   private IConfiguration _config { get; }

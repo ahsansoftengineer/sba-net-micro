@@ -1,7 +1,7 @@
 using GLOB.API.DI;
 using SBA.Projectz.Data;
 
-namespace SBA.Hierarchy.DI;
+namespace SBA.Projectz.DI;
 public static class DI
 {
   public static void AddSrvc(this IServiceCollection srvc, IConfiguration config)

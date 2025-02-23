@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using GLOB.Domain.Base;
 
-namespace GLOB.Domain.Hierarchy;
+namespace GLOB.Domain.Projectz;
 public class TestChild : BaseEntity
 {
   [ForeignKey(nameof(TestParent))]

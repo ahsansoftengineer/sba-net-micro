@@ -1,5 +1,4 @@
-using GLOB.Domain.Base;
-using GLOB.Domain.Hierarchy;
+using GLOB.Domain.Projectz;
 
 namespace GLOB.Apps.Common;
 public interface IUnitOfWorkz : IDisposable

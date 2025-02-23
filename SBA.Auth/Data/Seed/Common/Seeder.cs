@@ -7,23 +7,7 @@ public static partial class Seeder
   public static void Seed(this ModelBuilder mb)
   {
     Console.WriteLine("--> Hierarchy -> Applying Migrations ModelBuilder");
-    // mb.SeedTestInfra();
     mb.SeedTestProj();
-    // .-*
-    mb.SeedOrg();
-    mb.SeedBG();
-    mb.SeedState();
-    mb.SeedBank();
-    mb.SeedBrand();
-    mb.SeedIndustry();
-    mb.SeedProfession();
-
-    // *-.
-    mb.SeedSystemz();
-    mb.SeedLE();
-    mb.SeedOU();
-    mb.SeedSU();
-    mb.SeedCity();
 
   }
   // Prod (When Running Migration throw Automation)
@@ -38,21 +22,6 @@ public static partial class Seeder
         context.Database.Migrate();
         {
           context.SeedTestProj();
-          // .-*
-          context.SeedOrg();
-          context.SeedBG();
-          context.SeedState();
-          context.SeedBank();
-          context.SeedBrand();
-          context.SeedIndustry();
-          context.SeedProfession();
-
-          // *-.
-          context.SeedSystemz();
-          context.SeedLE();
-          context.SeedOU();
-          context.SeedSU(); 
-          context.SeedCity(); 
         }
       }
     }

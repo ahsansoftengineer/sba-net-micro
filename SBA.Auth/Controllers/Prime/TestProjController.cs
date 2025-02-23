@@ -1,20 +1,20 @@
-// using AutoMapper;
-// using GLOB.API.Controllers.Base;
-// using GLOB.Domain.Hierarchy;
-// using Microsoft.AspNetCore.Mvc;
-// using SBA.Projectz.Data;
+using AutoMapper;
+using GLOB.API.Controllers.Base;
+using GLOB.Domain.Projectz;
+using Microsoft.AspNetCore.Mvc;
+using SBA.Projectz.Data;
 
-// namespace SBA.Hierarchy.Controllers.Test;
-// [Route("api/Hierarchy/[controller]")]
-// [ApiController]
-// public class TestProjController : CommonController<TestProjController, TestProj>
-// {
-//   public TestProjController(
-//     ILogger<TestProjController> logger,
-//     IMapper mapper,
-//     IUOW uow) : base(logger, mapper, uow)
-//   {
-//     Repo = uow.TestProjs;
+namespace SBA.Auth.Controllers;
+[Route("api/Auth/[controller]")]
+[ApiController]
+public class TestProjController : CommonController<TestProjController, TestProj>
+{
+  public TestProjController(
+    ILogger<TestProjController> logger,
+    IMapper mapper,
+    IUOW uow) : base(logger, mapper, uow)
+  {
+    Repo = uow.TestProjs;
 
-//   }
-// }
+  }
+}
