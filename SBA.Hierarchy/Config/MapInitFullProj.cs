@@ -1,6 +1,6 @@
 using GLOB.API;
 using GLOB.Domain.DTOs;
-using GLOB.Domain.Entity;
+using GLOB.Domain.Hierarchy;
 
 namespace SBA.Hierarchy.Config;
 public class MapInitFullProj : MapInitFull

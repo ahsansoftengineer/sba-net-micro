@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using GLOB.Domain.Base;
-namespace GLOB.Domain.Entity;
+namespace GLOB.Domain.Hierarchy;
 public abstract class UserNormal : BaseUser
 {
   public bool AgreeToTermsCondition { get; set; } = false;

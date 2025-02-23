@@ -2,7 +2,7 @@
 // using GLOB.Common.API;
 // using GLOB.Domain.Base;
 // using GLOB.Domain.DTOs;
-// using GLOB.Domain.Entity;
+// using GLOB.Domain.Hierarchy;
 // using Microsoft.AspNetCore.Mvc;
 // using SBA.Hierarchy.Data;
 // using SBA.Hierarchy.Controllers.Base;

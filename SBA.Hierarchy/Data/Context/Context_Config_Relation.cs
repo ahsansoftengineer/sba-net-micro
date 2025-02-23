@@ -1,4 +1,4 @@
-using GLOB.Domain.Entity;
+using GLOB.Domain.Hierarchy;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Hierarchy.Data;

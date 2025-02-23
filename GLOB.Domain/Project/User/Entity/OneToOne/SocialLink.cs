@@ -1,6 +1,6 @@
 using GLOB.Domain.Base;
 
-namespace GLOB.Domain.Entity;
+namespace GLOB.Domain.Hierarchy;
 public class SocialLink : BetaEntity
 {
   public int? UserCreatorID { get; set; }

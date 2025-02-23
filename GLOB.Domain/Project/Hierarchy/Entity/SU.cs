@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using GLOB.Domain.Base;
 
-namespace GLOB.Domain.Entity;
+namespace GLOB.Domain.Hierarchy;
 public class SU : BaseEntity
 {
   [ForeignKey(nameof(OU))]

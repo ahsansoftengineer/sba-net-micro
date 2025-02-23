@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace GLOB.Domain.Entity;
+namespace GLOB.Domain.Hierarchy;
 public class TestApiUser : IdentityUser
 {
   public string? FirstName { get; set; }

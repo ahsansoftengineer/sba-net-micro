@@ -1,5 +1,5 @@
 using GLOB.Domain.Base;
-using GLOB.Domain.Entity;
+using GLOB.Domain.Hierarchy;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
 

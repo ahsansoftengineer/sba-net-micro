@@ -1,5 +1,5 @@
 using GLOB.Apps.Common;
-using GLOB.Domain.Entity;
+using GLOB.Domain.Hierarchy;
 
 namespace SBA.Hierarchy.Data;
 public interface IUOW : IUnitOfWorkz

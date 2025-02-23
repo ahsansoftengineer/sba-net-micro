@@ -1,7 +1,7 @@
 using AutoMapper;
 using GLOB.API.Controllers.Base;
 using GLOB.Apps.Common;
-using GLOB.Domain.Entity;
+using GLOB.Domain.Hierarchy;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Test;

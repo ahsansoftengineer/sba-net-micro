@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using GLOB.Domain.Base;
 using GLOB.Domain.Enum;
 
-namespace GLOB.Domain.Entity;
+namespace GLOB.Domain.Hierarchy;
 public class Transactionz : BetaEntity
 {
   public int TransactionSimpaisaID { get; set; }

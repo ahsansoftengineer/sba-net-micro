@@ -1,5 +1,5 @@
 using GLOB.Apps.Common;
-using GLOB.Domain.Entity;
+using GLOB.Domain.Hierarchy;
 using GLOB.Infra.Repo;
 
 namespace GLOB.Infra.UOW;

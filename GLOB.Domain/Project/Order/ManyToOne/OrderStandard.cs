@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using GLOB.Domain.Enum;
 
-namespace GLOB.Domain.Entity;
+namespace GLOB.Domain.Hierarchy;
 public class OrderStandard : BaseOrder
 {
   public int? UserStandardID { get; set; }

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using GLOB.Domain.Entity;
+using GLOB.Domain.Hierarchy;
 using GLOB.Domain.Base;
 
 namespace GLOB.Infra.Helper;

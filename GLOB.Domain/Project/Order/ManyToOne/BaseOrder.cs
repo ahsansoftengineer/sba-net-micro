@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using GLOB.Domain.Base;
 using GLOB.Domain.Enum;
-namespace GLOB.Domain.Entity;
+namespace GLOB.Domain.Hierarchy;
 public abstract class BaseOrder : BetaEntity
 {
   public required string Message { get; set; } // Business Iquriy, (Standard / Custom) Order Message

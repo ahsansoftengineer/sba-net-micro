@@ -1,4 +1,4 @@
-namespace GLOB.Domain.Entity;
+namespace GLOB.Domain.Hierarchy;
 public class UserAgent : UserExtend
 {
   public required string AgentCode { get; set; }

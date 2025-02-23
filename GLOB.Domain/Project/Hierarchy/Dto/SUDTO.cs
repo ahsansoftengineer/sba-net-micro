@@ -1,6 +1,6 @@
 using GLOB.Domain.Base;
 
-namespace GLOB.Domain.DTOs;
+namespace GLOB.Domain.Hierarchy;
 public class SUDtoCreate : DtoCreate
 {
   public int OUId { get; set; }

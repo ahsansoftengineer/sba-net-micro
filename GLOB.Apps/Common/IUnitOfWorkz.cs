@@ -1,5 +1,5 @@
 using GLOB.Domain.Base;
-using GLOB.Domain.Entity;
+using GLOB.Domain.Hierarchy;
 
 namespace GLOB.Apps.Common;
 public interface IUnitOfWorkz : IDisposable

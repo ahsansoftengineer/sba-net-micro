@@ -1,6 +1,6 @@
 using GLOB.API.Config;
 using GLOB.Domain.Common;
-using GLOB.Domain.Entity;
+using GLOB.Domain.Hierarchy;
 
 namespace SBA.Hierarchy.Config;
 public class MapInitCommonProj : MapInitCommon

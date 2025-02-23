@@ -1,4 +1,4 @@
-using GLOB.Domain.Entity;
+using GLOB.Domain.Hierarchy;
 
 namespace GLOB.API.Config;
 public class MapInitCommon : MapInitBase

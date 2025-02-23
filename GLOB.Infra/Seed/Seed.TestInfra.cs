@@ -1,5 +1,5 @@
 using GLOB.Domain.Base;
-using GLOB.Domain.Entity;
+using GLOB.Domain.Hierarchy;
 using GLOB.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 
