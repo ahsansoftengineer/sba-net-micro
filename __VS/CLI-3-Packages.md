@@ -44,8 +44,6 @@ dotnet add ./SBA.____/ package Marvin.Cache.Headers
 dotnet add ./SBA.____/ package Microsoft.AspNetCore.Mvc.Versioning -v 5.1.0
 dotnet add ./SBA.____/ package Microsoft.AspNetCore.StaticFiles -v 2.3.0
 dotnet add ./SBA.____/ package Swashbuckle.AspNetCore -v 6.6.2
-dotnet add ./SBA.____/ package X.PagedList -v 10.5.7
-dotnet add ./SBA.____/ package X.PagedList.Mvc.Core -v 10.5.7
 ```
 
 ### LOCAL PACKAGES API

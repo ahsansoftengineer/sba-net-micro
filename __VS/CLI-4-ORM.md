@@ -14,10 +14,12 @@ dotnet ef database update -s SBA.Hierarchy --context DBCntxtProj
 dotnet ef migrations remove -s SBA.Hierarchy --context DBCntxtProj
 dotnet ef database drop --force -s SBA.Hierarchy --context DBCntxtProj
 ```
-
 ### AUTH
 ```bash
-
+dotnet ef migrations add Init -s SBA.Auth --context DBCntxtProj
+dotnet ef database update -s SBA.Auth --context DBCntxtProj
+dotnet ef migrations remove -s SBA.Auth --context DBCntxtProj
+dotnet ef database drop --force -s SBA.Auth --context DBCntxtProj
 ```
 
 ### USERSZ

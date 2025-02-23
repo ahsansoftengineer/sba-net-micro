@@ -5,12 +5,9 @@ dotnet add ./GLOB.Domain/ package Microsoft.AspNetCore.Mvc.NewtonsoftJson
 dotnet add ./GLOB.Domain/ package ErrorOr # Recommended and Final Approach
 
 ```
-
 ### EXTERNAL PACKAGES APPS
 ```bash
 dotnet add ./GLOB.Apps/ package Microsoft.EntityFrameworkCore -v 8.0.7
-dotnet add ./GLOB.Apps/ package X.PagedList.Mvc.Core 
-
 
 # dotnet add ./GLOB.Apps/ package OneOf # Drawback of Scalability used in Apps Layer
 # dotnet add ./GLOB.Apps/ package FluentResults # It has Lack Some Ability of OneOf used in Apps Layer
@@ -39,8 +36,6 @@ dotnet add ./GLOB.Infra/ package Microsoft.AspNetCore.Mvc.NewtonsoftJson
 
 dotnet add ./GLOB.Infra/ package DynamicExpressions.NET -v 1.1.0
 dotnet add ./GLOB.Infra/ package LinqKit.Core
-dotnet add ./GLOB.Infra/ package X.PagedList -v 10.5.7
-dotnet add ./GLOB.Infra/ package X.PagedList.Mvc.Core -v 10.5.7
 
 ```
 ### EXTERNAL PACKAGES API
