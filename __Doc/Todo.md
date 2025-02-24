@@ -1,5 +1,9 @@
 ### Task 18-02-2025
-- Identity User
+- Identity User (CURD)
+- Roles (CURD)
+- Permission (CURD)
+- Forgot Password
+- Assign Roles to User
 
 ### Task 19-02-2025
 - User Generic Normal 
