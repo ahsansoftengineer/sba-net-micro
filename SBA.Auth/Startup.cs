@@ -1,7 +1,6 @@
 using GLOB.API.DI;
 using SBA.Projectz.Data;
 using SBA.Projectz.DI;
-using SBA.Projectz.Mapper;
 
 namespace SBA.Auth;
 public class Startup
@@ -15,9 +14,7 @@ public class Startup
 
   public void ConfigureServices(IServiceCollection srvc)
   {
-    
     srvc.AddDICommon();
-    srvc.AddAutoMapper(typeof(MapProj));
     srvc.AddSrvc(_config);
     srvc.AddDefaultExternalServices();
 

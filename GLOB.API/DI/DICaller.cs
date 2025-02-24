@@ -1,3 +1,4 @@
+using GLOB.API.Mapper;
 using GLOB.API.Middlewarez;
 
 namespace GLOB.API.DI;
@@ -9,7 +10,7 @@ public static partial class DICommon
     // srvc.AddAuthentication();
     // srvc.AddAuthorization();
     srvc.Config_Cors();
-    // srvc.AddAutoMapper(typeof(MapInitFull));
+    srvc.AddAutoMapper(typeof(MapBase));
     srvc.Config_Controllerz();
     srvc.Config_Swagger();
     // srvc.Config_Versioning();
