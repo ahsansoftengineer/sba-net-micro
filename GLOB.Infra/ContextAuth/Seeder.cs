@@ -13,8 +13,8 @@ public static partial class SeederIdentity
   public static void SeedIdentity(this ModelBuilder mb)
   {
     Console.WriteLine("--> Infra Identity -> Applying Migrations ModelBuilder");
-    mb.Entity<UserInfra>().HasData();
     mb.SeedTestInfra();
+    // mb.Entity<UserInfra>().HasData();
   }
   public static async Task SeedIdentity(this IApplicationBuilder app)
   {

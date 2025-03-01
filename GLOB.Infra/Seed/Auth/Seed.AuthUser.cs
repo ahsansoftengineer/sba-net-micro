@@ -16,7 +16,7 @@ public static partial class Seederz
     }
     
   }
-  private static List<T> SeedDataUserInfra<T>() where T : IdentityUser, new()
+  public static List<T> SeedDataUserInfra<T>() where T : IdentityUser, new()
   {
     string className = typeof(T).Name;
     List<T> list = new List<T>();
