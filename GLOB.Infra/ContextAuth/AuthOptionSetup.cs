@@ -28,3 +28,28 @@ public class AuthOptionSetup : IConfigureOptions<IdentityOptions>
         options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(_identitySettings.Lockout.LockoutMinutes);
     }
 }
+
+//  "JwtSettings": {
+//     "SecretKey": "YourSuperStrongSecretKey_ReplaceThis", 
+//     "Issuer": "https://ahsan.com",
+//     "Audience": "https://ahsan.com",
+//     "ExpireMinutes": 60
+//   },
+
+//   "Identity": {
+//     "RequireUniqueEmail": true,
+//     "Password": {
+//       "RequireDigit": false,
+//       "RequiredLength": 5,
+//       "RequireNonAlphanumeric": false,
+//       "RequireUppercase": false,
+//       "RequireLowercase": false
+//     },
+//     "Lockout": {
+//       "MaxFailAttempts": 5,
+//       "LockoutMinutes": 10
+//     },
+//     "User": {
+//       "AllowedUserNameCharacters": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+"
+//     }
+//   },

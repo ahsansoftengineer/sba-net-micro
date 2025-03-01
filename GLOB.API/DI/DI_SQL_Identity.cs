@@ -1,11 +1,9 @@
-using GLOB.Infra.Context;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using GLOB.Infra.UOW;
 using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Microsoft.Extensions.Options;
 using GLOB.Infra.Context.Auth;
 
@@ -26,8 +24,18 @@ public static partial class DICommon
     // Configure Identity with roles
     srvc.AddIdentity<AuthUser, AuthRole>()
         .AddEntityFrameworkStores<TContext>()
-        .AddDefaultTokenProviders()
-        .ConfigureOptions<IdentityOptionsSetup>();
+        .AddDefaultTokenProviders();
+    
+    srvc.AddSingleton<IConfigureOptions<IdentityOptions>, AuthOptionSetup>();
+    
+    // srvc.Configure<IdentityOptions>(options =>
+    // {
+    //     // Customize Identity options here
+    //     options.Password.RequireDigit = true;
+    //     options.Password.RequiredLength = 5;
+    //     options.Password.RequireNonAlphanumeric = false;
+    // });
+
 
     // Configure Authentication
     
@@ -43,11 +51,11 @@ public static partial class DICommon
         {
           ValidateIssuerSigningKey = true,
           IssuerSigningKey = jwtSettings.GetSymmetricSecurityKey(),
-          ValidateIssuer = true,
           ValidIssuer = jwtSettings.Issuer,
-          ValidateAudience = true,
           ValidAudience = jwtSettings.Audience,
-          ValidateLifetime = true,
+          ValidateIssuer = false, // Prod
+          ValidateAudience = false, // Prod
+          ValidateLifetime = false, // Prod
           ClockSkew = TimeSpan.Zero
         };
       });
@@ -80,31 +88,8 @@ public static partial class DICommon
     srvc.AddScoped<TIUOW, TUOW>();
   }
 }
-//   "ConnectionStrings": {
-//     "SqlConnection": "Server=YOUR_SERVER;Database=YOUR_DATABASE;User Id=YOUR_USER;Password=YOUR_PASSWORD;Trusted_Connection=False;MultipleActiveResultSets=true;"
-//   },
 
-//  "JwtSettings": {
-//     "SecretKey": "YourSuperStrongSecretKey_ReplaceThis", 
-//     "Issuer": "YourApp",
-//     "Audience": "YourClientApp",
-//     "ExpireMinutes": 60
-//   },
+// "ConnectionStrings": {
+//   "SqlConnection": "Server=127.0.0.1,1430;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+// },
 
-//   "Identity": {
-//     "RequireUniqueEmail": true,
-//     "Password": {
-//       "RequireDigit": true,
-//       "RequiredLength": 8,
-//       "RequireNonAlphanumeric": true,
-//       "RequireUppercase": true,
-//       "RequireLowercase": true
-//     },
-//     "Lockout": {
-//       "MaxFailedAccessAttempts": 5,
-//       "DefaultLockoutTimeSpanInMinutes": 10
-//     },
-//     "User": {
-//       "AllowedUserNameCharacters": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+"
-//     }
-//   },

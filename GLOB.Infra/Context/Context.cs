@@ -19,7 +19,7 @@ public partial class DBCntxt : DbContext
     base.OnModelCreating(mb);
   }
   
-  // // All below code Commented for future reference
+  // // SaveChanges Handle in UnitOfWork
   // public override int SaveChanges()
   // {
   //   var entries = ChangeTracker.Entries<BetaEntity>();

@@ -10,7 +10,7 @@ public static class DI
   public static void AddSrvc(this IServiceCollection srvc, IConfiguration config)
   {
     srvc.Config_DB_SQL<DBCntxt, IUnitOfWorkz, UOW>(config);
-    srvc.Config_DB_SQL<DBCntxtProj, IUOW, UOW>(config);
+    srvc.Config_DB_Identity<DBCntxtProj, IUOW, UOW>(config);
     srvc.AddAutoMapper(typeof(MapProj));
   }
 }

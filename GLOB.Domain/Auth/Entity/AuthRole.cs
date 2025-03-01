@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+using GLOB.Domain.Base;
 using GLOB.Domain.Enums;
 using GLOB.Domain.Enumz;
 using Microsoft.AspNetCore.Identity;
@@ -9,6 +11,8 @@ public class AuthRole : IdentityRole
     public Status? Status { get; set; }
     public DateTimeOffset? CreatedAt { get; set; }
     public DateTimeOffset? UpdatedAt { get; set; }
+    [NotMapped]
+    public string Title { get; set; /*{ Name = value; }*/ }
 
     public AuthRole(string name, Permission permissions)
     {

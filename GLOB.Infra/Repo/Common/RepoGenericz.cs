@@ -1,6 +1,5 @@
 using GLOB.Domain.Base;
 using GLOB.Domain.Enums;
-using GLOB.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -8,9 +7,9 @@ namespace GLOB.Infra.Repo;
 public partial class RepoGenericz<T> : IRepoGenericz<T> 
   where T : class, IBaseEntity
 {
-  private readonly DBCntxt _context;
+  private readonly DbContext _context;
   private readonly DbSet<T> _db;
-  public RepoGenericz(DBCntxt context)
+  public RepoGenericz(DbContext context)
   {
     _context = context;
     _db = context.Set<T>();

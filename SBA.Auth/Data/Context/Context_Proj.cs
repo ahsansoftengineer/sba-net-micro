@@ -1,8 +1,8 @@
-using GLOB.Infra.Context;
+using GLOB.Infra.Context.Auth;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Projectz.Data;
-public partial class DBCntxtProj : DBCntxt
+public partial class DBCntxtProj : DBCntxtIdentity
 {
   public DBCntxtProj(DbContextOptions<DBCntxtProj> options) : base(options) { }
   protected override void OnModelCreating(ModelBuilder mb)
