@@ -1,7 +1,7 @@
 using GLOB.Domain.Enumz;
 
 namespace GLOB.Domain.Auth;
-public class AuthPermission
+public class UserPermission
 {
     public int Id { get; set; }
     public string RoleId { get; set; }

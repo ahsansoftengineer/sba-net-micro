@@ -5,18 +5,18 @@ using Microsoft.EntityFrameworkCore;
 namespace GLOB.Infra.Seed;
 public static partial class Seederz
 {
-  public static async Task SeedUserInfra(this UserManager<IdentityUser> userManager)
+  public static async Task SeedUserPermission(this UserManager<IdentityUser> mngr)
   {
-    if(!await userManager.Users.AnyAsync())
+    if(!await mngr.Users.AnyAsync())
     {
-      foreach(var z in SeedDataUserInfra<UserInfra>())
+      foreach(var item in SeedDataUserPermission<UserInfra>())
       {
-        await userManager.CreateAsync(z);
+        await mngr.CreateAsync(item);
       }
     }
     
   }
-  public static List<T> SeedDataUserInfra<T>() where T : IdentityUser, new()
+  public static List<T> SeedDataUserPermission<T>() where T : IdentityUser, new()
   {
     string className = typeof(T).Name;
     List<T> list = new List<T>();

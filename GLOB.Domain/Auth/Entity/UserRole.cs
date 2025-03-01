@@ -5,7 +5,7 @@ using GLOB.Domain.Enumz;
 using Microsoft.AspNetCore.Identity;
 
 namespace GLOB.Domain.Auth;
-public class AuthRole : IdentityRole
+public class UserRole : IdentityRole
 {
     public Permission Permissions { get; set; }
     public Status? Status { get; set; }
@@ -14,7 +14,7 @@ public class AuthRole : IdentityRole
     [NotMapped]
     public string Title { get; set; /*{ Name = value; }*/ }
 
-    public AuthRole(string name, Permission permissions)
+    public UserRole(string name, Permission permissions)
     {
         Name = name;
         Permissions = permissions;
