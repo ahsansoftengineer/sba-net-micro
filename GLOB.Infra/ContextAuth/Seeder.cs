@@ -1,4 +1,4 @@
-using GLOB.Infra.Auth;
+using GLOB.Infra.Context.Auth;
 using GLOB.Infra.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;

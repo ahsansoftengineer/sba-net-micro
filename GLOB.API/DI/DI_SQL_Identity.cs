@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Options;
-using GLOB.Infra.Auth;
+using GLOB.Infra.Context.Auth;
 
 namespace GLOB.API.DI;
 public static partial class DICommon
@@ -26,8 +26,8 @@ public static partial class DICommon
     // Configure Identity with roles
     srvc.AddIdentity<AuthUser, AuthRole>()
         .AddEntityFrameworkStores<TContext>()
-        .AddDefaultTokenProviders();
-        // .ConfigureOptions<IdentityOptionsSetup>();
+        .AddDefaultTokenProviders()
+        .ConfigureOptions<IdentityOptionsSetup>();
 
     // Configure Authentication
     

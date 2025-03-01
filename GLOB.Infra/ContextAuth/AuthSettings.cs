@@ -1,7 +1,7 @@
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace GLOB.Infra.Auth;
+namespace GLOB.Infra.Context.Auth;
 public class JwtSettings
 {
   public string SecretKey { get; set; }
@@ -33,6 +33,6 @@ public class PasswordSettings
 
 public class LockoutSettings
 {
-  public int MaxFailedAccessAttempts { get; set; }
-  public int DefaultLockoutTimeSpanInMinutes { get; set; }
+  public int MaxFailAttempts { get; set; }
+  public int LockoutMinutes { get; set; }
 }

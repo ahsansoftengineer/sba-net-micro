@@ -1,13 +1,12 @@
-using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 
-namespace GLOB.Infra.Auth;
-public class IdentityOptionsSetup : IConfigureOptions<IdentityOptions>
+namespace GLOB.Infra.Context.Auth;
+public class AuthOptionSetup : IConfigureOptions<IdentityOptions>
 {
     private readonly IdentitySettings _identitySettings;
 
-    public IdentityOptionsSetup(IOptions<IdentitySettings> identitySettings)
+    public AuthOptionSetup(IOptions<IdentitySettings> identitySettings)
     {
         _identitySettings = identitySettings.Value;
     }
@@ -25,8 +24,7 @@ public class IdentityOptionsSetup : IConfigureOptions<IdentityOptions>
         options.Password.RequireLowercase = _identitySettings.Password.RequireLowercase;
 
         // Lockout settings
-        options.Lockout.MaxFailedAccessAttempts = _identitySettings.Lockout.MaxFailedAccessAttempts;
-        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(
-            _identitySettings.Lockout.DefaultLockoutTimeSpanInMinutes);
+        options.Lockout.MaxFailedAccessAttempts = _identitySettings.Lockout.MaxFailAttempts;
+        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(_identitySettings.Lockout.LockoutMinutes);
     }
 }
