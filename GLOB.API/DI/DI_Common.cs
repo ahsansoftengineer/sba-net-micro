@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace GLOB.API.DI;
 public static partial class DICommon
@@ -7,12 +8,10 @@ public static partial class DICommon
 
   public static void Config_DevEnv(this IApplicationBuilder app, IWebHostEnvironment env)
   {
-
     if (env.IsDevelopment())
     {
       app.UseDeveloperExceptionPage();
       Config_Swagger(app, env);
-     
     }
   }
   public static void Config_Controller(this IApplicationBuilder app)
@@ -50,6 +49,17 @@ public static partial class DICommon
         opt.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
       });
 
+  }
+    public static void Config_Swagger(this IApplicationBuilder app, IWebHostEnvironment env)
+  {
+
+      app.UseSwagger();
+      app.UseSwaggerUI(c =>
+      {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Trevor v1");
+        c.DocExpansion(DocExpansion.None);
+        //c.InjectJavascript("/js/swagger-custom.js"); //
+      });
   }
   public static void Config_Swagger(this IServiceCollection srvc, string title = "Micro")
   {

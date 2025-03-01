@@ -12,6 +12,9 @@ dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.Design -v 8.0.7
 dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.DynamicLinq -v 8.0.7
 dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.SqlServer -v 8.0.7
 dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.Tools -v 8.0.7
+dotnet add ./GLOB.Infra/ package Microsoft.AspNetCore.Authentication.JwtBearer -v 8.0.7
+
+
 
 dotnet add ./GLOB.Infra/ package Microsoft.AspNetCore.Authentication.JwtBearer -v 8.0.7
 dotnet add ./GLOB.Infra/ package Microsoft.AspNetCore.Authentication.OpenIdConnect -v 8.0.7

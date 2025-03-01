@@ -7,17 +7,7 @@ namespace GLOB.API.DI;
 public static partial class DICommon
 {
 
-  public static void Config_Swagger(this IApplicationBuilder app, IWebHostEnvironment env)
-  {
 
-      app.UseSwagger();
-      app.UseSwaggerUI(c =>
-      {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Trevor v1");
-        c.DocExpansion(DocExpansion.None);
-        //c.InjectJavascript("/js/swagger-custom.js"); //
-      });
-  }
   public static void Config_ExceptionHandler(this IApplicationBuilder app)
   {
     app.UseExceptionHandler(error =>
