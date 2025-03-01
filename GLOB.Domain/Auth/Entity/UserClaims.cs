@@ -1,8 +1,10 @@
+using System.Security.Claims;
 using GLOB.Domain.Enumz;
 
 namespace GLOB.Domain.Auth;
 public class UserPermission
 {
+
     public int Id { get; set; }
     public string RoleId { get; set; }
     public string Entity { get; set; } // Example: "Employee", "Payroll"

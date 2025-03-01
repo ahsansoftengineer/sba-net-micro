@@ -10,9 +10,9 @@ public static partial class Seederz
   {
     if(!await mngr.Users.AnyAsync())
     {
-      foreach(var z in SeedDataUserInfra<UserInfra>())
+      foreach(var item in SeedDataUserInfra<UserInfra>())
       {
-        await mngr.CreateAsync(z);
+        await mngr.CreateAsync(item);
       }
     }
   }
