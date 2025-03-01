@@ -4,7 +4,7 @@ using GLOB.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 
 namespace GLOB.Domain.Auth;
-public class AuthUser : IdentityUser
+public class UserInfra : IdentityUser
 {
     public Status? Status { get; set; }
     [NotMapped]

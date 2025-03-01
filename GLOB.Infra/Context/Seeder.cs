@@ -11,7 +11,6 @@ public static partial class Seederz
   {
     Console.WriteLine("--> Infra -> Applying Migrations ModelBuilder");
     mb.SeedTestInfra();
-    // mb.SeedLE();
   }
   public static void Seed(this IApplicationBuilder app)
   {
@@ -24,7 +23,6 @@ public static partial class Seederz
         context.Database.Migrate();
         {
           context.SeedTestInfra();
-          // context.SeedLE();
         }
       }
     }

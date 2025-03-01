@@ -15,8 +15,8 @@ namespace SBA.Auth.Controllers;
 public partial class AccountController : AlphaController<AccountController>
 {
   // private IRepoGenericz<AccountId> Repo = null;
-  private readonly UserManager<AuthUser> _userManager;
-  private readonly SignInManager<AuthUser> _signInManager;
+  private readonly UserManager<UserInfra> _userManager;
+  private readonly SignInManager<UserInfra> _signInManager;
   private readonly IConfiguration _config;
   private readonly RoleManager<IdentityRole> _roleManager;
   private IUOW uOW { get; }
@@ -31,7 +31,7 @@ public partial class AccountController : AlphaController<AccountController>
   [HttpPost("register")]
   public async Task<IActionResult> Register([FromBody] RegisterDto model) 
   {
-    var user = new AuthUser { UserName = model.Email, Email = model.Email, Title = model.FullName };
+    var user = new UserInfra { UserName = model.Email, Email = model.Email, Title = model.FullName };
     var result = await _userManager.CreateAsync(user, model.Password);
 
     if (result.Succeeded)
@@ -75,7 +75,7 @@ public partial class AccountController : AlphaController<AccountController>
 
 
   // Private Functions
-  private string GenerateJwtToken(AuthUser user)
+  private string GenerateJwtToken(UserInfra user)
   {
       var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
       var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

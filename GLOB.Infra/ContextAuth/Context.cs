@@ -4,9 +4,14 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Context.Auth;
-public partial class DBCntxtIdentity : IdentityDbContext<AuthUser, IdentityRole, string>
+public partial class DBCntxtIdentity : IdentityDbContext<UserInfra, IdentityRole, string>
 {
-  public DBCntxtIdentity(DbContextOptions options) : base(options) { }
+  public DBCntxtIdentity(
+    DbContextOptions options
+    // Circular Dependency Problem
+    // UserManager<IdentityUser> userManager,
+    // RoleManager<IdentityRole> roleManager
+  ) : base(options) { }
 
   // TODO: NOTE: Here we need to work for Seeding Data
   protected override void OnModelCreating(ModelBuilder mb)
@@ -15,6 +20,7 @@ public partial class DBCntxtIdentity : IdentityDbContext<AuthUser, IdentityRole,
     // EntityMappingConfig(mb);
     // OnModelCreatingEnumConfig(mb);
     // ConfigEnums(mb);
+    
     // mb.Seed();
 
     base.OnModelCreating(mb);

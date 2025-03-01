@@ -22,7 +22,7 @@ public static partial class DICommon
     srvc.Config_DB_SQL<TContext, TIUOW, TUOW>(config);
 
     // Configure Identity with roles
-    srvc.AddIdentity<AuthUser, AuthRole>()
+    srvc.AddIdentity<UserInfra, AuthRole>()
         .AddEntityFrameworkStores<TContext>()
         .AddDefaultTokenProviders();
     
