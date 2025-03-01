@@ -1,7 +1,7 @@
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace GLOB.Domain.Auth;
+namespace GLOB.Infra.Auth;
 public class JwtSettings
 {
   public string SecretKey { get; set; }

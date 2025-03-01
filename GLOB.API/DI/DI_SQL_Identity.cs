@@ -6,6 +6,8 @@ using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.Extensions.Options;
+using GLOB.Infra.Auth;
 
 namespace GLOB.API.DI;
 public static partial class DICommon
@@ -25,23 +27,31 @@ public static partial class DICommon
     srvc.AddIdentity<AuthUser, AuthRole>()
         .AddEntityFrameworkStores<TContext>()
         .AddDefaultTokenProviders();
+        // .ConfigureOptions<IdentityOptionsSetup>();
 
     // Configure Authentication
+    
     srvc.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-        .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+      .AddJwtBearer(options =>
+      {
+        using var serviceProvider = srvc.BuildServiceProvider();
+        var jwtSettings = serviceProvider.GetRequiredService<IOptions<JwtSettings>>().Value;
+
+        options.RequireHttpsMetadata = false;
+        options.SaveToken = true;
+        options.TokenValidationParameters = new TokenValidationParameters
         {
-            options.RequireHttpsMetadata = false;
-            options.SaveToken = true;
-            options.TokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(
-                    Encoding.UTF8.GetBytes(config["JwtSettings:SecretKey"])
-                ),
-                ValidateIssuer = false,
-                ValidateAudience = false
-            };
-        });
+          ValidateIssuerSigningKey = true,
+          IssuerSigningKey = jwtSettings.GetSymmetricSecurityKey(),
+          ValidateIssuer = true,
+          ValidIssuer = jwtSettings.Issuer,
+          ValidateAudience = true,
+          ValidAudience = jwtSettings.Audience,
+          ValidateLifetime = true,
+          ClockSkew = TimeSpan.Zero
+        };
+      });
+
 
     srvc.AddAuthorization();
   }

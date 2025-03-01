@@ -1,9 +1,10 @@
+using GLOB.Infra.Context;
 using GLOB.Infra.Seed;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GLOB.Infra.Context;
+namespace GLOB.Infra.Seedz;
 public static partial class Seederz
 {
   public static void Seed(this ModelBuilder mb)

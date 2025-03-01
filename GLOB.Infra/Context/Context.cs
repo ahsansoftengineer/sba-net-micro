@@ -1,4 +1,5 @@
 using GLOB.Domain.Base;
+using GLOB.Infra.Seedz;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Context;

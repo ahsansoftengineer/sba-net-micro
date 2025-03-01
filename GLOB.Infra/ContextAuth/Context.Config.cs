@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Context;
+namespace GLOB.Infra.Auth;
 public partial class DBCntxtIdentity
 {
   private static void EntityMappingConfig(ModelBuilder mb)

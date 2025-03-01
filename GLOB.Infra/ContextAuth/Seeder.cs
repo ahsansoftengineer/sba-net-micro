@@ -1,13 +1,15 @@
+using GLOB.Infra.Auth;
+using GLOB.Infra.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GLOB.Infra.Context;
+namespace GLOB.Infra.Seedz;
 public static partial class SeederIdentity
 {
   public static void SeedIdentity(this ModelBuilder mb)
   {
-    Console.WriteLine("--> Infra -> Applying Migrations ModelBuilder");
+    Console.WriteLine("--> Infra Identity -> Applying Migrations ModelBuilder");
     // mb.SeedTestInfra();
     // mb.SeedLE();
   }
@@ -18,7 +20,7 @@ public static partial class SeederIdentity
       DBCntxtIdentity? context = srvcScp.ServiceProvider.GetService<DBCntxtIdentity>();
       if (context != null)
       {
-        Console.WriteLine("--> Infra -> Applying Migrations AppBuilder");
+        Console.WriteLine("--> Infra Identity -> Applying Migrations AppBuilder");
         context.Database.Migrate();
         {
           // context.SeedTestInfra();
