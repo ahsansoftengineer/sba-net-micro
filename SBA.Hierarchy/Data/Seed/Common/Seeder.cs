@@ -1,3 +1,4 @@
+using GLOB.Infra.Seed;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Projectz.Data;
@@ -37,6 +38,7 @@ public static partial class Seeder
         Console.WriteLine("--> Hierarchy -> Applying Migrations AppBuilder");
         context.Database.Migrate();
         {
+          // context.SeedTestInfra();
           context.SeedTestProj();
           // .-*
           context.SeedOrg();
