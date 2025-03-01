@@ -14,8 +14,7 @@ public static partial class SeederIdentity
   {
     Console.WriteLine("--> Infra Identity -> Applying Migrations ModelBuilder");
     mb.Entity<UserInfra>().HasData();
-    // mb.SeedTestInfra();
-    // mb.SeedLE();
+    mb.SeedTestInfra();
   }
   public static async Task SeedIdentity(this IApplicationBuilder app)
   {

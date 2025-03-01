@@ -1,14 +1,15 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using GLOB.Infra.UOW;
 using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
 using GLOB.Infra.Context.Auth;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 
-namespace GLOB.API.DI;
-public static partial class DICommon
+namespace GLOB.INFRA.DI;
+public static partial class DI_Infra
 {
   public static void Config_DB_Identity<TContext, TIUOW, TUOW>(this IServiceCollection srvc, IConfiguration config)
     where TContext : DBCntxtIdentity
@@ -64,29 +65,6 @@ public static partial class DICommon
     srvc.AddAuthorization();
   }
 
-  public static void Config_DB_SQL<TContext, TIUOW, TUOW>(this IServiceCollection srvc, IConfiguration config)
-    where TContext : DbContext
-    where TIUOW : class, IUnitOfWorkz
-    where TUOW : UnitOfWorkz, TIUOW
-  {
-    string connStr = config.GetConnectionString("SqlConnection");
-    
-    srvc.AddDbContext<TContext>(opt =>
-    {
-      opt.EnableSensitiveDataLogging(true);
-      opt.UseSqlServer(connStr, sqlOptions =>
-      {
-        sqlOptions.EnableRetryOnFailure(
-          maxRetryCount: 1,
-          maxRetryDelay: TimeSpan.FromSeconds(3),
-          errorNumbersToAdd: null
-        );
-      });
-      opt.LogTo(Console.WriteLine, LogLevel.Information);
-    });
-
-    srvc.AddScoped<TIUOW, TUOW>();
-  }
 }
 
 // "ConnectionStrings": {

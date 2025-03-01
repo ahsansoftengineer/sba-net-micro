@@ -7,12 +7,12 @@ using Microsoft.Extensions.DependencyInjection;
 namespace GLOB.Infra.Seedz;
 public static partial class Seederz
 {
-  public static void Seed(this ModelBuilder mb)
+  public static void SeedInfra(this ModelBuilder mb)
   {
     Console.WriteLine("--> Infra -> Applying Migrations ModelBuilder");
     mb.SeedTestInfra();
   }
-  public static void Seed(this IApplicationBuilder app)
+  public static void SeedInfra(this IApplicationBuilder app)
   {
     using(var srvcScp = app.ApplicationServices.CreateScope())
     {

@@ -1,6 +1,7 @@
 using GLOB.API.DI;
 using GLOB.Infra.Context;
 using GLOB.Infra.UOW;
+using GLOB.INFRA.DI;
 using SBA.Projectz.Data;
 using SBA.Projectz.Mapper;
 
