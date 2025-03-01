@@ -3,6 +3,17 @@ using AspNetCoreRateLimit;
 namespace GLOB.API.DI;
 public static partial class DICommon
 {
+  public static void Config_CachingService(this IServiceCollection srvc)
+  {
+      // API Throttling 1: Adding Service
+      // srvc.AddMemoryCache(); // Enable Production
+      // API Throttling 3
+      // srvc.Config_RateLimiting();
+      srvc.AddHttpContextAccessor();
+      // API Caching 6: Adding Services Extensions
+      srvc.Config_HttpCacheHeaders();
+  }
+  
   // CACHING VERSIONING ######################
   public static void Config_Caching(this IApplicationBuilder app)
   {
@@ -16,6 +27,7 @@ public static partial class DICommon
     // This is giving error while running
     // app.UseIpRateLimiting(); // Prevent Unnecessary Http Call from same User
   }
+  
   public static void Config_Versioning(this IServiceCollection srvc)
   {
     srvc.AddApiVersioning(opt =>

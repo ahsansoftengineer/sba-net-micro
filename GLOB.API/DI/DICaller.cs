@@ -37,7 +37,7 @@ public static partial class DICommon
     app.UseRouting();
     app.UseAuthentication();
     app.UseAuthorization();
-    app.Config_EP();
+    app.Config_Controller();
   }
   
 }

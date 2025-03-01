@@ -6,24 +6,10 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 namespace GLOB.API.DI;
 public static partial class DICommon
 {
-  public static void Config_EP(this IApplicationBuilder app)
-  {
-    app.UseEndpoints(ep =>
-    {
-      // This Routing is useful for MVC type application
-      // Convention Based Routing Schema
-      //ep.MapControllerRoute(
-      //  name: "default",
-      //  pattern: "{controller=Home}/{action=Index}/{id?}"); //
-      ep.MapControllers();
-    });
-  }
-  public static void Config_DevEnv(this IApplicationBuilder app, IWebHostEnvironment env)
+
+  public static void Config_Swagger(this IApplicationBuilder app, IWebHostEnvironment env)
   {
 
-    if (env.IsDevelopment())
-    {
-      app.UseDeveloperExceptionPage();
       app.UseSwagger();
       app.UseSwaggerUI(c =>
       {
@@ -31,7 +17,6 @@ public static partial class DICommon
         c.DocExpansion(DocExpansion.None);
         //c.InjectJavascript("/js/swagger-custom.js"); //
       });
-    }
   }
   public static void Config_ExceptionHandler(this IApplicationBuilder app)
   {

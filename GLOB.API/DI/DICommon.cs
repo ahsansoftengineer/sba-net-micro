@@ -4,15 +4,28 @@ using Newtonsoft.Json;
 namespace GLOB.API.DI;
 public static partial class DICommon
 {
-  public static void Config_CachingService(this IServiceCollection srvc)
+
+  public static void Config_DevEnv(this IApplicationBuilder app, IWebHostEnvironment env)
   {
-      // API Throttling 1: Adding Service
-      // srvc.AddMemoryCache(); // Enable Production
-      // API Throttling 3
-      // srvc.Config_RateLimiting();
-      srvc.AddHttpContextAccessor();
-      // API Caching 6: Adding Services Extensions
-      srvc.Config_HttpCacheHeaders();
+
+    if (env.IsDevelopment())
+    {
+      app.UseDeveloperExceptionPage();
+      Config_Swagger(app, env);
+     
+    }
+  }
+  public static void Config_Controller(this IApplicationBuilder app)
+  {
+    app.UseEndpoints(ep =>
+    {
+      // This Routing is useful for MVC type application
+      // Convention Based Routing Schema
+      //ep.MapControllerRoute(
+      //  name: "default",
+      //  pattern: "{controller=Home}/{action=Index}/{id?}"); //
+      ep.MapControllers();
+    });
   }
   public static void Config_Controllerz(this IServiceCollection srvc)
   {
@@ -51,37 +64,6 @@ public static partial class DICommon
       //c.SchemaFilter<MySwaggerSchemaFilter>(); // Failed to apply this
     });
   }
-  public static void Config_Cors(this IServiceCollection srvc)
-  {
-    srvc.AddCors(option =>
-    {
-      option.AddDefaultPolicy(option => option.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
-      // option
-      // .AddPolicy("CorsPolicyAllowAll", builder =>
-      //   builder
-      //   .AllowAnyOrigin()
-      //   .AllowAnyMethod()
-      //   .AllowAnyHeader()
-      // .AllowCredentials()
-      // );
-    });
-    // srvc.AddHttpsRedirection(options =>
-    // {
-    //   options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
-    //   options.HttpsPort = 443; // Replace with your HTTPS port number if different
-    // });
-    //srvc.AddCors(options =>
-    //{
-    //  options.AddPolicy(MyAllowSpecificOrigins,
-    //            policy =>
-    //            {
-    //              policy.WithOrigins("http://example.com",
-    //                      "http://www.contoso.com")
-    //                      .AllowAnyHeader()
-    //                      .AllowAnyMethod();
-    //            });
-    //});
-
-  }
+  
 
 }
