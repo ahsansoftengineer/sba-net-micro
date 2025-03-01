@@ -196,6 +196,16 @@ namespace SBA.Auth.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "TestInfras",
+                columns: new[] { "Id", "Created_At", "Desc", "Status", "Title", "Updated_At" },
+                values: new object[,]
+                {
+                    { 1, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "TestInfra 1 Desc", 0, "TestInfra 1", new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) },
+                    { 2, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "TestInfra 2 Desc", 0, "TestInfra 2", new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) },
+                    { 3, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "TestInfra 3 Desc", 0, "TestInfra 3", new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) }
+                });
+
+            migrationBuilder.InsertData(
                 table: "TestProjs",
                 columns: new[] { "Id", "Created_At", "Desc", "Status", "Title", "Updated_At" },
                 values: new object[,]

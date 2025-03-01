@@ -129,6 +129,35 @@ namespace SBA.Auth.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TestInfras");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "TestInfra 1 Desc",
+                            Status = 0,
+                            Title = "TestInfra 1",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "TestInfra 2 Desc",
+                            Status = 0,
+                            Title = "TestInfra 2",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "TestInfra 3 Desc",
+                            Status = 0,
+                            Title = "TestInfra 3",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        });
                 });
 
             modelBuilder.Entity("GLOB.Domain.Projectz.TestProj", b =>
