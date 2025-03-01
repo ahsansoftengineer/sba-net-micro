@@ -1,7 +1,5 @@
 using GLOB.Domain.Base;
 using GLOB.Infra.Helper;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
