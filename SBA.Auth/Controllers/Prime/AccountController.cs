@@ -1,9 +1,12 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using AutoMapper;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
-using GLOB.Infra.Repo;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Client;
+using Microsoft.IdentityModel.Tokens;
 using SBA.Projectz.Data;
 
 namespace SBA.Auth.Controllers;
@@ -12,6 +15,10 @@ namespace SBA.Auth.Controllers;
 public partial class AccountController : AlphaController<AccountController>
 {
   // private IRepoGenericz<AccountId> Repo = null;
+  private readonly UserManager<AuthUser> _userManager;
+  private readonly SignInManager<AuthUser> _signInManager;
+  private readonly IConfiguration _config;
+  private readonly RoleManager<IdentityRole> _roleManager;
   private IUOW uOW { get; }
   public AccountController(
     ILogger<AccountController> logger,
@@ -24,14 +31,29 @@ public partial class AccountController : AlphaController<AccountController>
   [HttpPost("register")]
   public async Task<IActionResult> Register([FromBody] RegisterDto model) 
   {
-    return null;  
+    var user = new AuthUser { UserName = model.Email, Email = model.Email, Title = model.FullName };
+    var result = await _userManager.CreateAsync(user, model.Password);
+
+    if (result.Succeeded)
+    {
+        return Ok(new { message = "User registered successfully!" });
+    }
+
+    return BadRequest(result.Errors);
   }
 
   [HttpPost("login")]
   public async Task<IActionResult> Login([FromBody] LoginDto model)  
   {
-    return null;  
+    var user = await _userManager.FindByEmailAsync(model.Email);
+    if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+    {
+        var token = GenerateJwtToken(user);
+        return Ok(new { token });
+    }
+    return Unauthorized("Invalid credentials.");;  
   }
+
 
   [HttpPost("logout")]
   public async Task<IActionResult> Logout()  
@@ -51,4 +73,26 @@ public partial class AccountController : AlphaController<AccountController>
     return null;  
   }
 
+
+  // Private Functions
+  private string GenerateJwtToken(AuthUser user)
+  {
+      var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+      var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+      var claims = new[]
+      {
+          new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+          new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+          new Claim("UserId", user.Id)
+      };
+
+      var token = new JwtSecurityToken(
+          issuer: _config["Jwt:Issuer"],
+          audience: _config["Jwt:Audience"],
+          claims: claims,
+          expires: DateTime.UtcNow.AddHours(1),
+          signingCredentials: creds);
+
+      return new JwtSecurityTokenHandler().WriteToken(token);
+  }
 }

@@ -1,4 +1,3 @@
-using GLOB.Domain.Base;
 using GLOB.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 

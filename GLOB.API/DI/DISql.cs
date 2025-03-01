@@ -3,22 +3,47 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using GLOB.Infra.UOW;
 using GLOB.Domain.Projectz;
+using GLOB.Domain.Auth;
+
 
 namespace GLOB.API.DI;
 public static partial class DICommon
 {
   public static void Config_Identity(this IServiceCollection srvc)
   {
-    var builder = srvc.AddIdentityCore<TestApiUser>(q => q.User.RequireUniqueEmail = true);
+    var builder = srvc.AddIdentityCore<TestApiUser>(option =>
+    {
+      option.User.RequireUniqueEmail = true;
+    });
+
     builder = new IdentityBuilder(
       builder.UserType,
-      typeof(IdentityRole), srvc);
+      typeof(AuthRole), srvc);
 
-    builder
-      .AddEntityFrameworkStores<DBCntxt>()
-      .AddDefaultTokenProviders();
+    builder.Services.AddIdentity<AuthUser, AuthRole>()
+        .AddEntityFrameworkStores<DBCntxtIdentity>()
+        .AddDefaultTokenProviders();
+
+
+    // // Configure Authentication
+    // builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    //     .AddJwtBearer(options =>
+    //     {
+    //       options.RequireHttpsMetadata = false;
+    //       options.SaveToken = true;
+    //       options.TokenValidationParameters = new TokenValidationParameters
+    //       {
+    //         ValidateIssuerSigningKey = true,
+    //         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("YourSuperSecretKey")),
+    //         ValidateIssuer = false,
+    //         ValidateAudience = false
+    //       };
+    //     });
+
+
+    builder.Services.AddAuthorization();
   }
-  public static void Config_DB_SQL<TContext, TIUOW, TUOW>(this IServiceCollection srvc, IConfiguration config) 
+  public static void Config_DB_SQL<TContext, TIUOW, TUOW>(this IServiceCollection srvc, IConfiguration config)
     where TContext : DBCntxt
     where TIUOW : class, IUnitOfWorkz
     where TUOW : UnitOfWorkz, TIUOW
@@ -36,7 +61,7 @@ public static partial class DICommon
             errorNumbersToAdd: null
           );
         });
-        opt.LogTo(Console.WriteLine, LogLevel.Information);
+      opt.LogTo(Console.WriteLine, LogLevel.Information);
     });
     srvc.AddScoped<TIUOW, TUOW>();
   }

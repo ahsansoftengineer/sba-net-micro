@@ -1,5 +1,7 @@
+using GLOB.Domain.Enumz;
+
 namespace GLOB.Domain.Auth;
-public class EntityPermission
+public class AuthPermission
 {
     public int Id { get; set; }
     public string RoleId { get; set; }

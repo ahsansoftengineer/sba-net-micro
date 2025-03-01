@@ -1,15 +1,16 @@
 using GLOB.Domain.Enums;
+using GLOB.Domain.Enumz;
 using Microsoft.AspNetCore.Identity;
 
 namespace GLOB.Domain.Auth;
-public class Role : IdentityRole
+public class AuthRole : IdentityRole
 {
     public Permission Permissions { get; set; }
     public Status? Status { get; set; }
     public DateTimeOffset? CreatedAt { get; set; }
     public DateTimeOffset? UpdatedAt { get; set; }
 
-    public Role(string name, Permission permissions)
+    public AuthRole(string name, Permission permissions)
     {
         Name = name;
         Permissions = permissions;
