@@ -42,7 +42,6 @@ public static partial class Seederz
       string normalized = $"{name}@yopmail.com".ToUpper();
       var user = new T()
       {
-        
         Id = Guid.NewGuid().ToString(),
         UserName = email,
         Email = email,
