@@ -17,10 +17,6 @@
 			"path": "__VS"
 		},
 		{
-			"name": "GLOB.Apps",
-			"path": "GLOB.Apps"
-		},
-		{
 			"name": "GLOB.Domain",
 			"path": "GLOB.Domain"
 		},

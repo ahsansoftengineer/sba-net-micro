@@ -5,20 +5,6 @@ dotnet add ./GLOB.Domain/ package Microsoft.AspNetCore.Mvc.NewtonsoftJson
 dotnet add ./GLOB.Domain/ package ErrorOr # Recommended and Final Approach
 
 ```
-### EXTERNAL PACKAGES APPS
-```bash
-dotnet add ./GLOB.Apps/ package Microsoft.EntityFrameworkCore -v 8.0.7
-
-# dotnet add ./GLOB.Apps/ package OneOf # Drawback of Scalability used in Apps Layer
-# dotnet add ./GLOB.Apps/ package FluentResults # It has Lack Some Ability of OneOf used in Apps Layer
-# dotnet add ./GLOB.Apps/ package MediatR
-# dotnet add ./GLOB.Apps/ package MediatR.Extension.Microsoft.DependencyInjection
-# dotnet add ./GLOB.Apps/ package Mapster
-# dotnet add ./GLOB.Apps/ package FluentValidation
-# dotnet add ./GLOB.Apps/ package FluentValidation.AspNetCore
-
-```
-
 ### EXTERNAL PACKAGES INFRA
 ```bash
 dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore -v 8.0.7
@@ -26,6 +12,9 @@ dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.Design -v 8.0.7
 dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.DynamicLinq -v 8.0.7
 dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.SqlServer -v 8.0.7
 dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.Tools -v 8.0.7
+dotnet add ./GLOB.Infra/ package Microsoft.AspNetCore.Authentication.JwtBearer -v 8.0.7
+
+
 
 dotnet add ./GLOB.Infra/ package Microsoft.AspNetCore.Authentication.JwtBearer -v 8.0.7
 dotnet add ./GLOB.Infra/ package Microsoft.AspNetCore.Authentication.OpenIdConnect -v 8.0.7
@@ -50,9 +39,3 @@ dotnet add ./GLOB.API/ package Microsoft.Extensions.Configuration -v 8.0.7
 dotnet add ./GLOB.API/ package Microsoft.Extensions.Options.ConfigurationExtensions -v 8.0.7
 dotnet add ./GLOB.API/ package Swashbuckle.AspNetCore
 ```
-
-### EXTERNAL PACKAGES PACKAGE
-```bash
-dotnet add ./GLOB.Package/ package Microsoft.EntityFrameworkCore.Design -v 8.0.7
-```
-

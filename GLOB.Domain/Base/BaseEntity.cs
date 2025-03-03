@@ -7,9 +7,9 @@ public abstract class AlphaEntity
 {
   [Column(Order = 1)]
   [Key]
-  public int? Id { get; set; }
+  public int Id { get; set; }
   [Column(Order = 2)]
-  public Status? Status { get; set; }  = Enums.Status.None;
+  public Status? Status { get; set; } = Enums.Status.None;
   [Column(Order = 3)] // required
   public string Title { get; set; }
 }
@@ -32,15 +32,15 @@ public abstract class BaseEntity : BetaEntity, IBaseEntity
 
 public interface IBetaEntity
 {
-    int? Id { get; set; }
-    Status? Status { get; set; }
-    string Title { get; set; }
-    DateTimeOffset? CreatedAt { get; set; }
-    DateTimeOffset? UpdatedAt { get; set; }
+  int Id { get; set; }
+  Status? Status { get; set; }
+  string Title { get; set; }
+  DateTimeOffset? CreatedAt { get; set; }
+  DateTimeOffset? UpdatedAt { get; set; }
 }
 
 public interface IBaseEntity : IBetaEntity
 {
-    string? Desc { get; set; }
-    bool? IsSelected { get; set; }
+  string? Desc { get; set; }
+  bool? IsSelected { get; set; }
 }

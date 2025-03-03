@@ -1,25 +1,27 @@
-using GLOB.Apps.Common;
 using GLOB.Domain.Base;
 using GLOB.Infra.Context;
-using GLOB.Infra.Repo;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.UOW;
 public partial class UnitOfWorkz : IUnitOfWorkz
 {
-  public readonly DBCntxt _context;
-  public UnitOfWorkz(DBCntxt context)
+  public readonly DbContext _context;
+
+  public UnitOfWorkz(DbContext context)
   {
     _context = context;
   }
-  // Hierarchy
 
   public async Task Save()
   {
     AddTimestamps();
     await _context.SaveChangesAsync();
   }
-  // Handling CreatedAt & UpdatedAt
+  // private IRepoGenericz<T> Got<T>() where T : BaseEntity
+  // {
+  //   return new RepoGenericz<T>(_context);
+  // }
+
   private void AddTimestamps()
   {
     var entities = _context.ChangeTracker.Entries()
@@ -27,7 +29,7 @@ public partial class UnitOfWorkz : IUnitOfWorkz
 
     foreach (var entity in entities)
     {
-      var now = DateTime.UtcNow; // current datetime
+      var now = DateTimeOffset.UtcNow; // current datetime
       Console.WriteLine(entity.State);
       if (entity.State == EntityState.Added)
       {
@@ -36,10 +38,6 @@ public partial class UnitOfWorkz : IUnitOfWorkz
     //EntityState.Detached, EntityState.Deleted, EntityState.Unchanged
     ((BaseEntity)entity.Entity).UpdatedAt = now;
     }
-  }
-  private IRepoGenericz<T> Got<T>() where T : BaseEntity
-  {
-    return new RepoGenericz<T>(_context);
   }
   public void Dispose()
   {

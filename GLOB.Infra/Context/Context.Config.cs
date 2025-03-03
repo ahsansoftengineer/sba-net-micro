@@ -15,17 +15,5 @@ public partial class DBCntxt
   //     .WithMany(e => e.BankAccount)
   //     .HasForeignKey(e => e.BankID)
   //     .IsRequired(false);
-
-  //   mb.Entity<City>()
-  //     .HasOne(e => e.State)
-  //     .WithMany(e => e.Citys)
-  //     .HasForeignKey(e => e.StateID)
-  //     .IsRequired(false);
-
-  //   mb.Entity<WalletHistory>()
-  //     .HasOne(e => e.Wallet)
-  //     .WithMany(e => e.WalletHistorys)
-  //     .HasForeignKey(e => e.WalletID)
-  //     .IsRequired(false);
   // }
 }

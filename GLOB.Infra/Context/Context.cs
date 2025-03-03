@@ -1,4 +1,4 @@
-using GLOB.Domain.Base;
+using GLOB.Infra.Seedz;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Context;
@@ -13,12 +13,12 @@ public partial class DBCntxt : DbContext
     EntityMappingConfig(mb);
     // OnModelCreatingEnumConfig(mb);
     // ConfigEnums(mb);
-    mb.Seed();
+    mb.SeedInfra();
 
     base.OnModelCreating(mb);
   }
   
-  // // All below code Commented for future reference
+  // // SaveChanges Handle in UnitOfWork
   // public override int SaveChanges()
   // {
   //   var entries = ChangeTracker.Entries<BetaEntity>();

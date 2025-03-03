@@ -10,9 +10,7 @@ dotnet new sln -o SBA
 ### LOCAL LIBRARY
 ```bash
 dotnet new classlib -o GLOB.Domain
-dotnet new classlib -o GLOB.Apps
 dotnet new classlib -o GLOB.Infra
-dotnet new classlib -o GLOB.Contracts
 # dotnet new classlib -o GLOB.APIz
 ```
 
@@ -31,7 +29,6 @@ dotnet new webapi -o SBA.Jobz
 
 ### LOCAL LIBRARY TO SOLUTION
 ```bash
-dotnet sln add GLOB.Apps/GLOB.Apps.csproj
 dotnet sln add GLOB.Domain/GLOB.Domain.csproj
 dotnet sln add GLOB.Infra/GLOB.Infra.csproj
 ```
@@ -54,8 +51,6 @@ dotnet sln add SBA.Jobz/SBA.Jobz.csproj
 ### LOCAL CLASS LIBRARY RELATION
 ```bash
 dotnet build
-dotnet add ./GLOB.Apps/ reference ./GLOB.Domain/
-dotnet add ./GLOB.Infra/ reference ./GLOB.Apps/ # ./GLOB.Domain/
 dotnet add ./GLOB.API/ reference ./GLOB.Infra/ # WEB API
 ```
 ### Web API PACKAGES

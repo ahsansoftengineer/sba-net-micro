@@ -6,8 +6,7 @@ public partial class RepoGenericz<T>
 {
   public async Task<T> Get(int? Id, List<string>? Include = null)
   {
-    var result = await this.Get(x => x.Id == Id, Include);
-    return result;
+    return await this.Get(x => x.Id == Id, Include);
   }
   public async Task<T> Get(
    Expression<Func<T, bool>> expression,
@@ -21,7 +20,6 @@ public partial class RepoGenericz<T>
         query = query.Include(item);
       }
     }
-    var result = await query.AsNoTracking().FirstOrDefaultAsync(expression);
-    return result; //if (result != null) return result; //
+    return await query.AsNoTracking().FirstOrDefaultAsync(expression);
   }
 }

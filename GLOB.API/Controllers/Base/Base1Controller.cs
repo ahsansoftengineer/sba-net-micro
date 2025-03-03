@@ -1,8 +1,9 @@
 using AutoMapper;
-using GLOB.Apps.Common;
+using GLOB.Infra.Repo;
 using GLOB.Domain.Base;
 using GLOB.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
+using GLOB.Infra.UOW;
 
 namespace GLOB.API.Controllers.Base;
 public abstract partial class BaseController<TController, TEntity, DtoResponse>

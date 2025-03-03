@@ -1,5 +1,4 @@
 using GLOB.API.DI;
-using GLOB.API.Mapper;
 using SBA.Projectz.Data;
 using SBA.Projectz.DI;
 using SBA.Projectz.Mapper;
@@ -18,7 +17,6 @@ public class Startup
   {
     
     srvc.AddDICommon();
-    srvc.AddAutoMapper(typeof(MapProj));
     srvc.AddSrvc(_config);
     srvc.AddDefaultExternalServices();
 

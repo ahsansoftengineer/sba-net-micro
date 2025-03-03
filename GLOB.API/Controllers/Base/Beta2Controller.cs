@@ -10,9 +10,8 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
   {
     try
     {
-        var list = await Repo.GetsPaginate(req);
-        return Ok(list);
-      
+      var list = await Repo.GetsPaginate(req);
+      return Ok(list);
     }
     catch (Exception ex)
     {

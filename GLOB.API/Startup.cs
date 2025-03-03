@@ -1,6 +1,5 @@
+
 using GLOB.API.DI;
-using GLOB.API.Mapper;
-using GLOB.Apps.Common;
 using GLOB.Infra.Context;
 using GLOB.Infra.UOW;
 
@@ -19,6 +18,7 @@ public class Startup
   {
     // srvc.AddDICommon();
     // srvc.Config_DB_SQL<DBCntxt, IUnitOfWorkz, UnitOfWorkz>(_config);
+    // srvc.Config_DB_Identity<DBCntxtIdentity, IUnitOfWorkz, UnitOfWorkz>(_config);
     // srvc.AddAutoMapper(typeof(MapBase));
     // srvc.AddDefaultExternalServices();
   }
