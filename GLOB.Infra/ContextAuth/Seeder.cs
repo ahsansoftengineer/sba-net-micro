@@ -2,7 +2,6 @@ using GLOB.Infra.Context.Auth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Identity;
 using GLOB.Infra.Seed;
 

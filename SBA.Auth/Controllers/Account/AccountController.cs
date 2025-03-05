@@ -23,9 +23,15 @@ public partial class AccountController : AlphaController<AccountController>
   public AccountController(
     ILogger<AccountController> logger,
     IMapper mapper,
+    UserManager<UserInfra> userManager,
+    SignInManager<UserInfra> signInManager,
+    RoleManager<IdentityRole> roleManager,
     IUOW uow) : base(logger)
   {
     // Repo = uow.TestProjs;
+    _userManager = userManager;
+    _signInManager = signInManager;
+    _roleManager = roleManager;
 
   }
   [HttpPost("register")]
