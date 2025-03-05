@@ -17,8 +17,8 @@ public partial class AccountController : AlphaController<AccountController>
   // private IRepoGenericz<AccountId> Repo = null;
   private readonly UserManager<UserInfra> _userManager;
   private readonly SignInManager<UserInfra> _signInManager;
-  private readonly IConfiguration _config;
   private readonly RoleManager<IdentityRole> _roleManager;
+  private readonly IConfiguration _config;
   private IUOW uOW { get; }
   public AccountController(
     ILogger<AccountController> logger,
