@@ -43,4 +43,23 @@ public static class Extension
         };
         return vm;
     }
+     public static BaseVMMulti ToExtVMMulti(this object? list)
+    {
+        var vm = new BaseVMMulti()
+        {
+            Records = list ,
+            Status = HttpStatusCode.OK
+        };
+        return vm;
+    }
+
+    public static BaseVMSingle ToExtVMSingle(this object item)
+    {
+        var vm = new BaseVMSingle()
+        {
+            Record = item ,
+            Status = HttpStatusCode.OK
+        };
+        return vm;
+    }
 }

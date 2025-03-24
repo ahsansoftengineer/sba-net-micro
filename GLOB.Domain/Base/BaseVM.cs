@@ -12,6 +12,11 @@ public class BaseVMSingle<T>
   public T? Record { get; set; }
   public HttpStatusCode Status { get; set; }
 }
+public class BaseVMSingle
+{
+  public object? Record { get; set; }
+  public HttpStatusCode Status { get; set; }
+}
 public class BaseVMSelect
 {
   public List<DtoSelect>? Records { get; set; }
@@ -20,5 +25,10 @@ public class BaseVMSelect
 public class BaseVMMulti<T>
 {
   public List<T>? Records { get; set; }
+  public HttpStatusCode Status { get; set; }
+}
+public class BaseVMMulti
+{
+  public object? Records { get; set; }
   public HttpStatusCode Status { get; set; }
 }
