@@ -64,19 +64,40 @@ public partial class AccountController : AlphaController<AccountController>
   [HttpPost("logout")]
   public async Task<IActionResult> Logout()  
   {
-    return null;  
+    _signInManager.SignOutAsync();
+    return Ok(new { message = "Logged out successfully" });
   }
 
-  [HttpPost("refresh-token")]
+  [HttpPost("token-refresh")]
   public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenDto model)  
   {
-    return null;  
+    var principal = _jwtTokenService.GetPrincipalFromExpiredToken(model.Token);
+        if (principal == null)
+            return null;
+
+        var userId = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user == null || user.RefreshToken != model.RefreshToken || user.RefreshTokenExpiry < DateTime.UtcNow)
+            return null;
+
+        var newAccessToken = _jwtTokenService.GenerateAccessToken(user);
+        var newRefreshToken = _jwtTokenService.GenerateRefreshToken();
+        user.RefreshToken = newRefreshToken;
+        user.RefreshTokenExpiry = DateTime.UtcNow.AddDays(7);
+        await _userManager.UpdateAsync(user);
+
+        return new TokenResponseDto { AccessToken = newAccessToken, RefreshToken = newRefreshToken };  
   }
 
-  [HttpPost("verify-email")]
+  [HttpPost("email-verify")]
   public async Task<IActionResult> VerifyEmail([FromQuery] string token, [FromQuery] string email) 
   {
-    return null;  
+    var user = await _userManager.FindByEmailAsync(email);
+    if (user == null)
+      return BadRequest(new { message = "Email not Found" });
+
+    var result = await _userManager.ConfirmEmailAsync(user, token);
+    return Ok(new { message = "Your Email has been verified" });
   }
 
 
