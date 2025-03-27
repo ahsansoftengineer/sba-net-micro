@@ -65,4 +65,40 @@ public partial class AccountController : AlphaController<AccountController>
     }
     return NoContent();
   }
+
+  public async Task<IActionResult> AddUserToRole(string email, string role)
+  {
+    var user = await _userManager.FindByEmailAsync(email);
+    if(user == null)
+    {
+      return BadRequest(new {
+        error = "User does not exist"
+      });
+    }
+    var rolez = await _roleManager.RoleExistsAsync(role);
+    if(!rolez)
+    {
+      return BadRequest(new {
+        error = "Role does not exist"
+      });
+    }
+
+    var result = await _userManager.AddToRoleAsync(user, role);
+    if(result.Succeeded)
+    {
+      return Ok();
+    }
+    else 
+    {
+      return BadRequest(new {
+        error = "The user was not able to be added to the role"
+      });
+    }
+  }
+  public async Task<IActionResult> GetUserRoles(string email)
+  {
+
+
+    return null;
+  }
 }
