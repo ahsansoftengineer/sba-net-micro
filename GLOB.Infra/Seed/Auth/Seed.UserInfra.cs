@@ -34,7 +34,12 @@ public static partial class Seederz
     string className = typeof(T).Name;
     List<T> list = new List<T>();
     var passwordHasher = new PasswordHasher<T>();
-
+    var guid = new []
+    {
+      "22c74fbc-9b0d-4848-85db-f09d58750006",
+      "46eb923d-8529-4b77-b311-96e98ea6ea06",
+      "8118fea8-a644-4d67-9eca-1d689465a1bf"
+    };
     for (int i = 1; i <= 3; i++)
     {
       string name = $"{className}_{i}";
@@ -42,7 +47,7 @@ public static partial class Seederz
       string normalized = $"{name}@yopmail.com".ToUpper();
       var user = new T()
       {
-        Id = Guid.NewGuid().ToString(),
+        Id = guid[i-1],
         UserName = email,
         Email = email,
         NormalizedUserName = normalized,

@@ -4,11 +4,13 @@ using Microsoft.EntityFrameworkCore;
 namespace GLOB.Infra.Seed;
 public static partial class Seederz
 {
-  public static void SeedUserRole(this ModelBuilder mb)
+  public static void SeedRoleInfra(this ModelBuilder mb)
   {
     // SeedDataUserRole<UserRole>()
     // mb.Entity<UserRole>().HasData();
-    mb.Entity<IdentityRole>().HasData();
+    var data = SeedDataRole<IdentityRole>();
+
+    mb.Entity<IdentityRole>().HasData(SeedDataRole<IdentityRole>());
   }
   public static async Task SeedRoleInfra(this RoleManager<IdentityRole> mngr)
   {
@@ -32,6 +34,12 @@ public static partial class Seederz
   {
     string className = typeof(T).Name;
     List<T> list = new List<T>();
+    var guid = new []
+    {
+      "b4206884-fc69-4a1b-a4ca-81f4cf594ee5",
+      "832f9537-20c4-49ca-9f12-b8c5f9515c17",
+      "8c40418c-4ac7-4f2e-9def-8ceeb5f5c556"
+    };
 
     for (int i = 1; i <= 3; i++)
     {
@@ -40,7 +48,7 @@ public static partial class Seederz
       var data = new T()
       {
 
-        Id = Guid.NewGuid().ToString(),
+        Id = guid[i-1],
         Name = name,
         NormalizedName = NAME
       };

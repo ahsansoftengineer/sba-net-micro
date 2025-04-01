@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using GLOB.Infra.Context;
 using GLOB.Infra.Seed;
 using GLOB.Infra.Seedz;
@@ -15,7 +16,7 @@ public static partial class Seeder
 
   }
   // Prod (When Running Migration throw Automation)
-  public static void Seed(this IApplicationBuilder app)
+  public static async Task Seed(this IApplicationBuilder app)
   {
     using (var srvcScp = app.ApplicationServices.CreateScope())
     { 
@@ -27,8 +28,10 @@ public static partial class Seeder
         Console.WriteLine("--> Auth -> Applying Migrations AppBuilder");
         context.Database.Migrate();
         {
-          contextz.SeedTestInfra();
+          // contextz.SeedTestInfra();
+          app.SeedInfra();
           context.SeedTestProj();
+          await app.SeedIdentity();
         }
       }
     }
