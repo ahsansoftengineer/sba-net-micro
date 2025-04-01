@@ -1,5 +1,3 @@
-using GLOB.Domain.Auth;
-using GLOB.Infra.Context.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,26 +10,25 @@ public static partial class Seederz
     // mb.Entity<UserRole>().HasData();
     mb.Entity<IdentityRole>().HasData();
   }
-  public static void SeedUserRole(this DBCntxtIdentity context)
+  public static async Task SeedRoleInfra(this RoleManager<IdentityRole> mngr)
   {
-    if (!context.Roles.Any())
+    if (!await mngr.Roles.AnyAsync())
     {
-      context.Roles.AddRange(SeedDataUserRole<IdentityRole>());
-      context.SaveChanges();
-    }
-  }
-  public static async Task SeedUserRole(this RoleManager<IdentityRole> mngr)
-  {
-    if(!await mngr.Roles.AnyAsync())
-    {
-      foreach(var item in SeedDataUserRole<IdentityRole>())
+      foreach (var item in SeedDataRole<IdentityRole>())
       {
         await mngr.CreateAsync(item);
       }
     }
-    
   }
-  public static List<T> SeedDataUserRole<T>() where T : IdentityRole, new()
+  // public static async Task SeedRoleInfra(this DBCntxtIdentity context)
+  // {
+  //   if (!context.Roles.Any())
+  //   {
+  //     await context.Roles.Add(SeedDataRole<IdentityRole>());
+  //     context.SaveChanges();
+  //   }
+  // }
+  public static List<T> SeedDataRole<T>() where T : IdentityRole, new()
   {
     string className = typeof(T).Name;
     List<T> list = new List<T>();
@@ -42,7 +39,7 @@ public static partial class Seederz
       string NAME = name.ToUpper();
       var data = new T()
       {
-        
+
         Id = Guid.NewGuid().ToString(),
         Name = name,
         NormalizedName = NAME

@@ -29,6 +29,8 @@ public static partial class SeederIdentity
         context.Database.Migrate();
         {
           await userManager.SeedUserInfra();
+          await roleManager.SeedRoleInfra();
+
           // context.SeedTestInfra();
           // context.SeedLE();
         }

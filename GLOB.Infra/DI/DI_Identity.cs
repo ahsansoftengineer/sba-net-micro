@@ -16,6 +16,7 @@ public static partial class DI_Infra
     where TIUOW : class, IUnitOfWorkz
     where TUOW : UnitOfWorkz, TIUOW
   {
+    // Option Pattern
     srvc.Configure<JwtSettings>(config.GetSection("JwtSettings"));
     srvc.Configure<IdentitySettings>(config.GetSection("Identity"));
 
@@ -23,7 +24,8 @@ public static partial class DI_Infra
     srvc.Config_DB_SQL<TContext, TIUOW, TUOW>(config);
 
     // Configure Identity with roles
-    srvc.AddIdentity<UserInfra, UserRole>()
+    // srvc.AddIdentity<UserInfra, UserRole>()
+    srvc.AddIdentity<UserInfra, IdentityRole>()
         .AddEntityFrameworkStores<TContext>()
         .AddDefaultTokenProviders();
     
