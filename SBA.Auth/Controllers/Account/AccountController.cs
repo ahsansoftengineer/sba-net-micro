@@ -34,7 +34,7 @@ public partial class AccountController : AlphaController<AccountController>
     _roleManager = roleManager;
 
   }
-  [HttpPost("register")]
+  [HttpPost("[action]")]
   public async Task<IActionResult> Register([FromBody] RegisterDto model) 
   {
     var user = new UserInfra { UserName = model.Email, Email = model.Email, Title = model.FullName };
@@ -48,7 +48,7 @@ public partial class AccountController : AlphaController<AccountController>
     return BadRequest(result.Errors);
   }
 
-  [HttpPost("login")]
+  [HttpPost("[action]")]
   public async Task<IActionResult> Login([FromBody] LoginDto model)  
   {
     var user = await _userManager.FindByEmailAsync(model.Email);
@@ -61,7 +61,7 @@ public partial class AccountController : AlphaController<AccountController>
   }
 
 
-  [HttpPost("logout")]
+  [HttpPost("[action]")]
   public async Task<IActionResult> Logout()  
   {
     await _signInManager.SignOutAsync();

@@ -1,23 +1,21 @@
-// using GLOB.API.Controllers.Base;
 // using GLOB.Domain.Auth;
-// using Microsoft.AspNetCore.Authorization;
 // using Microsoft.AspNetCore.Mvc;
 
 // namespace SBA.Auth.Controllers;
-// public partial class AccountController : AlphaController<AccountController>
+// public partial class AccountController
 // {
-//   [HttpPost("google")]
+//   [HttpPost("[action]")]
 //   public async Task<IActionResult> GoogleLogin([FromBody] ExternalAuthDto model)
 //   {
 //     return null;
 //   }
 
-//   [HttpPost("facebook")]
+//   [HttpPost("[action]")]
 //   public async Task<IActionResult> FacebookLogin([FromBody] ExternalAuthDto model)
 //   {
 //     return null;
 //   }
-//   [HttpPost("apple")]
+//   [HttpPost("[action]")]
 //   public async Task<IActionResult> AppleLogin([FromBody] ExternalAuthDto model)
 //   {
 //     return null;

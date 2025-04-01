@@ -1,25 +1,23 @@
-// using GLOB.API.Controllers.Base;
-// using GLOB.Domain.Auth;
 // using Microsoft.AspNetCore.Authorization;
 // using Microsoft.AspNetCore.Mvc;
 
 // namespace SBA.Auth.Controllers;
-// public partial class AccountController : AlphaController<AccountController>
+// public partial class AccountController
 // {
-//   [HttpGet("me")]
+//   [HttpGet("[action]")]
 //   [Authorize]
 //   public async Task<IActionResult> GetCurrentUser()
 //   {
 //     return null;
 //   }
 
-//   [HttpGet("sessions")]
+//   [HttpGet("[action]")]
 //   [Authorize]
 //   public async Task<IActionResult> GetUserSessions()
 //   {
 //     return null;
 //   }
-//   [HttpDelete("sessions/{id}")]
+//   [HttpDelete("[action]/{id}")]
 //   [Authorize]
 //   public async Task<IActionResult> RevokeSession(Guid id)
 //   {

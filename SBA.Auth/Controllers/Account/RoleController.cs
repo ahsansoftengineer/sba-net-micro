@@ -1,13 +1,34 @@
+// using AutoMapper;
 // using GLOB.API.Controllers.Base;
+// using GLOB.Domain.Auth;
 // using GLOB.Infra.Helper;
 // using Microsoft.AspNetCore.Authorization;
 // using Microsoft.AspNetCore.Identity;
 // using Microsoft.AspNetCore.Mvc;
 // using Microsoft.IdentityModel.Tokens;
+// using SBA.Projectz.Data;
 
 // namespace SBA.Auth.Controllers;
-// public partial class AccountController : AlphaController<AccountController>
+// public partial class RoleController : AlphaController<AccountController>
 // {
+//   private readonly UserManager<UserInfra> _userManager;
+//   private readonly RoleManager<IdentityRole> _roleManager;
+//   private readonly IConfiguration _config;
+//   private IUOW uOW { get; }
+//   public RoleController(
+//     ILogger<AccountController> logger,
+//     IMapper mapper,
+//     UserManager<UserInfra> userManager,
+//     SignInManager<UserInfra> signInManager,
+//     RoleManager<IdentityRole> roleManager,
+//     IUOW uow) : base(logger)
+//   {
+//     // Repo = uow.TestProjs;
+//     _userManager = userManager;
+//     _signInManager = signInManager;
+//     _roleManager = roleManager;
+
+//   }
 //   [Authorize()]
 //   [HttpGet()]
 //   public async Task<IActionResult> Gets()
@@ -65,7 +86,7 @@
 //     }
 //     return NoContent();
 //   }
-
+//   [HttpPost("[action]")]
 //   public async Task<IActionResult> AddUserToRole(string email, string role)
 //   {
 //     var user = await _userManager.FindByEmailAsync(email);
