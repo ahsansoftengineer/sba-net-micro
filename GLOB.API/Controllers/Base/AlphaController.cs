@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;
@@ -13,6 +14,20 @@ public abstract class AlphaController<TController> : ControllerBase
   {
     Logger.LogError(ex, $"Something went wrong in the {methodName}");
     return StatusCode(500, "Internal Server Error, Please try again later");
+  }
+  
+  protected ObjectResult BadRequestz(IEnumerable<IdentityError> errors)
+  {
+    foreach(var item in errors)
+    {
+      ModelState.AddModelError(item.Code, item.Description);
+    }
+    foreach(var ms in ModelState){
+      Logger.LogError($"{ms.Key} :\t {ms.Value}");
+    }
+    if(!ModelState.Any(x => x.Key == "Message"))
+      ModelState.AddModelError("Message", "Bad Request 400");
+    return BadRequest(ModelState);
   }
     protected ObjectResult BadRequestz()
   {

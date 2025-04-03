@@ -22,3 +22,4 @@ public class InfraRole : IdentityRole<string>, IEntityBeta
     //     return (Permissions & permission) == permission;
     // }
 }
+public record InfraRoleDto(string Name, Status Status);

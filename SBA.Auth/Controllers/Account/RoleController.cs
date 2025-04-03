@@ -1,6 +1,7 @@
 using AutoMapper;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
+using GLOB.Domain.Base;
 using GLOB.Infra.Helper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -34,38 +35,44 @@ public partial class RoleController : AlphaController<AccountController>
     var result = list.ToExtVMMulti();
     return Ok(result);
   }
-  [HttpGet("{id}")]
+  [HttpGet("{Id}")]
   public async Task<IActionResult> Get(string Id)
   {
-    Console.WriteLine(Id);
+    Console.WriteLine("ID = " + Id);
     var data = _roleManager.Roles.FirstOrDefault(x => x.Id == Id);
     var result = data.ToExtVMSingle();
     return Ok(result);
   }
   [HttpPost()]
-  public async Task<IActionResult> Create(string role)
+  public async Task<IActionResult> Create([FromBody] string role)
   {
     var exsist = await _roleManager.RoleExistsAsync(role);
     if (!exsist)
     {
-      var result = await _roleManager.CreateAsync(new InfraRole(role));
-      if (result.Succeeded) return Ok(result.ToExtVMSingle());
+      var rolz = new InfraRole(role);
+      rolz.Id = Defaultz.Guidz();
+      var result = await _roleManager.CreateAsync(rolz);
+      if (result.Succeeded) return Ok(rolz.ToExtVMSingle());
     }
     return BadRequest("Role already exist");
   }
-  [HttpPut("{id:int}")]
-  public async Task<IActionResult> Update(string Id, [FromBody] string text)
+  [HttpPut("{Id}")]
+  public async Task<IActionResult> Update(string Id, [FromBody] InfraRoleDto dto)
   {
+    
     var role = await _roleManager.FindByIdAsync(Id);
-    if (role != null)
-    {
-      role.Name = text;
-      var result = await _roleManager.UpdateAsync(role);
-      if (result.Succeeded) return Ok(result.ToExtVMSingle());
-    }
-    return BadRequest("Role already exist");
+    if(role == null) return InvalidId();
+
+    role.Id = Id;
+    role.Name = dto.Name;
+    role.Status = dto.Status;
+
+    var result = await _roleManager.UpdateAsync(role);
+    if (result.Succeeded) return Ok(role.ToExtVMSingle());
+
+    return BadRequestz(result.Errors);    
   }
-  [HttpDelete("{id:int}")]
+  [HttpDelete("{Id}")]
   public async Task<IActionResult> Delete(string Id)
   {
     if (Id.IsNullOrEmpty()) return InvalidId();
