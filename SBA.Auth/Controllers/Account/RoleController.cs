@@ -35,13 +35,12 @@ public partial class RoleController : AlphaController<AccountController>
     var result = list.ToExtVMMulti();
     return Ok(result);
   }
-  [HttpGet("{action}")]
-  public async Task<IActionResult> Paginate()
-  {
-    var list = _roleManager.Roles.ToList();
-    var result = list.ToExtVMMulti();
-    return Ok(result);
-  }
+  // [HttpGet("[action]")]
+  // public async Task<IActionResult> Paginate(PaginateRequestFilter<InfraRole, InfraRole> req)
+  // {
+  //   var list = _roleManager.Roles.ToExtPaginateAsync(req);
+  //   return Ok(list);
+  // }
   [HttpGet("{Id}")]
   public async Task<IActionResult> Get(string Id)
   {
