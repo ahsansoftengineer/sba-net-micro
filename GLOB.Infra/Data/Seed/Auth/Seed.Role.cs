@@ -1,3 +1,4 @@
+using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,17 +7,13 @@ public static partial class InfraSeeder
 {
   public static void SeedInfraRole(this ModelBuilder mb)
   {
-    // SeedDataUserRole<UserRole>()
-    // mb.Entity<UserRole>().HasData();
-    var data = SeedDataRole<IdentityRole>();
-
-    mb.Entity<IdentityRole>().HasData(SeedDataRole<IdentityRole>());
+    mb.Entity<InfraRole>().HasData(SeedDataRole<InfraRole>());
   }
-  public static async Task SeedInfraRole(this RoleManager<IdentityRole> mngr)
+  public static async Task SeedInfraRole(this RoleManager<InfraRole> mngr)
   {
     if (!await mngr.Roles.AnyAsync())
     {
-      foreach (var item in SeedDataRole<IdentityRole>())
+      foreach (var item in SeedDataRole<InfraRole>())
       {
         await mngr.CreateAsync(item);
       }
@@ -26,11 +23,11 @@ public static partial class InfraSeeder
   // {
   //   if (!context.Roles.Any())
   //   {
-  //     await context.Roles.Add(SeedDataRole<IdentityRole>());
+  //     await context.Roles.Add(SeedDataRole<InfraRole>());
   //     context.SaveChanges();
   //   }
   // }
-  public static List<T> SeedDataRole<T>() where T : IdentityRole, new()
+  public static List<T> SeedDataRole<T>() where T : InfraRole, new()
   {
     string className = typeof(T).Name;
     List<T> list = new List<T>();

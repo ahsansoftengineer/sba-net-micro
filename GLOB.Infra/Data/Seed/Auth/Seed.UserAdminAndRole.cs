@@ -19,26 +19,26 @@ public static partial class InfraSeeder
   }
   private static async Task SeedRoles(this IServiceProvider srvc)
   {
-    var roleManager = srvc.GetRequiredService<RoleManager<IdentityRole>>();
+    var roleManager = srvc.GetRequiredService<RoleManager<InfraRole>>();
 
     foreach (var role in ROLE.ROLES)
     {
       if (!await roleManager.RoleExistsAsync(role))
       {
-        await roleManager.CreateAsync(new IdentityRole(role));
+        await roleManager.CreateAsync(new InfraRole(role));
       }
     }
   }
   private static async Task SeedRolesAndUser(this IServiceProvider srvc, string email, string ROLE)
   {
     email = email.ToLower();
-    var userManager = srvc.GetRequiredService<UserManager<UserInfra>>();
+    var userManager = srvc.GetRequiredService<UserManager<InfraUser>>();
 
     var data = await userManager.FindByEmailAsync(email);
     if (data == null)
     {
       string normalized = email.ToUpper();
-      data = new UserInfra
+      data = new InfraUser
       {
 
         Id = Guid.NewGuid().ToString(),

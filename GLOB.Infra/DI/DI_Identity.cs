@@ -24,8 +24,8 @@ public static partial class DI_Infra
     srvc.Config_DB_SQL<TContext, TIUOW, TUOW>(config);
 
     // Configure Identity with roles
-    // srvc.AddIdentity<UserInfra, UserRole>()
-    srvc.AddIdentity<UserInfra, IdentityRole>()
+    // srvc.AddIdentity<InfraUser, InfraRole>()
+    srvc.AddIdentity<InfraUser, InfraRole>()
         .AddEntityFrameworkStores<TContext>()
         .AddDefaultTokenProviders();
     

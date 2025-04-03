@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 namespace GLOB.Infra.Seed;
 public static partial class InfraSeeder
 {
-  public static async Task SeedInfraUser(this UserManager<IdentityUser> mngr)
+  public static async Task SeedInfraUser(this UserManager<InfraUser> mngr)
   {
     if(!await mngr.Users.AnyAsync())
     {
-      foreach(var item in SeedDataUserInfra<UserInfra>())
+      foreach(var item in SeedDataUserInfra<InfraUser>())
       {
         await mngr.CreateAsync(item);
       }
@@ -20,13 +20,13 @@ public static partial class InfraSeeder
   {
     if (!context.Users.Any())
     {
-      await context.Users.AddRangeAsync(SeedDataUserInfra<UserInfra>());
+      await context.Users.AddRangeAsync(SeedDataUserInfra<InfraUser>());
       context.SaveChanges();
     }
   }
   public static void SeedUserInfra(this ModelBuilder builder)
   {
-    builder.Entity<UserInfra>().HasData(SeedDataUserInfra<UserInfra>());
+    builder.Entity<InfraUser>().HasData(SeedDataUserInfra<InfraUser>());
   }
 
   public static List<T> SeedDataUserInfra<T>() where T : IdentityUser, new()

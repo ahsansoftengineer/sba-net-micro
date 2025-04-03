@@ -8,7 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 namespace GLOB.Infra.Helper;
 public static class HelperAuth
 {
-  public static string GenerateJwtToken(UserInfra user, IConfiguration config)
+  public static string GenerateJwtToken(InfraUser user, IConfiguration config)
   {
     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]));
     var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
