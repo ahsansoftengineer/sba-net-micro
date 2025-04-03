@@ -86,18 +86,14 @@ public partial class AccountController : AlphaController<AccountController>
   //       return new { AccessToken = newAccessToken, RefreshToken = newRefreshToken };  
   // }
 
-  [HttpPost("[action]")]
-  public async Task<IActionResult> VerifyEmail([FromQuery] string token, [FromQuery] string email) 
-  {
-    var user = await _userManager.FindByEmailAsync(email);
-    if (user == null)
-      return BadRequest(new { message = "Email not Found" });
+  // [HttpPost("[action]")]
+  // public async Task<IActionResult> VerifyEmail([FromQuery] string token, [FromQuery] string email) 
+  // {
+  //   var user = await _userManager.FindByEmailAsync(email);
+  //   if (user == null)
+  //     return BadRequest(new { message = "Email not Found" });
 
-    var result = await _userManager.ConfirmEmailAsync(user, token);
-    return Ok(new { message = "Your Email has been verified" });
-  }
-
-
-  // Private Functions
-
+  //   var result = await _userManager.ConfirmEmailAsync(user, token);
+  //   return Ok(new { message = "Your Email has been verified" });
+  // }
 }
