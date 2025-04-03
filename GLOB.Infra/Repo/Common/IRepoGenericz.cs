@@ -5,7 +5,7 @@ using GLOB.Domain.Enums;
 
 namespace GLOB.Infra.Repo;
 public interface IRepoGenericz<T>
-  where T : class, IBaseEntity
+  where T : class, IEntityAlpha
 {
   DbSet<T> GetDBSet();
   bool Any(Expression<Func<T, bool>>? filter = null);

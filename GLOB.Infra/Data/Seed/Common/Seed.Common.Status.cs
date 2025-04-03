@@ -5,7 +5,7 @@ using GLOB.Domain.Base;
 
 namespace GLOB.Infra.Repo;
 public class CommonStatusConfigz<T> : IEntityTypeConfiguration<T>
-  where T : BaseEntity, new()
+  where T : EntityBase, new()
 {
   public void Configure(EntityTypeBuilder<T> builder)
   {

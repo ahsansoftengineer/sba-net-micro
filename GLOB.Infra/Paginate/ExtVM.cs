@@ -6,7 +6,7 @@ public static class Extension
 {
     // Maybe this doesn't reqired in future
     public static BaseVMMulti<TEntity> ToExtVMMulti<TEntity>(this List<TEntity>? list)
-    where TEntity : class, IBaseEntity
+    where TEntity : class, IEntityBase
     {
         var vm = new BaseVMMulti<TEntity>()
         {
@@ -26,7 +26,7 @@ public static class Extension
         return vm;
     }
     public static BaseVMSelect ToExtVMSelect<TEntity>(this List<TEntity>? list)
-    where TEntity : class, IBaseEntity
+    where TEntity : class, IEntityAlpha
     {
         var vm = new BaseVMSelect()
         {
@@ -45,7 +45,7 @@ public static class Extension
     }
 
     public static BaseVMSingle ToExtVMSingle<TEntity>(this TEntity? item)
-    where TEntity : class, IBaseEntity
+    where TEntity : class, IEntityBase
     {
         return ((object)item).ToExtVMSingle();
     }

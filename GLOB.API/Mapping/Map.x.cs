@@ -7,7 +7,7 @@ public partial class MapBase
   public virtual void MapCommon()
   {
     CreateMapCommon<TestInfra>();
-    // CreateMapCommon<IBetaEntity>();
-    // CreateMapCommon<IBaseEntity>();
+    // CreateMapCommon<IEntityBeta>();
+    // CreateMapCommon<IEntityBase>();
   }
 }

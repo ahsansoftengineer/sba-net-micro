@@ -1,7 +1,7 @@
 using GLOB.Domain.Base;
 
 namespace GLOB.Domain.Hierarchy;
-public class SocialLink : BetaEntity
+public class SocialLink : EntityBeta
 {
   public int? UserCreatorID { get; set; }
   public UserCreator? UserCreator { get; set; }

@@ -21,7 +21,7 @@ public partial class DBCntxt : DbContext
   // // SaveChanges Handle in UnitOfWork
   // public override int SaveChanges()
   // {
-  //   var entries = ChangeTracker.Entries<BetaEntity>();
+  //   var entries = ChangeTracker.Entries<EntityBeta>();
   //   foreach (var entry in entries)
   //   {
   //     if (entry.State == EntityState.Added)

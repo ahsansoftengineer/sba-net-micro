@@ -30,7 +30,7 @@ public static partial class InfraSeeder
   {
     builder.Entity<TestInfra>().HasData(SeedDataBaseEntity<TestInfra>());
   }
-  public static List<T> SeedDataBaseEntity<T>() where T : BaseEntity, new()
+  public static List<T> SeedDataBaseEntity<T>() where T : EntityBase, new()
   {
     string className = typeof(T).Name;
     List<T> list = new List<T>();

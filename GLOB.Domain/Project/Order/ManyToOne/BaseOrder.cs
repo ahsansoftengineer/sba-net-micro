@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using GLOB.Domain.Base;
 using GLOB.Domain.Enum;
 namespace GLOB.Domain.Hierarchy;
-public abstract class BaseOrder : BetaEntity
+public abstract class BaseOrder : EntityBeta
 {
   public required string Message { get; set; } // Business Iquriy, (Standard / Custom) Order Message
   // ID = InquiryID

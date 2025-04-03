@@ -7,7 +7,7 @@ namespace SBA.Projectz.Controllers.Base;
 public abstract partial class BasezController<TController, TEntity, DtoResponse>
     : BaseController<TController, TEntity, DtoResponse>
   where TController : class
-  where TEntity : BaseEntity
+  where TEntity : EntityBase
   where DtoResponse : class
 {
   protected IUOW uOW = null;

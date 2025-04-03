@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using GLOB.Domain.Base;
 
 namespace GLOB.Domain.Hierarchy;
-public class Pricing : BetaEntity
+public class Pricing : EntityBeta
 {
   public int? UserCreatorID { get; set; }
   public UserCreator? UserCreator { get; set; }

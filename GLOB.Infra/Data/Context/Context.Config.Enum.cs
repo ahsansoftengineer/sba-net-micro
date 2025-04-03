@@ -30,7 +30,7 @@ public partial class DBCntxt
    
 //   }
 //   private static void AddStatusEnum<TEntity>(ModelBuilder mb)
-//     where TEntity : BaseEntity
+//     where TEntity : EntityBase
 //   {
 //     mb.Entity<TEntity>()
 //       .Property(e => e.Status)

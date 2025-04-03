@@ -17,7 +17,7 @@ public partial class UnitOfWorkz : IUnitOfWorkz
     AddTimestamps();
     await _context.SaveChangesAsync();
   }
-  // private IRepoGenericz<T> Got<T>() where T : BaseEntity
+  // private IRepoGenericz<T> Got<T>() where T : EntityBase
   // {
   //   return new RepoGenericz<T>(_context);
   // }
@@ -25,7 +25,7 @@ public partial class UnitOfWorkz : IUnitOfWorkz
   private void AddTimestamps()
   {
     var entities = _context.ChangeTracker.Entries()
-      .Where(x => x.Entity is BaseEntity && (x.State == EntityState.Added || x.State == EntityState.Modified));
+      .Where(x => x.Entity is IEntityBeta && (x.State == EntityState.Added || x.State == EntityState.Modified));
 
     foreach (var entity in entities)
     {
@@ -33,10 +33,10 @@ public partial class UnitOfWorkz : IUnitOfWorkz
       Console.WriteLine(entity.State);
       if (entity.State == EntityState.Added)
       {
-        ((BaseEntity)entity.Entity).CreatedAt = now;
+        ((IEntityBeta)entity.Entity).CreatedAt = now;
       }
     //EntityState.Detached, EntityState.Deleted, EntityState.Unchanged
-    ((BaseEntity)entity.Entity).UpdatedAt = now;
+    ((IEntityBeta)entity.Entity).UpdatedAt = now;
     }
   }
   public void Dispose()

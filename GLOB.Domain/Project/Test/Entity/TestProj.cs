@@ -1,6 +1,6 @@
 using GLOB.Domain.Base;
 
 namespace GLOB.Domain.Projectz;
-public class TestProj : BaseEntity
+public class TestProj : EntityBase
 {
 }

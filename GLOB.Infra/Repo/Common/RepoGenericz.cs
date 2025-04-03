@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace GLOB.Infra.Repo;
 public partial class RepoGenericz<T> : IRepoGenericz<T> 
-  where T : class, IBaseEntity
+  where T : class, IEntityAlpha, IEntityBeta, IEntityStatus
 {
   private readonly DbContext _context;
   private readonly DbSet<T> _db;
@@ -54,9 +54,9 @@ public partial class RepoGenericz<T> : IRepoGenericz<T>
   }
   public void UpdateStatus(T entity, Status status)
   {
-    if (typeof(BaseEntity).IsAssignableFrom(typeof(T)))
+    if (typeof(EntityBase).IsAssignableFrom(typeof(T)))
     {
-      if (entity is BaseEntity baseEntity)
+      if (entity is EntityBase baseEntity)
       {
         baseEntity.Status = status;
         _db.Attach(entity);

@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using GLOB.Domain.Base;
 
 namespace GLOB.Domain.Hierarchy;
-public class Industry : BaseEntity
+public class Industry : EntityBase
 {
   // [NotMapped]
   // public ICollection<Mapping_UserBusinessIndustry>? UserBusinessIndustrys { get; set; } = new List<Mapping_UserBusinessIndustry>();
