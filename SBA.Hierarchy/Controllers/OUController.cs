@@ -23,7 +23,7 @@
 //     WebHostEnvironment = webHostEnvironment;
 //   }
 //   [HttpGet("GetsPaginate")]
-//   public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<OU, OUDtoSearch> req)
+//   public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<OUDtoSearch> req)
 //   {
 //     try
 //     {

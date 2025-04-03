@@ -36,7 +36,7 @@ public partial class RoleController : AlphaController<AccountController>
     return Ok(result);
   }
   // [HttpGet("[action]")]
-  // public async Task<IActionResult> Paginate(PaginateRequestFilter<InfraRole, InfraRole> req)
+  // public async Task<IActionResult> Paginate(PaginateRequestFilter<InfraRole> req)
   // {
   //   var list = _roleManager.Roles.ToExtPaginateAsync(req);
   //   return Ok(list);

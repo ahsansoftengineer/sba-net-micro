@@ -6,7 +6,7 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
 {
 
   [HttpGet("GetsPaginate")]
-  public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<TEntity, DtoSearch?> req)
+  public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<DtoSearch?> req)
   {
     try
     {
