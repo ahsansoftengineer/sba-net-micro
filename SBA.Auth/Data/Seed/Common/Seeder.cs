@@ -1,6 +1,4 @@
-using System.Threading.Tasks;
 using GLOB.Infra.Data;
-using GLOB.Infra.Seed;
 using GLOB.Infra.Seedz;
 using Microsoft.EntityFrameworkCore;
 

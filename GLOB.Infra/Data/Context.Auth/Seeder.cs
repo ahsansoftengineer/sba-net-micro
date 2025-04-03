@@ -7,7 +7,7 @@ using GLOB.Infra.Seed;
 using GLOB.Infra.Data;
 
 namespace GLOB.Infra.Seedz;
-public static partial class SeederIdentity
+public static partial class InfraSeederIdentity
 {
   public static IApplicationBuilder app;
   // Seed for Dev (CLI)

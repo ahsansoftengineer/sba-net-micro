@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GLOB.Infra.Seedz;
-public static partial class Seederz
+public static partial class InfraSeeder
 {
   // Seed for Dev (CLI)
   public static void SeedInfra(this ModelBuilder mb)

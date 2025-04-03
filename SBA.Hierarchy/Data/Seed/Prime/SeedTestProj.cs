@@ -9,13 +9,13 @@ public static partial class Seeder
   {
     if (!context.TestProjs.Any(x => x.Id > 0))
     {
-      context.TestProjs.AddRange(Seederz.SeedDataBaseEntity<TestProj>());
+      context.TestProjs.AddRange(InfraSeeder.SeedDataBaseEntity<TestProj>());
       context.SaveChanges();
     }
   }
   public static void SeedTestProj(this ModelBuilder builder)
   {
-    builder.Entity<TestProj>().HasData(Seederz.SeedDataBaseEntity<TestProj>());
+    builder.Entity<TestProj>().HasData(InfraSeeder.SeedDataBaseEntity<TestProj>());
   }
   
 

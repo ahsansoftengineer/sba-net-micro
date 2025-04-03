@@ -4,7 +4,7 @@
 // using Microsoft.EntityFrameworkCore;
 
 // namespace GLOB.Infra.Seed;
-// public static partial class Seederz
+// public static partial class InfraSeeder
 // {
 //   public static void SeedLE(this DBCntxt context)
 //   {

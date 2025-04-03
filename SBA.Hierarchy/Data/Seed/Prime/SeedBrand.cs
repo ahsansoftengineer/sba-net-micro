@@ -9,13 +9,13 @@ public static partial class Seeder
   {
     if (!context.Brands.Any(x => x.Id > 0))
     {
-      context.Brands.AddRange(Seederz.SeedDataBaseEntity<Brand>());
+      context.Brands.AddRange(InfraSeeder.SeedDataBaseEntity<Brand>());
       context.SaveChanges();
     }
   }
   public static void SeedBrand(this ModelBuilder builder)
   {
-    builder.Entity<Brand>().HasData(Seederz.SeedDataBaseEntity<Brand>());
+    builder.Entity<Brand>().HasData(InfraSeeder.SeedDataBaseEntity<Brand>());
   }
   
 

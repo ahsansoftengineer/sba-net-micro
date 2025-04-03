@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GLOB.Infra.Seed;
-public static partial class Seederz
+public static partial class InfraSeeder
 {
   public static async Task SeedInfraRolesAndAdmin(IServiceProvider srvc)
   {

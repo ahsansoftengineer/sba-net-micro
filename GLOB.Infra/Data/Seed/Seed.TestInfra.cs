@@ -5,7 +5,7 @@ using GLOB.Infra.Data.Auth;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Seed;
-public static partial class Seederz
+public static partial class InfraSeeder
 {
   // For DB Context (Normal) (Prod Automate) 
   public static void SeedTestInfra(this DBCntxt context)
