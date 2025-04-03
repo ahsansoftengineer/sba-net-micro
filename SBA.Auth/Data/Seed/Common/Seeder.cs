@@ -29,9 +29,7 @@ public static partial class Seeder
         context.Database.Migrate();
         {
           // contextz.SeedTestInfra();
-          app.SeedInfra();
-          context.SeedTestProj();
-          await app.SeedIdentity();
+          await app.SeedInfraIdentity();
         }
       }
     }

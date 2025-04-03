@@ -1,11 +1,13 @@
 using GLOB.Domain.Base;
 using GLOB.Domain.Projectz;
 using GLOB.Infra.Context;
+using GLOB.Infra.Context.Auth;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Seed;
 public static partial class Seederz
 {
+  // For DB Context (Normal) (Prod Automate) 
   public static void SeedTestInfra(this DBCntxt context)
   {
     if (!context.TestInfras.Any(x => x.Id > 0))
@@ -14,6 +16,16 @@ public static partial class Seederz
       context.SaveChanges();
     }
   }
+  // For DB Context (Identity) (Prod Automate)
+  public static void SeedTestInfra(this DBCntxtIdentity context)
+  {
+    if (!context.TestInfras.Any(x => x.Id > 0))
+    {
+      context.TestInfras.AddRange(SeedDataBaseEntity<TestInfra>());
+      context.SaveChanges();
+    }
+  }
+  // For DB Context (Identity) (Dev CLI) 
   public static void SeedTestInfra(this ModelBuilder builder)
   {
     builder.Entity<TestInfra>().HasData(SeedDataBaseEntity<TestInfra>());

@@ -7,11 +7,13 @@ using Microsoft.Extensions.DependencyInjection;
 namespace GLOB.Infra.Seedz;
 public static partial class Seederz
 {
+  // Seed for Dev (CLI)
   public static void SeedInfra(this ModelBuilder mb)
   {
-    Console.WriteLine("--> Infra -> Applying Migrations ModelBuilder");
+    Console.WriteLine("--> Infra -> Applying Migrations ModelBuilder (Dev)");
     mb.SeedTestInfra();
   }
+  // Seed for Production (Automate)
   public static void SeedInfra(this IApplicationBuilder app)
   {
     using(var srvcScp = app.ApplicationServices.CreateScope())
@@ -19,7 +21,7 @@ public static partial class Seederz
       DBCntxt? context = srvcScp.ServiceProvider.GetService<DBCntxt>();
       if (context != null)
       {
-        Console.WriteLine("--> Infra -> Applying Migrations AppBuilder");
+        Console.WriteLine("--> Infra -> Applying Migrations AppBuilder (Prod)");
         context.Database.Migrate();
         {
           context.SeedTestInfra();

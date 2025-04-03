@@ -11,9 +11,9 @@ namespace SBA.Auth.Controllers;
 public partial class UserController : AlphaController<AccountController>
 {
   private readonly UserManager<UserInfra> _userManager;
-  private readonly SignInManager<UserInfra> _signInManager;
-  private readonly RoleManager<IdentityRole> _roleManager;
-  private readonly IConfiguration _config;
+  // private readonly SignInManager<UserInfra> _signInManager;
+  // private readonly RoleManager<IdentityRole> _roleManager;
+  // private readonly IConfiguration _config;
   private IUOW uOW { get; }
   public UserController(
     ILogger<AccountController> logger,
@@ -25,8 +25,9 @@ public partial class UserController : AlphaController<AccountController>
   {
     // Repo = uow.TestProjs;
     _userManager = userManager;
-    _signInManager = signInManager;
-    _roleManager = roleManager;
+    // _signInManager = signInManager;
+    // _roleManager = roleManager;
+    // _config = config
 
   }
   [Authorize()]
