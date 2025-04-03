@@ -6,7 +6,7 @@ public static class Extension
 {
     // Maybe this doesn't reqired in future
     public static BaseVMMulti<TEntity> ToExtVMMulti<TEntity>(this List<TEntity>? list)
-    where TEntity : class, IEntityBase
+    where TEntity : class //, IEntityBeta
     {
         var vm = new BaseVMMulti<TEntity>()
         {
@@ -15,16 +15,16 @@ public static class Extension
         };
         return vm;
     }
-    public static BaseVMMulti ToExtVMMulti(this object? list)
-    {
+    // public static BaseVMMulti ToExtVMMulti(this object? list)
+    // {
 
-        var vm = new BaseVMMulti()
-        {
-            Records = (List<object>)list,
-            Status = HttpStatusCode.OK
-        };
-        return vm;
-    }
+    //     var vm = new BaseVMMulti()
+    //     {
+    //         Records = (List<object>)list,
+    //         Status = HttpStatusCode.OK
+    //     };
+    //     return vm;
+    // }
     public static BaseVMSelect ToExtVMSelect<TEntity>(this List<TEntity>? list)
     where TEntity : class, IEntityAlpha
     {
@@ -45,11 +45,7 @@ public static class Extension
     }
 
     public static BaseVMSingle ToExtVMSingle<TEntity>(this TEntity? item)
-    where TEntity : class, IEntityBase
-    {
-        return ((object)item).ToExtVMSingle();
-    }
-    public static BaseVMSingle ToExtVMSingle(this object item)
+    where TEntity : class //, IEntityBase
     {
         var vm = new BaseVMSingle()
         {
@@ -58,4 +54,13 @@ public static class Extension
         };
         return vm;
     }
+    // public static BaseVMSingle ToExtVMSingle(this object item)
+    // {
+    //     var vm = new BaseVMSingle()
+    //     {
+    //         Record = item ,
+    //         Status = HttpStatusCode.OK
+    //     };
+    //     return vm;
+    // }
 }

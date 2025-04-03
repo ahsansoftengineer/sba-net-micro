@@ -2,7 +2,6 @@ using AutoMapper;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
 using GLOB.Infra.Helper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -33,14 +32,15 @@ public partial class RoleController : AlphaController<AccountController>
   {
     var list = _roleManager.Roles.ToList();
     var result = list.ToExtVMMulti();
-    return Ok(list);
+    return Ok(result);
   }
-  [HttpGet("{id:int}")]
+  [HttpGet("{id}")]
   public async Task<IActionResult> Get(string Id)
   {
+    Console.WriteLine(Id);
     var data = _roleManager.Roles.FirstOrDefault(x => x.Id == Id);
     var result = data.ToExtVMSingle();
-    return Ok(data);
+    return Ok(result);
   }
   [HttpPost()]
   public async Task<IActionResult> Create(string role)
