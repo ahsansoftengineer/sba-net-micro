@@ -1,5 +1,5 @@
 using GLOB.Domain.Base;
-using GLOB.Infra.Context;
+using GLOB.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.UOW;

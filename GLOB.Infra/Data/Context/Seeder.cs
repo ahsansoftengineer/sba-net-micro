@@ -1,4 +1,4 @@
-using GLOB.Infra.Context;
+using GLOB.Infra.Data;
 using GLOB.Infra.Seed;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;

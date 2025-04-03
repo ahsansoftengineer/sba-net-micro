@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 
-namespace GLOB.Infra.Context.Auth;
+namespace GLOB.Infra.Data.Auth;
 public class AuthOptionSetup : IConfigureOptions<IdentityOptions>
 {
     private readonly IdentitySettings _identitySettings;

@@ -3,7 +3,7 @@ using GLOB.Infra.Seedz;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Context.Auth;
+namespace GLOB.Infra.Data.Auth;
 public partial class DBCntxtIdentity : IdentityDbContext<UserInfra, UserRole, string>
 {
   public DBCntxtIdentity(DbContextOptions options) : base(options) { }

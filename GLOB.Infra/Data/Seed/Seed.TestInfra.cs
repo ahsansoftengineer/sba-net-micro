@@ -1,7 +1,7 @@
 using GLOB.Domain.Base;
 using GLOB.Domain.Projectz;
-using GLOB.Infra.Context;
-using GLOB.Infra.Context.Auth;
+using GLOB.Infra.Data;
+using GLOB.Infra.Data.Auth;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Seed;

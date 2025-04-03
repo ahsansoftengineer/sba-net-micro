@@ -4,7 +4,7 @@ using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
-using GLOB.Infra.Context.Auth;
+using GLOB.Infra.Data.Auth;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 

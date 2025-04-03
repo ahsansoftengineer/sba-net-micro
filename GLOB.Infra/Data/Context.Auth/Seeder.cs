@@ -1,10 +1,10 @@
-using GLOB.Infra.Context.Auth;
+using GLOB.Infra.Data.Auth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using GLOB.Infra.Seed;
-using GLOB.Infra.Context;
+using GLOB.Infra.Data;
 
 namespace GLOB.Infra.Seedz;
 public static partial class SeederIdentity

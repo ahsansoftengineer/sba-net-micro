@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Context;
+namespace GLOB.Infra.Data;
 public partial class DBCntxt
 {
   private static void EntityMappingConfig(ModelBuilder mb)

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Context;
+namespace GLOB.Infra.Data;
 public partial class DBCntxt
 {
   // Enums using Reflections to Store as String in DB

@@ -1,7 +1,7 @@
 using GLOB.Infra.Seedz;
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Context;
+namespace GLOB.Infra.Data;
 public partial class DBCntxt : DbContext
 {
   public DBCntxt(DbContextOptions options) : base(options) { }
