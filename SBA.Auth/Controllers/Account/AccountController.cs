@@ -12,17 +12,17 @@ namespace SBA.Auth.Controllers;
 public partial class AccountController : AlphaController<AccountController>
 {
   // private IRepoGenericz<AccountId> Repo = null;
-  private readonly UserManager<UserInfra> _userManager;
-  private readonly SignInManager<UserInfra> _signInManager;
-  private readonly RoleManager<IdentityRole> _roleManager;
+  private readonly UserManager<InfraUser> _userManager;
+  private readonly SignInManager<InfraUser> _signInManager;
+  private readonly RoleManager<InfraRole> _roleManager;
   private readonly IConfiguration _config;
   private IUOW uOW { get; }
   public AccountController(
     ILogger<AccountController> logger,
     IMapper mapper,
-    UserManager<UserInfra> userManager,
-    SignInManager<UserInfra> signInManager,
-    RoleManager<IdentityRole> roleManager,
+    UserManager<InfraUser> userManager,
+    SignInManager<InfraUser> signInManager,
+    RoleManager<InfraRole> roleManager,
     IUOW uow) : base(logger)
   {
     // Repo = uow.TestProjs;
@@ -34,7 +34,7 @@ public partial class AccountController : AlphaController<AccountController>
   [HttpPost("[action]")]
   public async Task<IActionResult> Register([FromBody] RegisterDto model) 
   {
-    var user = new UserInfra { UserName = model.Email, Email = model.Email, Title = model.FullName };
+    var user = new InfraUser { UserName = model.Email, Email = model.Email, Title = model.FullName };
     var result = await _userManager.CreateAsync(user, model.Password);
 
     if (result.Succeeded)

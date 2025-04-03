@@ -11,16 +11,16 @@
 // namespace SBA.Auth.Controllers;
 // public partial class RoleController : AlphaController<AccountController>
 // {
-//   private readonly UserManager<UserInfra> _userManager;
-//   private readonly RoleManager<IdentityRole> _roleManager;
+//   private readonly UserManager<InfraUser> _userManager;
+//   private readonly RoleManager<InfraRole> _roleManager;
 //   private readonly IConfiguration _config;
 //   private IUOW uOW { get; }
 //   public RoleController(
 //     ILogger<AccountController> logger,
 //     IMapper mapper,
-//     UserManager<UserInfra> userManager,
-//     SignInManager<UserInfra> signInManager,
-//     RoleManager<IdentityRole> roleManager,
+//     UserManager<InfraUser> userManager,
+//     SignInManager<InfraUser> signInManager,
+//     RoleManager<InfraRole> roleManager,
 //     IUOW uow) : base(logger)
 //   {
 //     // Repo = uow.TestProjs;
@@ -50,7 +50,7 @@
 //     var exsist = await _roleManager.RoleExistsAsync(role);
 //     if (!exsist)
 //     {
-//       var result = await _roleManager.CreateAsync(new IdentityRole(role));
+//       var result = await _roleManager.CreateAsync(new InfraRole(role));
 //       if (result.Succeeded) return Ok(result.ToExtVMSingle());
 //     }
 //     return BadRequest("Role already exist");
