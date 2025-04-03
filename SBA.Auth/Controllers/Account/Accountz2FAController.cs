@@ -11,10 +11,8 @@
 //   {
 //     return null;
 //   }
-
 //   [HttpPost("[action]")]
 //   public async Task<IActionResult> Verify2FA([FromBody] TwoFactorDto model)
-
 //   {
 //     return null;
 //   }
@@ -24,5 +22,4 @@
 //   {
 //     return null;
 //   }
-
 // }

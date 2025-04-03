@@ -9,7 +9,6 @@
 //   {
 //     return null;
 //   }
-
 //   [HttpPost("[action]")]
 //   public async Task<IActionResult> FacebookLogin([FromBody] ExternalAuthDto model)
 //   {
@@ -20,5 +19,4 @@
 //   {
 //     return null;
 //   }
-
 // }

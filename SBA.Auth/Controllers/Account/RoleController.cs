@@ -44,7 +44,6 @@
 //     var result = data.ToExtVMSingle();
 //     return Ok(data);
 //   }
-
 //   [HttpPost()]
 //   public async Task<IActionResult> Create(string role)
 //   {
@@ -118,8 +117,6 @@
 //   }
 //   public async Task<IActionResult> GetUserRoles(string email)
 //   {
-
-
 //     return null;
 //   }
 // }

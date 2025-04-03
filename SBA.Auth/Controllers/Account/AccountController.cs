@@ -68,7 +68,7 @@ public partial class AccountController : AlphaController<AccountController>
     return Ok(new { message = "Logged out successfully" });
   }
 
-  // [HttpPost("token-refresh")]
+  // [HttpPost("[action]")]
   // public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenDto model)  
   // {
   //   var principal = _jwtTokenService.GetPrincipalFromExpiredToken(model.Token);
@@ -89,7 +89,7 @@ public partial class AccountController : AlphaController<AccountController>
   //       return new { AccessToken = newAccessToken, RefreshToken = newRefreshToken };  
   // }
 
-  [HttpPost("email-verify")]
+  [HttpPost("[action]")]
   public async Task<IActionResult> VerifyEmail([FromQuery] string token, [FromQuery] string email) 
   {
     var user = await _userManager.FindByEmailAsync(email);
