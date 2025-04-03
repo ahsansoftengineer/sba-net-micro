@@ -6,9 +6,9 @@ namespace GLOB.Domain.Auth;
 public class InfraRole : IdentityRole<string>, IEntityBeta
 {
     // public Permission Permissions { get; set; }
-    public Status? Status { get; set; }
-    public DateTimeOffset? CreatedAt { get; set; }
-    public DateTimeOffset? UpdatedAt { get; set; }
+    public Status? Status { get; set; } = Defaultz.Status;
+    public DateTimeOffset? CreatedAt { get; set; } = Defaultz.Date;
+    public DateTimeOffset? UpdatedAt { get; set; } = Defaultz.Date;
     public InfraRole(): base()
     {
 
