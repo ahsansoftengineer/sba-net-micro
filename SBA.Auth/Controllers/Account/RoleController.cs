@@ -1,90 +1,88 @@
-// using AutoMapper;
-// using GLOB.API.Controllers.Base;
-// using GLOB.Domain.Auth;
-// using GLOB.Infra.Helper;
-// using Microsoft.AspNetCore.Authorization;
-// using Microsoft.AspNetCore.Identity;
-// using Microsoft.AspNetCore.Mvc;
-// using Microsoft.IdentityModel.Tokens;
-// using SBA.Projectz.Data;
+using AutoMapper;
+using GLOB.API.Controllers.Base;
+using GLOB.Domain.Auth;
+using GLOB.Infra.Helper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using SBA.Projectz.Data;
 
-// namespace SBA.Auth.Controllers;
-// public partial class RoleController : AlphaController<AccountController>
-// {
-//   private readonly UserManager<InfraUser> _userManager;
-//   private readonly RoleManager<InfraRole> _roleManager;
-//   private readonly IConfiguration _config;
-//   private IUOW uOW { get; }
-//   public RoleController(
-//     ILogger<AccountController> logger,
-//     IMapper mapper,
-//     UserManager<InfraUser> userManager,
-//     SignInManager<InfraUser> signInManager,
-//     RoleManager<InfraRole> roleManager,
-//     IUOW uow) : base(logger)
-//   {
-//     // Repo = uow.TestProjs;
-//     _userManager = userManager;
-//     _signInManager = signInManager;
-//     _roleManager = roleManager;
+namespace SBA.Auth.Controllers;
+[Route("api/Auth/[controller]")]
+public partial class RoleController : AlphaController<AccountController>
+{
+  private readonly UserManager<InfraUser> _userManager;
+  private readonly RoleManager<InfraRole> _roleManager;
+  private readonly IConfiguration _config;
+  private IUOW uOW { get; }
+  public RoleController(
+    ILogger<AccountController> logger,
+    IMapper mapper,
+    UserManager<InfraUser> userManager,
+    RoleManager<InfraRole> roleManager,
+    IUOW uow) : base(logger)
+  {
+    _userManager = userManager;
+    _roleManager = roleManager;
 
-//   }
+  }
 //   [Authorize()]
-//   [HttpGet()]
-//   public async Task<IActionResult> Gets()
-//   {
-//     var list = _roleManager.Roles.ToList();
-//     var result = list.ToExtVMMulti();
-//     return Ok(result);
-//   }
-//   [HttpGet("{id:int}")]
-//   public async Task<IActionResult> Get(string Id)
-//   {
-//     var data = _roleManager.Roles.FirstOrDefault(x => x.Id == Id);
-//     var result = data.ToExtVMSingle();
-//     return Ok(data);
-//   }
-//   [HttpPost()]
-//   public async Task<IActionResult> Create(string role)
-//   {
-//     var exsist = await _roleManager.RoleExistsAsync(role);
-//     if (!exsist)
-//     {
-//       var result = await _roleManager.CreateAsync(new InfraRole(role));
-//       if (result.Succeeded) return Ok(result.ToExtVMSingle());
-//     }
-//     return BadRequest("Role already exist");
-//   }
-//   [HttpPut("{id:int}")]
-//   public async Task<IActionResult> Update(string Id, [FromBody] string text)
-//   {
-//     var role = await _roleManager.FindByIdAsync(Id);
-//     if (role != null)
-//     {
-//       role.Name = text;
-//       var result = await _roleManager.UpdateAsync(role);
-//       if (result.Succeeded) return Ok(result.ToExtVMSingle());
-//     }
-//     return BadRequest("Role already exist");
-//   }
-//   [HttpDelete("{id:int}")]
-//   public async Task<IActionResult> Delete(string Id)
-//   {
-//     if (Id.IsNullOrEmpty()) return InvalidId();
+  [HttpGet()]
+  public async Task<IActionResult> Gets()
+  {
+    var list = _roleManager.Roles.ToList();
+    var result = list.ToExtVMMulti();
+    return Ok(list);
+  }
+  [HttpGet("{id:int}")]
+  public async Task<IActionResult> Get(string Id)
+  {
+    var data = _roleManager.Roles.FirstOrDefault(x => x.Id == Id);
+    var result = data.ToExtVMSingle();
+    return Ok(data);
+  }
+  [HttpPost()]
+  public async Task<IActionResult> Create(string role)
+  {
+    var exsist = await _roleManager.RoleExistsAsync(role);
+    if (!exsist)
+    {
+      var result = await _roleManager.CreateAsync(new InfraRole(role));
+      if (result.Succeeded) return Ok(result.ToExtVMSingle());
+    }
+    return BadRequest("Role already exist");
+  }
+  [HttpPut("{id:int}")]
+  public async Task<IActionResult> Update(string Id, [FromBody] string text)
+  {
+    var role = await _roleManager.FindByIdAsync(Id);
+    if (role != null)
+    {
+      role.Name = text;
+      var result = await _roleManager.UpdateAsync(role);
+      if (result.Succeeded) return Ok(result.ToExtVMSingle());
+    }
+    return BadRequest("Role already exist");
+  }
+  [HttpDelete("{id:int}")]
+  public async Task<IActionResult> Delete(string Id)
+  {
+    if (Id.IsNullOrEmpty()) return InvalidId();
 
-//     var item = await _roleManager.FindByIdAsync(Id);
-//     if (item == null) return InvalidId();
+    var item = await _roleManager.FindByIdAsync(Id);
+    if (item == null) return InvalidId();
 
-//     try
-//     {
-//       await _roleManager.DeleteAsync(item);
-//     }
-//     catch (Exception ex)
-//     {
-//       return CatchException(ex, nameof(Delete));
-//     }
-//     return NoContent();
-//   }
+    try
+    {
+      await _roleManager.DeleteAsync(item);
+    }
+    catch (Exception ex)
+    {
+      return CatchException(ex, nameof(Delete));
+    }
+    return NoContent();
+  }
 //   [HttpPost("[action]")]
 //   public async Task<IActionResult> AddUserToRole(string email, string role)
 //   {
@@ -119,4 +117,4 @@
 //   {
 //     return null;
 //   }
-// }
+}
