@@ -32,14 +32,14 @@ public partial class UserController : AlphaController<AccountController>
   }
   [Authorize()]
   [HttpGet()]
-  public async Task<IActionResult> GetUsers()
+  public async Task<IActionResult> Gets()
   {
     var list = _userManager.Users.ToList();
     var result = list.ToExtVMMulti();
     return Ok(result);
   }
-  [HttpGet("{id:int}")]
-  public async Task<IActionResult> GetUser(string Id)
+  [HttpGet("{Id}")]
+  public async Task<IActionResult> Get(string Id)
   {
     var data = _userManager.Users.FirstOrDefault(x => x.Id == Id);
     var result = data.ToExtVMSingle();

@@ -4,6 +4,16 @@ using GLOB.Domain.Base;
 namespace GLOB.Infra.Helper;
 public static class Extension
 {
+    public static BaseVMMulti<TEntity> ToExtVMMulti<TEntity>(this IQueryable<TEntity>? list)
+    where TEntity : class //, IEntityBeta
+    {
+        var vm = new BaseVMMulti<TEntity>()
+        {
+            Records = list.ToList() ?? new List<TEntity>(),
+            Status = HttpStatusCode.OK
+        };
+        return vm;
+    }
     // Maybe this doesn't reqired in future
     public static BaseVMMulti<TEntity> ToExtVMMulti<TEntity>(this List<TEntity>? list)
     where TEntity : class //, IEntityBeta

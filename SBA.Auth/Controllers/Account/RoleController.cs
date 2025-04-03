@@ -2,6 +2,7 @@ using AutoMapper;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
 using GLOB.Domain.Base;
+using GLOB.Domain.Hierarchy;
 using GLOB.Infra.Helper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -31,16 +32,16 @@ public partial class RoleController : AlphaController<AccountController>
   [HttpGet()]
   public async Task<IActionResult> Gets()
   {
-    var list = _roleManager.Roles.ToList();
-    var result = list.ToExtVMMulti();
-    return Ok(result);
+    var list = _roleManager.Roles.ToExtVMMulti();
+    return Ok(list);
   }
-  // [HttpGet("[action]")]
-  // public async Task<IActionResult> Paginate(PaginateRequestFilter<InfraRole> req)
-  // {
-  //   var list = _roleManager.Roles.ToExtPaginateAsync(req);
-  //   return Ok(list);
-  // }
+  [HttpGet("[action]")]
+  public async Task<IActionResult> Paginate(PaginateRequestFilter<CityDto> req)
+  {
+    // var list = _roleManager.Roles.GetsPaginate();
+    // return Ok(list);
+    return Ok();
+  }
   [HttpGet("{Id}")]
   public async Task<IActionResult> Get(string Id)
   {

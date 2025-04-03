@@ -1,6 +1,8 @@
+using System.Linq.Expressions;
 using GLOB.Domain.Base;
 using Microsoft.EntityFrameworkCore;
 
+namespace GLOB.Infra.Helper;
 public static partial class RepoExtensionActions
 {
   public static async Task<BaseDtoPageRes<T>> ToExtPaginateAsync<T>(this IQueryable<T> source, int pageNo = 1, int pageSize = 10)
