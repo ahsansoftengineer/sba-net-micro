@@ -9,13 +9,13 @@ namespace GLOB.Infra.Seedz;
 public static partial class SeederIdentity
 {
   public static IApplicationBuilder app;
-  public static void SeedIdentity(this ModelBuilder mb)
+  public static void SeedInfraIdentity(this ModelBuilder mb)
   {
     Console.WriteLine("--> Infra Identity -> Applying Migrations ModelBuilder");
     mb.SeedTestInfra();
     // mb.Entity<UserInfra>().HasData();
   }
-  public static async Task SeedIdentity(this IApplicationBuilder app)
+  public static async Task SeedInfraIdentity(this IApplicationBuilder app)
   {
     using(var srvcScp = app.ApplicationServices.CreateScope())
     {
@@ -28,8 +28,8 @@ public static partial class SeederIdentity
         Console.WriteLine("--> Infra Identity -> Applying Migrations AppBuilder");
         context.Database.Migrate();
         {
-          await userManager.SeedUserInfra();
-          await roleManager.SeedRoleInfra();
+          await userManager.SeedInfraUser();
+          await roleManager.SeedInfraRole();
 
           // context.SeedTestInfra();
           // context.SeedLE();

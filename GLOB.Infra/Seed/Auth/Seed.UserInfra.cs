@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace GLOB.Infra.Seed;
 public static partial class Seederz
 {
-  public static async Task SeedUserInfra(this UserManager<IdentityUser> mngr)
+  public static async Task SeedInfraUser(this UserManager<IdentityUser> mngr)
   {
     if(!await mngr.Users.AnyAsync())
     {
@@ -16,7 +16,7 @@ public static partial class Seederz
       }
     }
   }
-  public static async Task SeedUserInfra(this DBCntxtIdentity context)
+  public static async Task SeedInfraUser(this DBCntxtIdentity context)
   {
     if (!context.Users.Any())
     {

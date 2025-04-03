@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace GLOB.Infra.Seed;
 public static partial class Seederz
 {
-  public static void SeedRoleInfra(this ModelBuilder mb)
+  public static void SeedInfraRole(this ModelBuilder mb)
   {
     // SeedDataUserRole<UserRole>()
     // mb.Entity<UserRole>().HasData();
@@ -12,7 +12,7 @@ public static partial class Seederz
 
     mb.Entity<IdentityRole>().HasData(SeedDataRole<IdentityRole>());
   }
-  public static async Task SeedRoleInfra(this RoleManager<IdentityRole> mngr)
+  public static async Task SeedInfraRole(this RoleManager<IdentityRole> mngr)
   {
     if (!await mngr.Roles.AnyAsync())
     {

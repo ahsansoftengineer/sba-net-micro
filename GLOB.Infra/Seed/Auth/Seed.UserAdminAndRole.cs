@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace GLOB.Infra.Seed;
 public static partial class Seederz
 {
-  public static async Task SeedRolesAndAdmin(IServiceProvider srvc)
+  public static async Task SeedInfraRolesAndAdmin(IServiceProvider srvc)
   {
     await srvc.SeedRoles();
     await srvc.SeedRolesAndUser("admin@yopmail.com", ROLE.ADMIN);
