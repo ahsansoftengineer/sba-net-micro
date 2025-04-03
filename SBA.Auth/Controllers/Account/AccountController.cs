@@ -1,12 +1,9 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using AutoMapper;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
+using GLOB.Infra.Helper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using SBA.Projectz.Data;
 
 namespace SBA.Auth.Controllers;
@@ -54,7 +51,7 @@ public partial class AccountController : AlphaController<AccountController>
     var user = await _userManager.FindByEmailAsync(model.Email);
     if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
     {
-        var token = GenerateJwtToken(user);
+        var token = HelperAuth.GenerateJwtToken(user, _config);
         return Ok(new { token });
     }
     return Unauthorized("Invalid credentials.");
@@ -102,24 +99,5 @@ public partial class AccountController : AlphaController<AccountController>
 
 
   // Private Functions
-  private string GenerateJwtToken(UserInfra user)
-  {
-      var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
-      var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-      var claims = new[]
-      {
-          new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-          new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-          new Claim("UserId", user.Id)
-      };
 
-      var token = new JwtSecurityToken(
-          issuer: _config["Jwt:Issuer"],
-          audience: _config["Jwt:Audience"],
-          claims: claims,
-          expires: DateTime.UtcNow.AddHours(1),
-          signingCredentials: creds);
-
-      return new JwtSecurityTokenHandler().WriteToken(token);
-  }
 }
