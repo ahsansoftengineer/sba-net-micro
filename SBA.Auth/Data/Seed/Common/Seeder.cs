@@ -9,7 +9,7 @@ public static partial class Seeder
   public static void Seed(this ModelBuilder mb)
   {
     Console.WriteLine("--> Auth -> Applying Migrations ModelBuilder");
-    mb.SeedInfra();
+    // mb.SeedInfraIdentity(); // base.OnModelCreating
     mb.SeedTestProj();
 
   }
@@ -26,8 +26,8 @@ public static partial class Seeder
         Console.WriteLine("--> Auth -> Applying Migrations AppBuilder");
         context.Database.Migrate();
         {
-          // contextz.SeedTestInfra();
           await app.SeedInfraIdentity();
+          context.SeedTestProj();
         }
       }
     }

@@ -33,7 +33,7 @@ public static partial class InfraSeederIdentity
         Console.WriteLine("--> Infra Identity -> Applying Migrations AppBuilder (Prod)");
         context.Database.Migrate();
         {
-          await userManager.SeedInfraUser();
+          // await userManager.SeedInfraUser();
           await roleManager.SeedInfraRole();
           app.SeedInfra(); //context.SeedTestInfra();
           // context.SeedLE();
