@@ -7,7 +7,7 @@ namespace SBA.Projectz.Controllers.Base;
 public abstract class CommonzController<TController, TEntity> 
   : CommonController<TController, TEntity> 
     where TController : class
-    where TEntity : BaseEntity
+    where TEntity : EntityBase
 {
   protected IUOW uOW = null;
   public CommonzController(

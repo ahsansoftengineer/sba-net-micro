@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using GLOB.Domain.Base;
 
 namespace GLOB.Domain.Hierarchy;
-public class SU : BaseEntity
+public class SU : EntityBase
 {
   [ForeignKey(nameof(OU))]
   public int OUId { get; set; }

@@ -6,7 +6,7 @@ namespace GLOB.API.Controllers.Base;
 public abstract class CommonController<TController, TEntity> 
   : BetaController<TController, TEntity, DtoSearch, DtoRead, DtoCreate>
     where TController : class
-    where TEntity : BaseEntity
+    where TEntity : EntityBase
 {
   public CommonController(
     ILogger<TController> logger,

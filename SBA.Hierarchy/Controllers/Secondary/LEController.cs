@@ -20,7 +20,7 @@
 //   }
 
 //   [HttpGet("GetsPaginate")]
-//   public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<LE, LEDtoSearch> req)
+//   public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<LEDtoSearch> req)
 //   {
 //     try
 //     {

@@ -1,12 +1,9 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using AutoMapper;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
+using GLOB.Infra.Helper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using SBA.Projectz.Data;
 
 namespace SBA.Auth.Controllers;
@@ -15,23 +12,29 @@ namespace SBA.Auth.Controllers;
 public partial class AccountController : AlphaController<AccountController>
 {
   // private IRepoGenericz<AccountId> Repo = null;
-  private readonly UserManager<UserInfra> _userManager;
-  private readonly SignInManager<UserInfra> _signInManager;
+  private readonly UserManager<InfraUser> _userManager;
+  private readonly SignInManager<InfraUser> _signInManager;
+  private readonly RoleManager<InfraRole> _roleManager;
   private readonly IConfiguration _config;
-  private readonly RoleManager<IdentityRole> _roleManager;
   private IUOW uOW { get; }
   public AccountController(
     ILogger<AccountController> logger,
     IMapper mapper,
+    UserManager<InfraUser> userManager,
+    SignInManager<InfraUser> signInManager,
+    RoleManager<InfraRole> roleManager,
     IUOW uow) : base(logger)
   {
     // Repo = uow.TestProjs;
+    _userManager = userManager;
+    _signInManager = signInManager;
+    _roleManager = roleManager;
 
   }
-  [HttpPost("register")]
+  [HttpPost("[action]")]
   public async Task<IActionResult> Register([FromBody] RegisterDto model) 
   {
-    var user = new UserInfra { UserName = model.Email, Email = model.Email, Title = model.FullName };
+    var user = new InfraUser { UserName = model.Email, Email = model.Email, Title = model.FullName };
     var result = await _userManager.CreateAsync(user, model.Password);
 
     if (result.Succeeded)
@@ -42,57 +45,55 @@ public partial class AccountController : AlphaController<AccountController>
     return BadRequest(result.Errors);
   }
 
-  [HttpPost("login")]
+  [HttpPost("[action]")]
   public async Task<IActionResult> Login([FromBody] LoginDto model)  
   {
     var user = await _userManager.FindByEmailAsync(model.Email);
     if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
     {
-        var token = GenerateJwtToken(user);
+        var token = HelperAuth.GenerateJwtToken(user, _config);
         return Ok(new { token });
     }
-    return Unauthorized("Invalid credentials.");;  
+    return Unauthorized("Invalid credentials.");
   }
 
 
-  [HttpPost("logout")]
+  [HttpPost("[action]")]
   public async Task<IActionResult> Logout()  
   {
-    return null;  
+    await _signInManager.SignOutAsync();
+    return Ok(new { message = "Logged out successfully" });
   }
 
-  [HttpPost("refresh-token")]
-  public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenDto model)  
-  {
-    return null;  
-  }
+  // [HttpPost("[action]")]
+  // public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenDto model)  
+  // {
+  //   var principal = _jwtTokenService.GetPrincipalFromExpiredToken(model.Token);
+  //       if (principal == null)
+  //           return null;
 
-  [HttpPost("verify-email")]
-  public async Task<IActionResult> VerifyEmail([FromQuery] string token, [FromQuery] string email) 
-  {
-    return null;  
-  }
+  //       var userId = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+  //       var user = await _userManager.FindByIdAsync(userId);
+  //       if (user == null || user.RefreshToken != model.RefreshToken || user.RefreshTokenExpiry < DateTime.UtcNow)
+  //           return null;
 
+  //       var newAccessToken = _jwtTokenService.GenerateAccessToken(user);
+  //       var newRefreshToken = _jwtTokenService.GenerateRefreshToken();
+  //       user.RefreshToken = newRefreshToken;
+  //       user.RefreshTokenExpiry = DateTime.UtcNow.AddDays(7);
+  //       await _userManager.UpdateAsync(user);
 
-  // Private Functions
-  private string GenerateJwtToken(UserInfra user)
-  {
-      var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
-      var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-      var claims = new[]
-      {
-          new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-          new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-          new Claim("UserId", user.Id)
-      };
+  //       return new { AccessToken = newAccessToken, RefreshToken = newRefreshToken };  
+  // }
 
-      var token = new JwtSecurityToken(
-          issuer: _config["Jwt:Issuer"],
-          audience: _config["Jwt:Audience"],
-          claims: claims,
-          expires: DateTime.UtcNow.AddHours(1),
-          signingCredentials: creds);
+  // [HttpPost("[action]")]
+  // public async Task<IActionResult> VerifyEmail([FromQuery] string token, [FromQuery] string email) 
+  // {
+  //   var user = await _userManager.FindByEmailAsync(email);
+  //   if (user == null)
+  //     return BadRequest(new { message = "Email not Found" });
 
-      return new JwtSecurityTokenHandler().WriteToken(token);
-  }
+  //   var result = await _userManager.ConfirmEmailAsync(user, token);
+  //   return Ok(new { message = "Your Email has been verified" });
+  // }
 }

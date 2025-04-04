@@ -8,7 +8,7 @@ using GLOB.Infra.UOW;
 namespace GLOB.API.Controllers.Base;
 public abstract partial class BaseController<TController, TEntity, DtoResponse>
   : AlphaController<TController>
-    where TEntity : class, IBaseEntity 
+    where TEntity : class, IEntityAlpha 
     where TController : class
     where DtoResponse : class
 {

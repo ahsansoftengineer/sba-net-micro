@@ -1,5 +1,5 @@
 // using System.Text;
-// using GLOB.Infra.Context.Auth;
+// using GLOB.Infra.Data.Auth;
 // using Microsoft.AspNetCore.Authentication.JwtBearer;
 // using Microsoft.Extensions.Configuration;
 // using Microsoft.Extensions.DependencyInjection;

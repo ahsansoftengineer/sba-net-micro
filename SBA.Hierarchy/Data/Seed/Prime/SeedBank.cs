@@ -9,13 +9,13 @@ public static partial class Seeder
   {
     if (!context.Banks.Any(x => x.Id > 0))
     {
-      context.Banks.AddRange(Seederz.SeedDataBaseEntity<Bank>());
+      context.Banks.AddRange(InfraSeeder.SeedDataBaseEntity<Bank>());
       context.SaveChanges();
     }
   }
   public static void SeedBank(this ModelBuilder builder)
   {
-    builder.Entity<Bank>().HasData(Seederz.SeedDataBaseEntity<Bank>());
+    builder.Entity<Bank>().HasData(InfraSeeder.SeedDataBaseEntity<Bank>());
   }
   
 

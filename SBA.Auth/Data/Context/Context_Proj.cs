@@ -1,4 +1,4 @@
-using GLOB.Infra.Context.Auth;
+using GLOB.Infra.Data.Auth;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Projectz.Data;

@@ -6,7 +6,7 @@ namespace GLOB.Infra.Helper;
 public static partial class RepoExtensionActions
 {
   public static IQueryable<T> ToExtOrderBy<T>(this IQueryable<T> query, Sort? sort)
-    where T : class, IBetaEntity
+    where T : class, IEntityBeta
   {
     if (sort == null || string.IsNullOrEmpty(sort?.By))
     {

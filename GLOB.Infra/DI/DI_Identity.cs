@@ -4,7 +4,7 @@ using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
-using GLOB.Infra.Context.Auth;
+using GLOB.Infra.Data.Auth;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 
@@ -16,6 +16,7 @@ public static partial class DI_Infra
     where TIUOW : class, IUnitOfWorkz
     where TUOW : UnitOfWorkz, TIUOW
   {
+    // Option Pattern
     srvc.Configure<JwtSettings>(config.GetSection("JwtSettings"));
     srvc.Configure<IdentitySettings>(config.GetSection("Identity"));
 
@@ -23,7 +24,8 @@ public static partial class DI_Infra
     srvc.Config_DB_SQL<TContext, TIUOW, TUOW>(config);
 
     // Configure Identity with roles
-    srvc.AddIdentity<UserInfra, AuthRole>()
+    // srvc.AddIdentity<InfraUser, InfraRole>()
+    srvc.AddIdentity<InfraUser, InfraRole>()
         .AddEntityFrameworkStores<TContext>()
         .AddDefaultTokenProviders();
     

@@ -1,5 +1,4 @@
-using GLOB.Infra.Context;
-using GLOB.Infra.Seed;
+using GLOB.Infra.Data;
 using GLOB.Infra.Seedz;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,12 +9,12 @@ public static partial class Seeder
   public static void Seed(this ModelBuilder mb)
   {
     Console.WriteLine("--> Auth -> Applying Migrations ModelBuilder");
-    mb.SeedInfra();
+    // mb.SeedInfraIdentity(); // base.OnModelCreating
     mb.SeedTestProj();
 
   }
   // Prod (When Running Migration throw Automation)
-  public static void Seed(this IApplicationBuilder app)
+  public static async Task Seed(this IApplicationBuilder app)
   {
     using (var srvcScp = app.ApplicationServices.CreateScope())
     { 
@@ -27,7 +26,7 @@ public static partial class Seeder
         Console.WriteLine("--> Auth -> Applying Migrations AppBuilder");
         context.Database.Migrate();
         {
-          contextz.SeedTestInfra();
+          await app.SeedInfraIdentity();
           context.SeedTestProj();
         }
       }

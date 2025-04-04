@@ -3,7 +3,7 @@ using GLOB.Domain.Base;
 using GLOB.Domain.Enum;
 
 namespace GLOB.Domain.Hierarchy;
-public class Transactionz : BetaEntity
+public class Transactionz : EntityBeta
 {
   public int TransactionSimpaisaID { get; set; }
   // Order Price Info

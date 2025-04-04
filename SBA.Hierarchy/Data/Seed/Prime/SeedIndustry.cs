@@ -9,13 +9,13 @@ public static partial class Seeder
   {
     if (!context.Industrys.Any(x => x.Id > 0))
     {
-      context.Industrys.AddRange(Seederz.SeedDataBaseEntity<Industry>());
+      context.Industrys.AddRange(InfraSeeder.SeedDataBaseEntity<Industry>());
       context.SaveChanges();
     }
   }
   public static void SeedIndustry(this ModelBuilder builder)
   {
-    builder.Entity<Industry>().HasData(Seederz.SeedDataBaseEntity<Industry>());
+    builder.Entity<Industry>().HasData(InfraSeeder.SeedDataBaseEntity<Industry>());
   }
   
 

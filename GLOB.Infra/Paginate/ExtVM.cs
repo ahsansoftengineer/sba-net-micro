@@ -4,8 +4,19 @@ using GLOB.Domain.Base;
 namespace GLOB.Infra.Helper;
 public static class Extension
 {
+    public static BaseVMMulti<TEntity> ToExtVMMulti<TEntity>(this IQueryable<TEntity>? list)
+    where TEntity : class //, IEntityBeta
+    {
+        var vm = new BaseVMMulti<TEntity>()
+        {
+            Records = list.ToList() ?? new List<TEntity>(),
+            Status = HttpStatusCode.OK
+        };
+        return vm;
+    }
+    // Maybe this doesn't reqired in future
     public static BaseVMMulti<TEntity> ToExtVMMulti<TEntity>(this List<TEntity>? list)
-    where TEntity : class, IBaseEntity
+    where TEntity : class //, IEntityBeta
     {
         var vm = new BaseVMMulti<TEntity>()
         {
@@ -14,8 +25,18 @@ public static class Extension
         };
         return vm;
     }
+    // public static BaseVMMulti ToExtVMMulti(this object? list)
+    // {
+
+    //     var vm = new BaseVMMulti()
+    //     {
+    //         Records = (List<object>)list,
+    //         Status = HttpStatusCode.OK
+    //     };
+    //     return vm;
+    // }
     public static BaseVMSelect ToExtVMSelect<TEntity>(this List<TEntity>? list)
-    where TEntity : class, IBaseEntity
+    where TEntity : class, IEntityAlpha
     {
         var vm = new BaseVMSelect()
         {
@@ -33,14 +54,23 @@ public static class Extension
         return vm;
     }
 
-    public static BaseVMSingle<TEntity> ToExtVMSingle<TEntity>(this TEntity? item)
-    where TEntity : class, IBaseEntity
+    public static BaseVMSingle ToExtVMSingle<TEntity>(this TEntity? item)
+    where TEntity : class //, IEntityBase
     {
-        var vm = new BaseVMSingle<TEntity>()
+        var vm = new BaseVMSingle()
         {
-            Record = item ?? null,
+            Record = item ,
             Status = HttpStatusCode.OK
         };
         return vm;
     }
+    // public static BaseVMSingle ToExtVMSingle(this object item)
+    // {
+    //     var vm = new BaseVMSingle()
+    //     {
+    //         Record = item ,
+    //         Status = HttpStatusCode.OK
+    //     };
+    //     return vm;
+    // }
 }

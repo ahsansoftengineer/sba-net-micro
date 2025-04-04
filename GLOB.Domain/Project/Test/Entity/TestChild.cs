@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using GLOB.Domain.Base;
 
 namespace GLOB.Domain.Projectz;
-public class TestChild : BaseEntity
+public class TestChild : EntityBase
 {
   [ForeignKey(nameof(TestParent))]
   public int TestParentId { get; set; }

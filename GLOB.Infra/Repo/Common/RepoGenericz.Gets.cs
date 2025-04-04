@@ -11,42 +11,17 @@ public partial class RepoGenericz<T>
     Expression<Func<T, bool>>? expression = null,
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
     List<string>? Include = null)
+    {
+      IQueryable<T> query = _db;
+      return await query.Gets(expression, orderBy, Include);
+    }
+
+    // Filter, OrderBy, Include, Pagination,
+    public async Task<object> GetsPaginate<TDtoSearch>(PaginateRequestFilter<TDtoSearch>? req)
+    where TDtoSearch : class
   {
     IQueryable<T> query = _db;
-    if (expression != null)
-    {
-      query = query.Where(expression);
-    }
-
-    query = query.ToExtInclues(Include);
-
-    if (orderBy != null)
-    {
-      query = orderBy(query);
-    }
-    return await query.AsNoTracking().ToListAsync();
-  }
-
-  // Filter, OrderBy, Include, Pagination,
-  public async Task<object> GetsPaginate<TDto>(PaginateRequestFilter<T, TDto>? req)
-    where TDto : class
-  {
-    IQueryable<T> query = _db;
-
-    query = query.ToExtFilter(req.Filter);
-    query = query.ToExtOrderBy(req.Sort);
-
-    if (!req.IsMapped)
-    {
-      query = query.ToExtInclues(req?.Include);
-      return await query.AsNoTracking()
-        .ToExtPaginateAsync(req?.PageNo ?? 1, req?.PageSize ?? 10);
-    }
-    else
-    {
-      return await query.ToExtMapping().AsNoTracking()
-        .ToExtPaginateAsync(req?.PageNo ?? 1, req?.PageSize ?? 10);
-    }
+    return query.GetsPaginate(req);
   }
 }
 

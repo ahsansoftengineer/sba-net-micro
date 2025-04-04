@@ -1,6 +1,6 @@
 
 using GLOB.API.DI;
-using GLOB.Infra.Context;
+using GLOB.Infra.Data;
 using GLOB.Infra.UOW;
 
 namespace GLOB.API;

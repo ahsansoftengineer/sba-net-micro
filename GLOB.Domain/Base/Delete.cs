@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Http;
 
 namespace GLOB.Domain.Base;
-public abstract class BaseUser : BaseEntity, IBaseEntity
+public abstract class BaseUser : EntityBase, IEntityBase
 {
   public string? UrlImg { get; set; }
   [NotMapped]

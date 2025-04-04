@@ -14,7 +14,7 @@ public class Sort
 
 }
 
-public class PaginateRequestFilter<TEntity, TDtoSearch>
+public class PaginateRequestFilter<TDtoSearch>
 {
   public int PageNo { get; set; } = 1;
   public int PageSize { get; set; } = 10;
@@ -33,7 +33,7 @@ public class BaseDtoPageRes<T>
   public int PageNo { get; private set; } = 1;
   public int TotalPages => (int)Math.Ceiling(Count / (double)PageSize);
 
-  public bool HasPreviousPage => PageNo > 1;
+  public bool HasPreviousPage => PageNo > 1 && TotalPages >= PageNo-1;
   public bool HasNextPage => PageNo < TotalPages;
   public HttpStatusCode Status = HttpStatusCode.OK;
 

@@ -22,7 +22,72 @@ namespace SBA.Auth.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("GLOB.Domain.Auth.UserInfra", b =>
+            modelBuilder.Entity("GLOB.Domain.Auth.InfraRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "b4206884-fc69-4a1b-a4ca-81f4cf594ee5",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Name = "InfraRole_1",
+                            NormalizedName = "INFRAROLE_1",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = "832f9537-20c4-49ca-9f12-b8c5f9515c17",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Name = "InfraRole_2",
+                            NormalizedName = "INFRAROLE_2",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = "8c40418c-4ac7-4f2e-9def-8ceeb5f5c556",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Name = "InfraRole_3",
+                            NormalizedName = "INFRAROLE_3",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        });
+                });
+
+            modelBuilder.Entity("GLOB.Domain.Auth.InfraUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -94,6 +159,59 @@ namespace SBA.Auth.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "22c74fbc-9b0d-4848-85db-f09d58750006",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "c019aae7-ab2a-4d1e-b8d7-637e5298eca4",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Email = "InfraUser_1@yopmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "INFRAUSER_1@YOPMAIL.COM",
+                            NormalizedUserName = "INFRAUSER_1@YOPMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJLXCITbNTKE+DDO3EoeFiN2ioNWsnN/bXZkKQ/TmThjaO4pAxL+RAWm1rY/GsxMOQ==",
+                            PhoneNumberConfirmed = false,
+                            TwoFactorEnabled = false,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            UserName = "InfraUser_1@yopmail.com"
+                        },
+                        new
+                        {
+                            Id = "46eb923d-8529-4b77-b311-96e98ea6ea06",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "04a51e36-58c1-4053-986a-1d861ba91b0b",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Email = "InfraUser_2@yopmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "INFRAUSER_2@YOPMAIL.COM",
+                            NormalizedUserName = "INFRAUSER_2@YOPMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDzwKnEdo5BxnzVvEmpsa6nvmHM/Cp6ERtd5Xv+XV5TDJapbZaCk0mS6YkfxR/7x7Q==",
+                            PhoneNumberConfirmed = false,
+                            TwoFactorEnabled = false,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            UserName = "InfraUser_2@yopmail.com"
+                        },
+                        new
+                        {
+                            Id = "8118fea8-a644-4d67-9eca-1d689465a1bf",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "473cb184-01ca-45f4-a26b-778947edda62",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Email = "InfraUser_3@yopmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "INFRAUSER_3@YOPMAIL.COM",
+                            NormalizedUserName = "INFRAUSER_3@YOPMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOTiXXeqjxp1wScckUAyHRKNg9dtGWZUZSRJ/9mBDyyktbs9b+hGNxDj4edP9B5oaQ==",
+                            PhoneNumberConfirmed = false,
+                            TwoFactorEnabled = false,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            UserName = "InfraUser_3@yopmail.com"
+                        });
                 });
 
             modelBuilder.Entity("GLOB.Domain.Projectz.TestInfra", b =>
@@ -224,33 +342,6 @@ namespace SBA.Auth.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles", (string)null);
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -359,7 +450,7 @@ namespace SBA.Auth.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("GLOB.Domain.Auth.InfraRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -368,7 +459,7 @@ namespace SBA.Auth.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("GLOB.Domain.Auth.UserInfra", null)
+                    b.HasOne("GLOB.Domain.Auth.InfraUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -377,7 +468,7 @@ namespace SBA.Auth.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("GLOB.Domain.Auth.UserInfra", null)
+                    b.HasOne("GLOB.Domain.Auth.InfraUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -386,13 +477,13 @@ namespace SBA.Auth.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("GLOB.Domain.Auth.InfraRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GLOB.Domain.Auth.UserInfra", null)
+                    b.HasOne("GLOB.Domain.Auth.InfraUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -401,7 +492,7 @@ namespace SBA.Auth.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("GLOB.Domain.Auth.UserInfra", null)
+                    b.HasOne("GLOB.Domain.Auth.InfraUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

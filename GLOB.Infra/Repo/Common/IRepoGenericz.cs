@@ -5,7 +5,7 @@ using GLOB.Domain.Enums;
 
 namespace GLOB.Infra.Repo;
 public interface IRepoGenericz<T>
-  where T : class, IBaseEntity
+  where T : class, IEntityAlpha
 {
   DbSet<T> GetDBSet();
   bool Any(Expression<Func<T, bool>>? filter = null);
@@ -18,8 +18,8 @@ public interface IRepoGenericz<T>
     Expression<Func<T, bool>>? expression = null,
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
     List<string>? Include = null);
-  Task<object> GetsPaginate<TDto>(PaginateRequestFilter<T, TDto?> req)
-    where TDto : class;
+  Task<object> GetsPaginate<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req)
+    where TDtoSearch : class;
   Task Insert(T entity);
   Task InsertRange(IEnumerable<T> entities);
   Task Delete(int? id);
