@@ -17,6 +17,7 @@ public static partial class InfraSeederIdentity
     Console.WriteLine("--> Infra Identity -> Applying Migrations ModelBuilder (Dev)");
     mb.SeedInfra(); // mb.SeedTestInfra();
     mb.SeedInfraRole();
+    mb.SeedInfraUser();
   }
   // Seed for Production (Automate)
   public static async Task SeedInfraIdentity(this IApplicationBuilder app)
@@ -35,6 +36,7 @@ public static partial class InfraSeederIdentity
         {
           // await userManager.SeedInfraUser();
           await roleManager.SeedInfraRole();
+          await userManager.SeedInfraUser();
           app.SeedInfra(); //context.SeedTestInfra();
           // context.SeedLE();
         }

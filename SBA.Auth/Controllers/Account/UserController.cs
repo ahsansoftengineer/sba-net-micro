@@ -2,12 +2,12 @@ using AutoMapper;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
 using GLOB.Infra.Helper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Data;
 
 namespace SBA.Auth.Controllers;
+[Route("api/Auth/[controller]")]
 public partial class UserController : AlphaController<AccountController>
 {
   private readonly UserManager<InfraUser> _userManager;
@@ -30,7 +30,6 @@ public partial class UserController : AlphaController<AccountController>
     // _config = config
 
   }
-  [Authorize()]
   [HttpGet()]
   public async Task<IActionResult> Gets()
   {

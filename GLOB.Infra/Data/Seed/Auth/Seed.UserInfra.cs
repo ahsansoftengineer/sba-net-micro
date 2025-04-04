@@ -6,30 +6,22 @@ using Microsoft.EntityFrameworkCore;
 namespace GLOB.Infra.Seed;
 public static partial class InfraSeeder
 {
+  public static void SeedInfraUser(this ModelBuilder mb)
+  {
+    mb.Entity<InfraUser>().HasData(SeedDataInfraUser<InfraUser>());
+  }
   public static async Task SeedInfraUser(this UserManager<InfraUser> mngr)
   {
-    if(!await mngr.Users.AnyAsync())
+    if (!await mngr.Users.AnyAsync())
     {
-      foreach(var item in SeedDataUserInfra<InfraUser>())
+      foreach (var item in SeedDataInfraUser<InfraUser>())
       {
         await mngr.CreateAsync(item);
       }
     }
   }
-  public static async Task SeedInfraUser(this DBCntxtIdentity context)
-  {
-    if (!context.Users.Any())
-    {
-      await context.Users.AddRangeAsync(SeedDataUserInfra<InfraUser>());
-      context.SaveChanges();
-    }
-  }
-  public static void SeedUserInfra(this ModelBuilder builder)
-  {
-    builder.Entity<InfraUser>().HasData(SeedDataUserInfra<InfraUser>());
-  }
 
-  public static List<T> SeedDataUserInfra<T>() where T : IdentityUser, new()
+  public static List<T> SeedDataInfraUser<T>() where T : IdentityUser<string>, new()
   {
     string className = typeof(T).Name;
     List<T> list = new List<T>();
@@ -44,7 +36,7 @@ public static partial class InfraSeeder
     {
       string name = $"{className}_{i}";
       string email = $"{name}@yopmail.com";
-      string normalized = $"{name}@yopmail.com".ToUpper();
+      string normalized = $"{name}@yopmail.com".ToUpperInvariant();
       var user = new T()
       {
         Id = guid[i-1],

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SBA.Projectz.Data;
 
@@ -11,9 +12,11 @@ using SBA.Projectz.Data;
 namespace SBA.Auth.Migrations
 {
     [DbContext(typeof(DBCntxtProj))]
-    partial class DBCntxtProjModelSnapshot : ModelSnapshot
+    [Migration("20250404070915_InfraUserMigration2")]
+    partial class InfraUserMigration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -165,51 +168,48 @@ namespace SBA.Auth.Migrations
                         {
                             Id = "22c74fbc-9b0d-4848-85db-f09d58750006",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c019aae7-ab2a-4d1e-b8d7-637e5298eca4",
-                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            ConcurrencyStamp = "bf049a3f-0c08-4d4f-b147-7f1c54377606",
                             Email = "InfraUser_1@yopmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "INFRAUSER_1@YOPMAIL.COM",
                             NormalizedUserName = "INFRAUSER_1@YOPMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJLXCITbNTKE+DDO3EoeFiN2ioNWsnN/bXZkKQ/TmThjaO4pAxL+RAWm1rY/GsxMOQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEK16QQ7WMj4IayBT3vsWsONtzUQNE5tLxzZXSTdwXYMArLwZOBoDfS4QuD56fToUWA==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "dfb4666e-e9ed-4229-b4a2-8b494854014c",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             UserName = "InfraUser_1@yopmail.com"
                         },
                         new
                         {
                             Id = "46eb923d-8529-4b77-b311-96e98ea6ea06",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "04a51e36-58c1-4053-986a-1d861ba91b0b",
-                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            ConcurrencyStamp = "a4266fb6-ea65-4a31-9115-3bbb0c076298",
                             Email = "InfraUser_2@yopmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "INFRAUSER_2@YOPMAIL.COM",
                             NormalizedUserName = "INFRAUSER_2@YOPMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDzwKnEdo5BxnzVvEmpsa6nvmHM/Cp6ERtd5Xv+XV5TDJapbZaCk0mS6YkfxR/7x7Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHIWqTopGIl6FuUT33Ssl5fwWlYUwvZWUGilfimys9b/PtozTrruDFe98iOu27W7xA==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "8b35d684-4619-4039-9c9f-e9b6b2468e47",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             UserName = "InfraUser_2@yopmail.com"
                         },
                         new
                         {
                             Id = "8118fea8-a644-4d67-9eca-1d689465a1bf",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "473cb184-01ca-45f4-a26b-778947edda62",
-                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            ConcurrencyStamp = "3b2eb138-7728-4db8-abc8-dc30a7f3b51a",
                             Email = "InfraUser_3@yopmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "INFRAUSER_3@YOPMAIL.COM",
                             NormalizedUserName = "INFRAUSER_3@YOPMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOTiXXeqjxp1wScckUAyHRKNg9dtGWZUZSRJ/9mBDyyktbs9b+hGNxDj4edP9B5oaQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDZEnDIArG11tuY25E0ltLvRRwASJtPannrE5N39A2RMTW1ZeUhCQORV0pqmevAmvQ==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "bd762241-2668-4878-bfa8-f4789532642b",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             UserName = "InfraUser_3@yopmail.com"
                         });
                 });

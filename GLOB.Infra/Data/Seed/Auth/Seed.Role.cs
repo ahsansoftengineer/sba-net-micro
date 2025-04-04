@@ -27,7 +27,7 @@ public static partial class InfraSeeder
   //     context.SaveChanges();
   //   }
   // }
-  public static List<T> SeedDataRole<T>() where T : InfraRole, new()
+  public static List<T> SeedDataRole<T>() where T : IdentityRole<string>, new()
   {
     string className = typeof(T).Name;
     List<T> list = new List<T>();
@@ -41,7 +41,7 @@ public static partial class InfraSeeder
     for (int i = 1; i <= 3; i++)
     {
       string name = $"{className}_{i}";
-      string NAME = name.ToUpper();
+      string NAME = name.ToUpperInvariant(); // ToUpper is not Recommended
       var data = new T()
       {
 
