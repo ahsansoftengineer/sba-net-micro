@@ -14,28 +14,28 @@ public class CommonStatusConfigz<T> : IEntityTypeConfiguration<T>
       new T
       {
         Id = 1,
-        Title = className + " 1 Title",
+        Name = className + " 1 Name",
         Desc = className + " 1 Desc",
         Status = Status.None,
       },
       new T
       {
         Id = 2,
-        Title = className + " 2 Title",
+        Name = className + " 2 Name",
         Desc = className + " 2 Desc",
         Status = Status.Active,
       },
       new T
       {
         Id = 3,
-        Title = className + " 3 Title",
+        Name = className + " 3 Name",
         Desc = className + " 3 Desc",
         Status = Status.DeActive,
       },
       new T
       {
         Id = 4,
-        Title = className + " 4 Title",
+        Name = className + " 4 Name",
         Desc = className + " 4 Desc",
         Status = Status.Delete,
       }

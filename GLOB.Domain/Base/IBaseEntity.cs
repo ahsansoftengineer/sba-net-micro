@@ -5,7 +5,7 @@ namespace GLOB.Domain.Base;
 public interface IEntityAlpha
 {
     int Id { get; set; }
-    string Title { get; set; }
+    string Name { get; set; }
 }
 public interface IEntityStatus
 {

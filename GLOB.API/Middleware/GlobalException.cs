@@ -34,7 +34,7 @@ public class GlobalExceptionMiddleware
 
         var errorResponse = new
         {
-            Title = "Unhandle Exception : Internal Server Error",
+            Name = "Unhandle Exception : Internal Server Error",
             response.StatusCode,
             exception.Message
         };

@@ -27,7 +27,8 @@ public static partial class InfraSeeder
   //     context.SaveChanges();
   //   }
   // }
-  public static List<T> SeedDataRole<T>() where T : IdentityRole<string>, new()
+  public static List<T> SeedDataRole<T>() where T : InfraRole, new()
+  //  IdentityRole<string>
   {
     string className = typeof(T).Name;
     List<T> list = new List<T>();

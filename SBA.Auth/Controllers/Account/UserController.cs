@@ -1,6 +1,7 @@
 using AutoMapper;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
+using GLOB.Domain.Model;
 using GLOB.Infra.Helper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,7 @@ namespace SBA.Auth.Controllers;
 [Route("api/Auth/[controller]")]
 public partial class UserController : AlphaController<AccountController>
 {
+  private readonly IMapper _mapper;
   private readonly UserManager<InfraUser> _userManager;
   // private readonly SignInManager<InfraUser> _signInManager;
   // private readonly RoleManager<InfraRole> _roleManager;
@@ -23,6 +25,7 @@ public partial class UserController : AlphaController<AccountController>
     RoleManager<InfraRole> roleManager,
     IUOW uow) : base(logger)
   {
+    _mapper = mapper;
     // Repo = uow.TestProjs;
     _userManager = userManager;
     // _signInManager = signInManager;
@@ -40,7 +43,8 @@ public partial class UserController : AlphaController<AccountController>
   [HttpGet("{Id}")]
   public async Task<IActionResult> Get(string Id)
   {
-    var data = _userManager.Users.FirstOrDefault(x => x.Id == Id).ToExtVMSingle();
-    return Ok(data);
+    var data = _userManager.Users.FirstOrDefault(x => x.Id == Id);
+    var result = _mapper.Map<InfraUserDto>(data).ToExtVMSingle();
+    return Ok(result);
   }
 }

@@ -11,7 +11,7 @@ public static partial class RepoExtensionActions
     return source.Select(x => new DtoSelect
     {
       Id = x.Id,
-      Title = x.Title,
+      Name = x.Name,
       Status = x.Status
     });
   }

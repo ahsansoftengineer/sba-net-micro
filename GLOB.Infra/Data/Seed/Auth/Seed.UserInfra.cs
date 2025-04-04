@@ -21,7 +21,8 @@ public static partial class InfraSeeder
     }
   }
 
-  public static List<T> SeedDataInfraUser<T>() where T : IdentityUser<string>, new()
+  public static List<T> SeedDataInfraUser<T>() where T : InfraUser, new()
+  // IdentityUser<string>
   {
     string className = typeof(T).Name;
     List<T> list = new List<T>();
@@ -41,6 +42,7 @@ public static partial class InfraSeeder
       {
         Id = guid[i-1],
         UserName = email,
+        Name = name,
         Email = email,
         NormalizedUserName = normalized,
         NormalizedEmail = normalized,
