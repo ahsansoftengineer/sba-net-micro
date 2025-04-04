@@ -34,7 +34,7 @@ public partial class AccountController : AlphaController<AccountController>
   [HttpPost("[action]")]
   public async Task<IActionResult> Register([FromBody] RegisterDto model) 
   {
-    var user = new InfraUser { UserName = model.Email, Email = model.Email, Title = model.FullName };
+    var user = new InfraUser { UserName = model.Email, Email = model.Email, Name = model.FullName };
     var result = await _userManager.CreateAsync(user, model.Password);
 
     if (result.Succeeded)

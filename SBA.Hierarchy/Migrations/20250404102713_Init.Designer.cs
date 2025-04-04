@@ -12,7 +12,7 @@ using SBA.Projectz.Data;
 namespace SBA.Hierarchy.Migrations
 {
     [DbContext(typeof(DBCntxtProj))]
-    [Migration("20250404062902_Init")]
+    [Migration("20250404102713_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -42,14 +42,14 @@ namespace SBA.Hierarchy.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(4);
 
-                    b.Property<int?>("Status")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
-
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("datetimeoffset")
@@ -65,8 +65,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 1,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "BG 1 Desc",
+                            Name = "BG 1",
                             Status = 0,
-                            Title = "BG 1",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -74,8 +74,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 2,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "BG 2 Desc",
+                            Name = "BG 2",
                             Status = 0,
-                            Title = "BG 2",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -83,8 +83,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 3,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "BG 3 Desc",
+                            Name = "BG 3",
                             Status = 0,
-                            Title = "BG 3",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });
                 });
@@ -106,14 +106,14 @@ namespace SBA.Hierarchy.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(4);
 
-                    b.Property<int?>("Status")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
-
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("datetimeoffset")
@@ -129,8 +129,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 1,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "Bank 1 Desc",
+                            Name = "Bank 1",
                             Status = 0,
-                            Title = "Bank 1",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -138,8 +138,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 2,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "Bank 2 Desc",
+                            Name = "Bank 2",
                             Status = 0,
-                            Title = "Bank 2",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -147,8 +147,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 3,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "Bank 3 Desc",
+                            Name = "Bank 3",
                             Status = 0,
-                            Title = "Bank 3",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });
                 });
@@ -170,14 +170,14 @@ namespace SBA.Hierarchy.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(4);
 
-                    b.Property<int?>("Status")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
-
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("datetimeoffset")
@@ -193,8 +193,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 1,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "Brand 1 Desc",
+                            Name = "Brand 1",
                             Status = 0,
-                            Title = "Brand 1",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -202,8 +202,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 2,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "Brand 2 Desc",
+                            Name = "Brand 2",
                             Status = 0,
-                            Title = "Brand 2",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -211,8 +211,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 3,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "Brand 3 Desc",
+                            Name = "Brand 3",
                             Status = 0,
-                            Title = "Brand 3",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });
                 });
@@ -234,17 +234,17 @@ namespace SBA.Hierarchy.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(4);
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(3);
+
                     b.Property<int?>("StateId")
                         .HasColumnType("int");
 
                     b.Property<int?>("Status")
                         .HasColumnType("int")
                         .HasColumnOrder(2);
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnOrder(3);
 
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("datetimeoffset")
@@ -262,9 +262,9 @@ namespace SBA.Hierarchy.Migrations
                             Id = 1,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "City 1 Desc",
+                            Name = "City 1",
                             StateId = 1,
                             Status = 0,
-                            Title = "City 1",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -272,9 +272,9 @@ namespace SBA.Hierarchy.Migrations
                             Id = 2,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "City 2 Desc",
+                            Name = "City 2",
                             StateId = 2,
                             Status = 0,
-                            Title = "City 2",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -282,9 +282,9 @@ namespace SBA.Hierarchy.Migrations
                             Id = 3,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "City 3 Desc",
+                            Name = "City 3",
                             StateId = 3,
                             Status = 0,
-                            Title = "City 3",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });
                 });
@@ -306,14 +306,14 @@ namespace SBA.Hierarchy.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(4);
 
-                    b.Property<int?>("Status")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
-
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("datetimeoffset")
@@ -329,8 +329,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 1,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "Industry 1 Desc",
+                            Name = "Industry 1",
                             Status = 0,
-                            Title = "Industry 1",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -338,8 +338,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 2,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "Industry 2 Desc",
+                            Name = "Industry 2",
                             Status = 0,
-                            Title = "Industry 2",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -347,8 +347,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 3,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "Industry 3 Desc",
+                            Name = "Industry 3",
                             Status = 0,
-                            Title = "Industry 3",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });
                 });
@@ -373,14 +373,14 @@ namespace SBA.Hierarchy.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(4);
 
-                    b.Property<int?>("Status")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
-
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("datetimeoffset")
@@ -399,8 +399,8 @@ namespace SBA.Hierarchy.Migrations
                             BGId = 1,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "LE 1 Desc",
+                            Name = "LE 1",
                             Status = 0,
-                            Title = "LE 1",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -409,8 +409,8 @@ namespace SBA.Hierarchy.Migrations
                             BGId = 2,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "LE 2 Desc",
+                            Name = "LE 2",
                             Status = 0,
-                            Title = "LE 2",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -419,8 +419,8 @@ namespace SBA.Hierarchy.Migrations
                             BGId = 3,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "LE 3 Desc",
+                            Name = "LE 3",
                             Status = 0,
-                            Title = "LE 3",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });
                 });
@@ -460,14 +460,14 @@ namespace SBA.Hierarchy.Migrations
                     b.Property<string>("LogoImg")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Status")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
-
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
                     b.Property<string>("TopImg")
                         .HasColumnType("nvarchar(max)");
@@ -497,8 +497,8 @@ namespace SBA.Hierarchy.Migrations
                             LEId = 1,
                             Law = "OULaw",
                             LogoImg = "OULogoImg",
+                            Name = "OU 1",
                             Status = 0,
-                            Title = "OU 1",
                             TopImg = "OUTopImg",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             WarningImg = "OUWarningImg"
@@ -514,8 +514,8 @@ namespace SBA.Hierarchy.Migrations
                             LEId = 2,
                             Law = "OULaw",
                             LogoImg = "OULogoImg",
+                            Name = "OU 2",
                             Status = 0,
-                            Title = "OU 2",
                             TopImg = "OUTopImg",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             WarningImg = "OUWarningImg"
@@ -531,8 +531,8 @@ namespace SBA.Hierarchy.Migrations
                             LEId = 3,
                             Law = "OULaw",
                             LogoImg = "OULogoImg",
+                            Name = "OU 3",
                             Status = 0,
-                            Title = "OU 3",
                             TopImg = "OUTopImg",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             WarningImg = "OUWarningImg"
@@ -556,14 +556,14 @@ namespace SBA.Hierarchy.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(4);
 
-                    b.Property<int?>("Status")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
-
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("datetimeoffset")
@@ -579,8 +579,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 1,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "Org 1 Desc",
+                            Name = "Org 1",
                             Status = 0,
-                            Title = "Org 1",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -588,8 +588,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 2,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "Org 2 Desc",
+                            Name = "Org 2",
                             Status = 0,
-                            Title = "Org 2",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -597,8 +597,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 3,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "Org 3 Desc",
+                            Name = "Org 3",
                             Status = 0,
-                            Title = "Org 3",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });
                 });
@@ -620,14 +620,14 @@ namespace SBA.Hierarchy.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(4);
 
-                    b.Property<int?>("Status")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
-
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("datetimeoffset")
@@ -643,8 +643,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 1,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "Profession 1 Desc",
+                            Name = "Profession 1",
                             Status = 0,
-                            Title = "Profession 1",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -652,8 +652,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 2,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "Profession 2 Desc",
+                            Name = "Profession 2",
                             Status = 0,
-                            Title = "Profession 2",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -661,8 +661,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 3,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "Profession 3 Desc",
+                            Name = "Profession 3",
                             Status = 0,
-                            Title = "Profession 3",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });
                 });
@@ -684,17 +684,17 @@ namespace SBA.Hierarchy.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(4);
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(3);
+
                     b.Property<int>("OUId")
                         .HasColumnType("int");
 
                     b.Property<int?>("Status")
                         .HasColumnType("int")
                         .HasColumnOrder(2);
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnOrder(3);
 
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("datetimeoffset")
@@ -712,9 +712,9 @@ namespace SBA.Hierarchy.Migrations
                             Id = 1,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "SU 1 Desc",
+                            Name = "SU 1",
                             OUId = 1,
                             Status = 0,
-                            Title = "SU 1",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -722,9 +722,9 @@ namespace SBA.Hierarchy.Migrations
                             Id = 2,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "SU 2 Desc",
+                            Name = "SU 2",
                             OUId = 2,
                             Status = 0,
-                            Title = "SU 2",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -732,9 +732,9 @@ namespace SBA.Hierarchy.Migrations
                             Id = 3,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "SU 3 Desc",
+                            Name = "SU 3",
                             OUId = 3,
                             Status = 0,
-                            Title = "SU 3",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });
                 });
@@ -756,14 +756,14 @@ namespace SBA.Hierarchy.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(4);
 
-                    b.Property<int?>("Status")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
-
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("datetimeoffset")
@@ -779,8 +779,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 1,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "State 1 Desc",
+                            Name = "State 1",
                             Status = 0,
-                            Title = "State 1",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -788,8 +788,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 2,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "State 2 Desc",
+                            Name = "State 2",
                             Status = 0,
-                            Title = "State 2",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -797,8 +797,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 3,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "State 3 Desc",
+                            Name = "State 3",
                             Status = 0,
-                            Title = "State 3",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });
                 });
@@ -820,17 +820,17 @@ namespace SBA.Hierarchy.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(4);
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(3);
+
                     b.Property<int>("OrgId")
                         .HasColumnType("int");
 
                     b.Property<int?>("Status")
                         .HasColumnType("int")
                         .HasColumnOrder(2);
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnOrder(3);
 
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("datetimeoffset")
@@ -848,9 +848,9 @@ namespace SBA.Hierarchy.Migrations
                             Id = 1,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "Systemz 1 Desc",
+                            Name = "Systemz 1",
                             OrgId = 1,
                             Status = 0,
-                            Title = "Systemz 1",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -858,9 +858,9 @@ namespace SBA.Hierarchy.Migrations
                             Id = 2,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "Systemz 2 Desc",
+                            Name = "Systemz 2",
                             OrgId = 2,
                             Status = 0,
-                            Title = "Systemz 2",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -868,9 +868,9 @@ namespace SBA.Hierarchy.Migrations
                             Id = 3,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "Systemz 3 Desc",
+                            Name = "Systemz 3",
                             OrgId = 3,
                             Status = 0,
-                            Title = "Systemz 3",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });
                 });
@@ -892,14 +892,14 @@ namespace SBA.Hierarchy.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(4);
 
-                    b.Property<int?>("Status")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
-
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("datetimeoffset")
@@ -915,8 +915,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 1,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "TestInfra 1 Desc",
+                            Name = "TestInfra 1",
                             Status = 0,
-                            Title = "TestInfra 1",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -924,8 +924,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 2,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "TestInfra 2 Desc",
+                            Name = "TestInfra 2",
                             Status = 0,
-                            Title = "TestInfra 2",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -933,8 +933,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 3,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "TestInfra 3 Desc",
+                            Name = "TestInfra 3",
                             Status = 0,
-                            Title = "TestInfra 3",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });
                 });
@@ -956,14 +956,14 @@ namespace SBA.Hierarchy.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(4);
 
-                    b.Property<int?>("Status")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
-
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("datetimeoffset")
@@ -979,8 +979,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 1,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "TestProj 1 Desc",
+                            Name = "TestProj 1",
                             Status = 0,
-                            Title = "TestProj 1",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -988,8 +988,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 2,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "TestProj 2 Desc",
+                            Name = "TestProj 2",
                             Status = 0,
-                            Title = "TestProj 2",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -997,8 +997,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 3,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "TestProj 3 Desc",
+                            Name = "TestProj 3",
                             Status = 0,
-                            Title = "TestProj 3",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });
                 });

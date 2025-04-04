@@ -4,7 +4,7 @@ using GLOB.API.Middlewarez;
 namespace GLOB.API.DI;
 public static partial class DICommon
 {
-  public static void AddDICommon(this IServiceCollection srvc)
+  public static void AddDICommon(this IServiceCollection srvc, string ProjectNameSwagger = "Swagger Name Project")
   {
     // Config_CachingService(srvc);
     // srvc.AddAuthentication();
@@ -12,7 +12,7 @@ public static partial class DICommon
     srvc.Config_Cors();
     srvc.AddAutoMapper(typeof(MapBase));
     srvc.Config_Controllerz();
-    srvc.Config_Swagger();
+    srvc.Config_Swagger(ProjectNameSwagger);
     // srvc.Config_Versioning();
   }
   public static void AddDefaultExternalServices(this IServiceCollection srvc)

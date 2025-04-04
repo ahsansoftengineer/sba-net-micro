@@ -61,13 +61,13 @@ public static partial class DICommon
         //c.InjectJavascript("/js/swagger-custom.js"); //
       });
   }
-  public static void Config_Swagger(this IServiceCollection srvc, string title = "Micro")
+  public static void Config_Swagger(this IServiceCollection srvc, string ProjectNameSwagger = "Swagger Name Project")
   {
     srvc.AddSwaggerGen(c =>
     {
       c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
       {
-        Title = title,
+        Title = ProjectNameSwagger,
         Version = "v1"
       });
       //c.IgnoreObsoleteProperties();

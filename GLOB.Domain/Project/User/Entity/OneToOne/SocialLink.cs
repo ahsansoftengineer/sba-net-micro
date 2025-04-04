@@ -13,6 +13,6 @@ public class SocialLink : EntityBeta
   public decimal? TotalFollowers { get; set; }
   public decimal? TotalEngagementRate { get; set; }
   // IsActive
-  // Title = Instagram, Facebook, Youtube, Twitter, Tiktok
+  // Name = Instagram, Facebook, Youtube, Twitter, Tiktok
   // Desc = www.Instagram.com?>>>??>?>?>
 }

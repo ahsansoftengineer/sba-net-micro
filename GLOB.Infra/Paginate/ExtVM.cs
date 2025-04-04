@@ -48,7 +48,7 @@ public static class Extension
         var result = list.Select(x => new DtoSelect
         {
             Id = x.Id,
-            Title = x.Title
+            Name = x.Name
         }).ToList();
         vm.Records = result;
         return vm;

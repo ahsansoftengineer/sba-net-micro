@@ -6,7 +6,7 @@ public class DtoCreate
 {
   [Required]
   [StringLength(maximumLength: 50, ErrorMessage = "Max Characters 50 Allowed")]
-  public string Title { get; set; } = "";
+  public string Name { get; set; } = "";
   [StringLength(maximumLength: 100, ErrorMessage = "Max Characters 100 Allowed")]
   public string? Desc { get; set; }
 
@@ -22,14 +22,14 @@ public class DtoRead : DtoCreate
 public class DtoSelect
 {
   public int Id { get; set; }
-  public string Title { get; set; } = "";
+  public string Name { get; set; } = "";
   public bool IsSelected = false;
   public Status? Status { get; set; }
 }
 public class DtoSearch
 {
   public int? Id { get; set; } = null;
-  public string? Title { get; set; }
+  public string? Name { get; set; }
   public string? Desc { get; set; }
   public DateTimeOffset? DateFrom { get; set; }
   public DateTimeOffset? DateTo { get; set; }

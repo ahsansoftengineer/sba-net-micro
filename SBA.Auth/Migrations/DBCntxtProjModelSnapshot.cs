@@ -115,6 +115,10 @@ namespace SBA.Auth.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -165,14 +169,15 @@ namespace SBA.Auth.Migrations
                         {
                             Id = "22c74fbc-9b0d-4848-85db-f09d58750006",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c019aae7-ab2a-4d1e-b8d7-637e5298eca4",
+                            ConcurrencyStamp = "336c708c-edbc-45a7-8c5a-fef80b398faa",
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Email = "InfraUser_1@yopmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
+                            Name = "InfraUser_1",
                             NormalizedEmail = "INFRAUSER_1@YOPMAIL.COM",
                             NormalizedUserName = "INFRAUSER_1@YOPMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJLXCITbNTKE+DDO3EoeFiN2ioNWsnN/bXZkKQ/TmThjaO4pAxL+RAWm1rY/GsxMOQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMVn2e8BNgPMsX8l5Gj/uP9xEsvftel3lGGemILrrvk3JrjPSlaw1rAJTu+yw3GHVw==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
@@ -182,14 +187,15 @@ namespace SBA.Auth.Migrations
                         {
                             Id = "46eb923d-8529-4b77-b311-96e98ea6ea06",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "04a51e36-58c1-4053-986a-1d861ba91b0b",
+                            ConcurrencyStamp = "e48a2b84-d037-4b45-9d38-0eb66ad858cf",
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Email = "InfraUser_2@yopmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
+                            Name = "InfraUser_2",
                             NormalizedEmail = "INFRAUSER_2@YOPMAIL.COM",
                             NormalizedUserName = "INFRAUSER_2@YOPMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDzwKnEdo5BxnzVvEmpsa6nvmHM/Cp6ERtd5Xv+XV5TDJapbZaCk0mS6YkfxR/7x7Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDQu/5jl7jdUoZMC0B7ikhLbuZQGfw9HPecfm2Mzy+FVf5fGiXhaa/GXp34u0rOUIg==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
@@ -199,14 +205,15 @@ namespace SBA.Auth.Migrations
                         {
                             Id = "8118fea8-a644-4d67-9eca-1d689465a1bf",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "473cb184-01ca-45f4-a26b-778947edda62",
+                            ConcurrencyStamp = "b2bc97e7-6223-4dc1-8644-c5aadddf7643",
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Email = "InfraUser_3@yopmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
+                            Name = "InfraUser_3",
                             NormalizedEmail = "INFRAUSER_3@YOPMAIL.COM",
                             NormalizedUserName = "INFRAUSER_3@YOPMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOTiXXeqjxp1wScckUAyHRKNg9dtGWZUZSRJ/9mBDyyktbs9b+hGNxDj4edP9B5oaQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPq3tPePqsWBgPOE70ekk+JD2BdrL7GdPgLXZm+pstrMPtBPlut1OnCsiuKcPG3LKA==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
@@ -231,14 +238,14 @@ namespace SBA.Auth.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(4);
 
-                    b.Property<int?>("Status")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
-
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("datetimeoffset")
@@ -254,8 +261,8 @@ namespace SBA.Auth.Migrations
                             Id = 1,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "TestInfra 1 Desc",
+                            Name = "TestInfra 1",
                             Status = 0,
-                            Title = "TestInfra 1",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -263,8 +270,8 @@ namespace SBA.Auth.Migrations
                             Id = 2,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "TestInfra 2 Desc",
+                            Name = "TestInfra 2",
                             Status = 0,
-                            Title = "TestInfra 2",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -272,8 +279,8 @@ namespace SBA.Auth.Migrations
                             Id = 3,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "TestInfra 3 Desc",
+                            Name = "TestInfra 3",
                             Status = 0,
-                            Title = "TestInfra 3",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });
                 });
@@ -295,14 +302,14 @@ namespace SBA.Auth.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(4);
 
-                    b.Property<int?>("Status")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
-
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("datetimeoffset")
@@ -318,8 +325,8 @@ namespace SBA.Auth.Migrations
                             Id = 1,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "TestProj 1 Desc",
+                            Name = "TestProj 1",
                             Status = 0,
-                            Title = "TestProj 1",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -327,8 +334,8 @@ namespace SBA.Auth.Migrations
                             Id = 2,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "TestProj 2 Desc",
+                            Name = "TestProj 2",
                             Status = 0,
-                            Title = "TestProj 2",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
                         new
@@ -336,8 +343,8 @@ namespace SBA.Auth.Migrations
                             Id = 3,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Desc = "TestProj 3 Desc",
+                            Name = "TestProj 3",
                             Status = 0,
-                            Title = "TestProj 3",
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });
                 });

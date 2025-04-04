@@ -18,7 +18,7 @@ public abstract class EntityAlpha : IEntityAlpha, IEntityStatus
     [Column(Order = 2)]
     public Status? Status { get; set; } = Defaultz.Status;
     [Column(Order = 3)] // required
-    public string Title { get; set; }
+    public string Name { get; set; }
 }
 public abstract class EntityBeta : EntityAlpha, IEntityBeta
 {

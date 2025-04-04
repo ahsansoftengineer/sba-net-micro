@@ -3,7 +3,7 @@ using GLOB.Domain.Base;
 namespace GLOB.Domain.Hierarchy;
 public class BankAccount : EntityBase
 {
-  // AccountTitle = Title
+  // AccountTitle = Name
   public int? UserCreatorID { get; set; } = null;
   public UserCreator? UserCreator { get; set; } = null;
   public int? BankID { get; set; }

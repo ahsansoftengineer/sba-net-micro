@@ -27,7 +27,7 @@
 //       list.Add(new T()
 //       {
 //         Id = i,
-//         Title = $"{className} {i}",
+//         Name = $"{className} {i}",
 //         Desc = $"{className} {i} Desc",
 //         BGId = i
 //       });

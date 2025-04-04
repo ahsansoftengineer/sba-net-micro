@@ -14,7 +14,7 @@ public class Startup
 
   public void ConfigureServices(IServiceCollection srvc)
   {
-    srvc.AddDICommon();
+    srvc.AddDICommon("SBA Authorization");
     srvc.AddSrvc(_config);
     srvc.AddDefaultExternalServices();
 
