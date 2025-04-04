@@ -40,8 +40,7 @@ public partial class UserController : AlphaController<AccountController>
   [HttpGet("{Id}")]
   public async Task<IActionResult> Get(string Id)
   {
-    var data = _userManager.Users.FirstOrDefault(x => x.Id == Id);
-    var result = data.ToExtVMSingle();
+    var data = _userManager.Users.FirstOrDefault(x => x.Id == Id).ToExtVMSingle();
     return Ok(data);
   }
 }
