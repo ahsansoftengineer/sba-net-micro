@@ -16,7 +16,7 @@ public class Startup
   public void ConfigureServices(IServiceCollection srvc)
   {
     
-    srvc.AddDICommon();
+    srvc.AddDICommon("SBA Hierarchy");
     srvc.AddSrvc(_config);
     srvc.AddDefaultExternalServices();
 
