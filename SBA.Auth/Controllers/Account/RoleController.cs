@@ -10,7 +10,7 @@ using SBA.Projectz.Data;
 
 namespace SBA.Auth.Controllers;
 [Route("api/Auth/[controller]")]
-public partial class RoleController : AlphaController<AccountController>
+public partial class RoleController : AlphaController<RoleController>
 {
   private readonly UserManager<InfraUser> _userManager;
   private readonly RoleManager<InfraRole> _roleManager;
@@ -24,6 +24,8 @@ public partial class RoleController : AlphaController<AccountController>
   {
     _userManager = userManager;
     _roleManager = roleManager;
+    _logger.LogWarning("How does Type Works -> "+ this);
+    
 
   }
 //   [Authorize()]
@@ -34,7 +36,7 @@ public partial class RoleController : AlphaController<AccountController>
     return Ok(list);
   }
   [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginate(PaginateRequestFilter<CityDto> req)
+  public async Task<IActionResult> GetsPaginate(PaginateRequestFilter<CityDto?> req)
   {
     // var list = _roleManager.Roles.GetsPaginate();
     // return Ok(list);

@@ -10,7 +10,7 @@ public abstract class AlphaController<TController> : ControllerBase
   private readonly IServiceProvider _srvcProvider;
   protected readonly IMapper _mapper;
   protected readonly IUnitOfWorkInfra _uowInfra;
-  protected readonly ILogger<TController> _logger;
+  protected readonly ILogger _logger;
 
   public AlphaController(IServiceProvider srvcProvider)
   {
@@ -18,6 +18,7 @@ public abstract class AlphaController<TController> : ControllerBase
     _mapper = GetSrvc<IMapper>();
     _uowInfra = GetSrvc<IUnitOfWorkInfra>();
     _logger = GetSrvc<ILogger<TController>>();
+    _logger.LogWarning("How does Type Works -> "+ this);
   }
   protected TService GetSrvc<TService>()
   where TService: class
