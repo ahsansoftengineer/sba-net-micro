@@ -36,7 +36,7 @@ public partial class RoleController : AlphaController<AccountController>
     return Ok(list);
   }
   [HttpGet("[action]")]
-  public async Task<IActionResult> Paginate(PaginateRequestFilter<CityDto> req)
+  public async Task<IActionResult> GetsPaginate(PaginateRequestFilter<CityDto> req)
   {
     // var list = _roleManager.Roles.GetsPaginate();
     // return Ok(list);
