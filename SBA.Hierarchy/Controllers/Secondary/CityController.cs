@@ -13,7 +13,7 @@ public class CityController : BasezController<CityController, City, CityDto>
     _repo = _uow.Citys;
   }
 
-  [HttpGet("GetsPaginate")]
+  [HttpGet("[action]")]
   public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<CityDtoSearch?> req)
   {
     try

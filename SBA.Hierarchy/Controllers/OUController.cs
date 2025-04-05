@@ -18,7 +18,7 @@
 //     _repo = _uow.OUs;
 //     WebHostEnvironment = webHostEnvironment;
 //   }
-//   [HttpGet("GetsPaginate")]
+//   [HttpGet("[action]")]
 //   public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<OUDtoSearch> req)
 //   {
 //     try

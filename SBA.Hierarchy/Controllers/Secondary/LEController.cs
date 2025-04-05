@@ -13,7 +13,7 @@ public class LEController : BasezController<LEController, LE, LEDto>
     _repo = _uow.LEs;
   }
 
-  [HttpGet("GetsPaginate")]
+  [HttpGet("[action]")]
   public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<LEDtoSearch> req)
   {
     try

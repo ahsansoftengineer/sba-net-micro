@@ -1,5 +1,4 @@
 using GLOB.Domain.Base;
-using GLOB.Infra.Repo;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;
