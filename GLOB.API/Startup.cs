@@ -17,8 +17,8 @@ public class Startup
   public void ConfigureServices(IServiceCollection srvc)
   {
     // srvc.AddDICommon();
-    // srvc.Config_DB_SQL<DBCntxt, IUnitOfWorkz, UnitOfWorkz>(_config);
-    // srvc.Config_DB_Identity<DBCntxtIdentity, IUnitOfWorkz, UnitOfWorkz>(_config);
+    // srvc.Config_DB_SQL<DBCntxt, IUnitOfWorkInfra, UnitOfWorkInfra>(_config);
+    // srvc.Config_DB_Identity<DBCntxtIdentity, IUnitOfWorkInfra, UnitOfWorkInfra>(_config);
     // srvc.AddAutoMapper(typeof(MapBase));
     // srvc.AddDefaultExternalServices();
   }

@@ -1,6 +1,5 @@
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Projectz;
-using GLOB.Infra.Repo;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Test;

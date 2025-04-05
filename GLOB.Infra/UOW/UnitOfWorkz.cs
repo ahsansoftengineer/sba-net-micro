@@ -1,13 +1,12 @@
 using GLOB.Domain.Base;
-using GLOB.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.UOW;
-public partial class UnitOfWorkz : IUnitOfWorkz
+public partial class UnitOfWorkInfra : IUnitOfWorkInfra
 {
   public readonly DbContext _context;
 
-  public UnitOfWorkz(DbContext context)
+  public UnitOfWorkInfra(DbContext context)
   {
     _context = context;
   }

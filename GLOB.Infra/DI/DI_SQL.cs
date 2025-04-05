@@ -10,8 +10,8 @@ public static partial class DI_Infra
 
   public static void Config_DB_SQL<TContext, TIUOW, TUOW>(this IServiceCollection srvc, IConfiguration config)
     where TContext : DbContext
-    where TIUOW : class, IUnitOfWorkz
-    where TUOW : UnitOfWorkz, TIUOW
+    where TIUOW : class, IUnitOfWorkInfra
+    where TUOW : UnitOfWorkInfra, TIUOW
   {
     string connStr = config.GetConnectionString("SqlConnection");
     

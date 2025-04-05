@@ -1,6 +1,4 @@
 using AutoMapper;
-using GLOB.Domain.Base;
-using GLOB.Infra.Repo;
 using GLOB.Infra.UOW;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,14 +9,14 @@ public abstract class AlphaController<TController> : ControllerBase
 {
   private readonly IServiceProvider _srvcProvider;
   protected readonly IMapper _mapper;
-  protected readonly IUnitOfWorkz _uowInfra;
+  protected readonly IUnitOfWorkInfra _uowInfra;
   protected readonly ILogger<TController> _logger;
 
   public AlphaController(IServiceProvider srvcProvider)
   {
     _srvcProvider = srvcProvider;
     _mapper = GetSrvc<IMapper>();
-    _uowInfra = GetSrvc<IUnitOfWorkz>();
+    _uowInfra = GetSrvc<IUnitOfWorkInfra>();
     _logger = GetSrvc<ILogger<TController>>();
   }
   protected TService GetSrvc<TService>()
