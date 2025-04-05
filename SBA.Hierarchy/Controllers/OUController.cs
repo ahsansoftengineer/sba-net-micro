@@ -1,9 +1,7 @@
-// using AutoMapper;
 // using GLOB.Common.API;
 // using GLOB.Domain.Base;
 // using GLOB.Domain.Hierarchy;
 // using Microsoft.AspNetCore.Mvc;
-// using SBA.Projectz.Data;
 // using SBA.Projectz.Controllers.Base;
 
 // namespace SBA.Hierarchy.Controllers;
@@ -12,14 +10,12 @@
 // public class OUController : BasezController<OUController, OU, OUDto>
 // {
 //   public IWebHostEnvironment WebHostEnvironment { get; }
-
 //   public OUController(
-//   ILogger<OUController> logger,
-//   IMapper mapper,
-//   IUOW uow,
-//   IWebHostEnvironment webHostEnvironment) : base(logger, mapper, uow)
+//     IServiceProvider srvcProvider,
+//     IWebHostEnvironment webHostEnvironment
+//     ) : base(srvcProvider)
 //   {
-//     _repo = uow.OUs;
+//     _repo = _uow.OUs;
 //     WebHostEnvironment = webHostEnvironment;
 //   }
 //   [HttpGet("GetsPaginate")]
@@ -70,13 +66,13 @@
 //     if (!ModelState.IsValid) return BadRequestz();
 //     try
 //     {
-//       bool hasParent = uOW.BGs.AnyId(data.LEId);
+//       bool hasParent = _uow.BGs.AnyId(data.LEId);
 //       if(!hasParent) return InvalidId("Invalid Business Group");
 
 //       var result = _mapper.Map<OU>(data);
 
 //       await _repo.Insert(result);
-//       await uOW.Save();
+//       await _uow.Save();
 
 //       return Ok(result);
 //     }
@@ -95,13 +91,13 @@
 //       var item = await _repo.Get(q => q.Id == id);
 //       if (item == null) return InvalidId();
 
-//       bool hasParent = uOW.BGs.AnyId(data.LEId);
+//       bool hasParent = _uow.BGs.AnyId(data.LEId);
 //       if(!hasParent) return InvalidId("Invalid State");
 
 //       var result = _mapper.Map(data, item);
 
 //       _repo.Update(item);
-//       await uOW.Save();
+//       await _uow.Save();
 
 //       return Ok(result);
 //     }

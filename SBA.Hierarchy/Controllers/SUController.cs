@@ -1,7 +1,5 @@
-// using AutoMapper;
 // using GLOB.Domain.Hierarchy;
 // using Microsoft.AspNetCore.Mvc;
-// using SBA.Projectz.Data;
 // using SBA.Projectz.Controllers.Base;
 
 // namespace SBA.Hierarchy.Controllers;
@@ -9,13 +7,9 @@
 // [ApiController]
 // public class SUController : BasezController<SUController, SU, SUDto>
 // {
-//   public SUController(
-//     ILogger<SUController> logger,
-//     IMapper mapper,
-//     IUOW uow) : base(logger, mapper, uow)
+//   public SUController(IServiceProvider srvcProvider) : base(srvcProvider)
 //   {
-//     _repo = uow.SUs;
-
+//     _repo = _uow.SUs;
 //   }
 
 //   [HttpPost]
