@@ -1,4 +1,4 @@
-using AutoMapper;
+// using AutoMapper;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
 using GLOB.Domain.Model;
@@ -9,27 +9,24 @@ using SBA.Projectz.Data;
 
 namespace SBA.Auth.Controllers;
 [Route("api/Auth/[controller]")]
-public partial class UserController : AlphaController<AccountController>
+public partial class UserController : AlphaController<UserController, InfraUser>
 {
-  private readonly IMapper _mapper;
+  private readonly ILogger<UserController> _logger;
   private readonly UserManager<InfraUser> _userManager;
-  // private readonly SignInManager<InfraUser> _signInManager;
-  // private readonly RoleManager<InfraRole> _roleManager;
+  private readonly SignInManager<InfraUser> _signInManager;
+  private readonly RoleManager<InfraRole> _roleManager;
   // private readonly IConfiguration _config;
   private IUOW uOW { get; }
   public UserController(
-    ILogger<AccountController> logger,
-    IMapper mapper,
+    IServiceProvider sp,
     UserManager<InfraUser> userManager,
     SignInManager<InfraUser> signInManager,
     RoleManager<InfraRole> roleManager,
-    IUOW uow) : base(logger)
+    IUOW uow) : base(sp)
   {
-    _mapper = mapper;
-    // Repo = uow.TestProjs;
     _userManager = userManager;
-    // _signInManager = signInManager;
-    // _roleManager = roleManager;
+    _signInManager = signInManager;
+    _roleManager = roleManager;
     // _config = config
 
   }
@@ -44,7 +41,34 @@ public partial class UserController : AlphaController<AccountController>
   public async Task<IActionResult> Get(string Id)
   {
     var data = _userManager.Users.FirstOrDefault(x => x.Id == Id);
-    var result = _mapper.Map<InfraUserDto>(data).ToExtVMSingle();
+    var result = Mapper.Map<InfraUserDto>(data).ToExtVMSingle();
     return Ok(result);
+  }
+
+  [HttpPost]
+  public async Task<IActionResult> Create([FromBody] RegisterDto model)
+  {
+
+  }
+
+  [HttpPut("{id:int}")]
+  public async Task<IActionResult> Update(int id, [FromBody] DtoCreate data)
+  {
+    if (!ModelState.IsValid || id < 1) return InvalidId();
+    try
+    {
+      var item = await Repo.Get(id);
+
+      if (item == null) return InvalidId();
+
+      var result = Mapper.Map(data, item);
+      Repo.Update(item);
+      await _unitOfWork.Save();
+      return Ok(result);
+    }
+    catch (Exception ex)
+    {
+      return CatchException(ex, nameof(Update));
+    }
   }
 }

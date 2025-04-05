@@ -13,12 +13,11 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
   where DtoResponse : class
 {
   // protected new IRepoGenericz<TEntity> Repo = null;
-  public BetaController(ILogger<TController> logger, IMapper mapper, IUnitOfWorkz unitOfWork) : 
-    base(logger, mapper, unitOfWork)
+  public BetaController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
 
   }
-    [HttpGet("[action]")]
+  [HttpGet("[action]")]
   public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<DtoSearch?> req)
   {
     try
@@ -40,7 +39,7 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
     {
       var result = Mapper.Map<TEntity>(data);
       await Repo.Insert(result);
-      await UnitOfWork.Save();
+      await _unitOfWork.Save();
       return Ok(result);
     }
     catch (Exception ex)
@@ -61,7 +60,7 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
 
       var result = Mapper.Map(data, item);
       Repo.Update(item);
-      await UnitOfWork.Save();
+      await _unitOfWork.Save();
       return Ok(result);
     }
     catch (Exception ex)

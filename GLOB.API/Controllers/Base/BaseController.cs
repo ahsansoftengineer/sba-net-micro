@@ -1,25 +1,21 @@
-using AutoMapper;
 using GLOB.Infra.Repo;
 using GLOB.Domain.Base;
 using GLOB.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
-using GLOB.Infra.UOW;
 using GLOB.Infra.Helper;
 
 namespace GLOB.API.Controllers.Base;
 public abstract partial class BaseController<TController, TEntity, DtoResponse>
-  : AlphaController<TController>
+  : AlphaController<TController, TEntity>
     where TEntity : class, IEntityAlpha 
     where TController : class
     where DtoResponse : class
 {
-  protected IMapper Mapper { get; }
-  protected IRepoGenericz<TEntity> Repo = null;
-  protected IUnitOfWorkz UnitOfWork { get; }
-  public BaseController(ILogger<TController> logger, IMapper mapper, IUnitOfWorkz unitOfWork) : base(logger)
+
+  protected readonly IRepoGenericz<TEntity> Repo; // Will be initialize in Last Child Class
+  public BaseController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    UnitOfWork = unitOfWork;
-    Mapper = mapper;
+
   } 
   [HttpGet("{id:int}")]
   public async Task<IActionResult> Get(int id, [FromQuery] List<string>? Include)
@@ -53,7 +49,7 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
     try
     {
       await Repo.Delete(id);
-      await UnitOfWork.Save();
+      await _unitOfWork.Save();
     }
     catch (Exception ex)
     {
@@ -73,7 +69,7 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
       if (item == null) return InvalidId();
 
       Repo.UpdateStatus(item, status);
-      await UnitOfWork.Save();
+      await _unitOfWork.Save();
       return Ok(item);
     }
     catch (Exception ex)

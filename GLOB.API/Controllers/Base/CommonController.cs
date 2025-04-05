@@ -8,10 +8,7 @@ public abstract class CommonController<TController, TEntity>
     where TController : class
     where TEntity : EntityBase
 {
-  public CommonController(
-    ILogger<TController> logger,
-    IMapper mapper,
-    IUnitOfWorkz unitOfWork) : base(logger, mapper, unitOfWork)
+  public CommonController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
 
   }

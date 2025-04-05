@@ -9,12 +9,11 @@ using SBA.Projectz.Data;
 namespace SBA.Auth.Controllers;
 [Route("api/Auth/[controller]")]
 [ApiController]
-public partial class AccountController : AlphaController<AccountController>
+public partial class AccountController : AlphaController<AccountController, InfraUser>
 {
   // private IRepoGenericz<AccountId> Repo = null;
   private readonly UserManager<InfraUser> _userManager;
   private readonly SignInManager<InfraUser> _signInManager;
-  private readonly RoleManager<InfraRole> _roleManager;
   private readonly IConfiguration _config;
   private IUOW uOW { get; }
   public AccountController(
@@ -22,18 +21,16 @@ public partial class AccountController : AlphaController<AccountController>
     IMapper mapper,
     UserManager<InfraUser> userManager,
     SignInManager<InfraUser> signInManager,
-    RoleManager<InfraRole> roleManager,
     IUOW uow) : base(logger)
   {
-    // Repo = uow.TestProjs;
     _userManager = userManager;
     _signInManager = signInManager;
-    _roleManager = roleManager;
 
   }
   [HttpPost("[action]")]
   public async Task<IActionResult> Register([FromBody] RegisterDto model) 
   {
+    if (!ModelState.IsValid) return BadRequestz();
     var user = new InfraUser { UserName = model.Email, Email = model.Email, Name = model.FullName };
     var result = await _userManager.CreateAsync(user, model.Password);
 

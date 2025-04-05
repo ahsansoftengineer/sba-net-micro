@@ -44,7 +44,7 @@
 
 //       var result = Mapper.Map<City>(data);
 //       await Repo.Insert(result);
-//       await UnitOfWork.Save();
+//       await _unitOfWork.Save();
 //       return Ok(result);
 //     }
 //     catch (Exception ex)
@@ -67,7 +67,7 @@
 
 //       var result = Mapper.Map(data, item);
 //       Repo.Update(item);
-//       await UnitOfWork.Save();
+//       await _unitOfWork.Save();
 //       return Ok(result);
 //     }
 //     catch (Exception ex)

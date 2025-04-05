@@ -9,7 +9,7 @@
 // namespace SBA.Hierarchy.Controllers;
 // [Route("api/Hierarchy/[controller]")]
 // [ApiController]
-// public class CityController : BasezController<CityController, City, CityDto>
+// public class CityController : BasezController<CityCont8roller, City, CityDto>
 // {
 //   public CityController(
 //     ILogger<CityController> logger,
@@ -44,7 +44,7 @@
 
 //       var result = Mapper.Map<City>(data);
 //       await Repo.Insert(result);
-//       await UnitOfWork.Save();
+//       await _unitOfWork.Save();
 //       return Ok(result);
 //     }
 //     catch (Exception ex)
@@ -67,7 +67,7 @@
 
 //       var result = Mapper.Map(data, item);
 //       Repo.Update(item);
-//       await UnitOfWork.Save();
+//       await _unitOfWork.Save();
 //       return Ok(result);
 //     }
 //     catch (Exception ex)
