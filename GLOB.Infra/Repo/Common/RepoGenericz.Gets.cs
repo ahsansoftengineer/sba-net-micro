@@ -20,7 +20,7 @@ public partial class RepoGenericz<T>
     where TDtoSearch : class
   {
     IQueryable<T> query = _db;
-    return query.GetsPaginate(req);
+    return await query.GetsPaginate(req);
   }
 }
 
