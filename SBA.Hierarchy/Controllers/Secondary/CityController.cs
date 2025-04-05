@@ -1,8 +1,6 @@
-using AutoMapper;
 using GLOB.Domain.Base;
 using GLOB.Domain.Hierarchy;
 using Microsoft.AspNetCore.Mvc;
-using SBA.Projectz.Data;
 using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers;
@@ -10,12 +8,9 @@ namespace SBA.Hierarchy.Controllers;
 [ApiController]
 public class CityController : BasezController<CityController, City, CityDto>
 {
-  public CityController(
-    ILogger<CityController> logger,
-    IMapper mapper,
-    IUOW uow) : base(logger, mapper, uow)
+  public CityController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = uow.Citys;
+    _repo = _uow.Citys;
   }
 
   [HttpGet("GetsPaginate")]
@@ -38,7 +33,7 @@ public class CityController : BasezController<CityController, City, CityDto>
     if (!ModelState.IsValid) return BadRequestz();
     try
     {
-      bool hasParent = uOW.States.AnyId(data.StateId);
+      bool hasParent = _uow.States.AnyId(data.StateId);
       if(!hasParent) return InvalidId("Invalid State");
 
       var result = _mapper.Map<City>(data);
@@ -61,7 +56,7 @@ public class CityController : BasezController<CityController, City, CityDto>
       var item = await _repo.Get(q => q.Id == id);
       if (item == null) return InvalidId();
       
-      bool hasParent = uOW.States.AnyId(data.StateId);
+      bool hasParent = _uow.States.AnyId(data.StateId);
       if(!hasParent) return InvalidId("Invalid State");
 
       var result = _mapper.Map(data, item);
