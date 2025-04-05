@@ -3,6 +3,7 @@ using GLOB.Infra.Helper;
 using System.Linq.Expressions;
 
 namespace GLOB.Infra.Repo;
+
 public partial class RepoGenericz<T>
 {
   // Filter, OrderBy, Include
@@ -10,17 +11,25 @@ public partial class RepoGenericz<T>
     Expression<Func<T, bool>>? expression = null,
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
     List<string>? Include = null)
-    {
-      IQueryable<T> query = _db;
-      return await query.Gets(expression, orderBy, Include);
-    }
-
-    // Filter, OrderBy, Include, Pagination,
-    public async Task<object> GetsPaginate<TDtoSearch>(PaginateRequestFilter<TDtoSearch>? req)
-    where TDtoSearch : class
   {
     IQueryable<T> query = _db;
-    return await query.GetsPaginate(req);
+    return await query.Gets(expression, orderBy, Include);
+  }
+
+  // Filter, OrderBy, Include, Pagination,
+  public async Task<BaseDtoPageRes<T>> GetsPaginate<TDtoSearch>(PaginateRequestFilter<TDtoSearch>? req) where TDtoSearch : class
+  {
+    return await _db.GetsPaginate(req);
+  }
+
+  public async Task<object> GetsPaginateObj<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req) where TDtoSearch : class
+  {
+    return await _db.GetsPaginateObj(req);
+  }
+
+  public async Task<BaseDtoPageRes<DtoSelect>> GetsPaginateSelect<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req) where TDtoSearch : class
+  {
+    return await _db.GetsPaginateSelect(req);
   }
 }
 

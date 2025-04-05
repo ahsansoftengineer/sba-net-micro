@@ -4,6 +4,7 @@ using GLOB.Domain.Base;
 using GLOB.Infra.Helper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SBA.Projectz.Data;
 
 namespace SBA.Auth.Controllers;
@@ -46,10 +47,9 @@ public partial class UserController : AlphaController<UserController>
   [HttpGet("[action]")]
   public async Task<IActionResult> GetsPaginate(PaginateRequestFilter<InfraUserDto> req)
   {
-    var paginate = await _userManager.Users.GetsPaginateStrg(req);
-
-    var result = _mapper.Map<List<InfraUserDto>>(users).ToExtVMMulti();
-    return Ok(result);
+    IQueryable<InfraUser> query = _userManager.Users;
+    var result = query.GetsPaginateQuery(req).ToExtMapSelectStrg();
+    return await query.GetsPaginate(req);
   }
 
   [HttpPost]

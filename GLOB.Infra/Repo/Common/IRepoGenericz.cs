@@ -18,13 +18,21 @@ public interface IRepoGenericz<T>
     Expression<Func<T, bool>>? expression = null,
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
     List<string>? Include = null);
-  Task<object> GetsPaginate<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req)
-    where TDtoSearch : class;
+  
   Task Insert(T entity);
   Task InsertRange(IEnumerable<T> entities);
   Task Delete(int? id);
   void DeleteRange(IEnumerable<T> entities);
   void Update(T entity);
   void UpdateStatus(T entity, Status status);
+
+  Task<BaseDtoPageRes<T>> GetsPaginate<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req)
+    where TDtoSearch : class;
+
+  Task<object> GetsPaginateObj<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req)
+    where TDtoSearch : class;
+
+  Task<BaseDtoPageRes<DtoSelect>> GetsPaginateSelect<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req)
+    where TDtoSearch : class;
 
 }

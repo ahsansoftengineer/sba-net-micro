@@ -4,7 +4,7 @@ using GLOB.Domain.Base;
 namespace GLOB.Infra.Helper;
 public static partial class RepoExtensionActions
 {
-  public static IQueryable<DtoSelect> ToExtMapping<T>(this IQueryable<T> source)
+  public static IQueryable<DtoSelect> ToExtMapSelect<T>(this IQueryable<T> source)
     where T : class, IEntityAlpha, IEntityStatus
   {
     Console.WriteLine("-->>>>>> Select Called");
@@ -15,7 +15,7 @@ public static partial class RepoExtensionActions
       Status = x.Status
     });
   }
-  public static IQueryable<DtoSelectStrg> ToExtMappingStrg<T>(this IQueryable<T> source)
+  public static IQueryable<DtoSelectStrg> ToExtMapSelectStrg<T>(this IQueryable<T> source)
     where T : class, IEntityAlphaStrg, IEntityStatus
   {
     Console.WriteLine("-->>>>>> Select Called");
