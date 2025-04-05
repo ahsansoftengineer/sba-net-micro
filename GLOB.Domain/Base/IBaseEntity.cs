@@ -7,6 +7,13 @@ public interface IEntityAlpha
     int Id { get; set; }
     string Name { get; set; }
 }
+
+public interface IEntityAlphaStrg
+{
+    string Id { get; set; }
+    string Name { get; set; }
+}
+
 public interface IEntityStatus
 {
     Status? Status { get; set; }

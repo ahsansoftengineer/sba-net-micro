@@ -15,4 +15,15 @@ public static partial class RepoExtensionActions
       Status = x.Status
     });
   }
+  public static IQueryable<DtoSelectStrg> ToExtMappingStrg<T>(this IQueryable<T> source)
+    where T : class, IEntityAlphaStrg, IEntityStatus
+  {
+    Console.WriteLine("-->>>>>> Select Called");
+    return source.Select(x => new DtoSelectStrg
+    {
+      Id = x.Id,
+      Name = x.Name,
+      Status = x.Status
+    });
+  }
 }

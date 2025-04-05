@@ -1,12 +1,13 @@
-// using AutoMapper;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
+using GLOB.Domain.Base;
 using GLOB.Infra.Helper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Data;
 
 namespace SBA.Auth.Controllers;
+
 [Route("api/Auth/[controller]")]
 public partial class UserController : AlphaController<UserController>
 {
@@ -31,8 +32,8 @@ public partial class UserController : AlphaController<UserController>
   [HttpGet()]
   public async Task<IActionResult> Gets()
   {
-    var list = _userManager.Users.ToList();
-    var result = list.ToExtVMMulti();
+    var users = _userManager.Users.ToList();
+    var result = _mapper.Map<List<InfraUserDto>>(users).ToExtVMMulti();
     return Ok(result);
   }
   [HttpGet("{Id}")]
@@ -42,31 +43,63 @@ public partial class UserController : AlphaController<UserController>
     var result = _mapper.Map<InfraUserDto>(data).ToExtVMSingle();
     return Ok(result);
   }
+  [HttpGet("[action]")]
+  public async Task<IActionResult> GetsPaginate(PaginateRequestFilter<InfraUserDto> req)
+  {
+    var paginate = await _userManager.Users.GetsPaginateStrg(req);
 
-  // [HttpPost]
-  // public async Task<IActionResult> Create([FromBody] RegisterDto model)
-  // {
+    var result = _mapper.Map<List<InfraUserDto>>(users).ToExtVMMulti();
+    return Ok(result);
+  }
 
-  // }
+  [HttpPost]
+  public async Task<IActionResult> Create([FromBody] RegisterDto model)
+  {
+    if (!ModelState.IsValid) return BadRequestz();
+    InfraUser user = MapUser(model);
+    var result = await _userManager.CreateAsync(user, model.Password);
 
-  // [HttpPut("{id:int}")]
-  // public async Task<IActionResult> Update(int id, [FromBody] DtoCreate data)
-  // {
-  //   if (!ModelState.IsValid || id < 1) return InvalidId();
-  //   try
-  //   {
-  //     var item = await _repo.Get(id);
+    if (result.Succeeded)
+    {
+      return Ok(new { message = "User registered successfully!" });
+    }
 
-  //     if (item == null) return InvalidId();
+    return BadRequest(result.Errors);
+  }
 
-  //     var result = _mapper.Map(data, item);
-  //     _repo.Update(item);
-  //     await _uowInfra.Save();
-  //     return Ok(result);
-  //   }
-  //   catch (Exception ex)
-  //   {
-  //     return CatchException(ex, nameof(Update));
-  //   }
-  // }
+  
+
+  [HttpPut("{Id}")]
+  public async Task<IActionResult> Update(string Id, [FromBody] UpdateUserDto data)
+  {
+    if (!ModelState.IsValid || string.IsNullOrEmpty(Id)) return InvalidId();
+    try
+    {
+      var item = await _userManager.FindByIdAsync(Id);
+
+      if (item == null) return InvalidId();
+      item.Name = data.FullName;
+      item.PhoneNumber = data.PhoneNumber;
+
+      var result = await _userManager.UpdateAsync(item);
+      await _uowInfra.Save();
+      return Ok(result);
+    }
+    catch (Exception ex)
+    {
+      return CatchException(ex, nameof(Update));
+    }
+  }
+
+  internal static InfraUser MapUser(RegisterDto model)
+  {
+    return new InfraUser
+    {
+      Id = Guid.NewGuid().ToString(),
+      UserName = model.Email,
+      Email = model.Email,
+      PhoneNumber = model.PhoneNumber,
+      Name = model.FullName
+    };
+  }
 }

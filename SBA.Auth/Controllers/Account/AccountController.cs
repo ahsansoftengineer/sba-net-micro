@@ -29,7 +29,7 @@ public partial class AccountController : AlphaController<AccountController>
   public async Task<IActionResult> Register([FromBody] RegisterDto model) 
   {
     if (!ModelState.IsValid) return BadRequestz();
-    var user = new InfraUser { UserName = model.Email, Email = model.Email, Name = model.FullName };
+    var user = UserController.MapUser(model);
     var result = await _userManager.CreateAsync(user, model.Password);
 
     if (result.Succeeded)

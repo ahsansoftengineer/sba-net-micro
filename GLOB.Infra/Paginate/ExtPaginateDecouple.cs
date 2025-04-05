@@ -47,4 +47,27 @@ public static partial class RepoExtensionActions
       .AsNoTracking().ToExtPaginateAsync(req?.PageNo ?? 1, req?.PageSize ?? 10);
     }
   }
+
+    public static async Task<object> GetsPaginateStrg<T, TDtoSearch>(
+      this IQueryable<T> query, 
+      PaginateRequestFilter<TDtoSearch>? req)
+    where TDtoSearch : class
+    where T : class, IEntityAlphaStrg, IEntityBeta, IEntityStatus
+  {
+
+    query = query.ToExtFilter(req.Filter);
+    query = query.ToExtOrderBy(req.Sort); // IEntityBeta
+
+    if (!req.IsMapped)
+    {
+      query = query.ToExtInclues(req?.Include);
+      return await query.AsNoTracking()
+        .ToExtPaginateAsync(req?.PageNo ?? 1, req?.PageSize ?? 10);
+    }
+    else
+    {
+      return await query.ToExtMappingStrg() // IEntityAlpha, IEntityStatus
+      .AsNoTracking().ToExtPaginateAsync(req?.PageNo ?? 1, req?.PageSize ?? 10);
+    }
+  }
 }

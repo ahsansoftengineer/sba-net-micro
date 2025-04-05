@@ -15,8 +15,8 @@ public static class Extension
         return vm;
     }
     // Maybe this doesn't reqired in future
-    public static BaseVMMulti<TEntity> ToExtVMMulti<TEntity>(this List<TEntity>? list)
-    where TEntity : class //, IEntityBeta
+    public static BaseVMMulti<TEntity> ToExtVMMulti<TEntity>(this IList<TEntity>? list)
+    // where TEntity : class //, IEntityBeta
     {
         var vm = new BaseVMMulti<TEntity>()
         {

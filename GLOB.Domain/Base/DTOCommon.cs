@@ -19,12 +19,18 @@ public class DtoRead : DtoCreate
   public Status? Status { get; set; } // = Status.None;
 
 }
-public class DtoSelect
+public class DtoSelect<TKey>
 {
-  public int Id { get; set; }
+  public TKey Id { get; set; }
   public string Name { get; set; } = "";
   public bool IsSelected = false;
   public Status? Status { get; set; }
+}
+public class DtoSelect : DtoSelect<int>
+{
+}
+public class DtoSelectStrg : DtoSelect<string>
+{
 }
 public class DtoSearch
 {

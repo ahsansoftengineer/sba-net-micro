@@ -23,7 +23,7 @@ public class BaseVMSelect
 }
 public class BaseVMMulti<T>
 {
-  public List<T>? Records { get; set; }
+  public IList<T>? Records { get; set; }
   public HttpStatusCode Status { get; set; }
 }
 public class BaseVMMulti : BaseVMMulti<object>

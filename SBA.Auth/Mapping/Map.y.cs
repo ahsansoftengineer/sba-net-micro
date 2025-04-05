@@ -12,6 +12,7 @@ public partial class MapProj : MapBase
   {
     base.MapAll();
     CreateMap<InfraUser, InfraUserDto>();
+    
     // CreateMapAll<Systemz, SystemzDto, SystemzDtoCreate, SystemzDtoSearch>();
   }
 }

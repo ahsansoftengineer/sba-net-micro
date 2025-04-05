@@ -4,10 +4,10 @@ using GLOB.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 
 namespace GLOB.Domain.Auth;
-public class InfraUser : IdentityUser<string>, IEntityBeta
+public class InfraUser : IdentityUser<string>, IEntityBeta, IEntityStatus, IEntityAlphaStrg
 {
-    public Status? Status { get; set; }
     public string Name { get; set; }
+    public Status? Status { get; set; } = Defaultz.Status;
     public DateTimeOffset? CreatedAt { get; set; } = Defaultz.Date;
     public DateTimeOffset? UpdatedAt { get; set; } = Defaultz.Date;
 
@@ -22,9 +22,10 @@ public class InfraUser : IdentityUser<string>, IEntityBeta
 
 public class InfraUserDto
 {
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
+    public DateTimeOffset? CreatedAt { get; set; }
+    public DateTimeOffset? UpdatedAt { get; set; }
     public string Id { get; set; }
     public string Name { get; set; }
     public string UserName { get; set; }
+    public string PhoneNumber { get; set; }
 }
