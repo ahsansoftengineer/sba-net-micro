@@ -14,7 +14,7 @@
 //     IMapper mapper,
 //     IUOW uow) : base(logger, mapper, uow)
 //   {
-//     Repo = uow.Systemzs;
+//     _repo = uow.Systemzs;
 
 //   }
 
@@ -24,8 +24,8 @@
 //     if (!ModelState.IsValid) return BadRequestz();
 //     try
 //     {
-//       var result = Mapper.Map<Systemz>(data);
-//       await Repo.Insert(result);
+//       var result = _mapper.Map<Systemz>(data);
+//       await _repo.Insert(result);
 //       await _unitOfWork.Save();
 //       return Ok(result);
 //     }
@@ -41,11 +41,11 @@
 //     if (!ModelState.IsValid || id < 1) return InvalidId();
 //     try
 //     {
-//       var item = await Repo.Get(q => q.Id == id);
+//       var item = await _repo.Get(q => q.Id == id);
 
 //       if (item == null) return InvalidId();
-//       var result = Mapper.Map(data, item);
-//       Repo.Update(item);
+//       var result = _mapper.Map(data, item);
+//       _repo.Update(item);
 //       await _unitOfWork.Save();
 //       return Ok(result);
 //     }

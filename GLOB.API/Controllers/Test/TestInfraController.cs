@@ -1,7 +1,6 @@
-using AutoMapper;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Projectz;
-using GLOB.Infra.UOW;
+using GLOB.Infra.Repo;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Test;
@@ -10,11 +9,8 @@ namespace GLOB.API.Controllers.Test;
 public class TestInfraController : CommonController<TestInfraController, TestInfra>
 {
   public TestInfraController(
-    ILogger<TestInfraController> logger,
-    IMapper mapper,
-    IUnitOfWorkz unitOfWork) : base(logger, mapper, unitOfWork)
+    IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    Repo = unitOfWork.TestInfras;
-
+    _repo = _unitOfWork.TestInfras;
   }
 }

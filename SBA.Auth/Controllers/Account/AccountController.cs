@@ -1,4 +1,3 @@
-using AutoMapper;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
 using GLOB.Infra.Helper;
@@ -9,19 +8,18 @@ using SBA.Projectz.Data;
 namespace SBA.Auth.Controllers;
 [Route("api/Auth/[controller]")]
 [ApiController]
-public partial class AccountController : AlphaController<AccountController, InfraUser>
+public partial class AccountController : AlphaController<AccountController>
 {
-  // private IRepoGenericz<AccountId> Repo = null;
+  // private IRepoGenericz<AccountId> _repo = null;
   private readonly UserManager<InfraUser> _userManager;
   private readonly SignInManager<InfraUser> _signInManager;
   private readonly IConfiguration _config;
   private IUOW uOW { get; }
   public AccountController(
-    ILogger<AccountController> logger,
-    IMapper mapper,
+    IServiceProvider srvcProvider,
     UserManager<InfraUser> userManager,
-    SignInManager<InfraUser> signInManager,
-    IUOW uow) : base(logger)
+    SignInManager<InfraUser> signInManager
+  ) : base(srvcProvider)
   {
     _userManager = userManager;
     _signInManager = signInManager;

@@ -14,7 +14,7 @@ public class IndustryController : CommonController<IndustryController, Industry>
     IMapper mapper,
     IUOW uow) : base(logger, mapper, uow)
   {
-    Repo = uow.Industrys;
+    _repo = uow.Industrys;
 
   }
 }

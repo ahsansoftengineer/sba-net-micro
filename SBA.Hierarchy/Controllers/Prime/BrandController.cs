@@ -14,7 +14,7 @@ public class BrandController : CommonController<BrandController, Brand>
     IMapper mapper,
     IUOW uow) : base(logger, mapper, uow)
   {
-    Repo = uow.Brands;
+    _repo = uow.Brands;
 
   }
 }

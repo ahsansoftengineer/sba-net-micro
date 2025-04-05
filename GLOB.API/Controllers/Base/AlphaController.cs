@@ -1,21 +1,23 @@
 using AutoMapper;
+using GLOB.Domain.Base;
 using GLOB.Infra.Repo;
 using GLOB.Infra.UOW;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;
-public abstract class AlphaController<TController, TEntity> : ControllerBase
+public abstract class AlphaController<TController> : ControllerBase
+
 {
   private readonly IServiceProvider _srvcProvider;
-  protected readonly IMapper Mapper;
+  protected readonly IMapper _mapper;
   protected readonly IUnitOfWorkz _unitOfWork;
   protected readonly ILogger<TController> _logger;
 
-  protected AlphaController(IServiceProvider srvcProvider)
+  public AlphaController(IServiceProvider srvcProvider)
   {
     _srvcProvider = srvcProvider;
-    Mapper = GetSrvc<IMapper>();
+    _mapper = GetSrvc<IMapper>();
     _unitOfWork = GetSrvc<IUnitOfWorkz>();
     _logger = this.GetSrvc<ILogger<TController>>();
   }

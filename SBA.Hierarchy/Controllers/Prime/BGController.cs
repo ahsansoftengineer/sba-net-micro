@@ -14,7 +14,7 @@ public class BGController : CommonController<BGController, BG>
     IMapper mapper,
     IUOW uow) : base(logger, mapper, uow)
   {
-    Repo = uow.BGs;
+    _repo = uow.BGs;
 
   }
 }

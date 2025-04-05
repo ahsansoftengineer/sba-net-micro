@@ -1,6 +1,5 @@
-using AutoMapper;
 using GLOB.Domain.Base;
-using GLOB.Infra.UOW;
+using GLOB.Infra.Repo;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;
@@ -12,7 +11,6 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
   where DtoSearch : class
   where DtoResponse : class
 {
-  // protected new IRepoGenericz<TEntity> Repo = null;
   public BetaController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
 
@@ -22,7 +20,7 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
   {
     try
     {
-      var list = await Repo.GetsPaginate(req);
+      var list = await _repo.GetsPaginate(req);
       return Ok(list);
     }
     catch (Exception ex)
@@ -37,8 +35,8 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
     if (!ModelState.IsValid) return BadRequestz();
     try
     {
-      var result = Mapper.Map<TEntity>(data);
-      await Repo.Insert(result);
+      var result = _mapper.Map<TEntity>(data);
+      await _repo.Insert(result);
       await _unitOfWork.Save();
       return Ok(result);
     }
@@ -54,12 +52,12 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
     if (!ModelState.IsValid || id < 1) return InvalidId();
     try
     {
-      var item = await Repo.Get(id);
+      var item = await _repo.Get(id);
 
       if (item == null) return InvalidId();
 
-      var result = Mapper.Map(data, item);
-      Repo.Update(item);
+      var result = _mapper.Map(data, item);
+      _repo.Update(item);
       await _unitOfWork.Save();
       return Ok(result);
     }

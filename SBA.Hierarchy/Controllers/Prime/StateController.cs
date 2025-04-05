@@ -14,7 +14,7 @@ public class StateController : CommonController<StateController, State>
     IMapper mapper,
     IUOW uow) : base(logger, mapper, uow)
   {
-    Repo = uow.States;
+    _repo = uow.States;
 
   }
 }

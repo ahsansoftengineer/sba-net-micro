@@ -14,7 +14,7 @@ public class OrgController : CommonController<OrgController, Org>
     IMapper mapper,
     IUOW uow) : base(logger, mapper, uow)
   {
-    Repo = uow.Orgs;
+    _repo = uow.Orgs;
 
   }
 }

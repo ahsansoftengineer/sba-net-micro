@@ -14,7 +14,7 @@ public class TestProjController : CommonController<TestProjController, TestProj>
     IMapper mapper,
     IUOW uow) : base(logger, mapper, uow)
   {
-    Repo = uow.TestProjs;
+    _repo = uow.TestProjs;
 
   }
 }

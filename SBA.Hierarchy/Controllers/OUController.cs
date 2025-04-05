@@ -19,7 +19,7 @@
 //   IUOW uow,
 //   IWebHostEnvironment webHostEnvironment) : base(logger, mapper, uow)
 //   {
-//     Repo = uow.OUs;
+//     _repo = uow.OUs;
 //     WebHostEnvironment = webHostEnvironment;
 //   }
 //   [HttpGet("GetsPaginate")]
@@ -27,7 +27,7 @@
 //   {
 //     try
 //     {
-//       var list = await Repo.GetsPaginate(req);
+//       var list = await _repo.GetsPaginate(req);
 //       return Ok(list);
 //     }
 //     catch (Exception ex)
@@ -39,7 +39,7 @@
 //   [HttpPost()]
 //   public async Task<IActionResult> Create([FromForm] OUDtoCreate model)
 //   {
-//     var result = Mapper.Map<OUDtoCreate, OUDtoCreateToEntity>(model);
+//     var result = _mapper.Map<OUDtoCreate, OUDtoCreateToEntity>(model);
 //     FileUploderz fu = new FileUploderz(WebHostEnvironment, ModelState);
 //     // Way 1
 //     string topImg = await fu.UploadFile(model.TopImg, "TopImage");
@@ -54,8 +54,8 @@
 //     if (!ModelState.IsValid) return BadRequestz();
 //     try
 //     {
-//       var finalResult = Mapper.Map<OUDtoCreateToEntity, OU>(result);
-//       await Repo.Insert(finalResult);
+//       var finalResult = _mapper.Map<OUDtoCreateToEntity, OU>(result);
+//       await _repo.Insert(finalResult);
 //       await _unitOfWork.Save();
 //       return Ok(finalResult);
 //     }
@@ -73,9 +73,9 @@
 //       bool hasParent = uOW.BGs.AnyId(data.LEId);
 //       if(!hasParent) return InvalidId("Invalid Business Group");
 
-//       var result = Mapper.Map<OU>(data);
+//       var result = _mapper.Map<OU>(data);
 
-//       await Repo.Insert(result);
+//       await _repo.Insert(result);
 //       await uOW.Save();
 
 //       return Ok(result);
@@ -92,15 +92,15 @@
 //     if (!ModelState.IsValid || id < 1) return InvalidId();
 //     try
 //     {
-//       var item = await Repo.Get(q => q.Id == id);
+//       var item = await _repo.Get(q => q.Id == id);
 //       if (item == null) return InvalidId();
 
 //       bool hasParent = uOW.BGs.AnyId(data.LEId);
 //       if(!hasParent) return InvalidId("Invalid State");
 
-//       var result = Mapper.Map(data, item);
+//       var result = _mapper.Map(data, item);
 
-//       Repo.Update(item);
+//       _repo.Update(item);
 //       await uOW.Save();
 
 //       return Ok(result);

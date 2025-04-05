@@ -18,11 +18,10 @@ public partial class RoleController : AlphaController<AccountController>
   private readonly IConfiguration _config;
   private IUOW uOW { get; }
   public RoleController(
-    ILogger<AccountController> logger,
-    IMapper mapper,
+    IServiceProvider srvcProvider,
     UserManager<InfraUser> userManager,
-    RoleManager<InfraRole> roleManager,
-    IUOW uow) : base(logger)
+    RoleManager<InfraRole> roleManager
+  ) : base(srvcProvider)
   {
     _userManager = userManager;
     _roleManager = roleManager;

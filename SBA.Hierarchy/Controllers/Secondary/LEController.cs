@@ -15,7 +15,7 @@
 //     IMapper mapper,
 //     IUOW uow) : base(logger, mapper, uow)
 //   {
-//     Repo = uow.LEs;
+//     _repo = uow.LEs;
 
 //   }
 
@@ -24,7 +24,7 @@
 //   {
 //     try
 //     {
-//       var list = await Repo.GetsPaginate(req);
+//       var list = await _repo.GetsPaginate(req);
 //       return Ok(list);
 //     }
 //     catch (Exception ex)
@@ -42,9 +42,9 @@
 //       bool hasParent = uOW.BGs.AnyId(data.BGId);
 //       if(!hasParent) return InvalidId("Invalid Business Group");
 
-//       var result = Mapper.Map<LE>(data);
+//       var result = _mapper.Map<LE>(data);
 
-//       await Repo.Insert(result);
+//       await _repo.Insert(result);
 //       await uOW.Save();
 //       return Ok(result);
 //     }
@@ -60,14 +60,14 @@
 //     if (!ModelState.IsValid || id < 1) return InvalidId();
 //     try
 //     {
-//       var item = await Repo.Get(q => q.Id == id);
+//       var item = await _repo.Get(q => q.Id == id);
 //       if (item == null) return InvalidId();
       
 //       bool hasParent = uOW.BGs.AnyId(data.BGId);
 //       if(!hasParent) return InvalidId("Invalid State");
 
-//       var result = Mapper.Map(data, item);
-//       Repo.Update(item);
+//       var result = _mapper.Map(data, item);
+//       _repo.Update(item);
 //       await uOW.Save();
 //       return Ok(result);
 //     }

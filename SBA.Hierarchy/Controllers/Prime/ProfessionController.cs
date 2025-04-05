@@ -14,7 +14,7 @@ public class ProfessionController : CommonController<ProfessionController, Profe
     IMapper mapper,
     IUOW uow) : base(logger, mapper, uow)
   {
-    Repo = uow.Professions;
+    _repo = uow.Professions;
 
   }
 }

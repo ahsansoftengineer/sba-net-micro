@@ -1,18 +1,18 @@
-using GLOB.Infra.Repo;
 using GLOB.Domain.Base;
 using GLOB.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
 using GLOB.Infra.Helper;
+using GLOB.Infra.Repo;
 
 namespace GLOB.API.Controllers.Base;
 public abstract partial class BaseController<TController, TEntity, DtoResponse>
-  : AlphaController<TController, TEntity>
+  : AlphaController<TController>
     where TEntity : class, IEntityAlpha 
     where TController : class
     where DtoResponse : class
 {
 
-  protected readonly IRepoGenericz<TEntity> Repo; // Will be initialize in Last Child Class
+  protected virtual IRepoGenericz<TEntity> _repo {get; set;} // Will be initialize in Last Child Class
   public BaseController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
 
@@ -20,7 +20,7 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
   [HttpGet("{id:int}")]
   public async Task<IActionResult> Get(int id, [FromQuery] List<string>? Include)
   {
-    var single = await Repo.Get(id, Include);
+    var single = await _repo.Get(id, Include);
     var result = single.ToExtVMSingle();
     return Ok(result);
   }
@@ -29,7 +29,7 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
   {
     try
     {
-      var list = await Repo.Gets(Include: Include);
+      var list = await _repo.Gets(Include: Include);
       var result = list.ToExtVMMulti();
       return Ok(result);
     }
@@ -43,12 +43,12 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
   {
     if (id < 1) return InvalidId();
 
-    var item = await Repo.Get(id);
+    var item = await _repo.Get(id);
     if (item == null) return InvalidId();
 
     try
     {
-      await Repo.Delete(id);
+      await _repo.Delete(id);
       await _unitOfWork.Save();
     }
     catch (Exception ex)
@@ -64,11 +64,11 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
     if(!Enum.IsDefined(status)) return InvalidStatus();
     try
     {
-      var item = await Repo.Get(id);
+      var item = await _repo.Get(id);
 
       if (item == null) return InvalidId();
 
-      Repo.UpdateStatus(item, status);
+      _repo.UpdateStatus(item, status);
       await _unitOfWork.Save();
       return Ok(item);
     }

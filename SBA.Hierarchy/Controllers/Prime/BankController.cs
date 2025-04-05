@@ -14,7 +14,7 @@ public class BankController : CommonController<BankController, Bank>
     IMapper mapper,
     IUOW uow) : base(logger, mapper, uow)
   {
-    Repo = uow.Banks;
+    _repo = uow.Banks;
 
   }
 }
