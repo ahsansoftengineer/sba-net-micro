@@ -26,7 +26,7 @@
 //     {
 //       var result = _mapper.Map<SU>(data);
 //       await _repo.Insert(result);
-//       await _unitOfWork.Save();
+//       await _uowInfra.Save();
 //       return Ok(result);
 //     }
 //     catch (Exception ex)
@@ -46,7 +46,7 @@
 //       if (item == null) return InvalidId();
 //       var result = _mapper.Map(data, item);
 //       _repo.Update(item);
-//       await _unitOfWork.Save();
+//       await _uowInfra.Save();
 //       return Ok(result);
 //     }
 //     catch (Exception ex)

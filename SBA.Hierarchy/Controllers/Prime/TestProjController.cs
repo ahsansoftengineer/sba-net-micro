@@ -1,20 +1,14 @@
-using AutoMapper;
-using GLOB.API.Controllers.Base;
 using GLOB.Domain.Projectz;
 using Microsoft.AspNetCore.Mvc;
-using SBA.Projectz.Data;
+using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers.Test;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class TestProjController : CommonController<TestProjController, TestProj>
+public class TestProjController : CommonzController<TestProjController, TestProj>
 {
-  public TestProjController(
-    ILogger<TestProjController> logger,
-    IMapper mapper,
-    IUOW uow) : base(logger, mapper, uow)
+  public TestProjController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = uow.TestProjs;
-
+    _repo = _uow.TestProjs;
   }
 }

@@ -1,20 +1,15 @@
-using AutoMapper;
-using GLOB.API.Controllers.Base;
 using GLOB.Domain.Hierarchy;
 using Microsoft.AspNetCore.Mvc;
-using SBA.Projectz.Data;
+using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers.Prime;
+
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class BGController : CommonController<BGController, BG>
+public class BGController : CommonzController<BGController, BG>
 {
-  public BGController(
-    ILogger<BGController> logger,
-    IMapper mapper,
-    IUOW uow) : base(logger, mapper, uow)
+  public BGController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = uow.BGs;
-
+    _repo = _uow.BGs;
   }
 }

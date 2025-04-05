@@ -11,6 +11,6 @@ public class TestInfraController : CommonController<TestInfraController, TestInf
   public TestInfraController(
     IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = _unitOfWork.TestInfras;
+    _repo = _uowInfra.TestInfras;
   }
 }

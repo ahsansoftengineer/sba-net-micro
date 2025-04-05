@@ -37,7 +37,7 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
     {
       var result = _mapper.Map<TEntity>(data);
       await _repo.Insert(result);
-      await _unitOfWork.Save();
+      await _uowInfra.Save();
       return Ok(result);
     }
     catch (Exception ex)
@@ -58,7 +58,7 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
 
       var result = _mapper.Map(data, item);
       _repo.Update(item);
-      await _unitOfWork.Save();
+      await _uowInfra.Save();
       return Ok(result);
     }
     catch (Exception ex)

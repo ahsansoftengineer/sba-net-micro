@@ -49,7 +49,7 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
     try
     {
       await _repo.Delete(id);
-      await _unitOfWork.Save();
+      await _uowInfra.Save();
     }
     catch (Exception ex)
     {
@@ -69,7 +69,7 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
       if (item == null) return InvalidId();
 
       _repo.UpdateStatus(item, status);
-      await _unitOfWork.Save();
+      await _uowInfra.Save();
       return Ok(item);
     }
     catch (Exception ex)

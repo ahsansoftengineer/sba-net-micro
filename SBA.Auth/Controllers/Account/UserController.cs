@@ -61,7 +61,7 @@ public partial class UserController : AlphaController<UserController>
 
   //     var result = _mapper.Map(data, item);
   //     _repo.Update(item);
-  //     await _unitOfWork.Save();
+  //     await _uowInfra.Save();
   //     return Ok(result);
   //   }
   //   catch (Exception ex)

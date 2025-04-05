@@ -11,17 +11,31 @@ public abstract class AlphaController<TController> : ControllerBase
 {
   private readonly IServiceProvider _srvcProvider;
   protected readonly IMapper _mapper;
-  protected readonly IUnitOfWorkz _unitOfWork;
+  protected readonly IUnitOfWorkz _uowInfra;
   protected readonly ILogger<TController> _logger;
 
   public AlphaController(IServiceProvider srvcProvider)
   {
     _srvcProvider = srvcProvider;
     _mapper = GetSrvc<IMapper>();
-    _unitOfWork = GetSrvc<IUnitOfWorkz>();
-    _logger = this.GetSrvc<ILogger<TController>>();
+    _uowInfra = GetSrvc<IUnitOfWorkz>();
+    _logger = GetSrvc<ILogger<TController>>();
   }
-  protected TService GetSrvc<TService>() => _srvcProvider.GetRequiredService<TService>();
+  protected TService GetSrvc<TService>()
+  where TService: class
+  {
+    try
+    {
+      return _srvcProvider.GetRequiredService<TService>();
+
+    } 
+    catch(Exception ex) 
+    {
+      Console.WriteLine($"------------------------****-*-****------------------------");
+      Console.WriteLine($"Please Regiseter Service in DI {nameof(TService)}");
+      return null;
+    }
+  }
 
 
   protected ObjectResult CatchException(Exception ex, string methodName)
