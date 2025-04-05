@@ -1,20 +1,14 @@
-using AutoMapper;
-using GLOB.API.Controllers.Base;
 using GLOB.Domain.Hierarchy;
 using Microsoft.AspNetCore.Mvc;
-using SBA.Projectz.Data;
+using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers.Prime;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class StateController : CommonController<StateController, State>
+public class StateController : CommonzController<StateController, State>
 {
-  public StateController(
-    ILogger<StateController> logger,
-    IMapper mapper,
-    IUOW uow) : base(logger, mapper, uow)
+  public StateController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    Repo = uow.States;
-
+    _repo = _uow.States;
   }
 }

@@ -2,7 +2,7 @@ using GLOB.Infra.Repo;
 using GLOB.Domain.Projectz;
 
 namespace GLOB.Infra.UOW;
-public partial class UnitOfWorkz 
+public partial class UnitOfWorkInfra 
 {
   private IRepoGenericz<TestInfra>? _testInfra;
   public IRepoGenericz<TestInfra> TestInfras => _testInfra ??= new RepoGenericz<TestInfra>(_context);

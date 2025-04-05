@@ -10,15 +10,25 @@ public static class Defaultz
   public static  DateTimeOffset Date { get; } = DateTimeOffset.Parse("2025-02-10T00:00:00");
   public static string Guidz() => Guid.NewGuid().ToString();
 }
+// public abstract class EntityAlpha<TKey> where TKey : IEquatable<TKey>, IEntityAlpha, IEntityStatus
+// {
+//     [Column(Order = 1)]
+//     [Key]
+//     public TKey Id { get; set; }
+//     [Column(Order = 2)]
+//     public Status? Status { get; set; } = Defaultz.Status;
+//     [Column(Order = 3)] // required
+//     public string Name { get; set; }
+// }
 public abstract class EntityAlpha : IEntityAlpha, IEntityStatus
 {
-    [Column(Order = 1)]
-    [Key]
-    public int Id { get; set; }
-    [Column(Order = 2)]
-    public Status? Status { get; set; } = Defaultz.Status;
-    [Column(Order = 3)] // required
-    public string Name { get; set; }
+  [Column(Order = 1)]
+  [Key]
+  public int Id { get; set; }
+  [Column(Order = 2)]
+  public Status? Status { get; set; } = Defaultz.Status;
+  [Column(Order = 3)] // required
+  public string Name { get; set; }
 }
 public abstract class EntityBeta : EntityAlpha, IEntityBeta
 {

@@ -1,4 +1,3 @@
-using AutoMapper;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
 using GLOB.Domain.Base;
@@ -18,11 +17,10 @@ public partial class RoleController : AlphaController<AccountController>
   private readonly IConfiguration _config;
   private IUOW uOW { get; }
   public RoleController(
-    ILogger<AccountController> logger,
-    IMapper mapper,
+    IServiceProvider srvcProvider,
     UserManager<InfraUser> userManager,
-    RoleManager<InfraRole> roleManager,
-    IUOW uow) : base(logger)
+    RoleManager<InfraRole> roleManager
+  ) : base(srvcProvider)
   {
     _userManager = userManager;
     _roleManager = roleManager;
@@ -36,7 +34,7 @@ public partial class RoleController : AlphaController<AccountController>
     return Ok(list);
   }
   [HttpGet("[action]")]
-  public async Task<IActionResult> Paginate(PaginateRequestFilter<CityDto> req)
+  public async Task<IActionResult> GetsPaginate(PaginateRequestFilter<CityDto> req)
   {
     // var list = _roleManager.Roles.GetsPaginate();
     // return Ok(list);

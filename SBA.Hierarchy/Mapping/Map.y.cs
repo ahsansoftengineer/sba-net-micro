@@ -4,11 +4,11 @@ using GLOB.Domain.Hierarchy;
 namespace SBA.Projectz.Mapper;
 public partial class MapProj : MapBase
 {
-  public MapProj() : base()
-  {
-    // MapAll();
-    // MapCommon();
-  }
+  // public MapProj() : base()
+  // {
+  //   // MapAll();
+  //   // MapCommon();
+  // }
   public override void MapAll() 
   {
     base.MapAll();

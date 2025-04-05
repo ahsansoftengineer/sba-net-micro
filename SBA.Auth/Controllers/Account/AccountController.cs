@@ -1,4 +1,3 @@
-using AutoMapper;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
 using GLOB.Infra.Helper;
@@ -11,29 +10,25 @@ namespace SBA.Auth.Controllers;
 [ApiController]
 public partial class AccountController : AlphaController<AccountController>
 {
-  // private IRepoGenericz<AccountId> Repo = null;
+  // private IRepoGenericz<AccountId> _repo = null;
   private readonly UserManager<InfraUser> _userManager;
   private readonly SignInManager<InfraUser> _signInManager;
-  private readonly RoleManager<InfraRole> _roleManager;
   private readonly IConfiguration _config;
   private IUOW uOW { get; }
   public AccountController(
-    ILogger<AccountController> logger,
-    IMapper mapper,
+    IServiceProvider srvcProvider,
     UserManager<InfraUser> userManager,
-    SignInManager<InfraUser> signInManager,
-    RoleManager<InfraRole> roleManager,
-    IUOW uow) : base(logger)
+    SignInManager<InfraUser> signInManager
+  ) : base(srvcProvider)
   {
-    // Repo = uow.TestProjs;
     _userManager = userManager;
     _signInManager = signInManager;
-    _roleManager = roleManager;
 
   }
   [HttpPost("[action]")]
   public async Task<IActionResult> Register([FromBody] RegisterDto model) 
   {
+    if (!ModelState.IsValid) return BadRequestz();
     var user = new InfraUser { UserName = model.Email, Email = model.Email, Name = model.FullName };
     var result = await _userManager.CreateAsync(user, model.Password);
 

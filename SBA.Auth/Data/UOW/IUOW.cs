@@ -3,7 +3,7 @@ using GLOB.Domain.Projectz;
 using GLOB.Infra.UOW;
 
 namespace SBA.Projectz.Data;
-public interface IUOW : IUnitOfWorkz
+public interface IUOW : IUnitOfWorkInfra
 {
   IRepoGenericz<TestProj> TestProjs { get; }
 

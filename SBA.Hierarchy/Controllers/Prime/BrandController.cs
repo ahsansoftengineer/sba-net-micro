@@ -1,20 +1,14 @@
-using AutoMapper;
-using GLOB.API.Controllers.Base;
 using GLOB.Domain.Hierarchy;
 using Microsoft.AspNetCore.Mvc;
-using SBA.Projectz.Data;
+using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers.Prime;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class BrandController : CommonController<BrandController, Brand>
+public class BrandController : CommonzController<BrandController, Brand>
 {
-  public BrandController(
-    ILogger<BrandController> logger,
-    IMapper mapper,
-    IUOW uow) : base(logger, mapper, uow)
+  public BrandController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    Repo = uow.Brands;
-
+    _repo = _uow.Brands;
   }
 }

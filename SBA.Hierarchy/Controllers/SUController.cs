@@ -1,7 +1,5 @@
-// using AutoMapper;
 // using GLOB.Domain.Hierarchy;
 // using Microsoft.AspNetCore.Mvc;
-// using SBA.Projectz.Data;
 // using SBA.Projectz.Controllers.Base;
 
 // namespace SBA.Hierarchy.Controllers;
@@ -9,13 +7,9 @@
 // [ApiController]
 // public class SUController : BasezController<SUController, SU, SUDto>
 // {
-//   public SUController(
-//     ILogger<SUController> logger,
-//     IMapper mapper,
-//     IUOW uow) : base(logger, mapper, uow)
+//   public SUController(IServiceProvider srvcProvider) : base(srvcProvider)
 //   {
-//     Repo = uow.SUs;
-
+//     _repo = _uow.SUs;
 //   }
 
 //   [HttpPost]
@@ -24,9 +18,9 @@
 //     if (!ModelState.IsValid) return BadRequestz();
 //     try
 //     {
-//       var result = Mapper.Map<SU>(data);
-//       await Repo.Insert(result);
-//       await UnitOfWork.Save();
+//       var result = _mapper.Map<SU>(data);
+//       await _repo.Insert(result);
+//       await _uowInfra.Save();
 //       return Ok(result);
 //     }
 //     catch (Exception ex)
@@ -41,12 +35,12 @@
 //     if (!ModelState.IsValid || id < 1) return InvalidId();
 //     try
 //     {
-//       var item = await Repo.Get(q => q.Id == id);
+//       var item = await _repo.Get(q => q.Id == id);
 
 //       if (item == null) return InvalidId();
-//       var result = Mapper.Map(data, item);
-//       Repo.Update(item);
-//       await UnitOfWork.Save();
+//       var result = _mapper.Map(data, item);
+//       _repo.Update(item);
+//       await _uowInfra.Save();
 //       return Ok(result);
 //     }
 //     catch (Exception ex)

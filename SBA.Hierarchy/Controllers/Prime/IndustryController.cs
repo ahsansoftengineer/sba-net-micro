@@ -1,20 +1,14 @@
-using AutoMapper;
-using GLOB.API.Controllers.Base;
 using GLOB.Domain.Hierarchy;
 using Microsoft.AspNetCore.Mvc;
-using SBA.Projectz.Data;
+using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers.Prime;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class IndustryController : CommonController<IndustryController, Industry>
+public class IndustryController : CommonzController<IndustryController, Industry>
 {
-  public IndustryController(
-    ILogger<IndustryController> logger,
-    IMapper mapper,
-    IUOW uow) : base(logger, mapper, uow)
+  public IndustryController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    Repo = uow.Industrys;
-
+    _repo = _uow.Industrys;
   }
 }

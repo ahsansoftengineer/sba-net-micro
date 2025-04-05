@@ -1,9 +1,8 @@
-using AutoMapper;
-using GLOB.Infra.Repo;
 using GLOB.Domain.Base;
 using GLOB.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
-using GLOB.Infra.UOW;
+using GLOB.Infra.Helper;
+using GLOB.Infra.Repo;
 
 namespace GLOB.API.Controllers.Base;
 public abstract partial class BaseController<TController, TEntity, DtoResponse>
@@ -12,26 +11,45 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
     where TController : class
     where DtoResponse : class
 {
-  protected IMapper Mapper { get; }
-  protected IRepoGenericz<TEntity> Repo = null;
-  protected IUnitOfWorkz UnitOfWork { get; }
-  public BaseController(ILogger<TController> logger, IMapper mapper, IUnitOfWorkz unitOfWork) : base(logger)
+
+  protected virtual IRepoGenericz<TEntity> _repo {get; set;} // Will be initialize in Last Child Class
+  public BaseController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    UnitOfWork = unitOfWork;
-    Mapper = mapper;
+
   } 
+  [HttpGet("{id:int}")]
+  public async Task<IActionResult> Get(int id, [FromQuery] List<string>? Include)
+  {
+    var single = await _repo.Get(id, Include);
+    var result = single.ToExtVMSingle();
+    return Ok(result);
+  }
+  [HttpGet()]
+  public async Task<IActionResult> Gets([FromQuery] List<string>? Include)
+  {
+    try
+    {
+      var list = await _repo.Gets(Include: Include);
+      var result = list.ToExtVMMulti();
+      return Ok(result);
+    }
+    catch (Exception ex)
+    {
+      return CatchException(ex, nameof(Gets));
+    }
+  }
   [HttpDelete("{id:int}")]
   public async Task<IActionResult> Delete(int id)
   {
     if (id < 1) return InvalidId();
 
-    var item = await Repo.Get(id);
+    var item = await _repo.Get(id);
     if (item == null) return InvalidId();
 
     try
     {
-      await Repo.Delete(id);
-      await UnitOfWork.Save();
+      await _repo.Delete(id);
+      await _uowInfra.Save();
     }
     catch (Exception ex)
     {
@@ -46,12 +64,12 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
     if(!Enum.IsDefined(status)) return InvalidStatus();
     try
     {
-      var item = await Repo.Get(id);
+      var item = await _repo.Get(id);
 
       if (item == null) return InvalidId();
 
-      Repo.UpdateStatus(item, status);
-      await UnitOfWork.Save();
+      _repo.UpdateStatus(item, status);
+      await _uowInfra.Save();
       return Ok(item);
     }
     catch (Exception ex)

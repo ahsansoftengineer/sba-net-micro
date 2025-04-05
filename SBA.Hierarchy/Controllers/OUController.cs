@@ -1,9 +1,7 @@
-// using AutoMapper;
 // using GLOB.Common.API;
 // using GLOB.Domain.Base;
 // using GLOB.Domain.Hierarchy;
 // using Microsoft.AspNetCore.Mvc;
-// using SBA.Projectz.Data;
 // using SBA.Projectz.Controllers.Base;
 
 // namespace SBA.Hierarchy.Controllers;
@@ -12,22 +10,20 @@
 // public class OUController : BasezController<OUController, OU, OUDto>
 // {
 //   public IWebHostEnvironment WebHostEnvironment { get; }
-
 //   public OUController(
-//   ILogger<OUController> logger,
-//   IMapper mapper,
-//   IUOW uow,
-//   IWebHostEnvironment webHostEnvironment) : base(logger, mapper, uow)
+//     IServiceProvider srvcProvider,
+//     IWebHostEnvironment webHostEnvironment
+//     ) : base(srvcProvider)
 //   {
-//     Repo = uow.OUs;
+//     _repo = _uow.OUs;
 //     WebHostEnvironment = webHostEnvironment;
 //   }
-//   [HttpGet("GetsPaginate")]
+//   [HttpGet("[action]")]
 //   public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<OUDtoSearch> req)
 //   {
 //     try
 //     {
-//       var list = await Repo.GetsPaginate(req);
+//       var list = await _repo.GetsPaginate(req);
 //       return Ok(list);
 //     }
 //     catch (Exception ex)
@@ -39,7 +35,7 @@
 //   [HttpPost()]
 //   public async Task<IActionResult> Create([FromForm] OUDtoCreate model)
 //   {
-//     var result = Mapper.Map<OUDtoCreate, OUDtoCreateToEntity>(model);
+//     var result = _mapper.Map<OUDtoCreate, OUDtoCreateToEntity>(model);
 //     FileUploderz fu = new FileUploderz(WebHostEnvironment, ModelState);
 //     // Way 1
 //     string topImg = await fu.UploadFile(model.TopImg, "TopImage");
@@ -54,9 +50,9 @@
 //     if (!ModelState.IsValid) return BadRequestz();
 //     try
 //     {
-//       var finalResult = Mapper.Map<OUDtoCreateToEntity, OU>(result);
-//       await Repo.Insert(finalResult);
-//       await UnitOfWork.Save();
+//       var finalResult = _mapper.Map<OUDtoCreateToEntity, OU>(result);
+//       await _repo.Insert(finalResult);
+//       await _uowInfra.Save();
 //       return Ok(finalResult);
 //     }
 //     catch (Exception ex)
@@ -70,13 +66,13 @@
 //     if (!ModelState.IsValid) return BadRequestz();
 //     try
 //     {
-//       bool hasParent = uOW.BGs.AnyId(data.LEId);
+//       bool hasParent = _uow.BGs.AnyId(data.LEId);
 //       if(!hasParent) return InvalidId("Invalid Business Group");
 
-//       var result = Mapper.Map<OU>(data);
+//       var result = _mapper.Map<OU>(data);
 
-//       await Repo.Insert(result);
-//       await uOW.Save();
+//       await _repo.Insert(result);
+//       await _uow.Save();
 
 //       return Ok(result);
 //     }
@@ -92,16 +88,16 @@
 //     if (!ModelState.IsValid || id < 1) return InvalidId();
 //     try
 //     {
-//       var item = await Repo.Get(q => q.Id == id);
+//       var item = await _repo.Get(q => q.Id == id);
 //       if (item == null) return InvalidId();
 
-//       bool hasParent = uOW.BGs.AnyId(data.LEId);
+//       bool hasParent = _uow.BGs.AnyId(data.LEId);
 //       if(!hasParent) return InvalidId("Invalid State");
 
-//       var result = Mapper.Map(data, item);
+//       var result = _mapper.Map(data, item);
 
-//       Repo.Update(item);
-//       await uOW.Save();
+//       _repo.Update(item);
+//       await _uow.Save();
 
 //       return Ok(result);
 //     }

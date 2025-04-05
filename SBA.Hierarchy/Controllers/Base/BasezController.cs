@@ -1,4 +1,3 @@
-using AutoMapper;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Base;
 using SBA.Projectz.Data;
@@ -10,10 +9,10 @@ public abstract partial class BasezController<TController, TEntity, DtoResponse>
   where TEntity : EntityBase
   where DtoResponse : class
 {
-  protected IUOW uOW = null;
-  public BasezController(ILogger<TController> logger, IMapper mapper, IUOW uow) : 
-    base(logger, mapper, uow)
+  protected readonly IUOW _uow;
+  public BasezController(IServiceProvider srvcProvider) : 
+    base(srvcProvider)
   {
-    uOW = uow;
+    _uow = GetSrvc<IUOW>();
   }
 }

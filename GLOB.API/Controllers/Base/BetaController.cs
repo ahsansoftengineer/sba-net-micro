@@ -1,6 +1,4 @@
-using AutoMapper;
 using GLOB.Domain.Base;
-using GLOB.Infra.UOW;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;
@@ -12,11 +10,22 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
   where DtoSearch : class
   where DtoResponse : class
 {
-  // protected new IRepoGenericz<TEntity> Repo = null;
-  public BetaController(ILogger<TController> logger, IMapper mapper, IUnitOfWorkz unitOfWork) : 
-    base(logger, mapper, unitOfWork)
+  public BetaController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
 
+  }
+  [HttpGet("[action]")]
+  public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<DtoSearch?> req)
+  {
+    try
+    {
+      var list = await _repo.GetsPaginate(req);
+      return Ok(list);
+    }
+    catch (Exception ex)
+    {
+      return CatchException(ex, nameof(GetsPaginate));
+    }
   }
 
   [HttpPost]
@@ -25,9 +34,9 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
     if (!ModelState.IsValid) return BadRequestz();
     try
     {
-      var result = Mapper.Map<TEntity>(data);
-      await Repo.Insert(result);
-      await UnitOfWork.Save();
+      var result = _mapper.Map<TEntity>(data);
+      await _repo.Insert(result);
+      await _uowInfra.Save();
       return Ok(result);
     }
     catch (Exception ex)
@@ -42,13 +51,13 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
     if (!ModelState.IsValid || id < 1) return InvalidId();
     try
     {
-      var item = await Repo.Get(id);
+      var item = await _repo.Get(id);
 
       if (item == null) return InvalidId();
 
-      var result = Mapper.Map(data, item);
-      Repo.Update(item);
-      await UnitOfWork.Save();
+      var result = _mapper.Map(data, item);
+      _repo.Update(item);
+      await _uowInfra.Save();
       return Ok(result);
     }
     catch (Exception ex)

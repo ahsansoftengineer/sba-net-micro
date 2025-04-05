@@ -13,8 +13,8 @@ public static partial class DI_Infra
 {
   public static void Config_DB_Identity<TContext, TIUOW, TUOW>(this IServiceCollection srvc, IConfiguration config)
     where TContext : DBCntxtIdentity
-    where TIUOW : class, IUnitOfWorkz
-    where TUOW : UnitOfWorkz, TIUOW
+    where TIUOW : class, IUnitOfWorkInfra
+    where TUOW : UnitOfWorkInfra, TIUOW
   {
     // Option Pattern
     srvc.Configure<JwtSettings>(config.GetSection("JwtSettings"));
