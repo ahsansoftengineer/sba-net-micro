@@ -4,7 +4,6 @@ using GLOB.Domain.Base;
 using GLOB.Infra.Helper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SBA.Projectz.Data;
 
@@ -14,7 +13,6 @@ public partial class RoleController : AlphaController<RoleController>
 {
   private readonly UserManager<InfraUser> _userManager;
   private readonly RoleManager<InfraRole> _roleManager;
-  private readonly IConfiguration _config;
   private IUOW uOW { get; }
   public RoleController(
     IServiceProvider srvcProvider,

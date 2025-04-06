@@ -14,7 +14,7 @@ public class LEController : BasezController<LEController, LE, LEDtoRead>
   }
 
   [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<LEDtoSearch> req)
+  public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<LEDtoSearch?> req)
   {
     try
     {
