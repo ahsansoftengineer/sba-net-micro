@@ -16,8 +16,8 @@ public static partial class ExtQuery
     });
   }
 
-   public static IQueryable<DtoSelect<int>> ToExtMapSelect<T>(this IQueryable<T> source)
-     where T : class, IEntityAlpha<int>, IEntityStatus
+  public static IQueryable<DtoSelect<int>> ToExtMapSelect<T>(this IQueryable<T> source)
+    where T : class, IEntityAlpha<int>, IEntityStatus
   {
     return source.ToExtMapSelect<T, int>();
   }
