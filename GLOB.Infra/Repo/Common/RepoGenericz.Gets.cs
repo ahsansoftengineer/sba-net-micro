@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace GLOB.Infra.Repo;
 
-public partial class RepoGenericz<T>
+public partial class RepoGenericz<T, TKey>
 {
   // Filter, OrderBy, Include
   public async Task<List<T>> Gets(
@@ -17,13 +17,16 @@ public partial class RepoGenericz<T>
   }
 
   // Filter, OrderBy, Include, Pagination,
-  public async Task<BaseDtoPageRes<T>> GetsPaginate<TDtoSearch>(PaginateRequestFilter<TDtoSearch>? req) where TDtoSearch : class
+  public async Task<BaseDtoPageRes<T>> GetsPaginate<TDtoSearch>(PaginateRequestFilter<TDtoSearch>? req) 
+    where TDtoSearch : class
   {
-    return await _db.GetsPaginate(req);
+    return await _db.GetsPaginate<T, TKey, TDtoSearch>(req);
   }
-  public async Task<BaseDtoPageRes<DtoSelect>> GetsPaginateOptions<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req) where TDtoSearch : class
+  
+  public async Task<BaseDtoPageRes<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req) 
+    where TDtoSearch : class
   {
-    return await _db.GetsPaginateOptions(req);
+    return await _db.GetsPaginateOptions<T, TKey,  TDtoSearch>(req);
   }
 }
 

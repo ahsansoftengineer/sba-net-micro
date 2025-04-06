@@ -4,14 +4,20 @@ using Microsoft.EntityFrameworkCore;
 using GLOB.Domain.Enums;
 
 namespace GLOB.Infra.Repo;
-public interface IRepoGenericz<T>
-  where T : class, IEntityAlpha
+
+public interface IRepoGenericz<T> : IRepoGenericz<T, int> 
+  where T : class, IEntityAlpha<int>
+{
+
+}
+public interface IRepoGenericz<T, TKey>
+  where T : class, IEntityAlpha<TKey>
 {
   DbSet<T> GetDBSet();
   bool Any(Expression<Func<T, bool>>? filter = null);
-  bool AnyId(int? Id);
+  bool AnyId(TKey? Id);
   Task<T> Get(Expression<Func<T, bool>> expression, List<string>? Include = null);
-  Task<T> Get(int? Id, List<string>? Include = null);
+  Task<T> Get(TKey Id, List<string>? Include = null);
 
 
   Task<List<T>> Gets(
@@ -21,7 +27,7 @@ public interface IRepoGenericz<T>
   
   Task Insert(T entity);
   Task InsertRange(IEnumerable<T> entities);
-  Task Delete(int? id);
+  Task Delete(TKey id);
   void DeleteRange(IEnumerable<T> entities);
   void Update(T entity);
   void UpdateStatus(T entity, Status status);
@@ -29,6 +35,6 @@ public interface IRepoGenericz<T>
   Task<BaseDtoPageRes<T>> GetsPaginate<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req)
     where TDtoSearch : class;
 
-  Task<BaseDtoPageRes<DtoSelect>> GetsPaginateOptions<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req)
+  Task<BaseDtoPageRes<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req)
     where TDtoSearch : class;
 }

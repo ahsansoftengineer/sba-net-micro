@@ -30,7 +30,7 @@ public static partial class ExtResVM
     {
         var vm = new BaseVMSelect()
         {
-            Records = new List<DtoSelect>(),
+            Records = new List<DtoSelect<int>>(),
             Status = HttpStatusCode.OK
         };
         if (list == null) return vm;

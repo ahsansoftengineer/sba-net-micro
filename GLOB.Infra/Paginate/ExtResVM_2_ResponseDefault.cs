@@ -17,42 +17,42 @@ public static partial class ExtRes
     return await query.GetsQuery(expression, orderBy, Include).AsNoTracking().ToListAsync();
   }
 
-  public static async Task<BaseDtoPageRes<T>> ToExtPageRes<T>(
+  public static async Task<BaseDtoPageRes<T>> ToExtPageRes<T, TKey>(
     this IQueryable<T> source, int pageNo, int pageSize)
   {
     (pageNo, pageSize, int count, List<T> items) = await source.ToExtQueryPage(pageNo, pageSize);
     return new BaseDtoPageRes<T>(items, count, pageNo, pageSize);
   }
 
-  public static async Task<BaseDtoPageRes<DtoSelect>> ToExtPageRes(
-    this IQueryable<DtoSelect> source, int pageNo, int pageSize)
+  public static async Task<BaseDtoPageRes<DtoSelect<TKey>>> ToExtPageRes<TKey>(
+    this IQueryable<DtoSelect<TKey>> source, int pageNo, int pageSize)
   {
-    (pageNo, pageSize, int count, List<DtoSelect> items) = await source.ToExtQueryPage(pageNo, pageSize);
-    return new BaseDtoPageRes<DtoSelect>(items, count, pageNo, pageSize);
+    (pageNo, pageSize, int count, List<DtoSelect<TKey>> items) = await source.ToExtQueryPage(pageNo, pageSize);
+    return new BaseDtoPageRes<DtoSelect<TKey>>(items, count, pageNo, pageSize);
   }
 
-  public static async Task<BaseDtoPageRes<T>> GetsPaginate<T, TDtoSearch>(
+  public static async Task<BaseDtoPageRes<T>> GetsPaginate<T, TKey, TDtoSearch>(
       this IQueryable<T> query,
       PaginateRequestFilter<TDtoSearch>? req)
     where TDtoSearch : class
-    where T : class, IEntityBeta, IEntityAlpha, IEntityStatus
+    where T : class,  IEntityAlpha<TKey>, IEntityBeta,  IEntityStatus
   {
 
     query = query.ToExtQueryFilterSortInclude(req);
     return await query.AsNoTracking()
-          .ToExtPageRes(req?.PageNo ?? 1, req?.PageSize ?? 10);
+          .ToExtPageRes<T, TKey>(req?.PageNo ?? 1, req?.PageSize ?? 10);
 
   }
 
-  public static async Task<BaseDtoPageRes<DtoSelect>> GetsPaginateOptions<T, TDtoSearch>(
+  public static async Task<BaseDtoPageRes<DtoSelect<TKey>>> GetsPaginateOptions<T, TKey, TDtoSearch>(
       this IQueryable<T> query,
       PaginateRequestFilter<TDtoSearch>? req)
     where TDtoSearch : class
-    where T : class, IEntityAlpha, IEntityBeta, IEntityStatus
+    where T : class, IEntityAlpha<TKey>, IEntityBeta, IEntityStatus
   {
     query = query.ToExtQueryFilterSortInclude(req);
 
-    return await query.ToExtMapSelect() // IEntityAlpha, IEntityStatus
+    return query.ToExtMapSelect<T, TKey>() // IEntityAlpha, IEntityStatus
     .AsNoTracking().ToExtPageRes(req?.PageNo ?? 1, req?.PageSize ?? 10);
   }
 }

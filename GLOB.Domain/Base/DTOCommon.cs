@@ -35,9 +35,6 @@ public class DtoSelect<TKey>
 public class DtoSelect : DtoSelect<int>
 {
 }
-public class DtoSelectStrg : DtoSelect<string>
-{
-}
 public class DtoSearch
 {
   public string? Name { get; set; }

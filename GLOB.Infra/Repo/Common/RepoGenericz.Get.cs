@@ -2,11 +2,11 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace GLOB.Infra.Repo;
-public partial class RepoGenericz<T> 
+public partial class RepoGenericz<T, TKey> 
 {
-  public async Task<T> Get(int? Id, List<string>? Include = null)
+  public async Task<T> Get(TKey Id, List<string>? Include = null)
   {
-    return await this.Get(x => x.Id == Id, Include);
+    return await this.Get(x => AreEqual(x.Id, Id), Include);
   }
   public async Task<T> Get(
    Expression<Func<T, bool>> expression,

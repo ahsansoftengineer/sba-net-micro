@@ -16,11 +16,16 @@ public class BaseVMSingle : BaseVMSingle<object>
 {
 }
 
-public class BaseVMSelect
+public class BaseVMSelect<TKey>
 {
-  public List<DtoSelect>? Records { get; set; }
+  public List<DtoSelect<TKey>>? Records { get; set; }
   public HttpStatusCode Status { get; set; }
 }
+
+public class BaseVMSelect : BaseVMSelect<int>
+{
+}
+
 public class BaseVMMulti<T>
 {
   public IList<T>? Records { get; set; }

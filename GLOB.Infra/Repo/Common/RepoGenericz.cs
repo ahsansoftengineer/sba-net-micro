@@ -4,8 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace GLOB.Infra.Repo;
-public partial class RepoGenericz<T> : IRepoGenericz<T> 
-  where T : class, IEntityAlpha, IEntityBeta, IEntityStatus
+// public class RepoGenericz<T> : RepoGenericz<T> 
+//   where T : class, IEntityAlpha, IEntityBeta, IEntityStatus
+// {
+
+// }
+
+public partial class RepoGenericz<T, TKey> : IRepoGenericz<T, TKey> 
+  where T : class, IEntityAlpha<TKey>, IEntityBeta, IEntityStatus
 {
   private readonly DbContext _context;
   private readonly DbSet<T> _db;
@@ -22,11 +28,11 @@ public partial class RepoGenericz<T> : IRepoGenericz<T>
   {
     return _db.Any(filter);
   }
-  public bool AnyId(int? Id)
+  public bool AnyId(TKey Id)
   {
-    return Any(x => x.Id == Id);
+    return Any(x => AreEqual(x.Id, Id));
   }
-  public async Task Delete(int? id)
+  public async Task Delete(TKey id)
   {
     var entity = await _db.FindAsync(id);
     if (entity != null) _db.Remove(entity);
@@ -63,6 +69,11 @@ public partial class RepoGenericz<T> : IRepoGenericz<T>
         _context.Entry(entity).State = EntityState.Modified;
       }
     }
+  }
+
+  private bool AreEqual(TKey a, TKey b)
+  {
+      return a.Equals(b); // ✅ Safe and clean
   }
 
 }

@@ -28,7 +28,6 @@ public class PaginateRequestFilterSelect<TDtoSearch>
 public class BaseDtoPageRes<T>
 {
   public List<T> Records { get; private set; }
-  public List<DtoSelect> Options { get; private set; }
   public int Count { get; private set; } = 0;
   public int PageSize { get; private set; } = 10;
   public int PageNo { get; private set; } = 1;
@@ -38,6 +37,10 @@ public class BaseDtoPageRes<T>
   public bool HasNextPage => PageNo < TotalPages;
   public HttpStatusCode Status = HttpStatusCode.OK;
 
+  public BaseDtoPageRes()
+  {
+    throw new Exception("Don't use Empty Constructor!!!!");
+  }
   public BaseDtoPageRes(List<T> record, int count, int pageNo, int pageSize)
   {
 
@@ -46,12 +49,16 @@ public class BaseDtoPageRes<T>
     PageSize = pageSize;
     PageNo = pageNo;
   }
-  public BaseDtoPageRes(List<DtoSelect> record, int count, int pageNo, int pageSize)
-  {
+  // public BaseDtoPageRes(List<DtoSelect<TKey>> record, int count, int pageNo, int pageSize)
+  // {
 
-    Options = record;
-    Count = count;
-    PageSize = pageSize;
-    PageNo = pageNo;
-  }
+  //   Options = record;
+  //   Count = count;
+  //   PageSize = pageSize;
+  //   PageNo = pageNo;
+  // }
 }
+// public class BaseDtoPageRes<T> : BaseDtoPageRes<T, int> 
+// {
+
+// }
