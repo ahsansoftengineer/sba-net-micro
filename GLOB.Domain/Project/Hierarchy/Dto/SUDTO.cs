@@ -6,7 +6,7 @@ public class SUDtoCreate : DtoCreate
   public int OUId { get; set; }
 }
 
-public class SUDto : DtoRead
+public class SUDtoRead : DtoRead
 {
   public int OUId { get; set; }
   public DtoSelect? OU { get; set; }

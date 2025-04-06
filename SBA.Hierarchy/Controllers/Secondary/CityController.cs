@@ -6,7 +6,7 @@ using SBA.Projectz.Controllers.Base;
 namespace SBA.Hierarchy.Controllers;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class CityController : BasezController<CityController, City, CityDto>
+public class CityController : BasezController<CityController, City, CityDtoRead>
 {
   public CityController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
@@ -14,7 +14,7 @@ public class CityController : BasezController<CityController, City, CityDto>
   }
 
   [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<CityDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginate([FromQuery] DtoPageReq<CityDtoSearch?> req)
   {
     try
     {

@@ -7,13 +7,13 @@ public partial class MapProj
   public override void MapCommon() 
   {
     base.MapCommon();
-    CreateMapCommon<TestProj>();
-    CreateMapCommon<Org>();
-    CreateMapCommon<BG>();
-    CreateMapCommon<Bank>();
-    CreateMapCommon<Brand>();
-    CreateMapCommon<Industry>();
-    CreateMapCommon<Profession>();
-    CreateMapCommon<State>();
+    CreateMap_Entity_DefaultDtos<TestProj>();
+    CreateMap_Entity_DefaultDtos<Org>();
+    CreateMap_Entity_DefaultDtos<BG>();
+    CreateMap_Entity_DefaultDtos<Bank>();
+    CreateMap_Entity_DefaultDtos<Brand>();
+    CreateMap_Entity_DefaultDtos<Industry>();
+    CreateMap_Entity_DefaultDtos<Profession>();
+    CreateMap_Entity_DefaultDtos<State>();
   }
 }

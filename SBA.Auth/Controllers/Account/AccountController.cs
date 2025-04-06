@@ -13,7 +13,6 @@ public partial class AccountController : AlphaController<AccountController>
   // private IRepoGenericz<AccountId> _repo = null;
   private readonly UserManager<InfraUser> _userManager;
   private readonly SignInManager<InfraUser> _signInManager;
-  private readonly IConfiguration _config;
   private IUOW uOW { get; }
   public AccountController(
     IServiceProvider srvcProvider,
@@ -29,7 +28,7 @@ public partial class AccountController : AlphaController<AccountController>
   public async Task<IActionResult> Register([FromBody] RegisterDto model) 
   {
     if (!ModelState.IsValid) return BadRequestz();
-    var user = new InfraUser { UserName = model.Email, Email = model.Email, Name = model.FullName };
+    var user = UserController.MapUser(model);
     var result = await _userManager.CreateAsync(user, model.Password);
 
     if (result.Succeeded)

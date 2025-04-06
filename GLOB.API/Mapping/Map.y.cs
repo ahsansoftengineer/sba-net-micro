@@ -7,6 +7,6 @@ public partial class MapBase
   public virtual void MapAll()
   {
 
-    CreateMapAll<TestInfra, DtoRead, DtoCreate, DtoSearch>();
+    // CreateMapAll<TestInfra,DtoCreate, DtoUpdate, DtoRead, DtoSearch, DtoSelect>();
   }
 }

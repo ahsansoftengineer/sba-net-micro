@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using GLOB.Domain.Enums;
 
 namespace GLOB.Domain.Base;
+
 public class DtoCreate
 {
   [Required]
@@ -11,25 +12,35 @@ public class DtoCreate
   public string? Desc { get; set; }
 
 }
-public class DtoRead : DtoCreate
+public class DtoUpdate : DtoCreate
 {
-  public int? Id { get; set; } = null;
-  public DateTimeOffset? CreatedAt { get; set; }
-  public DateTimeOffset? UpdatedAt { get; set; }
   public Status? Status { get; set; } // = Status.None;
 
 }
-public class DtoSelect
+public class DtoRead : DtoRead<int>
 {
-  public int Id { get; set; }
+}
+public class DtoRead<TKey> : DtoUpdate
+{
+  public TKey Id { get; set; }
+  public DateTimeOffset? CreatedAt { get; set; }
+  public DateTimeOffset? UpdatedAt { get; set; }
+}
+
+public class DtoSelect<TKey>
+{
+  public TKey Id { get; set; }
   public string Name { get; set; } = "";
   public bool IsSelected = false;
   public Status? Status { get; set; }
 }
+public class DtoSelect : DtoSelect<int>
+{
+}
 public class DtoSearch
 {
-  public int? Id { get; set; } = null;
   public string? Name { get; set; }
+  public Status? Status { get; set; }
   public string? Desc { get; set; }
   public DateTimeOffset? DateFrom { get; set; }
   public DateTimeOffset? DateTo { get; set; }

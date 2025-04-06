@@ -1,6 +1,6 @@
 using GLOB.API.Mapper;
 using GLOB.Domain.Auth;
-using GLOB.Domain.Hierarchy;
+using GLOB.Domain.Base;
 
 namespace SBA.Projectz.Mapper;
 public partial class MapProj : MapBase
@@ -11,7 +11,8 @@ public partial class MapProj : MapBase
   public override void MapAll() 
   {
     base.MapAll();
-    CreateMap<InfraUser, InfraUserDto>();
+    CreateMapAll<InfraUser, InfraUserDtoCreate, InfraUserDtoUpdate, InfraUserDtoRead, InfraUserDtoSearch, DtoSelect>();
+    
     // CreateMapAll<Systemz, SystemzDto, SystemzDtoCreate, SystemzDtoSearch>();
   }
 }

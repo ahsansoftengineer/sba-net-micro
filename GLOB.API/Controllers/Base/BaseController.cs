@@ -21,7 +21,7 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
   public async Task<IActionResult> Get(int id, [FromQuery] List<string>? Include)
   {
     var single = await _repo.Get(id, Include);
-    var result = single.ToExtVMSingle();
+    var result = single.ToExtResVMSingle();
     return Ok(result);
   }
   [HttpGet()]
@@ -30,7 +30,7 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
     try
     {
       var list = await _repo.Gets(Include: Include);
-      var result = list.ToExtVMMulti();
+      var result = list.ToExtResVMList();
       return Ok(result);
     }
     catch (Exception ex)

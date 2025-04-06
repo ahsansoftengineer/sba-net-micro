@@ -15,11 +15,25 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
 
   }
   [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<DtoSearch?> req)
+  public async Task<IActionResult> GetsPaginate([FromQuery] DtoPageReq<DtoSearch?> req)
   {
     try
     {
       var list = await _repo.GetsPaginate(req);
+      return Ok(list);
+    }
+    catch (Exception ex)
+    {
+      return CatchException(ex, nameof(GetsPaginate));
+    }
+  }
+
+  [HttpGet("[action]")]
+  public async Task<IActionResult> GetsPaginateOptions([FromQuery] DtoPageReq<DtoSearch?> req)
+  {
+    try
+    {
+      var list = await _repo.GetsPaginateOptions(req);
       return Ok(list);
     }
     catch (Exception ex)

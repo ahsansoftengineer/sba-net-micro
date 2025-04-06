@@ -1,10 +1,14 @@
 namespace GLOB.Domain.Auth;
-public class RegisterDto
+public class UpdateUserDto
 {
     public string FullName { get; set; }
-    public string Email { get; set; }
+    public string? PhoneNumber { get; set; }
     public string Password { get; set; }
     public string ConfirmPassword { get; set; }
+}
+public class RegisterDto : UpdateUserDto
+{
+    public string Email { get; set; }
 }
 
 public class LoginDto

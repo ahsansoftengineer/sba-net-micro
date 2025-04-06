@@ -12,20 +12,19 @@ public class BaseVMSingle<T>
   public T? Record { get; set; }
   public HttpStatusCode Status { get; set; }
 }
-public class BaseVMSingle : BaseVMSingle<object>
+
+public class BaseVMSelect<TKey>
+{
+  public List<IEntityAlpha<TKey>>? Records { get; set; }
+  public HttpStatusCode Status { get; set; }
+}
+
+public class BaseVMSelect : BaseVMSelect<int>
 {
 }
 
-public class BaseVMSelect
-{
-  public List<DtoSelect>? Records { get; set; }
-  public HttpStatusCode Status { get; set; }
-}
 public class BaseVMMulti<T>
 {
-  public List<T>? Records { get; set; }
+  public IList<T>? Records { get; set; }
   public HttpStatusCode Status { get; set; }
-}
-public class BaseVMMulti : BaseVMMulti<object>
-{
 }

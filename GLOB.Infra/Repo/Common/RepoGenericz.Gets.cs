@@ -3,24 +3,30 @@ using GLOB.Infra.Helper;
 using System.Linq.Expressions;
 
 namespace GLOB.Infra.Repo;
-public partial class RepoGenericz<T>
+
+public partial class RepoGenericz<T, TKey>
 {
   // Filter, OrderBy, Include
   public async Task<List<T>> Gets(
     Expression<Func<T, bool>>? expression = null,
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
     List<string>? Include = null)
-    {
-      IQueryable<T> query = _db;
-      return await query.Gets(expression, orderBy, Include);
-    }
-
-    // Filter, OrderBy, Include, Pagination,
-    public async Task<object> GetsPaginate<TDtoSearch>(PaginateRequestFilter<TDtoSearch>? req)
-    where TDtoSearch : class
   {
     IQueryable<T> query = _db;
-    return await query.GetsPaginate(req);
+    return await query.Gets(expression, orderBy, Include);
+  }
+
+  // Filter, OrderBy, Include, Pagination,
+  public async Task<DtoPageRes<T>> GetsPaginate<TDtoSearch>(DtoPageReq<TDtoSearch?> req) 
+    where TDtoSearch : class
+  {
+    return await _db.GetsPaginate(req);
+  }
+  
+  public async Task<DtoPageRes<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(DtoPageReq<TDtoSearch?> req) 
+    where TDtoSearch : class
+  {
+    return await _db.GetsPaginateOptions<T, TKey,  TDtoSearch>(req);
   }
 }
 

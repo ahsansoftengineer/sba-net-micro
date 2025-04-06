@@ -5,7 +5,7 @@ public class LEDtoCreate : DtoCreate
 {
   public int BGId { get; set; }
 }
-public class LEDto : DtoRead
+public class LEDtoRead : DtoRead
 {
   public int BGId { get; set; }
   public DtoSelect? BG { get; set; }
