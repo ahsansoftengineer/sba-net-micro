@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using GLOB.Domain.Enums;
 
 namespace GLOB.Domain.Base;
+
 public class DtoCreate
 {
   [Required]
@@ -21,7 +22,16 @@ public class DtoRead : DtoUpdate
   public int? Id { get; set; } = null;
   public DateTimeOffset? CreatedAt { get; set; }
   public DateTimeOffset? UpdatedAt { get; set; }
+}
 
+public interface DtoReadInterface<TKey>
+{
+  public TKey Id { get; set; }
+  public string Name { get; set; }
+  public string? Desc { get; set; }
+  public Status? Status { get; set; }
+  public DateTimeOffset? CreatedAt { get; set; }
+  public DateTimeOffset? UpdatedAt { get; set; }
 }
 
 

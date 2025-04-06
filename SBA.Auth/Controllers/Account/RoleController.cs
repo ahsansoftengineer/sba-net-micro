@@ -41,14 +41,8 @@ public partial class RoleController : AlphaController<RoleController>
   //   // query = query.ToExtQueryInclues(req.Include);
 
   //   var query = _roleManager.Roles.ToExtQueryFilterSortInclude(req);
-  //   var project = query.Select(x => new DtoSelect<string>
-  //   {
-  //     Id = x.Id,
-  //     Name = x.Name,
-  //     Status = x.Status,
-  //   });
 
-  //   var result = project.AsNoTracking().ToExtPageRes(req.PageNo, req.PageSize);
+  //   var result = query.AsNoTracking().GetsPaginateOptions(req);
 
   //   return Ok(result);
   // }

@@ -12,9 +12,6 @@ public class BaseVMSingle<T>
   public T? Record { get; set; }
   public HttpStatusCode Status { get; set; }
 }
-public class BaseVMSingle : BaseVMSingle<object>
-{
-}
 
 public class BaseVMSelect<TKey>
 {
@@ -30,7 +27,4 @@ public class BaseVMMulti<T>
 {
   public IList<T>? Records { get; set; }
   public HttpStatusCode Status { get; set; }
-}
-public class BaseVMMulti : BaseVMMulti<object>
-{
 }

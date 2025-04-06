@@ -5,10 +5,10 @@ namespace GLOB.Infra.Helper;
 
 public static partial class ExtResponse
 {
-  public static BaseVMSingle ToExtResVMSingle<TEntity>(this TEntity? item)
+  public static BaseVMSingle<TEntity> ToExtResVMSingle<TEntity>(this TEntity? item)
   where TEntity : class //, IEntityBase
   {
-    var vm = new BaseVMSingle()
+    var vm = new BaseVMSingle<TEntity>()
     {
       Record = item,
       Status = HttpStatusCode.OK
@@ -37,13 +37,7 @@ public static partial class ExtResponse
     };
     if (list == null) return vm;
 
-    List<IEntityAlpha<TKey>> result = list.Select(x =>
-    {
-      IEntityAlpha<TKey> y = x;
-      return y;
-    }).ToList();
-    
-    vm.Records = result;
+    vm.Records = list.Select(x =>(IEntityAlpha<TKey>)x).ToList();;
     return vm;
   }
 }

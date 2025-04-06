@@ -46,19 +46,13 @@ public static partial class ExtResponse
     where TDtoSearch : class
     where T : class, IEntityAlpha<TKey>, IEntityBeta, IEntityStatus
   {
-    BaseDtoPageResConstruct<T> p = new() 
-    {
-      PageNo = req.PageNo,
-      PageSize = req.PageSize
-    };
-    
     query = query.ToExtQueryFilterSortInclude(req);
 
     var result =  query.ToExtMapSelect<T, TKey>(); // IEntityAlpha, IEntityStatus
     BaseDtoPageResConstruct<DtoSelect<TKey>> c = new()
     {
-      PageNo = p.PageNo,
-      PageSize = p.PageSize,
+      PageNo = req.PageNo,
+      PageSize = req.PageSize,
     };
     return await result.AsNoTracking().ToExtPageRes(c);
   }

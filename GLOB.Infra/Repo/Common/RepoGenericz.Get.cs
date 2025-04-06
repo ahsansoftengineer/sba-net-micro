@@ -6,7 +6,7 @@ public partial class RepoGenericz<T, TKey>
 {
   public async Task<T> Get(TKey Id, List<string>? Include = null)
   {
-    return await this.Get(x => AreEqual(x.Id, Id), Include);
+    return await Get(x => AreEqual(x.Id, Id), Include);
   }
   public async Task<T> Get(
    Expression<Func<T, bool>> expression,

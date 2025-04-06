@@ -43,12 +43,14 @@ public partial class UserController : AlphaController<UserController>
     var result = _mapper.Map<InfraUserDtoRead>(data).ToExtResVMSingle();
     return Ok(result);
   }
+
   // [HttpGet("[action]")]
-  // public async Task<IActionResult> GetsPaginate(PaginateRequestFilter<InfraUserDto> req)
+  // public async Task<IActionResult> GetsPaginate(PaginateRequestFilter<InfraUserDtoSearch> req)
   // {
-  //   IQueryable<InfraUser> query = _userManager.Users.ToExtQueryFilterSortInclude(req);
-  //   var result = query.ToEx;
-  //   return await query.GetsPaginate(req);
+  //   var query = _userManager.Users.ToExtQueryFilterSortInclude(req);
+  //   var mappedQuery = query.ToExtMapQuery<>()
+  //   var result = query.GetsPaginateOptions<InfraUser, string, InfraUserDtoSearch>(req);
+  //   return await result.GetsPaginate(req);
   // }
 
   // [HttpGet("[action]")]
