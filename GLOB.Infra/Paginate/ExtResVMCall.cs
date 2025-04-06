@@ -29,8 +29,6 @@ public static partial class ExtRes
     return new BaseDtoPageRes<DtoSelect>(items, count, pageNo, pageSize);
   }
 
-
-
   public static async Task<BaseDtoPageRes<T>> GetsPaginate<T, TDtoSearch>(
       this IQueryable<T> query,
       PaginateRequestFilter<TDtoSearch>? req)
