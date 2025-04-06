@@ -52,6 +52,14 @@ public partial class UserController : AlphaController<UserController>
     return await query.GetsPaginate(req);
   }
 
+  [HttpGet("[action]")]
+  public async Task<IActionResult> GetsPaginateOptions(PaginateRequestFilter<InfraUserDto> req)
+  {
+    IQueryable<InfraUser> query = _userManager.Users;
+    var result = query.GetsPaginateQuery(req).ToExtMapSelectStrg();
+    return await query.GetsPaginate(req);
+  }
+
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] RegisterDto model)
   {

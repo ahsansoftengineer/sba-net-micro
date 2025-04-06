@@ -4,8 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Helper;
 
-public static partial class RepoExtensionActions
+public static partial class ExtRes
 {
+
   public static async Task<List<T>> Gets<T>(
       this IQueryable<T> query,
       Expression<Func<T, bool>>? expression,
@@ -13,37 +14,22 @@ public static partial class RepoExtensionActions
       List<string>? Include)
     where T : class
   {
-    if (expression != null)
-    {
-      query = query.Where(expression);
-    }
-
-    query = query.ToExtInclues(Include);
-
-    if (orderBy != null)
-    {
-      query = orderBy(query);
-    }
-    return await query.AsNoTracking().ToListAsync();
+    return await query.GetsQuery(expression, orderBy, Include).AsNoTracking().ToListAsync();
   }
-  public static IQueryable<T> GetsPaginateQuery<T, TDtoSearch>(
-      this IQueryable<T> query,
-      PaginateRequestFilter<TDtoSearch>? req)
-    where TDtoSearch : class
-    where T : class, IEntityBeta
+
+  public static async Task<BaseDtoPageRes<T>> ToExtPageRes<T>(this IQueryable<T> source, int pageNo = 1, int pageSize = 10)
   {
-
-    query = query.ToExtFilter(req.Filter);
-    query = query.ToExtOrderBy(req.Sort); // IEntityBeta
-
-    if (!req.IsMapped)
-    {
-      query = query.ToExtInclues(req?.Include);
-    }
-
-
-    return query;
+    (pageNo, pageSize, int count, List<T> items) = await source.ToExtQueryPage(pageNo, pageSize);
+    return new BaseDtoPageRes<T>(items, count, pageNo, pageSize);
   }
+
+  public static async Task<BaseDtoPageRes<DtoSelect>> ToExtPageRes(this IQueryable<DtoSelect> source, int pageNo = 1, int pageSize = 10)
+  {
+    (pageNo, pageSize, int count, List<DtoSelect> items) = await source.ToExtQueryPage(pageNo, pageSize);
+    return new BaseDtoPageRes<DtoSelect>(items, count, pageNo, pageSize);
+  }
+
+
 
   public static async Task<BaseDtoPageRes<T>> GetsPaginate<T, TDtoSearch>(
       this IQueryable<T> query,
@@ -52,9 +38,9 @@ public static partial class RepoExtensionActions
     where T : class, IEntityBeta, IEntityAlpha, IEntityStatus
   {
 
-    query = GetsPaginateQuery(query, req);
+    query = query.ToExtQueryFilterSortInclude(req);
     return await query.AsNoTracking()
-          .ToExtPaginateAsync(req?.PageNo ?? 1, req?.PageSize ?? 10);
+          .ToExtPageRes(req?.PageNo ?? 1, req?.PageSize ?? 10);
 
   }
 
@@ -64,8 +50,10 @@ public static partial class RepoExtensionActions
     where TDtoSearch : class
     where T : class, IEntityAlpha, IEntityBeta, IEntityStatus
   {
+    query = query.ToExtQueryFilterSortInclude(req);
+
     return await query.ToExtMapSelect() // IEntityAlpha, IEntityStatus
-    .AsNoTracking().ToExtPaginateAsync(req?.PageNo ?? 1, req?.PageSize ?? 10);
+    .AsNoTracking().ToExtPageRes(req?.PageNo ?? 1, req?.PageSize ?? 10);
   }
   // Here you Need to Convert to Specific Type
 

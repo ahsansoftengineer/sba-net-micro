@@ -2,7 +2,7 @@
 using GLOB.Domain.Base;
 
 namespace GLOB.Infra.Helper;
-public static partial class RepoExtensionActions
+public static partial class ExtQuery
 {
   public static IQueryable<DtoSelect> ToExtMapSelect<T>(this IQueryable<T> source)
     where T : class, IEntityAlpha, IEntityStatus

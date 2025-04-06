@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace GLOB.Infra.Helper;
-public static partial class RepoExtensionActions
+public static partial class ExtQuery
 {
   public static IQueryable<T> ToExtInclues<T>(this IQueryable<T> source, List<string>? Include)
     where T : class

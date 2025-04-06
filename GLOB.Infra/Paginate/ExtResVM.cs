@@ -2,8 +2,18 @@ using System.Net;
 using GLOB.Domain.Base;
 
 namespace GLOB.Infra.Helper;
-public static class Extension
+public static partial class ExtRes
 {
+    public static BaseVMSingle ToExtVMSingle<TEntity>(this TEntity? item)
+    where TEntity : class //, IEntityBase
+    {
+        var vm = new BaseVMSingle()
+        {
+            Record = item ,
+            Status = HttpStatusCode.OK
+        };
+        return vm;
+    }
     public static BaseVMMulti<TEntity> ToExtVMMulti<TEntity>(this IQueryable<TEntity>? list)
     where TEntity : class //, IEntityBeta
     {
@@ -25,16 +35,6 @@ public static class Extension
         };
         return vm;
     }
-    // public static BaseVMMulti ToExtVMMulti(this object? list)
-    // {
-
-    //     var vm = new BaseVMMulti()
-    //     {
-    //         Records = (List<object>)list,
-    //         Status = HttpStatusCode.OK
-    //     };
-    //     return vm;
-    // }
     public static BaseVMSelect ToExtVMSelect<TEntity>(this List<TEntity>? list)
     where TEntity : class, IEntityAlpha
     {
@@ -53,24 +53,4 @@ public static class Extension
         vm.Records = result;
         return vm;
     }
-
-    public static BaseVMSingle ToExtVMSingle<TEntity>(this TEntity? item)
-    where TEntity : class //, IEntityBase
-    {
-        var vm = new BaseVMSingle()
-        {
-            Record = item ,
-            Status = HttpStatusCode.OK
-        };
-        return vm;
-    }
-    // public static BaseVMSingle ToExtVMSingle(this object item)
-    // {
-    //     var vm = new BaseVMSingle()
-    //     {
-    //         Record = item ,
-    //         Status = HttpStatusCode.OK
-    //     };
-    //     return vm;
-    // }
 }

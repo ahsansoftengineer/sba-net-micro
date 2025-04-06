@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 
 namespace GLOB.Infra.Helper;
-public static partial class RepoExtensionActions
+public static partial class ExtQuery
 {
   public static IQueryable<T> ToExtFilter<T, TDtoSearch>(this IQueryable<T> source, TDtoSearch? DtoSearch)
     where T : class
