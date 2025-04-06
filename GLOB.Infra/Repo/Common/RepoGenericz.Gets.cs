@@ -17,13 +17,13 @@ public partial class RepoGenericz<T, TKey>
   }
 
   // Filter, OrderBy, Include, Pagination,
-  public async Task<BaseDtoPageRes<T>> GetsPaginate<TDtoSearch>(PaginateRequestFilter<TDtoSearch>? req) 
+  public async Task<DtoPageRes<T>> GetsPaginate<TDtoSearch>(DtoPageReq<TDtoSearch>? req) 
     where TDtoSearch : class
   {
     return await _db.GetsPaginate(req);
   }
   
-  public async Task<BaseDtoPageRes<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req) 
+  public async Task<DtoPageRes<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(DtoPageReq<TDtoSearch?> req) 
     where TDtoSearch : class
   {
     return await _db.GetsPaginateOptions<T, TKey,  TDtoSearch>(req);

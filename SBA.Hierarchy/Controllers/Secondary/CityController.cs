@@ -14,7 +14,7 @@ public class CityController : BasezController<CityController, City, CityDtoRead>
   }
 
   [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<CityDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginate([FromQuery] DtoPageReq<CityDtoSearch?> req)
   {
     try
     {

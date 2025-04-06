@@ -15,7 +15,7 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
 
   }
   [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginate([FromQuery] PaginateRequestFilter<DtoSearch?> req)
+  public async Task<IActionResult> GetsPaginate([FromQuery] DtoPageReq<DtoSearch?> req)
   {
     try
     {
@@ -29,7 +29,7 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
   }
 
   [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginateOptions([FromQuery] PaginateRequestFilter<DtoSearch?> req)
+  public async Task<IActionResult> GetsPaginateOptions([FromQuery] DtoPageReq<DtoSearch?> req)
   {
     try
     {

@@ -13,8 +13,17 @@ public class Sort
   public string? By { get; set; }
   public Order? Order { get; set; } = Base.Order.Unspecified;
 }
+public class DtoPageReq<TDtoSearch>
+{
+  public List<string>? Include { get; set; }
+  public int PageNo { get; set; } = 1;
+  public int PageSize { get; set; } = 10;
+  public TDtoSearch? Filter { get; set; }
+  public Sort? Sort { get; set; }
+}
 
-public class BaseDtoPageResConstruct<T>
+
+public class DtoPageResBase<T>
 {
   public List<T> Records { get; set; }
   public int Count { get; set; } = 0;
@@ -22,20 +31,7 @@ public class BaseDtoPageResConstruct<T>
   public int PageNo { get; set; } = 1;
 }
 
-public class PaginateRequestFilter<TDtoSearch> : PaginateRequestFilterSelect<TDtoSearch>
-{
-  public List<string>? Include { get; set; }
-}
-
-public class PaginateRequestFilterSelect<TDtoSearch>
-{
-  public int PageNo { get; set; } = 1;
-  public int PageSize { get; set; } = 10;
-  public TDtoSearch? Filter { get; set; }
-  public Sort? Sort { get; set; }
-}
-
-public class BaseDtoPageRes<T> : BaseDtoPageResConstruct<T>
+public class DtoPageRes<T> : DtoPageResBase<T>
 {
 
   public int TotalPages => (int)Math.Ceiling(Count / (double)PageSize);
@@ -44,11 +40,11 @@ public class BaseDtoPageRes<T> : BaseDtoPageResConstruct<T>
   public bool HasNextPage => PageNo < TotalPages;
   public HttpStatusCode Status = HttpStatusCode.OK;
 
-  public BaseDtoPageRes()
+  public DtoPageRes()
   {
     throw new Exception("Don't use Empty Constructor!!!!");
   }
-  public BaseDtoPageRes(BaseDtoPageResConstruct<T> data)
+  public DtoPageRes(DtoPageResBase<T> data)
   {
 
     Records = data.Records;
@@ -56,16 +52,4 @@ public class BaseDtoPageRes<T> : BaseDtoPageResConstruct<T>
     PageSize = data.PageSize;
     PageNo = PageNo;
   }
-  // public BaseDtoPageRes(List<DtoSelect<TKey>> record, int count, int pageNo, int pageSize)
-  // {
-
-  //   Options = record;
-  //   Count = count;
-  //   PageSize = pageSize;
-  //   PageNo = pageNo;
-  // }
 }
-// public class BaseDtoPageRes<T> : BaseDtoPageRes<T, int> 
-// {
-
-// }

@@ -79,4 +79,5 @@ public partial class RepoGenericz<T, TKey> : IRepoGenericz<T, TKey>
     return a.Equals(b); // ✅ Safe and clean
   }
 
+   
 }

@@ -17,23 +17,15 @@ public class DtoUpdate : DtoCreate
   public Status? Status { get; set; } // = Status.None;
 
 }
-public class DtoRead : DtoUpdate
+public class DtoRead : DtoRead<int>
 {
-  public int? Id { get; set; } = null;
-  public DateTimeOffset? CreatedAt { get; set; }
-  public DateTimeOffset? UpdatedAt { get; set; }
 }
-
-public interface DtoReadInterface<TKey>
+public class DtoRead<TKey> : DtoUpdate
 {
   public TKey Id { get; set; }
-  public string Name { get; set; }
-  public string? Desc { get; set; }
-  public Status? Status { get; set; }
   public DateTimeOffset? CreatedAt { get; set; }
   public DateTimeOffset? UpdatedAt { get; set; }
 }
-
 
 public class DtoSelect<TKey>
 {

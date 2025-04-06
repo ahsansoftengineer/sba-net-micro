@@ -32,9 +32,9 @@ public interface IRepoGenericz<T, TKey>
   void Update(T entity);
   void UpdateStatus(T entity, Status status);
 
-  Task<BaseDtoPageRes<T>> GetsPaginate<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req)
+  Task<DtoPageRes<T>> GetsPaginate<TDtoSearch>(DtoPageReq<TDtoSearch?> req)
     where TDtoSearch : class;
 
-  Task<BaseDtoPageRes<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req)
+  Task<DtoPageRes<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(DtoPageReq<TDtoSearch?> req)
     where TDtoSearch : class;
 }

@@ -45,7 +45,7 @@ public partial class UserController : AlphaController<UserController>
   }
 
   // [HttpGet("[action]")]
-  // public async Task<IActionResult> GetsPaginate(PaginateRequestFilter<InfraUserDtoSearch> req)
+  // public async Task<IActionResult> GetsPaginate(DtoPageReq<InfraUserDtoSearch> req)
   // {
   //   var query = _userManager.Users.ToExtQueryFilterSortInclude(req);
   //   var mappedQuery = query.ToExtMapQuery<>()
@@ -54,7 +54,7 @@ public partial class UserController : AlphaController<UserController>
   // }
 
   // [HttpGet("[action]")]
-  // public async Task<IActionResult> GetsPaginateOptions(PaginateRequestFilter<InfraUser> req)
+  // public async Task<IActionResult> GetsPaginateOptions(DtoPageReq<InfraUser> req)
   // {
   //   IQueryable<InfraUser> query = _userManager.Users;
   //   var result = query.ToExtQueryFilterSortInclude(req).GetsPaginateOptions<InfraUser, string>();

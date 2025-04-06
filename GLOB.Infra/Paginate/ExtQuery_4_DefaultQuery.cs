@@ -29,7 +29,7 @@ public static partial class ExtQuery
 
   public static IQueryable<T> ToExtQueryFilterSortInclude<T, TDtoSearch>(
       this IQueryable<T> query,
-      PaginateRequestFilter<TDtoSearch>? req)
+      DtoPageReq<TDtoSearch> req)
     where TDtoSearch : class
     where T : class, IEntityBeta
   {
@@ -40,8 +40,8 @@ public static partial class ExtQuery
     return query.ToExtQueryInclues(req?.Include);
   }
   
-  public static async Task<BaseDtoPageResConstruct<T>> ToExtQueryPage<T>(
-    this IQueryable<T> source, BaseDtoPageResConstruct<T> p
+  public static async Task<DtoPageResBase<T>> ToExtQueryPage<T>(
+    this IQueryable<T> source, DtoPageResBase<T> p
   )
   {
     if (p.PageNo < 1) p.PageNo = 1;

@@ -17,43 +17,47 @@ public static partial class ExtResponse
     return await query.GetsQuery(expression, orderBy, Include).AsNoTracking().ToListAsync();
   }
 
-  public static async Task<BaseDtoPageRes<T>> ToExtPageRes<T>(
-    this IQueryable<T> source, BaseDtoPageResConstruct<T> p)
+  public static async Task<DtoPageRes<T>> ToExtPageRes<T>(
+    this IQueryable<T> source, DtoPageResBase<T> DtoPageResBase)
   {
-    p = await source.ToExtQueryPage(p);
-    return new BaseDtoPageRes<T>(p);
+    DtoPageResBase = await source.ToExtQueryPage(DtoPageResBase);
+    return new DtoPageRes<T>(DtoPageResBase);
   }
 
-  public static async Task<BaseDtoPageRes<T>> GetsPaginate<T, TDtoSearch>(
+  public static async Task<DtoPageRes<T>> GetsPaginate<T, TDtoSearch>(
       this IQueryable<T> query,
-      PaginateRequestFilter<TDtoSearch>? req)
+      DtoPageReq<TDtoSearch?> req)
     where TDtoSearch : class
     where T : class, IEntityBeta
   {
-    BaseDtoPageResConstruct<T> p = new() 
+    query = query.ToExtQueryFilterSortInclude(req);
+
+    DtoPageResBase<T> DtoPageResBase = new() 
     {
       PageNo = req.PageNo,
       PageSize = req.PageSize
     };
-    query = query.ToExtQueryFilterSortInclude(req);
-    return await query.AsNoTracking().ToExtPageRes(p);
 
+    return await query.AsNoTracking().ToExtPageRes(DtoPageResBase);
   }
   // TODO: NEEDS TO WORK HERE AFTER TESTING
-  public static async Task<BaseDtoPageRes<DtoSelect<TKey>>> GetsPaginateOptions<T, TKey, TDtoSearch>(
+  public static async Task<DtoPageRes<DtoSelect<TKey>>> GetsPaginateOptions<T, TKey, TDtoSearch>(
       this IQueryable<T> query,
-      PaginateRequestFilter<TDtoSearch>? req)
+      DtoPageReq<TDtoSearch>? req)
     where TDtoSearch : class
     where T : class, IEntityAlpha<TKey>, IEntityBeta, IEntityStatus
   {
     query = query.ToExtQueryFilterSortInclude(req);
-
-    var result =  query.ToExtMapSelect<T, TKey>(); // IEntityAlpha, IEntityStatus
-    BaseDtoPageResConstruct<DtoSelect<TKey>> c = new()
+ 
+    DtoPageResBase<DtoSelect<TKey>> DtoPageResBase = new()
     {
       PageNo = req.PageNo,
       PageSize = req.PageSize,
     };
-    return await result.AsNoTracking().ToExtPageRes(c);
+
+    var result =  query.ToExtMapSelect<T, TKey>(); // IEntityAlpha, IEntityStatus
+   
+
+    return await result.AsNoTracking().ToExtPageRes(DtoPageResBase);
   }
 }
