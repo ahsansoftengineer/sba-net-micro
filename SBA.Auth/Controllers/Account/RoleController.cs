@@ -35,24 +35,25 @@ public partial class RoleController : AlphaController<RoleController>
     var list = _roleManager.Roles.ToList().ToExtResVMMulti();
     return Ok(list);
   }
-  [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginate(PaginateRequestFilter<InfraRoleDtoSearch> req)
-  {
-    // var query = _roleManager.Roles.ToExtQueryFilter(req.Filter);
-    // query = query.ToExtQueryOrderBy(req.Sort);
-    // query = query.ToExtQueryInclues(req.Include);
+  // [HttpGet("[action]")]
+  // public async Task<IActionResult> GetsPaginate(PaginateRequestFilter<InfraRoleDtoSearch> req)
+  // {
+  //   // var query = _roleManager.Roles.ToExtQueryFilter(req.Filter);
+  //   // query = query.ToExtQueryOrderBy(req.Sort);
+  //   // query = query.ToExtQueryInclues(req.Include);
 
-    var query = _roleManager.Roles.ToExtQueryFilterSortInclude(req);
-    var project = query.Select(x => new DtoSelect<string>
-    {
-      Id = x.Id,
-      Name = x.Name,
-      Status = x.Status,
-    });
-    var result = project.AsNoTracking().ToExtPageRes(req.PageNo, req.PageSize);
+  //   var query = _roleManager.Roles.ToExtQueryFilterSortInclude(req);
+  //   var project = query.Select(x => new DtoSelect<string>
+  //   {
+  //     Id = x.Id,
+  //     Name = x.Name,
+  //     Status = x.Status,
+  //   });
 
-    return Ok(result);
-  }
+  //   var result = project.AsNoTracking().ToExtPageRes(req.PageNo, req.PageSize);
+
+  //   return Ok(result);
+  // }
   [HttpGet("{Id}")]
   public async Task<IActionResult> Get(string Id)
   {

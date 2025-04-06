@@ -13,7 +13,6 @@ public partial class AccountController : AlphaController<AccountController>
   // private IRepoGenericz<AccountId> _repo = null;
   private readonly UserManager<InfraUser> _userManager;
   private readonly SignInManager<InfraUser> _signInManager;
-  private readonly IConfiguration _config;
   private IUOW uOW { get; }
   public AccountController(
     IServiceProvider srvcProvider,

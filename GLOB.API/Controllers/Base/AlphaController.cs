@@ -11,12 +11,15 @@ public abstract class AlphaController<TController> : ControllerBase
   protected readonly IMapper _mapper;
   protected readonly IUnitOfWorkInfra _uowInfra;
   protected readonly ILogger _logger;
+  protected readonly IConfiguration _config;
 
   public AlphaController(IServiceProvider srvcProvider)
   {
     _srvcProvider = srvcProvider;
     _mapper = GetSrvc<IMapper>();
+    _config = GetSrvc<IConfiguration>();
     _uowInfra = GetSrvc<IUnitOfWorkInfra>();
+    
     _logger = GetSrvc<ILogger<TController>>();
     _logger.LogWarning("How does Type Works -> "+ this);
   }

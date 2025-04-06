@@ -8,7 +8,7 @@ public interface IEntityAlpha<TKey>
   string Name { get; set; }
 }
 
-public interface IEntityAlpha : IEntityAlpha<int>
+public interface IEntityAlpha : IEntityAlpha<int>//, IEntityAlpha<string>
 {
 }
 

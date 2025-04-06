@@ -40,19 +40,20 @@ public static partial class ExtQuery
     return query.ToExtQueryInclues(req?.Include);
   }
   
-  public static async Task<(int pageNo, int pageSize, int count, List<T> items)> 
-    ToExtQueryPage<T>(this IQueryable<T> source, int pageNo, int pageSize)
+  public static async Task<BaseDtoPageResConstruct<T>> ToExtQueryPage<T>(
+    this IQueryable<T> source, BaseDtoPageResConstruct<T> p
+  )
   {
-    if (pageNo < 1) pageNo = 1;
-    if (pageSize < 1) pageSize = 10;
-    if (pageSize > 50) pageSize = 50;
+    if (p.PageNo < 1) p.PageNo = 1;
+    if (p.PageSize < 1) p.PageSize = 10;
+    if (p.PageSize > 50) p.PageSize = 50;
 
-    var count = await source.CountAsync();
-    var query = source.Skip((pageNo - 1) * pageSize)
-                .Take(pageSize);
+    p.Count = await source.CountAsync();
+    var query = source.Skip((p.PageNo - 1) * p.PageSize)
+                .Take(p.PageSize);
 
-    var items = await query.ToListAsync();
-    return (pageNo, pageSize, count, items);
+    p.Records = await query.ToListAsync();
+    return p;
   }
 
 

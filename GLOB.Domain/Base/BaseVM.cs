@@ -18,7 +18,7 @@ public class BaseVMSingle : BaseVMSingle<object>
 
 public class BaseVMSelect<TKey>
 {
-  public List<DtoSelect<TKey>>? Records { get; set; }
+  public List<IEntityAlpha<TKey>>? Records { get; set; }
   public HttpStatusCode Status { get; set; }
 }
 

@@ -1,58 +1,60 @@
 using System.Linq.Expressions;
 using GLOB.Domain.Base;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace GLOB.Infra.Helper;
 
-public static partial class ExtRes
+public static partial class ExtResponse
 {
 
   public static async Task<List<T>> Gets<T>(
-      this IQueryable<T> query,
-      Expression<Func<T, bool>>? expression,
-      Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy,
-      List<string>? Include)
+    this IQueryable<T> query,
+    Expression<Func<T, bool>>? expression,
+    Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy,
+    List<string>? Include)
     where T : class
   {
     return await query.GetsQuery(expression, orderBy, Include).AsNoTracking().ToListAsync();
   }
 
   public static async Task<BaseDtoPageRes<T>> ToExtPageRes<T>(
-    this IQueryable<T> source, int pageNo, int pageSize)
+    this IQueryable<T> source, BaseDtoPageResConstruct<T> p)
   {
-    (pageNo, pageSize, int count, List<T> items) = await source.ToExtQueryPage(pageNo, pageSize);
-    return new BaseDtoPageRes<T>(items, count, pageNo, pageSize);
+    p = await source.ToExtQueryPage(p);
+    return new BaseDtoPageRes<T>(p);
   }
 
-  public static async Task<BaseDtoPageRes<DtoSelect<TKey>>> ToExtPageRes<T, TKey>(
-    this IQueryable<T> source, int pageNo, int pageSize)
-  {
-    (pageNo, pageSize, int count, List<DtoSelect<TKey>> items) = await source.ToExtQueryPage<T, TKey>(pageNo, pageSize);
-    return new BaseDtoPageRes<DtoSelect<TKey>>(items, count, pageNo, pageSize);
-  }
-
-  public static async Task<BaseDtoPageRes<T>> GetsPaginate<T, TKey, TDtoSearch>(
+  public static async Task<BaseDtoPageRes<T>> GetsPaginate<T, TDtoSearch>(
       this IQueryable<T> query,
       PaginateRequestFilter<TDtoSearch>? req)
     where TDtoSearch : class
-    where T : class,  IEntityAlpha<TKey>, IEntityBeta,  IEntityStatus
+    where T : class, IEntityBeta
   {
-
+    BaseDtoPageResConstruct<T> p = new() 
+    {
+      PageNo = req.PageNo,
+      PageSize = req.PageSize
+    };
     query = query.ToExtQueryFilterSortInclude(req);
-    return await query.AsNoTracking()
-          .ToExtPageRes<T, TKey>(req?.PageNo ?? 1, req?.PageSize ?? 10);
+    return await query.AsNoTracking().ToExtPageRes(p);
 
   }
 
-  public static async Task<BaseDtoPageRes<DtoSelect<TKey>>> GetsPaginateOptions<T, TKey, TDtoSearch>(
-      this IQueryable<T> query,
-      PaginateRequestFilter<TDtoSearch>? req)
-    where TDtoSearch : class
-    where T : class, IEntityAlpha<TKey>, IEntityBeta, IEntityStatus
-  {
-    query = query.ToExtQueryFilterSortInclude(req);
+  // public static async Task<BaseDtoPageRes<DtoSelect<TKey>>> GetsPaginateOptions<T, TKey, TDtoSearch>(
+  //     this IQueryable<T> query,
+  //     PaginateRequestFilter<TDtoSearch>? req)
+  //   where TDtoSearch : class
+  //   where T : class, IEntityAlpha<TKey>, IEntityBeta, IEntityStatus
+  // {
+  //   BaseDtoPageResConstruct<DtoSelect<Key>> p = new() 
+  //   {
+  //     PageNo = req.PageNo,
+  //     PageSize = req.PageSize
+  //   };
+  //   query = query.ToExtQueryFilterSortInclude(req);
 
-    return query.ToExtMapSelect<T, TKey>() // IEntityAlpha, IEntityStatus
-    .AsNoTracking().ToExtPageRes(req?.PageNo ?? 1, req?.PageSize ?? 10);
-  }
+  //   var result =  query.ToExtMapSelect<T, TKey>(); // IEntityAlpha, IEntityStatus
+  //   return await result.AsNoTracking().ToExtPageRes(p);
+  // }
 }

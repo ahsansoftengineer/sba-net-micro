@@ -3,7 +3,7 @@ using GLOB.Domain.Base;
 
 namespace GLOB.Infra.Helper;
 
-public static partial class ExtResVM
+public static partial class ExtResponse
 {
   public static BaseVMSingle ToExtResVMSingle<TEntity>(this TEntity? item)
   where TEntity : class //, IEntityBase
@@ -26,21 +26,23 @@ public static partial class ExtResVM
     };
     return vm;
   }
+
   public static BaseVMSelect<TKey> ToExtResVMSelect<TEntity, TKey>(this List<TEntity>? list)
-  where TEntity : class, IEntityAlpha<TKey>
+    where TEntity : class, IEntityAlpha<TKey>
   {
     var vm = new BaseVMSelect<TKey>()
     {
-      Records = new List<DtoSelect<TKey>>(),
+      Records = new List<IEntityAlpha<TKey>>(),
       Status = HttpStatusCode.OK
     };
     if (list == null) return vm;
 
-    var result = list.Select(x => new DtoSelect<TKey>
+    List<IEntityAlpha<TKey>> result = list.Select(x =>
     {
-      Id = x.Id,
-      Name = x.Name
+      IEntityAlpha<TKey> y = x;
+      return y;
     }).ToList();
+    
     vm.Records = result;
     return vm;
   }
