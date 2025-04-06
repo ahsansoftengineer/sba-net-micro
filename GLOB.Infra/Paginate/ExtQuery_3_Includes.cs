@@ -6,7 +6,7 @@ using System.Reflection;
 namespace GLOB.Infra.Helper;
 public static partial class ExtQuery
 {
-  public static IQueryable<T> ToExtInclues<T>(this IQueryable<T> source, List<string>? Include)
+  public static IQueryable<T> ToExtQueryInclues<T>(this IQueryable<T> source, List<string>? Include)
     where T : class
   {
     if (Include == null || Include?.Count < 1) return source;

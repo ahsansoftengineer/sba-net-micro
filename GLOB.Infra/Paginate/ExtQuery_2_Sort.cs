@@ -5,7 +5,7 @@ using GLOB.Domain.Extension;
 namespace GLOB.Infra.Helper;
 public static partial class ExtQuery
 {
-  public static IQueryable<T> ToExtOrderBy<T>(this IQueryable<T> query, Sort? sort)
+  public static IQueryable<T> ToExtQueryOrderBy<T>(this IQueryable<T> query, Sort? sort)
     where T : class, IEntityBeta
   {
     if (sort == null || string.IsNullOrEmpty(sort?.By))

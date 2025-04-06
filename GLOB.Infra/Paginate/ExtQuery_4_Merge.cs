@@ -18,7 +18,7 @@ public static partial class ExtQuery
       query = query.Where(expression);
     }
 
-    query = query.ToExtInclues(Include);
+    query = query.ToExtQueryInclues(Include);
 
     if (orderBy != null)
     {
@@ -34,12 +34,10 @@ public static partial class ExtQuery
     where T : class, IEntityBeta
   {
 
-    query = query.ToExtFilter(req.Filter);
-    query = query.ToExtOrderBy(req.Sort); // IEntityBeta
-
-    query = query.ToExtInclues(req?.Include);
-
-    return query;
+    query = query.ToExtQueryFilter(req.Filter);
+    query = query.ToExtQueryOrderBy(req.Sort); // IEntityBeta
+    
+    return query.ToExtQueryInclues(req?.Include);
   }
   
     public static async Task<(int pageNo, int pageSize, int count, List<T> items)> ToExtQueryPage<T>(this IQueryable<T> source, int pageNo, int pageSize)

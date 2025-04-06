@@ -32,14 +32,14 @@ public partial class UserController : AlphaController<UserController>
   public async Task<IActionResult> Gets()
   {
     var users = _userManager.Users.ToList();
-    var result = _mapper.Map<List<InfraUserDto>>(users).ToExtVMMulti();
+    var result = _mapper.Map<List<InfraUserDtoRead>>(users).ToExtVMMulti();
     return Ok(result);
   }
   [HttpGet("{Id}")]
   public async Task<IActionResult> Get(string Id)
   {
     var data = _userManager.Users.FirstOrDefault(x => x.Id == Id);
-    var result = _mapper.Map<InfraUserDto>(data).ToExtVMSingle();
+    var result = _mapper.Map<InfraUserDtoRead>(data).ToExtVMSingle();
     return Ok(result);
   }
   // [HttpGet("[action]")]

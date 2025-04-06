@@ -34,7 +34,6 @@ public class DtoSelectStrg : DtoSelect<string>
 }
 public class DtoSearch
 {
-  public int? Id { get; set; } = null;
   public string? Name { get; set; }
   public string? Desc { get; set; }
   public DateTimeOffset? DateFrom { get; set; }

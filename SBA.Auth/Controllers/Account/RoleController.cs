@@ -1,7 +1,6 @@
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
 using GLOB.Domain.Base;
-using GLOB.Domain.Hierarchy;
 using GLOB.Infra.Helper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -36,11 +35,22 @@ public partial class RoleController : AlphaController<RoleController>
     return Ok(list);
   }
   [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginate(PaginateRequestFilter<InfraRoleDto?> req)
+  public async Task<IActionResult> GetsPaginate(PaginateRequestFilter<InfraUserDtoSearch> req)
   {
-    // var list = _roleManager.Roles.GetsPaginate();
-    // return Ok(list);
-    return Ok();
+    // var query = _roleManager.Roles.ToExtQueryFilter(req.Filter);
+    // query = query.ToExtQueryOrderBy(req.Sort);
+    // query = query.ToExtQueryInclues(req.Include);
+
+    var query = _roleManager.Roles.ToExtQueryFilterSortInclude(req);
+    var project = query.Select(x => new DtoSelect<string>
+    {
+      Id = x.Id,
+      Name = x.Name,
+      Status = x.Status,
+    });
+    var result = project.ToExtPageRes(req.PageNo, req.PageSize);
+    
+    return Ok(result);
   }
   [HttpGet("{Id}")]
   public async Task<IActionResult> Get(string Id)

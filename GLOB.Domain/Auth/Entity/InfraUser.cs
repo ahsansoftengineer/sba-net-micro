@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations.Schema;
 using GLOB.Domain.Base;
 using GLOB.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
@@ -20,12 +19,22 @@ public class InfraUser : IdentityUser<string>, IEntityBeta, IEntityStatus, IEnti
     // public int SystemzId { get; set; }
 }
 
-public class InfraUserDto
+public class InfraUserDtoRead : InfraUserDtoCreate
 {
     public DateTimeOffset? CreatedAt { get; set; }
     public DateTimeOffset? UpdatedAt { get; set; }
+    public Status? Status { get; set; }
+}
+
+public class InfraUserDtoCreate
+{
     public string Id { get; set; }
     public string Name { get; set; }
     public string UserName { get; set; }
     public string PhoneNumber { get; set; }
+}
+
+public class InfraUserDtoSearch: DtoSearch
+{
+    public string? EMAIL { get; set; }
 }

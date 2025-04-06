@@ -7,7 +7,7 @@ using System.Reflection;
 namespace GLOB.Infra.Helper;
 public static partial class ExtQuery
 {
-  public static IQueryable<T> ToExtFilter<T, TDtoSearch>(this IQueryable<T> source, TDtoSearch? DtoSearch)
+  public static IQueryable<T> ToExtQueryFilter<T, TDtoSearch>(this IQueryable<T> source, TDtoSearch? DtoSearch)
     where T : class
     where TDtoSearch : class
   {
