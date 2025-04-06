@@ -40,6 +40,7 @@ public partial class RoleController : AlphaController<RoleController>
     var result = data.ToExtResVMSingle();
     return Ok(result);
   }
+
   [HttpGet("[action]")]
   public async Task<IActionResult> GetsPaginate(DtoPageReq<InfraRoleDtoSearch?> req)
   {
@@ -57,9 +58,9 @@ public partial class RoleController : AlphaController<RoleController>
       PageNo = req.PageNo,
       PageSize = req.PageSize
     };
-    var d = await project.ToExtQueryPage(p);
+    var d = await project.ToExtPageRes(p);
 
-    var result = _roleManager.Roles.GetsPaginate(req);
+    // var result = _roleManager.Roles.GetsPaginate(req);
 
     return Ok(d);
   }

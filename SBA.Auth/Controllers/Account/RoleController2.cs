@@ -7,8 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace SBA.Auth.Controllers;
 
-[Route("api/Auth/[controller]")]
-public partial class RoleController : AlphaController<RoleController>
+public partial class RoleController
 {
   [HttpPost()]
   public async Task<IActionResult> Create([FromBody] string role)
