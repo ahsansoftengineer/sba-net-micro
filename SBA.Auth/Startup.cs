@@ -20,12 +20,12 @@ public class Startup
     srvc.AddDefaultExternalServices();
 
   }
-  public async Task Configure(IApplicationBuilder app, IWebHostEnvironment env)
+  public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
     app.AddDefaultExternalConfiguration(env);
     Console.WriteLine($"Current Environment: {env.EnvironmentName}");
     if(!env.IsDevelopment()){
-      await app.Seed();
+      app.Seed();
     }
   }
 }

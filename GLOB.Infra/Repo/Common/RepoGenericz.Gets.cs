@@ -26,8 +26,7 @@ public partial class RepoGenericz<T, TKey>
   public async Task<BaseDtoPageRes<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req) 
     where TDtoSearch : class
   {
-    // return await _db.GetsPaginateOptions<T, TKey,  TDtoSearch>(req);
-    return null;
+    return await _db.GetsPaginateOptions<T, TKey,  TDtoSearch>(req);
   }
 }
 

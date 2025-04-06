@@ -1,5 +1,6 @@
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
+using GLOB.Domain.Base;
 using GLOB.Infra.Helper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -51,10 +52,10 @@ public partial class UserController : AlphaController<UserController>
   // }
 
   // [HttpGet("[action]")]
-  // public async Task<IActionResult> GetsPaginateOptions(PaginateRequestFilter<InfraUserDto> req)
+  // public async Task<IActionResult> GetsPaginateOptions(PaginateRequestFilter<InfraUser> req)
   // {
   //   IQueryable<InfraUser> query = _userManager.Users;
-  //   var result = query.ToExtQueryFilterSortInclude(req).ToListAsync();
+  //   var result = query.ToExtQueryFilterSortInclude(req).GetsPaginateOptions<InfraUser, string>();
   //   return  Ok(result);
   // }
 
