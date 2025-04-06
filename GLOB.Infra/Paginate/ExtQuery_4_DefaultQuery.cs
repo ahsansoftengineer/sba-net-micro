@@ -29,7 +29,7 @@ public static partial class ExtQuery
 
   public static IQueryable<T> ToExtQueryFilterSortInclude<T, TDtoSearch>(
       this IQueryable<T> query,
-      DtoPageReq<TDtoSearch> req)
+      DtoPageReq<TDtoSearch?> req)
     where TDtoSearch : class
     where T : class, IEntityBeta
   {

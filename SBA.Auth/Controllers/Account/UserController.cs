@@ -33,7 +33,7 @@ public partial class UserController : AlphaController<UserController>
   public async Task<IActionResult> Gets()
   {
     var users = _userManager.Users.ToList();
-    var result = _mapper.Map<List<InfraUserDtoRead>>(users).ToExtResVMMulti();
+    var result = _mapper.Map<List<InfraUserDtoRead>>(users).ToExtResVMList();
     return Ok(result);
   }
   [HttpGet("{Id}")]

@@ -43,7 +43,7 @@ public static partial class ExtResponse
   // TODO: NEEDS TO WORK HERE AFTER TESTING
   public static async Task<DtoPageRes<DtoSelect<TKey>>> GetsPaginateOptions<T, TKey, TDtoSearch>(
       this IQueryable<T> query,
-      DtoPageReq<TDtoSearch>? req)
+      DtoPageReq<TDtoSearch?> req)
     where TDtoSearch : class
     where T : class, IEntityAlpha<TKey>, IEntityBeta, IEntityStatus
   {

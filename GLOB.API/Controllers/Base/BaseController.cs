@@ -30,7 +30,7 @@ public abstract partial class BaseController<TController, TEntity, DtoResponse>
     try
     {
       var list = await _repo.Gets(Include: Include);
-      var result = list.ToExtResVMMulti();
+      var result = list.ToExtResVMList();
       return Ok(result);
     }
     catch (Exception ex)

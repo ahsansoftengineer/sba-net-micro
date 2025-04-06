@@ -16,7 +16,7 @@ public static partial class ExtResponse
     return vm;
   }
   // Maybe this doesn't reqired in future
-  public static BaseVMMulti<TEntity> ToExtResVMMulti<TEntity>(this IList<TEntity>? list)
+  public static BaseVMMulti<TEntity> ToExtResVMList<TEntity>(this IList<TEntity>? list)
   // where TEntity : class, new()
   {
     var vm = new BaseVMMulti<TEntity>()
@@ -27,17 +27,17 @@ public static partial class ExtResponse
     return vm;
   }
 
-  public static BaseVMSelect<TKey> ToExtResVMSelect<TEntity, TKey>(this List<TEntity>? list)
-    where TEntity : class, IEntityAlpha<TKey>
-  {
-    var vm = new BaseVMSelect<TKey>()
-    {
-      Records = new List<IEntityAlpha<TKey>>(),
-      Status = HttpStatusCode.OK
-    };
-    if (list == null) return vm;
+  // public static BaseVMSelect<TKey> ToExtResVMListSelect<TEntity, TKey>(this List<TEntity>? list)
+  //   where TEntity : class, IEntityAlpha<TKey>
+  // {
+  //   var vm = new BaseVMSelect<TKey>()
+  //   {
+  //     Records = new List<IEntityAlpha<TKey>>(),
+  //     Status = HttpStatusCode.OK
+  //   };
+  //   if (list == null) return vm;
 
-    vm.Records = list.Select(x =>(IEntityAlpha<TKey>)x).ToList();;
-    return vm;
-  }
+  //   vm.Records = list.Select(x =>(IEntityAlpha<TKey>)x).ToList();;
+  //   return vm;
+  // }
 }
