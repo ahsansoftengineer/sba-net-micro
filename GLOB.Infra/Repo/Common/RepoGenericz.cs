@@ -4,13 +4,16 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace GLOB.Infra.Repo;
-// public class RepoGenericz<T> : RepoGenericz<T> 
-//   where T : class, IEntityAlpha, IEntityBeta, IEntityStatus
-// {
 
-// }
+public class RepoGenericz<T> : RepoGenericz<T, int>, IRepoGenericz<T>
+  where T : class, IEntityAlpha<int>, IEntityBeta, IEntityStatus
+{
+  public RepoGenericz(DbContext context) : base(context)
+  {
+  }
+}
 
-public partial class RepoGenericz<T, TKey> : IRepoGenericz<T, TKey> 
+public partial class RepoGenericz<T, TKey> : IRepoGenericz<T, TKey>
   where T : class, IEntityAlpha<TKey>, IEntityBeta, IEntityStatus
 {
   private readonly DbContext _context;
@@ -73,7 +76,7 @@ public partial class RepoGenericz<T, TKey> : IRepoGenericz<T, TKey>
 
   private bool AreEqual(TKey a, TKey b)
   {
-      return a.Equals(b); // ✅ Safe and clean
+    return a.Equals(b); // ✅ Safe and clean
   }
 
 }
