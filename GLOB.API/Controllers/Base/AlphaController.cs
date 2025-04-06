@@ -19,7 +19,7 @@ public abstract class AlphaController<TController> : ControllerBase
     _mapper = GetSrvc<IMapper>();
     _config = GetSrvc<IConfiguration>();
     _uowInfra = GetSrvc<IUnitOfWorkInfra>();
-    
+
     _logger = GetSrvc<ILogger<TController>>();
     _logger.LogWarning("How does Type Works -> "+ this);
   }
@@ -35,6 +35,7 @@ public abstract class AlphaController<TController> : ControllerBase
     {
       Console.WriteLine($"------------------------****-*-****------------------------");
       Console.WriteLine($"Please Regiseter Service in DI {nameof(TService)}");
+      Console.WriteLine(ex.Message);
       return null;
     }
   }

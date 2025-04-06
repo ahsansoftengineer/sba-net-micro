@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using GLOB.API.DI;
 using SBA.Projectz.Data;
 using SBA.Projectz.DI;
@@ -19,12 +20,12 @@ public class Startup
     srvc.AddDefaultExternalServices();
 
   }
-  public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+  public async Task Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
     app.AddDefaultExternalConfiguration(env);
     Console.WriteLine($"Current Environment: {env.EnvironmentName}");
     if(!env.IsDevelopment()){
-      app.Seed();
+      await app.Seed();
     }
   }
 }
