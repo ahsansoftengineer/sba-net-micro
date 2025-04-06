@@ -18,14 +18,6 @@ public class InfraUser : IdentityUser<string>, IEntityBeta, IEntityStatus, IEnti
     // public int OrgId { get; set; }
     // public int SystemzId { get; set; }
 }
-
-public class InfraUserDtoRead : InfraUserDtoCreate
-{
-    public DateTimeOffset? CreatedAt { get; set; }
-    public DateTimeOffset? UpdatedAt { get; set; }
-    public Status? Status { get; set; }
-}
-
 public class InfraUserDtoCreate
 {
     public string Id { get; set; }
@@ -33,6 +25,14 @@ public class InfraUserDtoCreate
     public string UserName { get; set; }
     public string PhoneNumber { get; set; }
 }
+
+public class InfraUserDto : InfraUserDtoCreate
+{
+    public DateTimeOffset? CreatedAt { get; set; }
+    public DateTimeOffset? UpdatedAt { get; set; }
+    public Status? Status { get; set; }
+}
+
 
 public class InfraUserDtoSearch: DtoSearch
 {

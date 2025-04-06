@@ -11,14 +11,20 @@ public class DtoCreate
   public string? Desc { get; set; }
 
 }
-public class DtoRead : DtoCreate
+public class DtoUpdate : DtoCreate
+{
+  public Status? Status { get; set; } // = Status.None;
+
+}
+public class DtoRead : DtoUpdate
 {
   public int? Id { get; set; } = null;
   public DateTimeOffset? CreatedAt { get; set; }
   public DateTimeOffset? UpdatedAt { get; set; }
-  public Status? Status { get; set; } // = Status.None;
 
 }
+
+
 public class DtoSelect<TKey>
 {
   public TKey Id { get; set; }

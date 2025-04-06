@@ -17,13 +17,15 @@ public static partial class ExtRes
     return await query.GetsQuery(expression, orderBy, Include).AsNoTracking().ToListAsync();
   }
 
-  public static async Task<BaseDtoPageRes<T>> ToExtPageRes<T>(this IQueryable<T> source, int pageNo = 1, int pageSize = 10)
+  public static async Task<BaseDtoPageRes<T>> ToExtPageRes<T>(
+    this IQueryable<T> source, int pageNo, int pageSize)
   {
     (pageNo, pageSize, int count, List<T> items) = await source.ToExtQueryPage(pageNo, pageSize);
     return new BaseDtoPageRes<T>(items, count, pageNo, pageSize);
   }
 
-  public static async Task<BaseDtoPageRes<DtoSelect>> ToExtPageRes(this IQueryable<DtoSelect> source, int pageNo = 1, int pageSize = 10)
+  public static async Task<BaseDtoPageRes<DtoSelect>> ToExtPageRes(
+    this IQueryable<DtoSelect> source, int pageNo, int pageSize)
   {
     (pageNo, pageSize, int count, List<DtoSelect> items) = await source.ToExtQueryPage(pageNo, pageSize);
     return new BaseDtoPageRes<DtoSelect>(items, count, pageNo, pageSize);

@@ -4,6 +4,7 @@ using GLOB.Domain.Base;
 using GLOB.Infra.Helper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SBA.Projectz.Data;
 
@@ -31,11 +32,11 @@ public partial class RoleController : AlphaController<RoleController>
   [HttpGet()]
   public async Task<IActionResult> Gets()
   {
-    var list = _roleManager.Roles.ToExtVMMulti();
+    var list = _roleManager.Roles.ToList().ToExtResVMMulti();
     return Ok(list);
   }
   [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginate(PaginateRequestFilter<InfraUserDtoSearch> req)
+  public async Task<IActionResult> GetsPaginate(PaginateRequestFilter<InfraRoleDtoSearch> req)
   {
     // var query = _roleManager.Roles.ToExtQueryFilter(req.Filter);
     // query = query.ToExtQueryOrderBy(req.Sort);
@@ -48,8 +49,8 @@ public partial class RoleController : AlphaController<RoleController>
       Name = x.Name,
       Status = x.Status,
     });
-    var result = project.ToExtPageRes(req.PageNo, req.PageSize);
-    
+    var result = project.AsNoTracking().ToExtPageRes(req.PageNo, req.PageSize);
+
     return Ok(result);
   }
   [HttpGet("{Id}")]
@@ -57,7 +58,7 @@ public partial class RoleController : AlphaController<RoleController>
   {
     Console.WriteLine("ID = " + Id);
     var data = _roleManager.Roles.FirstOrDefault(x => x.Id == Id);
-    var result = data.ToExtVMSingle();
+    var result = data.ToExtResVMSingle();
     return Ok(result);
   }
   [HttpPost()]
@@ -69,12 +70,12 @@ public partial class RoleController : AlphaController<RoleController>
       var rolz = new InfraRole(role);
       rolz.Id = Defaultz.Guidz();
       var result = await _roleManager.CreateAsync(rolz);
-      if (result.Succeeded) return Ok(rolz.ToExtVMSingle());
+      if (result.Succeeded) return Ok(rolz.ToExtResVMSingle());
     }
     return BadRequest("Role already exist");
   }
   [HttpPut("{Id}")]
-  public async Task<IActionResult> Update(string Id, [FromBody] InfraRoleDto dto)
+  public async Task<IActionResult> Update(string Id, [FromBody] DtoUpdate dto)
   {
     
     var role = await _roleManager.FindByIdAsync(Id);
@@ -85,7 +86,7 @@ public partial class RoleController : AlphaController<RoleController>
     role.Status = dto.Status;
 
     var result = await _roleManager.UpdateAsync(role);
-    if (result.Succeeded) return Ok(role.ToExtVMSingle());
+    if (result.Succeeded) return Ok(role.ToExtResVMSingle());
 
     return BadRequestz(result.Errors);    
   }
