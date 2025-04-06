@@ -29,10 +29,6 @@ public interface IRepoGenericz<T>
   Task<BaseDtoPageRes<T>> GetsPaginate<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req)
     where TDtoSearch : class;
 
-  Task<object> GetsPaginateObj<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req)
+  Task<BaseDtoPageRes<DtoSelect>> GetsPaginateOptions<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req)
     where TDtoSearch : class;
-
-  Task<BaseDtoPageRes<DtoSelect>> GetsPaginateSelect<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req)
-    where TDtoSearch : class;
-
 }

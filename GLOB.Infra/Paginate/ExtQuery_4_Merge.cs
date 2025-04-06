@@ -37,10 +37,7 @@ public static partial class ExtQuery
     query = query.ToExtFilter(req.Filter);
     query = query.ToExtOrderBy(req.Sort); // IEntityBeta
 
-    if (!req.IsMapped)
-    {
-      query = query.ToExtInclues(req?.Include);
-    }
+    query = query.ToExtInclues(req?.Include);
 
     return query;
   }

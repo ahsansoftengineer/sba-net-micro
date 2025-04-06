@@ -28,6 +28,20 @@ public abstract partial class BetaController<TController, TEntity, DtoSearch, Dt
     }
   }
 
+  [HttpGet("[action]")]
+  public async Task<IActionResult> GetsPaginateOptions([FromQuery] PaginateRequestFilter<DtoSearch?> req)
+  {
+    try
+    {
+      var list = await _repo.GetsPaginateOptions(req);
+      return Ok(list);
+    }
+    catch (Exception ex)
+    {
+      return CatchException(ex, nameof(GetsPaginate));
+    }
+  }
+
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] DtoCreate data)
   {

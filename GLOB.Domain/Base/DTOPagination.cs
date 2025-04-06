@@ -13,15 +13,16 @@ public class Sort
   public Order? Order { get; set; } = Base.Order.Unspecified;
 
 }
-
-public class PaginateRequestFilter<TDtoSearch>
+public class PaginateRequestFilter<TDtoSearch> : PaginateRequestFilterSelect<TDtoSearch> 
+{
+  public List<string>? Include { get; set; }
+}
+public class PaginateRequestFilterSelect<TDtoSearch>
 {
   public int PageNo { get; set; } = 1;
   public int PageSize { get; set; } = 10;
-  public bool IsMapped { get ; set; } = false;
   public TDtoSearch? Filter { get; set; }
   public Sort? Sort { get; set; }
-  public List<string>? Include { get; set; }
 }
 
 public class BaseDtoPageRes<T>

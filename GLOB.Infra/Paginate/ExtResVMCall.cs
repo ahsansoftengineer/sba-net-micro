@@ -42,7 +42,7 @@ public static partial class ExtRes
 
   }
 
-  public static async Task<BaseDtoPageRes<DtoSelect>> GetsPaginateSelect<T, TDtoSearch>(
+  public static async Task<BaseDtoPageRes<DtoSelect>> GetsPaginateOptions<T, TDtoSearch>(
       this IQueryable<T> query,
       PaginateRequestFilter<TDtoSearch>? req)
     where TDtoSearch : class
@@ -52,22 +52,5 @@ public static partial class ExtRes
 
     return await query.ToExtMapSelect() // IEntityAlpha, IEntityStatus
     .AsNoTracking().ToExtPageRes(req?.PageNo ?? 1, req?.PageSize ?? 10);
-  }
-  // Here you Need to Convert to Specific Type
-
-  public static async Task<object> GetsPaginateObj<T, TDtoSearch>(
-      this IQueryable<T> query,
-      PaginateRequestFilter<TDtoSearch>? req)
-    where TDtoSearch : class
-    where T : class, IEntityBeta, IEntityAlpha, IEntityStatus
-  {
-    if (!req.IsMapped)
-    {
-      return await query.GetsPaginate(req);
-    }
-    else
-    {
-      return await query.GetsPaginateSelect(req);
-    }
   }
 }

@@ -21,16 +21,10 @@ public partial class RepoGenericz<T>
   {
     return await _db.GetsPaginate(req);
   }
-  public async Task<BaseDtoPageRes<DtoSelect>> GetsPaginateSelect<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req) where TDtoSearch : class
+  public async Task<BaseDtoPageRes<DtoSelect>> GetsPaginateOptions<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req) where TDtoSearch : class
   {
     return await _db.GetsPaginateOptions(req);
   }
-  public async Task<object> GetsPaginateObj<TDtoSearch>(PaginateRequestFilter<TDtoSearch?> req) where TDtoSearch : class
-  {
-    return await _db.GetsPaginateObj(req);
-  }
-
-
 }
 
 
