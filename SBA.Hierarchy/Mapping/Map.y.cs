@@ -12,10 +12,10 @@ public partial class MapProj : MapBase
   public override void MapAll() 
   {
     base.MapAll();
-    CreateMapAll<Systemz, SystemzDto, SystemzDtoCreate, SystemzDtoSearch>();
-    CreateMapAll<LE, LEDto, LEDtoCreate, LEDtoSearch>();
-    CreateMapAll<OU, OUDto, OUDtoCreate, OUDtoSearch>();
-    CreateMapAll<SU, SUDto, SUDtoCreate, SUDtoSearch>();
-    CreateMapAll<City, CityDto, CityDtoCreate, CityDtoSearch>();
+    CreateMapAll<Systemz, LEDtoCreate, SystemzDtoCreate, SystemzDtoSearch, LEDtoRead>();
+    CreateMapAll<LE, LEDtoCreate, LEDtoRead, LEDtoSearch>();
+    CreateMapAll<OU, OUDtoCreate, OUDtoRead, OUDtoSearch>();
+    CreateMapAll<SU, SUDtoCreate, SUDtoRead, SUDtoSearch>();
+    CreateMapAll<City, CityDtoCreate, CityDtoRead, CityDtoSearch>();
   }
 }

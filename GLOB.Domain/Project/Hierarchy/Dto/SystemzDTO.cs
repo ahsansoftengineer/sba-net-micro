@@ -1,7 +1,7 @@
 using GLOB.Domain.Base;
 
 namespace GLOB.Domain.Hierarchy;
-public class SystemzDto : DtoRead
+public class SystemzDtoRead : DtoRead
 {
   public int OrgId { get; set; }
   public DtoSelect? Org { get; set; }

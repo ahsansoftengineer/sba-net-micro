@@ -2,21 +2,19 @@ using GLOB.Domain.Enums;
 
 namespace GLOB.Domain.Base;
 
-public interface IEntityAlpha
+public interface IEntityAlpha<TKey>
 {
-    int Id { get; set; }
-    string Name { get; set; }
+  TKey Id { get; set; }
+  string Name { get; set; }
 }
 
-public interface IEntityAlphaStrg
+public interface IEntityAlpha : IEntityAlpha<int>
 {
-    string Id { get; set; }
-    string Name { get; set; }
 }
 
 public interface IEntityStatus
 {
-    Status? Status { get; set; }
+  Status? Status { get; set; }
 }
 public interface IEntityBeta
 {

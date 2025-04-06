@@ -41,6 +41,7 @@ public class DtoSelectStrg : DtoSelect<string>
 public class DtoSearch
 {
   public string? Name { get; set; }
+  public Status? Status { get; set; }
   public string? Desc { get; set; }
   public DateTimeOffset? DateFrom { get; set; }
   public DateTimeOffset? DateTo { get; set; }

@@ -6,6 +6,6 @@ public partial class MapProj
   public override void MapCommon() 
   {
     base.MapCommon();
-    CreateMapCommon<TestProj>();
+    CreateMap_Entity_DefaultDtos<TestProj>();
   }
 }

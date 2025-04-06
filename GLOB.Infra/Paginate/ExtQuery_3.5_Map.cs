@@ -16,7 +16,7 @@ public static partial class ExtQuery
     });
   }
   public static IQueryable<DtoSelectStrg> ToExtMapSelectStrg<T>(this IQueryable<T> source)
-    where T : class, IEntityAlphaStrg, IEntityStatus
+    where T : class, IEntityAlpha<string>, IEntityStatus
   {
     Console.WriteLine("-->>>>>> Select Called");
     return source.Select(x => new DtoSelectStrg

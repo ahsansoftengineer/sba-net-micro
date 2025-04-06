@@ -24,7 +24,7 @@ public class OUDtoCreateToEntity : DtoCreate
   public string? WarningImg { get; set; }
   public string? FooterImg { get; set; }
 }
-public class OUDto : DtoRead
+public class OUDtoRead : DtoRead
 {
   public int LEId { get; set; }
   public DtoSelect? LE { get; set; }

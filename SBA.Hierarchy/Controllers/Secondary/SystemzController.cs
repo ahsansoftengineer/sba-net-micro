@@ -5,7 +5,7 @@ using SBA.Projectz.Controllers.Base;
 namespace SBA.Hierarchy.Controllers;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class SystemzController : BasezController<SystemzController, Systemz, SystemzDto>
+public class SystemzController : BasezController<SystemzController, Systemz, SystemzDtoRead>
 {
   public SystemzController(IServiceProvider srvcProvider) : base(srvcProvider)
   {

@@ -5,7 +5,7 @@
 // namespace SBA.Hierarchy.Controllers;
 // [Route("api/Hierarchy/[controller]")]
 // [ApiController]
-// public class SUController : BasezController<SUController, SU, SUDto>
+// public class SUController : BasezController<SUController, SU, SUDtoRead>
 // {
 //   public SUController(IServiceProvider srvcProvider) : base(srvcProvider)
 //   {

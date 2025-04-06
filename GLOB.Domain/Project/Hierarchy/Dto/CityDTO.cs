@@ -1,7 +1,7 @@
 using GLOB.Domain.Base;
 
 namespace GLOB.Domain.Hierarchy;
-public class CityDto : DtoRead
+public class CityDtoRead : DtoRead
 {
   public int StateId { get; set; }
   public DtoSelect? State { get; set; }
