@@ -40,25 +40,12 @@ public partial class AccountController : AlphaController<AccountController>
   }
 
   [HttpPost("[action]")]
-  public async Task<IActionResult> Login([FromBody] LoginDto model)  
-  {
-    var user = await _userManager.FindByEmailAsync(model.Email);
-    if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
-    {
-        var token = HelperAuth.GenerateJwtToken(user, _config);
-        return Ok(new { token });
-    }
-    return Unauthorized("Invalid credentials.");
-  }
-
-
-  [HttpPost("[action]")]
   public async Task<IActionResult> Logout()  
   {
     await _signInManager.SignOutAsync();
     return Ok(new { message = "Logged out successfully" });
   }
-
+ 
   // [HttpPost("[action]")]
   // public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenDto model)  
   // {
