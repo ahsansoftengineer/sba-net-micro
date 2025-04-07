@@ -8,23 +8,19 @@ public static partial class ExtResponse
   public static BaseVMSingle<TEntity> ToExtResVMSingle<TEntity>(this TEntity? item)
   where TEntity : class //, IEntityBase
   {
-    var vm = new BaseVMSingle<TEntity>()
-    {
+    return new () {
       Record = item,
       Status = HttpStatusCode.OK
     };
-    return vm;
   }
   // Maybe this doesn't reqired in future
   public static BaseVMMulti<TEntity> ToExtResVMList<TEntity>(this IList<TEntity>? list)
   // where TEntity : class, new()
   {
-    var vm = new BaseVMMulti<TEntity>()
-    {
+    return new() {
       Records = list ?? new List<TEntity>(),
       Status = HttpStatusCode.OK
     };
-    return vm;
   }
 
   // public static BaseVMSelect<TKey> ToExtResVMListSelect<TEntity, TKey>(this List<TEntity>? list)

@@ -7,7 +7,6 @@ public static partial class ExtQuery
   public static IQueryable<DtoSelect<TKey>> ToExtMapSelect<T, TKey>(this IQueryable<T> source)
     where T : class, IEntityAlpha<TKey>, IEntityStatus
   {
-    Console.WriteLine("-->>>>>> Select Called");
     return source.Select(x => new DtoSelect<TKey>
     {
       Id = x.Id,
