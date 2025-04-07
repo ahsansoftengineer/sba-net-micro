@@ -1,13 +1,10 @@
-using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using SBA.Projectz.Data;
 
 namespace SBA.Auth.Controllers;
 [Route("api/Auth/[controller]")]
 [ApiController]
-public partial class ProfileController : AccountBaseController<AccountController>
+public partial class ProfileController : AccountBaseController<ProfileController>
 {
   public ProfileController(
     IServiceProvider srvcProvider
