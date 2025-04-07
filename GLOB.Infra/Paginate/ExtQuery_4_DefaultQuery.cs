@@ -40,8 +40,8 @@ public static partial class ExtQuery
     return query.ToExtQueryInclues(req?.Include);
   }
   
-  public static async Task<DtoPageResBase<T>> ToExtQueryPage<T>(
-    this IQueryable<T> source, DtoPageResBase<T> p
+  public static async Task<DtoPageRes<T>> ToExtQueryPage<T>(
+    this IQueryable<T> source, DtoPageRes<T> p
   )
   {
     if (p.PageNo < 1) p.PageNo = 1;
