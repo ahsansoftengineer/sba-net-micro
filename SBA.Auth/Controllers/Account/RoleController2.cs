@@ -1,4 +1,3 @@
-using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
 using GLOB.Domain.Base;
 using GLOB.Infra.Helper;

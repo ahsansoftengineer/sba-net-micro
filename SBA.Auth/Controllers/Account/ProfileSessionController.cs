@@ -2,7 +2,7 @@
 // using Microsoft.AspNetCore.Mvc;
 
 // namespace SBA.Auth.Controllers;
-// public partial class AccountController
+// public partial class ProfileController
 // {
 //   [HttpGet("[action]")]
 //   [Authorize]

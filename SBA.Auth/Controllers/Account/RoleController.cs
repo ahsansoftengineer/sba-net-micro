@@ -1,28 +1,22 @@
-using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
 using GLOB.Domain.Base;
 using GLOB.Infra.Helper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using SBA.Projectz.Data;
 
 namespace SBA.Auth.Controllers;
 
 [Route("api/Auth/[controller]")]
-public partial class RoleController : AlphaController<RoleController>
+public partial class RoleController : AccountBaseController<RoleController>
 {
-  private readonly UserManager<InfraUser> _userManager;
   private readonly RoleManager<InfraRole> _roleManager;
-  private IUOW uOW { get; }
   public RoleController(
     IServiceProvider srvcProvider,
     UserManager<InfraUser> userManager,
     RoleManager<InfraRole> roleManager
   ) : base(srvcProvider)
   {
-    _userManager = userManager;
     _roleManager = roleManager;
-    _logger.LogWarning("How does Type Works -> " + this);
   }
 
   //   [Authorize()]

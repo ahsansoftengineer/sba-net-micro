@@ -1,32 +1,19 @@
-using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
-using GLOB.Domain.Base;
 using GLOB.Infra.Helper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using SBA.Projectz.Data;
 
 namespace SBA.Auth.Controllers;
 
 [Route("api/Auth/[controller]")]
-public partial class UserController : AlphaController<UserController>
+public partial class UserController : AccountBaseController<UserController>
 {
-  private readonly UserManager<InfraUser> _userManager;
-  private readonly SignInManager<InfraUser> _signInManager;
   private readonly RoleManager<InfraRole> _roleManager;
-  // private readonly IConfiguration _config;
-  private IUOW uOW { get; }
   public UserController(
     IServiceProvider srvcProvider,
-    UserManager<InfraUser> userManager,
-    SignInManager<InfraUser> signInManager,
-    RoleManager<InfraRole> roleManager,
-    IUOW uow) : base(srvcProvider)
+    RoleManager<InfraRole> roleManager) : base(srvcProvider)
   {
-    _userManager = userManager;
-    _signInManager = signInManager;
     _roleManager = roleManager;
-    // _config = config
 
   }
   [HttpGet()]
