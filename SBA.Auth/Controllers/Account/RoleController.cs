@@ -12,7 +12,6 @@ public partial class RoleController : AccountBaseController<RoleController>
   private readonly RoleManager<InfraRole> _roleManager;
   public RoleController(
     IServiceProvider srvcProvider,
-    UserManager<InfraUser> userManager,
     RoleManager<InfraRole> roleManager
   ) : base(srvcProvider)
   {
