@@ -1,45 +1,19 @@
-using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
 using GLOB.Infra.Helper;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using SBA.Projectz.Data;
 
 namespace SBA.Auth.Controllers;
 [Route("api/Auth/[controller]")]
-[ApiController]
-public partial class AccountController : AlphaController<AccountController>
+public partial class AccountController : AccountBaseController<AccountController>
 {
   // private IRepoGenericz<AccountId> _repo = null;
-  private readonly UserManager<InfraUser> _userManager;
-  private readonly SignInManager<InfraUser> _signInManager;
-  private IUOW uOW { get; }
   public AccountController(
-    IServiceProvider srvcProvider,
-    UserManager<InfraUser> userManager,
-    SignInManager<InfraUser> signInManager
+    IServiceProvider srvcProvider
   ) : base(srvcProvider)
   {
-    _userManager = userManager;
-    _signInManager = signInManager;
-
-  }
-  [HttpPost("[action]")]
-  public async Task<IActionResult> Register([FromBody] RegisterDto model) 
-  {
-    if (!ModelState.IsValid) return BadRequestz();
-    var user = UserController.MapUser(model);
-    var result = await _userManager.CreateAsync(user, model.Password);
-
-    if (result.Succeeded)
-    {
-        return Ok(new { message = "User registered successfully!" });
-    }
-
-    return BadRequest(result.Errors);
   }
 
-  [HttpPost("[action]")]
+  [HttpPost("[login]")]
   public async Task<IActionResult> Login([FromBody] LoginDto model)  
   {
     var user = await _userManager.FindByEmailAsync(model.Email);
@@ -50,44 +24,25 @@ public partial class AccountController : AlphaController<AccountController>
     }
     return Unauthorized("Invalid credentials.");
   }
-
-
   [HttpPost("[action]")]
   public async Task<IActionResult> Logout()  
   {
     await _signInManager.SignOutAsync();
     return Ok(new { message = "Logged out successfully" });
   }
-
   // [HttpPost("[action]")]
-  // public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenDto model)  
+  // public async Task<IActionResult> Google([FromBody] ExternalAuthDto model)
   // {
-  //   var principal = _jwtTokenService.GetPrincipalFromExpiredToken(model.Token);
-  //       if (principal == null)
-  //           return null;
-
-  //       var userId = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-  //       var user = await _userManager.FindByIdAsync(userId);
-  //       if (user == null || user.RefreshToken != model.RefreshToken || user.RefreshTokenExpiry < DateTime.UtcNow)
-  //           return null;
-
-  //       var newAccessToken = _jwtTokenService.GenerateAccessToken(user);
-  //       var newRefreshToken = _jwtTokenService.GenerateRefreshToken();
-  //       user.RefreshToken = newRefreshToken;
-  //       user.RefreshTokenExpiry = DateTime.UtcNow.AddDays(7);
-  //       await _userManager.UpdateAsync(user);
-
-  //       return new { AccessToken = newAccessToken, RefreshToken = newRefreshToken };  
+  //   return null;
   // }
-
   // [HttpPost("[action]")]
-  // public async Task<IActionResult> VerifyEmail([FromQuery] string token, [FromQuery] string email) 
+  // public async Task<IActionResult> Facebook([FromBody] ExternalAuthDto model)
   // {
-  //   var user = await _userManager.FindByEmailAsync(email);
-  //   if (user == null)
-  //     return BadRequest(new { message = "Email not Found" });
-
-  //   var result = await _userManager.ConfirmEmailAsync(user, token);
-  //   return Ok(new { message = "Your Email has been verified" });
+  //   return null;
+  // }
+  // [HttpPost("[action]")]
+  // public async Task<IActionResult> Apple([FromBody] ExternalAuthDto model)
+  // {
+  //   return null;
   // }
 }

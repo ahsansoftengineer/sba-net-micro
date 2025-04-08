@@ -1,28 +1,21 @@
-using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
 using GLOB.Domain.Base;
 using GLOB.Infra.Helper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using SBA.Projectz.Data;
 
 namespace SBA.Auth.Controllers;
 
 [Route("api/Auth/[controller]")]
-public partial class RoleController : AlphaController<RoleController>
+public partial class RoleController : AccountBaseController<RoleController>
 {
-  private readonly UserManager<InfraUser> _userManager;
   private readonly RoleManager<InfraRole> _roleManager;
-  private IUOW uOW { get; }
   public RoleController(
     IServiceProvider srvcProvider,
-    UserManager<InfraUser> userManager,
     RoleManager<InfraRole> roleManager
   ) : base(srvcProvider)
   {
-    _userManager = userManager;
     _roleManager = roleManager;
-    _logger.LogWarning("How does Type Works -> " + this);
   }
 
   //   [Authorize()]
@@ -40,27 +33,28 @@ public partial class RoleController : AlphaController<RoleController>
     var result = data.ToExtResVMSingle();
     return Ok(result);
   }
+
   [HttpGet("[action]")]
   public async Task<IActionResult> GetsPaginate(DtoPageReq<InfraRoleDtoSearch?> req)
   {
-    var query = _roleManager.Roles.ToExtQueryFilterSortInclude(req);
-    var project = query.Select(x => new DtoRead<string>()
-    {
-      Id = x.Id,
-      Name = x.Name,
-      Status = x.Status,
-      CreatedAt = x.CreatedAt,
-      UpdatedAt = x.UpdatedAt
-    });
-    DtoPageResBase<DtoRead<string>> p = new()
-    {
-      PageNo = req.PageNo,
-      PageSize = req.PageSize
-    };
-    var d = await project.ToExtQueryPage(p);
+    var query = _roleManager.Roles
+      .ToExtQueryFilterSortInclude(req)
+      .Select(x => new {
+        x.Id,
+        x.Name, 
+        x.Status,
+        x.CreatedAt,
+        x.UpdatedAt
+      });
+   
+    var result = await query.ToExtPageRes(req);
+    return Ok(result);
+  }
 
-    var result = _roleManager.Roles.GetsPaginate(req);
-
-    return Ok(d);
+  [HttpGet("[action]")]
+  public async Task<IActionResult> GetsPaginateOptions(DtoPageReq<InfraRoleDtoSearch?> req)
+  {
+    var list = await _roleManager.Roles.GetsPaginateOptions<InfraRole, string, InfraRoleDtoSearch>(req);
+    return Ok(list);
   }
 }

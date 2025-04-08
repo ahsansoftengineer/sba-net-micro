@@ -1,14 +1,13 @@
-using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
 using GLOB.Domain.Base;
+using GLOB.Domain.Contants;
 using GLOB.Infra.Helper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
 namespace SBA.Auth.Controllers;
 
-[Route("api/Auth/[controller]")]
-public partial class RoleController : AlphaController<RoleController>
+public partial class RoleController
 {
   [HttpPost()]
   public async Task<IActionResult> Create([FromBody] string role)
@@ -17,7 +16,7 @@ public partial class RoleController : AlphaController<RoleController>
     if (!exsist)
     {
       var rolz = new InfraRole(role);
-      rolz.Id = Defaultz.Guidz();
+      rolz.Id = Constantz.Guidz();
       var result = await _roleManager.CreateAsync(rolz);
       if (result.Succeeded) return Ok(rolz.ToExtResVMSingle());
     }

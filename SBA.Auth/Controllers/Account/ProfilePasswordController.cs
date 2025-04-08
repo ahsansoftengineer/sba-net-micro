@@ -3,7 +3,7 @@
 // using Microsoft.AspNetCore.Mvc;
 
 // namespace SBA.Auth.Controllers;
-// public partial class AccountController
+// public partial class ProfileController
 // {
 //   [HttpPost("[action]")]
 //   public async Task<IActionResult> PasswordForgot([FromBody] ForgotPasswordDto model) 

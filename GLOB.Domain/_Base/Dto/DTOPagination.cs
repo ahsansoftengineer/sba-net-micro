@@ -23,17 +23,13 @@ public class DtoPageReq<TDtoSearch>
 }
 
 
-public class DtoPageResBase<T>
+public class DtoPageRes<T> 
 {
+
   public List<T> Records { get; set; }
   public int Count { get; set; } = 0;
   public int PageSize { get; set; } = 10;
   public int PageNo { get; set; } = 1;
-}
-
-public class DtoPageRes<T> : DtoPageResBase<T>
-{
-
   public int TotalPages => (int)Math.Ceiling(Count / (double)PageSize);
 
   public bool HasPreviousPage => PageNo > 1 && TotalPages >= PageNo - 1;
@@ -44,7 +40,7 @@ public class DtoPageRes<T> : DtoPageResBase<T>
   {
     throw new Exception("Don't use Empty Constructor!!!!");
   }
-  public DtoPageRes(DtoPageResBase<T> data)
+  public DtoPageRes(DtoPageRes<T> data)
   {
 
     Records = data.Records;

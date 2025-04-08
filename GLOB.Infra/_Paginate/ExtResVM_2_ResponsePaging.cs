@@ -6,7 +6,6 @@ namespace GLOB.Infra.Helper;
 
 public static partial class ExtResponse
 {
-
   public static async Task<List<T>> Gets<T>(
     this IQueryable<T> query,
     Expression<Func<T, bool>>? expression,
@@ -17,11 +16,15 @@ public static partial class ExtResponse
     return await query.GetsQuery(expression, orderBy, Include).AsNoTracking().ToListAsync();
   }
 
-  public static async Task<DtoPageRes<T>> ToExtPageRes<T>(
-    this IQueryable<T> source, DtoPageResBase<T> DtoPageResBase)
+  public static async Task<DtoPageRes<T>> ToExtPageRes<T, TDtoSearch>(
+    this IQueryable<T> source, DtoPageReq<TDtoSearch?> req)
   {
-    DtoPageResBase = await source.ToExtQueryPage(DtoPageResBase);
-    return new DtoPageRes<T>(DtoPageResBase);
+    var dtoPageRes = await source.ToExtQueryPage(new()
+    {
+      PageNo = req.PageNo,
+      PageSize = req.PageSize,
+    });
+    return new DtoPageRes<T>(dtoPageRes);
   }
 
   public static async Task<DtoPageRes<T>> GetsPaginate<T, TDtoSearch>(
@@ -32,15 +35,8 @@ public static partial class ExtResponse
   {
     query = query.ToExtQueryFilterSortInclude(req);
 
-    DtoPageResBase<T> DtoPageResBase = new() 
-    {
-      PageNo = req.PageNo,
-      PageSize = req.PageSize
-    };
-
-    return await query.AsNoTracking().ToExtPageRes(DtoPageResBase);
+    return await query.AsNoTracking().ToExtPageRes(req);
   }
-  // TODO: NEEDS TO WORK HERE AFTER TESTING
   public static async Task<DtoPageRes<DtoSelect<TKey>>> GetsPaginateOptions<T, TKey, TDtoSearch>(
       this IQueryable<T> query,
       DtoPageReq<TDtoSearch?> req)
@@ -49,15 +45,8 @@ public static partial class ExtResponse
   {
     query = query.ToExtQueryFilterSortInclude(req);
  
-    DtoPageResBase<DtoSelect<TKey>> DtoPageResBase = new()
-    {
-      PageNo = req.PageNo,
-      PageSize = req.PageSize,
-    };
-
     var result =  query.ToExtMapSelect<T, TKey>(); // IEntityAlpha, IEntityStatus
-   
 
-    return await result.AsNoTracking().ToExtPageRes(DtoPageResBase);
+    return await result.AsNoTracking().ToExtPageRes(req);
   }
 }

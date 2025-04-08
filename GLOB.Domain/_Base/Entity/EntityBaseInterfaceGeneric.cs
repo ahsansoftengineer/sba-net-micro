@@ -2,27 +2,25 @@ using GLOB.Domain.Enums;
 
 namespace GLOB.Domain.Base;
 
+// Generic Interface
 public interface IEntityAlpha<TKey>
 {
   TKey Id { get; set; }
   string Name { get; set; }
 }
 
-public interface IEntityAlpha : IEntityAlpha<int>//, IEntityAlpha<string>
-{
-}
 
-public interface IEntityStatus
+public interface IEntityStatus<TKey>
 {
   Status? Status { get; set; }
 }
-public interface IEntityBeta
+public interface IEntityBeta<TKey>
 {
   DateTimeOffset? CreatedAt { get; set; }
   DateTimeOffset? UpdatedAt { get; set; }
 }
 
-public interface IEntityBase
+public interface IEntityBase<TKey>
 {
   string? Desc { get; set; }
   bool? IsSelected { get; set; }

@@ -26,4 +26,3 @@ public enum Permission
   Import = 1 << 6, // 64
   FullAccess = Create | View | Update | Delete | ChangeStatus | Export | Import // 127
 }
-
