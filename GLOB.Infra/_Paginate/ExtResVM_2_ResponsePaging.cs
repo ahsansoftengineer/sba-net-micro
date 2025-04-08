@@ -19,12 +19,12 @@ public static partial class ExtResponse
   public static async Task<DtoPageRes<T>> ToExtPageRes<T, TDtoSearch>(
     this IQueryable<T> source, DtoPageReq<TDtoSearch?> req)
   {
-    var dtoPageRes = await source.ToExtQueryPage(new()
+    return await source.ToExtQueryPage(new DtoPageRes<T>()
     {
       PageNo = req.PageNo,
       PageSize = req.PageSize,
+      Records = []
     });
-    return new DtoPageRes<T>(dtoPageRes);
   }
 
   public static async Task<DtoPageRes<T>> GetsPaginate<T, TDtoSearch>(
