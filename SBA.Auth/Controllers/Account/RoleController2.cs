@@ -1,5 +1,6 @@
 using GLOB.Domain.Auth;
 using GLOB.Domain.Base;
+using GLOB.Domain.Contants;
 using GLOB.Infra.Helper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -15,7 +16,7 @@ public partial class RoleController
     if (!exsist)
     {
       var rolz = new InfraRole(role);
-      rolz.Id = Defaultz.Guidz();
+      rolz.Id = Constantz.Guidz();
       var result = await _roleManager.CreateAsync(rolz);
       if (result.Succeeded) return Ok(rolz.ToExtResVMSingle());
     }

@@ -1,4 +1,5 @@
 using GLOB.Domain.Base;
+using GLOB.Domain.Contants;
 using GLOB.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 
@@ -7,9 +8,9 @@ public class InfraRole : IdentityRole<string>, IEntityBeta,  IEntityStatus, IEnt
 {
   // public Permission Permissions { get; set; }
   public override string Name { get; set; }
-  public Status? Status { get; set; } = Defaultz.Status;
-  public DateTimeOffset? CreatedAt { get; set; } = Defaultz.Date;
-  public DateTimeOffset? UpdatedAt { get; set; } = Defaultz.Date;
+  public Status? Status { get; set; } = Constantz.Status;
+  public DateTimeOffset? CreatedAt { get; set; } = Constantz.Date;
+  public DateTimeOffset? UpdatedAt { get; set; } = Constantz.Date;
   public InfraRole(): base()
   {
 

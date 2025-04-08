@@ -1,33 +1,19 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using GLOB.Domain.Contants;
 using GLOB.Domain.Enums;
 
 namespace GLOB.Domain.Base;
-public static class Defaultz
-{
-  // TODO: We need to have a way of setting Default Date for Migration on 
-  public static Status? Status { get; } = Enums.Status.None;
-  public static  DateTimeOffset Date { get; } = DateTimeOffset.Parse("2025-02-10T00:00:00");
-  public static string Guidz() => Guid.NewGuid().ToString();
-}
-// public abstract class EntityAlpha<TKey> where TKey : IEquatable<TKey>, IEntityAlpha, IEntityStatus
-// {
-//     [Column(Order = 1)]
-//     [Key]
-//     public TKey Id { get; set; }
-//     [Column(Order = 2)]
-//     public Status? Status { get; set; } = Defaultz.Status;
-//     [Column(Order = 3)] // required
-//     public string Name { get; set; }
-// }
+
 public abstract class EntityAlpha<TKey> : IEntityAlpha<TKey>, IEntityStatus
+where TKey : IEquatable<TKey>
 {
   [Column(Order = 1)]
   [Key]
   public TKey Id { get; set; }
 
   [Column(Order = 2)]
-  public Status? Status { get; set; } = Defaultz.Status;
+  public Status? Status { get; set; } = Constantz.Status;
 
   [Column(Order = 3)] // required
   public string Name { get; set; }
@@ -40,10 +26,10 @@ public abstract class EntityAlpha : EntityAlpha<int>, IEntityAlpha
 public abstract class EntityBeta : EntityAlpha, IEntityBeta
 {
   [Column("Created_At")]
-  public DateTimeOffset? CreatedAt { get; set; } = Defaultz.Date;
+  public DateTimeOffset? CreatedAt { get; set; } = Constantz.Date;
 
   [Column("Updated_At")]
-  public DateTimeOffset? UpdatedAt { get; set; } = Defaultz.Date;
+  public DateTimeOffset? UpdatedAt { get; set; } = Constantz.Date;
 }
 
 public abstract class EntityBase : EntityBeta, IEntityBase

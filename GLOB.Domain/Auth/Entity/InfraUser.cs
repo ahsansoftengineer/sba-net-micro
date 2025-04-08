@@ -1,4 +1,5 @@
 using GLOB.Domain.Base;
+using GLOB.Domain.Contants;
 using GLOB.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 
@@ -6,9 +7,9 @@ namespace GLOB.Domain.Auth;
 public class InfraUser : IdentityUser<string>, IEntityBeta, IEntityStatus, IEntityAlpha<string>
 {
   public string Name { get; set; }
-  public Status? Status { get; set; } = Defaultz.Status;
-  public DateTimeOffset? CreatedAt { get; set; } = Defaultz.Date;
-  public DateTimeOffset? UpdatedAt { get; set; } = Defaultz.Date;
+  public Status? Status { get; set; } = Constantz.Status;
+  public DateTimeOffset? CreatedAt { get; set; } = Constantz.Date;
+  public DateTimeOffset? UpdatedAt { get; set; } = Constantz.Date;
 
   // Maybe below code need to shift into their classes
 
