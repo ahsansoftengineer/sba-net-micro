@@ -36,10 +36,10 @@ public class DtoPageRes<T>
   public bool HasNextPage => PageNo < TotalPages;
   public HttpStatusCode Status = HttpStatusCode.OK;
 
-  public DtoPageRes()
-  {
-    throw new Exception("Don't use Empty Constructor!!!!");
-  }
+  // public DtoPageRes()
+  // {
+  //   throw new Exception("Don't use Empty Constructor!!!!");
+  // }
   public DtoPageRes(DtoPageRes<T> data)
   {
 
@@ -48,4 +48,8 @@ public class DtoPageRes<T>
     PageSize = data.PageSize;
     PageNo = PageNo;
   }
+
+    public DtoPageRes()
+    {
+    }
 }

@@ -13,7 +13,7 @@ public partial class AccountController : AccountBaseController<AccountController
   {
   }
 
-  [HttpPost("[login]")]
+  [HttpPost("[action]")]
   public async Task<IActionResult> Login([FromBody] LoginDto model)  
   {
     var user = await _userManager.FindByEmailAsync(model.Email);
