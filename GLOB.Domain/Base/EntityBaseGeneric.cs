@@ -6,7 +6,7 @@ using GLOB.Domain.Enums;
 namespace GLOB.Domain.Base;
 
 public abstract class EntityAlpha<TKey> : IEntityAlpha<TKey>, IEntityStatus
-where TKey : IEquatable<TKey>
+  where TKey : IEquatable<TKey>
 {
   [Column(Order = 1)]
   [Key]
@@ -18,12 +18,8 @@ where TKey : IEquatable<TKey>
   [Column(Order = 3)] // required
   public string Name { get; set; }
 }
-
-public abstract class EntityAlpha : EntityAlpha<int>, IEntityAlpha
-{
-}
-
-public abstract class EntityBeta : EntityAlpha, IEntityBeta
+public abstract class EntityBeta<TKey> : EntityAlpha<TKey>, IEntityBeta
+  where TKey : IEquatable<TKey>
 {
   [Column("Created_At")]
   public DateTimeOffset? CreatedAt { get; set; } = Constantz.Date;
@@ -32,7 +28,8 @@ public abstract class EntityBeta : EntityAlpha, IEntityBeta
   public DateTimeOffset? UpdatedAt { get; set; } = Constantz.Date;
 }
 
-public abstract class EntityBase : EntityBeta, IEntityBase
+public abstract class EntityBase<TKey> : EntityBeta<TKey>, IEntityBase
+  where TKey : IEquatable<TKey>
 {
 
   [Column(Order = 4)]
