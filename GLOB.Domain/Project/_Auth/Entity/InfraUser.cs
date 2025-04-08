@@ -1,7 +1,7 @@
 using GLOB.Domain.Base;
 using GLOB.Domain.Contants;
-using GLOB.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
+using GLOB.Domain.Enums;
 
 namespace GLOB.Domain.Auth;
 public class InfraUser : IdentityUser<string>, IEntityBeta, IEntityStatus, IEntityAlpha<string>
