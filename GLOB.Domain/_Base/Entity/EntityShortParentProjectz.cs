@@ -1,6 +1,6 @@
-namespace GLOB.Domain.Base;
+// namespace GLOB.Domain.Base;
 
-public class EntityShortParentProjectz : EntityBase
-{
+// public class EntityShortParentProjectz : EntityBase
+// {
     
-}
+// }

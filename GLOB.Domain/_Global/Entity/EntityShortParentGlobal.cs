@@ -1,9 +1,9 @@
-using GLOB.Domain.Base;
+// using GLOB.Domain.Base;
 
-namespace GLOB.Domain.Global;
+// namespace GLOB.Domain.Global;
 
-// Entity Specific to Hierarchy to Make Global
-public class EntityShortParent : EntityBase
-{
+// // Entity Specific to Hierarchy to Make Global
+// public class EntityShortParent : EntityBase
+// {
     
-}
+// }
