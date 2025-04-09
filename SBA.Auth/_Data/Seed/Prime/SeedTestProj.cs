@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace SBA.Projectz.Data;
 public static partial class Seeder
 {
-  public static void SeedTestProj(this DBCntxtProj context)
+  public static void SeedTestProj(this ProjectzDBCntxt context)
   {
     if (!context.TestProjs.Any(x => x.Id > 0))
     {

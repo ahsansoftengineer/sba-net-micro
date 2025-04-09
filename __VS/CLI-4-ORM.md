@@ -9,17 +9,17 @@ dotnet run --project SBA.Api
 ```
 ### HIERARCHY
 ```bash
-dotnet ef migrations add Init -s SBA.Hierarchy --context DBCntxtProj
-dotnet ef database update -s SBA.Hierarchy --context DBCntxtProj
-dotnet ef migrations remove -s SBA.Hierarchy --context DBCntxtProj
-dotnet ef database drop --force -s SBA.Hierarchy --context DBCntxtProj
+dotnet ef migrations add Init -s SBA.Hierarchy --context ProjectzDBCntxt
+dotnet ef database update -s SBA.Hierarchy --context ProjectzDBCntxt
+dotnet ef migrations remove -s SBA.Hierarchy --context ProjectzDBCntxt
+dotnet ef database drop --force -s SBA.Hierarchy --context ProjectzDBCntxt
 ```
 ### AUTH
 ```bash
-dotnet ef migrations add Init -s SBA.Auth --context DBCntxtProj
-dotnet ef database update -s SBA.Auth --context DBCntxtProj
-dotnet ef migrations remove -s SBA.Auth --context DBCntxtProj
-dotnet ef database drop --force -s SBA.Auth --context DBCntxtProj
+dotnet ef migrations add Init -s SBA.Auth --context ProjectzDBCntxt
+dotnet ef database update -s SBA.Auth --context ProjectzDBCntxt
+dotnet ef migrations remove -s SBA.Auth --context ProjectzDBCntxt
+dotnet ef database drop --force -s SBA.Auth --context ProjectzDBCntxt
 ```
 
 ### USERSZ

@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace GLOB.API.Controllers.Test;
 [Route("api/Test/[controller]")]
 [ApiController]
-public class TestInfraController : CommonController<TestInfraController, TestInfra>
+public class API_Infra_EntityTestController : CommonController<API_Infra_EntityTestController, API_Infra_EntityTest>
 {
-  public TestInfraController(
+  public API_Infra_EntityTestController(
     IServiceProvider srvcProvider) : base(srvcProvider)
   {
     _repo = _uowInfra.TestInfras;

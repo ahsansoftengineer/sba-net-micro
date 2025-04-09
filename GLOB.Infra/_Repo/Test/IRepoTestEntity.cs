@@ -2,7 +2,7 @@
 // using GLOB.Domain.Hierarchy;
 
 // namespace GLOB.App.Repo;
-// public interface IRepoTestEntityInfra: IRepoGenericz<TestInfra>
+// public interface IRepoTestEntityInfra: IRepoGenericz<API_Infra_EntityTest>
 // {
-//   void Update(TestInfra entity);
+//   void Update(API_Infra_EntityTest entity);
 // }

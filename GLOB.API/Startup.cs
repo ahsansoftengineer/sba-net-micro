@@ -19,7 +19,7 @@ public class Startup
     // srvc.Add_API_DI_Common();
     // srvc.Config_DB_SQL<DBCntxt, IUnitOfWorkInfra, UnitOfWorkInfra>(_config);
     // srvc.Config_DB_Identity<DBCntxtIdentity, IUnitOfWorkInfra, UnitOfWorkInfra>(_config);
-    // srvc.AddAutoMapper(typeof(MapBase));
+    // srvc.AddAutoMapper(typeof(API_Base_Mapper));
     // srvc.Add_API_DefaultExternalServices();
   }
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

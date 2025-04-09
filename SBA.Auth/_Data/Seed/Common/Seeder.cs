@@ -19,7 +19,7 @@ public static partial class Seeder
     using (var srvcScp = app.ApplicationServices.CreateScope())
     { 
       var provider = srvcScp.ServiceProvider;
-      DBCntxtProj? context = provider.GetService<DBCntxtProj>();
+      ProjectzDBCntxt? context = provider.GetService<ProjectzDBCntxt>();
       DBCntxt contextz = provider.GetService<DBCntxt>();
       if (context != null)
       {

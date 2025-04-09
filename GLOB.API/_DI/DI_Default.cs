@@ -10,7 +10,7 @@ public static partial class API_DI_Common
     // srvc.AddAuthentication();
     // srvc.AddAuthorization();
     srvc.Config_Cors();
-    srvc.AddAutoMapper(typeof(MapBase));
+    srvc.AddAutoMapper(typeof(API_Base_Mapper));
     srvc.Config_Controllerz();
     srvc.Config_Swagger(ProjectNameSwagger);
     // srvc.Config_Versioning();

@@ -2,9 +2,9 @@ using GLOB.Infra.Data.Auth;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Projectz.Data;
-public partial class DBCntxtProj : DBCntxtIdentity
+public partial class ProjectzDBCntxt : DBCntxtIdentity
 {
-  public DBCntxtProj(DbContextOptions<DBCntxtProj> options) : base(options) { }
+  public ProjectzDBCntxt(DbContextOptions<ProjectzDBCntxt> options) : base(options) { }
   protected override void OnModelCreating(ModelBuilder mb)
   {
     ConfigManyToOne(mb);
