@@ -1,5 +1,7 @@
 using System.Linq.Expressions;
+using System.Net;
 using GLOB.Domain.Base;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Helper;
@@ -19,12 +21,11 @@ public static partial class ExtResponse
   public static async Task<DtoPageRes<T>> ToExtPageRes<T, TDtoSearch>(
     this IQueryable<T> source, DtoPageReq<TDtoSearch?> req)
   {
-    return await source.ToExtQueryPage(new DtoPageRes<T>()
-    {
+    var dtoPage = new DtoPage(){
       PageNo = req.PageNo,
       PageSize = req.PageSize,
-      Records = []
-    });
+    };
+    return await source.ToExtQueryPage(new(dtoPage));
   }
 
   public static async Task<DtoPageRes<T>> GetsPaginate<T, TDtoSearch>(

@@ -3,9 +3,9 @@ using GLOB.Domain.Auth;
 using GLOB.Domain.Base;
 
 namespace SBA.Projectz.Mapper;
-public partial class MapProj : MapBase
+public partial class ProjectzMapper : MapBase
 {
-  public MapProj() : base()
+  public ProjectzMapper() : base()
   {
   }
   public override void MapAll() 

@@ -5,7 +5,7 @@ using SBA.Projectz.Controllers.Base;
 namespace SBA.Hierarchy.Controllers.Prime;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class IndustryController : CommonzController<IndustryController, Industry>
+public class IndustryController : ProjectzCommonController<IndustryController, Industry>
 {
   public IndustryController(IServiceProvider srvcProvider) : base(srvcProvider)
   {

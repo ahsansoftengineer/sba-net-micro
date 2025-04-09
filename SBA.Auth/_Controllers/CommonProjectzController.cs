@@ -4,13 +4,13 @@ using SBA.Projectz.Data;
 
 namespace SBA.Projectz.Controllers.Base;
 
-public abstract class CommonzController<TController, TEntity>
+public abstract class ProjectzCommonController<TController, TEntity>
   : CommonController<TController, TEntity>
     where TController : class
     where TEntity : EntityBase
 {
   protected readonly IUOW _uow;
-  public CommonzController(
+  public ProjectzCommonController(
     IServiceProvider srvcProvider) : base(srvcProvider)
   {
     _uow = GetSrvc<IUOW>();

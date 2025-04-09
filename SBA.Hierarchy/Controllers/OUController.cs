@@ -7,7 +7,7 @@
 // namespace SBA.Hierarchy.Controllers;
 // [Route("api/Hierarchy/[controller]")]
 // [ApiController]
-// public class OUController : BasezController<OUController, OU, OUDtoRead>
+// public class OUController : ProjectzBaseController<OUController, OU, OUDtoRead>
 // {
 //   public IWebHostEnvironment WebHostEnvironment { get; }
 //   public OUController(

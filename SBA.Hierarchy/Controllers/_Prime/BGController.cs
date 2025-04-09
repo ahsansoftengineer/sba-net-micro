@@ -6,7 +6,7 @@ namespace SBA.Hierarchy.Controllers.Prime;
 
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class BGController : CommonzController<BGController, BG>
+public class BGController : ProjectzCommonController<BGController, BG>
 {
   public BGController(IServiceProvider srvcProvider) : base(srvcProvider)
   {

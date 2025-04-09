@@ -9,6 +9,17 @@
 - GetsPaginate (Get)
 - GetsPaginateOptions (Get)
 
+### EntityShort Infra
+- Global for Every Microservices (Goes inside Hierarchy)
+- EntityShortParentInfra CRUD
+- EntityShortInfra CRUD
+
+### EntityShortParent Project
+- Specific to Microservices (Goes inside Every Microservicies)
+- EntityShortParentProjectz CRUD
+- EntityShortProjectz CRUD
+
+
 ### Task 1 Roles 
 - CRUD
 - AddUserToRole

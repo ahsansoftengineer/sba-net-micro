@@ -2,9 +2,9 @@ using GLOB.API.Mapper;
 using GLOB.Domain.Hierarchy;
 
 namespace SBA.Projectz.Mapper;
-public partial class MapProj : MapBase
+public partial class ProjectzMapper : MapBase
 {
-  // public MapProj() : base()
+  // public ProjectzMapper() : base()
   // {
   //   // MapAll();
   //   // MapCommon();

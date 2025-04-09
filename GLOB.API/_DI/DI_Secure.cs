@@ -1,6 +1,6 @@
 
 namespace GLOB.API.DI;
-public static partial class DICommon
+public static partial class API_DI_Common
 {
   public static void Config_Cors(this IServiceCollection srvc)
   {

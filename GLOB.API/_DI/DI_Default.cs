@@ -2,9 +2,9 @@ using GLOB.API.Mapper;
 using GLOB.API.Middlewarez;
 
 namespace GLOB.API.DI;
-public static partial class DICommon
+public static partial class API_DI_Common
 {
-  public static void AddDICommon(this IServiceCollection srvc, string ProjectNameSwagger = "Swagger Name Project")
+  public static void Add_API_DI_Common(this IServiceCollection srvc, string ProjectNameSwagger = "Swagger Name Project")
   {
     // Config_CachingService(srvc);
     // srvc.AddAuthentication();
@@ -15,7 +15,7 @@ public static partial class DICommon
     srvc.Config_Swagger(ProjectNameSwagger);
     // srvc.Config_Versioning();
   }
-  public static void AddDefaultExternalServices(this IServiceCollection srvc)
+  public static void Add_API_DefaultExternalServices(this IServiceCollection srvc)
   {
     // srvc.Config_Identity();
     srvc.Config_Versioning();

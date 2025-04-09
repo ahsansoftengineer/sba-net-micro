@@ -5,7 +5,7 @@ using SBA.Projectz.Controllers.Base;
 namespace SBA.Hierarchy.Controllers.Prime;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class OrgController : CommonzController<OrgController, Org>
+public class OrgController : ProjectzCommonController<OrgController, Org>
 {
   public OrgController(IServiceProvider srvcProvider) : base(srvcProvider)
   {

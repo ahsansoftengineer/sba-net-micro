@@ -1,7 +1,7 @@
 using GLOB.Domain.Projectz;
 
 namespace SBA.Projectz.Mapper;
-public partial class MapProj 
+public partial class ProjectzMapper 
 {
   public override void MapCommon() 
   {
