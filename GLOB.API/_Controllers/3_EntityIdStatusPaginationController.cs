@@ -2,15 +2,15 @@ using GLOB.Domain.Base;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;
-public abstract partial class API_3_EntityAlphaController<TController, TEntity, DtoSearch, DtoResponse, DtoCreate>
-  : API_2_EntityAlphaController<TController, TEntity, DtoResponse>
+public abstract partial class API_3_EntityIdStatusPaginationController<TController, TEntity, DtoSearch, DtoResponse, DtoCreate>
+  : API_2_EntityIdStatusController<TController, TEntity, DtoResponse>
   where TController : class
   where TEntity : class, IEntityAlpha
   where DtoCreate : class
   where DtoSearch : class
   where DtoResponse : class
 {
-  public API_3_EntityAlphaController(IServiceProvider srvcProvider) : base(srvcProvider)
+  public API_3_EntityIdStatusPaginationController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
 
   }

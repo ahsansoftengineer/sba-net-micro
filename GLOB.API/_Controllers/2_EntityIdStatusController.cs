@@ -5,7 +5,7 @@ using GLOB.Infra.Helper;
 using GLOB.Infra.Repo;
 
 namespace GLOB.API.Controllers.Base;
-public abstract partial class API_2_EntityAlphaController<TController, TEntity, DtoResponse>
+public abstract partial class API_2_EntityIdStatusController<TController, TEntity, DtoResponse>
   : API_1_ErrorController<TController>
     where TEntity : class, IEntityAlpha // (ID, Status)
     where TController : class
@@ -13,7 +13,7 @@ public abstract partial class API_2_EntityAlphaController<TController, TEntity, 
 {
 
   protected virtual IRepoGenericz<TEntity> _repo {get; set;} // Will be initialize in Last Child Class
-  public API_2_EntityAlphaController(IServiceProvider srvcProvider) : base(srvcProvider)
+  public API_2_EntityIdStatusController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
 
   } 

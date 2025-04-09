@@ -2,7 +2,7 @@ using GLOB.Domain.Base;
 
 namespace GLOB.API.Controllers.Base;
 public abstract class API_4_EntityBaseController<TController, TEntity> 
-  : API_3_EntityAlphaController<TController, TEntity, DtoSearch, DtoRead, DtoCreate>
+  : API_3_EntityIdStatusPaginationController<TController, TEntity, DtoSearch, DtoRead, DtoCreate>
     where TController : class
     where TEntity : EntityBase, IEntityAlpha // (ID, Status)
 {
