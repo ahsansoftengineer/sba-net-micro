@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;
-public abstract class AlphaController<TController> : ControllerBase
+public abstract class API_1_ErrorController<TController> : ControllerBase
 
 {
   private readonly IServiceProvider _srvcProvider;
@@ -13,7 +13,7 @@ public abstract class AlphaController<TController> : ControllerBase
   protected readonly ILogger _logger;
   protected readonly IConfiguration _config;
 
-  public AlphaController(IServiceProvider srvcProvider)
+  public API_1_ErrorController(IServiceProvider srvcProvider)
   {
     _srvcProvider = srvcProvider;
     _mapper = GetSrvc<IMapper>();

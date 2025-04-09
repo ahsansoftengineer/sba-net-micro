@@ -4,7 +4,7 @@ using SBA.Projectz.Data;
 
 namespace SBA.Projectz.Controllers.Base;
 public abstract partial class ProjectzBaseController<TController, TEntity, DtoResponse>
-    : BaseController<TController, TEntity, DtoResponse>
+    : API_2_EntityAlphaController<TController, TEntity, DtoResponse>
   where TController : class
   where TEntity : EntityBase
   where DtoResponse : class

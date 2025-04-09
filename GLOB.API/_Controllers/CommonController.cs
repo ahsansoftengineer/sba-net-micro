@@ -1,12 +1,12 @@
 using GLOB.Domain.Base;
 
 namespace GLOB.API.Controllers.Base;
-public abstract class CommonController<TController, TEntity> 
-  : BetaController<TController, TEntity, DtoSearch, DtoRead, DtoCreate>
+public abstract class API_4_EntityBaseController<TController, TEntity> 
+  : API_3_EntityAlphaController<TController, TEntity, DtoSearch, DtoRead, DtoCreate>
     where TController : class
-    where TEntity : EntityBase, IEntityAlpha
+    where TEntity : EntityBase, IEntityAlpha // (ID, Status)
 {
-  public CommonController(IServiceProvider srvcProvider) : base(srvcProvider)
+  public API_4_EntityBaseController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
 
   }

@@ -5,7 +5,7 @@ using SBA.Projectz.Data;
 namespace SBA.Projectz.Controllers.Base;
 
 public abstract class ProjectzCommonController<TController, TEntity>
-  : CommonController<TController, TEntity>
+  : API_4_EntityBaseController<TController, TEntity>
     where TController : class
     where TEntity : EntityBase
 {
