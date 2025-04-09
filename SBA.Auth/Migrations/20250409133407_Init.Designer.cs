@@ -12,7 +12,7 @@ using SBA.Projectz.Data;
 namespace SBA.Auth.Migrations
 {
     [DbContext(typeof(ProjectzDBCntxt))]
-    [Migration("20250409122916_Init")]
+    [Migration("20250409133407_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -173,7 +173,7 @@ namespace SBA.Auth.Migrations
                         {
                             Id = "22c74fbc-9b0d-4848-85db-f09d58750006",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "764da201-caf2-41d3-bbeb-316f412a74c5",
+                            ConcurrencyStamp = "d675faa0-c26f-458c-bcf9-b677559e0f4e",
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Email = "InfraUser_1@yopmail.com",
                             EmailConfirmed = true,
@@ -181,7 +181,7 @@ namespace SBA.Auth.Migrations
                             Name = "InfraUser_1",
                             NormalizedEmail = "INFRAUSER_1@YOPMAIL.COM",
                             NormalizedUserName = "INFRAUSER_1@YOPMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGHUGqdi/cG8FN+z1FT8Y0oJyNlqU6DLu149T0yQpp1v89YsgN9sG+vQ9PGDnXD9jA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIiS0TzjuEEcA8CiomZmFozMnvV1LBD/P36P/yfi6gL1E02QPzE9OwVo7gykvWlbyA==",
                             PhoneNumberConfirmed = false,
                             Status = 0,
                             TwoFactorEnabled = false,
@@ -192,7 +192,7 @@ namespace SBA.Auth.Migrations
                         {
                             Id = "46eb923d-8529-4b77-b311-96e98ea6ea06",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8426c9fe-bc56-4424-9d59-50e648c7ac5e",
+                            ConcurrencyStamp = "c4956f30-ae45-4230-bb32-67c1588b180c",
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Email = "InfraUser_2@yopmail.com",
                             EmailConfirmed = true,
@@ -200,7 +200,7 @@ namespace SBA.Auth.Migrations
                             Name = "InfraUser_2",
                             NormalizedEmail = "INFRAUSER_2@YOPMAIL.COM",
                             NormalizedUserName = "INFRAUSER_2@YOPMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGY1bFfrgUwq0vkGdDdpLE6WubTrsBTYC6ZaquiWZOgtHGhmoH4Wy6WrQVTmdKKFew==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEH2UfnCzP92uQYMszQP28wbmfJ+XoKlBpTvV9Qp6696nqS286Woz/cndgC8X6HO4dw==",
                             PhoneNumberConfirmed = false,
                             Status = 0,
                             TwoFactorEnabled = false,
@@ -211,7 +211,7 @@ namespace SBA.Auth.Migrations
                         {
                             Id = "8118fea8-a644-4d67-9eca-1d689465a1bf",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "01affe92-ec6e-439b-820d-e82d95214094",
+                            ConcurrencyStamp = "6cef2088-a379-4b81-a555-46dda34d3de0",
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Email = "InfraUser_3@yopmail.com",
                             EmailConfirmed = true,
@@ -219,7 +219,7 @@ namespace SBA.Auth.Migrations
                             Name = "InfraUser_3",
                             NormalizedEmail = "INFRAUSER_3@YOPMAIL.COM",
                             NormalizedUserName = "INFRAUSER_3@YOPMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMLOqgyB34LHSQ2ZBNT8CXd6W0LgpI02Y0BIfzXwnpXx4w9JeyIfFkfqss9AJhkSSg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEI5k/HYk1J50VvfRuIIWY68PVpB3+7beFJc8jgcWvybFRTiPQTqcBUrx8E8OoxhwoQ==",
                             PhoneNumberConfirmed = false,
                             Status = 0,
                             TwoFactorEnabled = false,
@@ -292,7 +292,7 @@ namespace SBA.Auth.Migrations
                         });
                 });
 
-            modelBuilder.Entity("GLOB.Domain.Projectz.TestProj", b =>
+            modelBuilder.Entity("GLOB.Domain.Projectz.ProjectzEntityTest", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -331,8 +331,8 @@ namespace SBA.Auth.Migrations
                         {
                             Id = 1,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            Desc = "TestProj 1 Desc",
-                            Name = "TestProj 1",
+                            Desc = "ProjectzEntityTest 1 Desc",
+                            Name = "ProjectzEntityTest 1",
                             Status = 0,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
@@ -340,8 +340,8 @@ namespace SBA.Auth.Migrations
                         {
                             Id = 2,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            Desc = "TestProj 2 Desc",
-                            Name = "TestProj 2",
+                            Desc = "ProjectzEntityTest 2 Desc",
+                            Name = "ProjectzEntityTest 2",
                             Status = 0,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
@@ -349,8 +349,8 @@ namespace SBA.Auth.Migrations
                         {
                             Id = 3,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            Desc = "TestProj 3 Desc",
-                            Name = "TestProj 3",
+                            Desc = "ProjectzEntityTest 3 Desc",
+                            Name = "ProjectzEntityTest 3",
                             Status = 0,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });

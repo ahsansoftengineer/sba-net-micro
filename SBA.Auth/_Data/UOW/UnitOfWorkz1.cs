@@ -6,5 +6,5 @@ namespace SBA.Projectz.Data;
 public partial class UOW : UnitOfWorkInfra, IUOW
 {
   public UOW(ProjectzDBCntxt context): base(context) { }
-  private IRepoGenericz<TestProj>? _testProj;    
+  private IRepoGenericz<ProjectzEntityTest>? _testProj;    
 }

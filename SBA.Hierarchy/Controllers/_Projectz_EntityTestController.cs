@@ -5,9 +5,9 @@ using SBA.Projectz.Controllers.Base;
 namespace SBA.Hierarchy.Controllers.Test;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class TestProjController : ProjectzCommonController<TestProjController, TestProj>
+public class _Projectz_EntityTestController : ProjectzCommonController<_Projectz_EntityTestController, ProjectzEntityTest>
 {
-  public TestProjController(IServiceProvider srvcProvider) : base(srvcProvider)
+  public _Projectz_EntityTestController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
     _repo = _uow.TestProjs;
   }

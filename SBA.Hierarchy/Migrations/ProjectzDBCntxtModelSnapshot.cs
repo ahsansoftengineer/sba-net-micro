@@ -936,7 +936,7 @@ namespace SBA.Hierarchy.Migrations
                         });
                 });
 
-            modelBuilder.Entity("GLOB.Domain.Projectz.TestProj", b =>
+            modelBuilder.Entity("GLOB.Domain.Projectz.ProjectzEntityTest", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -975,8 +975,8 @@ namespace SBA.Hierarchy.Migrations
                         {
                             Id = 1,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            Desc = "TestProj 1 Desc",
-                            Name = "TestProj 1",
+                            Desc = "ProjectzEntityTest 1 Desc",
+                            Name = "ProjectzEntityTest 1",
                             Status = 0,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
@@ -984,8 +984,8 @@ namespace SBA.Hierarchy.Migrations
                         {
                             Id = 2,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            Desc = "TestProj 2 Desc",
-                            Name = "TestProj 2",
+                            Desc = "ProjectzEntityTest 2 Desc",
+                            Name = "ProjectzEntityTest 2",
                             Status = 0,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
@@ -993,8 +993,8 @@ namespace SBA.Hierarchy.Migrations
                         {
                             Id = 3,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            Desc = "TestProj 3 Desc",
-                            Name = "TestProj 3",
+                            Desc = "ProjectzEntityTest 3 Desc",
+                            Name = "ProjectzEntityTest 3",
                             Status = 0,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });

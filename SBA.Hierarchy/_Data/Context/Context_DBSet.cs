@@ -6,7 +6,7 @@ namespace SBA.Projectz.Data;
 public partial class ProjectzDBCntxt 
 {
 
-  public DbSet<TestProj> TestProjs { get; set; }
+  public DbSet<ProjectzEntityTest> TestProjs { get; set; }
   // .-*
   public DbSet<Org> Orgs { get; set; }
   public DbSet<BG> BGs { get; set; }

@@ -4,5 +4,5 @@ using GLOB.Domain.Projectz;
 namespace SBA.Projectz.Data;
 public partial class UOW
 {
-  public IRepoGenericz<TestProj> TestProjs => _testProj ??= new RepoGenericz<TestProj>(_context);
+  public IRepoGenericz<ProjectzEntityTest> TestProjs => _testProj ??= new RepoGenericz<ProjectzEntityTest>(_context);
 }

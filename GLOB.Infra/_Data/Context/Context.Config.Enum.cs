@@ -25,7 +25,7 @@ public partial class DBCntxt
 //   private static void ConfigEnums(ModelBuilder mb)
 //   {
 //     // Simple
-//     AddStatusEnum<TestProj>(mb);
+//     AddStatusEnum<ProjectzEntityTest>(mb);
 //     AddStatusEnum<Org>(mb);
    
 //   }
