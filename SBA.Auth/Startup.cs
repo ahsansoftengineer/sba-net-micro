@@ -15,9 +15,9 @@ public class Startup
 
   public void ConfigureServices(IServiceCollection srvc)
   {
-    srvc.AddDICommon("SBA Authorization");
-    srvc.AddSrvc(_config);
-    srvc.AddDefaultExternalServices();
+    srvc.Add_API_DI_Common("SBA Authorization");
+    srvc.Add_Projectz_Srvc(_config);
+    srvc.Add_API_DefaultExternalServices();
 
   }
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
