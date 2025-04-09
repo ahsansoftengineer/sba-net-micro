@@ -5,7 +5,7 @@ using SBA.Projectz.Controllers.Base;
 namespace SBA.Hierarchy.Controllers.Prime;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class BrandController : CommonzController<BrandController, Brand>
+public class BrandController : ProjectzCommonController<BrandController, Brand>
 {
   public BrandController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
