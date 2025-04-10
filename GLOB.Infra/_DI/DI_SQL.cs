@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using GLOB.Infra.UOW;
+using GLOB.Infra.UOW_Projectz;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -10,8 +10,8 @@ public static partial class DI_Infra
 
   public static void Config_DB_SQL<TContext, TIUOW, TUOW>(this IServiceCollection srvc, IConfiguration config)
     where TContext : DbContext
-    where TIUOW : class, IUnitOfWorkInfra
-    where TUOW : UnitOfWorkInfra, TIUOW
+    where TIUOW : class, IUOW_Infra
+    where TUOW : UOW_Infra, TIUOW
   {
     string connStr = config.GetConnectionString("SqlConnection");
     

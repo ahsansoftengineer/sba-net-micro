@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Identity;
-using GLOB.Infra.UOW;
+using GLOB.Infra.UOW_Projectz;
 using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -13,8 +13,8 @@ public static partial class DI_Infra
 {
   public static void Config_DB_Identity<TContext, TIUOW, TUOW>(this IServiceCollection srvc, IConfiguration config)
     where TContext : DBCntxtIdentity
-    where TIUOW : class, IUnitOfWorkInfra
-    where TUOW : UnitOfWorkInfra, TIUOW
+    where TIUOW : class, IUOW_Infra
+    where TUOW : UOW_Infra, TIUOW
   {
     // Option Pattern
     srvc.Configure<JwtSettings>(config.GetSection("JwtSettings"));

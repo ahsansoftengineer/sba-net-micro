@@ -8,10 +8,10 @@ public abstract partial class Project_RDS_Controller<TController, TEntity>
   where TController : class
   where TEntity : EntityBase
 {
-  protected readonly IUOW _uow;
+  protected readonly IUOW_Projectz _uow;
   public Project_RDS_Controller(IServiceProvider srvcProvider) : 
     base(srvcProvider)
   {
-    _uow = GetSrvc<IUOW>();
+    _uow = GetSrvc<IUOW_Projectz>();
   }
 }

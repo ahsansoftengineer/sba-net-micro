@@ -1,5 +1,5 @@
 using AutoMapper;
-using GLOB.Infra.UOW;
+using GLOB.Infra.UOW_Projectz;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +9,7 @@ public abstract class API_1_ErrorController<TController> : ControllerBase
 {
   private readonly IServiceProvider _srvcProvider;
   protected readonly IMapper _mapper;
-  protected readonly IUnitOfWorkInfra _uowInfra;
+  protected readonly IUOW_Infra _uowInfra;
   protected readonly ILogger _logger;
   protected readonly IConfiguration _config;
 
@@ -18,7 +18,7 @@ public abstract class API_1_ErrorController<TController> : ControllerBase
     _srvcProvider = srvcProvider;
     _mapper = GetSrvc<IMapper>();
     _config = GetSrvc<IConfiguration>();
-    _uowInfra = GetSrvc<IUnitOfWorkInfra>();
+    _uowInfra = GetSrvc<IUOW_Infra>();
 
     _logger = GetSrvc<ILogger<TController>>();
     _logger.LogWarning("How does Type Works -> "+ this);

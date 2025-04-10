@@ -1,12 +1,12 @@
 using GLOB.Infra.Repo;
 using GLOB.Domain.Hierarchy;
 using GLOB.Domain.Projectz;
-using GLOB.Infra.UOW;
+using GLOB.Infra.UOW_Projectz;
 
 namespace SBA.Projectz.Data;
-public partial class UOW : UnitOfWorkInfra, IUOW
+public partial class UOW_Projectz : UOW_Infra, IUOW_Projectz
 {
-  public UOW(ProjectzDBCntxt context): base(context) { }
+  public UOW_Projectz(ProjectzDBCntxt context): base(context) { }
   private IRepoGenericz<ProjectzEntityTest>? _testProj;
   // .-*
   private IRepoGenericz<Org>? _Orgs;

@@ -11,7 +11,7 @@ namespace GLOB.Infra.Seedz;
 public static partial class InfraSeederIdentity
 {
   public static IApplicationBuilder app;
-  // Seed for Dev (CLI)
+  // Seed for Development through (CLI)
   public static void SeedInfraIdentity(this ModelBuilder mb)
   {
     Console.WriteLine("--> Infra Identity -> Applying Migrations ModelBuilder (Dev)");
@@ -29,6 +29,7 @@ public static partial class InfraSeederIdentity
       var contextz = srvc.GetService<DBCntxt>();
       var userManager = srvc.GetRequiredService<UserManager<InfraUser>>();
       var roleManager = srvc.GetRequiredService<RoleManager<InfraRole>>();
+
       if (context != null)
       {
         Console.WriteLine("--> Infra Identity -> Applying Migrations AppBuilder (Prod)");
