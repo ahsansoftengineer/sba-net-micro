@@ -8,6 +8,6 @@ public partial class DBCntxt
 {
   public DbSet<API_Infra_EntityTest> TestInfras { get; set; }
   public DbSet<ProjectzLookupzBase> ProjectzLookupzBases { get; set; }
-  public DbSet<ProjectzLookup> ProjectzLookups { get; set; }
+  public DbSet<ProjectzLookupz> ProjectzLookupzs { get; set; }
   
 }
