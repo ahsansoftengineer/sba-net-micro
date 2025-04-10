@@ -6,7 +6,7 @@
 // namespace SBA.Hierarchy.Controllers;
 // [Route("api/Hierarchy/[controller]")]
 // [ApiController]
-// public class _EntityLookupController : API_2_EntityIdStatusController<_EntityLookupController, ProjectzEntityLookup>
+// public class _EntityLookupController : API_2_RDS_Controller<_EntityLookupController, ProjectzEntityLookup>
 // {
 //   public _EntityLookupController(IServiceProvider srvcProvider) : base(srvcProvider)
 //   {

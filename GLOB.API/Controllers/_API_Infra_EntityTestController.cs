@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GLOB.API.Controllers.Test;
 [Route("api/Test/[controller]")]
 [ApiController]
-public class _API_Infra_EntityTestController : API_4_EntityBaseController<_API_Infra_EntityTestController, API_Infra_EntityTest>
+public class _API_Infra_EntityTestController : API_4_Default_Controller<_API_Infra_EntityTestController, API_Infra_EntityTest>
 {
   public _API_Infra_EntityTestController(
     IServiceProvider srvcProvider) : base(srvcProvider)

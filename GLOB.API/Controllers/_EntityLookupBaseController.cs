@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GLOB.API.Controllers.Test;
 [Route("api/Test/[controller]")]
 [ApiController]
-public class _EntityLookupBaseController : API_4_EntityBaseController<_EntityLookupBaseController, ProjectzEntityLookupBase>
+public class _EntityLookupBaseController : API_4_Default_Controller<_EntityLookupBaseController, ProjectzEntityLookupBase>
 {
   public _EntityLookupBaseController(
     IServiceProvider srvcProvider) : base(srvcProvider)
