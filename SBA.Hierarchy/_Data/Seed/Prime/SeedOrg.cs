@@ -9,13 +9,13 @@ public static partial class Seeder
   {
     if (!context.Orgs.Any(x => x.Id > 0))
     {
-      context.Orgs.AddRange(InfraSeeder.SeedDataBaseEntity<Org>());
+      context.Orgs.AddRange(InfraSeeder.SeedDataEntityBase<Org>());
       context.SaveChanges();
     }
   }
   public static void SeedOrg(this ModelBuilder builder)
   {
-    builder.Entity<Org>().HasData(InfraSeeder.SeedDataBaseEntity<Org>());
+    builder.Entity<Org>().HasData(InfraSeeder.SeedDataEntityBase<Org>());
   }
   
 

@@ -1,4 +1,6 @@
-namespace GLOB.Domain.Auth.Enumz;
+using GLOB.Domain.Auth.Enumz;
+
+namespace GLOB.Domain.Auth;
 public class UserPermission
 {
 

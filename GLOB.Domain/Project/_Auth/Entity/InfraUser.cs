@@ -3,7 +3,7 @@ using GLOB.Domain.Contants;
 using Microsoft.AspNetCore.Identity;
 using GLOB.Domain.Enums;
 
-namespace GLOB.Domain.Auth.Enumz;
+namespace GLOB.Domain.Auth;
 public class InfraUser : IdentityUser<string>, IEntityBeta, IEntityStatus, IEntityAlpha<string>
 {
   public string Name { get; set; }

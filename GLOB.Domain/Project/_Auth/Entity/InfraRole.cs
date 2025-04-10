@@ -3,7 +3,7 @@ using GLOB.Domain.Contants;
 using GLOB.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 
-namespace GLOB.Domain.Auth.Enumz;
+namespace GLOB.Domain.Auth;
 public class InfraRole : IdentityRole<string>, IEntityBeta,  IEntityStatus, IEntityAlpha<string>
 {
   // public Permission Permissions { get; set; }

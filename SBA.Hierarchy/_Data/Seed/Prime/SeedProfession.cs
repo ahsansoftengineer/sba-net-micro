@@ -9,13 +9,13 @@ public static partial class Seeder
   {
     if (!context.Professions.Any(x => x.Id > 0))
     {
-      context.Professions.AddRange(InfraSeeder.SeedDataBaseEntity<Profession>());
+      context.Professions.AddRange(InfraSeeder.SeedDataEntityBase<Profession>());
       context.SaveChanges();
     }
   }
   public static void SeedProfession(this ModelBuilder builder)
   {
-    builder.Entity<Profession>().HasData(InfraSeeder.SeedDataBaseEntity<Profession>());
+    builder.Entity<Profession>().HasData(InfraSeeder.SeedDataEntityBase<Profession>());
   }
   
 
