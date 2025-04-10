@@ -12,7 +12,7 @@ using SBA.Projectz.Data;
 namespace SBA.Auth.Migrations
 {
     [DbContext(typeof(ProjectzDBCntxt))]
-    [Migration("20250409133407_Init")]
+    [Migration("20250410091426_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -173,7 +173,7 @@ namespace SBA.Auth.Migrations
                         {
                             Id = "22c74fbc-9b0d-4848-85db-f09d58750006",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d675faa0-c26f-458c-bcf9-b677559e0f4e",
+                            ConcurrencyStamp = "2a15b009-e99b-4189-9f6a-139b14a7b259",
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Email = "InfraUser_1@yopmail.com",
                             EmailConfirmed = true,
@@ -181,7 +181,7 @@ namespace SBA.Auth.Migrations
                             Name = "InfraUser_1",
                             NormalizedEmail = "INFRAUSER_1@YOPMAIL.COM",
                             NormalizedUserName = "INFRAUSER_1@YOPMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIiS0TzjuEEcA8CiomZmFozMnvV1LBD/P36P/yfi6gL1E02QPzE9OwVo7gykvWlbyA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELBPOH9pc8WB08UTYHpfSeDkBS/7NdK5jTPIsT9/lx3Miu4vapdDZcxZuADltRmhAQ==",
                             PhoneNumberConfirmed = false,
                             Status = 0,
                             TwoFactorEnabled = false,
@@ -192,7 +192,7 @@ namespace SBA.Auth.Migrations
                         {
                             Id = "46eb923d-8529-4b77-b311-96e98ea6ea06",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c4956f30-ae45-4230-bb32-67c1588b180c",
+                            ConcurrencyStamp = "63f5221e-7373-4e48-b889-057fef15a79a",
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Email = "InfraUser_2@yopmail.com",
                             EmailConfirmed = true,
@@ -200,7 +200,7 @@ namespace SBA.Auth.Migrations
                             Name = "InfraUser_2",
                             NormalizedEmail = "INFRAUSER_2@YOPMAIL.COM",
                             NormalizedUserName = "INFRAUSER_2@YOPMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEH2UfnCzP92uQYMszQP28wbmfJ+XoKlBpTvV9Qp6696nqS286Woz/cndgC8X6HO4dw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBxumRPeDhQHq9JRXZUxpcNVcOgKh2OAd+ZZgtHnzf8dgR5bCFqt1PjscfM+90kcUQ==",
                             PhoneNumberConfirmed = false,
                             Status = 0,
                             TwoFactorEnabled = false,
@@ -211,7 +211,7 @@ namespace SBA.Auth.Migrations
                         {
                             Id = "8118fea8-a644-4d67-9eca-1d689465a1bf",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6cef2088-a379-4b81-a555-46dda34d3de0",
+                            ConcurrencyStamp = "f5f77f1b-ad52-4b51-9221-3fe929b67542",
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Email = "InfraUser_3@yopmail.com",
                             EmailConfirmed = true,
@@ -219,7 +219,7 @@ namespace SBA.Auth.Migrations
                             Name = "InfraUser_3",
                             NormalizedEmail = "INFRAUSER_3@YOPMAIL.COM",
                             NormalizedUserName = "INFRAUSER_3@YOPMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEI5k/HYk1J50VvfRuIIWY68PVpB3+7beFJc8jgcWvybFRTiPQTqcBUrx8E8OoxhwoQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAnRcqy5Jrc5FcuRzJ2ivNgKjTpivumcNWuEdcXqPuEFkAulNRB02p5RBBiOKRMFKQ==",
                             PhoneNumberConfirmed = false,
                             Status = 0,
                             TwoFactorEnabled = false,
