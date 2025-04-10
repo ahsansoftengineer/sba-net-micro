@@ -37,11 +37,21 @@ public class DtoSelect<TKey>
 public class DtoSelect : DtoSelect<int>
 {
 }
-public class DtoSearch
+
+public interface IDtoSearch
 {
-  public string? Name { get; set; }
-  public Status? Status { get; set; }
-  public string? Desc { get; set; }
-  public DateTimeOffset? DateFrom { get; set; }
-  public DateTimeOffset? DateTo { get; set; }
+    string? Name { get; set; }
+    Status? Status { get; set; }
+    string? Desc { get; set; }
+    DateTimeOffset? DateFrom { get; set; }
+    DateTimeOffset? DateTo { get; set; }
+}
+
+public class DtoSearch : IDtoSearch
+{
+    public string? Name { get; set; }
+    public Status? Status { get; set; }
+    public string? Desc { get; set; }
+    public DateTimeOffset? DateFrom { get; set; }
+    public DateTimeOffset? DateTo { get; set; }
 }

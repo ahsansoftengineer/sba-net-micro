@@ -9,3 +9,18 @@ public class SU : EntityBase
   public virtual OU? OU { get; set; }
 
 }
+
+public class SUDtoCreate : DtoCreate
+{
+  public int OUId { get; set; }
+}
+
+public class SUDtoRead : DtoRead
+{
+  public int OUId { get; set; }
+  public DtoSelect? OU { get; set; }
+}
+public class SUDtoSearch : DtoSearch
+{
+  public int? OUId { get; set; }
+}

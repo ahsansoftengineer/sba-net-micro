@@ -6,7 +6,7 @@ using SBA.Projectz.Controllers.Base;
 namespace SBA.Hierarchy.Controllers;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class CityController : ProjectzBaseController<CityController, City, CityDtoRead>
+public class CityController : ProjectzBaseController<CityController, City>
 {
   public CityController(IServiceProvider srvcProvider) : base(srvcProvider)
   {

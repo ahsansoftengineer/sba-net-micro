@@ -5,11 +5,10 @@ using GLOB.Infra.Helper;
 using GLOB.Infra.Repo;
 
 namespace GLOB.API.Controllers.Base;
-public abstract partial class API_2_EntityIdStatusController<TController, TEntity, DtoResponse>
+public abstract partial class API_2_EntityIdStatusController<TController, TEntity>
   : API_1_ErrorController<TController>
-    where TEntity : class, IEntityAlpha // (ID, Status)
+    where TEntity : class, IEntityAlpha, IEntityStatus // (ID, Status)
     where TController : class
-    where DtoResponse : class
 {
 
   protected virtual IRepoGenericz<TEntity> _repo {get; set;} // Will be initialize in Last Child Class

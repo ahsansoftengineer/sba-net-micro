@@ -3,11 +3,10 @@ using GLOB.Domain.Base;
 using SBA.Projectz.Data;
 
 namespace SBA.Projectz.Controllers.Base;
-public abstract partial class ProjectzBaseController<TController, TEntity, DtoResponse>
-    : API_2_EntityIdStatusController<TController, TEntity, DtoResponse>
+public abstract partial class ProjectzBaseController<TController, TEntity>
+    : API_2_EntityIdStatusController<TController, TEntity>
   where TController : class
   where TEntity : EntityBase
-  where DtoResponse : class
 {
   protected readonly IUOW _uow;
   public ProjectzBaseController(IServiceProvider srvcProvider) : 
