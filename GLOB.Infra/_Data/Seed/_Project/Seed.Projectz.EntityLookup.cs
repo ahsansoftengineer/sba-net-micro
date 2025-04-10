@@ -1,4 +1,5 @@
 using GLOB.Domain.Base;
+using GLOB.Domain.Enums;
 using GLOB.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +29,7 @@ public static partial class InfraSeeder
         Id = i,
         Name = $"{className} {i}",
         Desc = $"{className} {i} Desc",
+        Status = Status.None,
         ProjectzEntityLookupBaseId = i
       });
     }

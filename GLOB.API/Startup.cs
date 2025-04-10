@@ -1,7 +1,7 @@
 
 using GLOB.API.DI;
 using GLOB.Infra.Data;
-using GLOB.Infra.UOW;
+using GLOB.Infra.UOW_Projectz;
 
 namespace GLOB.API;
 // Note: Servicies are required when not in Micro Arch
@@ -17,8 +17,8 @@ public class Startup
   public void ConfigureServices(IServiceCollection srvc)
   {
     // srvc.Add_API_DI_Common();
-    // srvc.Config_DB_SQL<DBCntxt, IUnitOfWorkInfra, UnitOfWorkInfra>(_config);
-    // srvc.Config_DB_Identity<DBCntxtIdentity, IUnitOfWorkInfra, UnitOfWorkInfra>(_config);
+    // srvc.Config_DB_SQL<DBCntxt, IUOW_Infra, UOW_Infra>(_config);
+    // srvc.Config_DB_Identity<DBCntxtIdentity, IUOW_Infra, UOW_Infra>(_config);
     // srvc.AddAutoMapper(typeof(API_Base_Mapper));
     // srvc.Add_API_DefaultExternalServices();
   }

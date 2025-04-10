@@ -7,13 +7,15 @@ using Microsoft.Extensions.DependencyInjection;
 namespace GLOB.Infra.Seedz;
 public static partial class InfraSeeder
 {
-  // Seed for Dev (CLI)
+  // Seed for Development through (CLI)
   public static void SeedInfra(this ModelBuilder mb)
   {
     Console.WriteLine("--> Infra -> Applying Migrations ModelBuilder (Dev)");
     mb.SeedTestInfra();
-    // mb.SeedEntityShortProjectz();
+    mb.SeedProjectzEntityLookupBase();
+    mb.SeedProjectzEntityLookup();
   }
+
   // Seed for Production (Automate)
   public static void SeedInfra(this IApplicationBuilder app)
   {
@@ -26,7 +28,8 @@ public static partial class InfraSeeder
         context.Database.Migrate();
         {
           context.SeedTestInfra();
-          // context.SeedEntityShortProjectz();
+          context.SeedProjectzEntityLookupBase();
+          context.SeedProjectzEntityLookup();
         }
       }
     }

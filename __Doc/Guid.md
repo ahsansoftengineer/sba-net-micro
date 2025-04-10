@@ -17,7 +17,7 @@ dotnet add ./SBA.Auth/ reference ./GLOB.API/
 - Copy _DI (To Configure Dependency Injection)
 - Copy _Mapping (To Configure Auto Mapper)
 - Copy _Data (For Infra Customization)
-- - Contains (Context, Seed & UOW)
+- - Contains (Context, Seed & UOW_Projectz)
 
 ### How to Create a Controller
 - It Depends on What you want to Achieve

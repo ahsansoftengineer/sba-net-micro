@@ -2,8 +2,8 @@ using GLOB.Infra.Repo;
 using GLOB.Domain.Projectz;
 using GLOB.Domain.Base;
 
-namespace GLOB.Infra.UOW;
-public partial class UnitOfWorkInfra : IUnitOfWorkInfra
+namespace GLOB.Infra.UOW_Projectz;
+public partial class UOW_Infra : IUOW_Infra
 {
   private IRepoGenericz<API_Infra_EntityTest>? _testInfra;
   private IRepoGenericz<ProjectzEntityLookupBase>? _projectzEntityLookupBase;

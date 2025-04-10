@@ -3,7 +3,7 @@ using GLOB.Domain.Hierarchy;
 using GLOB.Domain.Projectz;
 
 namespace SBA.Projectz.Data;
-public partial class UOW
+public partial class UOW_Projectz
 {
   public IRepoGenericz<ProjectzEntityTest> TestProjs => _testProj ??= new RepoGenericz<ProjectzEntityTest>(_context);
   

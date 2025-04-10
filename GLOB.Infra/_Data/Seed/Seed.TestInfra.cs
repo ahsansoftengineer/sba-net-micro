@@ -1,4 +1,5 @@
 using GLOB.Domain.Base;
+using GLOB.Domain.Enums;
 using GLOB.Domain.Projectz;
 using GLOB.Infra.Data;
 using GLOB.Infra.Data.Auth;
@@ -41,6 +42,8 @@ public static partial class InfraSeeder
         Id = i,
         Name = $"{className} {i}",
         Desc = $"{className} {i} Desc",
+        Status = Status.None,
+        IsSelected = false
         
       });
     }

@@ -10,13 +10,13 @@ public abstract class AccountBaseController<T> : API_1_ErrorController<T>
   protected readonly UserManager<InfraUser> _userManager;
   protected readonly SignInManager<InfraUser> _signInManager;
 
-  protected IUOW _uow { get; }
+  protected IUOW_Projectz _uow { get; }
   public AccountBaseController(
     IServiceProvider srvcProvider
   ) : base(srvcProvider)
   {
     _userManager = GetSrvc<UserManager<InfraUser>>();
     _signInManager = GetSrvc<SignInManager<InfraUser>>();;
-    _uow = GetSrvc<IUOW>();;
+    _uow = GetSrvc<IUOW_Projectz>();;
   }
 }
