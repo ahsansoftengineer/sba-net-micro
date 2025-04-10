@@ -5,15 +5,15 @@ using Microsoft.AspNetCore.Mvc;
 namespace SBA.Hierarchy.Controllers;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class _LookupController : API_2_RDS_Controller<_LookupController, ProjectzLookup>
+public class _LookupzController : API_2_RDS_Controller<_LookupzController, ProjectzLookupz>
 {
-  public _LookupController(IServiceProvider srvcProvider) : base(srvcProvider)
+  public _LookupzController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = _uowInfra.ProjectzLookups;
+    _repo = _uowInfra.ProjectzLookupzs;
   }
 
   [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginate([FromQuery] DtoPageReq<ProjectzLookupDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginate([FromQuery] DtoPageReq<ProjectzLookupzDtoSearch?> req)
   {
     try
     {
@@ -26,7 +26,7 @@ public class _LookupController : API_2_RDS_Controller<_LookupController, Project
     }
   }
   [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginateOptions([FromQuery] DtoPageReq<ProjectzLookupDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginateOptions([FromQuery] DtoPageReq<ProjectzLookupzDtoSearch?> req)
   {
     try
     {
@@ -39,15 +39,15 @@ public class _LookupController : API_2_RDS_Controller<_LookupController, Project
     }
   }
   [HttpPost]
-  public async Task<IActionResult> Create([FromBody] ProjectzLookupDtoCreate data)
+  public async Task<IActionResult> Create([FromBody] ProjectzLookupzDtoCreate data)
   {
     if (!ModelState.IsValid) return BadRequestz();
     try
     {
-      bool hasParent = _uowInfra.ProjectzLookupBases.AnyId(data.ProjectzLookupBaseId);
-      if(!hasParent) return InvalidId("Invalid Lookup Base Id");
+      bool hasParent = _uowInfra.ProjectzLookupzBases.AnyId(data.ProjectzLookupzBaseId);
+      if(!hasParent) return InvalidId("Invalid Lookupz Base Id");
 
-      var result = _mapper.Map<ProjectzLookup>(data);
+      var result = _mapper.Map<ProjectzLookupz>(data);
       await _repo.Insert(result);
       await _uowInfra.Save();
       return Ok(result);
@@ -59,7 +59,7 @@ public class _LookupController : API_2_RDS_Controller<_LookupController, Project
   }
 
   [HttpPut("{id:int}")]
-  public async Task<IActionResult> Update(int id, [FromBody] ProjectzLookupDtoCreate data)
+  public async Task<IActionResult> Update(int id, [FromBody] ProjectzLookupzDtoCreate data)
   {
     if (!ModelState.IsValid || id < 1) return InvalidId();
     try
@@ -67,8 +67,8 @@ public class _LookupController : API_2_RDS_Controller<_LookupController, Project
       var item = await _repo.Get(q => q.Id == id);
       if (item == null) return InvalidId();
       
-      bool hasParent = _uowInfra.ProjectzLookupBases.AnyId(data.ProjectzLookupBaseId);
-      if(!hasParent) return InvalidId("Invalid Lookup Base Id");
+      bool hasParent = _uowInfra.ProjectzLookupzBases.AnyId(data.ProjectzLookupzBaseId);
+      if(!hasParent) return InvalidId("Invalid Lookupz Base Id");
 
       var result = _mapper.Map(data, item);
       _repo.Update(item);

@@ -11,10 +11,10 @@ public partial class DBCntxt
 
   private static void ConfigOneToMany(ModelBuilder mb)
   {
-    mb.Entity<ProjectzLookup>()
-      .HasOne(p => p.ProjectzLookupBase)
-      .WithMany(b => b.ProjectzLookup) // assumes navigation collection exists
-      .HasForeignKey(p => p.ProjectzLookupBaseId)
+    mb.Entity<ProjectzLookupz>()
+      .HasOne(p => p.ProjectzLookupzBase)
+      .WithMany(b => b.ProjectzLookupz) // assumes navigation collection exists
+      .HasForeignKey(p => p.ProjectzLookupzBaseId)
       .OnDelete(DeleteBehavior.Cascade);
   }
 }
