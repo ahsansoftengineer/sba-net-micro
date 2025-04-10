@@ -5,7 +5,7 @@ using SBA.Projectz.Controllers.Base;
 namespace SBA.Hierarchy.Controllers.Prime;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class ProfessionController : ProjectzCommonController<ProfessionController, Profession>
+public class ProfessionController : Projectz_Default_Controller<ProfessionController, Profession>
 {
   public ProfessionController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
