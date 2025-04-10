@@ -7,6 +7,6 @@ public interface IUOW_Infra : IDisposable
 {
   Task Save();
   IRepoGenericz<API_Infra_EntityTest> TestInfras { get; }
-  IRepoGenericz<ProjectzEntityLookupBase> ProjectzEntityLookupBases { get; }
-  IRepoGenericz<ProjectzEntityLookup> ProjectzEntityLookups { get; }
+  IRepoGenericz<ProjectzLookupBase> ProjectzLookupBases { get; }
+  IRepoGenericz<ProjectzLookup> ProjectzLookups { get; }
 }
