@@ -33,7 +33,11 @@ public partial class RepoGenericz<T, TKey> : IRepoGenericz<T, TKey>
   }
   public bool AnyId(TKey Id)
   {
-    return Any(x => AreEqual(x.Id, Id));
+    // if (typeof(TKey) == typeof(int) || typeof(TKey) == typeof(string)) {
+      return Any(x =>  Id.ToString() == x.Id.ToString());
+    // } else {
+    //   return false;
+    // }
   }
   public async Task Delete(TKey id)
   {
@@ -72,12 +76,5 @@ public partial class RepoGenericz<T, TKey> : IRepoGenericz<T, TKey>
         _context.Entry(entity).State = EntityState.Modified;
       }
     }
-  }
-
-  private bool AreEqual(TKey a, TKey b)
-  {
-    return a.Equals(b); // ✅ Safe and clean
-  }
-
-   
+  } 
 }

@@ -6,11 +6,11 @@
 // namespace SBA.Hierarchy.Controllers;
 // [Route("api/Hierarchy/[controller]")]
 // [ApiController]
-// public class _EntityLookupController : API_2_RDS_Controller<_EntityLookupController, ProjectzEntityLookup>
+// public class _LookupController : API_2_RDS_Controller<_LookupController, ProjectzLookup>
 // {
-//   public _EntityLookupController(IServiceProvider srvcProvider) : base(srvcProvider)
+//   public _LookupController(IServiceProvider srvcProvider) : base(srvcProvider)
 //   {
-//     _repo = _uowInfra.ProjectzEntityLookups;
+//     _repo = _uowInfra.ProjectzLookups;
 //   }
 
 //   [HttpGet("[action]")]
