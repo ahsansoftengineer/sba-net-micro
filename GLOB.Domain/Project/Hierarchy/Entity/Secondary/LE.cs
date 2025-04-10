@@ -10,3 +10,17 @@ public class LE : EntityBase
   public virtual ICollection<OU> OUs { get; set; }
 
 }
+
+public class LEDtoCreate : DtoCreate
+{
+  public int BGId { get; set; }
+}
+public class LEDtoRead : DtoRead
+{
+  public int BGId { get; set; }
+  public DtoSelect? BG { get; set; }
+}
+public class LEDtoSearch : DtoSearch
+{
+  public int? BGId { get; set; }
+}

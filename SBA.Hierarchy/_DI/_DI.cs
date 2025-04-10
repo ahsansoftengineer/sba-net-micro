@@ -11,7 +11,7 @@ public static class Projectz_DI
   {
 
     srvc.Config_DB_SQL<DBCntxt, IUnitOfWorkInfra, UOW>(config);
-    srvc.Config_DB_SQL<DBCntxtProj, IUOW, UOW>(config);
+    srvc.Config_DB_SQL<ProjectzDBCntxt, IUOW, UOW>(config);
     srvc.AddAutoMapper(typeof(ProjectzMapper));
 
   }

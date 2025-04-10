@@ -5,7 +5,7 @@ using SBA.Projectz.Controllers.Base;
 namespace SBA.Hierarchy.Controllers.Prime;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class BankController : ProjectzCommonController<BankController, Bank>
+public class BankController : Projectz_Default_Controller<BankController, Bank>
 {
   public BankController(IServiceProvider srvcProvider) : base(srvcProvider)
   {

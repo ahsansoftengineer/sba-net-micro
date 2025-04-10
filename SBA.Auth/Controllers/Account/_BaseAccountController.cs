@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using SBA.Projectz.Data;
 
 namespace SBA.Auth.Controllers;
-public abstract class AccountBaseController<T> : AlphaController<T>
+public abstract class AccountBaseController<T> : API_1_ErrorController<T>
 {
   // private IRepoGenericz<AccountId> _repo = null;
   protected readonly UserManager<InfraUser> _userManager;

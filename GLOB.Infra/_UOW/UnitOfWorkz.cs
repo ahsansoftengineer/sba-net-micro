@@ -2,7 +2,7 @@ using GLOB.Domain.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.UOW;
-public partial class UnitOfWorkInfra : IUnitOfWorkInfra
+public partial class UnitOfWorkInfra 
 {
   public readonly DbContext _context;
 

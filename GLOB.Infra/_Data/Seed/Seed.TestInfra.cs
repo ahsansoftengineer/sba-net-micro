@@ -12,7 +12,7 @@ public static partial class InfraSeeder
   {
     if (!context.TestInfras.Any(x => x.Id > 0))
     {
-      context.TestInfras.AddRange(SeedDataBaseEntity<TestInfra>());
+      context.TestInfras.AddRange(SeedDataEntityBase<API_Infra_EntityTest>());
       context.SaveChanges();
     }
   }
@@ -21,16 +21,16 @@ public static partial class InfraSeeder
   {
     if (!context.TestInfras.Any(x => x.Id > 0))
     {
-      context.TestInfras.AddRange(SeedDataBaseEntity<TestInfra>());
+      context.TestInfras.AddRange(SeedDataEntityBase<API_Infra_EntityTest>());
       context.SaveChanges();
     }
   }
   // For DB Context (Identity) (Dev CLI) 
   public static void SeedTestInfra(this ModelBuilder builder)
   {
-    builder.Entity<TestInfra>().HasData(SeedDataBaseEntity<TestInfra>());
+    builder.Entity<API_Infra_EntityTest>().HasData(SeedDataEntityBase<API_Infra_EntityTest>());
   }
-  public static List<T> SeedDataBaseEntity<T>() where T : EntityBase, new()
+  public static List<T> SeedDataEntityBase<T>() where T : EntityBase, new()
   {
     string className = typeof(T).Name;
     List<T> list = new List<T>();

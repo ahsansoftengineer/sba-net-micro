@@ -3,7 +3,7 @@ using GLOB.Domain.Auth;
 using GLOB.Domain.Base;
 
 namespace SBA.Projectz.Mapper;
-public partial class ProjectzMapper : MapBase
+public partial class ProjectzMapper : API_Base_Mapper
 {
   public ProjectzMapper() : base()
   {

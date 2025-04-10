@@ -2,9 +2,9 @@ using GLOB.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Projectz.Data;
-public partial class DBCntxtProj : DBCntxt
+public partial class ProjectzDBCntxt : DBCntxt
 {
-  public DBCntxtProj(DbContextOptions<DBCntxtProj> options) : base(options) { }
+  public ProjectzDBCntxt(DbContextOptions<ProjectzDBCntxt> options) : base(options) { }
   protected override void OnModelCreating(ModelBuilder mb)
   {
     ConfigManyToOne(mb);

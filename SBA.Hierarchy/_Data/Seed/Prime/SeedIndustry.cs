@@ -5,17 +5,17 @@ using Microsoft.EntityFrameworkCore;
 namespace SBA.Projectz.Data;
 public static partial class Seeder
 {
-  public static void SeedIndustry(this DBCntxtProj context)
+  public static void SeedIndustry(this ProjectzDBCntxt context)
   {
     if (!context.Industrys.Any(x => x.Id > 0))
     {
-      context.Industrys.AddRange(InfraSeeder.SeedDataBaseEntity<Industry>());
+      context.Industrys.AddRange(InfraSeeder.SeedDataEntityBase<Industry>());
       context.SaveChanges();
     }
   }
   public static void SeedIndustry(this ModelBuilder builder)
   {
-    builder.Entity<Industry>().HasData(InfraSeeder.SeedDataBaseEntity<Industry>());
+    builder.Entity<Industry>().HasData(InfraSeeder.SeedDataEntityBase<Industry>());
   }
   
 

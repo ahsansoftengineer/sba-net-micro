@@ -5,6 +5,6 @@ using GLOB.Infra.UOW;
 namespace SBA.Projectz.Data;
 public interface IUOW : IUnitOfWorkInfra
 {
-  IRepoGenericz<TestProj> TestProjs { get; }
+  IRepoGenericz<ProjectzEntityTest> TestProjs { get; }
 
 }

@@ -6,8 +6,8 @@ using GLOB.Infra.UOW;
 namespace SBA.Projectz.Data;
 public partial class UOW : UnitOfWorkInfra, IUOW
 {
-  public UOW(DBCntxtProj context): base(context) { }
-  private IRepoGenericz<TestProj>? _testProj;
+  public UOW(ProjectzDBCntxt context): base(context) { }
+  private IRepoGenericz<ProjectzEntityTest>? _testProj;
   // .-*
   private IRepoGenericz<Org>? _Orgs;
   private IRepoGenericz<BG>? _BG;

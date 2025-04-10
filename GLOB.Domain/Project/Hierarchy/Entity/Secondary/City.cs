@@ -8,3 +8,17 @@ public class City : EntityBase
   // [NotMapped]
   // public ICollection<UserCreator>? UserCreators { get; set; }
 }
+
+public class CityDtoRead : DtoRead
+{
+  public int StateId { get; set; }
+  public DtoSelect? State { get; set; }
+}
+public class CityDtoCreate : DtoCreate
+{
+  public int StateId { get; set; }
+}
+public class CityDtoSearch : DtoSearch
+{
+  public int? StateId { get; set; }
+}

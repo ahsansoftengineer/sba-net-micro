@@ -3,9 +3,9 @@ using GLOB.Domain.Base;
 
 namespace GLOB.API.Mapper;
 
-public partial class MapBase : Profile
+public partial class API_Base_Mapper : Profile
 {
-  public MapBase()
+  public API_Base_Mapper()
   {
     MapCommon();
     MapAll();
@@ -17,16 +17,17 @@ public partial class MapBase : Profile
     CreateMapAll<TEntity, DtoCreate, DtoUpdate, DtoRead, DtoSearch, DtoSearch>();
   }
 
+  // Three Param
+  protected void CreateMapAll<TEntity, TDtoCreateUpdateRead, TDtoSearch>()
+  {
+    CreateMapAll<TEntity, TDtoCreateUpdateRead, TDtoSearch, DtoSelect>();
+  }
+  // Four Param
   protected void CreateMapAll<TEntity, TDtoCreateUpdate, TDtoRead, TDtoSearch>()
   {
-    CreateMapAll<TEntity, TDtoCreateUpdate, TDtoCreateUpdate, TDtoSearch, DtoSelect>();
+    CreateMapAll<TEntity, TDtoCreateUpdate, TDtoCreateUpdate, TDtoRead, TDtoSearch, DtoSelect>();
   }
-  // Used When The Dtos and Entity has Maching Properties
-  protected void CreateMapAll<TEntity, TDtoCreateUpdate, TDtoRead, TDtoSearch, TDtoSelect>()
-  {
-    CreateMapAll<TEntity, TDtoCreateUpdate, TDtoCreateUpdate, TDtoSearch, TDtoSelect>();
-  }
-
+  // Six Param
   protected void CreateMapAll<TEntity, TDtoCreate, TDtoUpdate, TDtoRead, TDtoSearch, TDtoSelect>()
   {
     CreateMap<TDtoCreate, TEntity>().ReverseMap();

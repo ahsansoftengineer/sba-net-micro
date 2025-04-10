@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Projectz.Data;
-public partial class DBCntxtProj
+public partial class ProjectzDBCntxt
 {
   private static void ConfigManyToOne(ModelBuilder mb)
   {

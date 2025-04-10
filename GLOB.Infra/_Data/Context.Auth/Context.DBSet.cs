@@ -4,5 +4,5 @@ using Microsoft.EntityFrameworkCore;
 namespace GLOB.Infra.Data.Auth;
 public partial class DBCntxtIdentity
 {
-  public DbSet<TestInfra> TestInfras { get; set; }  
+  public DbSet<API_Infra_EntityTest> TestInfras { get; set; }  
 }

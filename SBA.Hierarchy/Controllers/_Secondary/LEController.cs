@@ -6,7 +6,7 @@ using SBA.Projectz.Controllers.Base;
 namespace SBA.Hierarchy.Controllers.Test;
 [Route("api/Hierarchy/[controller]")]
 [ApiController]
-public class LEController : ProjectzBaseController<LEController, LE, LEDtoRead>
+public class LEController : Project_RDS_Controller<LEController, LE>
 {
   public LEController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
