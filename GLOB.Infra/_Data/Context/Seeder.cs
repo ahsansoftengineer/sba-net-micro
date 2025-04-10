@@ -12,7 +12,7 @@ public static partial class InfraSeeder
   {
     Console.WriteLine("--> Infra -> Applying Migrations ModelBuilder (Dev)");
     mb.SeedTestInfra();
-    mb.SeedProjectzLookupBase();
+    mb.SeedProjectzLookupzBase();
     mb.SeedProjectzLookup();
   }
 
@@ -28,7 +28,7 @@ public static partial class InfraSeeder
         context.Database.Migrate();
         {
           context.SeedTestInfra();
-          context.SeedProjectzLookupBase();
+          context.SeedProjectzLookupzBase();
           context.SeedProjectzLookup();
         }
       }

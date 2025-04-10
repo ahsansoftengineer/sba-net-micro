@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace GLOB.API.Controllers.Test;
 [Route("api/Test/[controller]")]
 [ApiController]
-public class _LookupBaseController : API_4_Default_Controller<_LookupBaseController, ProjectzLookupBase>
+public class _LookupzBaseController : API_4_Default_Controller<_LookupzBaseController, ProjectzLookupzBase>
 {
-  public _LookupBaseController(
+  public _LookupzBaseController(
     IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = _uowInfra.ProjectzLookupBases;
+    _repo = _uowInfra.ProjectzLookupzBases;
   }
 }
