@@ -1,4 +1,5 @@
-namespace GLOB.Domain.Auth;
+namespace GLOB.Domain.Auth.Enumz;
+
 public class UpdateUserDto
 {
     public string FullName { get; set; }
@@ -11,11 +12,6 @@ public class RegisterDto : UpdateUserDto
     public string Email { get; set; }
 }
 
-public class LoginDto
-{
-    public string Email { get; set; }
-    public string Password { get; set; }
-}
 
 public class RefreshTokenDto
 {

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-namespace GLOB.Domain.Model;
+namespace GLOB.Domain.Auth.Enumz;
 public class LoginDto
 {
   [Required]

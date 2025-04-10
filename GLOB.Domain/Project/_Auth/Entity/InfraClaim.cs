@@ -1,7 +1,4 @@
-using System.Security.Claims;
-using GLOB.Domain.Enumz;
-
-namespace GLOB.Domain.Auth;
+namespace GLOB.Domain.Auth.Enumz;
 public class UserPermission
 {
 

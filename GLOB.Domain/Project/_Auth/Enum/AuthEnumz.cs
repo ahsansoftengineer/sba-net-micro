@@ -1,4 +1,4 @@
-namespace GLOB.Domain.Enumz;
+namespace GLOB.Domain.Auth.Enumz;
 
 public enum UserTypeEnum
 {
