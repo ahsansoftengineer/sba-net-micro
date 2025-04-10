@@ -12,7 +12,7 @@ using SBA.Projectz.Data;
 namespace SBA.Hierarchy.Migrations
 {
     [DbContext(typeof(ProjectzDBCntxt))]
-    [Migration("20250409133359_Init")]
+    [Migration("20250410094739_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -24,6 +24,148 @@ namespace SBA.Hierarchy.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("GLOB.Domain.Base.ProjectzEntityLookup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Created_At");
+
+                    b.Property<string>("Desc")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(4);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(3);
+
+                    b.Property<int?>("ProjectzEntityLookupBaseId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Updated_At");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectzEntityLookupBaseId");
+
+                    b.ToTable("ProjectzEntityLookups");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "111-111-111",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "ProjectzEntityLookup 1 Desc",
+                            Name = "ProjectzEntityLookup 1",
+                            ProjectzEntityLookupBaseId = 1,
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "222-222-222",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "ProjectzEntityLookup 2 Desc",
+                            Name = "ProjectzEntityLookup 2",
+                            ProjectzEntityLookupBaseId = 2,
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Code = "333-333-333",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "ProjectzEntityLookup 3 Desc",
+                            Name = "ProjectzEntityLookup 3",
+                            ProjectzEntityLookupBaseId = 3,
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        });
+                });
+
+            modelBuilder.Entity("GLOB.Domain.Base.ProjectzEntityLookupBase", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Created_At");
+
+                    b.Property<string>("Desc")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(4);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Updated_At");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProjectzEntityLookupBases");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "ProjectzEntityLookupBase 1 Desc",
+                            Name = "ProjectzEntityLookupBase 1",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "ProjectzEntityLookupBase 2 Desc",
+                            Name = "ProjectzEntityLookupBase 2",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "ProjectzEntityLookupBase 3 Desc",
+                            Name = "ProjectzEntityLookupBase 3",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        });
+                });
 
             modelBuilder.Entity("GLOB.Domain.Hierarchy.BG", b =>
                 {
@@ -1001,6 +1143,15 @@ namespace SBA.Hierarchy.Migrations
                             Status = 0,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });
+                });
+
+            modelBuilder.Entity("GLOB.Domain.Base.ProjectzEntityLookup", b =>
+                {
+                    b.HasOne("GLOB.Domain.Base.ProjectzEntityLookupBase", "ProjectzEntityLookupBase")
+                        .WithMany()
+                        .HasForeignKey("ProjectzEntityLookupBaseId");
+
+                    b.Navigation("ProjectzEntityLookupBase");
                 });
 
             modelBuilder.Entity("GLOB.Domain.Hierarchy.City", b =>

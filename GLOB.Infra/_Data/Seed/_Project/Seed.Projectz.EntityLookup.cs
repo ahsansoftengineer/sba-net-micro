@@ -30,6 +30,7 @@ public static partial class InfraSeeder
         Name = $"{className} {i}",
         Desc = $"{className} {i} Desc",
         Status = Status.None,
+        Code = $"{i}{i}{i}-{i}{i}{i}-{i}{i}{i}",
         ProjectzEntityLookupBaseId = i
       });
     }

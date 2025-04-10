@@ -116,6 +116,23 @@ namespace SBA.Hierarchy.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProjectzEntityLookupBases",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjectzEntityLookupBases", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "States",
                 columns: table => new
                 {
@@ -209,6 +226,30 @@ namespace SBA.Hierarchy.Migrations
                         name: "FK_Systemzs_Orgs_OrgId",
                         column: x => x.OrgId,
                         principalTable: "Orgs",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProjectzEntityLookups",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProjectzEntityLookupBaseId = table.Column<int>(type: "int", nullable: true),
+                    Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjectzEntityLookups", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProjectzEntityLookups_ProjectzEntityLookupBases_ProjectzEntityLookupBaseId",
+                        column: x => x.ProjectzEntityLookupBaseId,
+                        principalTable: "ProjectzEntityLookupBases",
                         principalColumn: "Id");
                 });
 
@@ -349,6 +390,16 @@ namespace SBA.Hierarchy.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "ProjectzEntityLookupBases",
+                columns: new[] { "Id", "Created_At", "Desc", "Name", "Status", "Updated_At" },
+                values: new object[,]
+                {
+                    { 1, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "ProjectzEntityLookupBase 1 Desc", "ProjectzEntityLookupBase 1", 0, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) },
+                    { 2, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "ProjectzEntityLookupBase 2 Desc", "ProjectzEntityLookupBase 2", 0, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) },
+                    { 3, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "ProjectzEntityLookupBase 3 Desc", "ProjectzEntityLookupBase 3", 0, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) }
+                });
+
+            migrationBuilder.InsertData(
                 table: "States",
                 columns: new[] { "Id", "Created_At", "Desc", "Name", "Status", "Updated_At" },
                 values: new object[,]
@@ -399,6 +450,16 @@ namespace SBA.Hierarchy.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "ProjectzEntityLookups",
+                columns: new[] { "Id", "Code", "Created_At", "Desc", "Name", "ProjectzEntityLookupBaseId", "Status", "Updated_At" },
+                values: new object[,]
+                {
+                    { 1, "111-111-111", new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "ProjectzEntityLookup 1 Desc", "ProjectzEntityLookup 1", 1, 0, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) },
+                    { 2, "222-222-222", new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "ProjectzEntityLookup 2 Desc", "ProjectzEntityLookup 2", 2, 0, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) },
+                    { 3, "333-333-333", new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "ProjectzEntityLookup 3 Desc", "ProjectzEntityLookup 3", 3, 0, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Systemzs",
                 columns: new[] { "Id", "Created_At", "Desc", "Name", "OrgId", "Status", "Updated_At" },
                 values: new object[,]
@@ -444,6 +505,11 @@ namespace SBA.Hierarchy.Migrations
                 column: "LEId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProjectzEntityLookups_ProjectzEntityLookupBaseId",
+                table: "ProjectzEntityLookups",
+                column: "ProjectzEntityLookupBaseId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SUs_OUId",
                 table: "SUs",
                 column: "OUId");
@@ -473,6 +539,9 @@ namespace SBA.Hierarchy.Migrations
                 name: "Professions");
 
             migrationBuilder.DropTable(
+                name: "ProjectzEntityLookups");
+
+            migrationBuilder.DropTable(
                 name: "SUs");
 
             migrationBuilder.DropTable(
@@ -486,6 +555,9 @@ namespace SBA.Hierarchy.Migrations
 
             migrationBuilder.DropTable(
                 name: "States");
+
+            migrationBuilder.DropTable(
+                name: "ProjectzEntityLookupBases");
 
             migrationBuilder.DropTable(
                 name: "OUs");
