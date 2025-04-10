@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SBA.Projectz.Data;
 
@@ -11,9 +12,11 @@ using SBA.Projectz.Data;
 namespace SBA.Hierarchy.Migrations
 {
     [DbContext(typeof(ProjectzDBCntxt))]
-    partial class ProjectzDBCntxtModelSnapshot : ModelSnapshot
+    [Migration("20250410104358_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,7 +63,9 @@ namespace SBA.Hierarchy.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProjectzLookupBaseId");
+                    b.HasIndex("ProjectzLookupBaseId")
+                        .IsUnique()
+                        .HasFilter("[ProjectzLookupBaseId] IS NOT NULL");
 
                     b.ToTable("ProjectzLookups");
 
@@ -1145,9 +1150,8 @@ namespace SBA.Hierarchy.Migrations
             modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookup", b =>
                 {
                     b.HasOne("GLOB.Domain.Base.ProjectzLookupBase", "ProjectzLookupBase")
-                        .WithMany("ProjectzLookup")
-                        .HasForeignKey("ProjectzLookupBaseId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .WithOne("ProjectzLookup")
+                        .HasForeignKey("GLOB.Domain.Base.ProjectzLookup", "ProjectzLookupBaseId");
 
                     b.Navigation("ProjectzLookupBase");
                 });
