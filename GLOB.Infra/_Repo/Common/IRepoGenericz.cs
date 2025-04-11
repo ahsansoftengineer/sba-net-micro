@@ -2,6 +2,7 @@ using GLOB.Domain.Base;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using GLOB.Domain.Enums;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace GLOB.Infra.Repo;
 
@@ -25,7 +26,7 @@ public interface IRepoGenericz<T, TKey>
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
     List<string>? Include = null);
   
-  Task Insert(T entity);
+  Task<T> Insert(T entity);
   Task InsertRange(IEnumerable<T> entities);
   Task Delete(TKey id);
   void DeleteRange(IEnumerable<T> entities);

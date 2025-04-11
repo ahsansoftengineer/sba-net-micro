@@ -12,7 +12,7 @@ using SBA.Projectz.Data;
 namespace SBA.Hierarchy.Migrations
 {
     [DbContext(typeof(ProjectzDBCntxt))]
-    [Migration("20250410113440_Init")]
+    [Migration("20250411091029_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace SBA.Hierarchy.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookup", b =>
+            modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookupz", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -65,7 +65,7 @@ namespace SBA.Hierarchy.Migrations
 
                     b.HasIndex("ProjectzLookupzBaseId");
 
-                    b.ToTable("ProjectzLookups");
+                    b.ToTable("ProjectzLookupzs");
 
                     b.HasData(
                         new
@@ -73,8 +73,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 1,
                             Code = "111-111-111",
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            Desc = "ProjectzLookup 1 Desc",
-                            Name = "ProjectzLookup 1",
+                            Desc = "ProjectzLookupz 1 Desc",
+                            Name = "ProjectzLookupz 1",
                             ProjectzLookupzBaseId = 1,
                             Status = 0,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
@@ -84,8 +84,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 2,
                             Code = "222-222-222",
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            Desc = "ProjectzLookup 2 Desc",
-                            Name = "ProjectzLookup 2",
+                            Desc = "ProjectzLookupz 2 Desc",
+                            Name = "ProjectzLookupz 2",
                             ProjectzLookupzBaseId = 2,
                             Status = 0,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
@@ -95,8 +95,8 @@ namespace SBA.Hierarchy.Migrations
                             Id = 3,
                             Code = "333-333-333",
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            Desc = "ProjectzLookup 3 Desc",
-                            Name = "ProjectzLookup 3",
+                            Desc = "ProjectzLookupz 3 Desc",
+                            Name = "ProjectzLookupz 3",
                             ProjectzLookupzBaseId = 3,
                             Status = 0,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
@@ -1145,10 +1145,88 @@ namespace SBA.Hierarchy.Migrations
                         });
                 });
 
-            modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookup", b =>
+            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookupz", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Created_At");
+
+                    b.Property<string>("Desc")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(4);
+
+                    b.Property<int?>("GlobalLookupzBaseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Updated_At");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GlobalLookupzBaseId");
+
+                    b.ToTable("GlobalLookupzs");
+                });
+
+            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookupzBase", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Created_At");
+
+                    b.Property<string>("Desc")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(4);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Updated_At");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GlobalLookupzBases");
+                });
+
+            modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookupz", b =>
                 {
                     b.HasOne("GLOB.Domain.Base.ProjectzLookupzBase", "ProjectzLookupzBase")
-                        .WithMany("ProjectzLookup")
+                        .WithMany("ProjectzLookupz")
                         .HasForeignKey("ProjectzLookupzBaseId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -1200,9 +1278,18 @@ namespace SBA.Hierarchy.Migrations
                     b.Navigation("Org");
                 });
 
+            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookupz", b =>
+                {
+                    b.HasOne("GLOB.Hierarchy.Global.GlobalLookupzBase", "GlobalLookupzBase")
+                        .WithMany("GlobalLookupz")
+                        .HasForeignKey("GlobalLookupzBaseId");
+
+                    b.Navigation("GlobalLookupzBase");
+                });
+
             modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookupzBase", b =>
                 {
-                    b.Navigation("ProjectzLookup");
+                    b.Navigation("ProjectzLookupz");
                 });
 
             modelBuilder.Entity("GLOB.Domain.Hierarchy.BG", b =>
@@ -1228,6 +1315,11 @@ namespace SBA.Hierarchy.Migrations
             modelBuilder.Entity("GLOB.Domain.Hierarchy.State", b =>
                 {
                     b.Navigation("Citys");
+                });
+
+            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookupzBase", b =>
+                {
+                    b.Navigation("GlobalLookupz");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,6 +1,7 @@
 using GLOB.Domain.Base;
 using GLOB.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Linq.Expressions;
 
 namespace GLOB.Infra.Repo;
@@ -49,9 +50,10 @@ public partial class RepoGenericz<T, TKey> : IRepoGenericz<T, TKey>
   {
     _db.RemoveRange(entities);
   }
-  public async Task Insert(T entity)
+  public async Task<T> Insert(T entity)
   {
-    await _db.AddAsync(entity);
+    var result = await _db.AddAsync(entity);
+    return result.Entity;
     //await _context.SaveChangesAsync();
   }
 

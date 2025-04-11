@@ -65,6 +65,23 @@ namespace SBA.Hierarchy.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "GlobalLookupzBases",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GlobalLookupzBases", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Industrys",
                 columns: table => new
                 {
@@ -207,6 +224,30 @@ namespace SBA.Hierarchy.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "GlobalLookupzs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GlobalLookupzBaseId = table.Column<int>(type: "int", nullable: true),
+                    Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GlobalLookupzs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_GlobalLookupzs_GlobalLookupzBases_GlobalLookupzBaseId",
+                        column: x => x.GlobalLookupzBaseId,
+                        principalTable: "GlobalLookupzBases",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Systemzs",
                 columns: table => new
                 {
@@ -230,7 +271,7 @@ namespace SBA.Hierarchy.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProjectzLookups",
+                name: "ProjectzLookupzs",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -245,9 +286,9 @@ namespace SBA.Hierarchy.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectzLookups", x => x.Id);
+                    table.PrimaryKey("PK_ProjectzLookupzs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProjectzLookups_ProjectzLookupzBases_ProjectzLookupzBaseId",
+                        name: "FK_ProjectzLookupzs_ProjectzLookupzBases_ProjectzLookupzBaseId",
                         column: x => x.ProjectzLookupzBaseId,
                         principalTable: "ProjectzLookupzBases",
                         principalColumn: "Id",
@@ -451,13 +492,13 @@ namespace SBA.Hierarchy.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "ProjectzLookups",
+                table: "ProjectzLookupzs",
                 columns: new[] { "Id", "Code", "Created_At", "Desc", "Name", "ProjectzLookupzBaseId", "Status", "Updated_At" },
                 values: new object[,]
                 {
-                    { 1, "111-111-111", new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "ProjectzLookup 1 Desc", "ProjectzLookup 1", 1, 0, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) },
-                    { 2, "222-222-222", new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "ProjectzLookup 2 Desc", "ProjectzLookup 2", 2, 0, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) },
-                    { 3, "333-333-333", new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "ProjectzLookup 3 Desc", "ProjectzLookup 3", 3, 0, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) }
+                    { 1, "111-111-111", new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "ProjectzLookupz 1 Desc", "ProjectzLookupz 1", 1, 0, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) },
+                    { 2, "222-222-222", new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "ProjectzLookupz 2 Desc", "ProjectzLookupz 2", 2, 0, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) },
+                    { 3, "333-333-333", new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "ProjectzLookupz 3 Desc", "ProjectzLookupz 3", 3, 0, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) }
                 });
 
             migrationBuilder.InsertData(
@@ -496,6 +537,11 @@ namespace SBA.Hierarchy.Migrations
                 column: "StateId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_GlobalLookupzs_GlobalLookupzBaseId",
+                table: "GlobalLookupzs",
+                column: "GlobalLookupzBaseId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_LEs_BGId",
                 table: "LEs",
                 column: "BGId");
@@ -506,8 +552,8 @@ namespace SBA.Hierarchy.Migrations
                 column: "LEId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProjectzLookups_ProjectzLookupzBaseId",
-                table: "ProjectzLookups",
+                name: "IX_ProjectzLookupzs_ProjectzLookupzBaseId",
+                table: "ProjectzLookupzs",
                 column: "ProjectzLookupzBaseId");
 
             migrationBuilder.CreateIndex(
@@ -534,13 +580,16 @@ namespace SBA.Hierarchy.Migrations
                 name: "Citys");
 
             migrationBuilder.DropTable(
+                name: "GlobalLookupzs");
+
+            migrationBuilder.DropTable(
                 name: "Industrys");
 
             migrationBuilder.DropTable(
                 name: "Professions");
 
             migrationBuilder.DropTable(
-                name: "ProjectzLookups");
+                name: "ProjectzLookupzs");
 
             migrationBuilder.DropTable(
                 name: "SUs");
@@ -556,6 +605,9 @@ namespace SBA.Hierarchy.Migrations
 
             migrationBuilder.DropTable(
                 name: "States");
+
+            migrationBuilder.DropTable(
+                name: "GlobalLookupzBases");
 
             migrationBuilder.DropTable(
                 name: "ProjectzLookupzBases");

@@ -1,5 +1,6 @@
 using GLOB.Domain.Base;
 using GLOB.Hierarchy.Global;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;
 
@@ -17,12 +18,12 @@ public class _GlobalLookupzController : Project_RDS_Controller<_GlobalLookupzCon
   {
     try
     {
-      var list = await _repo.GetsPaginate(req);
-      return Ok(list);
+      var data = await _repo.GetsPaginate(req);
+      return Ok(data);
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(Gets));
+      return CatchException(ex, nameof(GetsPaginate));
     }
   }
   [HttpGet("[action]")]
@@ -30,8 +31,8 @@ public class _GlobalLookupzController : Project_RDS_Controller<_GlobalLookupzCon
   {
     try
     {
-      var list = await _repo.GetsPaginateOptions(req);
-      return Ok(list);
+      var data = await _repo.GetsPaginateOptions(req);
+      return Ok(data);
     }
     catch (Exception ex)
     {
@@ -41,16 +42,18 @@ public class _GlobalLookupzController : Project_RDS_Controller<_GlobalLookupzCon
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] GlobalLookupzDtoCreate data)
   {
-    if (!ModelState.IsValid) return BadRequestz();
+    if (!ModelState.IsValid) return Res_BadRequestz();
     try
     {
       bool hasParent = _uowProjectz.GlobalLookupzBases.AnyId(data.GlobalLookupzBaseId);
-      if(!hasParent) return InvalidId("Invalid Global Lookupz Base Id");
-
+      if(!hasParent) {
+        ModelState.AddModelError("GlobalLookupzBaseId", $"Invalid Id {data.GlobalLookupzBaseId} record not created"); 
+        return Res_BadRequestz();
+      }
       var result = _mapper.Map<GlobalLookupz>(data);
-      await _repo.Insert(result);
+      var entity = await _repo.Insert(result);
       await _uowProjectz.Save();
-      return Ok(result);
+      return Res_CreatedAtAction(nameof(Get), entity);
     }
     catch (Exception ex)
     {
@@ -61,19 +64,21 @@ public class _GlobalLookupzController : Project_RDS_Controller<_GlobalLookupzCon
   [HttpPut("{id:int}")]
   public async Task<IActionResult> Update(int id, [FromBody] GlobalLookupzDtoCreate data)
   {
-    if (!ModelState.IsValid || id < 1) return InvalidId();
+    if (!ModelState.IsValid || id < 1) return Res_NotFoundUpdate(id);
     try
     {
       var item = await _repo.Get(q => q.Id == id);
-      if (item == null) return InvalidId();
       
       bool hasParent = _uowProjectz.GlobalLookupzBases.AnyId(data.GlobalLookupzBaseId);
-      if(!hasParent) return InvalidId("Invalid Global Lookupz Base Id");
+      if(!hasParent) {
+        ModelState.AddModelError("GlobalLookupzBaseId", $"Invalid GlobalLookupzBase {data.GlobalLookupzBaseId} record not created"); 
+        return Res_BadRequestz();
+      }
 
       var result = _mapper.Map(data, item);
       _repo.Update(item);
       await _uowProjectz.Save();
-      return Ok(result);
+      return NoContent();
     }
     catch (Exception ex)
     {

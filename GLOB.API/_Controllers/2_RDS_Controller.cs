@@ -20,9 +20,17 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
   [HttpGet("{id:int}")]
   public async Task<IActionResult> Get(int id, [FromQuery] List<string>? Include)
   {
-    var single = await _repo.Get(id, Include);
-    var result = single.ToExtResVMSingle();
-    return Ok(result);
+    try
+    {
+      var single = await _repo.Get(id, Include);
+      var result = single.ToExtResVMSingle();
+      return Ok(result);
+    }
+    catch(Exception ex)
+    {
+      return CatchException(ex, nameof(Get));
+    }
+    
   }
   [HttpGet()]
   public async Task<IActionResult> Gets([FromQuery] List<string>? Include)
@@ -41,13 +49,12 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
   [HttpDelete("{id:int}")]
   public async Task<IActionResult> Delete(int id)
   {
-    if (id < 1) return InvalidId();
-
-    var item = await _repo.Get(id);
-    if (item == null) return InvalidId();
-
     try
     {
+      if (id < 1) return Res_NotFoundDelete(id);
+      var item = await _repo.Get(id);
+
+      if (item == null) return Res_NotFoundDelete(id);
       await _repo.Delete(id);
       await _uowInfra.Save();
     }
@@ -55,18 +62,20 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
     {
       return CatchException(ex, nameof(Delete));
     }
-    return NoContent();
+    return Ok("Record Deleted Successfull");
   }
   [HttpPatch("{id:int}")]
   public async Task<IActionResult> Status(int id, [FromBody] Status status)
   {
-    if (!ModelState.IsValid) return BadRequestz();
-    if(!Enum.IsDefined(status)) return InvalidStatus();
+
     try
     {
+      if (!ModelState.IsValid) return Res_NotFoundStatus(id);
+      if(!Enum.IsDefined(status)) return Res_InvalidEnums(status.ToString());
+      
       var item = await _repo.Get(id);
 
-      if (item == null) return InvalidId();
+      if (item == null) return Res_NotFoundStatus(id);
 
       _repo.UpdateStatus(item, status);
       await _uowInfra.Save();

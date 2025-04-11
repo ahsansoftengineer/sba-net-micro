@@ -1142,6 +1142,84 @@ namespace SBA.Hierarchy.Migrations
                         });
                 });
 
+            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookupz", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Created_At");
+
+                    b.Property<string>("Desc")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(4);
+
+                    b.Property<int?>("GlobalLookupzBaseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Updated_At");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GlobalLookupzBaseId");
+
+                    b.ToTable("GlobalLookupzs");
+                });
+
+            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookupzBase", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Created_At");
+
+                    b.Property<string>("Desc")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(4);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Updated_At");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GlobalLookupzBases");
+                });
+
             modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookupz", b =>
                 {
                     b.HasOne("GLOB.Domain.Base.ProjectzLookupzBase", "ProjectzLookupzBase")
@@ -1197,6 +1275,15 @@ namespace SBA.Hierarchy.Migrations
                     b.Navigation("Org");
                 });
 
+            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookupz", b =>
+                {
+                    b.HasOne("GLOB.Hierarchy.Global.GlobalLookupzBase", "GlobalLookupzBase")
+                        .WithMany("GlobalLookupz")
+                        .HasForeignKey("GlobalLookupzBaseId");
+
+                    b.Navigation("GlobalLookupzBase");
+                });
+
             modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookupzBase", b =>
                 {
                     b.Navigation("ProjectzLookupz");
@@ -1225,6 +1312,11 @@ namespace SBA.Hierarchy.Migrations
             modelBuilder.Entity("GLOB.Domain.Hierarchy.State", b =>
                 {
                     b.Navigation("Citys");
+                });
+
+            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookupzBase", b =>
+                {
+                    b.Navigation("GlobalLookupz");
                 });
 #pragma warning restore 612, 618
         }

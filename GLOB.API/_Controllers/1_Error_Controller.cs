@@ -1,4 +1,5 @@
 using AutoMapper;
+using GLOB.Domain.Base;
 using GLOB.Infra.UOW_Projectz;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -46,8 +47,17 @@ public abstract class API_1_ErrorController<TController> : ControllerBase
     _logger.LogError(ex, $"Something went wrong in the {methodName}");
     return StatusCode(500, "Internal Server Error, Please try again later");
   }
-
-  protected ObjectResult BadRequestz(IEnumerable<IdentityError> errors)
+  protected ObjectResult Res_BadRequestz()
+  {
+    foreach (var ms in ModelState)
+    {
+      _logger.LogError($"{ms.Key} :\t {ms.Value}");
+    }
+    if (!ModelState.Any(x => x.Key == "Message"))
+      ModelState.AddModelError("Message", "Bad Request 400");
+    return BadRequest(ModelState);
+  }
+  protected ObjectResult Res_BadRequestz(IEnumerable<IdentityError> errors)
   {
     foreach (var item in errors)
     {
@@ -61,44 +71,30 @@ public abstract class API_1_ErrorController<TController> : ControllerBase
       ModelState.AddModelError("Message", "Bad Request 400");
     return BadRequest(ModelState);
   }
-  protected ObjectResult BadRequestz()
+  protected ObjectResult Res_CreatedAtAction(string location, IEntityAlpha entity)
   {
-    foreach (var ms in ModelState)
-    {
-      _logger.LogError($"{ms.Key} :\t {ms.Value}");
-    }
-    if (!ModelState.Any(x => x.Key == "Message"))
-      ModelState.AddModelError("Message", "Bad Request 400");
-    return BadRequest(ModelState);
+    return CreatedAtAction(location, new { id = entity.Id }, entity);
   }
-  protected ObjectResult BadRequestz(string message = $"Bad Request fail to process")
+  protected ObjectResult Res_NotFoundUpdate(int Id)
   {
-    ModelState.AddModelError("Message", message);
-    return BadRequestz();
+    return NotFound($"Invalid id {Id} not updated the record");
   }
-  protected ObjectResult NotFound(string message = $"Invalid attempt record not found")
+  protected ObjectResult Res_NotFoundDelete(int Id)
   {
-    return BadRequestz(message);
+    return NotFound($"Invalid id {Id} not deleted the record");
   }
-  protected ObjectResult NotAuthorised(string message = $"Invalid attempt you are not Authorised")
+  protected ObjectResult Res_NotFoundStatus(int Id)
   {
-    return BadRequestz(message);
+    return NotFound($"Invalid id {Id} not updated the status");
   }
-  protected ObjectResult InvalidId(string message = $"Invalid Id record not Updated")
+  protected ObjectResult Res_InvalidEnums(string status)
   {
-    return BadRequestz(message);
+    return NotFound($"Invalid data {status} not updated the record");
   }
-  protected ObjectResult FileInvalid(string message = $"Invalid file not Uploaded")
+
+
+  protected ObjectResult Res_NotAuthorised()
   {
-    return BadRequestz(message);
-  }
-  protected ObjectResult InvalidStatus(string message = $"Invalid Status record not updated")
-  {
-    ModelState.AddModelError("Status", "Invalid Status");
-    return BadRequestz(message);
-  }
-  protected ObjectResult InvalidDelete(string message = $"Invalid Id record not Deleted")
-  {
-    return BadRequestz(message);
+    return BadRequest($"You don't permission to perform the action");
   }
 }

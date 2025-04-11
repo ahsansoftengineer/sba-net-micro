@@ -30,7 +30,7 @@ public class LEController : Project_RDS_Controller<LEController, LE>
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] LEDtoCreate data)
   {
-    if (!ModelState.IsValid) return BadRequestz();
+    if (!ModelState.IsValid) return Res_BadRequestz();
     try
     {
       bool hasParent = _uowProjectz.BGs.AnyId(data.BGId);

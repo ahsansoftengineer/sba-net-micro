@@ -18,28 +18,31 @@ public class CityController : Project_RDS_Controller<CityController, City>
   {
     try
     {
-      var list = await _repo.GetsPaginate(req);
-      return Ok(list);
+      var data = await _repo.GetsPaginate(req);
+      return Ok(data);
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(Gets));
+      return CatchException(ex, nameof(GetsPaginate));
     }
   }
 
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] CityDtoCreate data)
   {
-    if (!ModelState.IsValid) return BadRequestz();
+    if (!ModelState.IsValid) return Res_BadRequestz();
     try
     {
       bool hasParent = _uowProjectz.States.AnyId(data.StateId);
-      if(!hasParent) return InvalidId("Invalid State");
+     if(!hasParent) {
+        ModelState.AddModelError("StateId", $"Invalid Id {data.StateId} record not created"); 
+        return Res_BadRequestz();
+      }
 
       var result = _mapper.Map<City>(data);
-      await _repo.Insert(result);
+      var entity = await _repo.Insert(result);
       await _uowInfra.Save();
-      return Ok(result);
+      return Res_CreatedAtAction(nameof(Get), entity);
     }
     catch (Exception ex)
     {
@@ -50,19 +53,24 @@ public class CityController : Project_RDS_Controller<CityController, City>
   [HttpPut("{id:int}")]
   public async Task<IActionResult> Update(int id, [FromBody] CityDtoCreate data)
   {
-    if (!ModelState.IsValid || id < 1) return InvalidId();
     try
     {
+      if (id < 1) return Res_NotFoundUpdate(id);
+      if(!ModelState.IsValid) return Res_BadRequestz();
+
       var item = await _repo.Get(q => q.Id == id);
-      if (item == null) return InvalidId();
+      if (item == null) return Res_NotFoundUpdate(id);
       
       bool hasParent = _uowProjectz.States.AnyId(data.StateId);
-      if(!hasParent) return InvalidId("Invalid State");
+      if(!hasParent) {
+        ModelState.AddModelError("StateId", $"Invalid Id {data.StateId} record not created"); 
+        return Res_BadRequestz();
+      }
 
       var result = _mapper.Map(data, item);
       _repo.Update(item);
       await _uowInfra.Save();
-      return Ok(result);
+      return NoContent();
     }
     catch (Exception ex)
     {
