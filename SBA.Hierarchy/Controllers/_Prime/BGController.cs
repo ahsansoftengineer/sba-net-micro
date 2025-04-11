@@ -4,7 +4,7 @@ using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers.Prime;
 
-[Route("api/Hierarchy/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class BGController : Projectz_Default_Controller<BGController, BG>
 {

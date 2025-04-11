@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers.Test;
-[Route("api/Hierarchy/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class LEController : Project_RDS_Controller<LEController, LE>
 {

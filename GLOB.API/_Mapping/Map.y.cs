@@ -5,7 +5,6 @@ public partial class API_Base_Mapper
 {
   public virtual void MapAll()
   {
-
     CreateMapAll<ProjectzLookupz, ProjectzLookupzDtoCreate, ProjectzLookupzDtoSearch>();
   }
 }

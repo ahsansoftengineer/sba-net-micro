@@ -15,8 +15,9 @@ public class Startup
 
   public void ConfigureServices(IServiceCollection srvc)
   {
-    
-    srvc.Add_API_DI_Common("SBA Hierarchy");
+    string ProjectzSwaggerName = _config.GetValue<string>("ProjectzSwaggerName") ?? string.Empty;
+    string ProjectzRoutePrefix = _config.GetValue<string>("ProjectzRoutePrefix") ?? string.Empty;
+    srvc.Add_API_DI_Common(ProjectzSwaggerName, ProjectzRoutePrefix);
     srvc.Add_Projectz_Srvc(_config);
     srvc.Add_API_DefaultExternalServices();
 

@@ -16,7 +16,11 @@ public class Startup
   }
   public void ConfigureServices(IServiceCollection srvc)
   {
-    // srvc.Add_API_DI_Common();
+    // string ProjectzSwaggerName = _config.GetValue<string>("ProjectzSwaggerName") ?? string.Empty;
+    // string ProjectzRoutePrefix = _config.GetValue<string>("ProjectzRoutePrefix") ?? string.Empty;
+    // srvc.Add_API_DI_Common(ProjectzSwaggerName, ProjectzRoutePrefix);
+
+    
     // srvc.Config_DB_SQL<DBCntxt, IUOW_Infra, UOW_Infra>(_config);
     // srvc.Config_DB_Identity<DBCntxtIdentity, IUOW_Infra, UOW_Infra>(_config);
     // srvc.AddAutoMapper(typeof(API_Base_Mapper));

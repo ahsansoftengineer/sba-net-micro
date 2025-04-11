@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
 
-[Route("api/Auth/[controller]")]
+[Route("[controller]")]
 public partial class UserController : AccountBaseController<UserController>
 {
   private readonly RoleManager<InfraRole> _roleManager;

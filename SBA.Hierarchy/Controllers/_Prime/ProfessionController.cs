@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers.Prime;
-[Route("api/Hierarchy/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class ProfessionController : Projectz_Default_Controller<ProfessionController, Profession>
 {

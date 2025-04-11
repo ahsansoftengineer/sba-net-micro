@@ -5,7 +5,7 @@
 // using SBA.Projectz.Controllers.Base;
 
 // namespace SBA.Hierarchy.Controllers;
-// [Route("api/Hierarchy/[controller]")]
+// [Route("[controller]")]
 // [ApiController]
 // public class OUController : Project_RDS_Controller<OUController, OU, OUDtoRead>
 // {

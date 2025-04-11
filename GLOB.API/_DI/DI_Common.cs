@@ -1,3 +1,4 @@
+using GLOB.API.Configz;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.SwaggerUI;
@@ -26,14 +27,16 @@ public static partial class API_DI_Common
       ep.MapControllers();
     });
   }
-  public static void Config_Controllerz(this IServiceCollection srvc)
+  public static void Config_Controllerz(this IServiceCollection srvc, string routePrefix = "api/v1")
   {
     srvc
       // API Caching 3. Defining Cache Profile
-      .AddControllers(config =>
+      .AddControllers(options =>
       {
-        //config.Filters<Filters>();
-        config.CacheProfiles.Add("120SecondsDuration", new CacheProfile
+        options.Conventions.Insert(0, new GlobalRoutePrefixConvention(routePrefix));
+      
+        //options.Filters<Filters>();
+        options.CacheProfiles.Add("120SecondsDuration", new CacheProfile
         {
           Duration = 5
           //,Location = ResponseCacheLocation.Client

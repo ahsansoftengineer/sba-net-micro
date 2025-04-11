@@ -11,7 +11,26 @@ dotnet add ./SBA.Auth/ reference ./GLOB.API/
 - 
 - 
 
+### API EntityBase for Sub Projects Guide
+- Api Controller EntityBase Example
+- - Create, Read, Update, Delete
+- - Status, Pagination, Pagination Options
+- Files & Folders Reference to Create EntityBase
+- [EntityBase Example](https://github.com/ahsansoftengineer/sb-admin-dot-net-micro/commit/bf9eea9f6af3c476bd87fab3848e2d6ba3979224)
+- [Github Branch](2_API_Example_CRUD_SPO_EntityForAllProjects_Child)
+
+### API EntityCustom for Sub Projects Guide
+- Api Controller EntityCustom Example
+- - Create, Read, Update, Delete
+- - Status, Pagination, Pagination Options
+- Customization for Child Entity 
+- Files & Folders Reference to Create Child Entity
+- [EntityChild Example](https://github.com/ahsansoftengineer/sb-admin-dot-net-micro/commit/c283579a08c0fdeeb9a33331540d3cc5b228d709)
+
+
+
 ### Copy Paste the Pattern From Hierarchy Project
+- Files and Folder 
 - Copy _Controllers (For Generic Controller Customization)
 - - Contains (BasezContr)
 - Copy _DI (To Configure Dependency Injection)

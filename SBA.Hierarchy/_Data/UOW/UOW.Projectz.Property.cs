@@ -2,6 +2,7 @@ using GLOB.Infra.Repo;
 using GLOB.Domain.Hierarchy;
 using GLOB.Domain.Projectz;
 using GLOB.Infra.UOW_Projectz;
+using GLOB.Hierarchy.Global;
 
 namespace SBA.Projectz.Data;
 public partial class UOW_Projectz : UOW_Infra, IUOW_Projectz
@@ -9,6 +10,7 @@ public partial class UOW_Projectz : UOW_Infra, IUOW_Projectz
   public UOW_Projectz(ProjectzDBCntxt context): base(context) { }
   private IRepoGenericz<ProjectzEntityTest>? _testProj;
   // .-*
+  private IRepoGenericz<GlobalLookupzBase>? _globalLookupzBase;
   private IRepoGenericz<Org>? _Orgs;
   private IRepoGenericz<BG>? _BG;
   private IRepoGenericz<State>? _State;
@@ -18,6 +20,7 @@ public partial class UOW_Projectz : UOW_Infra, IUOW_Projectz
   private IRepoGenericz<Profession>? _Profession;
   
   // *-.
+  private IRepoGenericz<GlobalLookupz>? _globalLookupz;
   private IRepoGenericz<Systemz>? _Systemz;
   private IRepoGenericz<LE>? _LE;
   private IRepoGenericz<OU>? _OU;

@@ -1,5 +1,6 @@
 using GLOB.Domain.Hierarchy;
 using GLOB.Domain.Projectz;
+using GLOB.Hierarchy.Global;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Projectz.Data;
@@ -8,6 +9,7 @@ public partial class ProjectzDBCntxt
 
   public DbSet<ProjectzEntityTest> TestProjs { get; set; }
   // .-*
+  public DbSet<GlobalLookupzBase> GlobalLookupzBases { get; set; }
   public DbSet<Org> Orgs { get; set; }
   public DbSet<BG> BGs { get; set; }
   public DbSet<State> States { get; set; }
@@ -17,6 +19,7 @@ public partial class ProjectzDBCntxt
   public DbSet<Profession> Professions { get; set; }
 
   // *-.
+  public DbSet<GlobalLookupz> GlobalLookupzs { get; set; }
   public DbSet<Systemz> Systemzs { get; set; }
   public DbSet<LE> LEs { get; set; }
   public DbSet<OU> OUs { get; set; }

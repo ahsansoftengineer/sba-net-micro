@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Auth.Controllers.Test;
-[Route("api/Auth/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class _Projectz_EntityTestController : Projectz_Default_Controller<_Projectz_EntityTestController, ProjectzEntityTest>
 {

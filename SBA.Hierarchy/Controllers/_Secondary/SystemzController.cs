@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers;
-[Route("api/Hierarchy/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class SystemzController : Project_RDS_Controller<SystemzController, Systemz>
 {

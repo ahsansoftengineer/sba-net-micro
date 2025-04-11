@@ -4,14 +4,14 @@ using GLOB.API.Middlewarez;
 namespace GLOB.API.DI;
 public static partial class API_DI_Common
 {
-  public static void Add_API_DI_Common(this IServiceCollection srvc, string ProjectNameSwagger = "Swagger Name Project")
+  public static void Add_API_DI_Common(this IServiceCollection srvc, string ProjectNameSwagger, string ProjectzRoutePrefix)
   {
     // Config_CachingService(srvc);
     // srvc.AddAuthentication();
     // srvc.AddAuthorization();
     srvc.Config_Cors();
     srvc.AddAutoMapper(typeof(API_Base_Mapper));
-    srvc.Config_Controllerz();
+    srvc.Config_Controllerz(ProjectzRoutePrefix); // Commented because of MVC Customization
     srvc.Config_Swagger(ProjectNameSwagger);
     // srvc.Config_Versioning();
   }

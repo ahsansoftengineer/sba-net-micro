@@ -1,6 +1,7 @@
 using GLOB.Infra.Repo;
 using GLOB.Domain.Hierarchy;
 using GLOB.Domain.Projectz;
+using GLOB.Hierarchy.Global;
 
 namespace SBA.Projectz.Data;
 public partial class UOW_Projectz
@@ -8,6 +9,7 @@ public partial class UOW_Projectz
   public IRepoGenericz<ProjectzEntityTest> TestProjs => _testProj ??= new RepoGenericz<ProjectzEntityTest>(_context);
   
   // .-*
+  public IRepoGenericz<GlobalLookupzBase> GlobalLookupzBases => _globalLookupzBase ??= new RepoGenericz<GlobalLookupzBase>(_context);
   public IRepoGenericz<Org> Orgs => _Orgs ??= new RepoGenericz<Org>(_context);
   public IRepoGenericz<BG> BGs => _BG ??= new RepoGenericz<BG>(_context);
   public IRepoGenericz<State> States => _State ??= new RepoGenericz<State>(_context);
@@ -17,6 +19,7 @@ public partial class UOW_Projectz
   public IRepoGenericz<Profession> Professions => _Profession ??= new RepoGenericz<Profession>(_context);
 
   // *-.
+  public IRepoGenericz<GlobalLookupz> GlobalLookupzs => _globalLookupz ??= new RepoGenericz<GlobalLookupz>(_context);
   public IRepoGenericz<LE> LEs => _LE ??= new RepoGenericz<LE>(_context);
   public IRepoGenericz<OU> OUs => _OU ??= new RepoGenericz<OU>(_context);
   public IRepoGenericz<SU> SUs => _SU ??= new RepoGenericz<SU>(_context);

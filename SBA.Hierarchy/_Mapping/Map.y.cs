@@ -1,5 +1,6 @@
 using GLOB.API.Mapper;
 using GLOB.Domain.Hierarchy;
+using GLOB.Hierarchy.Global;
 
 namespace SBA.Projectz.Mapper;
 public partial class ProjectzMapper : API_Base_Mapper
@@ -10,6 +11,8 @@ public partial class ProjectzMapper : API_Base_Mapper
   public override void MapAll() 
   {
     base.MapAll();
+    CreateMapAll<GlobalLookupz, GlobalLookupzDtoCreate, GlobalLookupzDtoRead, GlobalLookupzDtoSearch>();
+
     CreateMapAll<Systemz, SystemzDtoCreate, SystemzDtoRead, SystemzDtoSearch>();
     CreateMapAll<LE, LEDtoCreate, LEDtoRead, LEDtoSearch>();
     CreateMapAll<OU, OUDtoCreate, OUDtoRead, OUDtoSearch>();

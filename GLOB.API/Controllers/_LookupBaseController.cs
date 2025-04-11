@@ -1,10 +1,9 @@
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Base;
-using GLOB.Domain.Projectz;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GLOB.API.Controllers.Test;
-[Route("api/Test/[controller]")]
+namespace GLOB.Projectz.Controllers;
+[Route("api/Projectz/[controller]")]
 [ApiController]
 public class _LookupzBaseController : API_4_Default_Controller<_LookupzBaseController, ProjectzLookupzBase>
 {

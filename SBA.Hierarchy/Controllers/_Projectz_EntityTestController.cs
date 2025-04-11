@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers.Test;
-[Route("api/Hierarchy/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class _Projectz_EntityTestController : Projectz_Default_Controller<_Projectz_EntityTestController, ProjectzEntityTest>
 {

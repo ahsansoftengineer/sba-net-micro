@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers.Prime;
-[Route("api/Hierarchy/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class OrgController : Projectz_Default_Controller<OrgController, Org>
 {

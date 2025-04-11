@@ -3,7 +3,7 @@ using GLOB.Infra.Helper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
-[Route("api/Auth/[controller]")]
+[Route("[controller]")]
 public partial class AccountController : AccountBaseController<AccountController>
 {
   // private IRepoGenericz<AccountId> _repo = null;
