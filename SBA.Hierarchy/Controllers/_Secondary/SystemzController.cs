@@ -9,7 +9,7 @@ public class SystemzController : Project_RDS_Controller<SystemzController, Syste
 {
   public SystemzController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = _uow.Systemzs;
+    _repo = _uowProjectz.Systemzs;
   }
 
   [HttpPost]

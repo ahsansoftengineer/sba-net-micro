@@ -1,19 +1,19 @@
-using GLOB.API.Controllers.Base;
 using GLOB.Domain.Base;
+using GLOB.Hierarchy.Global;
 using Microsoft.AspNetCore.Mvc;
+using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers;
 [Route("[controller]")]
-[ApiController]
-public class _LookupzController : API_2_RDS_Controller<_LookupzController, ProjectzLookupz>
+public class _GlobalLookupzController : Project_RDS_Controller<_GlobalLookupzController, GlobalLookupz>
 {
-  public _LookupzController(IServiceProvider srvcProvider) : base(srvcProvider)
+  public _GlobalLookupzController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = _uowInfra.ProjectzLookupzs;
+    _repo = _uowProjectz.GlobalLookupzs;
   }
 
   [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginate([FromQuery] DtoPageReq<ProjectzLookupzDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginate([FromQuery] DtoPageReq<GlobalLookupzDtoSearch?> req)
   {
     try
     {
@@ -26,7 +26,7 @@ public class _LookupzController : API_2_RDS_Controller<_LookupzController, Proje
     }
   }
   [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginateOptions([FromQuery] DtoPageReq<ProjectzLookupzDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginateOptions([FromQuery] DtoPageReq<GlobalLookupzDtoSearch?> req)
   {
     try
     {
@@ -39,17 +39,17 @@ public class _LookupzController : API_2_RDS_Controller<_LookupzController, Proje
     }
   }
   [HttpPost]
-  public async Task<IActionResult> Create([FromBody] ProjectzLookupzDtoCreate data)
+  public async Task<IActionResult> Create([FromBody] GlobalLookupzDtoCreate data)
   {
     if (!ModelState.IsValid) return BadRequestz();
     try
     {
-      bool hasParent = _uowInfra.ProjectzLookupzBases.AnyId(data.ProjectzLookupzBaseId);
-      if(!hasParent) return InvalidId("Invalid Lookupz Base Id");
+      bool hasParent = _uowProjectz.GlobalLookupzBases.AnyId(data.GlobalLookupzBaseId);
+      if(!hasParent) return InvalidId("Invalid Global Lookupz Base Id");
 
-      var result = _mapper.Map<ProjectzLookupz>(data);
+      var result = _mapper.Map<GlobalLookupz>(data);
       await _repo.Insert(result);
-      await _uowInfra.Save();
+      await _uowProjectz.Save();
       return Ok(result);
     }
     catch (Exception ex)
@@ -59,7 +59,7 @@ public class _LookupzController : API_2_RDS_Controller<_LookupzController, Proje
   }
 
   [HttpPut("{id:int}")]
-  public async Task<IActionResult> Update(int id, [FromBody] ProjectzLookupzDtoCreate data)
+  public async Task<IActionResult> Update(int id, [FromBody] GlobalLookupzDtoCreate data)
   {
     if (!ModelState.IsValid || id < 1) return InvalidId();
     try
@@ -67,12 +67,12 @@ public class _LookupzController : API_2_RDS_Controller<_LookupzController, Proje
       var item = await _repo.Get(q => q.Id == id);
       if (item == null) return InvalidId();
       
-      bool hasParent = _uowInfra.ProjectzLookupzBases.AnyId(data.ProjectzLookupzBaseId);
-      if(!hasParent) return InvalidId("Invalid Lookupz Base Id");
+      bool hasParent = _uowProjectz.GlobalLookupzBases.AnyId(data.GlobalLookupzBaseId);
+      if(!hasParent) return InvalidId("Invalid Global Lookupz Base Id");
 
       var result = _mapper.Map(data, item);
       _repo.Update(item);
-      await _uowInfra.Save();
+      await _uowProjectz.Save();
       return Ok(result);
     }
     catch (Exception ex)

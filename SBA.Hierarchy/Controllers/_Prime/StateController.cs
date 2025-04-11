@@ -9,6 +9,6 @@ public class StateController : Projectz_Default_Controller<StateController, Stat
 {
   public StateController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = _uow.States;
+    _repo = _uowProjectz.States;
   }
 }

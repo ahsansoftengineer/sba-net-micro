@@ -10,6 +10,6 @@ public class BGController : Projectz_Default_Controller<BGController, BG>
 {
   public BGController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = _uow.BGs;
+    _repo = _uowProjectz.BGs;
   }
 }

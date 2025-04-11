@@ -10,7 +10,7 @@ public class LEController : Project_RDS_Controller<LEController, LE>
 {
   public LEController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = _uow.LEs;
+    _repo = _uowProjectz.LEs;
   }
 
   [HttpGet("[action]")]
@@ -33,13 +33,13 @@ public class LEController : Project_RDS_Controller<LEController, LE>
     if (!ModelState.IsValid) return BadRequestz();
     try
     {
-      bool hasParent = _uow.BGs.AnyId(data.BGId);
+      bool hasParent = _uowProjectz.BGs.AnyId(data.BGId);
       if(!hasParent) return InvalidId("Invalid Business Group");
 
       var result = _mapper.Map<LE>(data);
 
       await _repo.Insert(result);
-      await _uow.Save();
+      await _uowProjectz.Save();
       return Ok(result);
     }
     catch (Exception ex)
@@ -57,12 +57,12 @@ public class LEController : Project_RDS_Controller<LEController, LE>
       var item = await _repo.Get(q => q.Id == id);
       if (item == null) return InvalidId();
       
-      bool hasParent = _uow.BGs.AnyId(data.BGId);
+      bool hasParent = _uowProjectz.BGs.AnyId(data.BGId);
       if(!hasParent) return InvalidId("Invalid State");
 
       var result = _mapper.Map(data, item);
       _repo.Update(item);
-      await _uow.Save();
+      await _uowProjectz.Save();
       return Ok(result);
     }
     catch (Exception ex)

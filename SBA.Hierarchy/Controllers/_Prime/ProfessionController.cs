@@ -9,6 +9,6 @@ public class ProfessionController : Projectz_Default_Controller<ProfessionContro
 {
   public ProfessionController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = _uow.Professions;
+    _repo = _uowProjectz.Professions;
   }
 }

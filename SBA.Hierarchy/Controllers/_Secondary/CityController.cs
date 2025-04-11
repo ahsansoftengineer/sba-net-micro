@@ -10,7 +10,7 @@ public class CityController : Project_RDS_Controller<CityController, City>
 {
   public CityController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = _uow.Citys;
+    _repo = _uowProjectz.Citys;
   }
 
   [HttpGet("[action]")]
@@ -33,7 +33,7 @@ public class CityController : Project_RDS_Controller<CityController, City>
     if (!ModelState.IsValid) return BadRequestz();
     try
     {
-      bool hasParent = _uow.States.AnyId(data.StateId);
+      bool hasParent = _uowProjectz.States.AnyId(data.StateId);
       if(!hasParent) return InvalidId("Invalid State");
 
       var result = _mapper.Map<City>(data);
@@ -56,7 +56,7 @@ public class CityController : Project_RDS_Controller<CityController, City>
       var item = await _repo.Get(q => q.Id == id);
       if (item == null) return InvalidId();
       
-      bool hasParent = _uow.States.AnyId(data.StateId);
+      bool hasParent = _uowProjectz.States.AnyId(data.StateId);
       if(!hasParent) return InvalidId("Invalid State");
 
       var result = _mapper.Map(data, item);

@@ -9,6 +9,6 @@ public class _GlobalLookupzBaseController  : Projectz_Default_Controller<_Global
 {
   public _GlobalLookupzBaseController (IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = _uow.GlobalLookupzBases;
+    _repo = _uowProjectz.GlobalLookupzBases;
   }
 }

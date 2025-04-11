@@ -9,7 +9,7 @@
 // {
 //   public SUController(IServiceProvider srvcProvider) : base(srvcProvider)
 //   {
-//     _repo = _uow.SUs;
+//     _repo = _uowProjectz.SUs;
 //   }
 
 //   [HttpPost]

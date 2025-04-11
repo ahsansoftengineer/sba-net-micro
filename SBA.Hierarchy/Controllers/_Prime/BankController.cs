@@ -9,6 +9,6 @@ public class BankController : Projectz_Default_Controller<BankController, Bank>
 {
   public BankController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = _uow.Banks;
+    _repo = _uowProjectz.Banks;
   }
 }

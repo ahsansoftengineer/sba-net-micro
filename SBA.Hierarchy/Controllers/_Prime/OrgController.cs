@@ -9,6 +9,6 @@ public class OrgController : Projectz_Default_Controller<OrgController, Org>
 {
   public OrgController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = _uow.Orgs;
+    _repo = _uowProjectz.Orgs;
   }
 }

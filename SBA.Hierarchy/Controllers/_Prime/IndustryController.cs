@@ -9,6 +9,6 @@ public class IndustryController : Projectz_Default_Controller<IndustryController
 {
   public IndustryController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = _uow.Industrys;
+    _repo = _uowProjectz.Industrys;
   }
 }

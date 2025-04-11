@@ -9,6 +9,6 @@ public class BrandController : Projectz_Default_Controller<BrandController, Bran
 {
   public BrandController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = _uow.Brands;
+    _repo = _uowProjectz.Brands;
   }
 }
