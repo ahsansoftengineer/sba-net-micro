@@ -9,7 +9,7 @@
 - GetsPaginate (Get)
 - GetsPaginateOptions (Get)
 
-### EntityShortParent Projectz (Every Microservice)
+### EntityShortParent Projectz (Every Microservice) (Done)
 - Specific to Microservices (Goes inside Every Microservicies)
 - EntityShortParentProjectz CRUD
 - EntityShortProjectz CRUD

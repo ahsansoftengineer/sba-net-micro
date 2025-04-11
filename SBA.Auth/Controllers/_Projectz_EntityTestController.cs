@@ -9,6 +9,6 @@ public class _Projectz_EntityTestController : Projectz_Default_Controller<_Proje
 {
   public _Projectz_EntityTestController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = _uow.TestProjs;
+    _repo = _uowProjectz.TestProjs;
   }
 }
