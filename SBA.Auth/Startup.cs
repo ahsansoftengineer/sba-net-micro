@@ -15,7 +15,9 @@ public class Startup
 
   public void ConfigureServices(IServiceCollection srvc)
   {
-    srvc.Add_API_DI_Common("SBA Authorization");
+    string ProjectzSwaggerName = _config.GetValueStr("ProjectzSwaggerName");
+    string ProjectzRoutePrefix = _config.GetValueStr("ProjectzRoutePrefix");
+    srvc.Add_API_DI_Common(ProjectzSwaggerName, ProjectzRoutePrefix);
     srvc.Add_Projectz_Srvc(_config);
     srvc.Add_API_DefaultExternalServices();
 
