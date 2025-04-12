@@ -6,37 +6,37 @@ using Microsoft.AspNetCore.Mvc;
 namespace SBA.Projectz.Controllers;
 [Route("[controller]")]
 [ApiController]
-public class _LookupzController : API_2_RDS_Controller<_LookupzController, ProjectzLookupz>
+public class _ProjectzLookupzController : API_2_RDS_Controller<_ProjectzLookupzController, ProjectzLookupzz>
 {
-  public _LookupzController(IServiceProvider srvcProvider) : base(srvcProvider)
+  public _ProjectzLookupzController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = _uowInfra.ProjectzLookupzs;
+    _repo = _uowInfra.ProjectzLookupzzs;
   }
 
   [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginate([FromQuery] DtoPageReq<ProjectzLookupzDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginate([FromQuery] DtoPageReq<ProjectzLookupzzDtoSearch?> req)
   {
     return await _Actionz.GetsPaginatez(_repo, req);
   }
 
   [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginateOptions([FromQuery] DtoPageReq<ProjectzLookupzDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginateOptions([FromQuery] DtoPageReq<ProjectzLookupzzDtoSearch?> req)
   {
     return await _Actionz.GetsPaginateOptionsz(_repo, req);
   }
 
   [HttpPost]
-  public async Task<IActionResult> Create([FromBody] ProjectzLookupzDtoCreate data)
+  public async Task<IActionResult> Create([FromBody] ProjectzLookupzzDtoCreate data)
   {
     try
     {
-      bool hasParent = _uowInfra.ProjectzLookupzBases.AnyId(data.ProjectzLookupzBaseId);
-      if(!hasParent) return _Res.BadRequestzId("ProjectzLookupzBaseId",data.ProjectzLookupzBaseId);
+      bool hasParent = _uowInfra.ProjectzLookupzzBases.AnyId(data.ProjectzLookupzzBaseId);
+      if(!hasParent) return _Res.BadRequestzId("ProjectzLookupzzBaseId",data.ProjectzLookupzzBaseId);
 
-      var result = _mapper.Map<ProjectzLookupz>(data);
-      await _repo.Insert(result);
+      var result = _mapper.Map<ProjectzLookupzz>(data);
+      var entity = await _repo.Insert(result);
       await _uowInfra.Save();
-      return Ok(result);
+      return _Res.CreatedAtAction(this, nameof(Get), entity);
     }
     catch (Exception ex)
     {
@@ -45,7 +45,7 @@ public class _LookupzController : API_2_RDS_Controller<_LookupzController, Proje
   }
 
   [HttpPut("{Id:int}")]
-  public async Task<IActionResult> Update(int Id, [FromBody] ProjectzLookupzDtoCreate data)
+  public async Task<IActionResult> Update(int Id, [FromBody] ProjectzLookupzzDtoCreate data)
   {
     try
     {
@@ -54,8 +54,8 @@ public class _LookupzController : API_2_RDS_Controller<_LookupzController, Proje
       var item = await _repo.Get(q => q.Id == Id);
       if (item == null) return _Res.NotFoundId(Id);
       
-      bool hasParent = _uowInfra.ProjectzLookupzBases.AnyId(data.ProjectzLookupzBaseId);
-      if(!hasParent) return _Res.BadRequestzId("ProjectzLookupzBaseId",data.ProjectzLookupzBaseId);
+      bool hasParent = _uowInfra.ProjectzLookupzzBases.AnyId(data.ProjectzLookupzzBaseId);
+      if(!hasParent) return _Res.BadRequestzId("ProjectzLookupzzBaseId",data.ProjectzLookupzzBaseId);
 
       var result = _mapper.Map(data, item);
       _repo.Update(item);
