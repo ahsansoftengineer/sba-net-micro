@@ -7,7 +7,7 @@ namespace GLOB.Infra.Data;
 public partial class DBCntxt
 {
   public DbSet<API_Infra_EntityTest> TestInfras { get; set; }
-  public DbSet<ProjectzLookupzBase> ProjectzLookupzBases { get; set; }
-  public DbSet<ProjectzLookupz> ProjectzLookupzs { get; set; }
+  public DbSet<ProjectzLookupzzBase> ProjectzLookupzzBases { get; set; }
+  public DbSet<ProjectzLookupzz> ProjectzLookupzzs { get; set; }
   
 }
