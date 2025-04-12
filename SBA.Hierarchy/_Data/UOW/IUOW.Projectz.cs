@@ -9,7 +9,7 @@ public interface IUOW_Projectz : IUOW_Infra
 {
   IRepoGenericz<ProjectzEntityTest> TestProjs { get; }
   // .-*
-  IRepoGenericz<GlobalLookupzBase> GlobalLookupzBases { get; }
+  IRepoGenericz<GlobalLookupzzBase> GlobalLookupzzBases { get; }
   IRepoGenericz<Org> Orgs { get; }
   IRepoGenericz<BG> BGs { get; }
   IRepoGenericz<State> States { get; }
@@ -20,7 +20,7 @@ public interface IUOW_Projectz : IUOW_Infra
 
 
   // *-.
-  IRepoGenericz<GlobalLookupz> GlobalLookupzs { get; }
+  IRepoGenericz<GlobalLookupzz> GlobalLookupzzs { get; }
   IRepoGenericz<Systemz> Systemzs { get; }
   IRepoGenericz<LE> LEs { get; }
   IRepoGenericz<OU> OUs { get; }

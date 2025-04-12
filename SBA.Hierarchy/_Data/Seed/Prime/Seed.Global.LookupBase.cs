@@ -7,18 +7,18 @@ namespace GLOB.Projectz.Seed;
 public static partial class Seeder
 {
   // For DB Context (Normal) (Prod Automate) 
-  public static void SeedGlobalLookupzBase(this ProjectzDBCntxt context)
+  public static void SeedGlobalLookupzzBase(this ProjectzDBCntxt context)
   {
-    if (!context.GlobalLookupzBases.Any(x => x.Id > 0))
+    if (!context.GlobalLookupzzBases.Any(x => x.Id > 0))
     {
-      context.GlobalLookupzBases.AddRange(InfraSeeder.SeedDataEntityBase<GlobalLookupzBase>());
+      context.GlobalLookupzzBases.AddRange(InfraSeeder.SeedDataEntityBase<GlobalLookupzzBase>());
       context.SaveChanges();
     }
   }
   // For DB Context (Identity) (Dev CLI) 
-  public static void SeedGlobalLookupzBase(this ModelBuilder builder)
+  public static void SeedGlobalLookupzzBase(this ModelBuilder builder)
   {
-    builder.Entity<GlobalLookupzBase>().HasData(InfraSeeder.SeedDataEntityBase<GlobalLookupzBase>());
+    builder.Entity<GlobalLookupzzBase>().HasData(InfraSeeder.SeedDataEntityBase<GlobalLookupzzBase>());
   }
 
   
