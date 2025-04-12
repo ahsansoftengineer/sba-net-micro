@@ -57,7 +57,7 @@
 //     }
 //     catch (Exception ex)
 //     {
-//       return CatchException(ex, nameof(Create));
+//       return _Res.CatchException(ex, nameof(Create));
 //     }
 //   }
 //   [HttpPost]
@@ -78,7 +78,7 @@
 //     }
 //     catch (Exception ex)
 //     {
-//       return CatchException(ex, nameof(Create));
+//       return _Res.CatchException(ex, nameof(Create));
 //     }
 //   }
 

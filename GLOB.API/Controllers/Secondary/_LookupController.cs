@@ -1,6 +1,6 @@
 using GLOB.API.Controllers.Base;
+using GLOB.API.Staticz;
 using GLOB.Domain.Base;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Projectz.Controllers;
@@ -13,46 +13,14 @@ public class _LookupzController : API_2_RDS_Controller<_LookupzController, Proje
     _repo = _uowInfra.ProjectzLookupzs;
   }
 
-  [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginate([FromQuery] DtoPageReq<ProjectzLookupzDtoSearch?> req)
-  {
-    try
-    {
-      var list = await _repo.GetsPaginate(req);
-      return Ok(list);
-    }
-    catch (Exception ex)
-    {
-      return CatchException(ex, nameof(Gets));
-    }
-  }
-  [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginateOptions([FromQuery] DtoPageReq<ProjectzLookupzDtoSearch?> req)
-  {
-    try
-    {
-      var list = await _repo.GetsPaginateOptions(req);
-      return Ok(list);
-    }
-    catch (Exception ex)
-    {
-      return CatchException(ex, nameof(GetsPaginateOptions));
-    }
-  }
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] ProjectzLookupzDtoCreate data)
   {
-    if (!ModelState.IsValid) return Res_BadRequestModel();
+    if (!ModelState.IsValid) return _Res.BadRequestModel(ModelState);
     try
     {
       bool hasParent = _uowInfra.ProjectzLookupzBases.AnyId(data.ProjectzLookupzBaseId);
-      
-      if(!hasParent) {
-        return Res_BadRequestModel(new IdentityError(){
-          Code = "ProjectzLookupzBaseId", 
-          Description = $"Invalid ProjectzLookupzBase {data.ProjectzLookupzBaseId} record not created"
-        });
-      }
+      if(!hasParent) return _Res.BadRequestzId("ProjectzLookupzBaseId",data.ProjectzLookupzBaseId, ModelState);
 
       var result = _mapper.Map<ProjectzLookupz>(data);
       await _repo.Insert(result);
@@ -61,7 +29,7 @@ public class _LookupzController : API_2_RDS_Controller<_LookupzController, Proje
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(Create));
+      return _Res.CatchException(ex, nameof(Create));
     }
   }
 
@@ -70,19 +38,14 @@ public class _LookupzController : API_2_RDS_Controller<_LookupzController, Proje
   {
     try
     {
-      if (!ModelState.IsValid) return Res_BadRequestModel();
-      if(Id < 1) return Res_NotFoundId(Id);
+      if (!ModelState.IsValid) return _Res.BadRequestModel(ModelState);
+      if(Id < 1) return _Res.NotFoundId(Id);
 
       var item = await _repo.Get(q => q.Id == Id);
-      if (item == null) return Res_NotFoundId(Id);
+      if (item == null) return _Res.NotFoundId(Id);
       
       bool hasParent = _uowInfra.ProjectzLookupzBases.AnyId(data.ProjectzLookupzBaseId);
-      if(!hasParent) {
-        return Res_BadRequestModel(new IdentityError(){
-          Code = "ProjectzLookupzBaseId", 
-          Description = $"Invalid ProjectzLookupzBase {data.ProjectzLookupzBaseId} record not created"
-        });
-      }
+      if(!hasParent) return _Res.BadRequestzId("ProjectzLookupzBaseId",data.ProjectzLookupzBaseId, ModelState);
 
       var result = _mapper.Map(data, item);
       _repo.Update(item);
@@ -91,7 +54,7 @@ public class _LookupzController : API_2_RDS_Controller<_LookupzController, Proje
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(Update));
+      return _Res.CatchException(ex, nameof(Update));
     }
   }
 }

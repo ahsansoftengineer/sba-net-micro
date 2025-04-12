@@ -3,6 +3,7 @@ using GLOB.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
 using GLOB.Infra.Helper;
 using GLOB.Infra.Repo;
+using GLOB.API.Staticz;
 
 namespace GLOB.API.Controllers.Base;
 // Read, Delete, Status
@@ -28,7 +29,7 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
     }
     catch(Exception ex)
     {
-      return CatchException(ex, nameof(Get));
+      return _Res.CatchException(ex, nameof(Get));
     }
     
   }
@@ -43,7 +44,7 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(Gets));
+      return _Res.CatchException(ex, nameof(Gets));
     }
   }
   [HttpDelete("{Id:int}")]
@@ -51,16 +52,16 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
   {
     try
     {
-      if (Id < 1) return Res_NotFoundId(Id);
+      if (Id < 1) return _Res.NotFoundId(Id);
       var item = await _repo.Get(Id);
 
-      if (item == null) return Res_NotFoundId(Id);
+      if (item == null) return _Res.NotFoundId(Id);
       await _repo.Delete(Id);
       await _uowInfra.Save();
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(Delete));
+      return _Res.CatchException(ex, nameof(Delete));
     }
     return Ok("Record Deleted Successfull");
   }
@@ -70,12 +71,12 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
 
     try
     {
-      if (!ModelState.IsValid) return Res_NotFoundId(Id);
-      if(!Enum.IsDefined(status)) return Res_InvalidEnums(status.ToString());
+      if (!ModelState.IsValid) return _Res.NotFoundId(Id);
+      if(!Enum.IsDefined(status)) return _Res.InvalidEnums(status.ToString());
       
       var item = await _repo.Get(Id);
 
-      if (item == null) return Res_NotFoundId(Id);
+      if (item == null) return _Res.NotFoundId(Id);
 
       _repo.UpdateStatus(item, status);
       await _uowInfra.Save();
@@ -83,7 +84,7 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(Status));
+      return _Res.CatchException(ex, nameof(Status));
     }
   }
   

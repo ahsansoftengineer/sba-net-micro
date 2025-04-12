@@ -1,6 +1,7 @@
 
 using Microsoft.IdentityModel.Tokens;
 
+namespace GLOB.API.Configz;
 public static partial class Ext
 {
     public static string GetValueStr(this IConfiguration configuration, string key, string defaultValue = "No Default Value Define in Configuration")

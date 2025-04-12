@@ -1,3 +1,4 @@
+using GLOB.API.Staticz;
 using GLOB.Domain.Base;
 using GLOB.Hierarchy.Global;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,7 @@ public class _GlobalLookupzController : Project_RDS_Controller<_GlobalLookupzCon
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(GetsPaginate));
+      return _Res.CatchException(ex, nameof(GetsPaginate));
     }
   }
   [HttpGet("[action]")]
@@ -35,39 +36,39 @@ public class _GlobalLookupzController : Project_RDS_Controller<_GlobalLookupzCon
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(GetsPaginateOptions));
+      return _Res.CatchException(ex, nameof(GetsPaginateOptions));
     }
   }
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] GlobalLookupzDtoCreate data)
   {
-    if (!ModelState.IsValid) return Res_BadRequestModel();
+    if (!ModelState.IsValid) return _Res.BadRequestModel(ModelState);
     try
     {
       bool hasParent = _uowProjectz.GlobalLookupzBases.AnyId(data.GlobalLookupzBaseId);
-      if(!hasParent) return Res_BadRequestzId("GlobalLookupzBaseId",data.GlobalLookupzBaseId);
+      if(!hasParent) return _Res.BadRequestzId("GlobalLookupzBaseId",data.GlobalLookupzBaseId, ModelState);
       
       var result = _mapper.Map<GlobalLookupz>(data);
       var entity = await _repo.Insert(result);
       await _uowProjectz.Save();
-      return Res_CreatedAtAction(nameof(Get), entity);
+      return _Res.CreatedAtAction(this, nameof(Get), entity);
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(Create));
+      return _Res.CatchException(ex, nameof(Create));
     }
   }
 
   [HttpPut("{Id:int}")]
   public async Task<IActionResult> Update(int Id, [FromBody] GlobalLookupzDtoCreate data)
   {
-    if (!ModelState.IsValid || Id < 1) return Res_NotFoundId(Id);
+    if (!ModelState.IsValid || Id < 1) return _Res.NotFoundId(Id);
     try
     {
       var item = await _repo.Get(q => q.Id == Id);
       
       bool hasParent = _uowProjectz.GlobalLookupzBases.AnyId(data.GlobalLookupzBaseId);
-      if(!hasParent) return Res_BadRequestzId("GlobalLookupzBaseId",data.GlobalLookupzBaseId);
+      if(!hasParent) return _Res.BadRequestzId("GlobalLookupzBaseId",data.GlobalLookupzBaseId, ModelState);
 
       var result = _mapper.Map(data, item);
       _repo.Update(item);
@@ -76,7 +77,7 @@ public class _GlobalLookupzController : Project_RDS_Controller<_GlobalLookupzCon
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(Update));
+      return _Res.CatchException(ex, nameof(Update));
     }
   }
 }

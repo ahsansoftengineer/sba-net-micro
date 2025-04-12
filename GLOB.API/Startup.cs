@@ -1,4 +1,5 @@
 
+using GLOB.API.Configz;
 using GLOB.API.DI;
 using GLOB.Infra.Data;
 using GLOB.Infra.UOW_Projectz;

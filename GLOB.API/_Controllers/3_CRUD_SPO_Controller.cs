@@ -1,3 +1,4 @@
+using GLOB.API.Staticz;
 using GLOB.Domain.Base;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,7 +24,7 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(GetsPaginate));
+      return _Res.CatchException(ex, nameof(GetsPaginate));
     }
   }
 
@@ -37,24 +38,24 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(GetsPaginateOptions));
+      return _Res.CatchException(ex, nameof(GetsPaginateOptions));
     }
   }
 
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] TDtoCreate data)
   {
-    if (!ModelState.IsValid) return Res_BadRequestModel();
+    if (!ModelState.IsValid) return _Res.BadRequestModel(ModelState);
     try
     {
       var mapped = _mapper.Map<TEntity>(data);
       var entity = await _repo.Insert(mapped);
       await _uowInfra.Save();
-      return Res_CreatedAtAction(nameof(Get), entity);
+      return _Res.CreatedAtAction(this, nameof(Get), entity);
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(Create));
+      return _Res.CatchException(ex, nameof(Create));
     }
   }
 
@@ -63,12 +64,12 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
   {
     try
     {
-      if (Id < 1) return Res_NotFoundId(Id);
-      if(!ModelState.IsValid) return Res_BadRequestModel();
+      if (Id < 1) return _Res.NotFoundId(Id);
+      if(!ModelState.IsValid) return _Res.BadRequestModel(ModelState);
       
       var item = await _repo.Get(Id);
 
-      if (item == null) return Res_NotFoundId(Id);
+      if (item == null) return _Res.NotFoundId(Id);
 
       var result = _mapper.Map(data, item);
       _repo.Update(item);
@@ -77,7 +78,7 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(Update));
+      return _Res.CatchException(ex, nameof(Update));
     }
   }
 

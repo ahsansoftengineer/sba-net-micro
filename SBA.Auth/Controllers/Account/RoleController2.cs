@@ -28,7 +28,7 @@ public partial class RoleController
   {
 
     var role = await _roleManager.FindByIdAsync(Id);
-    if (role == null) return Res_NotFoundId(Id);
+    if (role == null) return _Res.NotFoundId(Id);
 
     role.Id = Id;
     role.Name = dto.Name;
@@ -45,10 +45,10 @@ public partial class RoleController
   [HttpDelete("{Id}")]
   public async Task<IActionResult> Delete(string Id)
   {
-    if (Id.IsNullOrEmpty()) return Res_NotFoundId(Id);
+    if (Id.IsNullOrEmpty()) return _Res.NotFoundId(Id);
 
     var item = await _roleManager.FindByIdAsync(Id);
-    if (item == null) return Res_NotFoundId(Id);
+    if (item == null) return _Res.NotFoundId(Id);
 
     try
     {
