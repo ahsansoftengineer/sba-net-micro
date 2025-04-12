@@ -6,7 +6,7 @@ namespace GLOB.API.Controllers.Base;
 // Create, Read, Update, Delete, Status, Paginate, Options
 public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TDtoSearch, TDtoCreate>
   : API_2_RDS_Controller<TController, TEntity>
-  where TController : class
+  where TController : class, IDtoSearch
   where TEntity : class, IEntityAlpha, IEntityStatus
   where TDtoCreate : class
   where TDtoSearch : class, IDtoSearch
