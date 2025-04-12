@@ -20,7 +20,7 @@ public class _LookupzController : API_2_RDS_Controller<_LookupzController, Proje
     try
     {
       bool hasParent = _uowInfra.ProjectzLookupzBases.AnyId(data.ProjectzLookupzBaseId);
-      if(!hasParent) return _Res.BadRequestzId("ProjectzLookupzBaseId",data.ProjectzLookupzBaseId, ModelState);
+      if(!hasParent) return _Res.BadRequestzId("ProjectzLookupzBaseId",data.ProjectzLookupzBaseId);
 
       var result = _mapper.Map<ProjectzLookupz>(data);
       await _repo.Insert(result);
@@ -45,7 +45,7 @@ public class _LookupzController : API_2_RDS_Controller<_LookupzController, Proje
       if (item == null) return _Res.NotFoundId(Id);
       
       bool hasParent = _uowInfra.ProjectzLookupzBases.AnyId(data.ProjectzLookupzBaseId);
-      if(!hasParent) return _Res.BadRequestzId("ProjectzLookupzBaseId",data.ProjectzLookupzBaseId, ModelState);
+      if(!hasParent) return _Res.BadRequestzId("ProjectzLookupzBaseId",data.ProjectzLookupzBaseId);
 
       var result = _mapper.Map(data, item);
       _repo.Update(item);

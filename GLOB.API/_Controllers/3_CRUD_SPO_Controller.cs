@@ -45,7 +45,7 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] TDtoCreate data)
   {
-    if (!ModelState.IsValid) return _Res.BadRequestModel(ModelState);
+    if (!ModelState.IsValid) return ModelState.BadRequestModel();
     try
     {
       var mapped = _mapper.Map<TEntity>(data);
@@ -65,7 +65,7 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
     try
     {
       if (Id < 1) return _Res.NotFoundId(Id);
-      if(!ModelState.IsValid) return _Res.BadRequestModel(ModelState);
+      if(!ModelState.IsValid) return ModelState.BadRequestModel();
       
       var item = await _repo.Get(Id);
 
