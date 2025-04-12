@@ -49,7 +49,7 @@ public static class _Res
 
   public static ObjectResult CreatedAtAction(ControllerBase controller, string location, IEntityAlpha entity)
   {
-    return controller.CreatedAtAction(location, new { Id = entity.Id }, entity);
+    return controller.CreatedAtAction(location, new { entity.Id }, entity);
   }
 
   public static ObjectResult NotFoundId(string id)
