@@ -16,8 +16,8 @@ dotnet add ./SBA.Auth/ reference ./GLOB.API/
 - - Create, Read, Update, Delete
 - - Status, Pagination, Pagination Options
 - Files & Folders Reference to Create EntityBase
-- [EntityBase Example](https://github.com/ahsansoftengineer/sb-admin-dot-net-micro/commit/bf9eea9f6af3c476bd87fab3848e2d6ba3979224)
-- [Github Branch](2_API_Example_CRUD_SPO_EntityForAllProjects_Child)
+- [EntityBase Example](https://github.com/ahsansoftengineer/sb-admin-dot-net-micro/pull/18/files)
+- [Github Branch](Projectz_All_CRUD_SPO_Example_Parent_Child)
 
 ### API EntityCustom for Sub Projects Guide
 - Api Controller EntityCustom Example
@@ -25,7 +25,8 @@ dotnet add ./SBA.Auth/ reference ./GLOB.API/
 - - Status, Pagination, Pagination Options
 - Customization for Child Entity 
 - Files & Folders Reference to Create Child Entity
-- [EntityChild Example](https://github.com/ahsansoftengineer/sb-admin-dot-net-micro/commit/c283579a08c0fdeeb9a33331540d3cc5b228d709)
+- [EntityChild Example](https://github.com/ahsansoftengineer/sb-admin-dot-net-micro/pull/19/files)
+- [Github Branch](Hierarchy_Only_CRUD_SPO_Example_Parent_Child)
 
 
 
