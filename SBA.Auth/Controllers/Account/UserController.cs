@@ -51,7 +51,6 @@ public partial class UserController : AccountBaseController<UserController>
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] RegisterDto model)
   {
-    if (!ModelState.IsValid) return _Res.BadRequestModel(ModelState);
     InfraUser user = MapUser(model);
     var result = await _userManager.CreateAsync(user, model.Password);
 

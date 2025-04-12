@@ -17,35 +17,18 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
   [HttpGet("[action]")]
   public async Task<IActionResult> GetsPaginate([FromQuery] DtoPageReq<TDtoSearch?> req)
   {
-    try
-    {
-      var data = await _repo.GetsPaginate(req);
-      return Ok(data);
-    }
-    catch (Exception ex)
-    {
-      return _Res.CatchException(ex, nameof(GetsPaginate));
-    }
+    return await _Actionz.GetsPaginatez(_repo, req);
   }
 
   [HttpGet("[action]")]
   public async Task<IActionResult> GetsPaginateOptions([FromQuery] DtoPageReq<TDtoSearch?> req)
   {
-    try
-    {
-      var data = await _repo.GetsPaginateOptions(req);
-      return Ok(data);
-    }
-    catch (Exception ex)
-    {
-      return _Res.CatchException(ex, nameof(GetsPaginateOptions));
-    }
+    return await _Actionz.GetsPaginateOptionsz(_repo, req);
   }
 
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] TDtoCreate data)
   {
-    if (!ModelState.IsValid) return ModelState.BadRequestModel();
     try
     {
       var mapped = _mapper.Map<TEntity>(data);
@@ -65,7 +48,6 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
     try
     {
       if (Id < 1) return _Res.NotFoundId(Id);
-      if(!ModelState.IsValid) return ModelState.BadRequestModel();
       
       var item = await _repo.Get(Id);
 

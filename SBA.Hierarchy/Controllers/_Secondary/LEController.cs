@@ -31,7 +31,6 @@
 //   [HttpPost]
 //   public async Task<IActionResult> Create([FromBody] LEDtoCreate data)
 //   {
-//     if (!ModelState.IsValid) return _Res.BadRequestModel(ModelState);
 //     try
 //     {
 //       bool hasParent = _uowProjectz.BGs.AnyId(data.BGId);

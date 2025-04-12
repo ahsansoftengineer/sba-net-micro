@@ -31,7 +31,6 @@
 //   [HttpPost]
 //   public async Task<IActionResult> Create([FromBody] CityDtoCreate data)
 //   {
-//     if (!ModelState.IsValid) return _Res.BadRequestModel(ModelState);
 //     try
 //     {
 //       bool hasParent = _uowProjectz.States.AnyId(data.StateId);
@@ -54,7 +53,6 @@
 //     try
 //     {
 //       if (Id < 1) return _Res.NotFoundId(Id);
-//       if(!ModelState.IsValid) return _Res.BadRequestModel(ModelState);
 
 //       var item = await _repo.Get(q => q.Id == Id);
 //       if (item == null) return _Res.NotFoundId(Id);

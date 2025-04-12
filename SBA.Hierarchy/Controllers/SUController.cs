@@ -15,7 +15,6 @@
 //   [HttpPost]
 //   public async Task<IActionResult> Create([FromBody] SUDtoCreate data)
 //   {
-//     if (!ModelState.IsValid) return BadRequestz();
 //     try
 //     {
 //       var result = _mapper.Map<SU>(data);
@@ -32,7 +31,7 @@
 //   [HttpPut("{Id:int}")]
 //   public async Task<IActionResult> Update(int Id, [FromBody] SUDtoCreate data)
 //   {
-//     if (!ModelState.IsValid || Id < 1) return InvalidId();
+//     if (Id < 1) return InvalidId();
 //     try
 //     {
 //       var item = await _repo.Get(q => q.Id == Id);

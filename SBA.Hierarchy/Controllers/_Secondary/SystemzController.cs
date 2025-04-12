@@ -7,7 +7,7 @@
 // [ApiController]
 // public class SystemzController : Project_RDS_Controller<SystemzController, Systemz>
 // {
-//   public SystemzController(IServiceProvider srvcProvider) : base(srvcProvider)
+//   public SystemzController(IServiceProvider srvcPr-ovider) : base(srvcProvider)
 //   {
 //     _repo = _uowProjectz.Systemzs;
 //   }
@@ -15,7 +15,6 @@
 //   [HttpPost]
 //   public async Task<IActionResult> Create([FromBody] SystemzDtoCreate data)
 //   {
-//     if (!ModelState.IsValid) return _Res.BadRequestModel(ModelState);
 //     try
 //     {
 //       bool hasParent = _uowProjectz.Orgs.AnyId(data.OrgId);

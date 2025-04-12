@@ -1,7 +1,6 @@
 using GLOB.Domain.Base;
 using GLOB.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Linq.Expressions;
 
 namespace GLOB.Infra.Repo;

@@ -42,7 +42,6 @@
 //   [HttpPost]
 //   public async Task<IActionResult> Create([FromBody] GlobalLookupzDtoCreate data)
 //   {
-//     if (!ModelState.IsValid) return _Res.BadRequestModel(ModelState);
 //     try
 //     {
 //       bool hasParent = _uowProjectz.GlobalLookupzBases.AnyId(data.GlobalLookupzBaseId);
@@ -62,7 +61,6 @@
 //   [HttpPut("{Id:int}")]
 //   public async Task<IActionResult> Update(int Id, [FromBody] GlobalLookupzDtoCreate data)
 //   {
-//     if (!ModelState.IsValid || Id < 1) return _Res.NotFoundId(Id);
 //     try
 //     {
 //       var item = await _repo.Get(q => q.Id == Id);

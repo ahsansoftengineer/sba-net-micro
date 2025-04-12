@@ -20,23 +20,23 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
   [HttpGet("{Id:int}")]
   public async Task<IActionResult> Get(int Id, [FromQuery] List<string>? Include)
   {
-    return await _Actionz.Get(_repo, nameof(Get), Id, Include);
+    return await _Actionz.Getz(_repo, Id, Include);
   }
 
   [HttpGet()]
   public async Task<IActionResult> Gets([FromQuery] List<string>? Include)
   {
-    return await _Actionz.Gets(_repo, nameof(Gets), Include);
+    return await _Actionz.Getsz(_repo, Include);
   }
   [HttpDelete("{Id:int}")]
   public async Task<IActionResult> Delete(int Id)
   {
-    return await _Actionz.Delete(_repo, _uowInfra, nameof(Delete), Id);
+    return await _Actionz.Deletez(_repo, _uowInfra, Id);
   }
   [HttpPatch("{Id:int}")]
   public async Task<IActionResult> Status(int Id, [FromBody] Status status)
   {
-    return await _Actionz.Status(_repo, _uowInfra, nameof(Status), Id, status);
+    return await _Actionz.Statusz(_repo, _uowInfra, Id, status);
   }
   
 }

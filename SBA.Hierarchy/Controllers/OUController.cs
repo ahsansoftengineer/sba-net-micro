@@ -47,7 +47,6 @@
 //     await fu.UploadFileReflection(model.WarningImg, "WarningImg", result);
 //     await fu.UploadFileReflection(model.FooterImg, "FooterImg", result);
 
-//     if (!ModelState.IsValid) return BadRequestz();
 //     try
 //     {
 //       var finalResult = _mapper.Map<OUDtoCreateToEntity, OU>(result);
@@ -63,7 +62,6 @@
 //   [HttpPost]
 //   public async Task<IActionResult> Create([FromBody] OUDtoCreate data)
 //   {
-//     if (!ModelState.IsValid) return BadRequestz();
 //     try
 //     {
 //       bool hasParent = _uowProjectz.BGs.AnyId(data.LEId);
@@ -85,7 +83,6 @@
 //   [HttpPut("{Id:int}")]
 //   public async Task<IActionResult> Update(int Id, [FromBody] OUDtoCreate data)
 //   {
-//     if (!ModelState.IsValid || Id < 1) return InvalidId();
 //     try
 //     {
 //       var item = await _repo.Get(q => q.Id == Id);
