@@ -1,4 +1,5 @@
 using GLOB.Infra.Seed;
+using GLOB.Projectz.Seed;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Projectz.Data;
@@ -10,7 +11,9 @@ public static partial class Seeder
     Console.WriteLine("--> Hierarchy -> Applying Migrations ModelBuilder");
     // mb.SeedTestInfra();
     mb.SeedTestProj();
+    
     // .-*
+    mb.SeedGlobalLookupzzBase();
     mb.SeedOrg();
     mb.SeedBG();
     mb.SeedState();
@@ -20,6 +23,7 @@ public static partial class Seeder
     mb.SeedProfession();
 
     // *-.
+    mb.SeedGlobalLookupzz();
     mb.SeedSystemz();
     mb.SeedLE();
     mb.SeedOU();
@@ -40,7 +44,9 @@ public static partial class Seeder
         {
           // context.SeedTestInfra();
           context.SeedTestProj();
+          
           // .-*
+          context.SeedGlobalLookupzzBase();
           context.SeedOrg();
           context.SeedBG();
           context.SeedState();
@@ -50,6 +56,7 @@ public static partial class Seeder
           context.SeedProfession();
 
           // *-.
+          context.SeedGlobalLookupzz();
           context.SeedSystemz();
           context.SeedLE();
           context.SeedOU();
