@@ -30,14 +30,11 @@ public class CityController : Project_RDS_Controller<CityController, City>
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] CityDtoCreate data)
   {
-    if (!ModelState.IsValid) return Res_BadRequestz();
+    if (!ModelState.IsValid) return Res_BadRequestModel();
     try
     {
       bool hasParent = _uowProjectz.States.AnyId(data.StateId);
-     if(!hasParent) {
-        ModelState.AddModelError("StateId", $"Invalid Id {data.StateId} record not created"); 
-        return Res_BadRequestz();
-      }
+      if(!hasParent) return Res_BadRequestzId("StateId",data.StateId);
 
       var result = _mapper.Map<City>(data);
       var entity = await _repo.Insert(result);
@@ -50,22 +47,19 @@ public class CityController : Project_RDS_Controller<CityController, City>
     }
   }
 
-  [HttpPut("{id:int}")]
-  public async Task<IActionResult> Update(int id, [FromBody] CityDtoCreate data)
+  [HttpPut("{Id:int}")]
+  public async Task<IActionResult> Update(int Id, [FromBody] CityDtoCreate data)
   {
     try
     {
-      if (id < 1) return Res_NotFoundUpdate(id);
-      if(!ModelState.IsValid) return Res_BadRequestz();
+      if (Id < 1) return Res_NotFoundId(Id);
+      if(!ModelState.IsValid) return Res_BadRequestModel();
 
-      var item = await _repo.Get(q => q.Id == id);
-      if (item == null) return Res_NotFoundUpdate(id);
+      var item = await _repo.Get(q => q.Id == Id);
+      if (item == null) return Res_NotFoundId(Id);
       
       bool hasParent = _uowProjectz.States.AnyId(data.StateId);
-      if(!hasParent) {
-        ModelState.AddModelError("StateId", $"Invalid Id {data.StateId} record not created"); 
-        return Res_BadRequestz();
-      }
+      if(!hasParent) return Res_BadRequestzId("StateId",data.StateId);
 
       var result = _mapper.Map(data, item);
       _repo.Update(item);

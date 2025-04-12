@@ -1,5 +1,6 @@
 using GLOB.Domain.Base;
 using GLOB.Domain.Hierarchy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;
 
@@ -30,11 +31,11 @@ public class LEController : Project_RDS_Controller<LEController, LE>
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] LEDtoCreate data)
   {
-    if (!ModelState.IsValid) return Res_BadRequestz();
+    if (!ModelState.IsValid) return Res_BadRequestModel();
     try
     {
       bool hasParent = _uowProjectz.BGs.AnyId(data.BGId);
-      if(!hasParent) return InvalidId("Invalid Business Group");
+      if(!hasParent) return Res_BadRequestzId("BGId",data.BGId);
 
       var result = _mapper.Map<LE>(data);
 
@@ -48,17 +49,17 @@ public class LEController : Project_RDS_Controller<LEController, LE>
     }
   }
 
-  [HttpPut("{id:int}")]
-  public async Task<IActionResult> Update(int id, [FromBody] LEDtoCreate data)
+  [HttpPut("{Id:int}")]
+  public async Task<IActionResult> Update(int Id, [FromBody] LEDtoCreate data)
   {
-    if (!ModelState.IsValid || id < 1) return InvalidId();
+    if (Id < 1) return Res_NotFoundId(Id);
     try
     {
-      var item = await _repo.Get(q => q.Id == id);
-      if (item == null) return InvalidId();
+      var item = await _repo.Get(q => q.Id == Id);
+      if (item == null) return Res_NotFoundId(Id);
       
       bool hasParent = _uowProjectz.BGs.AnyId(data.BGId);
-      if(!hasParent) return InvalidId("Invalid State");
+      if(!hasParent) return Res_BadRequestzId("BGId",data.BGId);
 
       var result = _mapper.Map(data, item);
       _repo.Update(item);

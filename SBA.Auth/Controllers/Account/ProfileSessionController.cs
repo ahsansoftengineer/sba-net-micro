@@ -17,9 +17,9 @@
 //   {
 //     return null;
 //   }
-//   [HttpDelete("[action]/{id}")]
+//   [HttpDelete("[action]/{Id}")]
 //   [Authorize]
-//   public async Task<IActionResult> RevokeSession(Guid id)
+//   public async Task<IActionResult> RevokeSession(Guid Id)
 //   {
 //     return null;
 //   }

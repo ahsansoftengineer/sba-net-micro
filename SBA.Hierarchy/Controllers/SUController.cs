@@ -29,13 +29,13 @@
 //     }
 //   }
 
-//   [HttpPut("{id:int}")]
-//   public async Task<IActionResult> Update(int id, [FromBody] SUDtoCreate data)
+//   [HttpPut("{Id:int}")]
+//   public async Task<IActionResult> Update(int Id, [FromBody] SUDtoCreate data)
 //   {
-//     if (!ModelState.IsValid || id < 1) return InvalidId();
+//     if (!ModelState.IsValid || Id < 1) return InvalidId();
 //     try
 //     {
-//       var item = await _repo.Get(q => q.Id == id);
+//       var item = await _repo.Get(q => q.Id == Id);
 
 //       if (item == null) return InvalidId();
 //       var result = _mapper.Map(data, item);

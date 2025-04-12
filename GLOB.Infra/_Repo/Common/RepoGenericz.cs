@@ -40,9 +40,9 @@ public partial class RepoGenericz<T, TKey> : IRepoGenericz<T, TKey>
     //   return false;
     // }
   }
-  public async Task Delete(TKey id)
+  public async Task Delete(TKey Id)
   {
-    var entity = await _db.FindAsync(id);
+    var entity = await _db.FindAsync(Id);
     if (entity != null) _db.Remove(entity);
   }
 

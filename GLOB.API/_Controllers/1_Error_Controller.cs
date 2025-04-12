@@ -25,12 +25,11 @@ public abstract class API_1_ErrorController<TController> : ControllerBase
     _logger.LogWarning("How does Type Works -> "+ this);
   }
   protected TService GetSrvc<TService>()
-  where TService: class
+    where TService: class
   {
     try
     {
       return _srvcProvider.GetRequiredService<TService>();
-
     } 
     catch(Exception ex) 
     {
@@ -47,7 +46,9 @@ public abstract class API_1_ErrorController<TController> : ControllerBase
     _logger.LogError(ex, $"Something went wrong in the {methodName}");
     return StatusCode(500, "Internal Server Error, Please try again later");
   }
-  protected ObjectResult Res_BadRequestz()
+
+  // Bad Request
+  protected ObjectResult Res_BadRequestModel()
   {
     foreach (var ms in ModelState)
     {
@@ -57,42 +58,54 @@ public abstract class API_1_ErrorController<TController> : ControllerBase
       ModelState.AddModelError("Message", "Bad Request 400");
     return BadRequest(ModelState);
   }
-  protected ObjectResult Res_BadRequestz(IEnumerable<IdentityError> errors)
+  protected ObjectResult Res_BadRequestModel(IdentityError error)
   {
-    foreach (var item in errors)
-    {
-      ModelState.AddModelError(item.Code, item.Description);
-    }
-    foreach (var ms in ModelState)
-    {
-      _logger.LogError($"{ms.Key} :\t {ms.Value}");
-    }
-    if (!ModelState.Any(x => x.Key == "Message"))
-      ModelState.AddModelError("Message", "Bad Request 400");
-    return BadRequest(ModelState);
+    ModelState.AddModelError(error.Code, error.Description);
+    return Res_BadRequestModel();
   }
+  protected ObjectResult Res_BadRequestzId(string Code, int Id)
+  {
+    return Res_BadRequestzId(Code, Id.ToString());
+  }
+  protected ObjectResult Res_BadRequestzId(string Code, string Id)
+  {
+    return Res_BadRequestModel(new (){
+      Code = Code, 
+      Description = $"Invalid {Code} {Id}"
+    });
+  }
+
+  // CreatedAt
   protected ObjectResult Res_CreatedAtAction(string location, IEntityAlpha entity)
   {
-    return CreatedAtAction(location, new { id = entity.Id }, entity);
+    return CreatedAtAction(location, new { Id = entity.Id }, entity);
   }
-  protected ObjectResult Res_NotFoundUpdate(int Id)
+
+  // Not Found Ids
+  protected ObjectResult Res_NotFoundId(string Id)
   {
-    return NotFound($"Invalid id {Id} not updated the record");
+    return Res_NotFoundId("Id", Id.ToString());
   }
-  protected ObjectResult Res_NotFoundDelete(int Id)
+  protected ObjectResult Res_NotFoundId(int Id)
   {
-    return NotFound($"Invalid id {Id} not deleted the record");
+    return Res_NotFoundId("Id", Id.ToString());
   }
-  protected ObjectResult Res_NotFoundStatus(int Id)
+  protected ObjectResult Res_NotFoundId(string Key, int Id)
   {
-    return NotFound($"Invalid id {Id} not updated the status");
+    return Res_NotFoundId(Key, Id.ToString());
   }
+  protected ObjectResult Res_NotFoundId(string Key, string Id)
+  {
+    return NotFound($"Invalid {Key} {Id}");
+  }
+
+  // Invalid Enums
   protected ObjectResult Res_InvalidEnums(string status)
   {
     return NotFound($"Invalid data {status} not updated the record");
   }
 
-
+  // Not Authorized
   protected ObjectResult Res_NotAuthorised()
   {
     return BadRequest($"You don't permission to perform the action");

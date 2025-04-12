@@ -51,7 +51,7 @@ public partial class UserController : AccountBaseController<UserController>
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] RegisterDto model)
   {
-    if (!ModelState.IsValid) return BadRequestz();
+    if (!ModelState.IsValid) return Res_BadRequestModel();
     InfraUser user = MapUser(model);
     var result = await _userManager.CreateAsync(user, model.Password);
 
@@ -68,12 +68,12 @@ public partial class UserController : AccountBaseController<UserController>
   [HttpPut("{Id}")]
   public async Task<IActionResult> Update(string Id, [FromBody] UpdateUserDto data)
   {
-    if (!ModelState.IsValid || string.IsNullOrEmpty(Id)) return InvalidId();
+    if (string.IsNullOrEmpty(Id)) return Res_NotFoundId(Id);
     try
     {
       var item = await _userManager.FindByIdAsync(Id);
 
-      if (item == null) return InvalidId();
+      if (item == null) return Res_NotFoundId(Id);
       item.Name = data.FullName;
       item.PhoneNumber = data.PhoneNumber;
 

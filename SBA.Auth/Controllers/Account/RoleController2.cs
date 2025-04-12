@@ -2,6 +2,7 @@ using GLOB.Domain.Auth;
 using GLOB.Domain.Base;
 using GLOB.Domain.Contants;
 using GLOB.Infra.Helper;
+using LinqKit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
@@ -27,7 +28,7 @@ public partial class RoleController
   {
 
     var role = await _roleManager.FindByIdAsync(Id);
-    if (role == null) return InvalidId();
+    if (role == null) return Res_NotFoundId(Id);
 
     role.Id = Id;
     role.Name = dto.Name;
@@ -35,17 +36,19 @@ public partial class RoleController
 
     var result = await _roleManager.UpdateAsync(role);
     if (result.Succeeded) return Ok(role.ToExtResVMSingle());
-
-    return BadRequestz(result.Errors);
+    result?.Errors?.ForEach(x => {
+      ModelState.AddModelError(x.Code, x.Description);
+    });
+    return Res_BadRequestModel();
   }
   
   [HttpDelete("{Id}")]
   public async Task<IActionResult> Delete(string Id)
   {
-    if (Id.IsNullOrEmpty()) return InvalidId();
+    if (Id.IsNullOrEmpty()) return Res_NotFoundId(Id);
 
     var item = await _roleManager.FindByIdAsync(Id);
-    if (item == null) return InvalidId();
+    if (item == null) return Res_NotFoundId(Id);
 
     try
     {

@@ -44,7 +44,7 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] TDtoCreate data)
   {
-    if (!ModelState.IsValid) return Res_BadRequestz();
+    if (!ModelState.IsValid) return Res_BadRequestModel();
     try
     {
       var mapped = _mapper.Map<TEntity>(data);
@@ -58,17 +58,17 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
     }
   }
 
-  [HttpPut("{id:int}")]
-  public async Task<IActionResult> Update(int id, [FromBody] TDtoCreate data)
+  [HttpPut("{Id:int}")]
+  public async Task<IActionResult> Update(int Id, [FromBody] TDtoCreate data)
   {
     try
     {
-      if (id < 1) return Res_NotFoundUpdate(id);
-      if(!ModelState.IsValid) return Res_BadRequestz();
+      if (Id < 1) return Res_NotFoundId(Id);
+      if(!ModelState.IsValid) return Res_BadRequestModel();
       
-      var item = await _repo.Get(id);
+      var item = await _repo.Get(Id);
 
-      if (item == null) return Res_NotFoundUpdate(id);
+      if (item == null) return Res_NotFoundId(Id);
 
       var result = _mapper.Map(data, item);
       _repo.Update(item);

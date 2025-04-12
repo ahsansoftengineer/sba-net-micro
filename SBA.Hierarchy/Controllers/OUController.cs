@@ -16,7 +16,7 @@
 //     ) : base(srvcProvider)
 //   {
 //     _repo = _uowProjectz.OUs;
-//     WebHostEnvironment = webHostEnvironment;
+//     WebHostEnvironment = webHostEnvironsment;
 //   }
 //   [HttpGet("[action]")]
 //   public async Task<IActionResult> GetsPaginate([FromQuery] DtoPageReq<OUDtoSearch> req)
@@ -82,13 +82,13 @@
 //     }
 //   }
 
-//   [HttpPut("{id:int}")]
-//   public async Task<IActionResult> Update(int id, [FromBody] OUDtoCreate data)
+//   [HttpPut("{Id:int}")]
+//   public async Task<IActionResult> Update(int Id, [FromBody] OUDtoCreate data)
 //   {
-//     if (!ModelState.IsValid || id < 1) return InvalidId();
+//     if (!ModelState.IsValid || Id < 1) return InvalidId();
 //     try
 //     {
-//       var item = await _repo.Get(q => q.Id == id);
+//       var item = await _repo.Get(q => q.Id == Id);
 //       if (item == null) return InvalidId();
 
 //       bool hasParent = _uowProjectz.BGs.AnyId(data.LEId);

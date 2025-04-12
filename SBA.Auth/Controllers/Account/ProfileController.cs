@@ -16,7 +16,7 @@ public partial class ProfileController : AccountBaseController<ProfileController
   [HttpPost("[action]")]
   public async Task<IActionResult> Register([FromBody] RegisterDto model) 
   {
-    if (!ModelState.IsValid) return BadRequestz();
+    if (!ModelState.IsValid) return Res_BadRequestModel();
     var user = UserController.MapUser(model);
     var result = await _userManager.CreateAsync(user, model.Password);
 

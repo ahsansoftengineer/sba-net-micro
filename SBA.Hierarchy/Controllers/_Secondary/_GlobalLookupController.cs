@@ -1,6 +1,5 @@
 using GLOB.Domain.Base;
 using GLOB.Hierarchy.Global;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;
 
@@ -42,14 +41,12 @@ public class _GlobalLookupzController : Project_RDS_Controller<_GlobalLookupzCon
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] GlobalLookupzDtoCreate data)
   {
-    if (!ModelState.IsValid) return Res_BadRequestz();
+    if (!ModelState.IsValid) return Res_BadRequestModel();
     try
     {
       bool hasParent = _uowProjectz.GlobalLookupzBases.AnyId(data.GlobalLookupzBaseId);
-      if(!hasParent) {
-        ModelState.AddModelError("GlobalLookupzBaseId", $"Invalid Id {data.GlobalLookupzBaseId} record not created"); 
-        return Res_BadRequestz();
-      }
+      if(!hasParent) return Res_BadRequestzId("GlobalLookupzBaseId",data.GlobalLookupzBaseId);
+      
       var result = _mapper.Map<GlobalLookupz>(data);
       var entity = await _repo.Insert(result);
       await _uowProjectz.Save();
@@ -61,19 +58,16 @@ public class _GlobalLookupzController : Project_RDS_Controller<_GlobalLookupzCon
     }
   }
 
-  [HttpPut("{id:int}")]
-  public async Task<IActionResult> Update(int id, [FromBody] GlobalLookupzDtoCreate data)
+  [HttpPut("{Id:int}")]
+  public async Task<IActionResult> Update(int Id, [FromBody] GlobalLookupzDtoCreate data)
   {
-    if (!ModelState.IsValid || id < 1) return Res_NotFoundUpdate(id);
+    if (!ModelState.IsValid || Id < 1) return Res_NotFoundId(Id);
     try
     {
-      var item = await _repo.Get(q => q.Id == id);
+      var item = await _repo.Get(q => q.Id == Id);
       
       bool hasParent = _uowProjectz.GlobalLookupzBases.AnyId(data.GlobalLookupzBaseId);
-      if(!hasParent) {
-        ModelState.AddModelError("GlobalLookupzBaseId", $"Invalid GlobalLookupzBase {data.GlobalLookupzBaseId} record not created"); 
-        return Res_BadRequestz();
-      }
+      if(!hasParent) return Res_BadRequestzId("GlobalLookupzBaseId",data.GlobalLookupzBaseId);
 
       var result = _mapper.Map(data, item);
       _repo.Update(item);

@@ -23,7 +23,7 @@ public static partial class API_DI_Common
       // Convention Based Routing Schema
       //ep.MapControllerRoute(
       //  name: "default",
-      //  pattern: "{controller=Home}/{action=Index}/{id?}"); //
+      //  pattern: "{controller=Home}/{action=Index}/{Id?}"); //
       ep.MapControllers();
     });
   }

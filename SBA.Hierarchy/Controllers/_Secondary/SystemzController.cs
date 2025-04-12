@@ -15,9 +15,12 @@ public class SystemzController : Project_RDS_Controller<SystemzController, Syste
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] SystemzDtoCreate data)
   {
-    if (!ModelState.IsValid) return BadRequestz();
+    if (!ModelState.IsValid) return Res_BadRequestModel();
     try
     {
+      bool hasParent = _uowProjectz.Orgs.AnyId(data.OrgId);
+      if(!hasParent) return Res_BadRequestzId("OrgId",data.OrgId);
+
       var result = _mapper.Map<Systemz>(data);
       await _repo.Insert(result);
       await _uowInfra.Save();
@@ -29,15 +32,19 @@ public class SystemzController : Project_RDS_Controller<SystemzController, Syste
     }
   }
 
-  [HttpPut("{id:int}")]
-  public async Task<IActionResult> Update(int id, [FromBody] SystemzDtoCreate data)
+  [HttpPut("{Id:int}")]
+  public async Task<IActionResult> Update(int Id, [FromBody] SystemzDtoCreate data)
   {
-    if (!ModelState.IsValid || id < 1) return InvalidId();
+    if (Id < 1) return Res_NotFoundId(Id);
     try
     {
-      var item = await _repo.Get(q => q.Id == id);
+      var item = await _repo.Get(q => q.Id == Id);
 
-      if (item == null) return InvalidId();
+      if (item == null) return Res_NotFoundId(Id);
+
+      bool hasParent = _uowProjectz.Orgs.AnyId(data.OrgId);
+      if(!hasParent) return Res_BadRequestzId("OrgId",data.OrgId);
+
       var result = _mapper.Map(data, item);
       _repo.Update(item);
       await _uowInfra.Save();

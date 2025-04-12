@@ -17,12 +17,12 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
   {
 
   } 
-  [HttpGet("{id:int}")]
-  public async Task<IActionResult> Get(int id, [FromQuery] List<string>? Include)
+  [HttpGet("{Id:int}")]
+  public async Task<IActionResult> Get(int Id, [FromQuery] List<string>? Include)
   {
     try
     {
-      var single = await _repo.Get(id, Include);
+      var single = await _repo.Get(Id, Include);
       var result = single.ToExtResVMSingle();
       return Ok(result);
     }
@@ -46,16 +46,16 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
       return CatchException(ex, nameof(Gets));
     }
   }
-  [HttpDelete("{id:int}")]
-  public async Task<IActionResult> Delete(int id)
+  [HttpDelete("{Id:int}")]
+  public async Task<IActionResult> Delete(int Id)
   {
     try
     {
-      if (id < 1) return Res_NotFoundDelete(id);
-      var item = await _repo.Get(id);
+      if (Id < 1) return Res_NotFoundId(Id);
+      var item = await _repo.Get(Id);
 
-      if (item == null) return Res_NotFoundDelete(id);
-      await _repo.Delete(id);
+      if (item == null) return Res_NotFoundId(Id);
+      await _repo.Delete(Id);
       await _uowInfra.Save();
     }
     catch (Exception ex)
@@ -64,18 +64,18 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
     }
     return Ok("Record Deleted Successfull");
   }
-  [HttpPatch("{id:int}")]
-  public async Task<IActionResult> Status(int id, [FromBody] Status status)
+  [HttpPatch("{Id:int}")]
+  public async Task<IActionResult> Status(int Id, [FromBody] Status status)
   {
 
     try
     {
-      if (!ModelState.IsValid) return Res_NotFoundStatus(id);
+      if (!ModelState.IsValid) return Res_NotFoundId(Id);
       if(!Enum.IsDefined(status)) return Res_InvalidEnums(status.ToString());
       
-      var item = await _repo.Get(id);
+      var item = await _repo.Get(Id);
 
-      if (item == null) return Res_NotFoundStatus(id);
+      if (item == null) return Res_NotFoundId(Id);
 
       _repo.UpdateStatus(item, status);
       await _uowInfra.Save();
