@@ -1,7 +1,6 @@
 using GLOB.Domain.Base;
 using GLOB.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
-using GLOB.Infra.Helper;
 using GLOB.Infra.Repo;
 using GLOB.API.Staticz;
 
@@ -13,79 +12,31 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
     where TController : class
 {
 
-  protected virtual IRepoGenericz<TEntity> _repo {get; set;} // Will be initialize in Last Child Class
   public API_2_RDS_Controller(IServiceProvider srvcProvider) : base(srvcProvider)
   {
 
   } 
+  protected virtual IRepoGenericz<TEntity> _repo {get; set;} // Will be initialize in Last Child Class
   [HttpGet("{Id:int}")]
   public async Task<IActionResult> Get(int Id, [FromQuery] List<string>? Include)
   {
-    try
-    {
-      var single = await _repo.Get(Id, Include);
-      var result = single.ToExtResVMSingle();
-      return Ok(result);
-    }
-    catch(Exception ex)
-    {
-      return _Res.CatchException(ex, nameof(Get));
-    }
-    
+    return await _Actionz.Get(_repo, nameof(Get), Id, Include);
   }
+
   [HttpGet()]
   public async Task<IActionResult> Gets([FromQuery] List<string>? Include)
   {
-    try
-    {
-      var list = await _repo.Gets(Include: Include);
-      var result = list.ToExtResVMList();
-      return Ok(result);
-    }
-    catch (Exception ex)
-    {
-      return _Res.CatchException(ex, nameof(Gets));
-    }
+    return await _Actionz.Gets(_repo, nameof(Gets), Include);
   }
   [HttpDelete("{Id:int}")]
   public async Task<IActionResult> Delete(int Id)
   {
-    try
-    {
-      if (Id < 1) return _Res.NotFoundId(Id);
-      var item = await _repo.Get(Id);
-
-      if (item == null) return _Res.NotFoundId(Id);
-      await _repo.Delete(Id);
-      await _uowInfra.Save();
-    }
-    catch (Exception ex)
-    {
-      return _Res.CatchException(ex, nameof(Delete));
-    }
-    return Ok("Record Deleted Successfull");
+    return await _Actionz.Delete(_repo, _uowInfra, nameof(Delete), Id);
   }
   [HttpPatch("{Id:int}")]
   public async Task<IActionResult> Status(int Id, [FromBody] Status status)
   {
-
-    try
-    {
-      if (!ModelState.IsValid) return _Res.NotFoundId(Id);
-      if(!Enum.IsDefined(status)) return _Res.InvalidEnums(status.ToString());
-      
-      var item = await _repo.Get(Id);
-
-      if (item == null) return _Res.NotFoundId(Id);
-
-      _repo.UpdateStatus(item, status);
-      await _uowInfra.Save();
-      return Ok(item);
-    }
-    catch (Exception ex)
-    {
-      return _Res.CatchException(ex, nameof(Status));
-    }
+    return await _Actionz.Status(_repo, _uowInfra, nameof(Status), Id, status);
   }
   
 }

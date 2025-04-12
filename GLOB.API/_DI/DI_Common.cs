@@ -45,6 +45,23 @@ public static partial class API_DI_Common
           //,VaryByQueryKeys = "Any Keys"
         });
       })
+      .ConfigureApiBehaviorOptions(options =>
+      {
+        options.InvalidModelStateResponseFactory = context =>
+        {
+            var errors = context.ModelState
+                .Where(m => m.Value.Errors.Count > 0)
+                .Select(m => new {
+                    Field = m.Key,
+                    Errors = m.Value.Errors.Select(e => e.ErrorMessage).ToArray()
+                });
+
+            return new BadRequestObjectResult(new {
+                Message = "Bad Request, Validation Failed",
+                Errors = errors
+            });
+        };
+      })
       .AddNewtonsoftJson(opt =>
       {
         opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
