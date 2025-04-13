@@ -6,32 +6,32 @@ using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers;
 [Route("[controller]")]
-public class _GlobalLookupzzController : Project_RDS_Controller<_GlobalLookupzzController, GlobalLookupzz>
+public class _GlobalLookupController : Project_RDS_Controller<_GlobalLookupController, GlobalLookup>
 {
-  public _GlobalLookupzzController(IServiceProvider srvcProvider) : base(srvcProvider)
+  public _GlobalLookupController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = _uowProjectz.GlobalLookupzzs;
+    _repo = _uowProjectz.GlobalLookups;
   }
 
   [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginate([FromQuery] DtoPageReq<GlobalLookupzzDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginate([FromQuery] DtoPageReq<GlobalLookupDtoSearch?> req)
   {
     return await _Actionz.GetsPaginatez(_repo, req);
   }
   [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginateOptions([FromQuery] DtoPageReq<GlobalLookupzzDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginateOptions([FromQuery] DtoPageReq<GlobalLookupDtoSearch?> req)
   {
     return await _Actionz.GetsPaginateOptionsz(_repo, req);
   }
   [HttpPost]
-  public async Task<IActionResult> Create([FromBody] GlobalLookupzzDtoCreate data)
+  public async Task<IActionResult> Create([FromBody] GlobalLookupDtoCreate data)
   {
     try
     {
-      bool hasParent = _uowProjectz.GlobalLookupzzBases.AnyId(data.GlobalLookupzzBaseId);
-      if(!hasParent) return _Res.BadRequestzId("GlobalLookupzzBaseId",data.GlobalLookupzzBaseId);
+      bool hasParent = _uowProjectz.GlobalLookupBases.AnyId(data.GlobalLookupBaseId);
+      if(!hasParent) return _Res.BadRequestzId("GlobalLookupBaseId",data.GlobalLookupBaseId);
       
-      var result = _mapper.Map<GlobalLookupzz>(data);
+      var result = _mapper.Map<GlobalLookup>(data);
       var entity = await _repo.Insert(result);
       await _uowProjectz.Save();
       return _Res.CreatedAtAction(this, nameof(Get), entity);
@@ -43,14 +43,14 @@ public class _GlobalLookupzzController : Project_RDS_Controller<_GlobalLookupzzC
   }
 
   [HttpPut("{Id:int}")]
-  public async Task<IActionResult> Update(int Id, [FromBody] GlobalLookupzzDtoCreate data)
+  public async Task<IActionResult> Update(int Id, [FromBody] GlobalLookupDtoCreate data)
   {
     try
     {
       var item = await _repo.Get(q => q.Id == Id);
       
-      bool hasParent = _uowProjectz.GlobalLookupzzBases.AnyId(data.GlobalLookupzzBaseId);
-      if(!hasParent) return _Res.BadRequestzId("GlobalLookupzzBaseId",data.GlobalLookupzzBaseId);
+      bool hasParent = _uowProjectz.GlobalLookupBases.AnyId(data.GlobalLookupBaseId);
+      if(!hasParent) return _Res.BadRequestzId("GlobalLookupBaseId",data.GlobalLookupBaseId);
 
       var result = _mapper.Map(data, item);
       _repo.Update(item);

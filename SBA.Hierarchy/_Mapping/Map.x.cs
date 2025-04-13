@@ -8,7 +8,7 @@ public partial class ProjectzMapper
   public override void MapCommon() 
   {
     base.MapCommon();
-    CreateMap_Entity_DefaultDtos<GlobalLookupzzBase>();
+    CreateMap_Entity_DefaultDtos<GlobalLookupBase>();
     CreateMap_Entity_DefaultDtos<ProjectzEntityTest>();
 
     CreateMap_Entity_DefaultDtos<Org>();

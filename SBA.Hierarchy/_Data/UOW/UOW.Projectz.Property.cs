@@ -10,7 +10,7 @@ public partial class UOW_Projectz : UOW_Infra, IUOW_Projectz
   public UOW_Projectz(ProjectzDBCntxt context): base(context) { }
   private IRepoGenericz<ProjectzEntityTest>? _testProj;
   // .-*
-  private IRepoGenericz<GlobalLookupzzBase>? _GlobalLookupzzBase;
+  private IRepoGenericz<GlobalLookupBase>? _GlobalLookupBase;
   private IRepoGenericz<Org>? _Orgs;
   private IRepoGenericz<BG>? _BG;
   private IRepoGenericz<State>? _State;
@@ -20,7 +20,7 @@ public partial class UOW_Projectz : UOW_Infra, IUOW_Projectz
   private IRepoGenericz<Profession>? _Profession;
   
   // *-.
-  private IRepoGenericz<GlobalLookupzz>? _GlobalLookupzz;
+  private IRepoGenericz<GlobalLookup>? _GlobalLookup;
   private IRepoGenericz<Systemz>? _Systemz;
   private IRepoGenericz<LE>? _LE;
   private IRepoGenericz<OU>? _OU;

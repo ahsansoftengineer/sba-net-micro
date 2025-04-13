@@ -12,8 +12,8 @@ public static partial class InfraSeeder
   {
     Console.WriteLine("--> Infra -> Applying Migrations ModelBuilder (Dev)");
     mb.SeedTestInfra();
-    mb.SeedProjectzLookupzzBase();
-    mb.SeedProjectzLookupzz();
+    mb.SeedProjectzLookupBase();
+    mb.SeedProjectzLookup();
   }
 
   // Seed for Production (Automate)
@@ -28,8 +28,8 @@ public static partial class InfraSeeder
         context.Database.Migrate();
         {
           context.SeedTestInfra();
-          context.SeedProjectzLookupzzBase();
-          context.SeedProjectzLookupzz();
+          context.SeedProjectzLookupBase();
+          context.SeedProjectzLookup();
         }
       }
     }

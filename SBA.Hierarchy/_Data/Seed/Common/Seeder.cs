@@ -13,7 +13,7 @@ public static partial class Seeder
     mb.SeedTestProj();
     
     // .-*
-    mb.SeedGlobalLookupzzBase();
+    mb.SeedGlobalLookupBase();
     mb.SeedOrg();
     mb.SeedBG();
     mb.SeedState();
@@ -23,7 +23,7 @@ public static partial class Seeder
     mb.SeedProfession();
 
     // *-.
-    mb.SeedGlobalLookupzz();
+    mb.SeedGlobalLookup();
     mb.SeedSystemz();
     mb.SeedLE();
     mb.SeedOU();
@@ -46,7 +46,7 @@ public static partial class Seeder
           context.SeedTestProj();
           
           // .-*
-          context.SeedGlobalLookupzzBase();
+          context.SeedGlobalLookupBase();
           context.SeedOrg();
           context.SeedBG();
           context.SeedState();
@@ -56,7 +56,7 @@ public static partial class Seeder
           context.SeedProfession();
 
           // *-.
-          context.SeedGlobalLookupzz();
+          context.SeedGlobalLookup();
           context.SeedSystemz();
           context.SeedLE();
           context.SeedOU();

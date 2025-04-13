@@ -6,19 +6,19 @@ using Microsoft.EntityFrameworkCore;
 namespace GLOB.Infra.Seed;
 public static partial class InfraSeeder
 {
-  public static void SeedProjectzLookupzz(this DBCntxt context)
+  public static void SeedProjectzLookup(this DBCntxt context)
   {
-    if (!context.ProjectzLookupzzs.Any(x => x.Id > 0))
+    if (!context.ProjectzLookups.Any(x => x.Id > 0))
     {
-      context.ProjectzLookupzzs.AddRange(SeedDataProjectzLookupzz<ProjectzLookupzz>());
+      context.ProjectzLookups.AddRange(SeedDataProjectzLookup<ProjectzLookup>());
       context.SaveChanges();
     }
   }
-  public static void SeedProjectzLookupzz(this ModelBuilder builder)
+  public static void SeedProjectzLookup(this ModelBuilder builder)
   {
-    builder.Entity<ProjectzLookupzz>().HasData(SeedDataProjectzLookupzz<ProjectzLookupzz>());
+    builder.Entity<ProjectzLookup>().HasData(SeedDataProjectzLookup<ProjectzLookup>());
   }
-  public static List<T> SeedDataProjectzLookupzz<T>() where T : ProjectzLookupzz, new()
+  public static List<T> SeedDataProjectzLookup<T>() where T : ProjectzLookup, new()
   {
     string className = typeof(T).Name;
     List<T> list = new List<T>();
@@ -31,7 +31,7 @@ public static partial class InfraSeeder
         Desc = $"{className} {i} Desc",
         Status = Status.None,
         Code = $"{i}{i}{i}-{i}{i}{i}-{i}{i}{i}",
-        ProjectzLookupzzBaseId = i
+        ProjectzLookupBaseId = i
       });
     }
     return list;

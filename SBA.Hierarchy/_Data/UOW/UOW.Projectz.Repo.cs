@@ -9,7 +9,7 @@ public partial class UOW_Projectz
   public IRepoGenericz<ProjectzEntityTest> TestProjs => _testProj ??= new RepoGenericz<ProjectzEntityTest>(_context);
   
   // .-*
-  public IRepoGenericz<GlobalLookupzzBase> GlobalLookupzzBases => _GlobalLookupzzBase ??= new RepoGenericz<GlobalLookupzzBase>(_context);
+  public IRepoGenericz<GlobalLookupBase> GlobalLookupBases => _GlobalLookupBase ??= new RepoGenericz<GlobalLookupBase>(_context);
   public IRepoGenericz<Org> Orgs => _Orgs ??= new RepoGenericz<Org>(_context);
   public IRepoGenericz<BG> BGs => _BG ??= new RepoGenericz<BG>(_context);
   public IRepoGenericz<State> States => _State ??= new RepoGenericz<State>(_context);
@@ -19,7 +19,7 @@ public partial class UOW_Projectz
   public IRepoGenericz<Profession> Professions => _Profession ??= new RepoGenericz<Profession>(_context);
 
   // *-.
-  public IRepoGenericz<GlobalLookupzz> GlobalLookupzzs => _GlobalLookupzz ??= new RepoGenericz<GlobalLookupzz>(_context);
+  public IRepoGenericz<GlobalLookup> GlobalLookups => _GlobalLookup ??= new RepoGenericz<GlobalLookup>(_context);
   public IRepoGenericz<LE> LEs => _LE ??= new RepoGenericz<LE>(_context);
   public IRepoGenericz<OU> OUs => _OU ??= new RepoGenericz<OU>(_context);
   public IRepoGenericz<SU> SUs => _SU ??= new RepoGenericz<SU>(_context);

@@ -2,7 +2,7 @@ using GLOB.Domain.Base;
 
 namespace GLOB.Hierarchy.Global;
 
-public class GlobalLookupzzBase : EntityBase
+public class GlobalLookupBase : EntityBase
 {
-  public virtual ICollection<GlobalLookupzz>? GlobalLookupzz { get; set; }
+  public virtual ICollection<GlobalLookup>? GlobalLookup { get; set; }
 }

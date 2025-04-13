@@ -5,10 +5,10 @@ using SBA.Projectz.Controllers.Base;
 namespace SBA.Hierarchy.Controllers.Prime;
 [Route("[controller]")]
 [ApiController]
-public class _GlobalLookupzzBaseController  : Projectz_Default_Controller<_GlobalLookupzzBaseController , GlobalLookupzzBase>
+public class _GlobalLookupBaseController  : Projectz_Default_Controller<_GlobalLookupBaseController , GlobalLookupBase>
 {
-  public _GlobalLookupzzBaseController (IServiceProvider srvcProvider) : base(srvcProvider)
+  public _GlobalLookupBaseController (IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _repo = _uowProjectz.GlobalLookupzzBases;
+    _repo = _uowProjectz.GlobalLookupBases;
   }
 }

@@ -1,6 +1,6 @@
 namespace GLOB.Domain.Base;
 
-public class ProjectzLookupzzBase : EntityBase
+public class ProjectzLookupBase : EntityBase
 {
-  public virtual ICollection<ProjectzLookupzz>? ProjectzLookupzz { get; set; }
+  public virtual ICollection<ProjectzLookup>? ProjectzLookup { get; set; }
 }

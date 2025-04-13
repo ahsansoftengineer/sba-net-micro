@@ -11,7 +11,7 @@ public partial class ProjectzMapper : API_Base_Mapper
   public override void MapAll() 
   {
     base.MapAll();
-    CreateMapAll<GlobalLookupzz, GlobalLookupzzDtoCreate, GlobalLookupzzDtoRead, GlobalLookupzzDtoSearch>();
+    CreateMapAll<GlobalLookup, GlobalLookupDtoCreate, GlobalLookupDtoRead, GlobalLookupDtoSearch>();
 
     CreateMapAll<Systemz, SystemzDtoCreate, SystemzDtoRead, SystemzDtoSearch>();
     CreateMapAll<LE, LEDtoCreate, LEDtoRead, LEDtoSearch>();

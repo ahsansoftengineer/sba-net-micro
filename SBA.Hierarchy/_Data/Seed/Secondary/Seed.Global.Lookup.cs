@@ -6,19 +6,19 @@ using SBA.Projectz.Data;
 namespace GLOB.Projectz.Seed;
 public static partial class Seeder
 {
-  public static void SeedGlobalLookupzz(this ProjectzDBCntxt context)
+  public static void SeedGlobalLookup(this ProjectzDBCntxt context)
   {
-    if (!context.GlobalLookupzzs.Any(x => x.Id > 0))
+    if (!context.GlobalLookups.Any(x => x.Id > 0))
     {
-      context.GlobalLookupzzs.AddRange(SeedDataGlobalLookupzz<GlobalLookupzz>());
+      context.GlobalLookups.AddRange(SeedDataGlobalLookup<GlobalLookup>());
       context.SaveChanges();
     }
   }
-  public static void SeedGlobalLookupzz(this ModelBuilder builder)
+  public static void SeedGlobalLookup(this ModelBuilder builder)
   {
-    builder.Entity<GlobalLookupzz>().HasData(SeedDataGlobalLookupzz<GlobalLookupzz>());
+    builder.Entity<GlobalLookup>().HasData(SeedDataGlobalLookup<GlobalLookup>());
   }
-  public static List<T> SeedDataGlobalLookupzz<T>() where T : GlobalLookupzz, new()
+  public static List<T> SeedDataGlobalLookup<T>() where T : GlobalLookup, new()
   {
     string className = typeof(T).Name;
     List<T> list = new List<T>();
@@ -31,7 +31,7 @@ public static partial class Seeder
         Desc = $"{className} {i} Desc",
         Status = Status.None,
         Code = $"{i}{i}{i}-{i}{i}{i}-{i}{i}{i}",
-        GlobalLookupzzBaseId = i
+        GlobalLookupBaseId = i
       });
     }
     return list;
