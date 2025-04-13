@@ -167,40 +167,6 @@ namespace SBA.Hierarchy.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TestInfras",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TestInfras", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TestProjs",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TestProjs", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "LEs",
                 columns: table => new
                 {
@@ -462,26 +428,6 @@ namespace SBA.Hierarchy.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "TestInfras",
-                columns: new[] { "Id", "Created_At", "Desc", "Name", "Status", "Updated_At" },
-                values: new object[,]
-                {
-                    { 1, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "API_Infra_EntityTest 1 Desc", "API_Infra_EntityTest 1", 0, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) },
-                    { 2, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "API_Infra_EntityTest 2 Desc", "API_Infra_EntityTest 2", 0, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) },
-                    { 3, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "API_Infra_EntityTest 3 Desc", "API_Infra_EntityTest 3", 0, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) }
-                });
-
-            migrationBuilder.InsertData(
-                table: "TestProjs",
-                columns: new[] { "Id", "Created_At", "Desc", "Name", "Status", "Updated_At" },
-                values: new object[,]
-                {
-                    { 1, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "ProjectzEntityTest 1 Desc", "ProjectzEntityTest 1", 0, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) },
-                    { 2, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "ProjectzEntityTest 2 Desc", "ProjectzEntityTest 2", 0, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) },
-                    { 3, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), "ProjectzEntityTest 3 Desc", "ProjectzEntityTest 3", 0, new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)) }
-                });
-
-            migrationBuilder.InsertData(
                 table: "Citys",
                 columns: new[] { "Id", "Created_At", "Desc", "Name", "StateId", "Status", "Updated_At" },
                 values: new object[,]
@@ -616,12 +562,6 @@ namespace SBA.Hierarchy.Migrations
 
             migrationBuilder.DropTable(
                 name: "Systemzs");
-
-            migrationBuilder.DropTable(
-                name: "TestInfras");
-
-            migrationBuilder.DropTable(
-                name: "TestProjs");
 
             migrationBuilder.DropTable(
                 name: "States");

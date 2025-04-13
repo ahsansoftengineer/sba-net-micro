@@ -19,6 +19,8 @@ public static partial class _Actionz
     try
     {
       var single = await repo.Get(Id, Include);
+      if(single == null) return _Res.NotFoundId(Id);
+      
       var result = single.ToExtResVMSingle();
       return Ok(result);
     }
