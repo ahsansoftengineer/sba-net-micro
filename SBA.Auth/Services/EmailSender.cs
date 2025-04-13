@@ -5,7 +5,7 @@ using Microsoft.Extensions.Options;
 using MimeKit;
 using MimeKit.Text;
 
-namespace SBA.Projectz.Services;
+namespace SBA.Auth.Services;
 
 public class SmtpEmailSender : IEmailSender
 {
