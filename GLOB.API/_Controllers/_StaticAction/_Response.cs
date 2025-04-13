@@ -1,3 +1,4 @@
+using GLOB.API.Configz;
 using GLOB.Domain.Base;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -71,7 +72,13 @@ public static class _Res
   {
     var modelState = new ModelStateDictionary();
     modelState.AddModelError(key, $"Invalid {key} {id} does not exsist");
-    return new NotFoundObjectResult(modelState);
+
+    var errors = ExtConfig.ToExtValidationError(modelState);
+    return new NotFoundObjectResult(new
+    {
+        Errors = errors,
+        Message = "Bad Request, Validation Failed"
+    });
   }
 
   public static ObjectResult InvalidEnums(string status)

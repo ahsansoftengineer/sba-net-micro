@@ -49,17 +49,12 @@ public static partial class API_DI_Common
       {
         options.InvalidModelStateResponseFactory = context =>
         {
-            var errors = context.ModelState
-                .Where(m => m.Value.Errors.Count > 0)
-                .Select(m => new {
-                    Field = m.Key,
-                    Errors = m.Value.Errors.Select(e => e.ErrorMessage).ToArray()
-                });
-
-            return new BadRequestObjectResult(new {
-                Message = "Bad Request, Validation Failed",
-                Errors = errors
-            });
+          var errors =  context.ModelState.ToExtValidationError();
+          return new BadRequestObjectResult(new
+          {
+              Errors = errors,
+              Message = "Bad Request, Validation Failed"
+          });
         };
       })
       .AddNewtonsoftJson(opt =>
@@ -70,6 +65,9 @@ public static partial class API_DI_Common
       });
 
   }
+
+
+
     public static void Config_Swagger(this IApplicationBuilder app, IWebHostEnvironment env)
   {
 

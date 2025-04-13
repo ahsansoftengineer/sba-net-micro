@@ -1,3 +1,4 @@
+using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
 using GLOB.Domain.Base;
 using GLOB.Infra.Helper;
@@ -30,6 +31,7 @@ public partial class RoleController : AccountBaseController<RoleController>
   {
     Console.WriteLine("ID = " + Id);
     var data = _roleManager.Roles.FirstOrDefault(x => x.Id == Id);
+    if(data == null) return _Res.NotFoundId(Id);
     var result = data.ToExtResVMSingle();
     return Ok(result);
   }

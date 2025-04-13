@@ -25,6 +25,7 @@ public partial class RoleController
     ModelState.AddModelError("Name", $"{role} already exsist");
     return _Res.BadRequestModel(ModelState);
   }
+  
   [HttpPut("{Id}")]
   public async Task<IActionResult> Update(string Id, [FromBody] DtoUpdate dto)
   {
