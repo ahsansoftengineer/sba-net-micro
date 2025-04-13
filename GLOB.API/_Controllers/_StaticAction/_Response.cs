@@ -1,3 +1,4 @@
+using GLOB.API.Configz;
 using GLOB.Domain.Base;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -69,7 +70,15 @@ public static class _Res
 
   public static ObjectResult NotFoundId(string key, string id)
   {
-    return new NotFoundObjectResult($"Invalid {key} {id}");
+    var modelState = new ModelStateDictionary();
+    modelState.AddModelError(key, $"Invalid {key} {id} does not exsist");
+
+    var errors = ExtConfig.ToExtValidationError(modelState);
+    return new NotFoundObjectResult(new
+    {
+        Errors = errors,
+        Message = "Bad Request, Validation Failed"
+    });
   }
 
   public static ObjectResult InvalidEnums(string status)

@@ -22,8 +22,10 @@ public partial class RoleController
       var result = await _roleManager.CreateAsync(rolz);
       if (result.Succeeded) return Ok(rolz.ToExtResVMSingle());
     }
-    return BadRequest("Role already exist");
+    ModelState.AddModelError("Name", $"{role} already exsist");
+    return _Res.BadRequestModel(ModelState);
   }
+  
   [HttpPut("{Id}")]
   public async Task<IActionResult> Update(string Id, [FromBody] DtoUpdate dto)
   {

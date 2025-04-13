@@ -14,7 +14,7 @@
 - EntityShortParentProjectz CRUD
 - EntityShortProjectz CRUD
 
-### EntityShort Global (Hierarchy)
+### EntityShort Global (Hierarchy) (Done)
 - Global for Every Microservices (Goes inside Hierarchy)
 - EntityShortParent CRUD
 - EntityShort CRUD
@@ -31,8 +31,8 @@
 - AddUserToRole
 
 ### Task 3 Account
-- Register
-- Logout
+- Register (Done)
+- Logout (Done)
 - PasswordForgot
 - PasswordRest
 - PasswordChange

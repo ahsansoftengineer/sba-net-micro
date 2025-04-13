@@ -1,5 +1,4 @@
 using GLOB.Domain.Auth;
-using GLOB.Infra.Seedz;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,9 +9,8 @@ public partial class DBCntxtIdentity : IdentityDbContext<InfraUser, InfraRole, s
 
   protected override void OnModelCreating(ModelBuilder mb)
   {
-    // mb.SeedInfra(); // Part of the Normal DBContext
     DBCntxt.EntityMappingConfig(mb);
-    mb.SeedInfraIdentity();
+    // mb.SeedInfraIdentity(); Handle From Auth Project
     base.OnModelCreating(mb);
   }
 }

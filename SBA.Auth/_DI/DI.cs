@@ -1,6 +1,7 @@
 using GLOB.Infra.Data;
 using GLOB.Infra.UOW_Projectz;
 using GLOB.INFRA.DI;
+using SBA.Auth.Services;
 using SBA.Projectz.Data;
 using SBA.Projectz.Mapper;
 
@@ -12,5 +13,9 @@ public static class Projectz_DI
     srvc.Config_DB_SQL<DBCntxt, IUOW_Infra, UOW_Projectz>(config);
     srvc.Config_DB_Identity<ProjectzDBCntxt, IUOW_Projectz, UOW_Projectz>(config);
     srvc.AddAutoMapper(typeof(ProjectzMapper));
+    
+    srvc.Configure<EmailSettings>(config.GetSection("EmailSettings"));
+    srvc.AddTransient<SmtpEmailSender>();
+
   }
 }
