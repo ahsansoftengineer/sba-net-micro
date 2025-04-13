@@ -12,7 +12,7 @@ using SBA.Projectz.Data;
 namespace SBA.Hierarchy.Migrations
 {
     [DbContext(typeof(ProjectzDBCntxt))]
-    [Migration("20250412120120_Init")]
+    [Migration("20250413044916_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace SBA.Hierarchy.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookupzz", b =>
+            modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookup", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -50,7 +50,7 @@ namespace SBA.Hierarchy.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(3);
 
-                    b.Property<int?>("ProjectzLookupzzBaseId")
+                    b.Property<int?>("ProjectzLookupBaseId")
                         .HasColumnType("int");
 
                     b.Property<int?>("Status")
@@ -63,9 +63,9 @@ namespace SBA.Hierarchy.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProjectzLookupzzBaseId");
+                    b.HasIndex("ProjectzLookupBaseId");
 
-                    b.ToTable("ProjectzLookupzzs");
+                    b.ToTable("ProjectzLookups");
 
                     b.HasData(
                         new
@@ -73,9 +73,9 @@ namespace SBA.Hierarchy.Migrations
                             Id = 1,
                             Code = "111-111-111",
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            Desc = "ProjectzLookupzz 1 Desc",
-                            Name = "ProjectzLookupzz 1",
-                            ProjectzLookupzzBaseId = 1,
+                            Desc = "ProjectzLookup 1 Desc",
+                            Name = "ProjectzLookup 1",
+                            ProjectzLookupBaseId = 1,
                             Status = 0,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
@@ -84,9 +84,9 @@ namespace SBA.Hierarchy.Migrations
                             Id = 2,
                             Code = "222-222-222",
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            Desc = "ProjectzLookupzz 2 Desc",
-                            Name = "ProjectzLookupzz 2",
-                            ProjectzLookupzzBaseId = 2,
+                            Desc = "ProjectzLookup 2 Desc",
+                            Name = "ProjectzLookup 2",
+                            ProjectzLookupBaseId = 2,
                             Status = 0,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
@@ -95,15 +95,15 @@ namespace SBA.Hierarchy.Migrations
                             Id = 3,
                             Code = "333-333-333",
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            Desc = "ProjectzLookupzz 3 Desc",
-                            Name = "ProjectzLookupzz 3",
-                            ProjectzLookupzzBaseId = 3,
+                            Desc = "ProjectzLookup 3 Desc",
+                            Name = "ProjectzLookup 3",
+                            ProjectzLookupBaseId = 3,
                             Status = 0,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });
                 });
 
-            modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookupzzBase", b =>
+            modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookupBase", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -135,15 +135,15 @@ namespace SBA.Hierarchy.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProjectzLookupzzBases");
+                    b.ToTable("ProjectzLookupBases");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            Desc = "ProjectzLookupzzBase 1 Desc",
-                            Name = "ProjectzLookupzzBase 1",
+                            Desc = "ProjectzLookupBase 1 Desc",
+                            Name = "ProjectzLookupBase 1",
                             Status = 0,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
@@ -151,8 +151,8 @@ namespace SBA.Hierarchy.Migrations
                         {
                             Id = 2,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            Desc = "ProjectzLookupzzBase 2 Desc",
-                            Name = "ProjectzLookupzzBase 2",
+                            Desc = "ProjectzLookupBase 2 Desc",
+                            Name = "ProjectzLookupBase 2",
                             Status = 0,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         },
@@ -160,8 +160,8 @@ namespace SBA.Hierarchy.Migrations
                         {
                             Id = 3,
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            Desc = "ProjectzLookupzzBase 3 Desc",
-                            Name = "ProjectzLookupzzBase 3",
+                            Desc = "ProjectzLookupBase 3 Desc",
+                            Name = "ProjectzLookupBase 3",
                             Status = 0,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
                         });
@@ -1145,7 +1145,7 @@ namespace SBA.Hierarchy.Migrations
                         });
                 });
 
-            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookupzz", b =>
+            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookup", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1165,7 +1165,7 @@ namespace SBA.Hierarchy.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(4);
 
-                    b.Property<int?>("GlobalLookupzzBaseId")
+                    b.Property<int?>("GlobalLookupBaseId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -1183,12 +1183,47 @@ namespace SBA.Hierarchy.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GlobalLookupzzBaseId");
+                    b.HasIndex("GlobalLookupBaseId");
 
-                    b.ToTable("GlobalLookupzzs");
+                    b.ToTable("GlobalLookups");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "111-111-111",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "GlobalLookup 1 Desc",
+                            GlobalLookupBaseId = 1,
+                            Name = "GlobalLookup 1",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "222-222-222",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "GlobalLookup 2 Desc",
+                            GlobalLookupBaseId = 2,
+                            Name = "GlobalLookup 2",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Code = "333-333-333",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "GlobalLookup 3 Desc",
+                            GlobalLookupBaseId = 3,
+                            Name = "GlobalLookup 3",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        });
                 });
 
-            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookupzzBase", b =>
+            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookupBase", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1220,17 +1255,46 @@ namespace SBA.Hierarchy.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("GlobalLookupzzBases");
+                    b.ToTable("GlobalLookupBases");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "GlobalLookupBase 1 Desc",
+                            Name = "GlobalLookupBase 1",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "GlobalLookupBase 2 Desc",
+                            Name = "GlobalLookupBase 2",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "GlobalLookupBase 3 Desc",
+                            Name = "GlobalLookupBase 3",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        });
                 });
 
-            modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookupzz", b =>
+            modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookup", b =>
                 {
-                    b.HasOne("GLOB.Domain.Base.ProjectzLookupzzBase", "ProjectzLookupzzBase")
-                        .WithMany("ProjectzLookupzz")
-                        .HasForeignKey("ProjectzLookupzzBaseId")
+                    b.HasOne("GLOB.Domain.Base.ProjectzLookupBase", "ProjectzLookupBase")
+                        .WithMany("ProjectzLookup")
+                        .HasForeignKey("ProjectzLookupBaseId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.Navigation("ProjectzLookupzzBase");
+                    b.Navigation("ProjectzLookupBase");
                 });
 
             modelBuilder.Entity("GLOB.Domain.Hierarchy.City", b =>
@@ -1278,18 +1342,18 @@ namespace SBA.Hierarchy.Migrations
                     b.Navigation("Org");
                 });
 
-            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookupzz", b =>
+            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookup", b =>
                 {
-                    b.HasOne("GLOB.Hierarchy.Global.GlobalLookupzzBase", "GlobalLookupzzBase")
-                        .WithMany("GlobalLookupzz")
-                        .HasForeignKey("GlobalLookupzzBaseId");
+                    b.HasOne("GLOB.Hierarchy.Global.GlobalLookupBase", "GlobalLookupBase")
+                        .WithMany("GlobalLookup")
+                        .HasForeignKey("GlobalLookupBaseId");
 
-                    b.Navigation("GlobalLookupzzBase");
+                    b.Navigation("GlobalLookupBase");
                 });
 
-            modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookupzzBase", b =>
+            modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookupBase", b =>
                 {
-                    b.Navigation("ProjectzLookupzz");
+                    b.Navigation("ProjectzLookup");
                 });
 
             modelBuilder.Entity("GLOB.Domain.Hierarchy.BG", b =>
@@ -1317,9 +1381,9 @@ namespace SBA.Hierarchy.Migrations
                     b.Navigation("Citys");
                 });
 
-            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookupzzBase", b =>
+            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookupBase", b =>
                 {
-                    b.Navigation("GlobalLookupzz");
+                    b.Navigation("GlobalLookup");
                 });
 #pragma warning restore 612, 618
         }
