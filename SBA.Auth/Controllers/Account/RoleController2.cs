@@ -1,3 +1,4 @@
+using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
 using GLOB.Domain.Base;
 using GLOB.Domain.Contants;
@@ -39,7 +40,7 @@ public partial class RoleController
     result?.Errors?.ForEach(x => {
       ModelState.AddModelError(x.Code, x.Description);
     });
-    return Res_BadRequestModel();
+    return _Res.BadRequestModel(ModelState);
   }
   
   [HttpDelete("{Id}")]
@@ -56,7 +57,7 @@ public partial class RoleController
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(Delete));
+      return _Res.CatchException(ex, nameof(Delete));
     }
     return NoContent();
   }

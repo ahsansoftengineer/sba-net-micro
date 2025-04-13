@@ -11,6 +11,7 @@ public partial class DBCntxtIdentity : IdentityDbContext<InfraUser, InfraRole, s
   protected override void OnModelCreating(ModelBuilder mb)
   {
     // mb.SeedInfra(); // Part of the Normal DBContext
+    DBCntxt.EntityMappingConfig(mb);
     mb.SeedInfraIdentity();
     base.OnModelCreating(mb);
   }

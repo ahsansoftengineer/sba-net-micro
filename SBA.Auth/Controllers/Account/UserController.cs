@@ -1,3 +1,4 @@
+using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
 using GLOB.Infra.Helper;
 using Microsoft.AspNetCore.Identity;
@@ -82,7 +83,7 @@ public partial class UserController : AccountBaseController<UserController>
     }
     catch (Exception ex)
     {
-      return CatchException(ex, nameof(Update));
+      return _Res.CatchException(ex, nameof(Update));
     }
   }
 

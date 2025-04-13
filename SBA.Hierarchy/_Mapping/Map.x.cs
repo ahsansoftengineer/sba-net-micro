@@ -1,5 +1,4 @@
 using GLOB.Domain.Hierarchy;
-using GLOB.Domain.Projectz;
 using GLOB.Hierarchy.Global;
 
 namespace SBA.Projectz.Mapper;
@@ -9,7 +8,6 @@ public partial class ProjectzMapper
   {
     base.MapCommon();
     CreateMap_Entity_DefaultDtos<GlobalLookupBase>();
-    CreateMap_Entity_DefaultDtos<ProjectzEntityTest>();
 
     CreateMap_Entity_DefaultDtos<Org>();
     CreateMap_Entity_DefaultDtos<BG>();

@@ -9,9 +9,6 @@ public static partial class Seeder
   public static void Seed(this ModelBuilder mb)
   {
     Console.WriteLine("--> Hierarchy -> Applying Migrations ModelBuilder");
-    // mb.SeedTestInfra();
-    mb.SeedTestProj();
-    
     // .-*
     mb.SeedGlobalLookupBase();
     mb.SeedOrg();
@@ -42,9 +39,6 @@ public static partial class Seeder
         Console.WriteLine("--> Hierarchy -> Applying Migrations AppBuilder");
         context.Database.Migrate();
         {
-          // context.SeedTestInfra();
-          context.SeedTestProj();
-          
           // .-*
           context.SeedGlobalLookupBase();
           context.SeedOrg();

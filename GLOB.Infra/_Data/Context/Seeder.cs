@@ -11,7 +11,6 @@ public static partial class InfraSeeder
   public static void SeedInfra(this ModelBuilder mb)
   {
     Console.WriteLine("--> Infra -> Applying Migrations ModelBuilder (Dev)");
-    mb.SeedTestInfra();
     mb.SeedProjectzLookupBase();
     mb.SeedProjectzLookup();
   }
@@ -27,7 +26,6 @@ public static partial class InfraSeeder
         Console.WriteLine("--> Infra -> Applying Migrations AppBuilder (Prod)");
         context.Database.Migrate();
         {
-          context.SeedTestInfra();
           context.SeedProjectzLookupBase();
           context.SeedProjectzLookup();
         }

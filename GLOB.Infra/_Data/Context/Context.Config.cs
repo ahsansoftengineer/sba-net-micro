@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore;
 namespace GLOB.Infra.Data;
 public partial class DBCntxt
 {
-  private static void EntityMappingConfig(ModelBuilder mb)
+  public static void EntityMappingConfig(ModelBuilder mb)
   {
     ConfigOneToMany(mb);
   }
 
-  private static void ConfigOneToMany(ModelBuilder mb)
+  public static void ConfigOneToMany(ModelBuilder mb)
   {
     mb.Entity<ProjectzLookup>()
       .HasOne(p => p.ProjectzLookupBase)

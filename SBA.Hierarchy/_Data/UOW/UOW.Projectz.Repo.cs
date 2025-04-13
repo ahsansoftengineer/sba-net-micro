@@ -1,13 +1,10 @@
 using GLOB.Infra.Repo;
 using GLOB.Domain.Hierarchy;
-using GLOB.Domain.Projectz;
 using GLOB.Hierarchy.Global;
 
 namespace SBA.Projectz.Data;
 public partial class UOW_Projectz
 {
-  public IRepoGenericz<ProjectzEntityTest> TestProjs => _testProj ??= new RepoGenericz<ProjectzEntityTest>(_context);
-  
   // .-*
   public IRepoGenericz<GlobalLookupBase> GlobalLookupBases => _GlobalLookupBase ??= new RepoGenericz<GlobalLookupBase>(_context);
   public IRepoGenericz<Org> Orgs => _Orgs ??= new RepoGenericz<Org>(_context);

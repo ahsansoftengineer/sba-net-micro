@@ -1,13 +1,11 @@
 using GLOB.Infra.Repo;
 using GLOB.Domain.Hierarchy;
-using GLOB.Domain.Projectz;
 using GLOB.Infra.UOW_Projectz;
 using GLOB.Hierarchy.Global;
 
 namespace SBA.Projectz.Data;
 public interface IUOW_Projectz : IUOW_Infra
 {
-  IRepoGenericz<ProjectzEntityTest> TestProjs { get; }
   // .-*
   IRepoGenericz<GlobalLookupBase> GlobalLookupBases { get; }
   IRepoGenericz<Org> Orgs { get; }

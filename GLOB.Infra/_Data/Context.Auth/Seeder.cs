@@ -15,7 +15,7 @@ public static partial class InfraSeederIdentity
   public static void SeedInfraIdentity(this ModelBuilder mb)
   {
     Console.WriteLine("--> Infra Identity -> Applying Migrations ModelBuilder (Dev)");
-    mb.SeedInfra(); // mb.SeedTestInfra();
+    mb.SeedInfra();
     mb.SeedInfraRole();
     mb.SeedInfraUser();
   }

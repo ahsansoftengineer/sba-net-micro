@@ -1,6 +1,5 @@
 using GLOB.Infra.Repo;
 using GLOB.Domain.Hierarchy;
-using GLOB.Domain.Projectz;
 using GLOB.Infra.UOW_Projectz;
 using GLOB.Hierarchy.Global;
 
@@ -8,7 +7,6 @@ namespace SBA.Projectz.Data;
 public partial class UOW_Projectz : UOW_Infra, IUOW_Projectz
 {
   public UOW_Projectz(ProjectzDBCntxt context): base(context) { }
-  private IRepoGenericz<ProjectzEntityTest>? _testProj;
   // .-*
   private IRepoGenericz<GlobalLookupBase>? _GlobalLookupBase;
   private IRepoGenericz<Org>? _Orgs;

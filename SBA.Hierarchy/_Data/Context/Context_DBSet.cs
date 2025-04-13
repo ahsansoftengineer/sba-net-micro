@@ -1,13 +1,10 @@
 using GLOB.Domain.Hierarchy;
-using GLOB.Domain.Projectz;
 using GLOB.Hierarchy.Global;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Projectz.Data;
 public partial class ProjectzDBCntxt 
 {
-
-  public DbSet<ProjectzEntityTest> TestProjs { get; set; }
   // .-*
   public DbSet<GlobalLookupBase> GlobalLookupBases { get; set; }
   public DbSet<Org> Orgs { get; set; }
