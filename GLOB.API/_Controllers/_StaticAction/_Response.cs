@@ -69,7 +69,9 @@ public static class _Res
 
   public static ObjectResult NotFoundId(string key, string id)
   {
-    return new NotFoundObjectResult($"Invalid {key} {id}");
+    var modelState = new ModelStateDictionary();
+    modelState.AddModelError(key, $"Invalid {key} {id} does not exsist");
+    return new NotFoundObjectResult(modelState);
   }
 
   public static ObjectResult InvalidEnums(string status)
