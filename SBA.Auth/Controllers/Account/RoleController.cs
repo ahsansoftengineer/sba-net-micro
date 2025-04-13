@@ -19,7 +19,6 @@ public partial class RoleController : AccountBaseController<RoleController>
     _roleManager = roleManager;
   }
 
-  //   [Authorize()]
   [HttpGet()]
   public async Task<IActionResult> Gets()
   {

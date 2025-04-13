@@ -12,7 +12,6 @@ public partial class ProfileController : AccountBaseController<ProfileController
   {
   }
 
-
   [HttpPost("[action]")]
   public async Task<IActionResult> Register([FromBody] RegisterDto model) 
   {
@@ -26,8 +25,6 @@ public partial class ProfileController : AccountBaseController<ProfileController
 
     return BadRequest(result.Errors);
   }
-
-
  
   // [HttpPost("[action]")]
   // public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenDto model)  

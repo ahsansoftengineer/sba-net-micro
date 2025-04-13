@@ -1,26 +1,75 @@
-// using GLOB.Domain.Auth;
-// using Microsoft.AspNetCore.Authorization;
-// using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using GLOB.API.Configz;
+using GLOB.Domain.Auth;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
-// namespace SBA.Auth.Controllers;
-// public partial class ProfileController
-// {
-//   [HttpPost("[action]")]
-//   public async Task<IActionResult> PasswordForgot([FromBody] ForgotPasswordDto model) 
-//   {
-//     return null;  
-//   }
+namespace SBA.Auth.Controllers;
 
-//   [HttpPost("[action]")]
-//   public async Task<IActionResult> PasswordReset([FromBody] ResetPasswordDto model) 
-//   {
-//     return null;  
-//   }
-//   [HttpPost("[action]")]
-//   [Authorize]
-//   public async Task<IActionResult> PasswordChange([FromBody] ChangePasswordDto model) 
-//   {
-//     return null;  
-//   }
+public partial class ProfileController
+{
+  [HttpPost("[action]")]
+  public async Task<IActionResult> PasswordForgot([FromBody] ForgotPasswordDto model)
+  {
+    if (!ModelState.IsValid)
+      return BadRequest(ModelState);
 
-// }
+    var user = await _userManager.FindByEmailAsync(model.Email);
+    if (user == null || !await _userManager.IsEmailConfirmedAsync(user))
+      return Ok(new { message = "If the email exists, a reset link will be sent." });
+
+    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+    var encodedToken = WebUtility.UrlEncode(token);
+
+    string url = _config.GetWebUrl();
+    var resetLink = $"{url}/reset-password?email={model.Email}&token={encodedToken}";
+
+    await _emailSender.SendEmailAsync(user.Email, "Reset Password", $"Click <a href='{resetLink}'>here</a> to reset your password.");
+
+    return Ok(new { message = "Reset link sent to email." });
+  }
+
+  [HttpPost("[action]")]
+  public async Task<IActionResult> PasswordReset([FromBody] ResetPasswordDto model)
+  {
+    if (!ModelState.IsValid)
+      return BadRequest(ModelState);
+
+    var user = await _userManager.FindByEmailAsync(model.Email);
+    if (user == null)
+      return BadRequest(new { message = "Invalid request." });
+
+    var result = await _userManager.ResetPasswordAsync(user, WebUtility.UrlDecode(model.Token), model.NewPassword);
+
+    if (result.Succeeded)
+      return Ok(new { message = "Password has been reset." });
+
+    return BadRequest(result.Errors);
+  }
+
+  [HttpPost("[action]")]
+  [Authorize]
+  public async Task<IActionResult> PasswordChange([FromBody] ChangePasswordDto model)
+  {
+    if (model.NewPassword != model.ConfirmPassword)
+    {
+        return BadRequest("New password and confirm password do not match.");
+    }
+
+    var user = await _userManager.GetUserAsync(User);
+    if (user == null)
+    {
+        return Unauthorized();
+    }
+
+    var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+    if (!result.Succeeded)
+    {
+        var errors = result.Errors.Select(e => e.Description);
+        return BadRequest(new { Errors = errors });
+    }
+
+    return Ok("Password changed successfully.");
+  }
+
+}
