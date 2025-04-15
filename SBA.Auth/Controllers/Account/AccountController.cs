@@ -19,7 +19,7 @@ public partial class AccountController : AccountBaseController<AccountController
     var user = await _userManager.FindByEmailAsync(model.Email);
     if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
     {
-        var token = HelperAuth.GenerateJwtToken(user, _config);
+        var token = HelperAuth.GenerateJwtToken(user, _jwtSettings);
         return Ok(new { token });
     }
     return Unauthorized("Invalid credentials.");

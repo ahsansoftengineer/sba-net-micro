@@ -26,18 +26,31 @@ public static partial class InfraSeeder
   {
     string className = typeof(T).Name;
     List<T> list = new List<T>();
-    var passwordHasher = new PasswordHasher<T>();
     var guid = new []
     {
       "22c74fbc-9b0d-4848-85db-f09d58750006",
       "46eb923d-8529-4b77-b311-96e98ea6ea06",
       "8118fea8-a644-4d67-9eca-1d689465a1bf"
     };
+    var passwords = new []
+    {
+      "AQAAAAIAAYagAAAAEACmShpP3LWgwsZwhZISwadM6d/EtzQ0WMkq/Bxig2P6XzeL4P2BJb+oC+rs6sFdJg==",
+      "AQAAAAIAAYagAAAAEPB7kfoIF5a0f/xqp1pdXMQAYZtvzQ2n8fxgXEGhjOP1aXilANBvPkwwhBlpRry1AQ==",
+      "AQAAAAIAAYagAAAAEGjg05pvktKMxHjB3nhkrG/ugiQvLkZVjwmu8gzE4+nH4XXwV90eyhEmGkrj9qFVBA=="
+    };
     for (int i = 1; i <= 3; i++)
     {
-      string name = $"{className}_{i}";
-      string email = $"{name}@yopmail.com";
-      string normalized = $"{name}@yopmail.com".ToUpperInvariant();
+      string name;
+      string email;
+      if(i == 1){
+        email = "user@example.com";
+        name = "user";
+      } else {
+        name = $"{className}_{i}";
+        email = $"{name}@yopmail.com";
+      }
+      
+      string normalized = email.ToUpperInvariant();
       var user = new T()
       {
         Id = guid[i-1],
@@ -47,8 +60,11 @@ public static partial class InfraSeeder
         NormalizedUserName = normalized,
         NormalizedEmail = normalized,
         EmailConfirmed = true,
+        ConcurrencyStamp = guid[i-1],
+        PasswordHash = passwords[i-1]
       };
-      user.PasswordHash = passwordHasher.HashPassword(user, $"{name}@123");
+      // var passwordHasher = new PasswordHasher<T>();
+      // user.PasswordHash = passwordHasher.HashPassword(user, $"{name}@123");
       list.Add(user);
     }
     return list;

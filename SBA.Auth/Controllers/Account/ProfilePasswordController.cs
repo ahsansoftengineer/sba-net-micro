@@ -1,5 +1,6 @@
 using System.Net;
 using GLOB.API.Configz;
+using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,7 @@ public partial class ProfileController
     var encodedToken = WebUtility.UrlEncode(token);
 
     string url = _config.GetWebUrl();
-    var resetLink = $"{url}/reset-password?email={model.Email}&token={encodedToken}";
+    var resetLink = $"{url}/password-reset?email={model.Email}&token={encodedToken}";
 
     await _emailSender.SendEmailAsync(user.Email, "Reset Password", $"Click <a href='{resetLink}'>here</a> to reset your password.");
 
@@ -37,7 +38,7 @@ public partial class ProfileController
 
     var user = await _userManager.FindByEmailAsync(model.Email);
     if (user == null)
-      return BadRequest(new { message = "Invalid request." });
+      return _Res.NotFoundId("Email", model.Email);
 
     var result = await _userManager.ResetPasswordAsync(user, WebUtility.UrlDecode(model.Token), model.NewPassword);
 

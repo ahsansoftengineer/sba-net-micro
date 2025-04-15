@@ -4,10 +4,11 @@ using Microsoft.IdentityModel.Tokens;
 namespace GLOB.Infra.Data.Auth;
 public class JwtSettings
 {
-  public string SecretKey { get; set; }
-  public string Issuer { get; set; }
-  public string Audience { get; set; }
-  public int ExpireMinutes { get; set; }
+  public static string SectionName = "JwtSettings";
+  public string SecretKey { get; set; } //"YourSuperStrongSecretKey_ReplaceThis"
+  public string Issuer { get; set; } // "https://localhost:5802/"
+  public string Audience { get; set; } // "https://localhost:5802/"
+  public int ExpireMinutes { get; set; } //6000
 
   public SymmetricSecurityKey GetSymmetricSecurityKey()
   {
