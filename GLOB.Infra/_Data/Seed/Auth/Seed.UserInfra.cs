@@ -57,10 +57,13 @@ public static partial class InfraSeeder
         UserName = email,
         Name = name,
         Email = email,
+        EmailConfirmed = true,
+        PhoneNumber = $"0321282770{i-1}",
+        PhoneNumberConfirmed = true,
         NormalizedUserName = normalized,
         NormalizedEmail = normalized,
-        EmailConfirmed = true,
         ConcurrencyStamp = guid[i-1],
+        SecurityStamp = guid[i-1],
         PasswordHash = passwords[i-1]
       };
       // var passwordHasher = new PasswordHasher<T>();
