@@ -16,10 +16,10 @@ public interface IRepoGenericz<T, TKey>
   DbSet<T> GetDBSet();
   bool Any(Expression<Func<T, bool>>? filter = null);
   bool AnyId(TKey? Id);
-  Task<T> Get(Expression<Func<T, bool>> expression, List<string>? Include = null);
-  Task<T> Get(TKey Id, List<string>? Include = null);
+  Task<T> Get(Expression<Func<T, bool>> expression, List<string>? Includes = null);
+  Task<T> Get(TKey Id, List<string>? Includes = null);
 
-
+  Task<List<T>> GetsByIds(List<TKey>? Ids = null, List<string>? Includes = null);
   Task<List<T>> Gets(
     Expression<Func<T, bool>>? expression = null,
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,

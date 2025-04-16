@@ -1,5 +1,4 @@
 using GLOB.Domain.Base;
-using GLOB.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
 using GLOB.Infra.Repo;
 using GLOB.API.Staticz;
@@ -17,16 +16,20 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
 
   } 
   protected virtual IRepoGenericz<TEntity> _repo {get; set;} // Will be initialize in Last Child Class
-  [HttpGet("{Id:int}")]
-  public async Task<IActionResult> Get(int Id, [FromQuery] List<string>? Include)
+  [HttpPost("{Id:int}")]
+  public async Task<IActionResult> Get(int Id, [FromBody] ReqGet req)
   {
-    return await _Actionz.Getz(_repo, Id, Include);
+    return await _Actionz.Getz(_repo, Id, req.Includes);
   }
-
-  [HttpGet()]
-  public async Task<IActionResult> Gets([FromQuery] List<string>? Include)
+  [HttpPost("[action]")]
+  public async Task<IActionResult> GetsByIds([FromBody] ReqGetByIds req)
   {
-    return await _Actionz.Getsz(_repo, Include);
+    return await _Actionz.GetsByIdsz(_repo, req.Ids, req.Includes);
+  }
+  [HttpPost("[action]")]
+  public async Task<IActionResult> Gets([FromBody] ReqGet req)
+  {
+    return await _Actionz.Getsz(_repo, req.Includes);
   }
   [HttpDelete("{Id:int}")]
   public async Task<IActionResult> Delete(int Id)
@@ -34,9 +37,9 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
     return await _Actionz.Deletez(_repo, _uowInfra, Id);
   }
   [HttpPatch("{Id:int}")]
-  public async Task<IActionResult> Status(int Id, [FromBody] Status status)
+  public async Task<IActionResult> Status(int Id, [FromBody] ReqStatus req)
   {
-    return await _Actionz.Statusz(_repo, _uowInfra, Id, status);
+    return await _Actionz.Statusz(_repo, _uowInfra, Id, req.Status);
   }
   
 }

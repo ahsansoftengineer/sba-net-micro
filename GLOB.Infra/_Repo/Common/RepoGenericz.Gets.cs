@@ -1,5 +1,6 @@
 using GLOB.Domain.Base;
 using GLOB.Infra.Helper;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace GLOB.Infra.Repo;
@@ -10,10 +11,19 @@ public partial class RepoGenericz<T, TKey>
   public async Task<List<T>> Gets(
     Expression<Func<T, bool>>? expression = null,
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
-    List<string>? Include = null)
+    List<string>? Includes = null)
   {
     IQueryable<T> query = _db;
-    return await query.Gets(expression, orderBy, Include);
+    return await query.Gets(expression, orderBy, Includes);
+  }
+
+  public async Task<List<T>> GetsByIds(
+    List<TKey>? Ids = null,
+    List<string>? Includes = null)
+  {
+    IQueryable<T> query = _db;
+    query = query.Where(x =>  Ids.Contains(x.Id));
+    return await query.Gets(null, null, Includes);
   }
 
   // Filter, OrderBy, Include, Pagination,

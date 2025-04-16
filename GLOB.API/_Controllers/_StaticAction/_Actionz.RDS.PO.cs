@@ -29,7 +29,20 @@ public static partial class _Actionz
       return _Res.CatchException(ex, nameof(Getz));
     }
   }
-
+  public static async Task<IActionResult> GetsByIdsz<T>(this IRepoGenericz<T> repo, List<int>? Ids, List<string>? Includes)
+    where T : class, IEntityAlpha
+  {
+    try
+    {
+      var list = await repo.GetsByIds(Ids, Includes);
+      var result = list.ToExtResVMList();
+      return Ok(result);
+    }
+    catch (Exception ex)
+    {
+      return _Res.CatchException(ex, nameof(Getsz));
+    }
+  }
   public static async Task<IActionResult> Getsz<T>(this IRepoGenericz<T> repo, List<string>? Include)
     where T : class, IEntityAlpha
   {

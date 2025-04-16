@@ -12,10 +12,10 @@ public static partial class ExtResponse
     this IQueryable<T> query,
     Expression<Func<T, bool>>? expression,
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy,
-    List<string>? Include)
+    List<string>? Includes)
     where T : class
   {
-    return await query.GetsQuery(expression, orderBy, Include).AsNoTracking().ToListAsync();
+    return await query.GetsQuery(expression, orderBy, Includes).AsNoTracking().ToListAsync();
   }
 
   public static async Task<DtoPageRes<T>> ToExtPageRes<T, TDtoSearch>(

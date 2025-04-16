@@ -5,7 +5,7 @@
 - Status (Patch)
 - Get (Get/1)
 - Gets (Get)
-- GetByIds (Get) [ Not Yet Implemented ]
+- GetsByIds (Get) [ Testing Remains]
 - GetsPaginate (Get)
 - GetsPaginateOptions (Get)
 
