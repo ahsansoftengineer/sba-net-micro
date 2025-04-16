@@ -13,13 +13,13 @@ public class _GlobalLookupController : Project_RDS_Controller<_GlobalLookupContr
     _repo = _uowProjectz.GlobalLookups;
   }
 
-  [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginate([FromQuery] DtoRequestPage<GlobalLookupDtoSearch?> req)
+  [HttpPost("[action]")]
+  public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<GlobalLookupDtoSearch?> req)
   {
     return await _Actionz.GetsPaginatez(_repo, req);
   }
-  [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginateOptions([FromQuery] DtoRequestPage<GlobalLookupDtoSearch?> req)
+  [HttpPost("[action]")]
+  public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPage<GlobalLookupDtoSearch?> req)
   {
     return await _Actionz.GetsPaginateOptionsz(_repo, req);
   }

@@ -29,12 +29,12 @@ public static partial class _Actionz
       return _Res.CatchException(ex, nameof(Getz));
     }
   }
-  public static async Task<IActionResult> GetsByIdsz<T>(this IRepoGenericz<T> repo, List<int>? Ids, List<string>? Includes)
+  public static async Task<IActionResult> GetsByIdsz<T>(this IRepoGenericz<T> repo, List<int>? Ids)
     where T : class, IEntityAlpha
   {
     try
     {
-      var list = await repo.GetsByIds(Ids, Includes);
+      var list = await repo.Gets((x)=> Ids.Contains(x.Id));
       var result = list.ToExtVMList();
       return Ok(result);
     }

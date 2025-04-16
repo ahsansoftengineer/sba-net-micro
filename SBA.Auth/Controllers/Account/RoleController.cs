@@ -39,7 +39,9 @@ public partial class RoleController : AccountBaseController<RoleController>
   public async Task<IActionResult> GetsPaginate(DtoRequestPage<InfraRoleDtoSearch?> req)
   {
     var query = _roleManager.Roles
-      .ToExtQueryFilterSortInclude(req)
+      .ToExtQueryFilter(req.Filter)
+      .ToExtQueryOrderBy(req.Sort)
+      .ToExtQueryInclues(req.Include)
       .Select(x => new {
         x.Id,
         x.Name, 

@@ -25,17 +25,4 @@ public static partial class ExtQuery
     }
     return query;
   }
-
-  public static IQueryable<T> ToExtQueryFilterSortInclude<T, TDtoSearch>(
-      this IQueryable<T> query,
-      DtoRequestPage<TDtoSearch?> req)
-    where TDtoSearch : class
-    where T : class, IEntityBeta
-  {
-
-    query = query.ToExtQueryFilter(req.Filter);
-    query = query.ToExtQueryOrderBy(req.Sort); // IEntityBeta
-    
-    return query.ToExtQueryInclues(req?.Include);
-  }
 }
