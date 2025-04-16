@@ -48,7 +48,7 @@ public partial class RoleController : AccountBaseController<RoleController>
         x.UpdatedAt
       });
    
-    var result = await query.ToExtPageRes(req);
+    var result = await query.ToExtPageReq(req);
     return Ok(result);
   }
 
