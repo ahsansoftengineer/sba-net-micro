@@ -1,6 +1,5 @@
 using GLOB.Domain.Base;
-using GLOB.Infra.Helper;
-using Microsoft.EntityFrameworkCore;
+using GLOB.Infra.Paginate;
 using System.Linq.Expressions;
 
 namespace GLOB.Infra.Repo;

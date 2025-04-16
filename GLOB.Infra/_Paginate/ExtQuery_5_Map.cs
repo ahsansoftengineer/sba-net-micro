@@ -1,7 +1,7 @@
 
 using GLOB.Domain.Base;
 
-namespace GLOB.Infra.Helper;
+namespace GLOB.Infra.Paginate;
 public static partial class ExtQuery
 {
   public static IQueryable<DtoSelect<TKey>> ToExtMapSelect<T, TKey>(this IQueryable<T> source)

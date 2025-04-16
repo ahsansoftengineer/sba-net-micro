@@ -2,7 +2,7 @@ using System.Linq.Expressions;
 using GLOB.Domain.Base;
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Helper;
+namespace GLOB.Infra.Paginate;
 
 public static partial class ExtResponse
 {

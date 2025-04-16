@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
 using GLOB.Domain.Base;
 
-namespace GLOB.Infra.Helper;
+namespace GLOB.Infra.Paginate;
 
 public static partial class ExtQuery
 {
