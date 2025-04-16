@@ -19,7 +19,6 @@ public interface IRepoGenericz<T, TKey>
   Task<T> Get(Expression<Func<T, bool>> expression, List<string>? Includes = null);
   Task<T> Get(TKey Id, List<string>? Includes = null);
 
-  Task<List<T>> GetsByIds(List<TKey>? Ids = null, List<string>? Includes = null);
   Task<List<T>> Gets(
     Expression<Func<T, bool>>? expression = null,
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
@@ -33,8 +32,8 @@ public interface IRepoGenericz<T, TKey>
   void UpdateStatus(T entity, Status status);
 
   Task<VMPaginate<T>> GetsPaginate<TDtoSearch>(DtoRequestPage<TDtoSearch?> req)
-    where TDtoSearch : class;
+    where TDtoSearch : class, IDtoSearch;
 
-  Task<VMPaginate<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(DtoRequestPage<TDtoSearch?> req)
-    where TDtoSearch : class;
+  Task<VMPaginate<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(DtoRequestPageOption<TDtoSearch?> req)
+    where TDtoSearch : class, IDtoSearch;
 }

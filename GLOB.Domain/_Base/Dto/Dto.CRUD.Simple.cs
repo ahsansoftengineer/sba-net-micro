@@ -27,7 +27,7 @@ public class DtoRead<TKey> : DtoUpdate
   public DateTimeOffset? UpdatedAt { get; set; }
 }
 
-public class DtoSelect<TKey>
+public class DtoSelect<TKey> 
 {
   public TKey Id { get; set; }
   public string Name { get; set; } = "";

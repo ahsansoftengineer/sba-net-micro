@@ -1,3 +1,4 @@
+using GLOB.Infra.Paginate;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -13,13 +14,7 @@ public partial class RepoGenericz<T, TKey>
    List<string>? Include = null)
   {
     IQueryable<T> query = _db;
-    if (Include != null)
-    {
-      foreach (var item in Include)
-      {
-        query = query.Include(item);
-      }
-    }
+    query = query.ToExtQueryInclues(Include);
     return await query.AsNoTracking().FirstOrDefaultAsync(expression);
   }
 }

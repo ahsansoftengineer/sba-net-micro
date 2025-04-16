@@ -30,7 +30,7 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
   [HttpPost("[action]")]
   public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds req)
   {
-    return await _Actionz.GetsByIdsz(_repo, req.Ids, req.Includes);
+    return await _Actionz.GetsByIdsz(_repo, req.Ids);
   }
   [HttpDelete("{Id:int}")]
   public async Task<IActionResult> Delete(int Id)

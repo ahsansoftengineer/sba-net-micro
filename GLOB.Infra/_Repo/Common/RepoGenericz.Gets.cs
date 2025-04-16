@@ -15,25 +15,15 @@ public partial class RepoGenericz<T, TKey>
     IQueryable<T> query = _db;
     return await query.ToExtList(expression, orderBy, Includes);
   }
-
-  public async Task<List<T>> GetsByIds(
-    List<TKey>? Ids = null,
-    List<string>? Includes = null)
-  {
-    IQueryable<T> query = _db;
-    query = query.Where(x => Ids.Contains(x.Id));
-    return await query.ToExtList(null, null, Includes);
-  }
-
   // Filter, OrderBy, Include, Pagination,
   public async Task<VMPaginate<T>> GetsPaginate<TDtoSearch>(DtoRequestPage<TDtoSearch?> req) 
-    where TDtoSearch : class
+    where TDtoSearch : class, IDtoSearch
   {
     return await _db.ToExtVMPageNoTrack(req);
   }
   
-  public async Task<VMPaginate<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(DtoRequestPage<TDtoSearch?> req) 
-    where TDtoSearch : class
+  public async Task<VMPaginate<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(DtoRequestPageOption<TDtoSearch?> req) 
+    where TDtoSearch : class, IDtoSearch
   {
     return await _db.ToExtVMPageOptionsNoTrack<T, TKey,  TDtoSearch>(req);
   }

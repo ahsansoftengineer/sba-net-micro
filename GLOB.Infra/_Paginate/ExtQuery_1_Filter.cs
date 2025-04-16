@@ -1,3 +1,4 @@
+using GLOB.Domain.Base;
 using GLOB.Domain.Extension;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ public static partial class ExtQuery
 {
   public static IQueryable<T> ToExtQueryFilter<T, TDtoSearch>(this IQueryable<T> source, TDtoSearch? DtoSearch)
     where T : class
-    where TDtoSearch : class
+    where TDtoSearch : class, IDtoSearch
   {
     if (DtoSearch == null) return source;
 
