@@ -21,7 +21,7 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
   }
 
   [HttpPost("[action]")]
-  public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPage<TDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPageOption<TDtoSearch?> req)
   {
     return await _Actionz.GetsPaginateOptionsz(_repo, req);
   }

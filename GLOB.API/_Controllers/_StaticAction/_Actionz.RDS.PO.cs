@@ -115,7 +115,7 @@ public static partial class _Actionz
     }
   }
 
-  public async static Task<IActionResult> GetsPaginateOptionsz<TEntity, TDtoSearch>(IRepoGenericz<TEntity> repo, DtoRequestPage<TDtoSearch?> req)
+  public async static Task<IActionResult> GetsPaginateOptionsz<TEntity, TDtoSearch>(IRepoGenericz<TEntity> repo, DtoRequestPageOption<TDtoSearch?> req)
     where TEntity : class, IEntityAlpha
     where TDtoSearch: class, IDtoSearch
   {

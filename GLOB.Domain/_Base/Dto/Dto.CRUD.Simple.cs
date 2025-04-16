@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using GLOB.Domain.Enums;
 
@@ -7,14 +8,14 @@ public class DtoCreate
 {
   [Required]
   [StringLength(maximumLength: 50, ErrorMessage = "Max Characters 50 Allowed")]
-  public string Name { get; set; } = "";
+  public string Name { get; set; } = "Create";
   [StringLength(maximumLength: 100, ErrorMessage = "Max Characters 100 Allowed")]
-  public string? Desc { get; set; }
+  public string? Desc { get; set; } = "Create Desc";
 
 }
 public class DtoUpdate : DtoCreate
 {
-  public Status? Status { get; set; } // = Status.None;
+  public Status? Status { get; set; } = Enums.Status.None;
 
 }
 public class DtoRead : DtoRead<int>
@@ -27,7 +28,7 @@ public class DtoRead<TKey> : DtoUpdate
   public DateTimeOffset? UpdatedAt { get; set; }
 }
 
-public class DtoSelect<TKey> 
+public class DtoSelect<TKey>
 {
   public TKey Id { get; set; }
   public string Name { get; set; } = "";
@@ -40,18 +41,18 @@ public class DtoSelect : DtoSelect<int>
 
 public interface IDtoSearch
 {
-    string? Name { get; set; }
-    Status? Status { get; set; }
-    string? Desc { get; set; }
-    DateTimeOffset? DateFrom { get; set; }
-    DateTimeOffset? DateTo { get; set; }
+  string? Name { get; set; }
+  Status? Status { get; set; }
+  string? Desc { get; set; }
+  DateTimeOffset? DateFrom { get; set; }
+  DateTimeOffset? DateTo { get; set; }
 }
 
 public class DtoSearch : IDtoSearch
 {
-    public string? Name { get; set; }
-    public Status? Status { get; set; }
-    public string? Desc { get; set; }
-    public DateTimeOffset? DateFrom { get; set; }
-    public DateTimeOffset? DateTo { get; set; }
+  public string? Name { get; set; } = null;
+  public Status? Status { get; set; } = null;
+  public string? Desc { get; set; } = null;
+  public DateTimeOffset? DateFrom { get; set; } = null;
+  public DateTimeOffset? DateTo { get; set; } = null;
 }

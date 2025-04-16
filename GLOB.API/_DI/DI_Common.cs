@@ -83,6 +83,8 @@ public static partial class API_DI_Common
   {
     srvc.AddSwaggerGen(c =>
     {
+      c.UseAllOfToExtendReferenceSchemas();
+      c.SupportNonNullableReferenceTypes();
       c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
       {
         Title = ProjectNameSwagger,
