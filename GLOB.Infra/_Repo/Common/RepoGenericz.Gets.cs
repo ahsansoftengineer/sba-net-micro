@@ -14,7 +14,7 @@ public partial class RepoGenericz<T, TKey>
     List<string>? Includes = null)
   {
     IQueryable<T> query = _db;
-    return await query.Gets(expression, orderBy, Includes);
+    return await query.ToExtList(expression, orderBy, Includes);
   }
 
   public async Task<List<T>> GetsByIds(
@@ -23,7 +23,7 @@ public partial class RepoGenericz<T, TKey>
   {
     IQueryable<T> query = _db;
     query = query.Where(x =>  Ids.Contains(x.Id));
-    return await query.Gets(null, null, Includes);
+    return await query.ToExtList(null, null, Includes);
   }
 
   // Filter, OrderBy, Include, Pagination,

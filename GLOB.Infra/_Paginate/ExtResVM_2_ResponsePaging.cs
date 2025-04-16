@@ -6,7 +6,7 @@ namespace GLOB.Infra.Helper;
 
 public static partial class ExtResponse
 {
-  public static async Task<List<T>> Gets<T>(
+  public static async Task<List<T>> ToExtList<T>(
     this IQueryable<T> query,
     Expression<Func<T, bool>>? expression,
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy,
@@ -16,21 +16,7 @@ public static partial class ExtResponse
     return await query.ToExtQuery_Query(expression, orderBy, Includes).AsNoTracking().ToListAsync();
   }
 
-  public static async Task<VMPaginate<T>> ToExtPageRes<T>(
-    this IQueryable<T> source, VMPaginate<T> p
-  )
-  {
-    if (p.PageNo < 1) p.PageNo = 1;
-    if (p.PageSize < 1) p.PageSize = 10;
-    if (p.PageSize > 50) p.PageSize = 50;
 
-    p.Count = await source.CountAsync();
-    var query = source.Skip((p.PageNo - 1) * p.PageSize)
-                .Take(p.PageSize);
-
-    p.Records = await query.ToListAsync();
-    return p;
-  }
   public static async Task<VMPaginate<T>> ToExtPageReq<T, TDtoSearch>(
     this IQueryable<T> source, DtoRequestPage<TDtoSearch?> req)
   {
@@ -38,7 +24,7 @@ public static partial class ExtResponse
       PageNo = req.PageNo,
       PageSize = req.PageSize,
     };
-    return await source.ToExtPageRes(new(dtoPage));
+    return await source.ToExtVMPaging(new(dtoPage));
   }
 
   public static async Task<VMPaginate<T>> GetsPaginate<T, TDtoSearch>(
