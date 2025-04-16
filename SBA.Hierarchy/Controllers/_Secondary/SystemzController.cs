@@ -23,7 +23,7 @@ public class SystemzController : Project_RDS_Controller<SystemzController, Syste
   {
     return await _Actionz.GetsPaginateOptionsz(_repo, req);
   }
-  [HttpPost]
+  [HttpPost("[action]")]
   public async Task<IActionResult> Create([FromBody] SystemzDtoCreate data)
   {
     try
@@ -42,7 +42,7 @@ public class SystemzController : Project_RDS_Controller<SystemzController, Syste
     }
   }
 
-  [HttpPut("{Id:int}")]
+  [HttpPut("[action]/{Id:int}")]
   public async Task<IActionResult> Update(int Id, [FromBody] SystemzDtoCreate data)
   {
     if (Id < 1) return _Res.NotFoundId(Id);
