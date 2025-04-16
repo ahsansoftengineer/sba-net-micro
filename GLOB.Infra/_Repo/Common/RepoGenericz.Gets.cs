@@ -29,13 +29,13 @@ public partial class RepoGenericz<T, TKey>
   public async Task<VMPaginate<T>> GetsPaginate<TDtoSearch>(DtoRequestPage<TDtoSearch?> req) 
     where TDtoSearch : class
   {
-    return await _db.GetsPaginate(req);
+    return await _db.ToExtVMPageNoTrack(req);
   }
   
   public async Task<VMPaginate<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(DtoRequestPage<TDtoSearch?> req) 
     where TDtoSearch : class
   {
-    return await _db.GetsPaginateOptions<T, TKey,  TDtoSearch>(req);
+    return await _db.ToExtVMPageOptionsNoTrack<T, TKey,  TDtoSearch>(req);
   }
 }
 

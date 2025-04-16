@@ -1,6 +1,5 @@
 using GLOB.Domain.Base;
 using GLOB.Domain.Enums;
-using GLOB.Infra.Helper;
 using GLOB.Infra.Paginate;
 using GLOB.Infra.Repo;
 using GLOB.Infra.UOW_Projectz;

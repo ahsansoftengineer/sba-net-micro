@@ -1,6 +1,5 @@
 using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
-using GLOB.Infra.Helper;
 using GLOB.Infra.Paginate;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

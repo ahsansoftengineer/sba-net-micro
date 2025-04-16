@@ -2,7 +2,6 @@ using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
 using GLOB.Domain.Base;
 using GLOB.Domain.Contants;
-using GLOB.Infra.Helper;
 using GLOB.Infra.Paginate;
 using LinqKit;
 using Microsoft.AspNetCore.Mvc;

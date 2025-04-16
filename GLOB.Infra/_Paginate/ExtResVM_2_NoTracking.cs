@@ -24,10 +24,10 @@ public static partial class ExtResponse
       PageNo = req.PageNo,
       PageSize = req.PageSize,
     };
-    return await source.ToExtVMPaging(new(dtoPage));
+    return await source.ToExtVMPage(new(dtoPage));
   }
 
-  public static async Task<VMPaginate<T>> GetsPaginate<T, TDtoSearch>(
+  public static async Task<VMPaginate<T>> ToExtVMPageNoTrack<T, TDtoSearch>(
       this IQueryable<T> query,
       DtoRequestPage<TDtoSearch?> req)
     where TDtoSearch : class
@@ -37,7 +37,7 @@ public static partial class ExtResponse
 
     return await query.AsNoTracking().ToExtPageReq(req);
   }
-  public static async Task<VMPaginate<DtoSelect<TKey>>> GetsPaginateOptions<T, TKey, TDtoSearch>(
+  public static async Task<VMPaginate<DtoSelect<TKey>>> ToExtVMPageOptionsNoTrack<T, TKey, TDtoSearch>(
       this IQueryable<T> query,
       DtoRequestPage<TDtoSearch?> req)
     where TDtoSearch : class

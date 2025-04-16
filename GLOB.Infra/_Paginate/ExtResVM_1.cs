@@ -23,7 +23,7 @@ public static partial class ExtResponse
     };
   }
 
-  public static async Task<VMPaginate<T>> ToExtVMPaging<T>(
+  public static async Task<VMPaginate<T>> ToExtVMPage<T>(
     this IQueryable<T> source, VMPaginate<T> p
   )
   {

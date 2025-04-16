@@ -1,7 +1,6 @@
 using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
 using GLOB.Domain.Base;
-using GLOB.Infra.Helper;
 using GLOB.Infra.Paginate;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -56,7 +55,7 @@ public partial class RoleController : AccountBaseController<RoleController>
   [HttpGet("[action]")]
   public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<InfraRoleDtoSearch?> req)
   {
-    var list = await _roleManager.Roles.GetsPaginateOptions<InfraRole, string, InfraRoleDtoSearch>(req);
+    var list = await _roleManager.Roles.ToExtVMPageOptionsNoTrack<InfraRole, string, InfraRoleDtoSearch>(req);
     return Ok(list);
   }
 }
