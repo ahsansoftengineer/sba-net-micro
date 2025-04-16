@@ -13,14 +13,14 @@ public class _ProjectzLookupzController : API_2_RDS_Controller<_ProjectzLookupzC
     _repo = _uowInfra.ProjectzLookups;
   }
 
-  [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginate([FromQuery] DtoRequestPage<ProjectzLookupDtoSearch?> req)
+  [HttpPost("[action]")]
+  public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<ProjectzLookupDtoSearch?> req)
   {
     return await _Actionz.GetsPaginatez(_repo, req);
   }
 
-  [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginateOptions([FromQuery] DtoRequestPage<ProjectzLookupDtoSearch?> req)
+  [HttpPost("[action]")]
+  public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPage<ProjectzLookupDtoSearch?> req)
   {
     return await _Actionz.GetsPaginateOptionsz(_repo, req);
   }
