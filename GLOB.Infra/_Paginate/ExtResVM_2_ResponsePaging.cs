@@ -13,11 +13,11 @@ public static partial class ExtResponse
     List<string>? Includes)
     where T : class
   {
-    return await query.GetsQuery(expression, orderBy, Includes).AsNoTracking().ToListAsync();
+    return await query.ToExtQuery_Query(expression, orderBy, Includes).AsNoTracking().ToListAsync();
   }
 
-  public static async Task<DtoPageRes<T>> ToExtPageRes<T>(
-    this IQueryable<T> source, DtoPageRes<T> p
+  public static async Task<VMPaginate<T>> ToExtPageRes<T>(
+    this IQueryable<T> source, VMPaginate<T> p
   )
   {
     if (p.PageNo < 1) p.PageNo = 1;
@@ -31,8 +31,8 @@ public static partial class ExtResponse
     p.Records = await query.ToListAsync();
     return p;
   }
-  public static async Task<DtoPageRes<T>> ToExtPageReq<T, TDtoSearch>(
-    this IQueryable<T> source, DtoPageReq<TDtoSearch?> req)
+  public static async Task<VMPaginate<T>> ToExtPageReq<T, TDtoSearch>(
+    this IQueryable<T> source, DtoRequestPage<TDtoSearch?> req)
   {
     var dtoPage = new DtoPage(){
       PageNo = req.PageNo,
@@ -41,9 +41,9 @@ public static partial class ExtResponse
     return await source.ToExtPageRes(new(dtoPage));
   }
 
-  public static async Task<DtoPageRes<T>> GetsPaginate<T, TDtoSearch>(
+  public static async Task<VMPaginate<T>> GetsPaginate<T, TDtoSearch>(
       this IQueryable<T> query,
-      DtoPageReq<TDtoSearch?> req)
+      DtoRequestPage<TDtoSearch?> req)
     where TDtoSearch : class
     where T : class, IEntityBeta
   {
@@ -51,9 +51,9 @@ public static partial class ExtResponse
 
     return await query.AsNoTracking().ToExtPageReq(req);
   }
-  public static async Task<DtoPageRes<DtoSelect<TKey>>> GetsPaginateOptions<T, TKey, TDtoSearch>(
+  public static async Task<VMPaginate<DtoSelect<TKey>>> GetsPaginateOptions<T, TKey, TDtoSearch>(
       this IQueryable<T> query,
-      DtoPageReq<TDtoSearch?> req)
+      DtoRequestPage<TDtoSearch?> req)
     where TDtoSearch : class
     where T : class, IEntityAlpha<TKey>, IEntityBeta, IEntityStatus
   {

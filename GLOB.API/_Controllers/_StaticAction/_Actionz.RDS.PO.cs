@@ -21,7 +21,7 @@ public static partial class _Actionz
       var single = await repo.Get(Id, Include);
       if(single == null) return _Res.NotFoundId(Id);
       
-      var result = single.ToExtResVMSingle();
+      var result = single.ToExtVMSingle();
       return Ok(result);
     }
     catch(Exception ex)
@@ -35,7 +35,7 @@ public static partial class _Actionz
     try
     {
       var list = await repo.GetsByIds(Ids, Includes);
-      var result = list.ToExtResVMList();
+      var result = list.ToExtVMList();
       return Ok(result);
     }
     catch (Exception ex)
@@ -49,7 +49,7 @@ public static partial class _Actionz
     try
     {
       var list = await repo.Gets(Include: Include);
-      var result = list.ToExtResVMList();
+      var result = list.ToExtVMList();
       return Ok(result);
     }
     catch (Exception ex)
@@ -100,7 +100,7 @@ public static partial class _Actionz
     }
   }
 
-  public async static Task<IActionResult> GetsPaginatez<TEntity, TDtoSearch>(IRepoGenericz<TEntity> repo,  DtoPageReq<TDtoSearch?> req)
+  public async static Task<IActionResult> GetsPaginatez<TEntity, TDtoSearch>(IRepoGenericz<TEntity> repo,  DtoRequestPage<TDtoSearch?> req)
     where TEntity : class, IEntityAlpha
     where TDtoSearch: class, IDtoSearch
   {
@@ -115,7 +115,7 @@ public static partial class _Actionz
     }
   }
 
-  public async static Task<IActionResult> GetsPaginateOptionsz<TEntity, TDtoSearch>(IRepoGenericz<TEntity> repo, DtoPageReq<TDtoSearch?> req)
+  public async static Task<IActionResult> GetsPaginateOptionsz<TEntity, TDtoSearch>(IRepoGenericz<TEntity> repo, DtoRequestPage<TDtoSearch?> req)
     where TEntity : class, IEntityAlpha
     where TDtoSearch: class, IDtoSearch
   {

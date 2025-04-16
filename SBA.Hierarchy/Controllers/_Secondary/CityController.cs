@@ -15,7 +15,7 @@
 //   }
 
 //   [HttpGet("[action]")]
-//   public async Task<IActionResult> GetsPaginate([FromQuery] DtoPageReq<CityDtoSearch?> req)
+//   public async Task<IActionResult> GetsPaginate([FromQuery] DtoRequestPage<CityDtoSearch?> req)
 //   {
 //     try
 //     {

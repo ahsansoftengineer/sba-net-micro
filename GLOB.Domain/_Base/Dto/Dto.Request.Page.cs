@@ -1,0 +1,26 @@
+namespace GLOB.Domain.Base;
+public enum Order
+{
+  Unspecified = -1,
+  Ascending,
+  Descending
+}
+public class Sort
+{
+  public string? By { get; set; }
+  public Order? Order { get; set; } = Base.Order.Unspecified;
+}
+public class DtoRequestPage<TDtoSearch>
+{
+  public List<string>? Include { get; set; }
+  public int PageNo { get; set; } = 1;
+  public int PageSize { get; set; } = 10;
+  public TDtoSearch? Filter { get; set; }
+  public Sort? Sort { get; set; }
+}
+
+public class DtoPage()
+{
+  public int PageSize { get; set; } = 10;
+  public int PageNo { get; set; } = 1;
+}

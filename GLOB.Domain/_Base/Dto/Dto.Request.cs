@@ -2,18 +2,18 @@ using GLOB.Domain.Enums;
 
 namespace GLOB.Domain.Base;
 
-public class ReqGet
+public class DtoRequestGet
 {
   public List<string> Includes { get; set; } = ["TableName"];
 }
 
-public class ReqStatus
+public class DtoRequestStatus
 {
   public Status Status { get; set; }
 }
 
-public class ReqGetByIds : ReqGetByIds<int> { }
-public class ReqGetByIds<TKey>
+public class DtoRequestGetByIds : DtoRequestGetByIds<int> { }
+public class DtoRequestGetByIds<TKey>
 {
   public List<TKey> Ids { get; set; }
   public List<string> Includes { get; set; } = ["TableName"];

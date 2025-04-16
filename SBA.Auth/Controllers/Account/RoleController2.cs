@@ -20,7 +20,7 @@ public partial class RoleController
       var rolz = new InfraRole(role);
       rolz.Id = Constantz.Guidz();
       var result = await _roleManager.CreateAsync(rolz);
-      if (result.Succeeded) return Ok(rolz.ToExtResVMSingle());
+      if (result.Succeeded) return Ok(rolz.ToExtVMSingle());
     }
     ModelState.AddModelError("Name", $"{role} already exsist");
     return _Res.BadRequestModel(ModelState);
@@ -38,7 +38,7 @@ public partial class RoleController
     role.Status = dto.Status;
 
     var result = await _roleManager.UpdateAsync(role);
-    if (result.Succeeded) return Ok(role.ToExtResVMSingle());
+    if (result.Succeeded) return Ok(role.ToExtVMSingle());
     result?.Errors?.ForEach(x => {
       ModelState.AddModelError(x.Code, x.Description);
     });

@@ -5,7 +5,7 @@ namespace GLOB.Infra.Helper;
 
 public static partial class ExtQuery
 {
-  public static IQueryable<T> GetsQuery<T>(
+  public static IQueryable<T> ToExtQuery_Query<T>(
       this IQueryable<T> query,
       Expression<Func<T, bool>>? expression,
       Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy,
@@ -28,7 +28,7 @@ public static partial class ExtQuery
 
   public static IQueryable<T> ToExtQueryFilterSortInclude<T, TDtoSearch>(
       this IQueryable<T> query,
-      DtoPageReq<TDtoSearch?> req)
+      DtoRequestPage<TDtoSearch?> req)
     where TDtoSearch : class
     where T : class, IEntityBeta
   {
