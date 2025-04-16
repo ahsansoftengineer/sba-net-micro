@@ -87,7 +87,7 @@ public static class _Res
 
   public static ObjectResult InvalidEnums(string status)
   {
-    return new NotFoundObjectResult($"Invalid data {status} not updated the record");
+    return new NotFoundObjectResult($"Invalid enum {status} not updated the record");
   }
 
   public static ObjectResult NotAuthorised()
