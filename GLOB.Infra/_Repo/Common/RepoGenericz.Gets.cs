@@ -21,7 +21,7 @@ public partial class RepoGenericz<T, TKey>
     List<string>? Includes = null)
   {
     IQueryable<T> query = _db;
-    query = query.Where(x =>  Ids.Contains(x.Id));
+    query = query.Where(x => Ids.Contains(x.Id));
     return await query.ToExtList(null, null, Includes);
   }
 
