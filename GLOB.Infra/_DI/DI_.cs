@@ -9,13 +9,13 @@
 // namespace GLOB.Infra;
 // public static class DI
 // {
-//   public static IServiceCollection AddAuth(this IServiceCollection srvc, ConfigurationManager Configuration)
+//   public static void AddAuth(this IServiceCollection srvc, ConfigurationManager Configuration)
 //   {
 //     var jwtSettings = new JwtSettings();
 //     Configuration.Bind(JwtSettings.SectionName, jwtSettings);
 
 //     srvc.Configure<JwtSettings>(Configuration.GetSection(JwtSettings.SectionName));
-//     Configuration[JwtSettings.Issuer] to access with above code
+//     // Configuration[JwtSettings.Issuer] to access with above code
 
 //     // shorthand syntax for accessing configuration
    
@@ -51,13 +51,12 @@
 //         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret)),
 
 //         //  Swagger Causing Problem with it for time being we have to set Issuer & Audience like so
-//         ValidateIssuer = false,
-//         ValidateAudience = false,
-//         ValidAudience = "https://localhost:7228",
-//         ValidIssuer = "https://localhost:7228",
+//         // ValidateIssuer = false,
+//         // ValidateAudience = false,
+//         // ValidAudience = "https://localhost:7228",
+//         // ValidIssuer = "https://localhost:7228",
 
 //       };
 //     });
-//    return srvc;
 //   }
 // }

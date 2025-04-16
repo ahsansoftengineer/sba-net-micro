@@ -8,6 +8,10 @@ namespace GLOB.API.Staticz;
 
 public static class _Res
 {
+  public static ObjectResult Ok(string msg)
+  {
+    return new ObjectResult(new { Message = msg, Status = 200});
+  }
   public static ObjectResult CatchException(this Exception ex, string methodName)
   {
     Console.WriteLine(ex.Message, $"Something went wrong in the {methodName}");

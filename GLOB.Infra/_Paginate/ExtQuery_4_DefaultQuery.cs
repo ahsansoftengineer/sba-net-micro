@@ -1,12 +1,11 @@
 using System.Linq.Expressions;
 using GLOB.Domain.Base;
-using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Helper;
+namespace GLOB.Infra.Paginate;
 
 public static partial class ExtQuery
 {
-  public static IQueryable<T> GetsQuery<T>(
+  public static IQueryable<T> ToExtQuery_Query<T>(
       this IQueryable<T> query,
       Expression<Func<T, bool>>? expression,
       Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy,
@@ -29,7 +28,7 @@ public static partial class ExtQuery
 
   public static IQueryable<T> ToExtQueryFilterSortInclude<T, TDtoSearch>(
       this IQueryable<T> query,
-      DtoPageReq<TDtoSearch?> req)
+      DtoRequestPage<TDtoSearch?> req)
     where TDtoSearch : class
     where T : class, IEntityBeta
   {
@@ -39,22 +38,4 @@ public static partial class ExtQuery
     
     return query.ToExtQueryInclues(req?.Include);
   }
-  
-  public static async Task<DtoPageRes<T>> ToExtQueryPage<T>(
-    this IQueryable<T> source, DtoPageRes<T> p
-  )
-  {
-    if (p.PageNo < 1) p.PageNo = 1;
-    if (p.PageSize < 1) p.PageSize = 10;
-    if (p.PageSize > 50) p.PageSize = 50;
-
-    p.Count = await source.CountAsync();
-    var query = source.Skip((p.PageNo - 1) * p.PageSize)
-                .Take(p.PageSize);
-
-    p.Records = await query.ToListAsync();
-    return p;
-  }
-
-
 }

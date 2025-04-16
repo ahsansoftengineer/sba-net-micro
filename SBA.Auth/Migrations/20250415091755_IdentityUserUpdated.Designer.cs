@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SBA.Projectz.Data;
 
@@ -11,9 +12,11 @@ using SBA.Projectz.Data;
 namespace SBA.Auth.Migrations
 {
     [DbContext(typeof(ProjectzDBCntxt))]
-    partial class ProjectzDBCntxtModelSnapshot : ModelSnapshot
+    [Migration("20250415091755_IdentityUserUpdated")]
+    partial class IdentityUserUpdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -178,7 +181,7 @@ namespace SBA.Auth.Migrations
                             Name = "user",
                             NormalizedEmail = "USER@EXAMPLE.COM",
                             NormalizedUserName = "USER@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMW6dhuNBiPMjOeoh/TnbBWygLWjcQy7bV6XlzctkUF5F34rNtcRS8VmsYbMgvvD5Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEACmShpP3LWgwsZwhZISwadM6d/EtzQ0WMkq/Bxig2P6XzeL4P2BJb+oC+rs6sFdJg==",
                             PhoneNumber = "03212827700",
                             PhoneNumberConfirmed = true,
                             SecurityStamp = "22c74fbc-9b0d-4848-85db-f09d58750006",
@@ -199,7 +202,7 @@ namespace SBA.Auth.Migrations
                             Name = "InfraUser_2",
                             NormalizedEmail = "INFRAUSER_2@YOPMAIL.COM",
                             NormalizedUserName = "INFRAUSER_2@YOPMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFy7f8/zItfWU4XNy/66GES2HZl/XgorLdBiwhfS+AqbFmhf5rW/dOJtUWzr8wfy6A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPB7kfoIF5a0f/xqp1pdXMQAYZtvzQ2n8fxgXEGhjOP1aXilANBvPkwwhBlpRry1AQ==",
                             PhoneNumber = "03212827701",
                             PhoneNumberConfirmed = true,
                             SecurityStamp = "46eb923d-8529-4b77-b311-96e98ea6ea06",
@@ -220,7 +223,7 @@ namespace SBA.Auth.Migrations
                             Name = "InfraUser_3",
                             NormalizedEmail = "INFRAUSER_3@YOPMAIL.COM",
                             NormalizedUserName = "INFRAUSER_3@YOPMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHb6XOGk+aQfxMfF7i9ZWsSQpaXc/ehMJv3FlusE6cfHQ0gmWhdIU1+500ygTKt0SA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGjg05pvktKMxHjB3nhkrG/ugiQvLkZVjwmu8gzE4+nH4XXwV90eyhEmGkrj9qFVBA==",
                             PhoneNumber = "03212827702",
                             PhoneNumberConfirmed = true,
                             SecurityStamp = "8118fea8-a644-4d67-9eca-1d689465a1bf",

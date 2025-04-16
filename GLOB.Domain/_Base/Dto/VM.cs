@@ -2,32 +2,18 @@ using System.Net;
 
 namespace GLOB.Domain.Base;
 
-public enum Order
+public class VMSingle<T>
 {
-  Unspecified = -1,
-  Ascending,
-  Descending
+  public T? Record { get; set; }
+  public HttpStatusCode Status { get; set; }
 }
-public class Sort
+public class VMList<T>
 {
-  public string? By { get; set; }
-  public Order? Order { get; set; } = Base.Order.Unspecified;
-}
-public class DtoPageReq<TDtoSearch>
-{
-  public List<string>? Include { get; set; }
-  public int PageNo { get; set; } = 1;
-  public int PageSize { get; set; } = 10;
-  public TDtoSearch? Filter { get; set; }
-  public Sort? Sort { get; set; }
+  public IList<T>? Records { get; set; }
+  public HttpStatusCode Status { get; set; }
 }
 
-public class DtoPage()
-{
-  public int PageSize { get; set; } = 10;
-  public int PageNo { get; set; } = 1;
-}
-public class DtoPageRes<T> 
+public class VMPaginate<T> 
 {
   public List<T> Records { get; set; }
   public int PageNo { get; set; } = 1;
@@ -39,12 +25,12 @@ public class DtoPageRes<T>
   public bool HasNextPage => PageNo < TotalPages;
   public HttpStatusCode Status = HttpStatusCode.OK;
 
-  public DtoPageRes(DtoPage data)
+  public VMPaginate(DtoPage data)
   {
     PageNo = data.PageNo;
     PageSize = data.PageSize;
   }
-  public DtoPageRes(DtoPageRes<T> data)
+  public VMPaginate(VMPaginate<T> data)
   {
 
     Records = data.Records;
@@ -53,3 +39,4 @@ public class DtoPageRes<T>
     PageNo = PageNo;
   }
 }
+

@@ -4,37 +4,30 @@ using Microsoft.Extensions.Options;
 namespace GLOB.Infra.Data.Auth;
 public class AuthOptionSetup : IConfigureOptions<IdentityOptions>
 {
-    private readonly IdentitySettings _identitySettings;
+    private readonly IdentitySettings _settings;
 
     public AuthOptionSetup(IOptions<IdentitySettings> identitySettings)
     {
-        _identitySettings = identitySettings.Value;
+        _settings = identitySettings.Value;
     }
 
-    public void Configure(IdentityOptions options)
+    public void Configure(IdentityOptions opt)
     {
         // User settings
-        options.User.RequireUniqueEmail = _identitySettings.RequireUniqueEmail;
+        opt.User.RequireUniqueEmail = _settings.RequireUniqueEmail;
 
         // Password settings
-        options.Password.RequireDigit = _identitySettings.Password.RequireDigit;
-        options.Password.RequiredLength = _identitySettings.Password.RequiredLength;
-        options.Password.RequireNonAlphanumeric = _identitySettings.Password.RequireNonAlphanumeric;
-        options.Password.RequireUppercase = _identitySettings.Password.RequireUppercase;
-        options.Password.RequireLowercase = _identitySettings.Password.RequireLowercase;
+        opt.Password.RequireDigit = _settings.Password.RequireDigit;
+        opt.Password.RequiredLength = _settings.Password.RequiredLength;
+        opt.Password.RequireNonAlphanumeric = _settings.Password.RequireNonAlphanumeric;
+        opt.Password.RequireUppercase = _settings.Password.RequireUppercase;
+        opt.Password.RequireLowercase = _settings.Password.RequireLowercase;
 
         // Lockout settings
-        options.Lockout.MaxFailedAccessAttempts = _identitySettings.Lockout.MaxFailAttempts;
-        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(_identitySettings.Lockout.LockoutMinutes);
+        opt.Lockout.MaxFailedAccessAttempts = _settings.Lockout.MaxFailAttempts;
+        opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(_settings.Lockout.LockoutMinutes);
     }
 }
-
-//  "JwtSettings": {
-//     "SecretKey": "YourSuperStrongSecretKey_ReplaceThis", 
-//     "Issuer": "https://ahsan.com",
-//     "Audience": "https://ahsan.com",
-//     "ExpireMinutes": 60
-//   },
 
 //   "Identity": {
 //     "RequireUniqueEmail": true,

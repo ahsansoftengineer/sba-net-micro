@@ -1,46 +1,46 @@
 using System.Linq.Expressions;
-using System.Net;
 using GLOB.Domain.Base;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Helper;
+namespace GLOB.Infra.Paginate;
 
 public static partial class ExtResponse
 {
-  public static async Task<List<T>> Gets<T>(
+  public static async Task<List<T>> ToExtList<T>(
     this IQueryable<T> query,
     Expression<Func<T, bool>>? expression,
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy,
-    List<string>? Include)
+    List<string>? Includes)
     where T : class
   {
-    return await query.GetsQuery(expression, orderBy, Include).AsNoTracking().ToListAsync();
+    return await query.ToExtQuery_Query(expression, orderBy, Includes).AsNoTracking().ToListAsync();
   }
 
-  public static async Task<DtoPageRes<T>> ToExtPageRes<T, TDtoSearch>(
-    this IQueryable<T> source, DtoPageReq<TDtoSearch?> req)
+
+  public static async Task<VMPaginate<T>> ToExtPageReq<T, TDtoSearch>(
+    this IQueryable<T> source, DtoRequestPage<TDtoSearch?> req)
   {
     var dtoPage = new DtoPage(){
       PageNo = req.PageNo,
       PageSize = req.PageSize,
     };
-    return await source.ToExtQueryPage(new(dtoPage));
+    return await source.ToExtVMPage(new(dtoPage));
   }
 
-  public static async Task<DtoPageRes<T>> GetsPaginate<T, TDtoSearch>(
+  public static async Task<VMPaginate<T>> ToExtVMPageNoTrack<T, TDtoSearch>(
       this IQueryable<T> query,
-      DtoPageReq<TDtoSearch?> req)
+      DtoRequestPage<TDtoSearch?> req)
     where TDtoSearch : class
     where T : class, IEntityBeta
   {
     query = query.ToExtQueryFilterSortInclude(req);
 
-    return await query.AsNoTracking().ToExtPageRes(req);
+    return await query.AsNoTracking().ToExtPageReq(req);
   }
-  public static async Task<DtoPageRes<DtoSelect<TKey>>> GetsPaginateOptions<T, TKey, TDtoSearch>(
+  
+  public static async Task<VMPaginate<DtoSelect<TKey>>> ToExtVMPageOptionsNoTrack<T, TKey, TDtoSearch>(
       this IQueryable<T> query,
-      DtoPageReq<TDtoSearch?> req)
+      DtoRequestPage<TDtoSearch?> req)
     where TDtoSearch : class
     where T : class, IEntityAlpha<TKey>, IEntityBeta, IEntityStatus
   {
@@ -48,6 +48,6 @@ public static partial class ExtResponse
  
     var result =  query.ToExtMapSelect<T, TKey>(); // IEntityAlpha, IEntityStatus
 
-    return await result.AsNoTracking().ToExtPageRes(req);
+    return await result.AsNoTracking().ToExtPageReq(req);
   }
 }

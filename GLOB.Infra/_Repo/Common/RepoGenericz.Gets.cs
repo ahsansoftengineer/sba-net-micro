@@ -1,5 +1,5 @@
 using GLOB.Domain.Base;
-using GLOB.Infra.Helper;
+using GLOB.Infra.Paginate;
 using System.Linq.Expressions;
 
 namespace GLOB.Infra.Repo;
@@ -10,23 +10,32 @@ public partial class RepoGenericz<T, TKey>
   public async Task<List<T>> Gets(
     Expression<Func<T, bool>>? expression = null,
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
-    List<string>? Include = null)
+    List<string>? Includes = null)
   {
     IQueryable<T> query = _db;
-    return await query.Gets(expression, orderBy, Include);
+    return await query.ToExtList(expression, orderBy, Includes);
+  }
+
+  public async Task<List<T>> GetsByIds(
+    List<TKey>? Ids = null,
+    List<string>? Includes = null)
+  {
+    IQueryable<T> query = _db;
+    query = query.Where(x =>  Ids.Contains(x.Id));
+    return await query.ToExtList(null, null, Includes);
   }
 
   // Filter, OrderBy, Include, Pagination,
-  public async Task<DtoPageRes<T>> GetsPaginate<TDtoSearch>(DtoPageReq<TDtoSearch?> req) 
+  public async Task<VMPaginate<T>> GetsPaginate<TDtoSearch>(DtoRequestPage<TDtoSearch?> req) 
     where TDtoSearch : class
   {
-    return await _db.GetsPaginate(req);
+    return await _db.ToExtVMPageNoTrack(req);
   }
   
-  public async Task<DtoPageRes<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(DtoPageReq<TDtoSearch?> req) 
+  public async Task<VMPaginate<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(DtoRequestPage<TDtoSearch?> req) 
     where TDtoSearch : class
   {
-    return await _db.GetsPaginateOptions<T, TKey,  TDtoSearch>(req);
+    return await _db.ToExtVMPageOptionsNoTrack<T, TKey,  TDtoSearch>(req);
   }
 }
 

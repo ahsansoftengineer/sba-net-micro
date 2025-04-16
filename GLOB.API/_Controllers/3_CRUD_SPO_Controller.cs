@@ -14,14 +14,14 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
   public API_3_CRUD_SPO_Controller(IServiceProvider srvcProvider) : base(srvcProvider)
   {
   }
-  [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginate([FromQuery] DtoPageReq<TDtoSearch?> req)
+  [HttpPost("[action]")]
+  public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<TDtoSearch?> req)
   {
     return await _Actionz.GetsPaginatez(_repo, req);
   }
 
-  [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginateOptions([FromQuery] DtoPageReq<TDtoSearch?> req)
+  [HttpPost("[action]")]
+  public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPage<TDtoSearch?> req)
   {
     return await _Actionz.GetsPaginateOptionsz(_repo, req);
   }

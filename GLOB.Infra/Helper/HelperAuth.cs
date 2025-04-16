@@ -2,15 +2,15 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using GLOB.Domain.Auth;
-using Microsoft.Extensions.Configuration;
+using GLOB.Infra.Data.Auth;
 using Microsoft.IdentityModel.Tokens;
 
 namespace GLOB.Infra.Helper;
 public static class HelperAuth
 {
-  public static string GenerateJwtToken(InfraUser user, IConfiguration config)
+  public static string GenerateJwtToken(InfraUser user, JwtSettings opt)
   {
-    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]));
+    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(opt.SecretKey));
     var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
     var claims = new[]
     {
@@ -20,8 +20,8 @@ public static class HelperAuth
     };
 
     var token = new JwtSecurityToken(
-      issuer: config["Jwt:Issuer"],
-      audience: config["Jwt:Audience"],
+      issuer: opt.Issuer,
+      audience: opt.Audience,
       claims: claims,
       expires: DateTime.UtcNow.AddHours(1),
       signingCredentials: creds);

@@ -2,7 +2,7 @@ using System.Linq.Dynamic.Core;
 using GLOB.Domain.Base;
 using GLOB.Domain.Extension;
 
-namespace GLOB.Infra.Helper;
+namespace GLOB.Infra.Paginate;
 public static partial class ExtQuery
 {
   public static IQueryable<T> ToExtQueryOrderBy<T>(this IQueryable<T> query, Sort? sort)

@@ -12,7 +12,7 @@ using SBA.Projectz.Data;
 namespace SBA.Auth.Migrations
 {
     [DbContext(typeof(ProjectzDBCntxt))]
-    [Migration("20250413122351_Init")]
+    [Migration("20250415090121_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -173,26 +173,26 @@ namespace SBA.Auth.Migrations
                         {
                             Id = "22c74fbc-9b0d-4848-85db-f09d58750006",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "14246df1-5599-436f-a267-d0f92c8e6181",
+                            ConcurrencyStamp = "22c74fbc-9b0d-4848-85db-f09d58750006",
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            Email = "InfraUser_1@yopmail.com",
+                            Email = "user@example.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            Name = "InfraUser_1",
-                            NormalizedEmail = "INFRAUSER_1@YOPMAIL.COM",
-                            NormalizedUserName = "INFRAUSER_1@YOPMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFXxlKoDirt8I4Ct7/C9ruTiSPY+6HEx3mj0o7vWa+teoP0VoP1moM1KKae6iVaWDQ==",
+                            Name = "user",
+                            NormalizedEmail = "USER@EXAMPLE.COM",
+                            NormalizedUserName = "USER@EXAMPLE.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEACmShpP3LWgwsZwhZISwadM6d/EtzQ0WMkq/Bxig2P6XzeL4P2BJb+oC+rs6sFdJg==",
                             PhoneNumberConfirmed = false,
                             Status = 0,
                             TwoFactorEnabled = false,
                             UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            UserName = "InfraUser_1@yopmail.com"
+                            UserName = "user@example.com"
                         },
                         new
                         {
                             Id = "46eb923d-8529-4b77-b311-96e98ea6ea06",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "544ad26f-df43-43c7-bde4-913d32c3877c",
+                            ConcurrencyStamp = "46eb923d-8529-4b77-b311-96e98ea6ea06",
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Email = "InfraUser_2@yopmail.com",
                             EmailConfirmed = true,
@@ -200,7 +200,7 @@ namespace SBA.Auth.Migrations
                             Name = "InfraUser_2",
                             NormalizedEmail = "INFRAUSER_2@YOPMAIL.COM",
                             NormalizedUserName = "INFRAUSER_2@YOPMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEN7fL0zwqtsp12dcvKoiqXGY5HT0Jhi+Yh6ZYqKVj4AYL9VcxBDVOAr8tW+f9HuBqA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPB7kfoIF5a0f/xqp1pdXMQAYZtvzQ2n8fxgXEGhjOP1aXilANBvPkwwhBlpRry1AQ==",
                             PhoneNumberConfirmed = false,
                             Status = 0,
                             TwoFactorEnabled = false,
@@ -211,7 +211,7 @@ namespace SBA.Auth.Migrations
                         {
                             Id = "8118fea8-a644-4d67-9eca-1d689465a1bf",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b22f97cf-c5a1-4230-a9c3-5e4ea9b282ab",
+                            ConcurrencyStamp = "8118fea8-a644-4d67-9eca-1d689465a1bf",
                             CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
                             Email = "InfraUser_3@yopmail.com",
                             EmailConfirmed = true,
@@ -219,7 +219,7 @@ namespace SBA.Auth.Migrations
                             Name = "InfraUser_3",
                             NormalizedEmail = "INFRAUSER_3@YOPMAIL.COM",
                             NormalizedUserName = "INFRAUSER_3@YOPMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOmeS2ie9gaQHUGIqkoOeUaf+m126w0XJmX11V4iPJZfgqiLydGoIIGO9XfXvGaYmQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGjg05pvktKMxHjB3nhkrG/ugiQvLkZVjwmu8gzE4+nH4XXwV90eyhEmGkrj9qFVBA==",
                             PhoneNumberConfirmed = false,
                             Status = 0,
                             TwoFactorEnabled = false,

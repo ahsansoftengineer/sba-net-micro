@@ -1,6 +1,6 @@
 using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
-using GLOB.Infra.Helper;
+using GLOB.Infra.Paginate;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,19 +21,19 @@ public partial class UserController : AccountBaseController<UserController>
   public async Task<IActionResult> Gets()
   {
     var users = _userManager.Users.ToList();
-    var result = _mapper.Map<List<InfraUserDtoRead>>(users).ToExtResVMList();
+    var result = _mapper.Map<List<InfraUserDtoRead>>(users).ToExtVMList();
     return Ok(result);
   }
   [HttpGet("{Id}")]
   public async Task<IActionResult> Get(string Id)
   {
     var data = _userManager.Users.FirstOrDefault(x => x.Id == Id);
-    var result = _mapper.Map<InfraUserDtoRead>(data).ToExtResVMSingle();
+    var result = _mapper.Map<InfraUserDtoRead>(data).ToExtVMSingle();
     return Ok(result);
   }
 
   // [HttpGet("[action]")]
-  // public async Task<IActionResult> GetsPaginate(DtoPageReq<InfraUserDtoSearch> req)
+  // public async Task<IActionResult> GetsPaginate(DtoRequestPage<InfraUserDtoSearch> req)
   // {
   //   var query = _userManager.Users.ToExtQueryFilterSortInclude(req);
   //   var mappedQuery = query.ToExtMapQuery<>()
@@ -42,7 +42,7 @@ public partial class UserController : AccountBaseController<UserController>
   // }
 
   // [HttpGet("[action]")]
-  // public async Task<IActionResult> GetsPaginateOptions(DtoPageReq<InfraUser> req)
+  // public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<InfraUser> req)
   // {
   //   IQueryable<InfraUser> query = _userManager.Users;
   //   var result = query.ToExtQueryFilterSortInclude(req).GetsPaginateOptions<InfraUser, string>();

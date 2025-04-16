@@ -17,7 +17,7 @@ public static partial class DI_Infra
     where TUOW : UOW_Infra, TIUOW
   {
     // Option Pattern
-    srvc.Configure<JwtSettings>(config.GetSection("JwtSettings"));
+    srvc.Configure<JwtSettings>(config.GetSection(JwtSettings.SectionName));
     srvc.Configure<IdentitySettings>(config.GetSection("Identity"));
 
     // Configure Database

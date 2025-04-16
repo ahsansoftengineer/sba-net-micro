@@ -35,6 +35,7 @@ public class SmtpEmailSender : IEmailSender
 
 public class EmailSettings
 {
+    public static string SectionName = "EmailSettings";
     public string From { get; set; }
     public string SmtpServer { get; set; }
     public int Port { get; set; }
