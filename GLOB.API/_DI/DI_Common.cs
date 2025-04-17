@@ -35,9 +35,9 @@ public static partial class API_DI_Common
       // API Caching 3. Defining Cache Profile
       .AddControllers(opt =>
       {
+        // opt.Conventions.Add(new GlobalRouteConvention());
         opt.Conventions.Add(new RouteTokenTransformerConvention(new KebabCaseRouteTransformer()));
         opt.Conventions.Insert(0, new GlobalRoutePrefixConvention(routePrefix));
-      
         //opt.Filters<Filters>();
         opt.CacheProfiles.Add("120SecondsDuration", new CacheProfile
         {

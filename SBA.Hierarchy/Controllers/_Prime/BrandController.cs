@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers.Prime;
-[Route("[controller]")]
-[ApiController]
 public class BrandController : Projectz_Default_Controller<BrandController, Brand>
 {
   public BrandController(IServiceProvider srvcProvider) : base(srvcProvider)

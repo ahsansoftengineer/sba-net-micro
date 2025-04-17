@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers.Prime;
-[Route("[controller]")]
-[ApiController]
 public class BankController : Projectz_Default_Controller<BankController, Bank>
 {
   public BankController(IServiceProvider srvcProvider) : base(srvcProvider)

@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers.Prime;
-[Route("[controller]")]
-[ApiController]
 public class StateController : Projectz_Default_Controller<StateController, State>
 {
   public StateController(IServiceProvider srvcProvider) : base(srvcProvider)

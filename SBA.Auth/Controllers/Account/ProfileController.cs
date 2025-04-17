@@ -2,8 +2,6 @@ using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
-[Route("[controller]")]
-[ApiController]
 public partial class ProfileController : AccountBaseController<ProfileController>
 {
   public ProfileController(

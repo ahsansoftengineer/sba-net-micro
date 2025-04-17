@@ -8,7 +8,6 @@ using PlatformService.SyncDataServices.Http;
 namespace EmployeeService.Controllers;
 
 [Route("api/[controller]")]
-[ApiController]
 public class EmployeeController : ControllerBase
 {
   private readonly IEmployeeRepo _repo;

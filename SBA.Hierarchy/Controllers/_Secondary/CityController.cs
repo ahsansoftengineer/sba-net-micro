@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers;
-[Route("[controller]")]
-[ApiController]
 public class CityController : Project_RDS_Controller<CityController, City>
 {
   public CityController(IServiceProvider srvcProvider) : base(srvcProvider)
