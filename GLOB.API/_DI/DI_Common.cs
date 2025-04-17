@@ -76,7 +76,7 @@ public static partial class API_DI_Common
 
 
 
-    public static void Config_Swagger(this IApplicationBuilder app, IWebHostEnvironment env)
+  public static void Config_Swagger(this IApplicationBuilder app, IWebHostEnvironment env)
   {
 
       app.UseSwagger();
