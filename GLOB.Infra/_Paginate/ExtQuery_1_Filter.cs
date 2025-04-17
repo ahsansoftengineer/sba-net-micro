@@ -9,10 +9,14 @@ namespace GLOB.Infra.Paginate;
 public static partial class ExtQuery
 {
   public static IQueryable<T> ToExtQueryFilter<T, TDtoSearch>(this IQueryable<T> source, TDtoSearch? DtoSearch)
-    where T : class
+    where T : class, IEntityBeta
     where TDtoSearch : class, IDtoSearch
   {
     if (DtoSearch == null) return source;
+    if(DtoSearch.DateFrom != null) 
+      source = source.Where(x => x.UpdatedAt >= DtoSearch.DateFrom.Value);
+    if(DtoSearch.DateTo != null)
+      source = source.Where(x => x.UpdatedAt <= DtoSearch.DateTo.Value);
 
     //var dtoParam = Expression.Parameter(typeof(TDtoSearch), "TDtoSearch"); //
     var entityParam = Expression.Parameter(typeof(T), "TEntity");
