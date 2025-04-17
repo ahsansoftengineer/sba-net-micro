@@ -1,5 +1,7 @@
 using GLOB.API.Configz;
+using GLOB.API.OptionSetup;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
@@ -31,12 +33,13 @@ public static partial class API_DI_Common
   {
     srvc
       // API Caching 3. Defining Cache Profile
-      .AddControllers(options =>
+      .AddControllers(opt =>
       {
-        options.Conventions.Insert(0, new GlobalRoutePrefixConvention(routePrefix));
+        opt.Conventions.Add(new RouteTokenTransformerConvention(new KebabCaseRouteTransformer()));
+        opt.Conventions.Insert(0, new GlobalRoutePrefixConvention(routePrefix));
       
-        //options.Filters<Filters>();
-        options.CacheProfiles.Add("120SecondsDuration", new CacheProfile
+        //opt.Filters<Filters>();
+        opt.CacheProfiles.Add("120SecondsDuration", new CacheProfile
         {
           Duration = 5
           //,Location = ResponseCacheLocation.Client
@@ -45,9 +48,9 @@ public static partial class API_DI_Common
           //,VaryByQueryKeys = "Any Keys"
         });
       })
-      .ConfigureApiBehaviorOptions(options =>
+      .ConfigureApiBehaviorOptions(opt =>
       {
-        options.InvalidModelStateResponseFactory = context =>
+        opt.InvalidModelStateResponseFactory = context =>
         {
           var errors =  context.ModelState.ToExtValidationError();
           return new BadRequestObjectResult(new
@@ -57,6 +60,11 @@ public static partial class API_DI_Common
           });
         };
       })
+      // Config for Model Prop to KebabCase
+      // .AddJsonOptions(opt =>
+      // {
+      //   opt.JsonSerializerOptions.PropertyNamingPolicy = new KebabCaseNamingPolicy();
+      // })
       .AddNewtonsoftJson(opt =>
       {
         opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
@@ -83,7 +91,8 @@ public static partial class API_DI_Common
   {
     srvc.AddSwaggerGen(c =>
     {
-
+      c.SchemaFilter<SwaggerNullablePrimitivesDataTypes>();
+      // c.SchemaFilter<KebabCaseSchemaFilter>();
       c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
       {
         Title = ProjectNameSwagger,
@@ -91,8 +100,7 @@ public static partial class API_DI_Common
       });
       c.UseAllOfToExtendReferenceSchemas();
       c.SupportNonNullableReferenceTypes();
-      //c.IgnoreObsoleteProperties();
-      //c.SchemaFilter<MySwaggerSchemaFilter>(); // Failed to apply this
+      c.IgnoreObsoleteProperties(); // [Obsolete]
     });
   }
   

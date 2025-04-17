@@ -32,6 +32,7 @@ public static partial class ExtResponse
     if (p.PageSize > 50) p.PageSize = 50;
 
     p.Count = await source.CountAsync();
+    
     var query = source.Skip((p.PageNo - 1) * p.PageSize)
                 .Take(p.PageSize);
 
