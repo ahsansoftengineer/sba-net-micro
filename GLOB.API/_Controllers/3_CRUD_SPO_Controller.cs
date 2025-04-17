@@ -21,12 +21,12 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
   }
 
   [HttpPost("[action]")]
-  public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPage<TDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPageOption<TDtoSearch?> req)
   {
     return await _Actionz.GetsPaginateOptionsz(_repo, req);
   }
 
-  [HttpPost]
+  [HttpPost("[action]")]
   public async Task<IActionResult> Create([FromBody] TDtoCreate data)
   {
     try
@@ -42,7 +42,7 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
     }
   }
 
-  [HttpPut("{Id:int}")]
+  [HttpPut("[action]/{Id:int}")]
   public async Task<IActionResult> Update(int Id, [FromBody] TDtoCreate data)
   {
     try

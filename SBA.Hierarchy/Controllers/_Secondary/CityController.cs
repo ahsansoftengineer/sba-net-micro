@@ -24,7 +24,7 @@ public class CityController : Project_RDS_Controller<CityController, City>
     return await _Actionz.GetsPaginateOptionsz(_repo, req);
   }
 
-  [HttpPost]
+  [HttpPost("[action]")]
   public async Task<IActionResult> Create([FromBody] CityDtoCreate data)
   {
     try
@@ -43,7 +43,7 @@ public class CityController : Project_RDS_Controller<CityController, City>
     }
   }
 
-  [HttpPut("{Id:int}")]
+  [HttpPut("[action]/{Id:int}")]
   public async Task<IActionResult> Update(int Id, [FromBody] CityDtoCreate data)
   {
     try

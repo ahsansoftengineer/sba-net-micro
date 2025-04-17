@@ -23,7 +23,7 @@ public class _GlobalLookupController : Project_RDS_Controller<_GlobalLookupContr
   {
     return await _Actionz.GetsPaginateOptionsz(_repo, req);
   }
-  [HttpPost]
+  [HttpPost("[action]")]
   public async Task<IActionResult> Create([FromBody] GlobalLookupDtoCreate data)
   {
     try
@@ -42,7 +42,7 @@ public class _GlobalLookupController : Project_RDS_Controller<_GlobalLookupContr
     }
   }
 
-  [HttpPut("{Id:int}")]
+  [HttpPut("[action]/{Id:int}")]
   public async Task<IActionResult> Update(int Id, [FromBody] GlobalLookupDtoCreate data)
   {
     try

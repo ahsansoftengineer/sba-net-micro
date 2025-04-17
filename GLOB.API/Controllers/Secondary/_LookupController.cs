@@ -25,7 +25,7 @@ public class _ProjectzLookupzController : API_2_RDS_Controller<_ProjectzLookupzC
     return await _Actionz.GetsPaginateOptionsz(_repo, req);
   }
 
-  [HttpPost]
+  [HttpPost("[action]")]
   public async Task<IActionResult> Create([FromBody] ProjectzLookupDtoCreate data)
   {
     try
@@ -44,7 +44,7 @@ public class _ProjectzLookupzController : API_2_RDS_Controller<_ProjectzLookupzC
     }
   }
 
-  [HttpPut("{Id:int}")]
+  [HttpPut("[action]/{Id:int}")]
   public async Task<IActionResult> Update(int Id, [FromBody] ProjectzLookupDtoCreate data)
   {
     try

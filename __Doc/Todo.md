@@ -1,13 +1,13 @@
 ### CRUD Means
-- Create (Post)
+- Create (POST)
 - Update (Put)
 - Delete (Delete)
 - Status (Patch)
-- Get (Get/1)
-- Gets (Get)
-- GetsByIds (Get) [ Testing Remains]
-- GetsPaginate (Get)
-- GetsPaginateOptions (Get)
+- Get (POST/1)
+- Gets (POST)
+- GetsByIds (POST)
+- GetsPaginate (POST)
+- GetsPaginateOptions (POST)
 
 ### EntityShortParent Projectz (Every Microservice) (Done)
 - Specific to Microservices (Goes inside Every Microservicies)
