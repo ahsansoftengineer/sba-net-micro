@@ -4,8 +4,6 @@ using GLOB.Domain.Base;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Projectz.Controllers;
-[Route("[controller]")]
-[ApiController]
 public class _ProjectzLookupzController : API_2_RDS_Controller<_ProjectzLookupzController, ProjectzLookup>
 {
   public _ProjectzLookupzController(IServiceProvider srvcProvider) : base(srvcProvider)

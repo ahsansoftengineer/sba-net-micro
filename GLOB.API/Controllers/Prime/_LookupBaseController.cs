@@ -3,8 +3,6 @@ using GLOB.Domain.Base;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.Projectz.Controllers;
-[Route("[controller]")]
-[ApiController]
 public class _ProjectzLookupzBaseController : API_4_Default_Controller<_ProjectzLookupzBaseController, ProjectzLookupBase>
 {
   public _ProjectzLookupzBaseController(

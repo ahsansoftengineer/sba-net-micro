@@ -3,6 +3,9 @@ using GLOB.Infra.UOW_Projectz;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;
+
+[Route("[controller]")]
+[ApiController]
 public abstract class API_1_ErrorController<TController> : ControllerBase
 
 {

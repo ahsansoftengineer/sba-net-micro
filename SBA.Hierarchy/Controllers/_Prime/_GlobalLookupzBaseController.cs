@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers.Prime;
-[Route("[controller]")]
-[ApiController]
 public class _GlobalLookupBaseController  : Projectz_Default_Controller<_GlobalLookupBaseController , GlobalLookupBase>
 {
   public _GlobalLookupBaseController (IServiceProvider srvcProvider) : base(srvcProvider)

@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers;
-[Route("[controller]")]
 public class _GlobalLookupController : Project_RDS_Controller<_GlobalLookupController, GlobalLookup>
 {
   public _GlobalLookupController(IServiceProvider srvcProvider) : base(srvcProvider)

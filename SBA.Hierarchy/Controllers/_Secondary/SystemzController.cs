@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers;
-[Route("[controller]")]
-[ApiController]
 public class SystemzController : Project_RDS_Controller<SystemzController, Systemz>
 {
   public SystemzController(IServiceProvider srvcProvider) : base(srvcProvider)
