@@ -31,7 +31,7 @@ public static partial class ExtResponse
     where TDtoSearch : class, IDtoSearch
     where T : class, IEntityBeta
   {
-    query = query.ToExtQueryFilter(req.Filter);
+    query = query.ToExtQueryFilter(req.Filter); // Fix the Adding Enums to Every Filter
     query = query.ToExtQueryOrderBy(req.Sort); // IEntityBeta
     query = query.ToExtQueryInclues(req?.Include);
 
@@ -44,7 +44,7 @@ public static partial class ExtResponse
     where TDtoSearch : class, IDtoSearch
     where T : class, IEntityAlpha<TKey>, IEntityBeta, IEntityStatus
   {
-    query = query.ToExtQueryFilter(req.Filter);
+    query = query.ToExtQueryFilter(req.Filter); // Fix the Adding Enums to Every Filter
     query = query.ToExtQueryOrderBy(req.Sort);
  
     var result =  query.ToExtMapSelect<T, TKey>(); // IEntityAlpha, IEntityStatus
