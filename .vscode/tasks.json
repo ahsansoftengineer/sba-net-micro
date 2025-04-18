@@ -26,23 +26,47 @@
       "problemMatcher": "$msCompile"
     },
     {
-      "label": "watch",
+      "label": "Run SBA.APIGateway Debug",
       "command": "dotnet",
       "type": "process",
       "args": [
-        "watch",
         "run",
         "--project",
-        "${workspaceFolder}/SBA.sln"
+        "${workspaceFolder}/SBA.APIGateway/SBA.APIGateway.csproj"
       ],
       "problemMatcher": "$msCompile"
     },
     {
-      "type": "dotnet",
-      "task": "watch SBA.Hierarchy",
-      "file": "/home/ahsan/dev-net/sb-micro/SBA.Hierarchy/SBA.Hierarchy.csproj",
-      "problemMatcher": [],
-      "label": "dotnet: watch SBA.Hierarchy"
+      "label": "Run SBA.Auth Debug",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "run",
+        "--project",
+        "${workspaceFolder}/SBA.Auth/SBA.Auth.csproj"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Run SBA.Hierarchy Debug",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "run",
+        "--project",
+        "${workspaceFolder}/SBA.Hierarchy/SBA.Hierarchy.csproj"
+      ],
+      "problemMatcher": "$msCompile"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Run All Services Debug",
+      "configurations": [
+        "Run SBA.APIGateway Debug",
+        "Run SBA.Auth Debug",
+        "Run SBA.Hierarchy Debug"
+      ]
     }
   ]
 }
