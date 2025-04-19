@@ -19,32 +19,32 @@ public partial class ProfileController
     });
   }
 
-  [HttpGet("[action]")]
-  public async Task<IActionResult> GetUserSessions()
-  {
-    // List all active sessions for the user
-    var userId = _userManager.GetUserId(User);
-    var sessions = await _dbContext.UserSessions
-        .Where(s => s.UserId == userId && s.LogoutTime == null)
-        .ToListAsync();
+  // [HttpGet("[action]")]
+  // public async Task<IActionResult> GetUserSessions()
+  // {
+  //   // List all active sessions for the user
+  //   var userId = _userManager.GetUserId(User);
+  //   var sessions = await _uowPro.UserSessions
+  //       .Where(s => s.UserId == userId && s.LogoutTime == null)
+  //       .ToListAsync();
 
-    return Ok(sessions);
-  }
-  [HttpDelete("[action]/{Id}")]
-  public async Task<IActionResult> RevokeSession(Guid sessionId)
-  {
-    // End a specific session (logout remotely)
-    var userId = _userManager.GetUserId(User);
-    var session = await _dbContext.UserSessions
-        .FirstOrDefaultAsync(s => s.Id == sessionId && s.UserId == userId);
+  //   return Ok(sessions);
+  // }
+  // [HttpDelete("[action]/{Id}")]
+  // public async Task<IActionResult> RevokeSession(Guid sessionId)
+  // {
+  //   // End a specific session (logout remotely)
+  //   var userId = _userManager.GetUserId(User);
+  //   var session = await _dbContext.UserSessions
+  //       .FirstOrDefaultAsync(s => s.Id == sessionId && s.UserId == userId);
 
-    if (session == null) return NotFound();
+  //   if (session == null) return NotFound();
 
-    session.LogoutTime = DateTime.UtcNow;
-    await _dbContext.SaveChangesAsync();
+  //   session.LogoutTime = DateTime.UtcNow;
+  //   await _dbContext.SaveChangesAsync();
 
-    // Optional: invalidate security stamp or JWT
-    return Ok(new { message = "Session revoked" });
-  }
+  //   // Optional: invalidate security stamp or JWT
+  //   return Ok(new { message = "Session revoked" });
+  // }
 
 }
