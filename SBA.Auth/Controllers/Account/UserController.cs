@@ -16,14 +16,14 @@ public partial class UserController : AccountBaseController<UserController>
     _roleManager = roleManager;
 
   }
-  [HttpGet()]
+  [HttpGet("[action]")]
   public async Task<IActionResult> Gets()
   {
     var users = _userManager.Users.ToList();
     var result = _mapper.Map<List<InfraUserDtoRead>>(users).ToExtVMList();
     return Ok(result);
   }
-  [HttpGet("{Id}")]
+  [HttpGet("[action]/{Id}")]
   public async Task<IActionResult> Get(string Id)
   {
     var data = _userManager.Users.FirstOrDefault(x => x.Id == Id);
@@ -48,7 +48,7 @@ public partial class UserController : AccountBaseController<UserController>
   //   return  Ok(result);
   // }
 
-  [HttpPost]
+  [HttpPost("[action]")]
   public async Task<IActionResult> Create([FromBody] RegisterDto model)
   {
     InfraUser user = MapUser(model);

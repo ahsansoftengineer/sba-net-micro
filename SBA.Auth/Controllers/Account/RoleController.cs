@@ -18,13 +18,13 @@ public partial class RoleController : AccountBaseController<RoleController>
     _roleManager = roleManager;
   }
 
-  [HttpGet()]
+  [HttpGet("[action]")]
   public async Task<IActionResult> Gets()
   {
-    var list = _roleManager.Roles.ToList().ToExtVMList();
+    var list = _roleManager.Roles.ToList();
     return Ok(list);
   }
-  [HttpGet("{Id}")]
+  [HttpGet("[action]/{Id}")]
   public async Task<IActionResult> Get(string Id)
   {
     Console.WriteLine("ID = " + Id);
@@ -34,13 +34,12 @@ public partial class RoleController : AccountBaseController<RoleController>
     return Ok(result);
   }
 
-  [HttpGet("[action]")]
-  public async Task<IActionResult> GetsPaginate(DtoRequestPage<InfraRoleDtoSearch?> req)
+  [HttpPost("[action]")]
+  public async Task<IActionResult> GetsPaginate(DtoRequestPageNoInclude<InfraRoleDtoSearch?> req)
   {
     var query = _roleManager.Roles
       .ToExtQueryFilter(req.Filter)
       .ToExtQueryOrderBy(req.Sort)
-      .ToExtQueryInclues(req.Include)
       .Select(x => new {
         x.Id,
         x.Name, 
@@ -53,7 +52,7 @@ public partial class RoleController : AccountBaseController<RoleController>
     return Ok(result);
   }
 
-  [HttpGet("[action]")]
+  [HttpPost("[action]")]
   public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<InfraRoleDtoSearch?> req)
   {
     var list = await _roleManager.Roles.ToExtVMPageOptionsNoTrack<InfraRole, string, InfraRoleDtoSearch>(req);

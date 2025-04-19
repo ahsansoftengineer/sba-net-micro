@@ -24,7 +24,7 @@ public static partial class ExtQuery
       .GetProperties(BindingFlags.Public | BindingFlags.Instance)
       .Where(p => p.GetValue(DtoSearch) != null); // && p.PropertyType.IsValueType
 
-    var predicate = PredicateBuilder.New<T>();
+    var predicate = PredicateBuilder.New<T>(true);
 
     foreach (var dtoPropInfo in dtoPropInfos)
     {
@@ -65,8 +65,6 @@ public static partial class ExtQuery
         }
       }
     }
-    if (predicate.Parameters.Count > 0)
-      return source.Where(predicate);
-    return source;
+    return source.Where(predicate);
   }
 }
