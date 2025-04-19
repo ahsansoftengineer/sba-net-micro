@@ -1,27 +1,50 @@
-// using Microsoft.AspNetCore.Authorization;
-// using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
-// namespace SBA.Auth.Controllers;
-// public partial class ProfileController
-// {
-//   [HttpGet("[action]")]
-//   [Authorize]
-//   public async Task<IActionResult> GetCurrentUser()
-//   {
-//     return null;
-//   }
+namespace SBA.Auth.Controllers;
+public partial class ProfileController
+{
+  [HttpGet("[action]")]
+  public async Task<IActionResult> GetCurrentUser()
+  {
+    // Get info about the currently logged-in user
+    var user = await _userManager.GetUserAsync(User);
+    if (user == null) return Unauthorized();
 
-//   [HttpGet("[action]")]
-//   [Authorize]
-//   public async Task<IActionResult> GetUserSessions()
-//   {
-//     return null;
-//   }
-//   [HttpDelete("[action]/{Id}")]
-//   [Authorize]
-//   public async Task<IActionResult> RevokeSession(Guid Id)
-//   {
-//     return null;
-//   }
+    return Ok(new {
+        user.Id,
+        user.UserName,
+        user.Email,
+        Roles = await _userManager.GetRolesAsync(user)
+    });
+  }
 
-// }
+  // [HttpGet("[action]")]
+  // public async Task<IActionResult> GetUserSessions()
+  // {
+  //   // List all active sessions for the user
+  //   var userId = _userManager.GetUserId(User);
+  //   var sessions = await _uowPro.UserSessions
+  //       .Where(s => s.UserId == userId && s.LogoutTime == null)
+  //       .ToListAsync();
+
+  //   return Ok(sessions);
+  // }
+  // [HttpDelete("[action]/{Id}")]
+  // public async Task<IActionResult> RevokeSession(Guid sessionId)
+  // {
+  //   // End a specific session (logout remotely)
+  //   var userId = _userManager.GetUserId(User);
+  //   var session = await _dbContext.UserSessions
+  //       .FirstOrDefaultAsync(s => s.Id == sessionId && s.UserId == userId);
+
+  //   if (session == null) return NotFound();
+
+  //   session.LogoutTime = DateTime.UtcNow;
+  //   await _dbContext.SaveChangesAsync();
+
+  //   // Optional: invalidate security stamp or JWT
+  //   return Ok(new { message = "Session revoked" });
+  // }
+
+}

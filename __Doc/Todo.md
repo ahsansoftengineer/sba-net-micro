@@ -19,6 +19,11 @@
 - EntityShortParent CRUD
 - EntityShort CRUD
 
+### Setup Microservice Debugger for All
+### Http Client Comm Services
+### RabbitMQ Servicies 
+### GRPC Servicies
+
 ### Task 1 Roles 
 - CRUD
 - AddUserToRole

@@ -7,13 +7,13 @@ public class LoginDto
   [Required]
   [DataType(DataType.EmailAddress)]
   [EmailAddress]
-  public string Email { get; set; } = "";
+  public string Email { get; set; }
 
   [Required]
   [MinLength(7, ErrorMessage = "Your Password is limited to {1} characters")]
-  [MaxLength(15, ErrorMessage = "Your Password is limited to {1} characters")]
+  // [MaxLength(30, ErrorMessage = "Your Password is limited to {1} characters")]
   [PasswordPropertyText]
-  public string Password { get; set; } = "";
+  public string Password { get; set; }
 }
 public class UserDto : LoginDto
 {

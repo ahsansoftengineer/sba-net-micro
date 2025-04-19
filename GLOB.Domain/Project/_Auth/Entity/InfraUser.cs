@@ -36,7 +36,7 @@ public class InfraUserDtoUpdate
 }
 
 
-public class InfraUserDtoRead : DtoRead
+public class InfraUserDtoRead : DtoRead<string>
 {
   public string PhoneNumber { get; set; }
 }
