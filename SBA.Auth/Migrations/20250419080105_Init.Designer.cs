@@ -12,7 +12,7 @@ using SBA.Projectz.Data;
 namespace SBA.Auth.Migrations
 {
     [DbContext(typeof(ProjectzDBCntxt))]
-    [Migration("20250419075440_Init")]
+    [Migration("20250419080105_Init")]
     partial class Init
     {
         /// <inheritdoc />
