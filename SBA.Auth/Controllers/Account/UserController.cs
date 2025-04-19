@@ -1,20 +1,15 @@
-using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
+using GLOB.Domain.Base;
 using GLOB.Infra.Paginate;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
 
 public partial class UserController : AccountBaseController<UserController>
 {
-  private readonly RoleManager<InfraRole> _roleManager;
   public UserController(
-    IServiceProvider srvcProvider,
-    RoleManager<InfraRole> roleManager) : base(srvcProvider)
+    IServiceProvider srvcProvider) : base(srvcProvider)
   {
-    _roleManager = roleManager;
-
   }
   [HttpGet("[action]")]
   public async Task<IActionResult> Gets()
@@ -29,6 +24,33 @@ public partial class UserController : AccountBaseController<UserController>
     var data = _userManager.Users.FirstOrDefault(x => x.Id == Id);
     var result = _mapper.Map<InfraUserDtoRead>(data).ToExtVMSingle();
     return Ok(result);
+  }
+
+  [HttpPost("[action]")]
+  public async Task<IActionResult> GetsPaginate(DtoRequestPage<InfraUserDtoSearch?> req)
+  {
+    var query = _userManager.Users
+      .ToExtQueryFilter(req.Filter)
+      .ToExtQueryOrderBy(req.Sort)
+      .Select(x => new {
+        x.Id,
+        x.Name, 
+        x.Email,
+        x.PhoneNumber,
+        x.Status,
+        x.CreatedAt,
+        x.UpdatedAt
+      });
+   
+    var result = await query.ToExtPageReq(req);
+    return Ok(result);
+  }
+
+  [HttpPost("[action]")]
+  public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<InfraUserDtoSearch?> req)
+  {
+    var list = await _userManager.Users.ToExtVMPageOptionsNoTrack<InfraUser, string, InfraUserDtoSearch>(req);
+    return Ok(list);
   }
 
   // [HttpGet("[action]")]
@@ -48,53 +70,4 @@ public partial class UserController : AccountBaseController<UserController>
   //   return  Ok(result);
   // }
 
-  [HttpPost("[action]")]
-  public async Task<IActionResult> Create([FromBody] RegisterDto model)
-  {
-    InfraUser user = MapUser(model);
-    var result = await _userManager.CreateAsync(user, model.Password);
-
-    if (result.Succeeded)
-    {
-      return Ok(new { message = "User registered successfully!" });
-    }
-
-    return BadRequest(result.Errors);
-  }
-
-  
-
-  [HttpPut("{Id}")]
-  public async Task<IActionResult> Update(string Id, [FromBody] UpdateUserDto data)
-  {
-    if (string.IsNullOrEmpty(Id)) return _Res.NotFoundId(Id);
-    try
-    {
-      var item = await _userManager.FindByIdAsync(Id);
-
-      if (item == null) return _Res.NotFoundId(Id);
-      item.Name = data.FullName;
-      item.PhoneNumber = data.PhoneNumber;
-
-      var result = await _userManager.UpdateAsync(item);
-      await _uowInfra.Save();
-      return Ok(result);
-    }
-    catch (Exception ex)
-    {
-      return _Res.CatchException(ex, nameof(Update));
-    }
-  }
-
-  internal static InfraUser MapUser(RegisterDto model)
-  {
-    return new InfraUser
-    {
-      Id = Guid.NewGuid().ToString(),
-      UserName = model.Email,
-      Email = model.Email,
-      PhoneNumber = model.PhoneNumber,
-      Name = model.FullName
-    };
-  }
 }
