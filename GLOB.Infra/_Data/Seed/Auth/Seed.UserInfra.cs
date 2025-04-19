@@ -34,9 +34,9 @@ public static partial class InfraSeeder
     };
     var passwords = new []
     {
-      "AQAAAAIAAYagAAAAEAXW+dz0u2y5380YE1vDhoUsmWR6MnPNtQxitoMoA6StbpEllPvbPSFPJArSrxgIMQ==",
-      "AQAAAAIAAYagAAAAEEZrzvoO6E2eWvIg32NcDddabktkiL8E/8ypmrDVEmJqRN8O4QS9OsAkp/CNGU8Sww==",
-      "AQAAAAIAAYagAAAAEHqWcCARLcJyHEapPUKj0vgHWZcHRJ1c9/wYslis9UtW7XSZfqRhLNXztbD9ClGcdQ=="
+      "AQAAAAIAAYagAAAAEH8TwXVwcbtXIghA7HXWdxBby6hNwCv2wymENQovHXetVwePKAuGoPmgOU3Ia5DQSQ==", // "strings"
+      "AQAAAAIAAYagAAAAEEZrzvoO6E2eWvIg32NcDddabktkiL8E/8ypmrDVEmJqRN8O4QS9OsAkp/CNGU8Sww==", // email
+      "AQAAAAIAAYagAAAAEHqWcCARLcJyHEapPUKj0vgHWZcHRJ1c9/wYslis9UtW7XSZfqRhLNXztbD9ClGcdQ==" // email
     };
     for (int i = 1; i <= 3; i++)
     {
@@ -66,8 +66,8 @@ public static partial class InfraSeeder
         SecurityStamp = guid[i-1],
         PasswordHash = passwords[i-1]
       };
-      // var passwordHasher = new PasswordHasher<T>();
-      // user.PasswordHash = passwordHasher.HashPassword(user, email);
+      var passwordHasher = new PasswordHasher<T>();
+      user.PasswordHash = passwordHasher.HashPassword(user, "strings");
       list.Add(user);
     }
     return list;
