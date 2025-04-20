@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Auth.Controllers;
 
@@ -38,9 +39,9 @@ public partial class AccountController
   }
 
   [HttpPost("refresh-token")]
-  public async Task<IActionResult> RefreshToken([FromBody] RefreshToken request)
+  public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest request)
   {
-    var principal = _tokenService.GetPrincipalFromExpiredToken(request.Token);
+    var principal = _tokenService.GetPrincipalFromExpiredToken(request.AccessToken);
     if (principal == null)
       return BadRequest("Invalid access token.");
 
@@ -49,8 +50,10 @@ public partial class AccountController
     if (user == null)
       return BadRequest("User not found.");
 
-    var storedToken = await _context.RefreshTokens
-        .Where(rt => rt.UserId == userId && rt.Token == request.RefreshToken && !rt.IsRevoked && rt.ExpiresAt > DateTime.UtcNow)
+    var storedToken = await _uowProjectz.RefreshTokens.GetDBSet()
+        .Where(rt => rt.InfraUserId == userId
+                  && rt.Token == request.RefreshToken
+                  && !rt.IsRevoked && rt.ExpiresAt > DateTime.UtcNow)
         .FirstOrDefaultAsync();
 
     if (storedToken == null)
@@ -66,7 +69,7 @@ public partial class AccountController
 
     await _tokenService.SaveRefreshTokenAsync(user.Id, newRefreshToken, refreshExpiry);
 
-    await _context.SaveChangesAsync();
+    await _uowProjectz.Save();
 
     return Ok(new
     {

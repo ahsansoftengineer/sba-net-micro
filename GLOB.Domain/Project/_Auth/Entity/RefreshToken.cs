@@ -1,6 +1,7 @@
 using GLOB.Domain.Base;
 
 namespace GLOB.Domain.Auth;
+
 public class RefreshToken : EntityBeta, IEntityBeta, IEntityAlpha
 {
     public string Token { get; set; }
@@ -11,4 +12,10 @@ public class RefreshToken : EntityBeta, IEntityBeta, IEntityAlpha
     // Relationships
     public string InfraUserId { get; set; }
     public InfraUser InfraUser { get; set; }
+}
+
+public class RefreshTokenRequest
+{
+    public string AccessToken { get; set; }
+    public string RefreshToken { get; set; }
 }
