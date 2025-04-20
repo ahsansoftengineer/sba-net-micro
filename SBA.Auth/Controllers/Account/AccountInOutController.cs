@@ -1,5 +1,4 @@
 using GLOB.Domain.Auth;
-using GLOB.Infra.Helper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
