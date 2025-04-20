@@ -28,9 +28,13 @@ public partial class AccountController
         tokenType = "Bearer",
         user = new
         {
-          id = user.Id,
-          username = user.UserName,
-          email = user.Email,
+          user.Id,
+          user.UserName,
+          user.Email,
+          user.EmailConfirmed,
+          user.PhoneNumber,
+          user.PhoneNumberConfirmed,
+          user.TwoFactorEnabled,
           roles
         }
       });
