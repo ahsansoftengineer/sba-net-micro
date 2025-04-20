@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using GLOB.Domain.Enums;
 
 namespace GLOB.Domain.Auth;
+
 public class InfraUser : IdentityUser<string>, IEntityBeta, IEntityStatus, IEntityAlpha<string>
 {
   public string Name { get; set; }
@@ -11,6 +12,7 @@ public class InfraUser : IdentityUser<string>, IEntityBeta, IEntityStatus, IEnti
   public DateTimeOffset? CreatedAt { get; set; } = Constantz.Date;
   public DateTimeOffset? UpdatedAt { get; set; } = Constantz.Date;
 
+  public ICollection<RefreshToken> RefreshTokens { get; set; }
   // Maybe below code need to shift into their classes
 
   // public UserTypeEnum UserType { get; set; }

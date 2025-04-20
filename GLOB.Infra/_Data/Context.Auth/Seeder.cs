@@ -18,6 +18,7 @@ public static partial class InfraSeederIdentity
     mb.SeedInfra();
     mb.SeedInfraRole();
     mb.SeedInfraUser();
+    // mb.SeedRefreshToken();
   }
   // Seed for Production (Automate)
   public static async Task SeedInfraIdentity(this IApplicationBuilder app)
@@ -37,7 +38,9 @@ public static partial class InfraSeederIdentity
         {
           await roleManager.SeedInfraRole();
           await userManager.SeedInfraUser();
+          // await context.SeedRefreshToken();
           app.SeedInfra(); //context.SeedTestInfra();
+          // context.SeedRefreshToken();
           // context.SeedLE();
         }
       }

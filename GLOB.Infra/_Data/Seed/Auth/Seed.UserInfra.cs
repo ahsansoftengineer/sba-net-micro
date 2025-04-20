@@ -66,8 +66,8 @@ public static partial class InfraSeeder
         SecurityStamp = guid[i-1],
         PasswordHash = passwords[i-1]
       };
-      var passwordHasher = new PasswordHasher<T>();
-      user.PasswordHash = passwordHasher.HashPassword(user, "strings");
+      // var passwordHasher = new PasswordHasher<T>();
+      // user.PasswordHash = passwordHasher.HashPassword(user, "strings");
       list.Add(user);
     }
     return list;

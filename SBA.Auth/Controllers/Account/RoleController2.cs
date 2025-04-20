@@ -11,13 +11,15 @@ namespace SBA.Auth.Controllers;
 
 public partial class RoleController
 {
-  [HttpPost()]
-  public async Task<IActionResult> Create([FromBody] string role)
+  [HttpPost("[action]")]
+  public async Task<IActionResult> Create([FromBody] DtoCreate role)
   {
-    var exsist = await _roleManager.RoleExistsAsync(role);
+    
+    var exsist = await _roleManager.RoleExistsAsync(role.Name);
     if (!exsist)
     {
-      var rolz = new InfraRole(role);
+      var rolz = new InfraRole(role.Name);
+      rolz.Status = GLOB.Domain.Enums.Status.None;
       rolz.Id = Constantz.Guidz();
       var result = await _roleManager.CreateAsync(rolz);
       if (result.Succeeded) return Ok(rolz.ToExtVMSingle());
@@ -26,7 +28,7 @@ public partial class RoleController
     return _Res.BadRequestModel(ModelState);
   }
   
-  [HttpPut("{Id}")]
+  [HttpPut("[action]/{Id}")]
   public async Task<IActionResult> Update(string Id, [FromBody] DtoUpdate dto)
   {
 
@@ -45,7 +47,7 @@ public partial class RoleController
     return _Res.BadRequestModel(ModelState);
   }
   
-  [HttpDelete("{Id}")]
+  [HttpDelete("[action]/{Id}")]
   public async Task<IActionResult> Delete(string Id)
   {
     if (Id.IsNullOrEmpty()) return _Res.NotFoundId(Id);
@@ -62,6 +64,28 @@ public partial class RoleController
       return _Res.CatchException(ex, nameof(Delete));
     }
     return NoContent();
+  }
+  [HttpPatch("[action]/{Id}")]
+  public async Task<IActionResult> Status(string Id, [FromBody] DtoRequestStatus req)
+  {
+    try
+    {
+      if (Id.IsNullOrEmpty()) return _Res.NotFoundId(Id);
+      if(!Enum.IsDefined(req.Status)) return _Res.InvalidEnums(req.Status.ToString());
+      
+      var item = await _roleManager.FindByIdAsync(Id);
+
+      if (item == null) return _Res.NotFoundId(Id);
+
+      item.Status = req.Status;
+      await _roleManager.UpdateAsync(item);
+      await _uowProjectz.Save();
+      return Ok(item);
+    }
+    catch (Exception ex)
+    {
+      return _Res.CatchException(ex, nameof(Status));
+    }
   }
   //   [HttpPost("[action]")]
   //   public async Task<IActionResult> AddUserToRole(string email, string role)

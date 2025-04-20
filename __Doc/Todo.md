@@ -37,7 +37,11 @@
 
 ### Task 3 Account
 - Register (Done)
+- Login ()
 - Logout (Done)
+- RefreshToken ()
+
+### Profile
 - PasswordForgot
 - PasswordRest
 - PasswordChange
