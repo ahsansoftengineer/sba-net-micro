@@ -1,3 +1,4 @@
+using GLOB.Domain.Auth;
 using GLOB.Domain.Base;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,4 +7,5 @@ public partial class DBCntxtIdentity
 {
   public DbSet<ProjectzLookupBase> ProjectzLookupBases { get; set; }
   public DbSet<ProjectzLookup> ProjectzLookups { get; set; }
+  public DbSet<RefreshToken> RefreshTokens { get; set; }
 }

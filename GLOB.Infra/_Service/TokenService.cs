@@ -15,6 +15,7 @@ public interface ITokenService
 {
   string GenerateAccessToken(InfraUser user, IList<string> roles);
   string GenerateRefreshToken();
+  ClaimsPrincipal? GetPrincipalFromExpiredToken(string token);
   Task SaveRefreshTokenAsync(string userId, string refreshToken, DateTime expiresAt);
 }
 
@@ -48,14 +49,12 @@ public class TokenService : ITokenService
       authClaims.Add(new Claim(ClaimTypes.Role, role));
     }
 
-    byte[] bytes = Encoding.UTF8.GetBytes(_jwtSettings.SecretKey);
-    var authSigningKey = new SymmetricSecurityKey(bytes);
     var token = new JwtSecurityToken(
       issuer: _jwtSettings.Issuer,
       audience: _jwtSettings.Audience,
       expires: DateTime.UtcNow.AddMinutes(Convert.ToDouble(_jwtSettings.ExpireMinutes)),
       claims: authClaims,
-      signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
+      signingCredentials: new SigningCredentials(GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256)
     );
 
     return new JwtSecurityTokenHandler().WriteToken(token);
@@ -73,7 +72,7 @@ public class TokenService : ITokenService
   {
     var token = new RefreshToken
     {
-      UserId = userId,
+      InfraUserId = userId,
       Token = refreshToken,
       ExpiresAt = expiresAt,
       IsRevoked = false
@@ -82,4 +81,39 @@ public class TokenService : ITokenService
     _context.RefreshTokens.Add(token);
     await _context.SaveChangesAsync();
   }
+  public ClaimsPrincipal? GetPrincipalFromExpiredToken(string token)
+    {
+        var tokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateAudience = true,
+            ValidateIssuer = true,
+            ValidateIssuerSigningKey = true,
+            ValidateLifetime = false, // ignore expiration
+            ValidIssuer = _jwtSettings.Issuer,
+            ValidAudience = _jwtSettings.Audience,
+            IssuerSigningKey = GetSymmetricSecurityKey()
+        };
+
+        var tokenHandler = new JwtSecurityTokenHandler();
+        try
+        {
+            var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out var securityToken);
+            if (securityToken is not JwtSecurityToken jwtSecurityToken ||
+                !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+            {
+                return null;
+            }
+
+            return principal;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private SymmetricSecurityKey GetSymmetricSecurityKey()
+    {
+        return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecretKey));
+    }
 }

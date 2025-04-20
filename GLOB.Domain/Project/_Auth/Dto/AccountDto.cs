@@ -66,13 +66,3 @@ public class RemoveRoleDto
     public string UserId { get; set; }
     public string Role { get; set; }
 }
-public class RefreshToken
-{
-    public int Id { get; set; }
-    public string Token { get; set; } = string.Empty;
-    public string UserId { get; set; }
-    public DateTime ExpiresAt { get; set; }
-    public bool IsRevoked { get; set; } = false;
-
-    public InfraUser User { get; set; } // optional navigation property
-}
