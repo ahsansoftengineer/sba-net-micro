@@ -25,17 +25,17 @@
       ],
       "problemMatcher": "$msCompile"
     },
-    {
-      "label": "Run SBA.APIGateway Debug",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "run",
-        "--project",
-        "${workspaceFolder}/SBA.APIGateway/SBA.APIGateway.csproj"
-      ],
-      "problemMatcher": "$msCompile"
-    },
+    // {
+    //   "label": "Run SBA.APIGateway Debug",
+    //   "command": "dotnet",
+    //   "type": "process",
+    //   "args": [
+    //     "run",
+    //     "--project",
+    //     "${workspaceFolder}/SBA.APIGateway/SBA.APIGateway.csproj"
+    //   ],
+    //   "problemMatcher": "$msCompile"
+    // },
     {
       "label": "Run SBA.Auth Debug",
       "command": "dotnet",
@@ -63,7 +63,7 @@
     {
       "name": "Run All Services Debug",
       "configurations": [
-        "Run SBA.APIGateway Debug",
+        // "Run SBA.APIGateway Debug",
         "Run SBA.Auth Debug",
         "Run SBA.Hierarchy Debug"
       ]
