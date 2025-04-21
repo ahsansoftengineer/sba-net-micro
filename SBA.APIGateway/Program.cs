@@ -11,12 +11,10 @@ public class Program
       .ConfigureAppConfiguration((hostingContext, config) =>
       {
         var env = hostingContext.HostingEnvironment;
+        var builtConfig = config.Build(); // Temporarily build config to read env vars
+        var ocelotFile = builtConfig["OcelotFileName"] ?? "ocelot.json";
 
-        // Example condition based on env or port
-        var useHttps = Environment.GetEnvironmentVariable("USE_HTTPS") == "true";
-
-        var fileName = useHttps ? "ocelot.https.json" : "ocelot.http.json";
-        config.AddJsonFile(fileName, optional: false, reloadOnChange: true);
+        config.AddJsonFile(ocelotFile, optional: false, reloadOnChange: true);
       })
       .ConfigureWebHostDefaults(webBuilder =>
       {

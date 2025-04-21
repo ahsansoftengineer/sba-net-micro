@@ -4,10 +4,16 @@ public static partial class API_DI_Common
 {
   public static void Config_Cors(this IServiceCollection srvc)
   {
-    srvc.AddCors(option =>
+    srvc.AddCors(opt =>
     {
-      option.AddDefaultPolicy(option => option.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
-      // option
+      opt.AddPolicy("AllowGateway", policy =>
+      {
+          policy.WithOrigins("https://localhost:5801")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+      });
+      opt.AddDefaultPolicy(opt => opt.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
+      // opt
       // .AddPolicy("CorsPolicyAllowAll", builder =>
       //   builder
       //   .AllowAnyOrigin()
@@ -16,14 +22,14 @@ public static partial class API_DI_Common
       // .AllowCredentials()
       // );
     });
-    // srvc.AddHttpsRedirection(options =>
+    // srvc.AddHttpsRedirection(opt =>
     // {
-    //   options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
-    //   options.HttpsPort = 443; // Replace with your HTTPS port number if different
+    //   opt.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+    //   opt.HttpsPort = 443; // Replace with your HTTPS port number if different
     // });
-    //srvc.AddCors(options =>
+    //srvc.AddCors(opt =>
     //{
-    //  options.AddPolicy(MyAllowSpecificOrigins,
+    //  opt.AddPolicy(MyAllowSpecificOrigins,
     //            policy =>
     //            {
     //              policy.WithOrigins("http://example.com",

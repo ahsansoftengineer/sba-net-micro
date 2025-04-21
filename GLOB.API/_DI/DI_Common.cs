@@ -2,6 +2,7 @@ using GLOB.API.Configz;
 using GLOB.API.OptionSetup;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
@@ -29,7 +30,7 @@ public static partial class API_DI_Common
       ep.MapControllers();
     });
   }
-  public static void Config_Controllerz(this IServiceCollection srvc, string routePrefix = "api/v1")
+  public static void Config_Controllerz(this IServiceCollection srvc, IConfiguration config)
   {
     srvc
       // API Caching 3. Defining Cache Profile
@@ -37,7 +38,7 @@ public static partial class API_DI_Common
       {
         // opt.Conventions.Add(new GlobalRouteConvention());
         opt.Conventions.Add(new RouteTokenTransformerConvention(new KebabCaseRouteTransformer()));
-        opt.Conventions.Insert(0, new GlobalRoutePrefixConvention(routePrefix));
+        opt.Conventions.Insert(0, new GlobalRoutePrefixConvention(config.GetValueStr("ProjectzRoutePrefix")));
         //opt.Filters<Filters>();
         opt.CacheProfiles.Add("120SecondsDuration", new CacheProfile
         {
@@ -82,7 +83,7 @@ public static partial class API_DI_Common
       app.UseSwagger();
       app.UseSwaggerUI(c =>
       {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Trevor v1");
+        c.SwaggerEndpoint($"{"ProjectzRoutePrefix"}/swagger.json", "Trevor v1");
         c.DocExpansion(DocExpansion.None);
         //c.InjectJavascript("/js/swagger-custom.js"); //
       });
@@ -91,9 +92,13 @@ public static partial class API_DI_Common
   {
     srvc.AddSwaggerGen(c =>
     {
+      c.AddServer(new OpenApiServer
+      {
+          Url = $"{"ASPNETCORE_URLS_LaunchSettings"}/{"ProjectzRoutePrefix"}" // API Gateway base path
+      });
       c.SchemaFilter<SwaggerNullablePrimitivesDataTypes>();
       // c.SchemaFilter<KebabCaseSchemaFilter>();
-      c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+      c.SwaggerDoc("v1", new OpenApiInfo
       {
         Title = ProjectNameSwagger,
         Version = "v1"

@@ -16,9 +16,8 @@ public class Startup
 
   public void ConfigureServices(IServiceCollection srvc)
   {
-    string ProjectzSwaggerName = _config.GetValueStr("ProjectzSwaggerName");
-    string ProjectzRoutePrefix = _config.GetValueStr("ProjectzRoutePrefix");
-    srvc.Add_API_DI_Common(ProjectzSwaggerName, ProjectzRoutePrefix);
+
+    srvc.Add_API_DI_Common(_config);
     srvc.Add_Projectz_Srvc(_config);
     srvc.Add_API_DefaultExternalServices();
 
