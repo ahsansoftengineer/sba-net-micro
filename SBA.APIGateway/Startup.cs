@@ -17,10 +17,23 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+        services.AddCors(options =>
+        {
+            options.AddPolicy("AllowApiGateway", builder =>
+            {
+                builder.WithOrigins("http://localhost:5801")
+                       .AllowAnyHeader()
+                       .AllowAnyMethod();
+            });
+        });
+
         services.AddControllers();
 
         // Bind swagger config list
         services.Configure<List<SwaggerService>>(Configuration.GetSection("SwaggerServices"));
+        services.Configure<SwaggerService>(Configuration.GetSection("SwaggerOcelot"));
+
+      
 
         // Ocelot Gateway
         services.AddOcelot(Configuration);
@@ -37,7 +50,7 @@ public class Startup
         });
     }
 
-    public async Task Configure(IApplicationBuilder app, IWebHostEnvironment env, IOptions<List<SwaggerService>> swaggerOptions)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IOptions<List<SwaggerService>> swaggerOptions, IOptions<SwaggerService> SwaggerOcelot)
     {
         if (env.IsDevelopment())
         {
@@ -45,27 +58,26 @@ public class Startup
         }
 
         app.UseHttpsRedirection();
-
         app.UseRouting();
-
         app.UseAuthorization();
 
         app.UseSwagger();
         app.UseSwaggerUI(c =>
         {
-            c.SwaggerEndpoint("/swagger/v1/swagger.json", "SBA API Gateway v1");
-
+            c.SwaggerEndpoint(SwaggerOcelot.Value.Url, SwaggerOcelot.Value.Name);
             foreach (var service in swaggerOptions.Value)
             {
                 c.SwaggerEndpoint(service.Url, service.Name);
             }
         });
 
+        app.UseCors("AllowApiGateway");
+
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
         });
 
-        await app.UseOcelot();
+        app.UseOcelot();
     }
 }

@@ -1,23 +1,23 @@
 {
   "version": "0.2.0",
   "configurations": [
-    // {
-    //   "name": "SBA.APIGateway",
-    //   "type": "coreclr",
-    //   "request": "launch",
-    //   "preLaunchTask": "build",
-    //   "program": "${workspaceFolder}/SBA.APIGateway/bin/Debug/net8.0/SBA.APIGateway.dll",
-    //   "args": [],
-    //   "cwd": "${workspaceFolder}/SBA.APIGateway",
-    //   "stopAtEntry": false,
-    //   "serverReadyAction": {
-    //     "action": "openExternally",
-    //     "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
-    //   },
-    //   "env": {
-    //     "ASPNETCORE_ENVIRONMENT": "Development"
-    //   }
-    // },
+    {
+      "name": "SBA.APIGateway",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/SBA.APIGateway/bin/Debug/net8.0/SBA.APIGateway.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/SBA.APIGateway",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
     {
       "name": "SBA.Auth",
       "type": "coreclr",
@@ -58,8 +58,8 @@
   "compounds": [
     {
       "name": "Run All Services",
-      "configurations": ["SBA.Auth", "SBA.Hierarchy"]
-      // "configurations": ["SBA.APIGateway", "SBA.Auth", "SBA.Hierarchy"]
+      // "configurations": ["SBA.Auth", "SBA.Hierarchy"]
+      "configurations": ["SBA.APIGateway", "SBA.Auth", "SBA.Hierarchy"]
     }
   ]
 }
