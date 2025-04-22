@@ -8,9 +8,9 @@ public static partial class ExtConfig
 {
     public static string GetWebUrl(this IConfiguration configuration)
     {
-        string port = configuration.GetValueStr("ASPNETCORE_URLS_LaunchSettings");
-        string prefix = configuration.GetValueStr("ProjectzRoutePrefix");
-        return $"{port}/{prefix}";
+        string hostName = configuration.GetValueStr("ASPNETCORE_URLS");
+        string prefix = configuration.GetValueStr("ASPNETCORE_ROUTE_PREFIX");
+        return $"{hostName}/{prefix}";
     }
     public static string GetValueStr(this IConfiguration configuration, string key, string defaultValue = "No Default Value Define in Configuration")
     {

@@ -23,7 +23,7 @@ public class Startup
   }
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
-    app.AddDefaultExternalConfiguration(env);
+    app.AddDefaultExternalConfiguration();
     Console.WriteLine($"Current Environment: {env.EnvironmentName}");
     if(!env.IsDevelopment()){
       app.Seed();

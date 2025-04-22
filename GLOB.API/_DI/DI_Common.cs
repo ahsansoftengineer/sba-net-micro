@@ -9,13 +9,19 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 namespace GLOB.API.DI;
 public static partial class API_DI_Common
 {
-
-  public static void Config_DevEnv(this IApplicationBuilder app, IWebHostEnvironment env)
+  public static dynamic GetSrvc<T>(this IApplicationBuilder app)
+   where T : notnull
   {
+    return app.ApplicationServices.GetRequiredService<T>();
+  }
+
+  public static void Config_DevEnv(this IApplicationBuilder app)
+  {
+    var env = app.GetSrvc<IWebHostEnvironment>();
     if (env.IsDevelopment())
     {
       app.UseDeveloperExceptionPage();
-      Config_Swagger(app, env);
+      Config_Swagger(app);
     }
   }
   public static void Config_Controller(this IApplicationBuilder app)
@@ -38,7 +44,7 @@ public static partial class API_DI_Common
       {
         // opt.Conventions.Add(new GlobalRouteConvention());
         opt.Conventions.Add(new RouteTokenTransformerConvention(new KebabCaseRouteTransformer()));
-        opt.Conventions.Insert(0, new GlobalRoutePrefixConvention(config.GetValueStr("ProjectzRoutePrefix")));
+        opt.Conventions.Insert(0, new GlobalRoutePrefixConvention(config.GetValueStr("ASPNETCORE_ROUTE_PREFIX")));
         //opt.Filters<Filters>();
         opt.CacheProfiles.Add("120SecondsDuration", new CacheProfile
         {
@@ -53,11 +59,11 @@ public static partial class API_DI_Common
       {
         opt.InvalidModelStateResponseFactory = context =>
         {
-          var errors =  context.ModelState.ToExtValidationError();
+          var errors = context.ModelState.ToExtValidationError();
           return new BadRequestObjectResult(new
           {
-              Errors = errors,
-              Message = "Bad Request, Validation Failed"
+            Errors = errors,
+            Message = "Bad Request, Validation Failed"
           });
         };
       })
@@ -77,37 +83,44 @@ public static partial class API_DI_Common
 
 
 
-  public static void Config_Swagger(this IApplicationBuilder app, IWebHostEnvironment env)
+  public static void Config_Swagger(this IApplicationBuilder app)
   {
-
-      app.UseSwagger();
-      app.UseSwaggerUI(c =>
-      {
-        c.SwaggerEndpoint($"{"ProjectzRoutePrefix"}/swagger.json", "Trevor v1");
-        c.DocExpansion(DocExpansion.None);
+    IConfiguration config = app.GetSrvc<IConfiguration>();
+    string hostName = config.GetValueStr("ASPNETCORE_URLS");
+    string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX");
+    string projectzName = config.GetValueStr("ASPNETCORE_PROJECT_NAME");
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+      c.SwaggerEndpoint("/swagger/swagger.json", "Trevor v1");
+      c.DocExpansion(DocExpansion.None);
+      c.RoutePrefix = prefix;
         //c.InjectJavascript("/js/swagger-custom.js"); //
-      });
+    });
   }
-  public static void Config_Swagger(this IServiceCollection srvc, string ProjectNameSwagger = "Swagger Name Project")
+  public static void Config_Swagger(this IServiceCollection srvc, IConfiguration config)
   {
+    string hostName = config.GetValueStr("ASPNETCORE_URLS");
+    string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX");
+    string projectzName = config.GetValueStr("ASPNETCORE_PROJECT_NAME");
     srvc.AddSwaggerGen(c =>
     {
       c.AddServer(new OpenApiServer
       {
-          Url = $"{"ASPNETCORE_URLS_LaunchSettings"}/{"ProjectzRoutePrefix"}" // API Gateway base path
+        Url = $"{hostName}/{prefix}/swagger" // API Gateway base path
       });
       c.SchemaFilter<SwaggerNullablePrimitivesDataTypes>();
       // c.SchemaFilter<KebabCaseSchemaFilter>();
       c.SwaggerDoc("v1", new OpenApiInfo
       {
-        Title = ProjectNameSwagger,
-        Version = "v1"
+        Title = projectzName,
+        Version = "v1",
       });
       c.UseAllOfToExtendReferenceSchemas();
       c.SupportNonNullableReferenceTypes();
       c.IgnoreObsoleteProperties(); // [Obsolete]
     });
   }
-  
+
 
 }
