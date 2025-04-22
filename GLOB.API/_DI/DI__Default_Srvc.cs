@@ -1,10 +1,9 @@
-using GLOB.API.Configz;
 using GLOB.API.Mapper;
-using GLOB.API.Middlewarez;
 
 namespace GLOB.API.DI;
 public static partial class API_DI_Common
 {
+
   public static void Add_API_DI_Common(this IServiceCollection srvc, IConfiguration config)
   {
     // Config_CachingService(srvc);
@@ -24,20 +23,4 @@ public static partial class API_DI_Common
     srvc.Config_RateLimiting();
     // srvc.Config_FileHandling();
   }
-  public static void AddDefaultExternalConfiguration(this IApplicationBuilder app)
-  {
-    // app.Config_StaticFilesHandling();
-    app.UseMiddleware<GlobalExceptionMiddleware>();
-    app.Config_DevEnv();
-    app.Config_ExceptionHandler();
-    app.UseHttpsRedirection();
-
-    app.UseCors("AllowGateway");
-    // app.Config_Caching();
-    app.UseRouting();
-    app.UseAuthentication();
-    app.UseAuthorization();
-    app.Config_Controller();
-  }
-  
 }

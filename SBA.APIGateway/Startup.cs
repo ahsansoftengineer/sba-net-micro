@@ -64,7 +64,7 @@ public class Startup
       app.UseDeveloperExceptionPage();
     }
 
-    app.UseHttpsRedirection();
+    // app.UseHttpsRedirection();
     app.UseRouting();
     app.UseAuthorization();
 
@@ -80,7 +80,7 @@ public class Startup
       }
     });
 
-    app.UseCors("AllowApiGateway");
+    // app.UseCors("AllowApiGateway");
 
     app.UseEndpoints(endpoints =>
     {
