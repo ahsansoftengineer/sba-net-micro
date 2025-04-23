@@ -1,4 +1,3 @@
-using GLOB.API.Configz;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
@@ -15,7 +14,7 @@ public static partial class API_DI_Common
 
     services.AddSwaggerGen(c =>
     {
-      c.SwaggerDoc("v1", new OpenApiInfo
+      c.SwaggerDoc("swagger-doc", new OpenApiInfo
       {
         Title = projectzName,
         Version = "v1",
@@ -40,14 +39,14 @@ public static partial class API_DI_Common
 
     app.UseSwagger(c =>
     {
-      c.RouteTemplate = prefix + "/swagger/{documentName}/swagger.json"; // Updated Swagger JSON path
+      c.RouteTemplate = prefix + "/{documentName}/swagger.json"; // Updated Swagger JSON path
     });
 
     app.UseSwaggerUI(c =>
     {
       c.DocumentTitle = $"Swagger UI {projectzName}";
       c.RoutePrefix = $"{prefix}/swagger"; // Swagger UI will be served under this path
-      c.SwaggerEndpoint($"/{prefix}/swagger/v1/swagger.json", $"{projectzName} - v1"); // Updated Swagger JSON URL
+      c.SwaggerEndpoint($"/{prefix}/swagger-doc/swagger.json", $"{projectzName} - v1"); // Updated Swagger JSON URL
       c.DocExpansion(DocExpansion.None);
     });
   }
