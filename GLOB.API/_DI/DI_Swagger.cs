@@ -5,47 +5,50 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 namespace GLOB.API.DI;
 public static partial class API_DI_Common
 {
-  public static void Config_Swagger(this IServiceCollection srvc, IConfiguration config)
+  // http://localhost:5806/api/Hierarchy/v1/swagger/index.html
+  // http://localhost:5806/api/Hierarchy/v1/swagger/v1/swagger.json
+  public static void Config_Swagger(this IServiceCollection services, IConfiguration config)
   {
-    string hostName = config.GetValueStr("ASPNETCORE_URLS");
-    string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX");
-    string projectzName = config.GetValueStr("ASPNETCORE_PROJECTZ_NAME");
-    srvc.AddSwaggerGen(c =>
+    string hostName = config.GetValue<string>("ASPNETCORE_URLS") ?? "https://localhost:5806";
+    string prefix = config.GetValue<string>("ASPNETCORE_ROUTE_PREFIX") ?? "api/Hierarchy/v1";
+    string projectzName = config.GetValue<string>("ASPNETCORE_PROJECTZ_NAME") ?? "Hierarchy";
+
+    services.AddSwaggerGen(c =>
     {
-      // c.AddServer(new OpenApiServer
-      // {
-      //   Url = $"{hostName}/{prefix}/swagger" // API Gateway base path
-      // });
-      c.SchemaFilter<SwaggerNullablePrimitivesDataTypes>();
-      // c.SchemaFilter<KebabCaseSchemaFilter>();
       c.SwaggerDoc("v1", new OpenApiInfo
       {
         Title = projectzName,
         Version = "v1",
-        Description = $"Host : {hostName}, Prefix {prefix}, ProjectName {projectzName}"
+        Description = $"Host: {hostName}, Prefix: {prefix}, ProjectName: {projectzName}"
       });
+
+      c.SchemaFilter<SwaggerNullablePrimitivesDataTypes>();
       c.UseAllOfToExtendReferenceSchemas();
       c.SupportNonNullableReferenceTypes();
       c.IgnoreObsoleteProperties(); // [Obsolete]
     });
   }
+
   public static void Config_Swagger(this IApplicationBuilder app)
   {
     IConfiguration config = app.GetSrvc<IConfiguration>();
-    string hostName = config.GetValueStr("ASPNETCORE_URLS");
-    string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX");
-    string projectzName = config.GetValueStr("ASPNETCORE_PROJECTZ_NAME");
-    app.UseSwagger();
+
+    string prefix = config.GetValue<string>("ASPNETCORE_ROUTE_PREFIX") ?? "api/Hierarchy/v1";
+    string projectzName = config.GetValue<string>("ASPNETCORE_PROJECTZ_NAME") ?? "MyProject";
+
+    app.Config_StaticFilesHandling(); // Required for Swagger UI
+
+    app.UseSwagger(c =>
+    {
+      c.RouteTemplate = prefix + "/swagger/{documentName}/swagger.json"; // Updated Swagger JSON path
+    });
+
     app.UseSwaggerUI(c =>
     {
-      // c.SwaggerEndpoint("/swagger/swagger.json", projectzName);
-      c.DocumentTitle = $"Host : {hostName}, Prefix {prefix}, ProjectName {projectzName}";
+      c.DocumentTitle = $"Swagger UI {projectzName}";
+      c.RoutePrefix = $"{prefix}/swagger"; // Swagger UI will be served under this path
+      c.SwaggerEndpoint($"/{prefix}/swagger/v1/swagger.json", $"{projectzName} - v1"); // Updated Swagger JSON URL
       c.DocExpansion(DocExpansion.None);
-      // c.RoutePrefix = prefix;
-        //c.InjectJavascript("/js/swagger-custom.js"); //
     });
   }
-  
-
-
 }

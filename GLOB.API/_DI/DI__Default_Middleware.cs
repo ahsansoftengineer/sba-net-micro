@@ -21,7 +21,6 @@ public static partial class API_DI_Common
   }
   public static void Add_API_Default_Middlewares(this IApplicationBuilder app)
   {
-    // app.Config_StaticFilesHandling();
     // app.UseMiddleware<GlobalExceptionMiddleware>();
     // app.Config_ExceptionHandler();
     app.Config_DevEnv();
