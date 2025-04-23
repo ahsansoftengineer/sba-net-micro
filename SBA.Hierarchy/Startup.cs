@@ -1,8 +1,6 @@
-using GLOB.API.Configz;
 using GLOB.API.DI;
 using SBA.Projectz.Data;
 using SBA.Projectz.DI;
-using SBA.Projectz.Mapper;
 
 namespace SBA.Hierarchy;
 public class Startup
@@ -16,15 +14,15 @@ public class Startup
 
   public void ConfigureServices(IServiceCollection srvc)
   {
-    srvc.Add_API_DI_Common(_config);
+    srvc.Add_API_Default_Srvc(_config);
+    // srvc.Add_API_Default_Srvc2();
     srvc.Add_Projectz_Srvc(_config);
-    srvc.Add_API_DefaultExternalServices();
 
   }
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
-    app.AddDefaultExternalConfiguration();
-    Console.WriteLine($"Current Environment: {env.EnvironmentName}");
+    app.Add_API_Default_Middlewares();
+
     if(!env.IsDevelopment()){
       app.Seed();
     }
