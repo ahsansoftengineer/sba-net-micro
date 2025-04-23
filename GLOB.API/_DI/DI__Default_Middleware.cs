@@ -1,14 +1,9 @@
 using GLOB.API.Middlewarez;
+using GLOB.API.Configz;
 
 namespace GLOB.API.DI;
 public static partial class API_DI_Common
 {
-  public static T GetSrvc<T>(this IApplicationBuilder app)
-  where T : notnull
-  {
-    return app.ApplicationServices.GetRequiredService<T>();
-  }
-
   public static void Config_DevEnv(this IApplicationBuilder app)
   {
     var env = app.GetSrvc<IWebHostEnvironment>();

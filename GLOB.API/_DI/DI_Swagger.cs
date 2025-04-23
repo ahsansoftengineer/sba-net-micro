@@ -1,3 +1,4 @@
+using GLOB.API.Configz;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
@@ -8,9 +9,9 @@ public static partial class API_DI_Common
   // http://localhost:5806/api/Hierarchy/v1/swagger/v1/swagger.json
   public static void Config_Swagger(this IServiceCollection services, IConfiguration config)
   {
-    string hostName = config.GetValue<string>("ASPNETCORE_URLS") ?? "https://localhost:5806";
-    string prefix = config.GetValue<string>("ASPNETCORE_ROUTE_PREFIX") ?? "api/Hierarchy/v1";
-    string projectzName = config.GetValue<string>("ASPNETCORE_PROJECTZ_NAME") ?? "Hierarchy";
+    string hostName = config.GetValueStr("ASPNETCORE_URLS"); // http://localhost:5806
+    string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX"); // "api/Hierarchy/v1";
+    string projectzName = config.GetValueStr("ASPNETCORE_PROJECTZ_NAME"); // "Hierarchy";
 
     services.AddSwaggerGen(c =>
     {
@@ -32,8 +33,8 @@ public static partial class API_DI_Common
   {
     IConfiguration config = app.GetSrvc<IConfiguration>();
 
-    string prefix = config.GetValue<string>("ASPNETCORE_ROUTE_PREFIX") ?? "api/Hierarchy/v1";
-    string projectzName = config.GetValue<string>("ASPNETCORE_PROJECTZ_NAME") ?? "MyProject";
+    string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX");
+    string projectzName = config.GetValueStr("ASPNETCORE_PROJECTZ_NAME");
 
     app.Config_StaticFilesHandling(); // Required for Swagger UI
 
