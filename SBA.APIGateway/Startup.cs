@@ -59,11 +59,6 @@ public class Startup
 
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IOptions<List<SwaggerService>> swaggerOptions, IOptions<SwaggerService> SwaggerOcelot)
   {
-    if (env.IsDevelopment())
-    {
-      app.UseDeveloperExceptionPage();
-    }
-
     // app.UseHttpsRedirection();
     app.UseRouting();
     app.UseAuthorization();
