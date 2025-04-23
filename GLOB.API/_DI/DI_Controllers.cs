@@ -10,6 +10,8 @@ public static partial class API_DI_Common
  
   public static void Config_Controller(this IApplicationBuilder app)
   {
+    IConfiguration config = app.GetSrvc<IConfiguration>();
+    string prefix = config.GetValue<string>("ASPNETCORE_ROUTE_PREFIX") ?? "api/Hierarchy/v1";
     app.UseEndpoints(ep =>
     {
       // This Routing is useful for MVC type application
@@ -18,6 +20,15 @@ public static partial class API_DI_Common
       //  name: "default",
       //  pattern: "{controller=Home}/{action=Index}/{Id?}"); //
       ep.MapControllers();
+    });
+    app.Use(async (context, next) =>
+    {
+      if (context.Request.Path == "/" || context.Request.Path == "/swagger/index.html" )
+      {
+        context.Response.Redirect($"/{prefix}/swagger/index.html");
+        return;
+      }
+      await next();
     });
   }
   public static void Config_Controllerz(this IServiceCollection srvc, IConfiguration config)
