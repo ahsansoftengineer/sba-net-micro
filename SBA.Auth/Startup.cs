@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-using GLOB.API.Configz;
 using GLOB.API.DI;
 using SBA.Projectz.Data;
 using SBA.Projectz.DI;
@@ -16,17 +14,15 @@ public class Startup
 
   public void ConfigureServices(IServiceCollection srvc)
   {
-    string ProjectzSwaggerName = _config.GetValueStr("ProjectzSwaggerName");
-    string ProjectzRoutePrefix = _config.GetValueStr("ProjectzRoutePrefix");
-    srvc.Add_API_DI_Common(ProjectzSwaggerName, ProjectzRoutePrefix);
+
+    srvc.Add_API_Default_Srvc(_config);
+    // srvc.Add_API_Default_Srvc2();
     srvc.Add_Projectz_Srvc(_config);
-    srvc.Add_API_DefaultExternalServices();
 
   }
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
-    app.AddDefaultExternalConfiguration(env);
-    Console.WriteLine($"Current Environment: {env.EnvironmentName}");
+    app.Add_API_Default_Middlewares();
     if(!env.IsDevelopment()){
       app.Seed();
     }

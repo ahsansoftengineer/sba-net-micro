@@ -66,8 +66,10 @@ public class Startup
     });
    
   }
-  public void ConfigureCrossCuttingConcern(IApplicationBuilder app, IWebHostEnvironment env)
+  public void ConfigureCrossCuttingConcern(IApplicationBuilder app)
   {
+    var env = app.ApplicationServices.GetRequiredService<IWebHostEnvironment>();
+
     // env.IsDevelopment() || env.IsDev();
     if (true)
     {

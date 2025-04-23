@@ -3,22 +3,15 @@ using GLOB.API.OptionSetup;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Newtonsoft.Json;
-using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace GLOB.API.DI;
 public static partial class API_DI_Common
 {
-
-  public static void Config_DevEnv(this IApplicationBuilder app, IWebHostEnvironment env)
-  {
-    if (env.IsDevelopment())
-    {
-      app.UseDeveloperExceptionPage();
-      Config_Swagger(app, env);
-    }
-  }
+ 
   public static void Config_Controller(this IApplicationBuilder app)
   {
+    IConfiguration config = app.GetSrvc<IConfiguration>();
+    string prefix = config.GetValue<string>("ASPNETCORE_ROUTE_PREFIX") ?? "api/Hierarchy/v1";
     app.UseEndpoints(ep =>
     {
       // This Routing is useful for MVC type application
@@ -28,8 +21,17 @@ public static partial class API_DI_Common
       //  pattern: "{controller=Home}/{action=Index}/{Id?}"); //
       ep.MapControllers();
     });
+    app.Use(async (context, next) =>
+    {
+      if (context.Request.Path == "/" || context.Request.Path == "/swagger/index.html" )
+      {
+        context.Response.Redirect($"/{prefix}/swagger/index.html");
+        return;
+      }
+      await next();
+    });
   }
-  public static void Config_Controllerz(this IServiceCollection srvc, string routePrefix = "api/v1")
+  public static void Config_Controllerz(this IServiceCollection srvc, IConfiguration config)
   {
     srvc
       // API Caching 3. Defining Cache Profile
@@ -37,7 +39,7 @@ public static partial class API_DI_Common
       {
         // opt.Conventions.Add(new GlobalRouteConvention());
         opt.Conventions.Add(new RouteTokenTransformerConvention(new KebabCaseRouteTransformer()));
-        opt.Conventions.Insert(0, new GlobalRoutePrefixConvention(routePrefix));
+        opt.Conventions.Insert(0, new GlobalRoutePrefixConvention(config.GetValueStr("ASPNETCORE_ROUTE_PREFIX")));
         //opt.Filters<Filters>();
         opt.CacheProfiles.Add("120SecondsDuration", new CacheProfile
         {
@@ -52,11 +54,11 @@ public static partial class API_DI_Common
       {
         opt.InvalidModelStateResponseFactory = context =>
         {
-          var errors =  context.ModelState.ToExtValidationError();
+          var errors = context.ModelState.ToExtValidationError();
           return new BadRequestObjectResult(new
           {
-              Errors = errors,
-              Message = "Bad Request, Validation Failed"
+            Errors = errors,
+            Message = "Bad Request, Validation Failed"
           });
         };
       })
@@ -73,36 +75,5 @@ public static partial class API_DI_Common
       });
 
   }
-
-
-
-  public static void Config_Swagger(this IApplicationBuilder app, IWebHostEnvironment env)
-  {
-
-      app.UseSwagger();
-      app.UseSwaggerUI(c =>
-      {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Trevor v1");
-        c.DocExpansion(DocExpansion.None);
-        //c.InjectJavascript("/js/swagger-custom.js"); //
-      });
-  }
-  public static void Config_Swagger(this IServiceCollection srvc, string ProjectNameSwagger = "Swagger Name Project")
-  {
-    srvc.AddSwaggerGen(c =>
-    {
-      c.SchemaFilter<SwaggerNullablePrimitivesDataTypes>();
-      // c.SchemaFilter<KebabCaseSchemaFilter>();
-      c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
-      {
-        Title = ProjectNameSwagger,
-        Version = "v1"
-      });
-      c.UseAllOfToExtendReferenceSchemas();
-      c.SupportNonNullableReferenceTypes();
-      c.IgnoreObsoleteProperties(); // [Obsolete]
-    });
-  }
-  
 
 }

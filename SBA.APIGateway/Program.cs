@@ -1,44 +1,23 @@
-var builder = WebApplication.CreateBuilder(args);
-
-// Add srvc to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+namespace SBA.APIGateway;
+public class Program
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+  public static void Main(string[] args)
+  {
+    CreateHostBuilder(args).Build().Run();
+  }
 
-app.UseHttpsRedirection();
+  public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+      .ConfigureAppConfiguration((hostingContext, config) =>
+      {
+        var env = hostingContext.HostingEnvironment;
+        var builtConfig = config.Build(); // Temporarily build config to read env vars
+        var ocelotFile = builtConfig["OcelotFileName"] ?? "ocelot.json";
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
-
-app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+        config.AddJsonFile(ocelotFile, optional: false, reloadOnChange: true);
+      })
+      .ConfigureWebHostDefaults(webBuilder =>
+      {
+        webBuilder.UseStartup<Startup>();
+      });
 }
