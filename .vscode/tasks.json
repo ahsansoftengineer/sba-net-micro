@@ -2,6 +2,18 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Watch All Services (Windows)",
+      "type": "shell",
+      "command": "./all-run.ps1", // or "powershell ./run-all.ps1" on Windows
+      "problemMatcher": []
+    },
+    {
+      "label": "Watch All Services (Ubuntu)",
+      "type": "shell",
+      "command": "./all-run.sh", // or "powershell ./run-all.ps1" on Windows
+      "problemMatcher": []
+    },
+    {
       "label": "build",
       "command": "dotnet",
       "type": "process",
@@ -30,6 +42,7 @@
       "command": "dotnet",
       "type": "process",
       "args": [
+        "watch",
         "run",
         "--project",
         "${workspaceFolder}/SBA.APIGateway/SBA.APIGateway.csproj"
@@ -41,6 +54,7 @@
       "command": "dotnet",
       "type": "process",
       "args": [
+        "watch",
         "run",
         "--project",
         "${workspaceFolder}/SBA.Auth/SBA.Auth.csproj"
@@ -52,6 +66,7 @@
       "command": "dotnet",
       "type": "process",
       "args": [
+        "watch",
         "run",
         "--project",
         "${workspaceFolder}/SBA.Hierarchy/SBA.Hierarchy.csproj"
