@@ -15,10 +15,12 @@ public static partial class ExtConfig
   public static string GetValueStr(this IConfiguration configuration, string key)
   {
     string result = configuration.GetValue(key, default(string));
-    if (result.IsNullOrEmpty())
-      return $"Env has no Value for [{key}]";
-    else
-      return result;
+    if (result.IsNullOrEmpty()){
+      string msg = $"Env has no Value for [{key}]";
+      Console.WriteLine(msg);
+      return msg;
+    }
+    return result;
   }
   public static T GetSrvc<T>(this IApplicationBuilder app)
     where T : notnull

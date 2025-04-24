@@ -1,4 +1,7 @@
+using GLOB.API.Configz;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using SBA.APIGateway.Model;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace GLOB.API.DI;
@@ -6,13 +9,17 @@ public static partial class API_DI_Common
 {
   // http://localhost:5806/api/Hierarchy/v1/swagger/index.html
   // http://localhost:5806/api/Hierarchy/v1/swagger/v1/swagger.json
-  public static void Config_Swagger(this IServiceCollection services, IConfiguration config)
+  public static void Config_Swagger(this IServiceCollection srvc, IConfiguration config)
   {
-    string hostName = config.GetValue<string>("ASPNETCORE_URLS") ?? "https://localhost:5806";
-    string prefix = config.GetValue<string>("ASPNETCORE_ROUTE_PREFIX") ?? "api/Hierarchy/v1";
-    string projectzName = config.GetValue<string>("ASPNETCORE_PROJECTZ_NAME") ?? "Hierarchy";
+    srvc.Configure<List<SwaggerService>>(config.GetSection("SwaggerServices"));
+    srvc.Configure<SwaggerService>(config.GetSection("SwaggerOcelot"));
 
-    services.AddSwaggerGen(c =>
+
+    string hostName = config.GetValueStr("ASPNETCORE_URLS");
+    string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX");
+    string projectzName = config.GetValueStr("ASPNETCORE_PROJECTZ_NAME");
+
+    srvc.AddSwaggerGen(c =>
     {
       c.SwaggerDoc("swagger-doc", new OpenApiInfo
       {
@@ -30,9 +37,11 @@ public static partial class API_DI_Common
   public static void Config_Swagger(this IApplicationBuilder app)
   {
     IConfiguration config = app.GetSrvc<IConfiguration>();
+    var URLProjects = app.GetSrvc<IOptions<List<SwaggerService>>>().Value;
+    var URLOcelot = app.GetSrvc<IOptions<SwaggerService>>().Value;
 
-    string prefix = config.GetValue<string>("ASPNETCORE_ROUTE_PREFIX") ?? "api/Hierarchy/v1";
-    string projectzName = config.GetValue<string>("ASPNETCORE_PROJECTZ_NAME") ?? "MyProject";
+    string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX");
+    string projectzName = config.GetValueStr("ASPNETCORE_PROJECTZ_NAME");
 
     app.Config_StaticFilesHandling(); // Required for Swagger UI
 
@@ -40,6 +49,18 @@ public static partial class API_DI_Common
     {
       c.RouteTemplate = prefix + "/{documentName}/swagger.json"; // Updated Swagger JSON path
     });
+
+    app.UseSwaggerUI(c =>
+    {
+      // API Gateway Ocelot Swagger
+      c.SwaggerEndpoint(URLOcelot.Url, URLOcelot.Name);
+      // c.DocExpansion(DocExpansion.None);
+      foreach (var service in URLProjects)
+      {
+        c.SwaggerEndpoint(service.Url, service.Name);
+      }
+    });
+
 
     app.UseSwaggerUI(c =>
     {
