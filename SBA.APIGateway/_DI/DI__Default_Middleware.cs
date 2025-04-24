@@ -1,14 +1,11 @@
+using GLOB.API.Configz;
 using Microsoft.Extensions.Options;
 using SBA.APIGateway.Model;
 
 namespace GLOB.API.DI;
 public static partial class API_DI_Common
 {
-  public static T GetSrvc<T>(this IApplicationBuilder app)
-  where T : notnull
-  {
-    return app.ApplicationServices.GetRequiredService<T>();
-  }
+
 
   public static void Config_DevEnv(this IApplicationBuilder app)
   {
@@ -22,9 +19,7 @@ public static partial class API_DI_Common
   }
   public static void Add_API_Default_Middlewares(this IApplicationBuilder app)
   {
-
-
-    // app.UseMiddleware<GlobalExceptionMiddleware>();
+ // app.UseMiddleware<GlobalExceptionMiddleware>();
     // app.Config_ExceptionHandler();
     app.Config_DevEnv();
     // app.UseHttpsRedirection();
@@ -33,21 +28,10 @@ public static partial class API_DI_Common
     // app.Config_Caching();
     app.UseRouting();
     // app.UseAuthentication();
-    // app.UseAuthorization(); //
-    // app.Config_Controller();
+    // app.UseAuthorization();
+    app.Config_Controller();
 
-    // app.UseHttpsRedirection();
-    app.UseRouting();
-    app.UseAuthorization();
 
-    
-
-    // app.UseCors("AllowApiGateway");
-
-    app.UseEndpoints(endpoints =>
-    {
-      endpoints.MapControllers();
-    });
   }
 
 }

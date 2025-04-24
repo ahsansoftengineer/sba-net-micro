@@ -11,14 +11,9 @@ public static partial class API_DI_Common
   public static void Config_Controller(this IApplicationBuilder app)
   {
     IConfiguration config = app.GetSrvc<IConfiguration>();
-    string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX"); //"api/Hierarchy/v1";
+    string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX");
     app.UseEndpoints(ep =>
     {
-      // This Routing is useful for MVC type application
-      // Convention Based Routing Schema
-      //ep.MapControllerRoute(
-      //  name: "default",
-      //  pattern: "{controller=Home}/{action=Index}/{Id?}"); //
       ep.MapControllers();
     });
     app.Use(async (context, next) =>
