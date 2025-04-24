@@ -4,21 +4,27 @@ using Microsoft.OpenApi.Models;
 using SBA.APIGateway.Model;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerUI;
+using GLOB.APIGateway.DI;
 
 namespace SBA.APIGateway;
 
 public class Startup
 {
-  public IConfiguration Configuration { get; }
+  private IConfiguration _config { get; }
 
   public Startup(IConfiguration configuration)
   {
-    Configuration = configuration;
+    _config = configuration;
   }
 
-  public void ConfigureServices(IServiceCollection services)
+  public void ConfigureServices(IServiceCollection srvc)
   {
-    services.AddCors(options =>
+        // Bind swagger config list
+    srvc.Configure<List<SwaggerService>>(_config.GetSection("SwaggerServices"));
+    srvc.Configure<SwaggerService>(_config.GetSection("SwaggerOcelot"));
+    srvc.Add_API_Default_Srvc(_config);
+    // srvc.Add_API_Default_Srvc2();
+    srvc.AddCors(options =>
     {
       options.AddPolicy("AllowApiGateway", builder =>
       {
@@ -30,19 +36,17 @@ public class Startup
       });
     });
 
-    services.AddControllers();
+    srvc.AddControllers();
 
-    // Bind swagger config list
-    services.Configure<List<SwaggerService>>(Configuration.GetSection("SwaggerServices"));
-    services.Configure<SwaggerService>(Configuration.GetSection("SwaggerOcelot"));
+
 
 
 
     // Ocelot Gateway
-    services.AddOcelot(Configuration);
+    srvc.AddOcelot(_config);
 
     // Swagger for the gateway itself
-    services.AddSwaggerGen(c =>
+    srvc.AddSwaggerGen(c =>
     {
       // c.SchemaFilter<SwaggerNullablePrimitivesDataTypes>();
       c.SwaggerDoc("v1", new OpenApiInfo
@@ -51,14 +55,15 @@ public class Startup
         Version = "v1",
         Description = "API Gateway routing via Ocelot"
       });
-    //   c.UseAllOfToExtendReferenceSchemas();
-    //   c.SupportNonNullableReferenceTypes();
-    //   c.IgnoreObsoleteProperties(); // [Obsolete]
+      //   c.UseAllOfToExtendReferenceSchemas();
+      //   c.SupportNonNullableReferenceTypes();
+      //   c.IgnoreObsoleteProperties(); // [Obsolete]
     });
   }
 
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IOptions<List<SwaggerService>> swaggerOptions, IOptions<SwaggerService> SwaggerOcelot)
   {
+    app.Add_API_Default_Middlewares();
     // app.UseHttpsRedirection();
     app.UseRouting();
     app.UseAuthorization();

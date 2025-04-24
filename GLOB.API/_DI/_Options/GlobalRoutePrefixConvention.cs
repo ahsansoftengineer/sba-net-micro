@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
-namespace GLOB.API.Configz;
+namespace GLOB.API.OptionSetup;
 public class GlobalRoutePrefixConvention : IApplicationModelConvention
 {
     private readonly AttributeRouteModel _routePrefix;
