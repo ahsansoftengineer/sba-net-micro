@@ -20,9 +20,9 @@ public static partial class API_DI_Common
     app.Config_DevEnv();
     // app.UseHttpsRedirection();
 
-    // app.UseCors("AllowGateway");
     // app.Config_Caching();
     app.UseRouting();
+    app.UseCors("PolicyAllowGateway");
     // app.UseAuthentication();
     // app.UseAuthorization();
     app.Config_Controller();
