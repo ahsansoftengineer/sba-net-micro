@@ -5,7 +5,6 @@ public static partial class API_DI_Common
 {
   public static void Config_StaticFilesHandling(this IApplicationBuilder app)
   {
-    app.UseStaticFiles();
     var staticFilesPath = Path.Combine(Directory.GetCurrentDirectory(), "assets");
     app.UseStaticFiles(new StaticFileOptions
     {
