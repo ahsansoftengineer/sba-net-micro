@@ -1,34 +1,45 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/auth/{everything}",
+      "For":"-------Auth--------",
+      "DownstreamPathTemplate": "/api/auth/v1/{everything}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         { "Host": "localhost", "Port": 5803 }
       ],
-      "UpstreamPathTemplate": "/api/auth/{everything}",
+      "UpstreamPathTemplate": "/api/auth/v1/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ]
     },
     {
-      "DownstreamPathTemplate": "/api/hierarchy/{everything}",
+      "For":"-------Swagger--------",
+      "DownstreamPathTemplate": "/api/auth/v1/swagger-doc/swagger.json",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 5803 }
+      ],
+      "UpstreamPathTemplate": "/api/auth/v1/swagger-doc/swagger.json",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    {
+      "For":"-------Hierarchy--------",
+      "DownstreamPathTemplate": "/api/hierarchy/v1/{everything}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         { "Host": "localhost", "Port": 5807 }
       ],
-      "UpstreamPathTemplate": "/api/hierarchy/{everything}",
+      "UpstreamPathTemplate": "/api/hierarchy/v1/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ]
     },
     {
-      "DownstreamPathTemplate": "/swagger/v1/swagger.json",
+      "For":"-------Swagger--------",
+      "DownstreamPathTemplate": "/api/hierarchy/v1/swagger-doc/swagger.json",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5803
-        }
+        { "Host": "localhost", "Port": 5807 }
       ],
-      "UpstreamPathTemplate": "/auth/swagger/v1/swagger.json",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamPathTemplate": "/api/hierarchy/v1/swagger-doc/swagger.json",
+      "UpstreamHttpMethod": [ "GET" ]
     }
   ],
   "GlobalConfiguration": {
