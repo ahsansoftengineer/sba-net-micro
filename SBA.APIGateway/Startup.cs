@@ -3,22 +3,24 @@ using Ocelot.Middleware;
 using Microsoft.OpenApi.Models;
 using SBA.APIGateway.Model;
 using Microsoft.Extensions.Options;
-using Swashbuckle.AspNetCore.SwaggerUI;
+using GLOB.API.DI;
 
 namespace SBA.APIGateway;
 
 public class Startup
 {
-  public IConfiguration Configuration { get; }
+  private IConfiguration _config { get; }
 
   public Startup(IConfiguration configuration)
   {
-    Configuration = configuration;
+    _config = configuration;
   }
 
-  public void ConfigureServices(IServiceCollection services)
+  public void ConfigureServices(IServiceCollection srvc)
   {
-    services.AddCors(options =>
+    srvc.Add_API_Default_Srvc(_config);
+    // srvc.Add_API_Default_Srvc2();
+    srvc.AddCors(options =>
     {
       options.AddPolicy("AllowApiGateway", builder =>
       {
@@ -30,57 +32,22 @@ public class Startup
       });
     });
 
-    services.AddControllers();
+    srvc.AddControllers();
 
-    // Bind swagger config list
-    services.Configure<List<SwaggerService>>(Configuration.GetSection("SwaggerServices"));
-    services.Configure<SwaggerService>(Configuration.GetSection("SwaggerOcelot"));
+
 
 
 
     // Ocelot Gateway
-    services.AddOcelot(Configuration);
+    srvc.AddOcelot(_config);
 
-    // Swagger for the gateway itself
-    services.AddSwaggerGen(c =>
-    {
-      // c.SchemaFilter<SwaggerNullablePrimitivesDataTypes>();
-      c.SwaggerDoc("v1", new OpenApiInfo
-      {
-        Title = "SBA API Gateway",
-        Version = "v1",
-        Description = "API Gateway routing via Ocelot"
-      });
-    //   c.UseAllOfToExtendReferenceSchemas();
-    //   c.SupportNonNullableReferenceTypes();
-    //   c.IgnoreObsoleteProperties(); // [Obsolete]
-    });
+    
   }
 
-  public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IOptions<List<SwaggerService>> swaggerOptions, IOptions<SwaggerService> SwaggerOcelot)
+  public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
-    // app.UseHttpsRedirection();
-    app.UseRouting();
-    app.UseAuthorization();
-
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-      // API Gateway Ocelot Swagger
-      c.SwaggerEndpoint(SwaggerOcelot.Value.Url, SwaggerOcelot.Value.Name);
-      // c.DocExpansion(DocExpansion.None);
-      foreach (var service in swaggerOptions.Value)
-      {
-        c.SwaggerEndpoint(service.Url, service.Name);
-      }
-    });
-
-    // app.UseCors("AllowApiGateway");
-
-    app.UseEndpoints(endpoints =>
-    {
-      endpoints.MapControllers();
-    });
+    app.Add_API_Default_Middlewares();
+    
 
     app.UseOcelot();
   }

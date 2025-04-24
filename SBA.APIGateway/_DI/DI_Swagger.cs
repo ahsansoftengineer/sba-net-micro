@@ -1,19 +1,24 @@
 using GLOB.API.Configz;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using SBA.APIGateway.Model;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace GLOB.API.DI;
 public static partial class API_DI_Common
 {
-  // http://localhost:5806/api/Hierarchy/v1/swagger/index.html
-  // http://localhost:5806/api/Hierarchy/v1/swagger/v1/swagger.json
-  public static void Config_Swagger(this IServiceCollection services, IConfiguration config)
+  // http://localhost:5806/api/Gateway/v1/swagger/index.html
+  // http://localhost:5806/api/Gateway/v1/swagger/v1/swagger.json
+  public static void Config_Swagger(this IServiceCollection srvc, IConfiguration config)
   {
-    string hostName = config.GetValueStr("ASPNETCORE_URLS"); // http://localhost:5806
-    string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX"); // "api/Hierarchy/v1";
-    string projectzName = config.GetValueStr("ASPNETCORE_PROJECTZ_NAME"); // "Hierarchy";
+    srvc.Configure<List<SwaggerService>>(config.GetSection("SwaggerServices"));
 
-    services.AddSwaggerGen(c =>
+
+    string hostName = config.GetValueStr("ASPNETCORE_URLS");
+    string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX");
+    string projectzName = config.GetValueStr("ASPNETCORE_PROJECTZ_NAME");
+
+    srvc.AddSwaggerGen(c =>
     {
       c.SwaggerDoc("swagger-doc", new OpenApiInfo
       {
@@ -22,7 +27,6 @@ public static partial class API_DI_Common
         Description = $"Host: {hostName}, Prefix: {prefix}, ProjectName: {projectzName}"
       });
 
-      c.SchemaFilter<SwaggerNullablePrimitivesDataTypes>();
       c.UseAllOfToExtendReferenceSchemas();
       c.SupportNonNullableReferenceTypes();
       c.IgnoreObsoleteProperties(); // [Obsolete]
@@ -32,6 +36,7 @@ public static partial class API_DI_Common
   public static void Config_Swagger(this IApplicationBuilder app)
   {
     IConfiguration config = app.GetSrvc<IConfiguration>();
+    
 
     string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX");
     string projectzName = config.GetValueStr("ASPNETCORE_PROJECTZ_NAME");
@@ -46,9 +51,16 @@ public static partial class API_DI_Common
     app.UseSwaggerUI(c =>
     {
       c.DocumentTitle = $"Swagger UI {projectzName}";
-      c.RoutePrefix = $"{prefix}/swagger"; // Swagger UI will be served under this path
-      c.SwaggerEndpoint($"/{prefix}/swagger-doc/swagger.json", $"{projectzName} - v1"); // Updated Swagger JSON URL
+      c.RoutePrefix = $"{prefix}/swagger"; 
+      c.SwaggerEndpoint($"/{prefix}/swagger-doc/swagger.json", $"{projectzName} - v1"); 
       c.DocExpansion(DocExpansion.None);
+
+
+      var URLProjects = app.GetSrvc<IOptions<List<SwaggerService>>>().Value;
+      foreach (var service in URLProjects)
+      {
+        c.SwaggerEndpoint(service.Url, service.Name);
+      }
     });
   }
 }
