@@ -15,7 +15,9 @@
         "watch",
         "run",
         "--project",
-        "${workspaceFolder}/SBA.APIGateway/SBA.APIGateway.csproj"
+        "${workspaceFolder}/SBA.APIGateway/SBA.APIGateway.csproj",
+        "--launch-profile",
+        "https"
       ],
       // "serverReadyAction": {
       //   "action": "openExternally",
@@ -39,7 +41,9 @@
         "watch",
         "run",
         "--project",
-        "${workspaceFolder}/SBA.Auth/SBA.Auth.csproj"
+        "${workspaceFolder}/SBA.Auth/SBA.Auth.csproj",
+        "--launch-profile",
+        "https"
       ],
       // "serverReadyAction": {
       //   "action": "openExternally",
@@ -62,7 +66,9 @@
         "watch",
         "run",
         "--project",
-        "${workspaceFolder}/SBA.Hierarchy/SBA.Hierarchy.csproj"
+        "${workspaceFolder}/SBA.Hierarchy/SBA.Hierarchy.csproj",
+        "--launch-profile",
+        "https"
       ],
       // "serverReadyAction": {
       //   "action": "openExternally",
