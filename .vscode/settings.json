@@ -1,0 +1,9 @@
+{
+    "json.schemas": [
+      {
+        "fileMatch": ["appsettings*.json"],
+        "url": "./appsettings.schema.json"
+      }
+    ]
+  }
+  
