@@ -1,5 +1,4 @@
 using GLOB.Hierarchy.Global;
-using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;
 
 namespace SBA.Hierarchy.Controllers.Prime;
