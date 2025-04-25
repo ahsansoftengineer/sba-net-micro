@@ -2,19 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Watch All Services (Windows)",
-      "type": "shell",
-      "command": "./all-run.ps1", // or "powershell ./run-all.ps1" on Windows
-      "problemMatcher": []
-    },
-    {
-      "label": "Watch All Services (Ubuntu)",
-      "type": "shell",
-      "command": "./all-run.sh", // or "powershell ./run-all.ps1" on Windows
-      "problemMatcher": []
-    },
-    {
-      "label": "build",
+      "label": "build-solution",
       "command": "dotnet",
       "type": "process",
       "args": [
@@ -38,7 +26,7 @@
       "problemMatcher": "$msCompile"
     },
     {
-      "label": "Run SBA.APIGateway Debug",
+      "label": "Watch.Debug.Gateway",
       "command": "dotnet",
       "type": "process",
       "args": [
@@ -50,7 +38,7 @@
       "problemMatcher": "$msCompile"
     },
     {
-      "label": "Run SBA.Auth Debug",
+      "label": "Watch.Debug.SBA.Auth",
       "command": "dotnet",
       "type": "process",
       "args": [
@@ -62,7 +50,7 @@
       "problemMatcher": "$msCompile"
     },
     {
-      "label": "Run SBA.Hierarchy Debug",
+      "label": "Watch.Debug.SBA.Hierarchy",
       "command": "dotnet",
       "type": "process",
       "args": [
@@ -78,9 +66,9 @@
     {
       "name": "Run All Services Debug",
       "configurations": [
-        "Run SBA.APIGateway Debug",
-        "Run SBA.Auth Debug",
-        "Run SBA.Hierarchy Debug"
+        "Watch.Debug.Gateway",
+        "Watch.Debug.SBA.Auth",
+        "Watch.Debug.SBA.Hierarchy"
       ]
     }
   ]

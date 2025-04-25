@@ -1,12 +1,8 @@
 using GLOB.API.Configz;
-using Microsoft.Extensions.Options;
-using SBA.APIGateway.Model;
 
 namespace GLOB.API.DI;
 public static partial class API_DI_Common
 {
-
-
   public static void Config_DevEnv(this IApplicationBuilder app)
   {
     var env = app.GetSrvc<IWebHostEnvironment>();
@@ -19,14 +15,13 @@ public static partial class API_DI_Common
   }
   public static void Add_API_Default_Middlewares(this IApplicationBuilder app)
   {
- // app.UseMiddleware<GlobalExceptionMiddleware>();
+    // app.UseMiddleware<GlobalExceptionMiddleware>();
     // app.Config_ExceptionHandler();
     app.Config_DevEnv();
     // app.UseHttpsRedirection();
-
-    // app.UseCors("AllowGateway");
     // app.Config_Caching();
     app.UseRouting();
+    // app.UseCors("AllowGateway");
     // app.UseAuthentication();
     // app.UseAuthorization();
     app.Config_Controller();
