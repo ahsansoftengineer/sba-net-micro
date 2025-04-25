@@ -1,0 +1,80 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": ".NET Core Attach",
+      "type": "coreclr",
+      "request": "attach"
+    },
+    {
+      "name": ".NET Core: API Gateway",
+      "type": "coreclr",
+      "request": "launch",
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/SBA.APIGateway",
+      "preLaunchTask": "build-solution",
+      "program": "dotnet",
+      "args": [
+        "watch", "run",
+        "--project", "${workspaceFolder}/SBA.APIGateway/SBA.APIGateway.csproj",
+        "--launch-profile", "https"
+      ],
+
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+        // "killOnServerStop": true,
+        // "uriFormat": "%s/api/gateway/v1/swagger/index.html"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    {
+      "name": ".NET Core: Auth Service",
+      "type": "coreclr",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/SBA.Auth",
+      "stopAtEntry": false,
+      "program": "dotnet",
+      "args": [
+        "watch", "run",
+        "--project", "${workspaceFolder}/SBA.Auth/SBA.Auth.csproj",
+        "--launch-profile", "https"
+      ],
+
+    },
+    {
+      "name": ".NET Core: Hierarchy Service",
+      "type": "coreclr",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/SBA.Hierarchy",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "program": "dotnet",
+      "args": [
+        "watch", "run",
+        "--project", "${workspaceFolder}/SBA.Hierarchy/SBA.Hierarchy.csproj",
+        "--launch-profile", "https"
+      ],
+    },
+    {
+      "name": ".NET Core: Attach to SBA.Hierarchy",
+      "type": "coreclr",
+      "request": "attach",
+      "processId": "${command:pickProcess}",
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Debug All Services",
+      "configurations": [
+        ".NET Core: API Gateway",
+        ".NET Core: Auth Service",
+        ".NET Core: Hierarchy Service"
+      ]
+    }
+  ]
+}
