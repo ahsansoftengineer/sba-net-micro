@@ -30,31 +30,18 @@
       "problemMatcher": "$msCompile"
     },
     {
-      "label": "watch: SBA.APIGateway",
-      "type": "shell",
-      "command": "dotnet watch run",
-      "args": [],
-      "options": {
-        "cwd": "${workspaceFolder}/SBA.APIGateway"
-      }
-    },
-    {
-      "label": "watch: SBA.Auth",
-      "type": "shell",
-      "command": "dotnet watch run",
-      "args": [],
-      "options": {
-        "cwd": "${workspaceFolder}/SBA.Auth"
-      }
-    },
-    {
       "label": "watch: SBA.Hierarchy",
       "type": "shell",
-      "command": "dotnet watch run",
-      "args": [],
+      "command": "dotnet",
+      "args": [
+        "watch", "run",
+        "--project", "${workspaceFolder}/SBA.Hierarchy/SBA.Hierarchy.csproj"
+      ],
+      "isBackground": true,
+      "problemMatcher": "$msCompile",
       "options": {
         "cwd": "${workspaceFolder}/SBA.Hierarchy"
       }
-    },
+    }
   ]
 }
