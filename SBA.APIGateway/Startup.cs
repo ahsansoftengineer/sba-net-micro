@@ -24,4 +24,8 @@ public class Startup
     app.Add_API_Default_Middlewares();
     app.UseOcelot();
   }
+  public void RunFun()
+  {
+    
+  }
 }

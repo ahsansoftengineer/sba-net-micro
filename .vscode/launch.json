@@ -12,11 +12,10 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "args": [
-        "watch", "run",
+        "watch", 
         "--project", "${workspaceFolder}/SBA.APIGateway/SBA.APIGateway.csproj",
-        "--launch-profile", "https",
-        "--no-hot-reload", 
-      ],
+        "--launch-profile", "https"
+      ]
       // "serverReadyAction": {
       //   "action": "openExternally",
       //   "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
@@ -36,11 +35,10 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "args": [
-        "watch", "run",
+        "watch", 
         "--project", "${workspaceFolder}/SBA.Auth/SBA.Auth.csproj",
-        "--launch-profile", "https",
-        "--no-hot-reload", 
-      ],
+        "--launch-profile", "https"
+      ]
       // "serverReadyAction": {
       //   "action": "openExternally",
       //   "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
@@ -59,17 +57,21 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "args": [
-        "watch", "run",
+        "watch", 
         "--project", "${workspaceFolder}/SBA.Hierarchy/SBA.Hierarchy.csproj",
-        "--launch-profile", "https",
-        "--no-hot-reload", 
-      ],
+        "--launch-profile", "https"
+      ]
       // "serverReadyAction": {
       //   "action": "openExternally",
       //   "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
       //   "uriFormat": "%s/api/hierarchy/v1/swagger/index.html"
       // }
       // "program": "${workspaceFolder}/SBA.Hierarchy/bin/Debug/net8.0/SBA.Hierarchy.dll",
+    },
+    {
+      "name": ".NET Core Attach",
+      "type": "coreclr",
+      "request": "attach"
     }
   ],
   "compounds": [
