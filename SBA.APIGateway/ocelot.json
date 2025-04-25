@@ -3,9 +3,9 @@
     {
       "For":"-------Auth--------",
       "DownstreamPathTemplate": "/api/auth/v1/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5803 }
+        { "Host": "localhost", "Port": 5802 }
       ],
       "UpstreamPathTemplate": "/api/auth/v1/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ]
@@ -13,9 +13,9 @@
     {
       "For":"-------Swagger--------",
       "DownstreamPathTemplate": "/api/auth/v1/swagger-doc/swagger.json",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5803 }
+        { "Host": "localhost", "Port": 5802 }
       ],
       "UpstreamPathTemplate": "/api/auth/v1/swagger-doc/swagger.json",
       "UpstreamHttpMethod": [ "GET" ]
@@ -24,9 +24,9 @@
     {
       "For":"-------Hierarchy--------",
       "DownstreamPathTemplate": "/api/hierarchy/v1/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5807 }
+        { "Host": "localhost", "Port": 5806 }
       ],
       "UpstreamPathTemplate": "/api/hierarchy/v1/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ]
@@ -34,15 +34,15 @@
     {
       "For":"-------Swagger--------",
       "DownstreamPathTemplate": "/api/hierarchy/v1/swagger-doc/swagger.json",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5807 }
+        { "Host": "localhost", "Port": 5806 }
       ],
       "UpstreamPathTemplate": "/api/hierarchy/v1/swagger-doc/swagger.json",
       "UpstreamHttpMethod": [ "GET" ]
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:5801"
+    "BaseUrl": "http://localhost:5800"
   }
 }
