@@ -11,7 +11,11 @@
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary;ForceNoAlign"
       ],
-      "problemMatcher": "$msCompile"
+      "problemMatcher": "$msCompile",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
     },
     {
       "label": "publish",
@@ -26,50 +30,31 @@
       "problemMatcher": "$msCompile"
     },
     {
-      "label": "Watch.Debug.Gateway",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "watch",
-        "run",
-        "--project",
-        "${workspaceFolder}/SBA.APIGateway/SBA.APIGateway.csproj"
-      ],
-      "problemMatcher": "$msCompile"
+      "label": "watch: SBA.APIGateway",
+      "type": "shell",
+      "command": "dotnet watch run",
+      "args": [],
+      "options": {
+        "cwd": "${workspaceFolder}/SBA.APIGateway"
+      }
     },
     {
-      "label": "Watch.Debug.SBA.Auth",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "watch",
-        "run",
-        "--project",
-        "${workspaceFolder}/SBA.Auth/SBA.Auth.csproj"
-      ],
-      "problemMatcher": "$msCompile"
+      "label": "watch: SBA.Auth",
+      "type": "shell",
+      "command": "dotnet watch run",
+      "args": [],
+      "options": {
+        "cwd": "${workspaceFolder}/SBA.Auth"
+      }
     },
     {
-      "label": "Watch.Debug.SBA.Hierarchy",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "watch",
-        "run",
-        "--project",
-        "${workspaceFolder}/SBA.Hierarchy/SBA.Hierarchy.csproj"
-      ],
-      "problemMatcher": "$msCompile"
-    }
-  ],
-  "compounds": [
-    {
-      "name": "Run All Services Debug",
-      "configurations": [
-        "Watch.Debug.Gateway",
-        "Watch.Debug.SBA.Auth",
-        "Watch.Debug.SBA.Hierarchy"
-      ]
-    }
+      "label": "watch: SBA.Hierarchy",
+      "type": "shell",
+      "command": "dotnet watch run",
+      "args": [],
+      "options": {
+        "cwd": "${workspaceFolder}/SBA.Hierarchy"
+      }
+    },
   ]
 }
