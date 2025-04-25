@@ -12,12 +12,10 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "args": [
-        "watch",
-        "run",
-        "--project",
-        "${workspaceFolder}/SBA.APIGateway/SBA.APIGateway.csproj",
-        "--launch-profile",
-        "https"
+        "watch", "run",
+        "--project", "${workspaceFolder}/SBA.APIGateway/SBA.APIGateway.csproj",
+        "--launch-profile", "https",
+        "--no-hot-reload", 
       ],
       // "serverReadyAction": {
       //   "action": "openExternally",
@@ -38,12 +36,10 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "args": [
-        "watch",
-        "run",
-        "--project",
-        "${workspaceFolder}/SBA.Auth/SBA.Auth.csproj",
-        "--launch-profile",
-        "https"
+        "watch", "run",
+        "--project", "${workspaceFolder}/SBA.Auth/SBA.Auth.csproj",
+        "--launch-profile", "https",
+        "--no-hot-reload", 
       ],
       // "serverReadyAction": {
       //   "action": "openExternally",
@@ -63,12 +59,10 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "args": [
-        "watch",
-        "run",
-        "--project",
-        "${workspaceFolder}/SBA.Hierarchy/SBA.Hierarchy.csproj",
-        "--launch-profile",
-        "https"
+        "watch", "run",
+        "--project", "${workspaceFolder}/SBA.Hierarchy/SBA.Hierarchy.csproj",
+        "--launch-profile", "https",
+        "--no-hot-reload", 
       ],
       // "serverReadyAction": {
       //   "action": "openExternally",
