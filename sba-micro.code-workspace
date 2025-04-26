@@ -57,5 +57,7 @@
 			"path": "SBA.Orderz"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"dotnet.defaultSolution": "sb-micro/SBA.sln"
+	}
 }
