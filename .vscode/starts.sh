@@ -31,11 +31,11 @@ trap '
 echo "🚀 Starting microservices..."
 
 # Start ASP.NET Core projects using dotnet watch (multiple microservices)
-dotnet watch run --launch-profile https --no-build --project ../SBA.APIGateway/SBA.APIGateway.csproj &
+dotnet watch --launch-profile https --no-restore --project ../SBA.APIGateway/SBA.APIGateway.csproj &
 APIGateway_PID=$!
-dotnet watch run --launch-profile https --no-build --project ../SBA.Auth/SBA.Auth.csproj &
+dotnet watch --launch-profile https --no-restore --project ../SBA.Auth/SBA.Auth.csproj &
 Auth_PID=$!
-dotnet watch run --launch-profile https --no-build --project ../SBA.Hierarchy/SBA.Hierarchy.csproj &
+dotnet watch --launch-profile https --no-restore --project ../SBA.Hierarchy/SBA.Hierarchy.csproj &
 Hierarchy_PID=$!
 
 # 🕒 Wait for all background jobs to start
