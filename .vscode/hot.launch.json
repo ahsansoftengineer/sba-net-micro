@@ -1,0 +1,40 @@
+
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": ".NET Core: API Gateway (Hot Reload)",
+      "type": "coreclr",
+      "request": "attach",
+      "processId": "${command:pickProcess}",
+      "preLaunchTask": "watch: SBA.APIGateway",
+      "justMyCode": true
+    },
+    {
+      "name": ".NET Core: Auth Service (Hot Reload)",
+      "type": "coreclr",
+      "request": "attach",
+      "processId": "${command:pickProcess}",
+      "preLaunchTask": "watch: SBA.Auth",
+      "justMyCode": true
+    },
+    {
+      "name": ".NET Core: Attach to SBA.Hierarchy (Hot Reload)",
+      "type": "coreclr",
+      "request": "attach",
+      "processId": "${command:pickProcess}",
+      "preLaunchTask": "watch: SBA.Hierarchy",
+      "justMyCode": true
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Hot Reload Debug All Services",
+      "configurations": [
+        ".NET Core: API Gateway (Hot Reload)",
+        ".NET Core: Auth Service (Hot Reload)",
+        ".NET Core: Attach to SBA.Hierarchy (Hot Reload)"
+      ]
+    }
+  ]
+}
