@@ -38,4 +38,5 @@ ASPNETCORE_ENVIRONMENT=Development dotnet watch --launch-profile https --no-buil
 wait
 
 
+# chmod +x .vscode/start.sh
 # bash .vscode/start.sh
