@@ -15,7 +15,9 @@ public class _GlobalLookupController : Project_RDS_Controller<_GlobalLookupContr
   [HttpPost("[action]")]
   public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<GlobalLookupDtoSearch?> req)
   {
-    Console.WriteLine("See the progressive ");
+    int x = 7070;
+    int y = 50;
+    Console.WriteLine(x +""+ y);
     return await _Actionz.GetsPaginatez(_repo, req);
   }
   [HttpPost("[action]")]

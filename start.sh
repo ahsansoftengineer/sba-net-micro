@@ -30,19 +30,20 @@ trap '
 # 🚀 Start each microservice project in the background
 echo "🚀 Starting microservices..."
 
-# Start ASP.NET Core projects using dotnet watch (multiple microservices)
-dotnet watch --launch-profile https --no-restore --project ../SBA.APIGateway/SBA.APIGateway.csproj &
+# We Watch Only One Project
+# https profile for Bash
+dotnet run --launch-profile https --no-restore --project ./SBA.APIGateway/SBA.APIGateway.csproj &
 APIGateway_PID=$!
-dotnet watch --launch-profile https --no-restore --project ../SBA.Auth/SBA.Auth.csproj &
+dotnet run --launch-profile https --no-restore --project ./SBA.Auth/SBA.Auth.csproj &
 Auth_PID=$!
-dotnet watch --launch-profile https --no-restore --project ../SBA.Hierarchy/SBA.Hierarchy.csproj &
+dotnet run --launch-profile https --no-restore --project ./SBA.Hierarchy/SBA.Hierarchy.csproj &
 Hierarchy_PID=$!
 
 # 🕒 Wait for all background jobs to start
 wait
 
 # 🌐 Open browser with the specific URL after starting the services
-open_url="http://localhost:5800/"
+open_url="https://localhost:5800/"
 echo "🌐 Opening browser with $open_url"
 xdg-open "$open_url"  # Use xdg-open for Linux; on macOS, use open, on Windows use start
 
