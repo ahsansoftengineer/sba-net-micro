@@ -10,6 +10,6 @@ services=(
 
 for service in "${services[@]}"; do
     echo "Starting $service..."
-    dotnet run --project $service
+    dotnet watch --project $service
     read -p "Press enter to continue to the next service..."
 done

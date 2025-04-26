@@ -51,5 +51,6 @@ wait
 
 # Cleanup will be triggered here automatically when the script ends.
 
-# chmod +x .vscode/starts.sh
+## Tested Working on Watch Mode, No Debugging Support
+# chmod +x .vscode/starts.sh 
 # bash .vscode/starts.sh
