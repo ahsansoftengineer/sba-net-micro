@@ -22,9 +22,9 @@ trap '
 
 # Start each project in the background
 echo "Starting projects..."
-ASPNETCORE_ENVIRONMENT=Development dotnet watch --launch-profile https --no-build --debug --project ../SBA.APIGateway/SBA.APIGateway.csproj &
-ASPNETCORE_ENVIRONMENT=Development dotnet watch --launch-profile https --no-build --debug --project ../SBA.Auth/SBA.Auth.csproj &
-ASPNETCORE_ENVIRONMENT=Development dotnet watch --launch-profile https --no-build --debug --project ../SBA.Hierarchy/SBA.Hierarchy.csproj &
+ASPNETCORE_ENVIRONMENT=Development dotnet watch --launch-profile https --debug --project ../SBA.APIGateway/SBA.APIGateway.csproj &
+ASPNETCORE_ENVIRONMENT=Development dotnet watch --launch-profile https --debug --project ../SBA.Auth/SBA.Auth.csproj &
+ASPNETCORE_ENVIRONMENT=Development dotnet watch --launch-profile https --debug --project ../SBA.Hierarchy/SBA.Hierarchy.csproj &
 
 # Open browser when port 5800 is available
 (
