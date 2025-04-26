@@ -32,11 +32,11 @@ echo "🚀 Starting microservices..."
 
 # We Watch Only One Project
 # https profile for Bash
-dotnet run --launch-profile https --no-restore --project ./SBA.APIGateway/SBA.APIGateway.csproj &
+dotnet watch --launch-profile https --no-restore --project ./SBA.APIGateway/SBA.APIGateway.csproj &
 APIGateway_PID=$!
-dotnet run --launch-profile https --no-restore --project ./SBA.Auth/SBA.Auth.csproj &
+dotnet watch --launch-profile https --no-restore --project ./SBA.Auth/SBA.Auth.csproj &
 Auth_PID=$!
-dotnet run --launch-profile https --no-restore --project ./SBA.Hierarchy/SBA.Hierarchy.csproj &
+dotnet watch --launch-profile https --no-restore --project ./SBA.Hierarchy/SBA.Hierarchy.csproj &
 Hierarchy_PID=$!
 
 # 🕒 Wait for all background jobs to start
