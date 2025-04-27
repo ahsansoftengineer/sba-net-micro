@@ -8,6 +8,9 @@
 - GetsByIds (POST)
 - GetsPaginate (POST)
 - GetsPaginateOptions (POST)
+- GetsByIdsMaped (POST) {Pending}
+- GetsByIdsMapedOptions (POST) {Pending}
+
 
 ### EntityShortParent Projectz (Every Microservice) (Done)
 - Specific to Microservices (Goes inside Every Microservicies)

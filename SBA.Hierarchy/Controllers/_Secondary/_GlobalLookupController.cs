@@ -15,12 +15,15 @@ public class _GlobalLookupController : Project_RDS_Controller<_GlobalLookupContr
   [HttpPost("[action]")]
   public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<GlobalLookupDtoSearch?> req)
   {
-    return await _Actionz.GetsPaginatez(_repo, req);
+    int x = 7070;
+    int y = 50;
+    Console.WriteLine(x +""+ y);
+    return await _repo.ToActionGetsPaginate(req);
   }
   [HttpPost("[action]")]
   public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPage<GlobalLookupDtoSearch?> req)
   {
-    return await _Actionz.GetsPaginateOptionsz(_repo, req);
+    return await _repo.ToActionGetsPaginateOptions(req);
   }
   [HttpPost("[action]")]
   public async Task<IActionResult> Create([FromBody] GlobalLookupDtoCreate data)

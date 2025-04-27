@@ -27,4 +27,8 @@ public class Startup
       app.Seed();
     }
   }
+  public void RunFun()
+  {
+    
+  }
 }

@@ -17,30 +17,15 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
   } 
   protected virtual IRepoGenericz<TEntity> _repo {get; set;} // Will be initialize in Last Child Class
 
-  [HttpPost("[action]")]
-  public async Task<IActionResult> Gets([FromBody] DtoRequestGet req)
-  {
-    return await _Actionz.Getsz(_repo, req.Includes);
-  }
-  [HttpPost("[action]/{Id:int}")]
-  public async Task<IActionResult> Get(int Id, [FromBody] DtoRequestGet req)
-  {
-    return await _Actionz.Getz(_repo, Id, req.Includes);
-  }
-  [HttpPost("[action]")]
-  public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds req)
-  {
-    return await _Actionz.GetsByIdsz(_repo, req.Ids);
-  }
   [HttpDelete("[action]/{Id:int}")]
   public async Task<IActionResult> Delete(int Id)
   {
-    return await _Actionz.Deletez(_repo, _uowInfra, Id);
+    return await _repo.ToActionDelete(_uowInfra, Id);
   }
   [HttpPatch("[action]/{Id:int}")]
   public async Task<IActionResult> Status(int Id, [FromBody] DtoRequestStatus req)
   {
-    return await _Actionz.Statusz(_repo, _uowInfra, Id, req.Status);
+    return await _repo.ToActionStatus(_uowInfra, Id, req.Status);
   }
   
 }

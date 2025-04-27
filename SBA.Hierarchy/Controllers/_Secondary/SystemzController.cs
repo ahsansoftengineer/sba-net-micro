@@ -14,12 +14,12 @@ public class SystemzController : Project_RDS_Controller<SystemzController, Syste
   [HttpPost("[action]")]
   public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<SystemzDtoSearch?> req)
   {
-    return await _Actionz.GetsPaginatez(_repo, req);
+    return await _repo.ToActionGetsPaginate(req);
   }
   [HttpPost("[action]")]
   public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPage<SystemzDtoSearch?> req)
   {
-    return await _Actionz.GetsPaginateOptionsz(_repo, req);
+    return await _repo.ToActionGetsPaginateOptions(req);
   }
   [HttpPost("[action]")]
   public async Task<IActionResult> Create([FromBody] SystemzDtoCreate data)

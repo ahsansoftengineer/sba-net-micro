@@ -19,7 +19,7 @@ public static partial class API_DI_Common
     app.Use(async (context, next) =>
     {
       string path = context.Request.Path;
-      if (path == "/" || path == "/swagger/index.html" || path == "/swagger" )
+      if (path == "/")
       {
         context.Response.Redirect($"/{prefix}/swagger/index.html");
         return;

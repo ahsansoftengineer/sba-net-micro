@@ -2,80 +2,32 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "SBA.APIGateway",
+      "name": "Attach to APIGateway",
       "type": "coreclr",
-      "request": "launch",
-      "stopAtEntry": false,
-      "program": "dotnet",
-      "cwd": "${workspaceFolder}/SBA.APIGateway",
-      "env": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "args": [
-        "watch",
-        "run",
-        "--project",
-        "${workspaceFolder}/SBA.APIGateway/SBA.APIGateway.csproj"
-      ],
-      // "serverReadyAction": {
-      //   "action": "openExternally",
-      //   "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
-      //   "uriFormat": "%s/api/gateway/v1/swagger/index.html"
-      // }
-      // "program": "${workspaceFolder}/SBA.APIGateway/bin/Debug/net8.0/SBA.APIGateway.dll",
-      // "preLaunchTask": "Watch.Debug.Gateway", // Task.json (Build Purpose)
+      "request": "attach",
+      "processName": "SBA.APIGateway"
     },
     {
-      "name": "SBA.Auth",
+      "name": "Attach to Auth",
       "type": "coreclr",
-      "request": "launch",
-      "stopAtEntry": false,
-      "program": "dotnet",
-      "cwd": "${workspaceFolder}/SBA.Auth",
-      "env": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "args": [
-        "watch",
-        "run",
-        "--project",
-        "${workspaceFolder}/SBA.Auth/SBA.Auth.csproj"
-      ],
-      // "serverReadyAction": {
-      //   "action": "openExternally",
-      //   "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
-      //   "uriFormat": "%s/api/auth/v1/swagger/index.html"
-      // }
-      // "program": "${workspaceFolder}/SBA.Auth/bin/Debug/net8.0/SBA.Auth.dll",
+      "request": "attach",
+      "processName": "SBA.Auth"
     },
     {
-      "name": "SBA.Hierarchy",
+      "name": "Attach to Hierarchy",
       "type": "coreclr",
-      "request": "launch",
-      "stopAtEntry": false,
-      "program": "dotnet",
-      "cwd": "${workspaceFolder}/SBA.Hierarchy",
-      "env": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "args": [
-        "watch",
-        "run",
-        "--project",
-        "${workspaceFolder}/SBA.Hierarchy/SBA.Hierarchy.csproj"
-      ],
-      // "serverReadyAction": {
-      //   "action": "openExternally",
-      //   "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
-      //   "uriFormat": "%s/api/hierarchy/v1/swagger/index.html"
-      // }
-      // "program": "${workspaceFolder}/SBA.Hierarchy/bin/Debug/net8.0/SBA.Hierarchy.dll",
+      "request": "attach",
+      "processName": "SBA.Hierarchy"
     }
   ],
   "compounds": [
     {
-      "name": "Watch Build Debug All Services",
-      "configurations": ["SBA.APIGateway", "SBA.Auth", "SBA.Hierarchy"]
+      "name": "Attach All",
+      "configurations": [
+        "Attach to APIGateway",
+        "Attach to Auth",
+        "Attach to Hierarchy"
+      ]
     }
   ]
 }
