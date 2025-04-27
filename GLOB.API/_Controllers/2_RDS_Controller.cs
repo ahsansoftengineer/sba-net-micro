@@ -11,50 +11,37 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
     where TController : class
 {
 
-  public API_2_RDS_Controller(IServiceProvider srvcProvider) : base(srvcProvider)
-  {
-
-  } 
-  protected virtual IRepoGenericz<TEntity> _repo {get; set;} // Will be initialize in Last Child Class
-
+  // Single, Filter
   [HttpPost("[action]/{Id:int}")]
   public async Task<IActionResult> Get(int Id, [FromBody] DtoRequestGet req)
   {
     return await _repo.ToActionGet(Id, req.Includes);
   }
 
+  // List, Filter
   [HttpPost("[action]")]
   public async Task<IActionResult> Gets([FromBody] DtoRequestGet req)
   {
     return await _repo.ToActionGets(req.Includes);
   }
-
+  // List, Group
   [HttpPost("[action]")]
   public async Task<IActionResult> GetsGroup()
   {
     return await _repo.ToActionGetsGroup();
   }
 
+  // List, Filter By Ids
   [HttpPost("[action]")]
   public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds req)
   {
     return await _repo.ToActionGetsByIds(req.Ids);
   }
+
+  // Group, Filter By Ids
   [HttpPost("[action]")]
-  public async Task<IActionResult> GetsByIdsGroup([FromBody] DtoRequestGetByIds req)
+  public async Task<IActionResult> GetByIdsGroup([FromBody] DtoRequestGetByIds req)
   {
     return await _repo.ToActionGetsByIdsGroup(req.Ids);
   }
-
-  [HttpDelete("[action]/{Id:int}")]
-  public async Task<IActionResult> Delete(int Id)
-  {
-    return await _repo.ToActionDelete(_uowInfra, Id);
-  }
-  [HttpPatch("[action]/{Id:int}")]
-  public async Task<IActionResult> Status(int Id, [FromBody] DtoRequestStatus req)
-  {
-    return await _repo.ToActionStatus(_uowInfra, Id, req.Status);
-  }
-  
 }
