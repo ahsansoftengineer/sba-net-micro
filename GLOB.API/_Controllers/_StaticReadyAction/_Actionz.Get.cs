@@ -22,18 +22,19 @@ public static partial class _Actionz
       return _Res.CatchException(ex, nameof(ToActionGets));
     }
   }
-  public static async Task<IActionResult> ToActionGetsGroup<T>(this IRepoGenericz<T> repo)
+  public static async Task<IActionResult> ToActionGetsLookup<T>(this IRepoGenericz<T> repo)
     where T : class, IEntityAlpha
   {
     try
     {
-      var list = await repo.GetDBSet().GroupBy(x => x.Id).ToListAsync();
-      var result = list.ToExtVMList();
-      return Ok(result);
+      var list = await repo.GetDBSet()
+        .Select(x => new {x.Id, x.Name})
+        .ToDictionaryAsync(x => x.Id, y => new {y.Id, y.Name});
+      return Ok(list);
     }
     catch (Exception ex)
     {
-      return _Res.CatchException(ex, nameof(ToActionGetsGroup));
+      return _Res.CatchException(ex, nameof(ToActionGetsLookup));
     }
   }
 }

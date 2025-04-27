@@ -39,18 +39,20 @@ public static partial class _Actionz
       return _Res.CatchException(ex, nameof(ToActionGetsByIds));
     }
   }
-  public static async Task<IActionResult> ToActionGetsByIdsGroup<T>(this IRepoGenericz<T> repo, List<int>? Ids)
+  public static async Task<IActionResult> ToActionGetsByIdsLookup<T>(this IRepoGenericz<T> repo, List<int>? Ids)
     where T : class, IEntityAlpha
   {
     try
     {
-      var list = await repo.GetDBSet().Where((x)=> Ids.Contains(x.Id)).GroupBy(x => x.Id).ToListAsync();
-      var result = list.ToExtVMList();
-      return Ok(result);
+      var list = await repo.GetDBSet()
+        .Select(x => new { x.Id, x.Name })
+        .Where((x)=> Ids.Contains(x.Id))
+        .ToDictionaryAsync(x => x.Id, y => new {y.Id, y.Name});
+      return Ok(list);
     }
     catch (Exception ex)
     {
-      return _Res.CatchException(ex, nameof(ToActionGetsByIdsGroup));
+      return _Res.CatchException(ex, nameof(ToActionGetsByIdsLookup));
     }
   }
 }

@@ -1,34 +1,30 @@
 using GLOB.Domain.Base;
 using Microsoft.AspNetCore.Mvc;
-using GLOB.Infra.Repo;
 using GLOB.API.Staticz;
 
 namespace GLOB.API.Controllers.Base;
-// Read, Delete, Status
+// Single, List, Group
 public abstract partial class API_2_RDS_Controller<TController, TEntity>
-  : API_1_ErrorController<TController>
-    where TEntity : class, IEntityAlpha, IEntityStatus // (ID, Status)
-    where TController : class
 {
 
-  // Single, Filter
+  // Single, Include
   [HttpPost("[action]/{Id:int}")]
   public async Task<IActionResult> Get(int Id, [FromBody] DtoRequestGet req)
   {
     return await _repo.ToActionGet(Id, req.Includes);
   }
 
-  // List, Filter
+  // List, Filter, Include
   [HttpPost("[action]")]
   public async Task<IActionResult> Gets([FromBody] DtoRequestGet req)
   {
     return await _repo.ToActionGets(req.Includes);
   }
   // List, Group
-  [HttpPost("[action]")]
-  public async Task<IActionResult> GetsGroup()
+  [HttpGet("[action]")]
+  public async Task<IActionResult> GetsLookup()
   {
-    return await _repo.ToActionGetsGroup();
+    return await _repo.ToActionGetsLookup();
   }
 
   // List, Filter By Ids
@@ -38,10 +34,10 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
     return await _repo.ToActionGetsByIds(req.Ids);
   }
 
-  // Group, Filter By Ids
+  // List, Group, Filter By Ids
   [HttpPost("[action]")]
-  public async Task<IActionResult> GetByIdsGroup([FromBody] DtoRequestGetByIds req)
+  public async Task<IActionResult> GetByIdsLookup([FromBody] DtoRequestGetByIds req)
   {
-    return await _repo.ToActionGetsByIdsGroup(req.Ids);
+    return await _repo.ToActionGetsByIdsLookup(req.Ids);
   }
 }
