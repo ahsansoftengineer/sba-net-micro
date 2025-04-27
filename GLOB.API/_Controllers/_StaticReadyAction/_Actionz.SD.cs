@@ -33,7 +33,7 @@ public static partial class _Actionz
     return new OkObjectResult("Record Deleted Successfull");
   }
 
-  public static async Task<IActionResult> ToActionStatus<T>(IRepoGenericz<T> repo, IUOW_Infra uow, int Id, Status status)
+  public static async Task<IActionResult> ToActionStatus<T>(this IRepoGenericz<T> repo, IUOW_Infra uow, int Id, Status status)
     where T : class, IEntityAlpha
   {
 

@@ -22,7 +22,7 @@ public static partial class _Actionz
       return _Res.CatchException(ex, nameof(ToActionGets));
     }
   }
-  public static async Task<IActionResult> ToActionGetsGroup<T>(this IRepoGenericz<T> repo, List<string>? Include)
+  public static async Task<IActionResult> ToActionGetsGroup<T>(this IRepoGenericz<T> repo)
     where T : class, IEntityAlpha
   {
     try
