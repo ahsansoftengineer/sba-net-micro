@@ -1,3 +1,4 @@
+
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -5,11 +6,10 @@ using System.Text;
 using GLOB.Domain.Auth;
 using GLOB.Infra.Data.Auth;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace GLOB.Infra.Services;
+namespace SBA.Auth.Services;
 
 public interface ITokenService
 {
@@ -28,7 +28,8 @@ public class TokenService : ITokenService
 
   public TokenService(
     IOptions<JwtSettings> jwtSettings,
-    UserManager<InfraUser> userManager, DBCntxtIdentity context)
+    UserManager<InfraUser> userManager, 
+    DBCntxtIdentity context)
   {
     _jwtSettings = jwtSettings.Value;
     _userManager = userManager;

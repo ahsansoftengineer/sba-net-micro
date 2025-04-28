@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace GLOB.INFRA.DI;
+namespace GLOB.Infra.DI;
 public static partial class DI_Infra
 {
 
