@@ -8,7 +8,7 @@ using GLOB.Infra.Data.Auth;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 
-namespace GLOB.INFRA.DI;
+namespace GLOB.Infra.DI;
 public static partial class DI_Infra
 {
   public static void Config_DB_Identity<TContext, TIUOW, TUOW>(this IServiceCollection srvc, IConfiguration config)

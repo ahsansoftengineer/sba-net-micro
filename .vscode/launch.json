@@ -10,8 +10,9 @@
     {
       "name": "Attach to Auth",
       "type": "coreclr",
-      "request": "attach",
-      "processName": "SBA.Auth"
+      "request": "attach"
+      // "processName": "SBA.Auth",
+      
     },
     {
       "name": "Attach to Hierarchy",

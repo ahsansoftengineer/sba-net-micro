@@ -1,7 +1,6 @@
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
 using GLOB.Infra.Data.Auth;
-using GLOB.Infra.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using SBA.Auth.Services;

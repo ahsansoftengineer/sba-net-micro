@@ -10,36 +10,45 @@ public partial class AccountController
   [HttpPost("[action]")]
   public async Task<IActionResult> Login([FromBody] LoginDto model)
   {
-    var user = await _userManager.FindByEmailAsync(model.Email);
-    if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+    try
     {
-      var roles = await _userManager.GetRolesAsync(user);
-      var accessToken = _tokenService.GenerateAccessToken(user, roles);
-      var refreshToken = _tokenService.GenerateRefreshToken();
-      var refreshExpiry = DateTime.UtcNow.AddDays(7);
-
-      await _tokenService.SaveRefreshTokenAsync(user.Id, refreshToken, refreshExpiry);
-
-      return Ok(new
+      var user = await _userManager.FindByEmailAsync(model.Email);
+      if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
       {
-        accessToken,
-        refreshToken,
-        expiresIn = 3600,
-        tokenType = "Bearer",
-        user = new
+        var roles = await _userManager.GetRolesAsync(user);
+        var accessToken = _tokenService.GenerateAccessToken(user, roles);
+        var refreshToken = _tokenService.GenerateRefreshToken();
+        var refreshExpiry = DateTime.UtcNow.AddDays(7);
+
+        await _tokenService.SaveRefreshTokenAsync(user.Id, refreshToken, refreshExpiry);
+
+        return Ok(new
         {
-          user.Id,
-          user.UserName,
-          user.Email,
-          user.EmailConfirmed,
-          user.PhoneNumber,
-          user.PhoneNumberConfirmed,
-          user.TwoFactorEnabled,
-          roles
-        }
-      });
+          accessToken,
+          refreshToken,
+          expiresIn = 3600,
+          tokenType = "Bearer",
+          user = new
+          {
+            user.Id,
+            user.UserName,
+            user.Email,
+            user.EmailConfirmed,
+            user.PhoneNumber,
+            user.PhoneNumberConfirmed,
+            user.TwoFactorEnabled,
+            roles
+          }
+        });
+      }
+      return Unauthorized("Invalid credentials.");
     }
-    return Unauthorized("Invalid credentials.");
+    catch (Exception ex)
+    {
+      Console.WriteLine(ex.Message);
+      return Ok(ex.Message);
+    }
+
   }
 
   [HttpPost("refresh-token")]
@@ -56,8 +65,8 @@ public partial class AccountController
 
     var storedToken = await _uowProjectz.RefreshTokens.GetDBSet()
         .Where(rt => rt.InfraUserId == userId
-                  && rt.Token == request.RefreshToken
-                  && !rt.IsRevoked && rt.ExpiresAt > DateTime.UtcNow)
+          && rt.Token == request.RefreshToken
+          && !rt.IsRevoked && rt.ExpiresAt > DateTime.UtcNow)
         .FirstOrDefaultAsync();
 
     if (storedToken == null)
@@ -83,5 +92,4 @@ public partial class AccountController
       tokenType = "Bearer"
     });
   }
-
 }

@@ -1,6 +1,6 @@
 using GLOB.Infra.Data;
 using GLOB.Infra.UOW_Projectz;
-using GLOB.INFRA.DI;
+using GLOB.Infra.DI;
 using SBA.Projectz.Data;
 using SBA.Projectz.Mapper;
 
