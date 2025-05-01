@@ -2,6 +2,7 @@ using System.Security.Claims;
 using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SBA.Projectz.Data;
 
 namespace SBA.Auth.Controllers;
 
@@ -18,10 +19,9 @@ public partial class AccountController
         var roles = await _userManager.GetRolesAsync(user);
         var accessToken = _tokenService.GenerateAccessToken(user, roles);
         var refreshToken = _tokenService.GenerateRefreshToken();
-        var refreshExpiry = DateTime.UtcNow.AddDays(7);
 
         string ip = HttpContext.Connection.RemoteIpAddress?.ToString();
-        await _tokenService.SaveRefreshTokenAsync(user.Id, refreshToken, refreshExpiry, ip);
+        await _tokenService.SaveRefreshTokenAsync(user.Id, refreshToken, ip);
 
         return Ok(new
         {
@@ -64,7 +64,7 @@ public partial class AccountController
     if (user == null)
       return BadRequest("User not found.");
 
-    var storedToken = await _uowProjectz.RefreshTokens.GetDBSet()
+    var storedToken = await dbcontext.RefreshTokens
         .Where(rt => rt.InfraUserId == userId
           && rt.Token == request.RefreshToken
           && !rt.IsRevoked && rt.ExpiresAt > DateTime.UtcNow)
@@ -83,7 +83,7 @@ public partial class AccountController
 
     string ip = HttpContext.Connection.RemoteIpAddress?.ToString();
 
-    await _tokenService.SaveRefreshTokenAsync(user.Id, newRefreshToken, refreshExpiry, ip);
+    await _tokenService.SaveRefreshTokenAsync(user.Id, newRefreshToken, ip);
 
     await _uowProjectz.Save();
 

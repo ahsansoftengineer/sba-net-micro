@@ -11,15 +11,15 @@ using SBA.Projectz.Data;
 
 namespace SBA.Auth.Services;
 
-public interface ITokenService
-{
-  string GenerateAccessToken(InfraUser user, IList<string> roles);
-  string GenerateRefreshToken();
-  ClaimsPrincipal? GetPrincipalFromExpiredToken(string token);
-  Task SaveRefreshTokenAsync(string userId, string refreshToken, DateTime expiresAt, string IP);
-}
+// public interface ITokenService
+// {
+//   string GenerateAccessToken(InfraUser user, IList<string> roles);
+//   string GenerateRefreshToken();
+//   ClaimsPrincipal? GetPrincipalFromExpiredToken(string token);
+//   Task SaveRefreshTokenAsync(string userId, string refreshToken, string IP);
+// }
 
-public class TokenService : ITokenService
+public class TokenService
 {
   private readonly UserManager<InfraUser> _userManager;
   protected readonly JwtSettings _jwtSettings;
@@ -69,7 +69,7 @@ public class TokenService : ITokenService
     return Convert.ToBase64String(randomBytes);
   }
 
-  public async Task SaveRefreshTokenAsync(string userId, string refreshToken, DateTime expiresAt, string IP)
+  public async Task SaveRefreshTokenAsync(string userId, string refreshToken, string IP)
   {
     var token = new RefreshToken
     {
@@ -78,7 +78,7 @@ public class TokenService : ITokenService
       IsUsed = false,
       IsRevoked = false,
       CreatedByIp = IP,
-      ExpiresAt = expiresAt,
+      ExpiresAt = DateTime.UtcNow.AddDays(7),
       CreatedAt = DateTimeOffset.UtcNow,
     };
 

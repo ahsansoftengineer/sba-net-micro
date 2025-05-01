@@ -19,7 +19,7 @@ public static partial class Projectz_DI
     srvc.Config_DB_Identity<DBCtxProjectz, IUOW_Projectz, UOW_Projectz>(config);
     srvc.AddAutoMapper(typeof(ProjectzMapper));
 
-    srvc.AddTransient<SmtpEmailSender>();
-    srvc.AddTransient<ITokenService, TokenService>();
+    srvc.AddScoped<SmtpEmailSender>();
+    srvc.AddScoped<TokenService>();
   }
 }
