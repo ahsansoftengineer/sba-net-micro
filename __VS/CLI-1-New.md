@@ -36,6 +36,7 @@ dotnet sln add GLOB.Infra/GLOB.Infra.csproj
 ### LOCAL PROJECTS TO SOLUTION
 ```bash
 dotnet sln add GLOB.API/GLOB.API.csproj
+dotnet sln add GLOB.API.Config/GLOB.API.Config.csproj
 
 dotnet sln add SBA.APIGateway/SBA.APIGateway.csproj
 dotnet sln add SBA.Auth/SBA.Auth.csproj
@@ -55,6 +56,8 @@ dotnet add ./GLOB.API/ reference ./GLOB.Infra/ # WEB API
 ```
 ### Web API PACKAGES
 ```bash
+dotnet add ./GLOB.API/ reference ./GLOB.API.Config/ # WEB API
+dotnet add ./GLOB.APIGateway/ reference ./GLOB.API.Config/ # WEB API
 dotnet add ./SBA.Auth/ reference ./GLOB.API/ # WEB API
 dotnet add ./SBA.Hierarchy/ reference ./GLOB.API/ # WEB API
 # dotnet add ./SBA.Userz/ reference ./GLOB.API/ # WEB API

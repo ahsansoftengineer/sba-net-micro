@@ -1,6 +1,0 @@
-@SBA.APIGateway_HostAddress = http://localhost:5232
-
-GET {{SBA.APIGateway_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

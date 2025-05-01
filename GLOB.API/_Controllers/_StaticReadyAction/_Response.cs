@@ -1,4 +1,4 @@
-using GLOB.API.Configz;
+using GLOB.API.Config.Configz;
 using GLOB.Domain.Base;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

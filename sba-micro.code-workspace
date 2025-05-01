@@ -25,6 +25,10 @@
 			"path": "GLOB.Infra"
 		},
 		{
+			"name": "GLOB.API.Config",
+			"path": "GLOB.API.Config"
+		},
+		{
 			"name": "GLOB.API",
 			"path": "GLOB.API"
 		},

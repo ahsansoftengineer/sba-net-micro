@@ -11,7 +11,7 @@ public static partial class API_DI_Common
     if (env.IsDevelopment())
     {
       app.UseDeveloperExceptionPage();
-      app.Config_Swagger_Gateway();
+      app.Config_Swagger();
     }
   }
   public static void Add_API_Default_Middlewares(this IApplicationBuilder app)
@@ -20,14 +20,13 @@ public static partial class API_DI_Common
     // app.Config_ExceptionHandler();
     app.Config_DevEnv();
     // app.UseHttpsRedirection();
+
     // app.Config_Caching();
     app.UseRouting();
-    // app.UseCors("AllowGateway");
+    app.UseCors("PolicyAllowGateway");
     // app.UseAuthentication();
     // app.UseAuthorization();
     app.Config_Controller();
-
-
   }
 
 }

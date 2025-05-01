@@ -17,6 +17,7 @@ public class JwtSettings
 }
 public class IdentitySettings
 {
+  public static string SectionName = "IdentitySettings";
   public bool RequireUniqueEmail { get; set; }
   public PasswordSettings Password { get; set; }
   public LockoutSettings Lockout { get; set; }
