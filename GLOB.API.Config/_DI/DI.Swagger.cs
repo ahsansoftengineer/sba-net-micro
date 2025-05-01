@@ -30,7 +30,7 @@ public static partial class API_DI_Common
     });
   }
 
-  public static void Config_Swagger(this IApplicationBuilder app)
+  public static void Config_Swagger(this IApplicationBuilder app, Action<SwaggerUIOptions> action = null)
   {
     IConfiguration config = app.GetSrvc<IConfiguration>();
 
@@ -50,6 +50,10 @@ public static partial class API_DI_Common
       c.RoutePrefix = $"{prefix}/swagger"; // Swagger UI will be served under this path
       c.SwaggerEndpoint($"/{prefix}/swagger-doc/swagger.json", $"{projectzName} - v1"); // Updated Swagger JSON URL
       c.DocExpansion(DocExpansion.None);
+      if(action != null)
+      {
+        action.Invoke(c);
+      }
     });
   }
 }
