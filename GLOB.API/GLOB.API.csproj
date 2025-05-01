@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GLOB.Infra\GLOB.Infra.csproj" />
+    <ProjectReference Include="..\GLOB.API.Config\GLOB.API.Config.csproj" />
   </ItemGroup>
 
 </Project>
