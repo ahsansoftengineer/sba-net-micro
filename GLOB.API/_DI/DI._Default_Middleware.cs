@@ -3,7 +3,7 @@ using GLOB.API.Config.Configz;
 using GLOB.API.Config.DI;
 
 namespace GLOB.API.DI;
-public static partial class API_Config_DI_Common
+public static partial class API_DI_Common
 {
   public static void Config_DevEnv(this IApplicationBuilder app)
   {

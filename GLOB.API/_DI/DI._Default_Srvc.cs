@@ -1,5 +1,7 @@
 
-namespace GLOB.API.Config.DI;
+using GLOB.API.Config.DI;
+
+namespace GLOB.API.DI;
 public static partial class API_DI_Common
 {
 
