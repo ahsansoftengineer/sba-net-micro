@@ -6,7 +6,7 @@ namespace GLOB.Infra.Seed;
 public static partial class InfraSeeder
 {
   // For DB Context (Normal) (Prod Automate) 
-  public static void SeedProjectzLookupBase(this DBCntxt context)
+  public static void SeedProjectzLookupBase(this DBCtx context)
   {
     if (!context.ProjectzLookupBases.Any(x => x.Id > 0))
     {

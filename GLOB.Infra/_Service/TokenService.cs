@@ -24,12 +24,12 @@ public class TokenService : ITokenService
   private readonly UserManager<InfraUser> _userManager;
   protected readonly JwtSettings _jwtSettings;
 
-  private readonly DBCntxtIdentity _context;
+  private readonly DBCtxIdentity _context;
 
   public TokenService(
     IOptions<JwtSettings> jwtSettings,
     UserManager<InfraUser> userManager, 
-    DBCntxtIdentity context)
+    DBCtxIdentity context)
   {
     _jwtSettings = jwtSettings.Value;
     _userManager = userManager;

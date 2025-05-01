@@ -4,7 +4,7 @@
 // namespace SBA.Projectz.Data;
 // public static partial class Seeder
 // {
-//   public static void SeedCity(this ProjectzDBCntxt context)
+//   public static void SeedCity(this DBCtxProjectz context)
 //   {
 //     if (!context.Citys.Any(x => x.Id > 0))
 //     {

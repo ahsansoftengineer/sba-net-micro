@@ -9,7 +9,7 @@ namespace GLOB.Infra.DI;
 public static partial class DI_Infra
 {
   public static void Config_DB_Identity<TContext, TIUOW, TUOW>(this IServiceCollection srvc, IConfiguration config)
-    where TContext : DBCntxtIdentity
+    where TContext : DBCtxIdentity
     where TIUOW : class, IUOW_Infra
     where TUOW : UOW_Infra, TIUOW
   {

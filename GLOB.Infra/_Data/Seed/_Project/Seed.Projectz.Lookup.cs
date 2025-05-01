@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace GLOB.Infra.Seed;
 public static partial class InfraSeeder
 {
-  public static void SeedProjectzLookup(this DBCntxt context)
+  public static void SeedProjectzLookup(this DBCtx context)
   {
     if (!context.ProjectzLookups.Any(x => x.Id > 0))
     {

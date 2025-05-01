@@ -2,7 +2,7 @@ using GLOB.Domain.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Data;
-public partial class DBCntxt
+public partial class DBCtx
 {
   public static void EntityMappingConfig(ModelBuilder mb)
   {

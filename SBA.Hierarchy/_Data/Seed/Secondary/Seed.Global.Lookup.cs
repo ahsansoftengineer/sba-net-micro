@@ -6,7 +6,7 @@ using SBA.Projectz.Data;
 namespace GLOB.Projectz.Seed;
 public static partial class Seeder
 {
-  public static void SeedGlobalLookup(this ProjectzDBCntxt context)
+  public static void SeedGlobalLookup(this DBCtxProjectz context)
   {
     if (!context.GlobalLookups.Any(x => x.Id > 0))
     {

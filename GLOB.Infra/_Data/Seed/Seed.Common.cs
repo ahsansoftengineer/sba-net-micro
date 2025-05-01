@@ -5,7 +5,7 @@ namespace GLOB.Infra.Seed;
 public static partial class InfraSeeder
 {
   // // For DB Context (Normal) (Prod Automate) 
-  // public static void SeedTestInfra(this DBCntxt context)
+  // public static void SeedTestInfra(this DBCtx context)
   // {
   //   if (!context.TestInfras.Any(x => x.Id > 0))
   //   {
@@ -14,7 +14,7 @@ public static partial class InfraSeeder
   //   }
   // }
   // // For DB Context (Identity) (Prod Automate)
-  // public static void SeedTestInfra(this DBCntxtIdentity context)
+  // public static void SeedTestInfra(this DBCtxIdentity context)
   // {
   //   if (!context.TestInfras.Any(x => x.Id > 0))
   //   {

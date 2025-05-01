@@ -11,8 +11,8 @@ using SBA.Projectz.Data;
 
 namespace SBA.Hierarchy.Migrations
 {
-    [DbContext(typeof(ProjectzDBCntxt))]
-    [Migration("20250416114354_Init")]
+    [DbContext(typeof(DBCtxProjectz))]
+    [Migration("20250501100130_Init")]
     partial class Init
     {
         /// <inheritdoc />
