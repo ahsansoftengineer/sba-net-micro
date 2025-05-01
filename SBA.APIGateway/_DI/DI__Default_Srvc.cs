@@ -11,7 +11,7 @@ public static partial class API_DI_Common
     // srvc.AddAuthentication();
     // srvc.AddAuthorization();
     srvc.Config_Cors_Gateway();
-    srvc.Config_Swagger(config);
+    srvc.Config_Swagger_Gateway(config);
     srvc.Config_Controllerz(config);
     // srvc.Config_Versioning();
   }

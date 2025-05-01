@@ -4,7 +4,7 @@ using GLOB.API.Config.DI;
 namespace GLOB.API.DI;
 public static partial class API_DI_Common
 {
-  public static void Config_DevEnv(this IApplicationBuilder app)
+  private static void Config_DevEnv(this IApplicationBuilder app)
   {
     var env = app.GetSrvc<IWebHostEnvironment>();
     Console.WriteLine($"Current Environment: {env.EnvironmentName}");

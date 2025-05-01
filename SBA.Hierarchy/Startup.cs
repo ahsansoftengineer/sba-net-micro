@@ -14,10 +14,7 @@ public class Startup
 
   public void ConfigureServices(IServiceCollection srvc)
   {
-    srvc.Add_API_Default_Srvc(_config);
-    // srvc.Add_API_Default_Srvc2();
     srvc.Add_Projectz_Srvc(_config);
-
   }
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {

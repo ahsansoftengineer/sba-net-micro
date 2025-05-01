@@ -1,5 +1,6 @@
 
 using GLOB.API.Config.DI;
+using GLOB.API.DI;
 using GLOB.API.Mapper;
 using GLOB.Infra.Data;
 using GLOB.Infra.Data.Auth;
@@ -19,11 +20,11 @@ public class Startup
   }
   public void ConfigureServices(IServiceCollection srvc)
   {
-    srvc.Add_API_Config_Default_Srvc(_config);
-    srvc.Config_DB_SQL<DBCntxt, IUOW_Infra, UOW_Infra>(_config);
-    srvc.Config_DB_Identity<DBCntxtIdentity, IUOW_Infra, UOW_Infra>(_config);
-    srvc.AddAutoMapper(typeof(API_Base_Mapper));
-    srvc.Add_API_Config_Default_Srvc2();
+    // srvc.Add_API_Default_Srvc(_config);
+    // srvc.Config_DB_SQL<DBCntxt, IUOW_Infra, UOW_Infra>(_config);
+    // srvc.Config_DB_Identity<DBCntxtIdentity, IUOW_Infra, UOW_Infra>(_config);
+    // srvc.AddAutoMapper(typeof(API_Base_Mapper));
+    // srvc.Add_API_Default_Srvc2();
   }
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
