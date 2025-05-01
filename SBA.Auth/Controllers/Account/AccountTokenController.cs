@@ -20,7 +20,8 @@ public partial class AccountController
         var refreshToken = _tokenService.GenerateRefreshToken();
         var refreshExpiry = DateTime.UtcNow.AddDays(7);
 
-        await _tokenService.SaveRefreshTokenAsync(user.Id, refreshToken, refreshExpiry);
+        string ip = HttpContext.Connection.RemoteIpAddress?.ToString();
+        await _tokenService.SaveRefreshTokenAsync(user.Id, refreshToken, refreshExpiry, ip);
 
         return Ok(new
         {
@@ -80,7 +81,9 @@ public partial class AccountController
     var newRefreshToken = _tokenService.GenerateRefreshToken();
     var refreshExpiry = DateTime.UtcNow.AddDays(7);
 
-    await _tokenService.SaveRefreshTokenAsync(user.Id, newRefreshToken, refreshExpiry);
+    string ip = HttpContext.Connection.RemoteIpAddress?.ToString();
+
+    await _tokenService.SaveRefreshTokenAsync(user.Id, newRefreshToken, refreshExpiry, ip);
 
     await _uowProjectz.Save();
 

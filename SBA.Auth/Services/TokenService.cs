@@ -16,7 +16,7 @@ public interface ITokenService
   string GenerateAccessToken(InfraUser user, IList<string> roles);
   string GenerateRefreshToken();
   ClaimsPrincipal? GetPrincipalFromExpiredToken(string token);
-  Task SaveRefreshTokenAsync(string userId, string refreshToken, DateTime expiresAt);
+  Task SaveRefreshTokenAsync(string userId, string refreshToken, DateTime expiresAt, string IP);
 }
 
 public class TokenService : ITokenService
@@ -69,17 +69,20 @@ public class TokenService : ITokenService
     return Convert.ToBase64String(randomBytes);
   }
 
-  public async Task SaveRefreshTokenAsync(string userId, string refreshToken, DateTime expiresAt)
+  public async Task SaveRefreshTokenAsync(string userId, string refreshToken, DateTime expiresAt, string IP)
   {
     var token = new RefreshToken
     {
       InfraUserId = userId,
       Token = refreshToken,
+      IsUsed = false,
+      IsRevoked = false,
+      CreatedByIp = IP,
       ExpiresAt = expiresAt,
-      IsRevoked = false
+      CreatedAt = DateTimeOffset.UtcNow,
     };
 
-    _context.RefreshTokens.Add(token);
+    await _context.RefreshTokens.AddAsync(token);
     await _context.SaveChangesAsync();
   }
   public ClaimsPrincipal? GetPrincipalFromExpiredToken(string token)
