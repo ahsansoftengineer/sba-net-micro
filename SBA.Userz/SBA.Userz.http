@@ -1,6 +1,0 @@
-@SBA.Userz_HostAddress = http://localhost:5234
-
-GET {{SBA.Userz_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

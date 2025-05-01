@@ -1,11 +1,11 @@
 using GLOB.Infra.Data;
 using GLOB.Infra.UOW_Projectz;
-using GLOB.Infra.DI;
 using SBA.Auth.Services;
 using SBA.Projectz.Data;
 using SBA.Projectz.Mapper;
 using GLOB.Infra.Services;
 using GLOB.Infra.Data.Auth;
+using GLOB.Infra.DI;
 
 namespace SBA.Projectz.DI;
 public static partial class Projectz_DI
