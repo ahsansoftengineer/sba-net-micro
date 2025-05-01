@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace SBA.Auth.Services;
+namespace GLOB.Infra.Services;
 
 public interface ITokenService
 {
