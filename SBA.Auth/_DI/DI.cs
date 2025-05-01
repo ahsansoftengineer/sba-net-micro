@@ -17,11 +17,11 @@ public static partial class Projectz_DI
     srvc.Add_API_Default_Srvc(config);
     // srvc.Add_API_Default_Srvc2();
     srvc.Config_DB_SQL<DBCtx, IUOW_Infra, UOW_Projectz>(config);
-    srvc.Config_DB_Identity<DBCtxIdentity, IUOW_Infra, UOW_Projectz>(config);
+    // srvc.Config_DB_Identity<DBCtxIdentity, IUOW_Infra, UOW_Projectz>(config);
     srvc.Config_DB_Identity<DBCtxProjectz, IUOW_Projectz, UOW_Projectz>(config);
     srvc.AddAutoMapper(typeof(ProjectzMapper));
 
     srvc.AddTransient<SmtpEmailSender>();
-    srvc.AddTransient<ITokenService, TokenService>();
+    // srvc.AddTransient<ITokenService, TokenService>();
   }
 }
