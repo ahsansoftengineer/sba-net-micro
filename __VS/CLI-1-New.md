@@ -57,6 +57,7 @@ dotnet add ./GLOB.API/ reference ./GLOB.Infra/ # WEB API
 ### Web API PACKAGES
 ```bash
 dotnet add ./GLOB.API/ reference ./GLOB.API.Config/ # WEB API
+dotnet add ./GLOB.APIGateway/ reference ./GLOB.API.Config/ # WEB API
 dotnet add ./SBA.Auth/ reference ./GLOB.API/ # WEB API
 dotnet add ./SBA.Hierarchy/ reference ./GLOB.API/ # WEB API
 # dotnet add ./SBA.Userz/ reference ./GLOB.API/ # WEB API

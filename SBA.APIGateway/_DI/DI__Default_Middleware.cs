@@ -1,4 +1,5 @@
-using GLOB.API.Configz;
+using GLOB.API.Config.Configz;
+using GLOB.API.Config.DI;
 
 namespace GLOB.API.DI;
 public static partial class API_DI_Common
@@ -10,7 +11,7 @@ public static partial class API_DI_Common
     if (env.IsDevelopment())
     {
       app.UseDeveloperExceptionPage();
-      Config_Swagger(app);
+      app.Config_Swagger_Gateway();
     }
   }
   public static void Add_API_Default_Middlewares(this IApplicationBuilder app)

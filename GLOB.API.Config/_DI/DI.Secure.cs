@@ -4,6 +4,18 @@ using Newtonsoft.Json;
 namespace GLOB.API.Config.DI;
 public static partial class API_DI_Common
 {
+  public static void Config_Cors_Gateway(this IServiceCollection srvc)
+  {
+    srvc.AddCors(opt =>
+    {
+      opt.AddDefaultPolicy(opt => 
+        opt
+          .AllowAnyHeader()
+          .AllowAnyOrigin()
+          .AllowAnyMethod()
+      );
+    });
+  }
   public static void Config_Cors(this IServiceCollection srvc)
   {
     srvc.AddCors(opt =>
@@ -49,3 +61,34 @@ public class Error
     return JsonConvert.SerializeObject(this);
   }
 }
+// opt
+// .AddPolicy("CorsPolicyAllowAll", builder =>
+//   builder
+//   .AllowAnyOrigin()
+//   .AllowAnyMethod()
+//   .AllowAnyHeader()
+// .AllowCredentials()
+// );
+
+// opt.AddPolicy("AllowGateway", policy =>
+// {
+//     policy.WithOrigins("https://localhost:5801")
+//           .AllowAnyHeader()
+//           .AllowAnyMethod();
+// });
+// srvc.AddHttpsRedirection(opt =>
+// {
+//   opt.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+//   opt.HttpsPort = 5807; // Replace with your HTTPS port number if different
+// });
+//srvc.AddCors(opt =>
+//{
+//  opt.AddPolicy(MyAllowSpecificOrigins,
+//            policy =>
+//            {
+//              policy.WithOrigins("http://example.com",
+//                      "http://www.contoso.com")
+//                      .AllowAnyHeader()
+//                      .AllowAnyMethod();
+//            });
+//});

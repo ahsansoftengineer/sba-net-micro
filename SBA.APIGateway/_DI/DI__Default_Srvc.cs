@@ -1,4 +1,6 @@
 
+using GLOB.API.Config.DI;
+
 namespace GLOB.API.DI;
 public static partial class API_DI_Common
 {
@@ -8,7 +10,7 @@ public static partial class API_DI_Common
     // Config_CachingService(srvc);
     // srvc.AddAuthentication();
     // srvc.AddAuthorization();
-    srvc.Config_Cors();
+    srvc.Config_Cors_Gateway();
     srvc.Config_Swagger(config);
     srvc.Config_Controllerz(config);
     // srvc.Config_Versioning();
