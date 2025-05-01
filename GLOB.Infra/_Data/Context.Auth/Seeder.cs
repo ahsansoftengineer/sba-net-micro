@@ -26,8 +26,8 @@ public static partial class InfraSeederIdentity
     using(var srvcScp = app.ApplicationServices.CreateScope())
     {
       var srvc = srvcScp.ServiceProvider;
-      var context = srvc.GetService<DBCntxtIdentity>();
-      var contextz = srvc.GetService<DBCntxt>();
+      var context = srvc.GetService<DBCtxIdentity>();
+      var contextz = srvc.GetService<DBCtx>();
       var userManager = srvc.GetRequiredService<UserManager<InfraUser>>();
       var roleManager = srvc.GetRequiredService<RoleManager<InfraRole>>();
 

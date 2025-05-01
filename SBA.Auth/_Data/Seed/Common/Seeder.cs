@@ -18,8 +18,8 @@ public static partial class Seeder
     using (var srvcScp = app.ApplicationServices.CreateScope())
     { 
       var provider = srvcScp.ServiceProvider;
-      ProjectzDBCntxt? context = provider.GetService<ProjectzDBCntxt>();
-      DBCntxt contextz = provider.GetService<DBCntxt>();
+      DBCtxProjectz? context = provider.GetService<DBCtxProjectz>();
+      DBCtx contextz = provider.GetService<DBCtx>();
       if (context != null)
       {
         Console.WriteLine("--> Auth -> Applying Migrations AppBuilder");

@@ -3,7 +3,7 @@ using GLOB.Hierarchy.Global;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Projectz.Data;
-public partial class ProjectzDBCntxt 
+public partial class DBCtxProjectz 
 {
   // .-*
   public DbSet<GlobalLookupBase> GlobalLookupBases { get; set; }

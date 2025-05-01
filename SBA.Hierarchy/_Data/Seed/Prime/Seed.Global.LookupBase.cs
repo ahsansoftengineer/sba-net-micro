@@ -7,7 +7,7 @@ namespace GLOB.Projectz.Seed;
 public static partial class Seeder
 {
   // For DB Context (Normal) (Prod Automate) 
-  public static void SeedGlobalLookupBase(this ProjectzDBCntxt context)
+  public static void SeedGlobalLookupBase(this DBCtxProjectz context)
   {
     if (!context.GlobalLookupBases.Any(x => x.Id > 0))
     {

@@ -10,7 +10,7 @@
 //   {
 //     mb.Entity<RefreshToken>().HasData(SeedDataRefreshToken<RefreshToken>());
 //   }
-//   public static void SeedRefreshToken(this DBCntxtIdentity context)
+//   public static void SeedRefreshToken(this DBCtxIdentity context)
 //   {
 //     if (!context.RefreshTokens.Any(x => x.Id > 0))
 //     {

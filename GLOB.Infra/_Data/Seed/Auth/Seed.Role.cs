@@ -19,7 +19,7 @@ public static partial class InfraSeeder
       }
     }
   }
-  // public static async Task SeedRoleInfra(this DBCntxtIdentity context)
+  // public static async Task SeedRoleInfra(this DBCtxIdentity context)
   // {
   //   if (!context.Roles.Any())
   //   {

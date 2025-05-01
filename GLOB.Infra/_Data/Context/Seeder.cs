@@ -20,7 +20,7 @@ public static partial class InfraSeeder
   {
     using(var srvcScp = app.ApplicationServices.CreateScope())
     {
-      DBCntxt? context = srvcScp.ServiceProvider.GetService<DBCntxt>();
+      DBCtx? context = srvcScp.ServiceProvider.GetService<DBCtx>();
       if (context != null)
       {
         Console.WriteLine("--> Infra -> Applying Migrations AppBuilder (Prod)");

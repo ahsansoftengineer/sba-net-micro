@@ -10,8 +10,8 @@ using SBA.Projectz.Data;
 
 namespace SBA.Hierarchy.Migrations
 {
-    [DbContext(typeof(ProjectzDBCntxt))]
-    partial class ProjectzDBCntxtModelSnapshot : ModelSnapshot
+    [DbContext(typeof(DBCtxProjectz))]
+    partial class DBCtxProjectzModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

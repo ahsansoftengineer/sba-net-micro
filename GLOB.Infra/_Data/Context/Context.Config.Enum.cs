@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Data;
-public partial class DBCntxt
+public partial class DBCtx
 {
   // Enums using Reflections to Store as String in DB
   protected virtual void OnModelCreatingEnumConfig(ModelBuilder mb)

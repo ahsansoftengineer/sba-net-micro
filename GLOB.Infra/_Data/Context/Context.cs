@@ -2,9 +2,9 @@ using GLOB.Infra.Seedz;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Data;
-public partial class DBCntxt : DbContext
+public partial class DBCtx : DbContext
 {
-  public DBCntxt(DbContextOptions options) : base(options) { }
+  public DBCtx(DbContextOptions options) : base(options) { }
 
   // TODO: NOTE: Here we need to work for Seeding Data
   protected override void OnModelCreating(ModelBuilder mb)
