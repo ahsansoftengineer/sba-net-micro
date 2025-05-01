@@ -14,7 +14,7 @@ public static partial class API_DI_Common
       Config_Swagger(app);
     }
   }
-  public static void Add_API_Default_Middlewares(this IApplicationBuilder app)
+  public static void Add_API_Config_Default_Middlewares(this IApplicationBuilder app)
   {
     // app.UseMiddleware<GlobalExceptionMiddleware>();
     // app.Config_ExceptionHandler();

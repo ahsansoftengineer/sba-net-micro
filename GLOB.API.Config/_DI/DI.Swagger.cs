@@ -1,4 +1,5 @@
-using GLOB.API.Configz;
+using GLOB.API.Config.Configz;
+using GLOB.API.Config.OptionSetup;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
 

@@ -14,7 +14,7 @@ public static partial class ExtConfig
   public static string GetValueStr(this IConfiguration configuration, string key)
   {
     string result = configuration.GetValue(key, default(string));
-    if (result.IsNullOrEmpty()){
+    if (string.IsNullOrEmpty(result)){
       string msg = $"Env has no Value for [{key}]";
       Console.WriteLine(msg);
       return msg;

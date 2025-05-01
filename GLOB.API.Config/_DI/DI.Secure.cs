@@ -1,5 +1,5 @@
-using GLOB.Domain.Common;
 using Microsoft.AspNetCore.Diagnostics;
+using Newtonsoft.Json;
 
 namespace GLOB.API.Config.DI;
 public static partial class API_DI_Common
@@ -39,4 +39,13 @@ public static partial class API_DI_Common
     });
   }
 
+}
+public class Error
+{
+  public int StatusCode { get; set; }
+  public string Message { get; set; } = "";
+  public override string ToString()
+  {
+    return JsonConvert.SerializeObject(this);
+  }
 }

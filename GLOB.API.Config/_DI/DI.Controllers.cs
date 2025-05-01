@@ -1,5 +1,5 @@
-using GLOB.API.Configz;
-using GLOB.API.OptionSetup;
+using GLOB.API.Config.Configz;
+using GLOB.API.Config.OptionSetup;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Newtonsoft.Json;

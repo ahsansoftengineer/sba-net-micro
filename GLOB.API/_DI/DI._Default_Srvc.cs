@@ -1,6 +1,5 @@
-using GLOB.API.Mapper;
 
-namespace GLOB.API.DI;
+namespace GLOB.API.Config.DI;
 public static partial class API_DI_Common
 {
 
@@ -10,7 +9,7 @@ public static partial class API_DI_Common
     // srvc.AddAuthentication();
     // srvc.AddAuthorization();
     srvc.Config_Cors();
-    srvc.AddAutoMapper(typeof(API_Base_Mapper));
+    // srvc.AddAutoMapper(typeof(API_Base_Mapper));
     srvc.Config_Swagger(config);
     srvc.Config_Controllerz(config);
     // srvc.Config_Versioning();
