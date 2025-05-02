@@ -36,13 +36,15 @@ public class TokenService
     _context = context;
   }
 
-  public string GenerateAccessToken(InfraUser user, IList<string> roles)
+  public string GenerateAccessToken(InfraUser user, IList<string> roles, out string JTI)
   {
+    JTI = Guid.NewGuid().ToString();
     var authClaims = new List<Claim>
     {
       new Claim(ClaimTypes.NameIdentifier, user.Id),
       new Claim(ClaimTypes.Name, user.UserName),
-      new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+      new Claim(JwtRegisteredClaimNames.Jti, JTI),
+      new Claim(JwtRegisteredClaimNames.Sub, user.Id)
     };
 
     foreach (var role in roles)
@@ -69,7 +71,7 @@ public class TokenService
     return Convert.ToBase64String(randomBytes);
   }
 
-  public async Task SaveRefreshTokenAsync(string userId, string refreshToken, string IP)
+  public async Task SaveRefreshTokenAsync(string userId, string refreshToken, string IP, string JTI)
   {
     var token = new RefreshToken
     {
@@ -77,6 +79,7 @@ public class TokenService
       Token = refreshToken,
       IsUsed = false,
       IsRevoked = false,
+      JwtId = JTI,
       CreatedByIp = IP,
       ExpiresAt = DateTime.UtcNow.AddDays(7),
       CreatedAt = DateTimeOffset.UtcNow,

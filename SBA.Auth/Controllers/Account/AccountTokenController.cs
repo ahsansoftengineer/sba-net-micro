@@ -17,11 +17,12 @@ public partial class AccountController
       if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
       {
         var roles = await _userManager.GetRolesAsync(user);
-        var accessToken = _tokenService.GenerateAccessToken(user, roles);
+        string JTI = "";
+        var accessToken = _tokenService.GenerateAccessToken(user, roles, out JTI);
         var refreshToken = _tokenService.GenerateRefreshToken();
 
         string ip = HttpContext.Connection.RemoteIpAddress?.ToString();
-        await _tokenService.SaveRefreshTokenAsync(user.Id, refreshToken, ip);
+        await _tokenService.SaveRefreshTokenAsync(user.Id, refreshToken, ip, JTI);
 
         return Ok(new
         {

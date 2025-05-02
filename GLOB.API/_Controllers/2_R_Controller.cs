@@ -36,7 +36,7 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
 
   // List, Group, Filter By Ids
   [HttpPost("[action]")]
-  public async Task<IActionResult> GetByIdsLookup([FromBody] DtoRequestGetByIds req)
+  public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds req)
   {
     return await _repo.ToActionGetsByIdsLookup(req.Ids);
   }
