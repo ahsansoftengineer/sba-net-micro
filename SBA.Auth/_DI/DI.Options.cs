@@ -1,7 +1,6 @@
 using GLOB.Infra.Data.Auth;
 using SBA.Auth.Services;
-using Microsoft.Extensions.Options;
-using GLOB.API.Config.Model;
+using GLOB.API.Config.DI;
 
 namespace SBA.Projectz.DI;
 public static partial class Projectz_DI
