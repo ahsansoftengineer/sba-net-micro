@@ -1,13 +1,11 @@
-using System.Security.Claims;
 using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SBA.Projectz.Data;
 
 namespace SBA.Auth.Controllers;
 
 public partial class AccountController
 {
+
   [HttpPost("[action]")]
   public async Task<IActionResult> Login([FromBody] LoginDto model)
   {
