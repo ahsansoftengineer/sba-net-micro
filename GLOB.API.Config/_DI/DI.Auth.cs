@@ -9,7 +9,7 @@ public static partial class API_DI_Common
   public static void Config_Authentication_JWT(this IServiceCollection srvc, IConfiguration config)
   {
     
-    var jwtSettings = config.Get<IOptions<JwtSettings>>().Value;
+    var jwt = config.Get<IOptions<JwtSettings>>().Value;
 
     // srvc.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
     srvc.AddAuthentication(options =>
@@ -24,15 +24,15 @@ public static partial class API_DI_Common
       options.RequireHttpsMetadata = false;
       options.TokenValidationParameters = new TokenValidationParameters()
       {
-        ValidIssuer = jwtSettings.Issuer,
-        ValidAudience = jwtSettings.Audience,
+        ValidIssuer = jwt.Issuer,
+        ValidAudience = jwt.Audience,
 
-        ValidateIssuer = jwtSettings.ValidateIssuer,
-        ValidateLifetime = jwtSettings.ValidateLifetime,
-        ValidateAudience = jwtSettings.ValidateAudience,
+        ValidateIssuer = jwt.ValidateIssuer,
+        ValidateLifetime = jwt.ValidateLifetime,
+        ValidateAudience = jwt.ValidateAudience,
 
-        IssuerSigningKey = jwtSettings.GetSymmetricSecurityKey(),
-        ValidateIssuerSigningKey = jwtSettings.ValidateIssuerSigningKey,
+        IssuerSigningKey = jwt.GetSymmetricSecurityKey(),
+        ValidateIssuerSigningKey = jwt.ValidateIssuerSigningKey,
       };
     });
   }

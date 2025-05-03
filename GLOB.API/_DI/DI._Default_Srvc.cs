@@ -8,8 +8,8 @@ public static partial class API_DI_Common
   public static void Add_API_Default_Srvc(this IServiceCollection srvc, IConfiguration config)
   {
     // Config_CachingService(srvc);
-    // srvc.AddAuthentication();
-    // srvc.AddAuthorization();
+    srvc.AddAuthentication();
+    srvc.AddAuthorization();
     srvc.Config_Cors();
     // srvc.AddAutoMapper(typeof(API_Base_Mapper));
     srvc.Config_Swagger(config);
