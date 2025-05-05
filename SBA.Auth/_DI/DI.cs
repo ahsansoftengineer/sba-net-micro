@@ -3,8 +3,6 @@ using GLOB.Infra.UOW_Projectz;
 using SBA.Auth.Services;
 using SBA.Projectz.Data;
 using SBA.Projectz.Mapper;
-using GLOB.Infra.Services;
-using GLOB.Infra.Data.Auth;
 using GLOB.Infra.DI;
 using GLOB.API.DI;
 
@@ -21,7 +19,7 @@ public static partial class Projectz_DI
     srvc.Config_DB_Identity<DBCtxProjectz, IUOW_Projectz, UOW_Projectz>(config);
     srvc.AddAutoMapper(typeof(ProjectzMapper));
 
-    srvc.AddTransient<SmtpEmailSender>();
-    // srvc.AddTransient<ITokenService, TokenService>();
+    srvc.AddScoped<SmtpEmailSender>();
+    srvc.AddScoped<TokenService>();
   }
 }

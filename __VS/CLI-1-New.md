@@ -64,3 +64,9 @@ dotnet add ./SBA.Hierarchy/ reference ./GLOB.API/ # WEB API
 # dotnet add ./SBA.Orderz/ reference ./GLOB.API/ # WEB API
 
 ```
+
+### Web API CONFIG PACKAGES
+```bash
+dotnet add ./GLOB.API/ reference ./GLOB.API.Config/ # WEB API
+dotnet add ./GLOB.API/ reference ./GLOB.Infra/ # WEB API
+```

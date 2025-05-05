@@ -1,7 +1,7 @@
+using GLOB.API.Config.DI;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
 using GLOB.Infra.Data.Auth;
-using GLOB.Infra.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using SBA.Auth.Services;
@@ -14,7 +14,7 @@ public abstract class AccountBaseController<T> : API_1_ErrorController<T>
   protected readonly JwtSettings _jwtSettings;
   protected readonly UserManager<InfraUser> _userManager;
   protected readonly SignInManager<InfraUser> _signInManager;
-  protected readonly ITokenService _tokenService;
+  protected readonly TokenService _tokenService;
   protected readonly SmtpEmailSender _emailSender;
 
   protected IUOW_Projectz _uowProjectz { get; }
@@ -27,6 +27,6 @@ public abstract class AccountBaseController<T> : API_1_ErrorController<T>
     _uowProjectz = GetSrvc<IUOW_Projectz>();
     _emailSender = GetSrvc<SmtpEmailSender>();
     _jwtSettings = GetSrvc<IOptions<JwtSettings>>().Value;
-    // _tokenService = GetSrvc<ITokenService>();
+    _tokenService = GetSrvc<TokenService>();
   }
 }

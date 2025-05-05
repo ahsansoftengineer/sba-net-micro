@@ -1,48 +1,41 @@
-
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
-using System.Text;
+using GLOB.API.Config.DI;
 using GLOB.Domain.Auth;
-using GLOB.Infra.Data.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using SBA.Projectz.Data;
 
-namespace GLOB.Infra.Services;
+namespace SBA.Auth.Services;
 
-public interface ITokenService
-{
-  string GenerateAccessToken(InfraUser user, IList<string> roles);
-  string GenerateRefreshToken();
-  ClaimsPrincipal? GetPrincipalFromExpiredToken(string token);
-  Task SaveRefreshTokenAsync(string userId, string refreshToken, DateTime expiresAt);
-}
-
-public class TokenService : ITokenService
+public class TokenService
 {
   private readonly UserManager<InfraUser> _userManager;
   protected readonly JwtSettings _jwtSettings;
 
-  private readonly DBCtxIdentity _context;
+  private readonly DBCtxProjectz _context;
 
   public TokenService(
     IOptions<JwtSettings> jwtSettings,
     UserManager<InfraUser> userManager, 
-    DBCtxIdentity context)
+    DBCtxProjectz context)
   {
     _jwtSettings = jwtSettings.Value;
     _userManager = userManager;
     _context = context;
   }
 
-  public string GenerateAccessToken(InfraUser user, IList<string> roles)
+  public string GenerateAccessToken(InfraUser user, IList<string> roles, out string JTI)
   {
+    JTI = Guid.NewGuid().ToString();
     var authClaims = new List<Claim>
     {
       new Claim(ClaimTypes.NameIdentifier, user.Id),
       new Claim(ClaimTypes.Name, user.UserName),
-      new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+      new Claim(JwtRegisteredClaimNames.Jti, JTI),
+      new Claim(JwtRegisteredClaimNames.Sub, user.Id)
     };
 
     foreach (var role in roles)
@@ -55,7 +48,7 @@ public class TokenService : ITokenService
       audience: _jwtSettings.Audience,
       expires: DateTime.UtcNow.AddMinutes(Convert.ToDouble(_jwtSettings.ExpireMinutes)),
       claims: authClaims,
-      signingCredentials: new SigningCredentials(GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256)
+      signingCredentials: new SigningCredentials(_jwtSettings.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256)
     );
 
     return new JwtSecurityTokenHandler().WriteToken(token);
@@ -69,30 +62,34 @@ public class TokenService : ITokenService
     return Convert.ToBase64String(randomBytes);
   }
 
-  public async Task SaveRefreshTokenAsync(string userId, string refreshToken, DateTime expiresAt)
+  public async Task SaveRefreshTokenAsync(string userId, string refreshToken, string IP, string JTI)
   {
     var token = new RefreshToken
     {
       InfraUserId = userId,
       Token = refreshToken,
-      ExpiresAt = expiresAt,
-      IsRevoked = false
+      IsUsed = false,
+      IsRevoked = false,
+      JwtId = JTI,
+      CreatedByIp = IP,
+      ExpiresAt = DateTime.UtcNow.AddDays(7),
+      CreatedAt = DateTimeOffset.UtcNow,
     };
 
-    _context.RefreshTokens.Add(token);
+    await _context.RefreshTokens.AddAsync(token);
     await _context.SaveChangesAsync();
   }
   public ClaimsPrincipal? GetPrincipalFromExpiredToken(string token)
     {
         var tokenValidationParameters = new TokenValidationParameters
         {
-            ValidateAudience = true,
-            ValidateIssuer = true,
-            ValidateIssuerSigningKey = true,
-            ValidateLifetime = false, // ignore expiration
             ValidIssuer = _jwtSettings.Issuer,
             ValidAudience = _jwtSettings.Audience,
-            IssuerSigningKey = GetSymmetricSecurityKey()
+            ValidateIssuer = _jwtSettings.ValidateIssuer,
+            ValidateAudience = _jwtSettings.ValidateAudience,
+            ValidateLifetime = _jwtSettings.ValidateLifetime,
+            ValidateIssuerSigningKey = _jwtSettings.ValidateIssuerSigningKey,
+            IssuerSigningKey = _jwtSettings.GetSymmetricSecurityKey()
         };
 
         var tokenHandler = new JwtSecurityTokenHandler();
@@ -111,10 +108,5 @@ public class TokenService : ITokenService
         {
             return null;
         }
-    }
-
-    private SymmetricSecurityKey GetSymmetricSecurityKey()
-    {
-        return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecretKey));
     }
 }
