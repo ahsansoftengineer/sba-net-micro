@@ -4,50 +4,93 @@ using GLOB.Domain.Base;
 using GLOB.Infra.Paginate;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Auth.Controllers;
 
 public partial class RoleController : AccountBaseController<RoleController>
 {
   private readonly RoleManager<InfraRole> _roleManager;
+  private readonly IQueryable<InfraRole> _repo;
   public RoleController(
     IServiceProvider srvcProvider,
     RoleManager<InfraRole> roleManager
   ) : base(srvcProvider)
   {
     _roleManager = roleManager;
-  }
-
-  [HttpGet("[action]")]
-  public async Task<IActionResult> Gets()
-  {
-    var list = _roleManager.Roles.ToList();
-    return Ok(list);
-  }
-  [HttpGet("[action]/{Id}")]
-  public async Task<IActionResult> Get(string Id)
-  {
-    Console.WriteLine("ID = " + Id);
-    var data = _roleManager.Roles.FirstOrDefault(x => x.Id == Id);
-    if(data == null) return _Res.NotFoundId(Id);
-    var result = data.ToExtVMSingle();
-    return Ok(result);
+    _repo = roleManager.Roles;
   }
 
   [HttpPost("[action]")]
+  public async Task<IActionResult> Gets()
+  {
+    var list = _repo.ToList();
+    return Ok(list);
+  }
+  [HttpPost("[action]/{Id}")]
+  public async Task<IActionResult> Get(string Id)
+  {
+    Console.WriteLine("ID = " + Id);
+    var data = _repo.FirstOrDefault(x => x.Id == Id);
+    if (data == null) return _Res.NotFoundId(Id);
+    var result = data.ToExtVMSingle();
+    return Ok(result);
+  }
+  // List, Group
+  [HttpGet("[action]")]
+  public async Task<IActionResult> GetsLookup()
+  {
+    var result = await _repo.Select(x => new { x.Id, x.Name })
+        .ToDictionaryAsync(x => x.Id, y => new { y.Id, y.Name });
+    return _Actionz.Ok(result);
+  }
+
+  // List, Filter By Ids
+  [HttpPost("[action]")]
+  public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds<string> req)
+  {
+    try
+    {
+      var list = await _repo.Where(x => req.Ids.Contains(x.Id)).ToListAsync();
+      var result = list.ToExtVMList();
+      return Ok(result);
+    }
+    catch (Exception ex)
+    {
+      return _Res.CatchException(ex, nameof(GetsByIds));
+    }
+  }
+  [HttpPost("[action]")]
+  public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds<string> req)
+  {
+    try
+    {
+      var list = await _repo
+        .Select(x => new { x.Id, x.Name })
+        .Where((x) => req.Ids.Contains(x.Id))
+        .ToDictionaryAsync(x => x.Id, y => new { y.Id, y.Name });
+      return Ok(list);
+    }
+    catch (Exception ex)
+    {
+      return _Res.CatchException(ex, nameof(GetsByIdsLookup));
+    }
+  }
+  [HttpPost("[action]")]
   public async Task<IActionResult> GetsPaginate(DtoRequestPageNoInclude<InfraRoleDtoSearch?> req)
   {
-    var query = _roleManager.Roles
+    var query = _repo
       .ToExtQueryFilter(req.Filter)
       .ToExtQueryOrderBy(req.Sort)
-      .Select(x => new {
+      .Select(x => new
+      {
         x.Id,
-        x.Name, 
+        x.Name,
         x.Status,
         x.CreatedAt,
         x.UpdatedAt
       });
-   
+
     var result = await query.ToExtPageReq(req);
     return Ok(result);
   }
@@ -55,7 +98,7 @@ public partial class RoleController : AccountBaseController<RoleController>
   [HttpPost("[action]")]
   public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<InfraRoleDtoSearch?> req)
   {
-    var list = await _roleManager.Roles.ToExtVMPageOptionsNoTrack<InfraRole, string, InfraRoleDtoSearch>(req);
+    var list = await _repo.ToExtVMPageOptionsNoTrack<InfraRole, string, InfraRoleDtoSearch>(req);
     return Ok(list);
   }
 }

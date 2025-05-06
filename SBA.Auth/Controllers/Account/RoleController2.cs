@@ -14,17 +14,22 @@ public partial class RoleController
   [HttpPost("[action]")]
   public async Task<IActionResult> Create([FromBody] DtoCreate role)
   {
+    if(!ModelState.IsValid) return _Res.BadRequestModel(ModelState);
+    if(string.IsNullOrWhiteSpace(role.Name)){
+      return _Res.BadRequestModel("Name", $"Invalid Role");
+    }
     
     var exsist = await _roleManager.RoleExistsAsync(role.Name);
-    if (!exsist)
-    {
-      var rolz = new InfraRole(role.Name);
-      rolz.Status = GLOB.Domain.Enums.Status.None;
-      rolz.Id = Constantz.Guidz();
-      var result = await _roleManager.CreateAsync(rolz);
-      if (result.Succeeded) return Ok(rolz.ToExtVMSingle());
+    if(exsist){
+      return _Res.BadRequestModel("Name", $"{role} already exsist");
+
     }
-    ModelState.AddModelError("Name", $"{role} already exsist");
+
+    var rolz = new InfraRole(role.Name);
+    rolz.Status = GLOB.Domain.Enums.Status.None;
+    rolz.Id = Constantz.Guidz();
+    var result = await _roleManager.CreateAsync(rolz);
+    if (result.Succeeded) return Ok(rolz.ToExtVMSingle());
     return _Res.BadRequestModel(ModelState);
   }
   
@@ -87,38 +92,40 @@ public partial class RoleController
       return _Res.CatchException(ex, nameof(Status));
     }
   }
-  //   [HttpPost("[action]")]
-  //   public async Task<IActionResult> AddUserToRole(string email, string role)
-  //   {
-  //     var user = await _userManager.FindByEmailAsync(email);
-  //     if(user == null)
-  //     {
-  //       return BadRequest(new {
-  //         error = "User does not exist"
-  //       });
-  //     }
-  //     var rolez = await _roleManager.RoleExistsAsync(role);
-  //     if(!rolez)
-  //     {
-  //       return BadRequest(new {
-  //         error = "Role does not exist"
-  //       });
-  //     }
 
-  //     var result = await _userManager.AddToRoleAsync(user, role);
-  //     if(result.Succeeded)
-  //     {
-  //       return Ok();
-  //     }
-  //     else 
-  //     {
-  //       return BadRequest(new {
-  //         error = "The user was not able to be added to the role"
-  //       });
-  //     }
-  //   }
-  //   public async Task<IActionResult> GetUserRoles(string email)
-  //   {
-  //     return null;
-  //   }
+
+    // [HttpPost("[action]")]
+    // public async Task<IActionResult> AddUserToRole(string email, string role)
+    // {
+    //   var user = await _userManager.FindByEmailAsync(email);
+    //   if(user == null)
+    //   {
+    //     return BadRequest(new {
+    //       error = "User does not exist"
+    //     });
+    //   }
+    //   var rolez = await _roleManager.RoleExistsAsync(role);
+    //   if(!rolez)
+    //   {
+    //     return BadRequest(new {
+    //       error = "Role does not exist"
+    //     });
+    //   }
+
+    //   var result = await _userManager.AddToRoleAsync(user, role);
+    //   if(result.Succeeded)
+    //   {
+    //     return Ok();
+    //   }
+    //   else 
+    //   {
+    //     return BadRequest(new {
+    //       error = "The user was not able to be added to the role"
+    //     });
+    //   }
+    // }
+    // public async Task<IActionResult> GetUserRoles(string email)
+    // {
+    //   return null;
+    // }
 }
