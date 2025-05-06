@@ -24,17 +24,15 @@ public partial class RoleController : AccountBaseController<RoleController>
   [HttpPost("[action]")]
   public async Task<IActionResult> Gets()
   {
-    var list = _repo.ToList();
-    return Ok(list);
+    return _Actionz.Ok(_repo.ToList().ToExtVMList());
   }
   [HttpPost("[action]/{Id}")]
   public async Task<IActionResult> Get(string Id)
   {
-    Console.WriteLine("ID = " + Id);
     var data = _repo.FirstOrDefault(x => x.Id == Id);
     if (data == null) return _Res.NotFoundId(Id);
-    var result = data.ToExtVMSingle();
-    return Ok(result);
+
+    return _Actionz.Ok(data.ToExtVMSingle());
   }
   // List, Group
   [HttpGet("[action]")]
@@ -53,7 +51,7 @@ public partial class RoleController : AccountBaseController<RoleController>
     {
       var list = await _repo.Where(x => req.Ids.Contains(x.Id)).ToListAsync();
       var result = list.ToExtVMList();
-      return Ok(result);
+      return _Actionz.Ok(result);
     }
     catch (Exception ex)
     {
@@ -69,7 +67,7 @@ public partial class RoleController : AccountBaseController<RoleController>
         .Select(x => new { x.Id, x.Name })
         .Where((x) => req.Ids.Contains(x.Id))
         .ToDictionaryAsync(x => x.Id, y => new { y.Id, y.Name });
-      return Ok(list);
+      return _Actionz.Ok(list);
     }
     catch (Exception ex)
     {
@@ -92,13 +90,13 @@ public partial class RoleController : AccountBaseController<RoleController>
       });
 
     var result = await query.ToExtPageReq(req);
-    return Ok(result);
+    return _Actionz.Ok(result);
   }
 
   [HttpPost("[action]")]
   public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<InfraRoleDtoSearch?> req)
   {
     var list = await _repo.ToExtVMPageOptionsNoTrack<InfraRole, string, InfraRoleDtoSearch>(req);
-    return Ok(list);
+    return _Actionz.Ok(list);
   }
 }

@@ -1,31 +1,75 @@
+using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
 using GLOB.Domain.Base;
 using GLOB.Infra.Paginate;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Auth.Controllers;
 
 public partial class UserController : AccountBaseController<UserController>
 {
+  private IQueryable<InfraUser> _repo;
   public UserController(
     IServiceProvider srvcProvider) : base(srvcProvider)
   {
+    _repo = _userManager.Users;
   }
-  [HttpGet("[action]")]
+  [HttpPost("[action]")]
   public async Task<IActionResult> Gets()
   {
-    var users = _userManager.Users.ToList();
+    var users = _repo.ToList();
     var result = _mapper.Map<List<InfraUserDtoRead>>(users).ToExtVMList();
     return Ok(result);
   }
-  [HttpGet("[action]/{Id}")]
+  [HttpPost("[action]/{Id}")]
   public async Task<IActionResult> Get(string Id)
   {
-    var data = _userManager.Users.FirstOrDefault(x => x.Id == Id);
+    var data = _repo.FirstOrDefault(x => x.Id == Id);
     var result = _mapper.Map<InfraUserDtoRead>(data).ToExtVMSingle();
     return Ok(result);
   }
+  // List, Group
+  [HttpGet("[action]")]
+  public async Task<IActionResult> GetsLookup()
+  {
+    var result = await _repo.Select(x => new { x.Id, x.Name })
+        .ToDictionaryAsync(x => x.Id, y => new { y.Id, y.Name });
+    return _Actionz.Ok(result);
+  }
 
+  // List, Filter By Ids
+  [HttpPost("[action]")]
+  public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds<string> req)
+  {
+    try
+    {
+      var list = await _repo.Where(x => req.Ids.Contains(x.Id)).ToListAsync();
+      var result = _mapper.Map<List<InfraUserDtoRead>>(list).ToExtVMList();
+      return Ok(result);
+    }
+    catch (Exception ex)
+    {
+      return _Res.CatchException(ex, nameof(GetsByIds));
+    }
+  }
+  [HttpPost("[action]")]
+  public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds<string> req)
+  {
+    try
+    {
+      var list = await _repo
+        .Select(x => new { x.Id, x.Name })
+        .Where((x) => req.Ids.Contains(x.Id))
+        .ToDictionaryAsync(x => x.Id, y => new { y.Id, y.Name });
+      return _Actionz.Ok(list);
+    }
+    catch (Exception ex)
+    {
+      return _Res.CatchException(ex, nameof(GetsByIdsLookup));
+    }
+  }
+  
   [HttpPost("[action]")]
   public async Task<IActionResult> GetsPaginate(DtoRequestPage<InfraUserDtoSearch?> req)
   {

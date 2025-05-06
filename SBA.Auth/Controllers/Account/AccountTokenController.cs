@@ -15,18 +15,25 @@ public partial class AccountController
       if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
       {
         var roles = await _userManager.GetRolesAsync(user);
-        string JTI = "";
-        var accessToken = _tokenService.GenerateAccessToken(user, roles, out JTI);
+
+        string jti = "";
+        var accessToken = _tokenService.GenerateAccessToken(user, roles, out jti);
         var refreshToken = _tokenService.GenerateRefreshToken();
 
+
+        var accessTokenExpiry = DateTime.UtcNow.AddMinutes(_jwtSettings.AccessTokenExpiryMinutes);
+        var refreshTokenExpiry = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpiryDays);
+
         string ip = HttpContext.Connection.RemoteIpAddress?.ToString();
-        await _tokenService.SaveRefreshTokenAsync(user.Id, refreshToken, ip, JTI);
+        await _tokenService.SaveRefreshTokenAsync(user.Id, refreshToken, ip, jti);
 
         return Ok(new
         {
           accessToken,
           refreshToken,
-          expiresIn = 3600,
+          expiresIn = _jwtSettings.AccessTokenExpiryMinutes,
+          accessTokenExpiry = accessTokenExpiry.ToString("o"), // ISO 8601
+          refreshTokenExpiry = refreshTokenExpiry.ToString("o"),
           tokenType = "Bearer",
           user = new
           {
@@ -41,15 +48,16 @@ public partial class AccountController
           }
         });
       }
+
       return Unauthorized("Invalid credentials.");
     }
     catch (Exception ex)
     {
       Console.WriteLine(ex.Message);
-      return Ok(ex.Message);
+      return StatusCode(500, "An error occurred during login.");
     }
-
   }
+
 
   // [HttpPost("refresh-token")]
   // public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest request)

@@ -24,7 +24,7 @@ public partial class UserController : AccountBaseController<UserController>
   }
   
 
-  [HttpPut("{Id}")]
+  [HttpPut("[action]/{Id}")]
   public async Task<IActionResult> Update(string Id, [FromBody] UpdateUserDto data)
   {
     if (string.IsNullOrEmpty(Id)) return _Res.NotFoundId(Id);
