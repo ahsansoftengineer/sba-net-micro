@@ -35,7 +35,7 @@ public partial class UserController : AccountBaseController<UserController>
   {
     var result = await _repo.Select(x => new { x.Id, x.Name })
         .ToDictionaryAsync(x => x.Id, y => new { y.Id, y.Name });
-    return _Actionz.Ok(result);
+    return _Res.Ok(result);
   }
 
   // List, Filter By Ids
@@ -62,7 +62,7 @@ public partial class UserController : AccountBaseController<UserController>
         .Select(x => new { x.Id, x.Name })
         .Where((x) => req.Ids.Contains(x.Id))
         .ToDictionaryAsync(x => x.Id, y => new { y.Id, y.Name });
-      return _Actionz.Ok(list);
+      return _Res.Ok(list);
     }
     catch (Exception ex)
     {

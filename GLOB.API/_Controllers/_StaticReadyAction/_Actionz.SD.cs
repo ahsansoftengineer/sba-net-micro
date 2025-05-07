@@ -8,12 +8,6 @@ namespace GLOB.API.Staticz;
 
 public static partial class _Actionz
 {
-  public static OkObjectResult Ok(object obj)
-  {
-    return new OkObjectResult(obj);
-  }
-  
-  
   public static async Task<IActionResult> ToActionDelete<T>(this IRepoGenericz<T> repo, IUOW_Infra uow, int Id)
     where T : class, IEntityAlpha
   {
@@ -30,7 +24,7 @@ public static partial class _Actionz
     {
       return _Res.CatchException(ex, nameof(ToActionDelete));
     }
-    return new OkObjectResult("Record Deleted Successfull");
+    return Ok("Record Deleted Successfull");
   }
 
   public static async Task<IActionResult> ToActionStatus<T>(this IRepoGenericz<T> repo, IUOW_Infra uow, int Id, Status status)

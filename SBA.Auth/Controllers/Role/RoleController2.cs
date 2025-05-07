@@ -120,26 +120,6 @@ public partial class RoleController
 
     return _Res.BadRequestModel("Exception", "Something went wrong");
   }
-  [HttpGet("{role}")]
-  public async Task<IActionResult> GetUserByRole(string role)
-  {
-    var roleExists = await _roleManager.RoleExistsAsync(role);
-    if (!roleExists)
-      return _Res.BadRequestModel("Role", $"Role '{role}' does not exist");
-
-    var usersInRole = await _userManager.GetUsersInRoleAsync(role);
-
-    var result = usersInRole.Select(u => new
-    {
-      u.Id,
-      u.Email,
-      u.UserName,
-      u.Name,
-      u.PhoneNumber,
-      u.Status
-    });
-
-    return _Actionz.Ok(result.ToExtVMSingle());
-  }
+  
 
 }
