@@ -14,19 +14,19 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
   public API_3_CRUD_SPO_Controller(IServiceProvider srvcProvider) : base(srvcProvider)
   {
   }
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<TDtoSearch?> req)
   {
     return await _repo.ToActionGetsPaginate(req);
   }
 
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPageOption<TDtoSearch?> req)
   {
     return await _repo.ToActionGetsPaginateOptions(req);
   }
 
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> Create([FromBody] TDtoCreate data)
   {
     try

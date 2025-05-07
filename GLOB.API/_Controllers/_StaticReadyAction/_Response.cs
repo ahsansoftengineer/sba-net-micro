@@ -37,6 +37,12 @@ public static class _Res
     modelState.AddModelError(error.Code, error.Description);
     return BadRequestModel(modelState);
   }
+  public static ObjectResult BadRequestModel(string Title, string Message)
+  {
+    var modelState = new ModelStateDictionary();
+    modelState.AddModelError(Title, Message);
+    return BadRequestModel(modelState);
+  }
 
   public static ObjectResult BadRequestzId(string code, int id)
   {

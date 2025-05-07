@@ -6,10 +6,10 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace SBA.Auth.Controllers;
 
-public partial class UserController : AccountBaseController<UserController>
+public partial class UserController
 {
   
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> Create([FromBody] RegisterDto model)
   {
     InfraUser user = MapUser(model);
@@ -24,7 +24,7 @@ public partial class UserController : AccountBaseController<UserController>
   }
   
 
-  [HttpPut("{Id}")]
+  [HttpPut("[action]/{Id}")]
   public async Task<IActionResult> Update(string Id, [FromBody] UpdateUserDto data)
   {
     if (string.IsNullOrEmpty(Id)) return _Res.NotFoundId(Id);

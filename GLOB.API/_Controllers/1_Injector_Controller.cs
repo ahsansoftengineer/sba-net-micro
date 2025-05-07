@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;
 
-[Route("[controller]")]
+[Route("[controller]/[action]")]
 [ApiController]
 public abstract class API_1_ErrorController<TController> : ControllerBase
 

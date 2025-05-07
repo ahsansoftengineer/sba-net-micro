@@ -26,7 +26,8 @@ public abstract class AccountBaseController<T> : API_1_ErrorController<T>
     _signInManager = GetSrvc<SignInManager<InfraUser>>();;
     _uowProjectz = GetSrvc<IUOW_Projectz>();
     _emailSender = GetSrvc<SmtpEmailSender>();
-    _jwtSettings = GetSrvc<IOptions<JwtSettings>>().Value;
     _tokenService = GetSrvc<TokenService>();
+    
+    _jwtSettings = GetSrvc<IOptions<JwtSettings>>().Value;
   }
 }

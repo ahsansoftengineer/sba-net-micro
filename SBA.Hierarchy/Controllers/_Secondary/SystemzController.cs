@@ -11,17 +11,17 @@ public class SystemzController : Project_RDS_Controller<SystemzController, Syste
   {
     _repo = _uowProjectz.Systemzs;
   }
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<SystemzDtoSearch?> req)
   {
     return await _repo.ToActionGetsPaginate(req);
   }
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPage<SystemzDtoSearch?> req)
   {
     return await _repo.ToActionGetsPaginateOptions(req);
   }
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> Create([FromBody] SystemzDtoCreate data)
   {
     try
