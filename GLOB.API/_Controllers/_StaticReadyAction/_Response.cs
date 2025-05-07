@@ -8,13 +8,17 @@ namespace GLOB.API.Staticz;
 
 public static class _Res
 {
+  public static OkObjectResult Ok(object obj)
+  {
+    return new OkObjectResult(obj);
+  }
   public static ObjectResult Ok(string msg)
   {
-    return new ObjectResult(new { Message = msg, Status = 200});
+    return Ok(new { Message = msg, Status = 200});
   }
   public static ObjectResult CatchException(this Exception ex, string methodName)
   {
-    Console.WriteLine(ex.Message, $"Something went wrong in the {methodName}");
+    Console.WriteLine($"Something went wrong in the {methodName}", ex.Message);
     return new ObjectResult("Internal Server Error, Please try again later") { StatusCode = 500 };
   }
 

@@ -58,7 +58,7 @@ public class _ProjectzLookupzController : API_2_RDS_Controller<_ProjectzLookupzC
       var result = _mapper.Map(data, item);
       _repo.Update(item);
       await _uowInfra.Save();
-      return Ok(result);
+      return _Res.Ok(result);
     }
     catch (Exception ex)
     {

@@ -24,7 +24,7 @@ public partial class RoleController : AccountBaseController<RoleController>
   [HttpPost()]
   public async Task<IActionResult> Gets()
   {
-    return _Actionz.Ok(_repo.ToList().ToExtVMList());
+    return _Res.Ok(_repo.ToList().ToExtVMList());
   }
   [HttpPost("{Id}")]
   public async Task<IActionResult> Get(string Id)
@@ -32,7 +32,7 @@ public partial class RoleController : AccountBaseController<RoleController>
     var data = _repo.FirstOrDefault(x => x.Id == Id);
     if (data == null) return _Res.NotFoundId(Id);
 
-    return _Actionz.Ok(data.ToExtVMSingle());
+    return _Res.Ok(data.ToExtVMSingle());
   }
   // List, Group
   [HttpGet()]
@@ -40,7 +40,7 @@ public partial class RoleController : AccountBaseController<RoleController>
   {
     var result = await _repo.Select(x => new { x.Id, x.Name })
         .ToDictionaryAsync(x => x.Id, y => new { y.Id, y.Name });
-    return _Actionz.Ok(result);
+    return _Res.Ok(result);
   }
 
   // List, Filter By Ids
@@ -51,7 +51,7 @@ public partial class RoleController : AccountBaseController<RoleController>
     {
       var list = await _repo.Where(x => req.Ids.Contains(x.Id)).ToListAsync();
       var result = list.ToExtVMList();
-      return _Actionz.Ok(result);
+      return _Res.Ok(result);
     }
     catch (Exception ex)
     {
@@ -67,7 +67,7 @@ public partial class RoleController : AccountBaseController<RoleController>
         .Select(x => new { x.Id, x.Name })
         .Where((x) => req.Ids.Contains(x.Id))
         .ToDictionaryAsync(x => x.Id, y => new { y.Id, y.Name });
-      return _Actionz.Ok(list);
+      return _Res.Ok(list);
     }
     catch (Exception ex)
     {
@@ -90,13 +90,52 @@ public partial class RoleController : AccountBaseController<RoleController>
       });
 
     var result = await query.ToExtPageReq(req);
-    return _Actionz.Ok(result);
+    return _Res.Ok(result);
   }
 
   [HttpPost()]
   public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<DtoSearch?> req)
   {
     var list = await _repo.ToExtVMPageOptionsNoTrack<InfraRole, string>(req);
-    return _Actionz.Ok(list);
+    return _Res.Ok(list);
+  }
+
+  [HttpGet("{role}")]
+  public async Task<IActionResult> GetUserByRole(string role)
+  {
+    var roleExists = await _roleManager.RoleExistsAsync(role);
+    if (!roleExists)
+      return _Res.BadRequestModel("Role", $"Role '{role}' does not exist");
+
+    var usersInRole = await _userManager.GetUsersInRoleAsync(role);
+
+    var result = usersInRole.Select(u => new
+    {
+      u.Id,
+      u.Email,
+      u.UserName,
+      u.Name,
+      u.PhoneNumber,
+      u.Status
+    });
+
+    return _Res.Ok(result.ToExtVMSingle());
+  }
+  
+  [HttpGet("{userId}")]
+  public async Task<IActionResult> GetRoleByUser(string userId)
+  {
+    var user = await _userManager.FindByIdAsync(userId);
+    if (user == null)
+      return _Res.BadRequestzId("InfraUserId", userId);
+
+    var roles = await _userManager.GetRolesAsync(user);
+
+    return _Res.Ok(new
+    {
+      UserId = user.Id,
+      Email = user.Email,
+      Roles = roles
+    });
   }
 }

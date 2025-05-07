@@ -8,6 +8,10 @@ namespace GLOB.API.Staticz;
 
 public static partial class _Actionz
 {
+  private static OkObjectResult Ok(object obj)
+  {
+    return _Res.Ok(obj);
+  }
   public static async Task<IActionResult> ToActionGets<T>(this IRepoGenericz<T> repo, List<string>? Include)
     where T : class, IEntityAlpha
   {
