@@ -25,10 +25,12 @@ public static partial class API_DI_Common
     // app.Config_Caching();
 
     app.UseRouting();
+
+    app.Config_Localization();
     app.UseCors("PolicyAllowGateway");
 
-    // app.UseAuthentication();
-    // app.UseAuthorization();
+    app.UseAuthentication();
+    app.UseAuthorization();
 
     app.Config_Controller();
   }
