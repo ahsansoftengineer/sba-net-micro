@@ -71,9 +71,9 @@ public partial class UserController : AccountBaseController<UserController>
   }
   
   [HttpPost("[action]")]
-  public async Task<IActionResult> GetsPaginate(DtoRequestPage<InfraUserDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginate(DtoRequestPage<DtoSearch?> req)
   {
-    var query = _userManager.Users
+    var query = _repo
       .ToExtQueryFilter(req.Filter)
       .ToExtQueryOrderBy(req.Sort)
       .Select(x => new {
@@ -91,9 +91,9 @@ public partial class UserController : AccountBaseController<UserController>
   }
 
   [HttpPost("[action]")]
-  public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<InfraUserDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<DtoSearch?> req)
   {
-    var list = await _userManager.Users.ToExtVMPageOptionsNoTrack<InfraUser, string, InfraUserDtoSearch>(req);
+    var list = await _repo.ToExtVMPageOptionsNoTrack<InfraUser, string>(req);
     return Ok(list);
   }
 

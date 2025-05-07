@@ -94,9 +94,9 @@ public partial class RoleController : AccountBaseController<RoleController>
   }
 
   [HttpPost("[action]")]
-  public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<InfraRoleDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<DtoSearch?> req)
   {
-    var list = await _repo.ToExtVMPageOptionsNoTrack<InfraRole, string, InfraRoleDtoSearch>(req);
+    var list = await _repo.ToExtVMPageOptionsNoTrack<InfraRole, string>(req);
     return _Actionz.Ok(list);
   }
 }

@@ -6,7 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace SBA.Auth.Controllers;
 
-public partial class UserController : AccountBaseController<UserController>
+public partial class UserController
 {
   
   [HttpPost("[action]")]
