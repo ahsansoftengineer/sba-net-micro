@@ -15,7 +15,7 @@ public partial class UserController : AccountBaseController<UserController>
   {
     _repo = _userManager.Users;
   }
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> Gets()
   {
     var users = _repo.ToList();
@@ -30,7 +30,7 @@ public partial class UserController : AccountBaseController<UserController>
     return Ok(result);
   }
   // List, Group
-  [HttpGet("[action]")]
+  [HttpGet()]
   public async Task<IActionResult> GetsLookup()
   {
     var result = await _repo.Select(x => new { x.Id, x.Name })
@@ -39,7 +39,7 @@ public partial class UserController : AccountBaseController<UserController>
   }
 
   // List, Filter By Ids
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds<string> req)
   {
     try
@@ -53,7 +53,7 @@ public partial class UserController : AccountBaseController<UserController>
       return _Res.CatchException(ex, nameof(GetsByIds));
     }
   }
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds<string> req)
   {
     try
@@ -70,7 +70,7 @@ public partial class UserController : AccountBaseController<UserController>
     }
   }
   
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> GetsPaginate(DtoRequestPage<DtoSearch?> req)
   {
     var query = _repo
@@ -90,14 +90,14 @@ public partial class UserController : AccountBaseController<UserController>
     return Ok(result);
   }
 
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<DtoSearch?> req)
   {
     var list = await _repo.ToExtVMPageOptionsNoTrack<InfraUser, string>(req);
     return Ok(list);
   }
 
-  // [HttpGet("[action]")]
+  // [HttpGet()]
   // public async Task<IActionResult> GetsPaginate(DtoRequestPage<InfraUserDtoSearch> req)
   // {
   //   var query = _userManager.Users.ToExtQueryFilterSortInclude(req);
@@ -106,7 +106,7 @@ public partial class UserController : AccountBaseController<UserController>
   //   return await result.GetsPaginate(req);
   // }
 
-  // [HttpGet("[action]")]
+  // [HttpGet()]
   // public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<InfraUser> req)
   // {
   //   IQueryable<InfraUser> query = _userManager.Users;

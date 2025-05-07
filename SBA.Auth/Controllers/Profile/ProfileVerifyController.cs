@@ -11,7 +11,7 @@
 //   {
 //   }
 
-//   [HttpPost("[action]")]
+//   [HttpPost()]
 //   public async Task<IActionResult> VerifyEmail([FromQuery] string token, [FromQuery] string email)
 //   {
 //     var user = await _userManager.FindByEmailAsync(email);
@@ -22,7 +22,7 @@
 //     return Ok(new { message = "Your Email has been verified" });
 //   }
 
-//   [HttpPost("[action]")]
+//   [HttpPost()]
 //   public async Task<IActionResult> VerifyPhone([FromQuery] string token, [FromQuery] string email) 
 //   {
 //     var user = await _userManager.FindByEmailAsync(email);

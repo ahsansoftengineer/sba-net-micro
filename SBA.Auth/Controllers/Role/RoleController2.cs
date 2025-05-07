@@ -11,7 +11,7 @@ namespace SBA.Auth.Controllers;
 
 public partial class RoleController
 {
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> Create([FromBody] DtoCreate role)
   {
     if(!ModelState.IsValid) return _Res.BadRequestModel(ModelState);
@@ -94,7 +94,7 @@ public partial class RoleController
   }
 
 
-    // [HttpPost("[action]")]
+    // [HttpPost()]
     // public async Task<IActionResult> AddUserToRole(string email, string role)
     // {
     //   var user = await _userManager.FindByEmailAsync(email);

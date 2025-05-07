@@ -11,18 +11,18 @@ public class CityController : Project_RDS_Controller<CityController, City>
   {
     _repo = _uowProjectz.Citys;
   }
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<CityDtoSearch?> req)
   {
     return await _repo.ToActionGetsPaginate(req);
   }
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPage<CityDtoSearch?> req)
   {
     return await _repo.ToActionGetsPaginateOptions(req);
   }
 
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> Create([FromBody] CityDtoCreate data)
   {
     try

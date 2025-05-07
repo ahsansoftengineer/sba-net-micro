@@ -21,12 +21,12 @@ public partial class RoleController : AccountBaseController<RoleController>
     _repo = roleManager.Roles;
   }
 
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> Gets()
   {
     return _Actionz.Ok(_repo.ToList().ToExtVMList());
   }
-  [HttpPost("[action]/{Id}")]
+  [HttpPost("{Id}")]
   public async Task<IActionResult> Get(string Id)
   {
     var data = _repo.FirstOrDefault(x => x.Id == Id);
@@ -35,7 +35,7 @@ public partial class RoleController : AccountBaseController<RoleController>
     return _Actionz.Ok(data.ToExtVMSingle());
   }
   // List, Group
-  [HttpGet("[action]")]
+  [HttpGet()]
   public async Task<IActionResult> GetsLookup()
   {
     var result = await _repo.Select(x => new { x.Id, x.Name })
@@ -44,7 +44,7 @@ public partial class RoleController : AccountBaseController<RoleController>
   }
 
   // List, Filter By Ids
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds<string> req)
   {
     try
@@ -58,7 +58,7 @@ public partial class RoleController : AccountBaseController<RoleController>
       return _Res.CatchException(ex, nameof(GetsByIds));
     }
   }
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds<string> req)
   {
     try
@@ -74,7 +74,7 @@ public partial class RoleController : AccountBaseController<RoleController>
       return _Res.CatchException(ex, nameof(GetsByIdsLookup));
     }
   }
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> GetsPaginate(DtoRequestPageNoInclude<InfraRoleDtoSearch?> req)
   {
     var query = _repo
@@ -93,7 +93,7 @@ public partial class RoleController : AccountBaseController<RoleController>
     return _Actionz.Ok(result);
   }
 
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<DtoSearch?> req)
   {
     var list = await _repo.ToExtVMPageOptionsNoTrack<InfraRole, string>(req);

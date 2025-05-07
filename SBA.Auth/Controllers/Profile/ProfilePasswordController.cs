@@ -9,7 +9,7 @@
 
 // public partial class ProfileController
 // {
-//   [HttpPost("[action]")]
+//   [HttpPost()]
 //   public async Task<IActionResult> PasswordForgot([FromBody] ForgotPasswordDto model)
 //   {
 //     if (!ModelState.IsValid)
@@ -30,7 +30,7 @@
 //     return Ok(new { message = "Reset link sent to email." });
 //   }
 
-//   [HttpPost("[action]")]
+//   [HttpPost()]
 //   public async Task<IActionResult> PasswordReset([FromBody] ResetPasswordDto model)
 //   {
 //     if (!ModelState.IsValid)
@@ -48,7 +48,7 @@
 //     return BadRequest(result.Errors);
 //   }
 
-//   [HttpPost("[action]")]
+//   [HttpPost()]
 //   [Authorize]
 //   public async Task<IActionResult> PasswordChange([FromBody] ChangePasswordDto model)
 //   {

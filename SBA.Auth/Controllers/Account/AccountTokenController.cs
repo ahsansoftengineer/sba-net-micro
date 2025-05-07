@@ -6,7 +6,7 @@ namespace SBA.Auth.Controllers;
 public partial class AccountController
 {
 
-  [HttpPost("[action]")]
+  [HttpPost()]
   public async Task<IActionResult> Login([FromBody] LoginDto model)
   {
     try
