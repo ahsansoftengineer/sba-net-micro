@@ -43,8 +43,9 @@ public class JwtSettings
   public string SecretKey { get; set; } //"YourSuperStrongSecretKey_ReplaceThis"
   public string Issuer { get; set; } // "https://localhost:5802/"
   public string Audience { get; set; } // "https://localhost:5802/"
-  public int AccessTokenExpiryMinutes { get; set; } //6000
-  public int RefreshTokenExpiryDays { get; set; } //6000
+  public int AccessTokenExpiryMinutes { get; set; } //60
+  public int AccessTokenExpiryHour { get; set; } //1
+  public int RefreshTokenExpiryDays { get; set; } //7
   public bool ValidateIssuer { get; set; } = false;
   public bool ValidateAudience { get; set; } = false;
   public bool ValidateLifetime { get; set; } = false;

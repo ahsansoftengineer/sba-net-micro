@@ -20,6 +20,9 @@ public class DtoRequestPageOption<TDtoSearch>
 public class DtoRequestPageOption : DtoRequestPageOption<DtoSearch>
 {
 }
+public class DtoRequestPageNoInclude : DtoRequestPageOption<DtoSearch>
+{
+}
 public class DtoRequestPageNoInclude<TDtoSearch> : DtoRequestPageOption<TDtoSearch>
 {
 }

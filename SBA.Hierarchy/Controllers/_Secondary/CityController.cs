@@ -41,7 +41,7 @@ public class CityController : Project_RDS_Controller<CityController, City>
     }
   }
 
-  [HttpPut("[action]/{Id:int}")]
+  [HttpPut("{Id:int}")]
   public async Task<IActionResult> Update(int Id, [FromBody] CityDtoCreate data)
   {
     try

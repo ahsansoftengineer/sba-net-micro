@@ -22,7 +22,7 @@ public partial class UserController : AccountBaseController<UserController>
     var result = _mapper.Map<List<InfraUserDtoRead>>(users).ToExtVMList();
     return Ok(result);
   }
-  [HttpPost("[action]/{Id}")]
+  [HttpPost("{Id}")]
   public async Task<IActionResult> Get(string Id)
   {
     var data = _repo.FirstOrDefault(x => x.Id == Id);

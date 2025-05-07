@@ -40,7 +40,7 @@ public class SystemzController : Project_RDS_Controller<SystemzController, Syste
     }
   }
 
-  [HttpPut("[action]/{Id:int}")]
+  [HttpPut("{Id:int}")]
   public async Task<IActionResult> Update(int Id, [FromBody] SystemzDtoCreate data)
   {
     if (Id < 1) return _Res.NotFoundId(Id);

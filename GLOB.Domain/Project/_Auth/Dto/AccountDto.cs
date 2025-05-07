@@ -55,12 +55,6 @@ public class ExternalAuthDto
     public string IdToken { get; set; }  // Token from external provider
 }
 
-public class AssignRoleDto
-{
-    public string UserId { get; set; }
-    public string Role { get; set; }
-}
-
 public class RemoveRoleDto
 {
     public string UserId { get; set; }

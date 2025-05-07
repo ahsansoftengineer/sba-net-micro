@@ -75,7 +75,7 @@ public partial class RoleController : AccountBaseController<RoleController>
     }
   }
   [HttpPost()]
-  public async Task<IActionResult> GetsPaginate(DtoRequestPageNoInclude<InfraRoleDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginate(DtoRequestPageNoInclude req)
   {
     var query = _repo
       .ToExtQueryFilter(req.Filter)

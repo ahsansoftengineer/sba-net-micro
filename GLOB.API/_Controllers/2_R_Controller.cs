@@ -8,7 +8,7 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
 {
 
   // Single, Include
-  [HttpPost("[action]/{Id:int}")]
+  [HttpPost("{Id:int}")]
   public async Task<IActionResult> Get(int Id, [FromBody] DtoRequestGet req)
   {
     return await _repo.ToActionGet(Id, req.Includes);
