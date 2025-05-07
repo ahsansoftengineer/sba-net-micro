@@ -42,7 +42,7 @@ public class _ProjectzLookupzController : API_2_RDS_Controller<_ProjectzLookupzC
     }
   }
 
-  [HttpPut("[action]/{Id:int}")]
+  [HttpPut("{Id:int}")]
   public async Task<IActionResult> Update(int Id, [FromBody] ProjectzLookupDtoCreate data)
   {
     try

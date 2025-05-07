@@ -17,12 +17,12 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
   } 
   protected virtual IRepoGenericz<TEntity> _repo {get; set;} // Will be initialize in Last Child Class
 
-  [HttpDelete("[action]/{Id:int}")]
+  [HttpDelete("{Id:int}")]
   public async Task<IActionResult> Delete(int Id)
   {
     return await _repo.ToActionDelete(_uowInfra, Id);
   }
-  [HttpPatch("[action]/{Id:int}")]
+  [HttpPatch("{Id:int}")]
   public async Task<IActionResult> Status(int Id, [FromBody] DtoRequestStatus req)
   {
     return await _repo.ToActionStatus(_uowInfra, Id, req.Status);

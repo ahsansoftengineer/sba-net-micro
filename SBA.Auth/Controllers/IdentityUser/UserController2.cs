@@ -24,7 +24,7 @@ public partial class UserController
   }
   
 
-  [HttpPut("[action]/{Id}")]
+  [HttpPut("{Id}")]
   public async Task<IActionResult> Update(string Id, [FromBody] UpdateUserDto data)
   {
     if (string.IsNullOrEmpty(Id)) return _Res.NotFoundId(Id);
@@ -46,7 +46,7 @@ public partial class UserController
     }
   }
 
-  [HttpDelete("[action]/{Id}")]
+  [HttpDelete("{Id}")]
   public async Task<IActionResult> Delete(string Id)
   {
     if (Id.IsNullOrEmpty()) return _Res.NotFoundId(Id);
@@ -64,7 +64,7 @@ public partial class UserController
     }
     return NoContent();
   }
-  [HttpPatch("[action]/{Id}")]
+  [HttpPatch("{Id}")]
   public async Task<IActionResult> Status(string Id, [FromBody] DtoRequestStatus req)
   {
     try

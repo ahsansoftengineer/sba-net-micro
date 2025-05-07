@@ -42,7 +42,7 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
     }
   }
 
-  [HttpPut("[action]/{Id:int}")]
+  [HttpPut("{Id:int}")]
   public async Task<IActionResult> Update(int Id, [FromBody] TDtoCreate data)
   {
     try

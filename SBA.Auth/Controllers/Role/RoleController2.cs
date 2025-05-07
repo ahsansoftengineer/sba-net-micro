@@ -33,7 +33,7 @@ public partial class RoleController
     return _Res.BadRequestModel(ModelState);
   }
   
-  [HttpPut("[action]/{Id}")]
+  [HttpPut("{Id}")]
   public async Task<IActionResult> Update(string Id, [FromBody] DtoUpdate dto)
   {
 
@@ -52,7 +52,7 @@ public partial class RoleController
     return _Res.BadRequestModel(ModelState);
   }
   
-  [HttpDelete("[action]/{Id}")]
+  [HttpDelete("{Id}")]
   public async Task<IActionResult> Delete(string Id)
   {
     if (Id.IsNullOrEmpty()) return _Res.NotFoundId(Id);
@@ -70,7 +70,7 @@ public partial class RoleController
     }
     return NoContent();
   }
-  [HttpPatch("[action]/{Id}")]
+  [HttpPatch("{Id}")]
   public async Task<IActionResult> Status(string Id, [FromBody] DtoRequestStatus req)
   {
     try

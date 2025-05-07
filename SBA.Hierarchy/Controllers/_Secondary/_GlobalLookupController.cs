@@ -44,7 +44,7 @@ public class _GlobalLookupController : Project_RDS_Controller<_GlobalLookupContr
     }
   }
 
-  [HttpPut("[action]/{Id:int}")]
+  [HttpPut("{Id:int}")]
   public async Task<IActionResult> Update(int Id, [FromBody] GlobalLookupDtoCreate data)
   {
     try

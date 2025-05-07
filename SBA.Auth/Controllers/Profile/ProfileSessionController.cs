@@ -30,7 +30,7 @@
 
 //     return Ok(sessions);
 //   }
-//   [HttpDelete("[action]/{Id}")]
+//   [HttpDelete("{Id}")]
 //   public async Task<IActionResult> RevokeSession(Guid sessionId)
 //   {
 //     // End a specific session (logout remotely)
