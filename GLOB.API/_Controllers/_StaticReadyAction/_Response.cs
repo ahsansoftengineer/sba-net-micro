@@ -18,7 +18,7 @@ public static class _Res
   }
   public static ObjectResult CatchException(this Exception ex, string methodName)
   {
-    Console.WriteLine(ex.Message, $"Something went wrong in the {methodName}");
+    Console.WriteLine($"Something went wrong in the {methodName}", ex.Message);
     return new ObjectResult("Internal Server Error, Please try again later") { StatusCode = 500 };
   }
 
