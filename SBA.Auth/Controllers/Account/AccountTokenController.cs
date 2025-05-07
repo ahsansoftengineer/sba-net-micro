@@ -1,4 +1,6 @@
+using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
+using GLOB.Infra.Paginate;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
@@ -9,57 +11,49 @@ public partial class AccountController
   [HttpPost()]
   public async Task<IActionResult> Login([FromBody] LoginDto model)
   {
-    try
+    var user = await _userManager.FindByEmailAsync(model.Email);
+    if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
     {
-      var user = await _userManager.FindByEmailAsync(model.Email);
-      if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+      var roles = await _userManager.GetRolesAsync(user);
+
+      string jti = "";
+      var accessToken = _tokenService.GenerateAccessToken(user, roles, out jti);
+      var refreshToken = _tokenService.GenerateRefreshToken();
+
+
+
+      // var accessTokenExpiry = DateTime.UtcNow.AddMinutes(_jwtSettings.AccessTokenExpiryMinutes);
+      var accessTokenExpiry = DateTime.UtcNow.AddHours(_jwtSettings.AccessTokenExpiryHour);
+      var refreshTokenExpiry = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpiryDays);
+
+      string ip = HttpContext.Connection.RemoteIpAddress?.ToString();
+      await _tokenService.SaveRefreshTokenAsync(user.Id, refreshToken, ip, jti);
+
+      return new
       {
-        var roles = await _userManager.GetRolesAsync(user);
-
-        string jti = "";
-        var accessToken = _tokenService.GenerateAccessToken(user, roles, out jti);
-        var refreshToken = _tokenService.GenerateRefreshToken();
-
-
-
-        // var accessTokenExpiry = DateTime.UtcNow.AddMinutes(_jwtSettings.AccessTokenExpiryMinutes);
-        var accessTokenExpiry = DateTime.UtcNow.AddHours(_jwtSettings.AccessTokenExpiryHour);
-        var refreshTokenExpiry = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpiryDays);
-
-        string ip = HttpContext.Connection.RemoteIpAddress?.ToString();
-        await _tokenService.SaveRefreshTokenAsync(user.Id, refreshToken, ip, jti);
-
-        return Ok(new
+        accessToken,
+        refreshToken,
+        expiresIn = _jwtSettings.AccessTokenExpiryHour,
+        // expiresIn = _jwtSettings.AccessTokenExpiryMinutes,
+        accessTokenExpiry = accessTokenExpiry.ToString("o"), // ISO 8601
+        refreshTokenExpiry = refreshTokenExpiry.ToString("o"),
+        tokenType = "Bearer",
+        user = new
         {
-          accessToken,
-          refreshToken,
-          expiresIn = _jwtSettings.AccessTokenExpiryHour,
-          // expiresIn = _jwtSettings.AccessTokenExpiryMinutes,
-          accessTokenExpiry = accessTokenExpiry.ToString("o"), // ISO 8601
-          refreshTokenExpiry = refreshTokenExpiry.ToString("o"),
-          tokenType = "Bearer",
-          user = new
-          {
-            user.Id,
-            user.UserName,
-            user.Email,
-            user.EmailConfirmed,
-            user.PhoneNumber,
-            user.PhoneNumberConfirmed,
-            user.TwoFactorEnabled,
-            roles
-          }
-        });
-      }
-
-      return Unauthorized("Invalid credentials.");
+          user.Id,
+          user.UserName,
+          user.Email,
+          user.EmailConfirmed,
+          user.PhoneNumber,
+          user.PhoneNumberConfirmed,
+          user.TwoFactorEnabled,
+          roles
+        }
+      }.ToExtVMSingle().Ok();
     }
-    catch (Exception ex)
-    {
-      Console.WriteLine(ex.Message);
-      return StatusCode(500, "An error occurred during login.");
-    }
+    return StatusCode(500, "An error occurred during login.");
   }
+
 
 
   // [HttpPost("refresh-token")]

@@ -8,11 +8,11 @@ namespace GLOB.API.Staticz;
 
 public static class _Res
 {
-  public static OkObjectResult Ok(object obj)
+  public static OkObjectResult Ok(this object obj)
   {
     return new OkObjectResult(obj);
   }
-  public static ObjectResult Ok(string msg)
+  public static ObjectResult Ok(this string msg)
   {
     return Ok(new { Message = msg, Status = 200});
   }

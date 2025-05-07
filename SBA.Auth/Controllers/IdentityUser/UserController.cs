@@ -42,32 +42,22 @@ public partial class UserController : AccountBaseController<UserController>
   [HttpPost()]
   public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds<string> req)
   {
-    try
-    {
-      var list = await _repo.Where(x => req.Ids.Contains(x.Id)).ToListAsync();
-      var result = _mapper.Map<List<InfraUserDtoRead>>(list).ToExtVMList();
-      return Ok(result);
-    }
-    catch (Exception ex)
-    {
-      return _Res.CatchException(ex, nameof(GetsByIds));
-    }
+   
+    var list = await _repo.Where(x => req.Ids.Contains(x.Id)).ToListAsync();
+    var result = _mapper.Map<List<InfraUserDtoRead>>(list).ToExtVMList();
+    return Ok(result);
+  
   }
   [HttpPost()]
   public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds<string> req)
   {
-    try
-    {
-      var list = await _repo
-        .Select(x => new { x.Id, x.Name })
-        .Where((x) => req.Ids.Contains(x.Id))
-        .ToDictionaryAsync(x => x.Id, y => new { y.Id, y.Name });
-      return _Res.Ok(list);
-    }
-    catch (Exception ex)
-    {
-      return _Res.CatchException(ex, nameof(GetsByIdsLookup));
-    }
+   
+    var list = await _repo
+      .Select(x => new { x.Id, x.Name })
+      .Where((x) => req.Ids.Contains(x.Id))
+      .ToDictionaryAsync(x => x.Id, y => new { y.Id, y.Name });
+    return _Res.Ok(list);
+   
   }
   
   [HttpPost()]

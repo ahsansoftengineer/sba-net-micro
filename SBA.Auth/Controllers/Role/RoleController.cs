@@ -119,7 +119,7 @@ public partial class RoleController : AccountBaseController<RoleController>
       u.Status
     });
 
-    return _Res.Ok(result.ToExtVMSingle());
+    return _Res.Ok(result.ToExtVMList());
   }
   
   [HttpGet("{userId}")]
@@ -133,9 +133,9 @@ public partial class RoleController : AccountBaseController<RoleController>
 
     return _Res.Ok(new
     {
-      UserId = user.Id,
-      Email = user.Email,
+      user.Id,
+      user.Email,
       Roles = roles
-    });
+    }.ToExtVMSingle());
   }
 }

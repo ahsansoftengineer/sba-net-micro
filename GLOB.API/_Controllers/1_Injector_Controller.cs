@@ -26,10 +26,7 @@ public abstract class API_1_ErrorController<TController> : ControllerBase
     _logger = GetSrvc<ILogger<TController>>();
     _logger.LogWarning("How does Type Works -> "+ this);
   }
-  protected static OkObjectResult Ok(object obj)
-  {
-    return _Res.Ok(obj);
-  }
+
   protected TService GetSrvc<TService>()
     where TService: class
   {

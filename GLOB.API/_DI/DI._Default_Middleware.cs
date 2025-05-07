@@ -13,12 +13,12 @@ public static partial class API_DI_Common
     {
       app.UseDeveloperExceptionPage();
       app.Config_Swagger();
+    } else {
+      app.UseMiddleware<GlobalExceptionMiddleware>();
     }
   }
   public static void Add_API_Default_Middlewares(this IApplicationBuilder app)
   {
-    app.UseMiddleware<GlobalExceptionMiddleware>();
-
     app.Config_DevEnv();
 
     // app.UseHttpsRedirection();
