@@ -20,7 +20,7 @@ public class Startup
   {
     app.Add_API_Default_Middlewares();
     if(!env.IsDevelopment()){
-      app.Seed();
+      app.Seed().GetAwaiter().GetResult();
     }
   }
   public void RunFun()

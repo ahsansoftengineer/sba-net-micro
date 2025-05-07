@@ -1,7 +1,4 @@
-
-using GLOB.API.Config.DI;
-
-namespace GLOB.API;
+namespace GLOB.API.Config;
 // Note: Servicies are required when not in Micro Arch
 // Current IOC Containers of Child Are being Used
 public class Startup
