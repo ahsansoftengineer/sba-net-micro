@@ -14,13 +14,15 @@ public partial class RoleController
   [HttpPost()]
   public async Task<IActionResult> Create([FromBody] DtoCreate role)
   {
-    if(!ModelState.IsValid) return _Res.BadRequestModel(ModelState);
-    if(string.IsNullOrWhiteSpace(role.Name)){
+    if (!ModelState.IsValid) return _Res.BadRequestModel(ModelState);
+    if (string.IsNullOrWhiteSpace(role.Name))
+    {
       return _Res.BadRequestModel("Name", $"Invalid Role");
     }
-    
+
     var exsist = await _roleManager.RoleExistsAsync(role.Name);
-    if(exsist){
+    if (exsist)
+    {
       return _Res.BadRequestModel("Name", $"{role} already exsist");
 
     }
@@ -32,7 +34,7 @@ public partial class RoleController
     if (result.Succeeded) return Ok(rolz.ToExtVMSingle());
     return _Res.BadRequestModel(ModelState);
   }
-  
+
   [HttpPut("{Id}")]
   public async Task<IActionResult> Update(string Id, [FromBody] DtoUpdate dto)
   {
@@ -46,12 +48,13 @@ public partial class RoleController
 
     var result = await _roleManager.UpdateAsync(role);
     if (result.Succeeded) return Ok(role.ToExtVMSingle());
-    result?.Errors?.ForEach(x => {
+    result?.Errors?.ForEach(x =>
+    {
       ModelState.AddModelError(x.Code, x.Description);
     });
     return _Res.BadRequestModel(ModelState);
   }
-  
+
   [HttpDelete("{Id}")]
   public async Task<IActionResult> Delete(string Id)
   {
@@ -76,8 +79,8 @@ public partial class RoleController
     try
     {
       if (Id.IsNullOrEmpty()) return _Res.NotFoundId(Id);
-      if(!Enum.IsDefined(req.Status)) return _Res.InvalidEnums(req.Status.ToString());
-      
+      if (!Enum.IsDefined(req.Status)) return _Res.InvalidEnums(req.Status.ToString());
+
       var item = await _roleManager.FindByIdAsync(Id);
 
       if (item == null) return _Res.NotFoundId(Id);
@@ -94,38 +97,49 @@ public partial class RoleController
   }
 
 
-    // [HttpPost()]
-    // public async Task<IActionResult> AddUserToRole(string email, string role)
-    // {
-    //   var user = await _userManager.FindByEmailAsync(email);
-    //   if(user == null)
-    //   {
-    //     return BadRequest(new {
-    //       error = "User does not exist"
-    //     });
-    //   }
-    //   var rolez = await _roleManager.RoleExistsAsync(role);
-    //   if(!rolez)
-    //   {
-    //     return BadRequest(new {
-    //       error = "Role does not exist"
-    //     });
-    //   }
+  [HttpPost()]
+  public async Task<IActionResult> AddUserToRole([FromBody] AssignRoleToInfraUser dto)
+  {
+    var user = await _userManager.FindByEmailAsync(dto.Email);
+    if (user == null)
+      return _Res.BadRequestModel("Email", "Invalid Email not Exsist");
 
-    //   var result = await _userManager.AddToRoleAsync(user, role);
-    //   if(result.Succeeded)
-    //   {
-    //     return Ok();
-    //   }
-    //   else 
-    //   {
-    //     return BadRequest(new {
-    //       error = "The user was not able to be added to the role"
-    //     });
-    //   }
-    // }
-    // public async Task<IActionResult> GetUserRoles(string email)
-    // {
-    //   return null;
-    // }
+    var rolez = await _roleManager.FindByNameAsync(dto.Role);
+    if (rolez == null)
+      return _Res.BadRequestModel("Role", "Invalid Role not Exsist");
+
+    // Check if user is already in role
+    if (await _userManager.IsInRoleAsync(user, rolez.Name))
+      return _Res.BadRequestModel("Role", $"{user.Email} is already assigned to role {rolez.Name}");
+
+    var result = await _userManager.AddToRoleAsync(user, rolez.Name);
+    if (result.Succeeded)
+    {
+      return _Res.Ok($"{user.Email} has successfully been added to role {rolez.Name}");
+    }
+
+    return _Res.BadRequestModel("Exception", "Something went wrong");
+  }
+  [HttpGet("{role}")]
+  public async Task<IActionResult> GetUserByRole(string role)
+  {
+    var roleExists = await _roleManager.RoleExistsAsync(role);
+    if (!roleExists)
+      return _Res.BadRequestModel("Role", $"Role '{role}' does not exist");
+
+    var usersInRole = await _userManager.GetUsersInRoleAsync(role);
+
+    var result = usersInRole.Select(u => new
+    {
+      u.Id,
+      u.Email,
+      u.UserName,
+      u.Name,
+      u.PhoneNumber,
+      u.Status
+    });
+
+    return _Actionz.Ok(result.ToExtVMSingle());
+  }
+
 }

@@ -24,17 +24,9 @@ public class InfraRole : IdentityRole<string>, IEntityBeta,  IEntityStatus, IEnt
   //   return (Permissions & permission) == permission;
   // }
 }
-public class InfraRoleCreate : DtoCreate
+public class AssignRoleToInfraUser 
 {
+  public string Email { get; set; }
+  public string Role { get; set; }
   
-}
-
-public class InfraRoleUpdate : DtoUpdate
-{
-  
-}
-
-public class InfraRoleDtoSearch : DtoSearch
-{
-
 }
