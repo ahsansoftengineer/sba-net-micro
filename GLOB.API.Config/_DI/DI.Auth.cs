@@ -44,6 +44,7 @@ public class JwtSettings
   public string Issuer { get; set; } // "https://localhost:5802/"
   public string Audience { get; set; } // "https://localhost:5802/"
   public int AccessTokenExpiryMinutes { get; set; } //60
+  public int AccessTokenExpiryHour { get; set; } //1
   public int RefreshTokenExpiryDays { get; set; } //7
   public bool ValidateIssuer { get; set; } = false;
   public bool ValidateAudience { get; set; } = false;
