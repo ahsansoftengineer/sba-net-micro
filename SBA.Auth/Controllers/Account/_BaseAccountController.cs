@@ -16,14 +16,14 @@ public abstract class AccountBaseController<T> : API_1_ErrorController<T>
   protected readonly SignInManager<InfraUser> _signInManager;
   protected readonly TokenService _tokenService;
   protected readonly SmtpEmailSender _emailSender;
-  protected readonly DBCtxIdentity _ctx;
+  protected readonly DBCtxProjectz _ctx;
 
   protected IUOW_Projectz _uowProjectz { get; }
   public AccountBaseController(
     IServiceProvider srvcProvider
   ) : base(srvcProvider)
   {
-    // _ctx = GetSrvc<DBCtxIdentity>();
+    _ctx = GetSrvc<DBCtxProjectz>();
     _uowProjectz = GetSrvc<IUOW_Projectz>();
 
     _userManager = GetSrvc<UserManager<InfraUser>>();
