@@ -10,7 +10,8 @@ public static void Add_API_Default_Srvc(this IServiceCollection srvc, IConfigura
 
     srvc.Config_Controllerz(config);
 
-    srvc.AddAuthentication();
+    // srvc.AddAuthentication();
+    srvc.Config_Authentication_JWT(config);
     srvc.AddAuthorization();
 
     srvc.Config_Swagger(config);

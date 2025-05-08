@@ -1,3 +1,4 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
@@ -34,6 +35,20 @@ public static partial class API_DI_Common
         IssuerSigningKey = jwt.GetSymmetricSecurityKey(),
         ValidateIssuerSigningKey = jwt.ValidateIssuerSigningKey,
       };
+      // options.Events = new JwtBearerEvents
+      // {
+      //   OnTokenValidated = async context =>
+      //   {
+      //     var jti = context.Principal.FindFirst(JwtRegisteredClaimNames.Jti)?.Value;
+      //     var db = context.HttpContext.RequestServices.GetRequiredService<DBCtxProjectz>();
+      //     var isRevoked = await db.RevokedTokens.AnyAsync(t => t.Jti == jti);
+
+      //     if (isRevoked)
+      //     {
+      //         context.Fail("Access token has been revoked.");
+      //     }
+      //   }
+      // };
     });
   }
 }
