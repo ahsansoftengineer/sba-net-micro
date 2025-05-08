@@ -24,6 +24,10 @@ public partial class AccountController
   [HttpPost()]
   public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest request)
   {
+    // Claim vs Principal
+    // Claim = A claim is a key-value pair that represents information about the user.
+    // Principal = A ClaimsPrincipal represents the current user.
+    // ClaimsPrincipal ⟶ contains → ClaimsIdentity ⟶ contains → Claims
     var principal = _tokenService.GetPrincipalFromExpiredToken(request.AccessToken);
     if (principal == null)
       return _Res.BadRequestModel("AccessToken","Invalid Access Token");
