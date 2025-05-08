@@ -1,7 +1,5 @@
-using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace GLOB.API.Config.DI;
@@ -10,7 +8,8 @@ public static partial class API_DI_Common
   public static void Config_Authentication_JWT(this IServiceCollection srvc, IConfiguration config)
   {
     
-    var jwt = config.Get<IOptions<JwtSettings>>().Value;
+    var jwt = new JwtSettings();
+    config.GetSection("JwtSettings").Bind(jwt);
 
     // srvc.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
     srvc.AddAuthentication(options =>
