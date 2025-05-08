@@ -1,7 +1,9 @@
+using System.Security.Claims;
 using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
 using GLOB.Infra.Paginate;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Auth.Controllers;
 
@@ -56,7 +58,7 @@ public partial class AccountController
 
 
 
-  // [HttpPost("refresh-token")]
+  // [HttpPost()]
   // public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest request)
   // {
   //   var principal = _tokenService.GetPrincipalFromExpiredToken(request.AccessToken);
@@ -66,9 +68,9 @@ public partial class AccountController
   //   var userId = principal.FindFirstValue(ClaimTypes.NameIdentifier);
   //   var user = await _userManager.FindByIdAsync(userId);
   //   if (user == null)
-  //     return BadRequest("User not found.");
+  //     return _Res.BadRequestzId("",userId);
 
-  //   var storedToken = await dbcontext.RefreshTokens
+  //   var storedToken = await _ctx.RefreshTokens
   //       .Where(rt => rt.InfraUserId == userId
   //         && rt.Token == request.RefreshToken
   //         && !rt.IsRevoked && rt.ExpiresAt > DateTime.UtcNow)
