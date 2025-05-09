@@ -1,7 +1,6 @@
 using System.Security.Claims;
 using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
-using GLOB.Infra.Paginate;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -53,8 +52,7 @@ public partial class AccountController
 
 
   [HttpPost]
-  // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-  [Authorize]
+  [Authorize] // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
   public async Task<IActionResult> TokenRevoke([FromBody] RevokeTokenRequest request)
   {
     // The purpose of RevokeToken is to invalidate a refresh token so it can no longer be 
@@ -90,44 +88,4 @@ public partial class AccountController
     return _Res.Ok("Refresh token revoked successfully.");
   }
 
-  private async Task<IActionResult> GenerateTokensAndUserClaims(InfraUser user)
-  {
-    var roles = await _userManager.GetRolesAsync(user);
-
-    string jti;
-    var accessToken = _tokenService.GenerateAccessToken(user, roles, out jti);
-    var refreshToken = _tokenService.GenerateRefreshToken();
-
-
-
-    // var accessTokenExpiry = DateTime.UtcNow.AddMinutes(_jwtSettings.AccessTokenExpiryMinutes);
-    var accessTokenExpiry = DateTime.UtcNow.AddHours(_jwtSettings.AccessTokenExpiryHour);
-    var refreshTokenExpiry = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpiryDays);
-
-    string ip = HttpContext.Connection.RemoteIpAddress?.ToString();
-    await _tokenService.SaveRefreshTokenAsync(user.Id, refreshToken, ip, jti);
-
-    return new
-    {
-      accessToken,
-      refreshToken,
-      expiresIn = _jwtSettings.AccessTokenExpiryHour,
-      // expiresIn = _jwtSettings.AccessTokenExpiryMinutes,
-      accessTokenExpiry = accessTokenExpiry.ToString("o"), // ISO 8601
-      refreshTokenExpiry = refreshTokenExpiry.ToString("o"),
-      tokenType = "Bearer",
-      user = new
-      {
-        user.Id,
-        user.UserName,
-        user.Email,
-        user.EmailConfirmed,
-        user.PhoneNumber,
-        user.PhoneNumberConfirmed,
-        user.TwoFactorEnabled,
-        jti,
-        roles
-      }
-    }.ToExtVMSingle().Ok();
-  }
 }

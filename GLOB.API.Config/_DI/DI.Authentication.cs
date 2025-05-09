@@ -54,11 +54,13 @@ public static partial class DI_API_Config
         }
       };
     });
-    // Add This for Cookie based Authorization
-    // .AddCookie("Identity.Application", options =>
+    // .AddCookie("AuthorizationCookieScheme", options =>
     // {
-    //     options.LoginPath = "/Account/Login"; // Specify your login path if required
-    //     // Additional cookie configuration (cookie expiration, etc.)
+    //   options.LoginPath = "/api/auth/v1/account/login"; // Specify your login path if required
+    //   options.Cookie.Name = "AuthorizationCookie";
+    //   options.AccessDeniedPath = "/api/auth/v1/account/forbidden";
+    //   options.ExpireTimeSpan = TimeSpan.FromMinutes(jwt.AccessTokenExpiryMinutes);
+    //   options.SlidingExpiration = true;
     // });
 
   }
@@ -93,7 +95,7 @@ public class JwtSettings
   public string SecretKey { get; set; } //"YourSuperStrongSecretKey_ReplaceThis"
   public string Issuer { get; set; } // "https://localhost:5802/"
   public string Audience { get; set; } // "https://localhost:5802/"
-  public int AccessTokenExpiryMinutes { get; set; } //60
+  public int AccessTokenExpiryMinutes { get; set; } //60 -> 15
   public int AccessTokenExpiryHour { get; set; } //1
   public int RefreshTokenExpiryDays { get; set; } //7
   public bool ValidateIssuer { get; set; }// = true;
