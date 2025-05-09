@@ -1,6 +1,6 @@
 using GLOB.API.Config.DI;
 
-namespace GLOB.API.DI;
+namespace SBA.Projectz.DI;
 public static partial class DI_Projectz
 {
 

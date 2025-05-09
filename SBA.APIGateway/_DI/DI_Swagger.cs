@@ -3,7 +3,7 @@ using GLOB.API.Config.DI;
 using Microsoft.Extensions.Options;
 using SBA.APIGateway.Model;
 
-namespace GLOB.API.DI;
+namespace SBA.Projectz.DI;
 public static partial class DI_Projectz
 {
   // http://localhost:5806/api/Gateway/v1/swagger/index.html
