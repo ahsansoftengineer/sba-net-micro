@@ -6,7 +6,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace GLOB.API.Config.DI;
-public static partial class API_DI_Common
+public static partial class DI_API_Config
 {
   // http://localhost:5806/api/Hierarchy/v1/swagger/index.html
   // http://localhost:5806/api/Hierarchy/v1/swagger/v1/swagger.json

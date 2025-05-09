@@ -1,108 +1,91 @@
+using System.Security.Claims;
+using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Auth.Controllers;
 
 public partial class AccountController
 {
 
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> Login([FromBody] LoginDto model)
   {
-    try
+    var user = await _userManager.FindByEmailAsync(model.Email);
+    if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
     {
-      var user = await _userManager.FindByEmailAsync(model.Email);
-      if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
-      {
-        var roles = await _userManager.GetRolesAsync(user);
-
-        string jti = "";
-        var accessToken = _tokenService.GenerateAccessToken(user, roles, out jti);
-        var refreshToken = _tokenService.GenerateRefreshToken();
-
-
-
-        // var accessTokenExpiry = DateTime.UtcNow.AddMinutes(_jwtSettings.AccessTokenExpiryMinutes);
-        var accessTokenExpiry = DateTime.UtcNow.AddHours(_jwtSettings.AccessTokenExpiryHour);
-        var refreshTokenExpiry = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpiryDays);
-
-        string ip = HttpContext.Connection.RemoteIpAddress?.ToString();
-        await _tokenService.SaveRefreshTokenAsync(user.Id, refreshToken, ip, jti);
-
-        return Ok(new
-        {
-          accessToken,
-          refreshToken,
-          expiresIn = _jwtSettings.AccessTokenExpiryHour,
-          // expiresIn = _jwtSettings.AccessTokenExpiryMinutes,
-          accessTokenExpiry = accessTokenExpiry.ToString("o"), // ISO 8601
-          refreshTokenExpiry = refreshTokenExpiry.ToString("o"),
-          tokenType = "Bearer",
-          user = new
-          {
-            user.Id,
-            user.UserName,
-            user.Email,
-            user.EmailConfirmed,
-            user.PhoneNumber,
-            user.PhoneNumberConfirmed,
-            user.TwoFactorEnabled,
-            roles
-          }
-        });
-      }
-
-      return Unauthorized("Invalid credentials.");
+      return await GenerateTokensAndUserClaims(user);
     }
-    catch (Exception ex)
-    {
-      Console.WriteLine(ex.Message);
-      return StatusCode(500, "An error occurred during login.");
-    }
+    return StatusCode(500, "An error occurred during login.");
+  }
+
+  [HttpPost]
+  public async Task<IActionResult> TokenRefresh([FromBody] RefreshTokenRequest request)
+  {
+    // Refresh Token is Used when the AccessToken expired and user not has to enter creadential again
+    // Claim vs Principal
+    // Claim = A claim is a key-value pair that represents information about the user.
+    // Principal = A ClaimsPrincipal represents the current user.
+    // ClaimsPrincipal ⟶ contains → ClaimsIdentity ⟶ contains → Claims
+    var principal = _tokenService.GetPrincipalFromExpiredToken(request.AccessToken);
+    if (principal == null)
+      return _Res.BadRequestModel("AccessToken", "Invalid Access Token");
+
+    var userId = principal.FindFirstValue(ClaimTypes.NameIdentifier);
+    var user = await _userManager.FindByIdAsync(userId);
+    if (user == null)
+      return _Res.BadRequestModel("AccessToken", "Invalid Access Token");
+
+    var storedToken = await _ctx.RefreshTokens
+        .Where(rt => rt.InfraUserId == userId
+          && rt.Token == request.RefreshToken
+          && !rt.IsRevoked && rt.ExpiresAt > DateTime.UtcNow)
+        .FirstOrDefaultAsync();
+
+    if (storedToken == null)
+      return _Res.BadRequestModel("AccessToken", "Invalid / Expired Refresh Token");
+
+    return await GenerateTokensAndUserClaims(user);
   }
 
 
-  // [HttpPost("refresh-token")]
-  // public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest request)
-  // {
-  //   var principal = _tokenService.GetPrincipalFromExpiredToken(request.AccessToken);
-  //   if (principal == null)
-  //     return BadRequest("Invalid access token.");
+  [HttpPost]
+  [Authorize] // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+  public async Task<IActionResult> TokenRevoke([FromBody] RevokeTokenRequest request)
+  {
+    // The purpose of RevokeToken is to invalidate a refresh token so it can no longer be 
+    // used to generate new access tokens — typically done on logout or when a token is suspected to be compromised.  
+    if (string.IsNullOrWhiteSpace(request.RefreshToken))
+      return BadRequest("Refresh token is required.");
 
-  //   var userId = principal.FindFirstValue(ClaimTypes.NameIdentifier);
-  //   var user = await _userManager.FindByIdAsync(userId);
-  //   if (user == null)
-  //     return BadRequest("User not found.");
+    var storedToken = await _ctx.RefreshTokens
+        .Include(rt => rt.InfraUser)
+        .FirstOrDefaultAsync(rt => rt.Token == request.RefreshToken);
 
-  //   var storedToken = await dbcontext.RefreshTokens
-  //       .Where(rt => rt.InfraUserId == userId
-  //         && rt.Token == request.RefreshToken
-  //         && !rt.IsRevoked && rt.ExpiresAt > DateTime.UtcNow)
-  //       .FirstOrDefaultAsync();
+    if (storedToken == null)
+      return _Res.BadRequestModel("RefreshToken", "Token does not exist.");
 
-  //   if (storedToken == null)
-  //     return Unauthorized("Invalid or expired refresh token.");
+    if (storedToken.IsRevoked)
+      return _Res.BadRequestModel("RefreshToken", "Token has already been revoked.");
 
-  //   // Optional: revoke old token if using rotation
-  //   storedToken.IsRevoked = true;
+    if (storedToken.ExpiresAt < DateTime.UtcNow)
+      return _Res.BadRequestModel("RefreshToken", "Token has already expired.");
 
-  //   var roles = await _userManager.GetRolesAsync(user);
-  //   var newAccessToken = _tokenService.GenerateAccessToken(user, roles);
-  //   var newRefreshToken = _tokenService.GenerateRefreshToken();
-  //   var refreshExpiry = DateTime.UtcNow.AddDays(7);
+    // Optionally: only allow the currently authenticated user to revoke their token
+    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    if (storedToken.InfraUserId != currentUserId)
+      return _Res.BadRequestModel("RefreshToken", "You do not own this token.");
+    // return Forbid("You do not own this token.");
 
-  //   string ip = HttpContext.Connection.RemoteIpAddress?.ToString();
+    storedToken.IsRevoked = true;
+    storedToken.RevokedAt = DateTime.UtcNow;
+    storedToken.CreatedByIp = HttpContext.Connection.RemoteIpAddress?.ToString();
 
-  //   await _tokenService.SaveRefreshTokenAsync(user.Id, newRefreshToken, ip);
+    await _ctx.SaveChangesAsync();
 
-  //   await _uowProjectz.Save();
+    return _Res.Ok("Refresh token revoked successfully.");
+  }
 
-  //   return Ok(new
-  //   {
-  //     accessToken = newAccessToken,
-  //     refreshToken = newRefreshToken,
-  //     expiresIn = 3600,
-  //     tokenType = "Bearer"
-  //   });
-  // }
 }

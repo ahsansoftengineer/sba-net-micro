@@ -15,7 +15,7 @@ public partial class UserController : AccountBaseController<UserController>
   {
     _repo = _userManager.Users;
   }
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> Gets()
   {
     var users = _repo.ToList();
@@ -30,7 +30,7 @@ public partial class UserController : AccountBaseController<UserController>
     return Ok(result);
   }
   // List, Group
-  [HttpGet()]
+  [HttpGet]
   public async Task<IActionResult> GetsLookup()
   {
     var result = await _repo.Select(x => new { x.Id, x.Name })
@@ -39,38 +39,28 @@ public partial class UserController : AccountBaseController<UserController>
   }
 
   // List, Filter By Ids
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds<string> req)
   {
-    try
-    {
-      var list = await _repo.Where(x => req.Ids.Contains(x.Id)).ToListAsync();
-      var result = _mapper.Map<List<InfraUserDtoRead>>(list).ToExtVMList();
-      return Ok(result);
-    }
-    catch (Exception ex)
-    {
-      return _Res.CatchException(ex, nameof(GetsByIds));
-    }
+   
+    var list = await _repo.Where(x => req.Ids.Contains(x.Id)).ToListAsync();
+    var result = _mapper.Map<List<InfraUserDtoRead>>(list).ToExtVMList();
+    return Ok(result);
+  
   }
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds<string> req)
   {
-    try
-    {
-      var list = await _repo
-        .Select(x => new { x.Id, x.Name })
-        .Where((x) => req.Ids.Contains(x.Id))
-        .ToDictionaryAsync(x => x.Id, y => new { y.Id, y.Name });
-      return _Res.Ok(list);
-    }
-    catch (Exception ex)
-    {
-      return _Res.CatchException(ex, nameof(GetsByIdsLookup));
-    }
+   
+    var list = await _repo
+      .Select(x => new { x.Id, x.Name })
+      .Where((x) => req.Ids.Contains(x.Id))
+      .ToDictionaryAsync(x => x.Id, y => new { y.Id, y.Name });
+    return _Res.Ok(list);
+   
   }
   
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> GetsPaginate(DtoRequestPage<DtoSearch?> req)
   {
     var query = _repo
@@ -90,14 +80,14 @@ public partial class UserController : AccountBaseController<UserController>
     return Ok(result);
   }
 
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<DtoSearch?> req)
   {
     var list = await _repo.ToExtVMPageOptionsNoTrack<InfraUser, string>(req);
     return Ok(list);
   }
 
-  // [HttpGet()]
+  // [HttpGet]
   // public async Task<IActionResult> GetsPaginate(DtoRequestPage<InfraUserDtoSearch> req)
   // {
   //   var query = _userManager.Users.ToExtQueryFilterSortInclude(req);
@@ -106,7 +96,7 @@ public partial class UserController : AccountBaseController<UserController>
   //   return await result.GetsPaginate(req);
   // }
 
-  // [HttpGet()]
+  // [HttpGet]
   // public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<InfraUser> req)
   // {
   //   IQueryable<InfraUser> query = _userManager.Users;

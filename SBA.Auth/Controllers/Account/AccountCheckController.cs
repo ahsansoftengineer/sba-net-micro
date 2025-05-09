@@ -1,0 +1,81 @@
+using System.Security.Claims;
+using GLOB.API.Staticz;
+using GLOB.Domain.Auth;
+using GLOB.Infra.Paginate;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace SBA.Auth.Controllers;
+
+public partial class AccountController
+{
+  [HttpPost]
+  [Authorize(AuthenticationSchemes = "AuthorizationCookieScheme")]
+  public async Task<IActionResult> CheckSchemeCookie()
+  {
+    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    return _Res.Ok($"Current User Id {currentUserId} Cookie Based Token Working");
+  }
+
+  [HttpPost] [Authorize]
+  public async Task<IActionResult> CheckLogin()
+  {
+    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    return _Res.Ok($"Current User Id {currentUserId} Check Login");
+  }
+
+  [HttpPost] [Authorize(Policy = "Admin")]
+  public async Task<IActionResult> CheckPolicyAdmin()
+  {
+    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    return _Res.Ok($"Current User Id {currentUserId} IsAdmin {User.IsInRole("Admin")}");
+  }
+
+  [HttpPost] [Authorize(Policy = "Customer")]
+  public async Task<IActionResult> CheckCustomer()
+  {
+    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    return _Res.Ok($"Current User Id {currentUserId} IsCustomer {User.IsInRole("Customer")}");
+  }
+
+  private async Task<IActionResult> GenerateTokensAndUserClaims(InfraUser user)
+  {
+    var roles = await _userManager.GetRolesAsync(user);
+
+    string jti;
+    var accessToken = _tokenService.GenerateAccessToken(user, roles, out jti);
+    var refreshToken = _tokenService.GenerateRefreshToken();
+
+
+
+    var accessTokenExpiry = DateTime.UtcNow.AddMinutes(_jwtSettings.AccessTokenExpiryMinutes);
+    // var accessTokenExpiry = DateTime.UtcNow.AddHours(_jwtSettings.AccessTokenExpiryHour);
+    var refreshTokenExpiry = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpiryDays);
+
+    string ip = HttpContext.Connection.RemoteIpAddress?.ToString();
+    await _tokenService.SaveRefreshTokenAsync(user.Id, refreshToken, ip, jti);
+
+    return new
+    {
+      accessToken,
+      refreshToken,
+      // expiresIn = _jwtSettings.AccessTokenExpiryHour,
+      expiresIn = _jwtSettings.AccessTokenExpiryMinutes,
+      accessTokenExpiry = accessTokenExpiry.ToString("o"), // ISO 8601
+      refreshTokenExpiry = refreshTokenExpiry.ToString("o"),
+      tokenType = "Bearer",
+      user = new
+      {
+        user.Id,
+        user.UserName,
+        user.Email,
+        user.EmailConfirmed,
+        user.PhoneNumber,
+        user.PhoneNumberConfirmed,
+        user.TwoFactorEnabled,
+        jti,
+        roles
+      }
+    }.ToExtVMSingle().Ok();
+  }
+}

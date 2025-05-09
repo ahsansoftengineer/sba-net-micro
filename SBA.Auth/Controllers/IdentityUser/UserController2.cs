@@ -8,8 +8,8 @@ namespace SBA.Auth.Controllers;
 
 public partial class UserController
 {
-  
-  [HttpPost()]
+
+  [HttpPost]
   public async Task<IActionResult> Create([FromBody] RegisterDto model)
   {
     InfraUser user = MapUser(model);
@@ -22,28 +22,23 @@ public partial class UserController
 
     return BadRequest(result.Errors);
   }
-  
+
 
   [HttpPut("{Id}")]
   public async Task<IActionResult> Update(string Id, [FromBody] UpdateUserDto data)
   {
     if (string.IsNullOrEmpty(Id)) return _Res.NotFoundId(Id);
-    try
-    {
-      var item = await _userManager.FindByIdAsync(Id);
 
-      if (item == null) return _Res.NotFoundId(Id);
-      item.Name = data.FullName;
-      item.PhoneNumber = data.PhoneNumber;
+    var item = await _userManager.FindByIdAsync(Id);
 
-      var result = await _userManager.UpdateAsync(item);
-      await _uowInfra.Save();
-      return Ok(result);
-    }
-    catch (Exception ex)
-    {
-      return _Res.CatchException(ex, nameof(Update));
-    }
+    if (item == null) return _Res.NotFoundId(Id);
+    item.Name = data.FullName;
+    item.PhoneNumber = data.PhoneNumber;
+
+    var result = await _userManager.UpdateAsync(item);
+    await _uowInfra.Save();
+    return Ok(result);
+
   }
 
   [HttpDelete("{Id}")]
@@ -52,41 +47,29 @@ public partial class UserController
     if (Id.IsNullOrEmpty()) return _Res.NotFoundId(Id);
 
     var item = await _userManager.FindByIdAsync(Id);
-    if (item == null) return _Res.NotFoundId(Id);
+    // if (item == null) return _Res.NotFoundId(Id);
 
-    try
-    {
-      await _userManager.DeleteAsync(item);
-    }
-    catch (Exception ex)
-    {
-      return _Res.CatchException(ex, nameof(Delete));
-    }
+    await _userManager.DeleteAsync(item);
     return NoContent();
   }
   [HttpPatch("{Id}")]
   public async Task<IActionResult> Status(string Id, [FromBody] DtoRequestStatus req)
   {
-    try
-    {
-      if (Id.IsNullOrEmpty()) return _Res.NotFoundId(Id);
-      if(!Enum.IsDefined(req.Status)) return _Res.InvalidEnums(req.Status.ToString());
-      
-      var item = await _userManager.FindByIdAsync(Id);
 
-      if (item == null) return _Res.NotFoundId(Id);
+    if (Id.IsNullOrEmpty()) return _Res.NotFoundId(Id);
+    if (!Enum.IsDefined(req.Status)) return _Res.InvalidEnums(req.Status.ToString());
 
-      item.Status = req.Status;
-      await _userManager.UpdateAsync(item);
-      await _uowProjectz.Save();
-      
-      var result = _mapper.Map<InfraUserDtoRead>(item);
-      return Ok(result);
-    }
-    catch (Exception ex)
-    {
-      return _Res.CatchException(ex, nameof(Status));
-    }
+    var item = await _userManager.FindByIdAsync(Id);
+
+    if (item == null) return _Res.NotFoundId(Id);
+
+    item.Status = req.Status;
+    await _userManager.UpdateAsync(item);
+    await _uowProjectz.Save();
+
+    var result = _mapper.Map<InfraUserDtoRead>(item);
+    return Ok(result);
+
   }
   internal static InfraUser MapUser(RegisterDto model)
   {

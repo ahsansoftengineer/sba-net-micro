@@ -5,19 +5,17 @@
 // namespace SBA.Auth.Controllers;
 // public partial class ProfileController
 // {
-//   [HttpPost()]
-//   [Authorize]
+//   [HttpPost]
 //   public async Task<IActionResult> Enable2FA()
 //   {
 //     return null;
 //   }
-//   [HttpPost()]
+//   [HttpPost]
 //   public async Task<IActionResult> Verify2FA([FromBody] TwoFactorDto model)
 //   {
 //     return null;
 //   }
-//   [HttpPost()]
-//   [Authorize]
+//   [HttpPost]
 //   public async Task<IActionResult> Disable2FA()
 //   {
 //     return null;

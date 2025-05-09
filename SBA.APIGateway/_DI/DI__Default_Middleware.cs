@@ -1,8 +1,8 @@
 using GLOB.API.Config.Configz;
 using GLOB.API.Config.DI;
 
-namespace GLOB.API.DI;
-public static partial class API_DI_Common
+namespace SBA.Projectz.DI;
+public static partial class DI_Projectz
 {
   private static void Config_DevEnv(this IApplicationBuilder app)
   {

@@ -16,17 +16,20 @@ public abstract class AccountBaseController<T> : API_1_ErrorController<T>
   protected readonly SignInManager<InfraUser> _signInManager;
   protected readonly TokenService _tokenService;
   protected readonly SmtpEmailSender _emailSender;
+  protected readonly DBCtxProjectz _ctx;
 
   protected IUOW_Projectz _uowProjectz { get; }
   public AccountBaseController(
     IServiceProvider srvcProvider
   ) : base(srvcProvider)
   {
+    _ctx = GetSrvc<DBCtxProjectz>();
+    _uowProjectz = GetSrvc<IUOW_Projectz>();
+
     _userManager = GetSrvc<UserManager<InfraUser>>();
     _signInManager = GetSrvc<SignInManager<InfraUser>>();;
-    _uowProjectz = GetSrvc<IUOW_Projectz>();
-    _emailSender = GetSrvc<SmtpEmailSender>();
     _tokenService = GetSrvc<TokenService>();
+    _emailSender = GetSrvc<SmtpEmailSender>();
     
     _jwtSettings = GetSrvc<IOptions<JwtSettings>>().Value;
   }

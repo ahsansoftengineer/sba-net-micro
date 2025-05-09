@@ -12,7 +12,7 @@ public partial class AccountController : AccountBaseController<AccountController
   {
   }
 
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> Register([FromBody] RegisterDto model) 
   {
     var user = UserController.MapUser(model);
@@ -26,30 +26,10 @@ public partial class AccountController : AccountBaseController<AccountController
     return BadRequest(result.Errors);
   }
   
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> Logout()
   {
     await _signInManager.SignOutAsync();
     return Ok(new { message = "Logged out successfully" });
-  }
-  [HttpPost()]
-  public async Task<IActionResult> CheckLogin()
-  {
-    return null;
-  }
-  [HttpPost()]
-  public async Task<IActionResult> CheckHasRole()
-  {
-    return null;
-  }
-  [HttpPost()]
-  public async Task<IActionResult> CheckHasClaims()
-  {
-    return null;
-  }
-  [HttpPost()]
-  public async Task<IActionResult> CheckHasPermission()
-  {
-    return null;
   }
 }

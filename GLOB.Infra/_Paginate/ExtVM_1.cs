@@ -6,19 +6,17 @@ namespace GLOB.Infra.Paginate;
 
 public static partial class ExtResponse
 {
-  public static VMSingle<TEntity> ToExtVMSingle<TEntity>(this TEntity? item)
-  where TEntity : class
+  public static object ToExtVMSingle(this object? item)
   {
-    return new () {
+    return new {
       Record = item,
       Status = HttpStatusCode.OK
     };
   }
-  // Maybe this doesn't reqired in future
-  public static VMList<TEntity> ToExtVMList<TEntity>(this IList<TEntity>? list)
+  public static object ToExtVMList(this object? list)
   {
-    return new() {
-      Records = list ?? new List<TEntity>(),
+    return new {
+      Records = list,
       Status = HttpStatusCode.OK
     };
   }

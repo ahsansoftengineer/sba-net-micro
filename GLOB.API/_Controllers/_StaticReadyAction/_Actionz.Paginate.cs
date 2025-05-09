@@ -10,30 +10,16 @@ public static partial class _Actionz
     where TEntity : class, IEntityAlpha
     where TDtoSearch: class, IDtoSearch
   {
-    try
-    {
       var data = await repo.GetsPaginate(req);
-      return Ok(data);
-    }
-    catch (Exception ex)
-    {
-      return _Res.CatchException(ex, nameof(ToActionGetsPaginate));
-    }
+      return data.Ok();
   }
 
   public async static Task<IActionResult> ToActionGetsPaginateOptions<TEntity, TDtoSearch>(this IRepoGenericz<TEntity> repo, DtoRequestPageOption<TDtoSearch?> req)
     where TEntity : class, IEntityAlpha
     where TDtoSearch: class, IDtoSearch
   {
-    try
-    {
       var data = await repo.GetsPaginateOptions(req);
-      return Ok(data);
-    }
-    catch (Exception ex)
-    {
-      return _Res.CatchException(ex, nameof(ToActionGetsPaginateOptions));
-    }
+      return data.Ok();
   }
 
 

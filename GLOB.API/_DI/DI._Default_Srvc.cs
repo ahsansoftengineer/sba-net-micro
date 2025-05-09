@@ -1,8 +1,7 @@
-
 using GLOB.API.Config.DI;
 
 namespace GLOB.API.DI;
-public static partial class API_DI_Common
+public static partial class DI_API
 {
 public static void Add_API_Default_Srvc(this IServiceCollection srvc, IConfiguration config)
 {
@@ -10,8 +9,8 @@ public static void Add_API_Default_Srvc(this IServiceCollection srvc, IConfigura
 
     srvc.Config_Controllerz(config);
 
-    srvc.AddAuthentication();
-    srvc.AddAuthorization();
+    srvc.Config_Authentication_JWT(config);
+    srvc.Config_Authorization_JWT(config);
 
     srvc.Config_Swagger(config);
     srvc.Config_Cors();

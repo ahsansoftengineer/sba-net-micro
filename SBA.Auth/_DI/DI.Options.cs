@@ -3,7 +3,7 @@ using SBA.Auth.Services;
 using GLOB.API.Config.DI;
 
 namespace SBA.Projectz.DI;
-public static partial class Projectz_DI
+public static partial class DI_Projectz
 {
   public static void Config_Options(this IServiceCollection srvc, IConfiguration config)
   {

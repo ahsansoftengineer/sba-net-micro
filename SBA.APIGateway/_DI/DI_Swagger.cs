@@ -2,10 +2,9 @@ using GLOB.API.Config.Configz;
 using GLOB.API.Config.DI;
 using Microsoft.Extensions.Options;
 using SBA.APIGateway.Model;
-using Swashbuckle.AspNetCore.SwaggerUI;
 
-namespace GLOB.API.DI;
-public static partial class API_DI_Common
+namespace SBA.Projectz.DI;
+public static partial class DI_Projectz
 {
   // http://localhost:5806/api/Gateway/v1/swagger/index.html
   // http://localhost:5806/api/Gateway/v1/swagger/v1/swagger.json

@@ -7,6 +7,5 @@ public class _GlobalLookupBaseController  : Projectz_Default_Controller<_GlobalL
   public _GlobalLookupBaseController (IServiceProvider srvcProvider) : base(srvcProvider)
   {
     _repo = _uowProjectz.GlobalLookupBases;
-    Console.WriteLine("---> working!!! ");
   }
 }

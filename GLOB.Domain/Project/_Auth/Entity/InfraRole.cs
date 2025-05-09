@@ -7,7 +7,9 @@ namespace GLOB.Domain.Auth;
 public class InfraRole : IdentityRole<string>, IEntityBeta,  IEntityStatus, IEntityAlpha<string>
 {
   // public Permission Permissions { get; set; }
+  #nullable disable
   public override string Name { get; set; }
+  #nullable restore
   public Status? Status { get; set; } = Constantz.Status;
   public DateTimeOffset? CreatedAt { get; set; } = Constantz.Date;
   public DateTimeOffset? UpdatedAt { get; set; } = Constantz.Date;

@@ -1,18 +1,6 @@
 using System.Net;
 
 namespace GLOB.Domain.Base;
-
-public class VMSingle<T>
-{
-  public T? Record { get; set; }
-  public HttpStatusCode Status { get; set; }
-}
-public class VMList<T>
-{
-  public IList<T>? Records { get; set; }
-  public HttpStatusCode Status { get; set; }
-}
-
 public class VMPaginate<T> 
 {
   public List<T> Records { get; set; }
