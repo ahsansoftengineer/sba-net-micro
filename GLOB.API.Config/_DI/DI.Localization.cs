@@ -1,7 +1,7 @@
 using GLOB.API.Config.Configz;
 
 namespace GLOB.API.Config.DI;
-public static partial class API_DI_Common
+public static partial class DI_API_Config
 {
 
   public static void Config_Localization(this IApplicationBuilder app)

@@ -49,7 +49,6 @@
 //   }
 
 //   [HttpPost()]
-//   [Authorize]
 //   public async Task<IActionResult> PasswordChange([FromBody] ChangePasswordDto model)
 //   {
 //     if (model.NewPassword != model.ConfirmPassword)

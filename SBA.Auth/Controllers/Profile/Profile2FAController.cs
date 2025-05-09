@@ -6,7 +6,6 @@
 // public partial class ProfileController
 // {
 //   [HttpPost()]
-//   [Authorize]
 //   public async Task<IActionResult> Enable2FA()
 //   {
 //     return null;
@@ -17,7 +16,6 @@
 //     return null;
 //   }
 //   [HttpPost()]
-//   [Authorize]
 //   public async Task<IActionResult> Disable2FA()
 //   {
 //     return null;

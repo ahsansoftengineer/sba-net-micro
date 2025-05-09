@@ -7,7 +7,7 @@ using GLOB.Infra.DI;
 using GLOB.API.DI;
 
 namespace SBA.Projectz.DI;
-public static partial class Projectz_DI
+public static partial class DI_Projectz
 {
   public static void Add_Projectz_Srvc(this IServiceCollection srvc, IConfiguration config)
   {

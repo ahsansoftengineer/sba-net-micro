@@ -1,8 +1,7 @@
-
 using GLOB.API.Config.DI;
 
 namespace GLOB.API.DI;
-public static partial class API_DI_Common
+public static partial class DI_Projectz
 {
 
   public static void Add_API_Default_Srvc(this IServiceCollection srvc, IConfiguration config)

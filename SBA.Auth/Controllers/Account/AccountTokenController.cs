@@ -53,7 +53,7 @@ public partial class AccountController
 
   // The purpose of RevokeToken is to invalidate a refresh token so it can no longer be 
   // used to generate new access tokens — typically done on logout or when a token is suspected to be compromised.
-  // [Authorize]
+  [Authorize]
   [HttpPost()]
   public async Task<IActionResult> TokenRevoke([FromBody] RevokeTokenRequest request)
   {

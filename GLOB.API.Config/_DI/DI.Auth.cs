@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
 namespace GLOB.API.Config.DI;
-public static partial class API_DI_Common
+public static partial class DI_API_Config
 {
   public static void Config_Authentication_JWT(this IServiceCollection srvc, IConfiguration config)
   {
@@ -16,7 +16,7 @@ public static partial class API_DI_Common
     {
       options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
       options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-      options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+      // options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
     })
     .AddJwtBearer(options =>
     {
@@ -24,8 +24,8 @@ public static partial class API_DI_Common
       options.RequireHttpsMetadata = false;
       options.TokenValidationParameters = new TokenValidationParameters()
       {
-        ValidIssuer = jwt.Issuer,
-        ValidAudience = jwt.Audience,
+        // ValidIssuer = jwt.Issuer,
+        // ValidAudience = jwt.Audience,
 
         ValidateIssuer = jwt.ValidateIssuer,
         ValidateLifetime = jwt.ValidateLifetime,
@@ -33,6 +33,17 @@ public static partial class API_DI_Common
 
         IssuerSigningKey = jwt.GetSymmetricSecurityKey(),
         ValidateIssuerSigningKey = jwt.ValidateIssuerSigningKey,
+        ClockSkew = TimeSpan.Zero // Optional: Adjust clock skew as needed
+      };
+      options.Events = new JwtBearerEvents
+      {
+          OnChallenge = context =>
+          {
+              context.HandleResponse(); // Suppress default 302 redirect
+              context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+              context.Response.ContentType = "application/json";
+              return context.Response.WriteAsync("{\"error\": \"Unauthorized\"}");
+          }
       };
       // options.Events = new JwtBearerEvents
       // {

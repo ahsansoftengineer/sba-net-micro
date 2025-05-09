@@ -1,7 +1,7 @@
 using Microsoft.Extensions.FileProviders;
 
 namespace GLOB.API.Config.DI;
-public static partial class API_DI_Common
+public static partial class DI_API_Config
 {
   // FILES HANDING ###############
   public static void Config_StaticFilesHandling(this IApplicationBuilder app)
