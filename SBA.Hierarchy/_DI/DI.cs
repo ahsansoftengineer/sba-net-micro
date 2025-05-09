@@ -4,6 +4,7 @@ using GLOB.Infra.DI;
 using SBA.Projectz.Data;
 using SBA.Projectz.Mapper;
 using GLOB.API.DI;
+using GLOB.API.Config.DI;
 
 namespace SBA.Projectz.DI;
 public static partial class DI_Projectz
@@ -12,10 +13,12 @@ public static partial class DI_Projectz
   {
     srvc.Add_API_Default_Srvc(config);
     // srvc.Add_API_Default_Srvc2();
+    
     srvc.Config_Options(config);
     srvc.Config_DB_SQL<DBCtx, IUOW_Infra, UOW_Projectz>(config);
     srvc.Config_DB_SQL<DBCtxProjectz, IUOW_Projectz, UOW_Projectz>(config);
-    srvc.AddAutoMapper(typeof(ProjectzMapper));
 
+    // srvc.Config_Post_Authentication_JWT_Option(); // Because of Identity
+    srvc.AddAutoMapper(typeof(ProjectzMapper));
   }
 }

@@ -11,19 +11,19 @@ public class _ProjectzLookupzController : API_2_RDS_Controller<_ProjectzLookupzC
     _repo = _uowInfra.ProjectzLookups;
   }
 
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<ProjectzLookupDtoSearch?> req)
   {
     return await _repo.ToActionGetsPaginate(req);
   }
 
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPage<ProjectzLookupDtoSearch?> req)
   {
     return await _repo.ToActionGetsPaginateOptions(req);
   }
 
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> Create([FromBody] ProjectzLookupDtoCreate data)
   {
     try

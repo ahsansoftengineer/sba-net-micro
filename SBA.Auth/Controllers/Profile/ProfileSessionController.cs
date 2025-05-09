@@ -4,7 +4,7 @@
 // namespace SBA.Auth.Controllers;
 // public partial class ProfileController
 // {
-//   [HttpGet()]
+//   [HttpGet]
 //   public async Task<IActionResult> GetCurrentUser()
 //   {
 //     // Get info about the currently logged-in user
@@ -19,7 +19,7 @@
 //     });
 //   }
 
-//   [HttpGet()]
+//   [HttpGet]
 //   public async Task<IActionResult> GetUserSessions()
 //   {
 //     // List all active sessions for the user

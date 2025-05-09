@@ -6,17 +6,17 @@
 // public partial class AccountController
 // {
   
-//   [HttpPost()]
+//   [HttpPost]
 //   public async Task<IActionResult> Google([FromBody] ExternalAuthDto model)
 //   {
 //     return null;
 //   }
-//   [HttpPost()]
+//   [HttpPost]
 //   public async Task<IActionResult> Facebook([FromBody] ExternalAuthDto model)
 //   {
 //     return null;
 //   }
-//   [HttpPost()]
+//   [HttpPost]
 //   public async Task<IActionResult> Apple([FromBody] ExternalAuthDto model)
 //   {
 //     return null;

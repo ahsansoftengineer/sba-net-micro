@@ -15,27 +15,27 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
   }
 
   // List, Filter, Include
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> Gets([FromBody] DtoRequestGet req)
   {
     return await _repo.ToActionGets(req.Includes);
   }
   // List, Group
-  [HttpGet()]
+  [HttpGet]
   public async Task<IActionResult> GetsLookup()
   {
     return await _repo.ToActionGetsLookup();
   }
 
   // List, Filter By Ids
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds req)
   {
     return await _repo.ToActionGetsByIds(req.Ids);
   }
 
   // List, Group, Filter By Ids
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds req)
   {
     return await _repo.ToActionGetsByIdsLookup(req.Ids);

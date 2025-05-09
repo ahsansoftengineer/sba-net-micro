@@ -12,7 +12,7 @@ public class _GlobalLookupController : Project_RDS_Controller<_GlobalLookupContr
     _repo = _uowProjectz.GlobalLookups;
   }
 
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<GlobalLookupDtoSearch?> req)
   {
     int x = 7070;
@@ -20,12 +20,12 @@ public class _GlobalLookupController : Project_RDS_Controller<_GlobalLookupContr
     Console.WriteLine(x +""+ y);
     return await _repo.ToActionGetsPaginate(req);
   }
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPage<GlobalLookupDtoSearch?> req)
   {
     return await _repo.ToActionGetsPaginateOptions(req);
   }
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> Create([FromBody] GlobalLookupDtoCreate data)
   {
     try

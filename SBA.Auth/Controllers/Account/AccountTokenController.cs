@@ -11,7 +11,7 @@ namespace SBA.Auth.Controllers;
 public partial class AccountController
 {
 
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> Login([FromBody] LoginDto model)
   {
     var user = await _userManager.FindByEmailAsync(model.Email);
@@ -22,10 +22,10 @@ public partial class AccountController
     return StatusCode(500, "An error occurred during login.");
   }
 
-  // Refresh Token is Used when the AccessToken expired and user not has to enter creadential again
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> TokenRefresh([FromBody] RefreshTokenRequest request)
   {
+    // Refresh Token is Used when the AccessToken expired and user not has to enter creadential again
     // Claim vs Principal
     // Claim = A claim is a key-value pair that represents information about the user.
     // Principal = A ClaimsPrincipal represents the current user.
@@ -51,14 +51,16 @@ public partial class AccountController
     return await GenerateTokensAndUserClaims(user);
   }
 
-  // The purpose of RevokeToken is to invalidate a refresh token so it can no longer be 
-  // used to generate new access tokens — typically done on logout or when a token is suspected to be compromised.
+
+  [HttpPost]
+  // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
   [Authorize]
-  [HttpPost()]
   public async Task<IActionResult> TokenRevoke([FromBody] RevokeTokenRequest request)
   {
-    // if (string.IsNullOrWhiteSpace(request.RefreshToken))
-    //   return BadRequest("Refresh token is required.");
+    // The purpose of RevokeToken is to invalidate a refresh token so it can no longer be 
+    // used to generate new access tokens — typically done on logout or when a token is suspected to be compromised.  
+    if (string.IsNullOrWhiteSpace(request.RefreshToken))
+      return BadRequest("Refresh token is required.");
 
     var storedToken = await _ctx.RefreshTokens
         .Include(rt => rt.InfraUser)
@@ -77,7 +79,7 @@ public partial class AccountController
     var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
     if (storedToken.InfraUserId != currentUserId)
       return _Res.BadRequestModel("RefreshToken", "You do not own this token.");
-      // return Forbid("You do not own this token.");
+    // return Forbid("You do not own this token.");
 
     storedToken.IsRevoked = true;
     storedToken.RevokedAt = DateTime.UtcNow;

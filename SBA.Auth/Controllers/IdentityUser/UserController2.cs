@@ -9,7 +9,7 @@ namespace SBA.Auth.Controllers;
 public partial class UserController
 {
 
-  [HttpPost()]
+  [HttpPost]
   public async Task<IActionResult> Create([FromBody] RegisterDto model)
   {
     InfraUser user = MapUser(model);
