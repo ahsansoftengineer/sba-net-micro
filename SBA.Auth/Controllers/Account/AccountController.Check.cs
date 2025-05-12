@@ -9,6 +9,7 @@ namespace SBA.Auth.Controllers;
 
 public partial class AccountController
 {
+  // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
   [HttpPost]
   [Authorize(AuthenticationSchemes = "AuthorizationCookieScheme")]
   public async Task<IActionResult> CheckSchemeCookie()
@@ -24,18 +25,33 @@ public partial class AccountController
     return _Res.Ok($"Current User Id {currentUserId} Check Login");
   }
 
-  [HttpPost] [Authorize(Policy = "Admin")]
-  public async Task<IActionResult> CheckPolicyAdmin()
-  {
-    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    return _Res.Ok($"Current User Id {currentUserId} IsAdmin {User.IsInRole("Admin")}");
-  }
+[HttpPost] [Authorize(Policy = "Policy-Admin")]
+public async Task<IActionResult> CheckPolicyAdmin()
+{
+    var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    
+    var roles = User.Claims
+        .Where(c => c.Type == ClaimTypes.Role)
+        .Select(c => c.Value);
 
-  [HttpPost] [Authorize(Policy = "Customer")]
-  public async Task<IActionResult> CheckCustomer()
+    var rolez = string.Join(", ", roles);
+
+    return _Res.Ok($"Id: {id}, IsAdmin: {User.IsInRole("Admin")}, Roles: {rolez}");
+}
+
+
+  [HttpPost] [Authorize(Policy = "Policy-Customer")]
+  public async Task<IActionResult> CheckPolicyCustomer()
   {
-    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    return _Res.Ok($"Current User Id {currentUserId} IsCustomer {User.IsInRole("Customer")}");
+    var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    
+    var roles = User.Claims
+        .Where(c => c.Type == ClaimTypes.Role)
+        .Select(c => c.Value);
+
+    var rolez = string.Join(", ", roles);
+
+    return _Res.Ok($"Id: {id}, IsCustomer: {User.IsInRole("Customer")}, Roles: {rolez}");
   }
 
   private async Task<IActionResult> GenerateTokensAndUserClaims(InfraUser user)

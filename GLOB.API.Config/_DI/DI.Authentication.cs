@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -30,7 +31,11 @@ public static partial class DI_API_Config
         ValidateAudience = jwt.ValidateAudience,
         ValidateIssuerSigningKey = jwt.ValidateIssuerSigningKey,
         IssuerSigningKey = jwt.GetSymmetricSecurityKey(),
-        ClockSkew = TimeSpan.Zero // Optional: Adjust clock skew as needed
+        ClockSkew = TimeSpan.Zero, // Optional: Adjust clock skew as needed
+
+        // JWT Roles Config
+        // RoleClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        // NameClaimType = ClaimTypes.NameIdentifier
       };
       options.Events = new JwtBearerEvents
       {

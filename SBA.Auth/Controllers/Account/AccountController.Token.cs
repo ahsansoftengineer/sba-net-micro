@@ -50,9 +50,8 @@ public partial class AccountController
     return await GenerateTokensAndUserClaims(user);
   }
 
-
   [HttpPost]
-  [Authorize] // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+  [Authorize] 
   public async Task<IActionResult> TokenRevoke([FromBody] RevokeTokenRequest request)
   {
     // The purpose of RevokeToken is to invalidate a refresh token so it can no longer be 

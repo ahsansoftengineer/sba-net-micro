@@ -5,7 +5,8 @@ public static partial class DI_API_Config
   {
     srvc.AddAuthorization(options =>
     {
-      options.AddPolicy("Admin-Policy", policy => policy.RequireRole("Admin"));
+      options.AddPolicy("Policy-Admin", policy => policy.RequireRole("Admin"));
+      options.AddPolicy("Policy-Customer", policy => policy.RequireRole("Customer"));
     });
   }
 }
