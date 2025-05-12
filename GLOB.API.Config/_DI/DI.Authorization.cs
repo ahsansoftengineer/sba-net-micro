@@ -7,6 +7,8 @@ public static partial class DI_API_Config
     {
       options.AddPolicy("Policy-Admin", policy => policy.RequireRole("Admin"));
       options.AddPolicy("Policy-Customer", policy => policy.RequireRole("Customer"));
+
+      options.AddPolicy("Policy-Admin--SuperAdmin", policy => policy.RequireRole("Admin", "Super Admin"));
     });
   }
 }

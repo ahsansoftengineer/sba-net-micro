@@ -51,8 +51,24 @@ public async Task<IActionResult> CheckPolicyAdmin()
 
     var rolez = string.Join(", ", roles);
 
-    return _Res.Ok($"Id: {id}, IsCustomer: {User.IsInRole("Customer")}, Roles: {rolez}");
+    return _Res.Ok($"Id: {id}, IsCustomer: {User.IsInRole("Customer")}, Roles: ({rolez})");
   }
+  
+  [HttpPost] [Authorize(Policy = "Policy-Admin--SuperAdmin")]
+  public async Task<IActionResult> CheckPolicyMulti()
+  {
+    var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    return _Res.Ok($"Id: {id} Multi Policy Checks OK! (Admin Or Super Admin)");
+  }
+
+  [HttpPost] [Authorize(Roles = "Admin,Super Admin,Customer")]
+  public async Task<IActionResult> CheckRole()
+  {
+    var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    return _Res.Ok($"Id: {id} Multi Roles OK! (Admin,Super Admin,Customer) ");
+  }
+
+  
 
   private async Task<IActionResult> GenerateTokensAndUserClaims(InfraUser user)
   {
