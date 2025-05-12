@@ -2,25 +2,13 @@ using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
 using GLOB.Domain.Base;
 using GLOB.Infra.Paginate;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Auth.Controllers;
 
-public partial class RoleController : AccountBaseController<RoleController>
+public partial class RoleController 
 {
-  private readonly RoleManager<InfraRole> _roleManager;
-  private readonly IQueryable<InfraRole> _repo;
-  public RoleController(
-    IServiceProvider srvcProvider,
-    RoleManager<InfraRole> roleManager
-  ) : base(srvcProvider)
-  {
-    _roleManager = roleManager;
-    _repo = roleManager.Roles;
-  }
-
   [HttpPost]
   public async Task<IActionResult> Gets()
   {

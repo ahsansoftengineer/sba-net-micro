@@ -7,14 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Auth.Controllers;
 
-public partial class UserController : AccountBaseController<UserController>
+public partial class UserController 
 {
-  private IQueryable<InfraUser> _repo;
-  public UserController(
-    IServiceProvider srvcProvider) : base(srvcProvider)
-  {
-    _repo = _userManager.Users;
-  }
   [HttpPost]
   public async Task<IActionResult> Gets()
   {

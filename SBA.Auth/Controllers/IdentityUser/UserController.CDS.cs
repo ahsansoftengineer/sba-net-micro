@@ -6,9 +6,15 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace SBA.Auth.Controllers;
 
-public partial class UserController
+public partial class UserController : AccountBaseController<UserController>
 {
-
+  private IQueryable<InfraUser> _repo;
+  public UserController(
+    IServiceProvider srvcProvider) : base(srvcProvider)
+  {
+    _repo = _userManager.Users;
+  }
+ 
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] RegisterDto model)
   {

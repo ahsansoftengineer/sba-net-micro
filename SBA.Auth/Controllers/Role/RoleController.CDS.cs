@@ -4,13 +4,25 @@ using GLOB.Domain.Base;
 using GLOB.Domain.Contants;
 using GLOB.Infra.Paginate;
 using LinqKit;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
 namespace SBA.Auth.Controllers;
 
-public partial class RoleController
+public partial class RoleController: AccountBaseController<RoleController>
 {
+  private readonly RoleManager<InfraRole> _roleManager;
+  private readonly IQueryable<InfraRole> _repo;
+  public RoleController(
+    IServiceProvider srvcProvider,
+    RoleManager<InfraRole> roleManager
+  ) : base(srvcProvider)
+  {
+    _roleManager = roleManager;
+    _repo = roleManager.Roles;
+  }
+
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] DtoCreate role)
   {
