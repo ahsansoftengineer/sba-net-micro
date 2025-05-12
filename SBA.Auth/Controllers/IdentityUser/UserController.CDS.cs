@@ -22,8 +22,6 @@ public partial class UserController
 
     return BadRequest(result.Errors);
   }
-
-
   [HttpPut("{Id}")]
   public async Task<IActionResult> Update(string Id, [FromBody] UpdateUserDto data)
   {

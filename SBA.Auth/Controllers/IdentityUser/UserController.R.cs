@@ -86,22 +86,4 @@ public partial class UserController : AccountBaseController<UserController>
     var list = await _repo.ToExtVMPageOptionsNoTrack<InfraUser, string>(req);
     return Ok(list);
   }
-
-  // [HttpGet]
-  // public async Task<IActionResult> GetsPaginate(DtoRequestPage<InfraUserDtoSearch> req)
-  // {
-  //   var query = _userManager.Users.ToExtQueryFilterSortInclude(req);
-  //   var mappedQuery = query.ToExtMapQuery<>()
-  //   var result = query.GetsPaginateOptions<InfraUser, string, InfraUserDtoSearch>(req);
-  //   return await result.GetsPaginate(req);
-  // }
-
-  // [HttpGet]
-  // public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<InfraUser> req)
-  // {
-  //   IQueryable<InfraUser> query = _userManager.Users;
-  //   var result = query.ToExtQueryFilterSortInclude(req).GetsPaginateOptions<InfraUser, string>();
-  //   return  Ok(result);
-  // }
-
 }

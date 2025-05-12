@@ -99,43 +99,4 @@ public partial class RoleController : AccountBaseController<RoleController>
     var list = await _repo.ToExtVMPageOptionsNoTrack<InfraRole, string>(req);
     return _Res.Ok(list);
   }
-
-  [HttpGet("{role}")]
-  public async Task<IActionResult> GetUserByRole(string role)
-  {
-    var roleExists = await _roleManager.RoleExistsAsync(role);
-    if (!roleExists)
-      return _Res.BadRequestModel("Role", $"Role '{role}' does not exist");
-
-    var usersInRole = await _userManager.GetUsersInRoleAsync(role);
-
-    var result = usersInRole.Select(u => new
-    {
-      u.Id,
-      u.Email,
-      u.UserName,
-      u.Name,
-      u.PhoneNumber,
-      u.Status
-    });
-
-    return _Res.Ok(result.ToExtVMList());
-  }
-  
-  [HttpGet("{userId}")]
-  public async Task<IActionResult> GetRoleByUser(string userId)
-  {
-    var user = await _userManager.FindByIdAsync(userId);
-    if (user == null)
-      return _Res.BadRequestzId("InfraUserId", userId);
-
-    var roles = await _userManager.GetRolesAsync(user);
-
-    return _Res.Ok(new
-    {
-      user.Id,
-      user.Email,
-      Roles = roles
-    }.ToExtVMSingle());
-  }
 }
