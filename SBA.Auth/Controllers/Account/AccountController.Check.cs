@@ -18,18 +18,20 @@ public partial class AccountController
     return _Res.Ok($"Current User Id {currentUserId} Cookie Based Token Working");
   }
 
-  [HttpPost] [Authorize]
+  [HttpPost]
+  [Authorize]
   public async Task<IActionResult> CheckLogin()
   {
     var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
     return _Res.Ok($"Current User Id {currentUserId} Check Login");
   }
 
-[HttpPost] [Authorize(Policy = "Policy-Admin")]
-public async Task<IActionResult> CheckPolicyAdmin()
-{
+  [HttpPost]
+  [Authorize(Policy = "Policy-Admin")]
+  public async Task<IActionResult> CheckPolicyAdmin()
+  {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    
+
     var roles = User.Claims
         .Where(c => c.Type == ClaimTypes.Role)
         .Select(c => c.Value);
@@ -37,14 +39,15 @@ public async Task<IActionResult> CheckPolicyAdmin()
     var rolez = string.Join(", ", roles);
 
     return _Res.Ok($"Id: {id}, IsAdmin: {User.IsInRole("Admin")}, Roles: {rolez}");
-}
+  }
 
 
-  [HttpPost] [Authorize(Policy = "Policy-Customer")]
+  [HttpPost]
+  [Authorize(Policy = "Policy-Customer")]
   public async Task<IActionResult> CheckPolicyCustomer()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    
+
     var roles = User.Claims
         .Where(c => c.Type == ClaimTypes.Role)
         .Select(c => c.Value);
@@ -53,22 +56,32 @@ public async Task<IActionResult> CheckPolicyAdmin()
 
     return _Res.Ok($"Id: {id}, IsCustomer: {User.IsInRole("Customer")}, Roles: ({rolez})");
   }
-  
-  [HttpPost] [Authorize(Policy = "Policy-Admin--SuperAdmin")]
+
+  [HttpPost]
+  [Authorize(Policy = "Policy-Admin--SuperAdmin")]
   public async Task<IActionResult> CheckPolicyMulti()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
     return _Res.Ok($"Id: {id} Multi Policy Checks OK! (Admin Or Super Admin)");
   }
 
-  [HttpPost] [Authorize(Roles = "Admin,Super Admin,Customer")]
-  public async Task<IActionResult> CheckRole()
+  [HttpPost]
+  [Authorize(Roles = "Admin,Super Admin,Customer")] // ✅ Works: OR condition
+  public async Task<IActionResult> CheckRoleOr()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    return _Res.Ok($"Id: {id} Multi Roles OK! (Admin,Super Admin,Customer) ");
+    return _Res.Ok($"Id: {id} Multi Roles OK! (Admin | Super Admin | Customer) ");
   }
 
-  
+  [HttpPost]
+  [Authorize(Roles = "Admin")]
+  [Authorize(Roles = "Super Admin")] // ✅ Works: AND condition
+  public async Task<IActionResult> CheckRoleAnd()
+  {
+    var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    return _Res.Ok($"Id: {id} Multi Roles OK! (Admin & Super Admin) ");
+  }
+
 
   private async Task<IActionResult> GenerateTokensAndUserClaims(InfraUser user)
   {
