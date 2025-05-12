@@ -4,13 +4,25 @@ using GLOB.Domain.Base;
 using GLOB.Domain.Contants;
 using GLOB.Infra.Paginate;
 using LinqKit;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
 namespace SBA.Auth.Controllers;
 
-public partial class RoleController
+public partial class RoleController: AccountBaseController<RoleController>
 {
+  private readonly RoleManager<InfraRole> _roleManager;
+  private readonly IQueryable<InfraRole> _repo;
+  public RoleController(
+    IServiceProvider srvcProvider,
+    RoleManager<InfraRole> roleManager
+  ) : base(srvcProvider)
+  {
+    _roleManager = roleManager;
+    _repo = roleManager.Roles;
+  }
+
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] DtoCreate role)
   {
@@ -96,30 +108,5 @@ public partial class RoleController
     }
   }
 
-
-  [HttpPost]
-  public async Task<IActionResult> AddUserToRole([FromBody] AssignRoleToInfraUser dto)
-  {
-    var user = await _userManager.FindByEmailAsync(dto.Email);
-    if (user == null)
-      return _Res.BadRequestModel("Email", "Invalid Email not Exsist");
-
-    var rolez = await _roleManager.FindByNameAsync(dto.Role);
-    if (rolez == null)
-      return _Res.BadRequestModel("Role", "Invalid Role not Exsist");
-
-    // Check if user is already in role
-    if (await _userManager.IsInRoleAsync(user, rolez.Name))
-      return _Res.BadRequestModel("Role", $"{user.Email} is already assigned to role {rolez.Name}");
-
-    var result = await _userManager.AddToRoleAsync(user, rolez.Name);
-    if (result.Succeeded)
-    {
-      return _Res.Ok($"{user.Email} has successfully been added to role {rolez.Name}");
-    }
-
-    return _Res.BadRequestModel("Exception", "Something went wrong");
-  }
-  
 
 }
