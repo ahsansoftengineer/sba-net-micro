@@ -10,5 +10,6 @@ public static partial class DI_Projectz
     srvc.Configure<EmailSettings>(config.GetSection(EmailSettings.SectionName));
     srvc.Configure<JwtSettings>(config.GetSection(JwtSettings.SectionName));
     srvc.Configure<IdentitySettings>(config.GetSection(IdentitySettings.SectionName));
+    srvc.Configure<SocialAccounts>(config.GetSection(SocialAccounts.SectionName));
   }
 }

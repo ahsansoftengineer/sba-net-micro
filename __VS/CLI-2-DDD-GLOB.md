@@ -1,11 +1,9 @@
-### EXTERNAL PACKAGES DOMAIN
-- Adding Packages to Specific Project
+### DOMAIN
 ```bash
 dotnet add ./GLOB.Domain/ package Microsoft.AspNetCore.Mvc.NewtonsoftJson
-dotnet add ./GLOB.Domain/ package ErrorOr # Recommended and Final Approach
-
 ```
-### EXTERNAL PACKAGES INFRA
+
+### INFRA
 ```bash
 dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore -v 8.0.7
 dotnet add ./GLOB.Infra/ package Microsoft.EntityFrameworkCore.Design -v 8.0.7
@@ -24,7 +22,7 @@ dotnet add ./GLOB.Infra/ package DynamicExpressions.NET -v 1.1.0
 dotnet add ./GLOB.Infra/ package LinqKit.Core
 
 ```
-### EXTERNAL PACKAGES API.CONFIG
+### API.CONFIG
 ```bash
 dotnet add ./GLOB.API.Config/ package AspNetCoreRateLimit
 dotnet add ./GLOB.API.Config/ package AutoMapper.Extensions.Microsoft.DependencyInjection8
@@ -41,6 +39,6 @@ dotnet add ./GLOB.API.Config/ package Microsoft.AspNetCore.Authentication.OpenId
 dotnet add ./GLOB.API.Config/ package Microsoft.Extensions.Options.ConfigurationExtensions -v 8.0.7
 ```
 
-### EXTERNAL PACKAGES API
+### API
 ```bash
 ```
