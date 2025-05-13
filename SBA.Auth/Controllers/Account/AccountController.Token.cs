@@ -4,21 +4,34 @@ using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using GLOB.Infra.Paginate;
 
 namespace SBA.Auth.Controllers;
 
 public partial class AccountController
 {
-
   [HttpPost]
   public async Task<IActionResult> Login([FromBody] LoginDto model)
   {
     var user = await _userManager.FindByEmailAsync(model.Email);
     if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
     {
-      return await GenerateTokensAndUserClaims(user);
+      return (await _tokenService.GetTokensAndUserClaims(user, HttpContext)).ToExtVMSingle().Ok();
     }
     return StatusCode(500, "An error occurred during login.");
+  }
+
+  [HttpPost]
+  public async Task<IActionResult> LoginCookie([FromBody] LoginDto model)
+  {
+    var user = await _userManager.FindByEmailAsync(model.Email);
+    if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+    {
+      var payload = await _tokenService.GetUserClaimSignInCookie(user, HttpContext);
+      return payload.ToExtVMSingle().Ok();
+    }
+
+    return Unauthorized("Invalid email or password");
   }
 
   [HttpPost]
@@ -47,12 +60,11 @@ public partial class AccountController
     if (storedToken == null)
       return _Res.BadRequestModel("AccessToken", "Invalid / Expired Refresh Token");
 
-    return await GenerateTokensAndUserClaims(user);
+    return (await _tokenService.GetTokensAndUserClaims(user, HttpContext)).ToExtVMSingle().Ok();
   }
 
-
   [HttpPost]
-  [Authorize] // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+  [Authorize]
   public async Task<IActionResult> TokenRevoke([FromBody] RevokeTokenRequest request)
   {
     // The purpose of RevokeToken is to invalidate a refresh token so it can no longer be 
@@ -88,4 +100,9 @@ public partial class AccountController
     return _Res.Ok("Refresh token revoked successfully.");
   }
 
+  [HttpGet]
+  public async Task<IActionResult> Forbidden()
+  {
+    return StatusCode(403, "Invalid Request");
+  }
 }

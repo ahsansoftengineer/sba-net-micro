@@ -30,7 +30,11 @@ public static partial class DI_API_Config
         ValidateAudience = jwt.ValidateAudience,
         ValidateIssuerSigningKey = jwt.ValidateIssuerSigningKey,
         IssuerSigningKey = jwt.GetSymmetricSecurityKey(),
-        ClockSkew = TimeSpan.Zero // Optional: Adjust clock skew as needed
+        ClockSkew = TimeSpan.Zero, // Optional: Adjust clock skew as needed
+
+        // JWT Roles Config
+        // RoleClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        // NameClaimType = ClaimTypes.NameIdentifier
       };
       options.Events = new JwtBearerEvents
       {
@@ -53,15 +57,15 @@ public static partial class DI_API_Config
           // }
         }
       };
+    })
+    .AddCookie(JwtSettings.Scheme, options =>
+    {
+      options.LoginPath = jwt.LoginPath; // Specify your login path if required
+      options.Cookie.Name = jwt.CookieName;
+      options.AccessDeniedPath = jwt.AccessDeniedPath;
+      options.ExpireTimeSpan = TimeSpan.FromMinutes(jwt.AccessTokenExpiryMinutes);
+      options.SlidingExpiration = true; // cookie’s lifetime will renew on every request
     });
-    // .AddCookie("AuthorizationCookieScheme", options =>
-    // {
-    //   options.LoginPath = "/api/auth/v1/account/login"; // Specify your login path if required
-    //   options.Cookie.Name = "AuthorizationCookie";
-    //   options.AccessDeniedPath = "/api/auth/v1/account/forbidden";
-    //   options.ExpireTimeSpan = TimeSpan.FromMinutes(jwt.AccessTokenExpiryMinutes);
-    //   options.SlidingExpiration = true;
-    // });
 
   }
 
@@ -91,6 +95,7 @@ public static partial class DI_API_Config
 
 public class JwtSettings
 {
+
   public static string SectionName = "JwtSettings";
   public string SecretKey { get; set; } //"YourSuperStrongSecretKey_ReplaceThis"
   public string Issuer { get; set; } // "https://localhost:5802/"
@@ -102,6 +107,14 @@ public class JwtSettings
   public bool ValidateAudience { get; set; }// = true;
   public bool ValidateLifetime { get; set; }// = true;
   public bool ValidateIssuerSigningKey { get; set; }// = true;
+
+  // Cookie
+  public static string Scheme = "AuthorizationCookieScheme";
+  public string LoginPath { get; set; }
+  public string CookieName { get; set; }
+  public string AccessDeniedPath { get; set; }
+  public bool SlidingExpiration { get; set; }// = true;
+
 
   public SymmetricSecurityKey GetSymmetricSecurityKey()
   {

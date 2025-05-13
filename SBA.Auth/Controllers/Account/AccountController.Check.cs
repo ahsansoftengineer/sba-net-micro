@@ -1,7 +1,5 @@
 using System.Security.Claims;
 using GLOB.API.Staticz;
-using GLOB.Domain.Auth;
-using GLOB.Infra.Paginate;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,73 +7,82 @@ namespace SBA.Auth.Controllers;
 
 public partial class AccountController
 {
-  [HttpPost]
-  [Authorize(AuthenticationSchemes = "AuthorizationCookieScheme")]
-  public async Task<IActionResult> CheckSchemeCookie()
-  {
-    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    return _Res.Ok($"Current User Id {currentUserId} Cookie Based Token Working");
-  }
-
+  // Jwt -> ✅ Login
   [HttpPost] [Authorize]
   public async Task<IActionResult> CheckLogin()
   {
-    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    return _Res.Ok($"Current User Id {currentUserId} Check Login");
+    var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    return _Res.Ok($"Current User Id {id} Check Login");
   }
 
-  [HttpPost] [Authorize(Policy = "Admin")]
+  // JWT -> ✅ Role OR
+  [HttpPost] [Authorize(Roles = "Admin,Super Admin,Customer")]
+  public async Task<IActionResult> CheckRoleOr()
+  {
+    var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    return _Res.Ok($"Id: {id} Multi Roles OK! (Admin | Super Admin | Customer) ");
+  }
+
+  // JWT -> ✅ Role And
+  [HttpPost] [Authorize(Roles = "Admin")] [Authorize(Roles = "Super Admin")] 
+  public async Task<IActionResult> CheckRoleAnd()
+  {
+    var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    return _Res.Ok($"Id: {id} Multi Roles OK! (Admin & Super Admin) ");
+  }
+
+  // JWT -> ✅ Policy-Admin
+  [HttpPost] [Authorize(Policy = "Policy-Admin")]
   public async Task<IActionResult> CheckPolicyAdmin()
   {
-    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    return _Res.Ok($"Current User Id {currentUserId} IsAdmin {User.IsInRole("Admin")}");
+    var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+    var roles = User.Claims
+        .Where(c => c.Type == ClaimTypes.Role)
+        .Select(c => c.Value);
+
+    var rolez = string.Join(", ", roles);
+
+    return _Res.Ok($"Id: {id}, IsAdmin: {User.IsInRole("Admin")}, Roles: (Policy-Admin)");
   }
 
-  [HttpPost] [Authorize(Policy = "Customer")]
-  public async Task<IActionResult> CheckCustomer()
+  // JWT -> ✅ Policy-Customer
+  [HttpPost] [Authorize(Policy = "Policy-Customer")]
+  public async Task<IActionResult> CheckPolicyCustomer()
   {
-    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    return _Res.Ok($"Current User Id {currentUserId} IsCustomer {User.IsInRole("Customer")}");
+    var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+    var roles = User.Claims
+        .Where(c => c.Type == ClaimTypes.Role)
+        .Select(c => c.Value);
+
+    var rolez = string.Join(", ", roles);
+
+    return _Res.Ok($"Id: {id}, IsCustomer: {User.IsInRole("Customer")}, Policy: (Policy-Customer)");
   }
 
-  private async Task<IActionResult> GenerateTokensAndUserClaims(InfraUser user)
+  // JWT -> ✅ Policy Multi Or
+  [HttpPost] [Authorize(Policy = "Policy-Admin--SuperAdmin")]
+  public async Task<IActionResult> CheckPolicyMulti()
   {
-    var roles = await _userManager.GetRolesAsync(user);
-
-    string jti;
-    var accessToken = _tokenService.GenerateAccessToken(user, roles, out jti);
-    var refreshToken = _tokenService.GenerateRefreshToken();
-
-
-
-    var accessTokenExpiry = DateTime.UtcNow.AddMinutes(_jwtSettings.AccessTokenExpiryMinutes);
-    // var accessTokenExpiry = DateTime.UtcNow.AddHours(_jwtSettings.AccessTokenExpiryHour);
-    var refreshTokenExpiry = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpiryDays);
-
-    string ip = HttpContext.Connection.RemoteIpAddress?.ToString();
-    await _tokenService.SaveRefreshTokenAsync(user.Id, refreshToken, ip, jti);
-
-    return new
-    {
-      accessToken,
-      refreshToken,
-      // expiresIn = _jwtSettings.AccessTokenExpiryHour,
-      expiresIn = _jwtSettings.AccessTokenExpiryMinutes,
-      accessTokenExpiry = accessTokenExpiry.ToString("o"), // ISO 8601
-      refreshTokenExpiry = refreshTokenExpiry.ToString("o"),
-      tokenType = "Bearer",
-      user = new
-      {
-        user.Id,
-        user.UserName,
-        user.Email,
-        user.EmailConfirmed,
-        user.PhoneNumber,
-        user.PhoneNumberConfirmed,
-        user.TwoFactorEnabled,
-        jti,
-        roles
-      }
-    }.ToExtVMSingle().Ok();
+    var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    return _Res.Ok($"Id: {id} Multi Policy Checks OK! (Admin Or Super Admin)");
   }
+
+  // Cookie -> ✅ Login
+  [HttpPost] [Authorize(AuthenticationSchemes = "AuthorizationCookieScheme")]
+  public async Task<IActionResult> CheckSchemeCookie()
+  {
+    var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    return _Res.Ok($"Current User Id {id} Cookie Based Token Working");
+  }
+  // Cookie -> ✅ Role Admin
+  [HttpPost] [Authorize(AuthenticationSchemes = "AuthorizationCookieScheme", Roles = "Admin")]
+  public async Task<IActionResult> CheckSchemeCookieAdmin()
+  {
+    var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    return _Res.Ok($"Id: {id}, IsAdmin: {User.IsInRole("Admin")}, Scheme: Cookie, Role: Admin");
+  }
+
+ 
 }
