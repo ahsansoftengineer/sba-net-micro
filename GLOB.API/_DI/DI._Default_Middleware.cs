@@ -26,7 +26,7 @@ public static partial class DI_API
 
     app.UseRouting();
 
-    app.Config_Localization();
+    //app.Config_Localization();
     app.UseCors("PolicyAllowGateway");
 
     app.UseAuthentication();

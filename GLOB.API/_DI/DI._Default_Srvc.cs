@@ -5,7 +5,7 @@ public static partial class DI_API
 {
 public static void Add_API_Default_Srvc(this IServiceCollection srvc, IConfiguration config)
 {
-    srvc.Config_Localization(config);
+    //srvc.Config_Localization(config);
 
     srvc.Config_Controllerz(config);
 
