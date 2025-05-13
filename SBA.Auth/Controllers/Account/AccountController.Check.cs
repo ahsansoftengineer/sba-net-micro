@@ -7,26 +7,32 @@ namespace SBA.Auth.Controllers;
 
 public partial class AccountController
 {
-  // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-  // [Authorize]
-  [HttpPost]
-  [Authorize(AuthenticationSchemes = "AuthorizationCookieScheme")]
-  public async Task<IActionResult> CheckSchemeCookie()
-  {
-    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    return _Res.Ok($"Current User Id {currentUserId} Cookie Based Token Working");
-  }
-
-  [HttpPost]
-  [Authorize]
+  // Jwt -> ✅ Login
+  [HttpPost] [Authorize]
   public async Task<IActionResult> CheckLogin()
   {
-    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    return _Res.Ok($"Current User Id {currentUserId} Check Login");
+    var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    return _Res.Ok($"Current User Id {id} Check Login");
   }
 
-  [HttpPost]
-  [Authorize(Policy = "Policy-Admin")]
+  // JWT -> ✅ Role OR
+  [HttpPost] [Authorize(Roles = "Admin,Super Admin,Customer")]
+  public async Task<IActionResult> CheckRoleOr()
+  {
+    var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    return _Res.Ok($"Id: {id} Multi Roles OK! (Admin | Super Admin | Customer) ");
+  }
+
+  // JWT -> ✅ Role And
+  [HttpPost] [Authorize(Roles = "Admin")] [Authorize(Roles = "Super Admin")] 
+  public async Task<IActionResult> CheckRoleAnd()
+  {
+    var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    return _Res.Ok($"Id: {id} Multi Roles OK! (Admin & Super Admin) ");
+  }
+
+  // JWT -> ✅ Policy-Admin
+  [HttpPost] [Authorize(Policy = "Policy-Admin")]
   public async Task<IActionResult> CheckPolicyAdmin()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -37,12 +43,11 @@ public partial class AccountController
 
     var rolez = string.Join(", ", roles);
 
-    return _Res.Ok($"Id: {id}, IsAdmin: {User.IsInRole("Admin")}, Roles: {rolez}");
+    return _Res.Ok($"Id: {id}, IsAdmin: {User.IsInRole("Admin")}, Roles: (Policy-Admin)");
   }
 
-
-  [HttpPost]
-  [Authorize(Policy = "Policy-Customer")]
+  // JWT -> ✅ Policy-Customer
+  [HttpPost] [Authorize(Policy = "Policy-Customer")]
   public async Task<IActionResult> CheckPolicyCustomer()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -53,34 +58,31 @@ public partial class AccountController
 
     var rolez = string.Join(", ", roles);
 
-    return _Res.Ok($"Id: {id}, IsCustomer: {User.IsInRole("Customer")}, Roles: ({rolez})");
+    return _Res.Ok($"Id: {id}, IsCustomer: {User.IsInRole("Customer")}, Policy: (Policy-Customer)");
   }
 
-  [HttpPost]
-  [Authorize(Policy = "Policy-Admin--SuperAdmin")]
+  // JWT -> ✅ Policy Multi Or
+  [HttpPost] [Authorize(Policy = "Policy-Admin--SuperAdmin")]
   public async Task<IActionResult> CheckPolicyMulti()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
     return _Res.Ok($"Id: {id} Multi Policy Checks OK! (Admin Or Super Admin)");
   }
 
-  [HttpPost]
-  [Authorize(Roles = "Admin,Super Admin,Customer")] // ✅ Works: OR condition
-  public async Task<IActionResult> CheckRoleOr()
+  // Cookie -> ✅ Login
+  [HttpPost] [Authorize(AuthenticationSchemes = "AuthorizationCookieScheme")]
+  public async Task<IActionResult> CheckSchemeCookie()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    return _Res.Ok($"Id: {id} Multi Roles OK! (Admin | Super Admin | Customer) ");
+    return _Res.Ok($"Current User Id {id} Cookie Based Token Working");
   }
-
-  [HttpPost]
-  [Authorize(Roles = "Admin")]
-  [Authorize(Roles = "Super Admin")] // ✅ Works: AND condition
-  public async Task<IActionResult> CheckRoleAnd()
+  // Cookie -> ✅ Role Admin
+  [HttpPost] [Authorize(AuthenticationSchemes = "AuthorizationCookieScheme", Roles = "Admin")]
+  public async Task<IActionResult> CheckSchemeCookieAdmin()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    return _Res.Ok($"Id: {id} Multi Roles OK! (Admin & Super Admin) ");
+    return _Res.Ok($"Id: {id}, IsAdmin: {User.IsInRole("Admin")}, Scheme: Cookie, Role: Admin");
   }
-
 
  
 }

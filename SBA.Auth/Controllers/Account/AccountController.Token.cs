@@ -1,13 +1,10 @@
 using System.Security.Claims;
-using GLOB.API.Config.DI;
 using GLOB.API.Staticz;
-using Microsoft.AspNetCore.Authentication;
 using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GLOB.Infra.Paginate;
-using System.IdentityModel.Tokens.Jwt;
 
 namespace SBA.Auth.Controllers;
 
