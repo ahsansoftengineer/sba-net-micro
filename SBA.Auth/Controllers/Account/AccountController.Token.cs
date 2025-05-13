@@ -6,6 +6,8 @@ using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using GLOB.Infra.Paginate;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace SBA.Auth.Controllers;
 
@@ -17,7 +19,7 @@ public partial class AccountController
     var user = await _userManager.FindByEmailAsync(model.Email);
     if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
     {
-      return await GenerateTokensAndUserClaims(user);
+      return (await _tokenService.GetTokensAndUserClaims(user, HttpContext)).ToExtVMSingle().Ok();
     }
     return StatusCode(500, "An error occurred during login.");
   }
@@ -28,28 +30,12 @@ public partial class AccountController
     var user = await _userManager.FindByEmailAsync(model.Email);
     if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
     {
-      // Create claims
-      var claims = new List<Claim>
-          {
-              new Claim(ClaimTypes.NameIdentifier, user.Id),
-              new Claim(ClaimTypes.Email, user.Email),
-              new Claim(ClaimTypes.Name, user.UserName),
-              // Add role claims if needed
-          };
-
-      // Create identity and principal
-      var identity = new ClaimsIdentity(claims, JwtSettings.Scheme);
-      var principal = new ClaimsPrincipal(identity);
-
-      // Sign in using cookie
-      await HttpContext.SignInAsync(JwtSettings.Scheme, principal);
-
-      return Ok("Signed in with cookie");
+      var payload = await _tokenService.GetUserClaimSignInCookie(user, HttpContext);
+      return payload.ToExtVMSingle().Ok();
     }
 
     return Unauthorized("Invalid email or password");
   }
-
 
   [HttpPost]
   public async Task<IActionResult> TokenRefresh([FromBody] RefreshTokenRequest request)
@@ -77,7 +63,7 @@ public partial class AccountController
     if (storedToken == null)
       return _Res.BadRequestModel("AccessToken", "Invalid / Expired Refresh Token");
 
-    return await GenerateTokensAndUserClaims(user);
+    return (await _tokenService.GetTokensAndUserClaims(user, HttpContext)).ToExtVMSingle().Ok();
   }
 
   [HttpPost]
@@ -116,7 +102,7 @@ public partial class AccountController
 
     return _Res.Ok("Refresh token revoked successfully.");
   }
-  
+
   [HttpGet]
   public async Task<IActionResult> Forbidden()
   {

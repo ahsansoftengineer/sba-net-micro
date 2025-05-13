@@ -85,44 +85,5 @@ public partial class AccountController
   }
 
 
-  private async Task<IActionResult> GenerateTokensAndUserClaims(InfraUser user)
-  {
-    var roles = await _userManager.GetRolesAsync(user);
-
-    string jti;
-    var accessToken = _tokenService.GenerateAccessToken(user, roles, out jti);
-    var refreshToken = _tokenService.GenerateRefreshToken();
-
-
-
-    var accessTokenExpiry = DateTime.UtcNow.AddMinutes(_jwt.AccessTokenExpiryMinutes);
-    // var accessTokenExpiry = DateTime.UtcNow.AddHours(_jwt.AccessTokenExpiryHour);
-    var refreshTokenExpiry = DateTime.UtcNow.AddDays(_jwt.RefreshTokenExpiryDays);
-
-    string ip = HttpContext.Connection.RemoteIpAddress?.ToString();
-    await _tokenService.SaveRefreshTokenAsync(user.Id, refreshToken, ip, jti);
-
-    return new
-    {
-      accessToken,
-      refreshToken,
-      // expiresIn = _jwt.AccessTokenExpiryHour,
-      expiresIn = _jwt.AccessTokenExpiryMinutes,
-      accessTokenExpiry = accessTokenExpiry.ToString("o"), // ISO 8601
-      refreshTokenExpiry = refreshTokenExpiry.ToString("o"),
-      tokenType = "Bearer",
-      user = new
-      {
-        user.Id,
-        user.UserName,
-        user.Email,
-        user.EmailConfirmed,
-        user.PhoneNumber,
-        user.PhoneNumberConfirmed,
-        user.TwoFactorEnabled,
-        jti,
-        roles
-      }
-    }.ToExtVMSingle().Ok();
-  }
+ 
 }

@@ -1,4 +1,3 @@
-using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -65,7 +64,7 @@ public static partial class DI_API_Config
       options.Cookie.Name = jwt.CookieName;
       options.AccessDeniedPath = jwt.AccessDeniedPath;
       options.ExpireTimeSpan = TimeSpan.FromMinutes(jwt.AccessTokenExpiryMinutes);
-      options.SlidingExpiration = true;
+      options.SlidingExpiration = true; // cookie’s lifetime will renew on every request
     });
 
   }
