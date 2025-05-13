@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
 namespace GLOB.API.Config.DI;
 public static partial class DI_API_Config
 {
@@ -9,6 +11,13 @@ public static partial class DI_API_Config
       options.AddPolicy("Policy-Customer", policy => policy.RequireRole("Customer"));
 
       options.AddPolicy("Policy-Admin--SuperAdmin", policy => policy.RequireRole("Admin", "Super Admin"));
+
+      // Enable Both (JWT and Cookie) 
+      options.AddPolicy("JwtOrCookie", policy =>
+      {
+        policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme, "Bearer", JwtSettings.Scheme);
+        policy.RequireAuthenticatedUser();
+      });
     });
   }
 }

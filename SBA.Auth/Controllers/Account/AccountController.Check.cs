@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using GLOB.API.Config.DI;
 using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
 using GLOB.Infra.Paginate;
@@ -10,6 +11,7 @@ namespace SBA.Auth.Controllers;
 public partial class AccountController
 {
   // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+  // [Authorize]
   [HttpPost]
   [Authorize(AuthenticationSchemes = "AuthorizationCookieScheme")]
   public async Task<IActionResult> CheckSchemeCookie()

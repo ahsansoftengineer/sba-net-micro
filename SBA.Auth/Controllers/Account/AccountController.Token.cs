@@ -1,5 +1,7 @@
 using System.Security.Claims;
+using GLOB.API.Config.DI;
 using GLOB.API.Staticz;
+using Microsoft.AspNetCore.Authentication;
 using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +11,6 @@ namespace SBA.Auth.Controllers;
 
 public partial class AccountController
 {
-
   [HttpPost]
   public async Task<IActionResult> Login([FromBody] LoginDto model)
   {
@@ -20,6 +21,35 @@ public partial class AccountController
     }
     return StatusCode(500, "An error occurred during login.");
   }
+
+  [HttpPost]
+  public async Task<IActionResult> LoginCookie([FromBody] LoginDto model)
+  {
+    var user = await _userManager.FindByEmailAsync(model.Email);
+    if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+    {
+      // Create claims
+      var claims = new List<Claim>
+          {
+              new Claim(ClaimTypes.NameIdentifier, user.Id),
+              new Claim(ClaimTypes.Email, user.Email),
+              new Claim(ClaimTypes.Name, user.UserName),
+              // Add role claims if needed
+          };
+
+      // Create identity and principal
+      var identity = new ClaimsIdentity(claims, JwtSettings.Scheme);
+      var principal = new ClaimsPrincipal(identity);
+
+      // Sign in using cookie
+      await HttpContext.SignInAsync(JwtSettings.Scheme, principal);
+
+      return Ok("Signed in with cookie");
+    }
+
+    return Unauthorized("Invalid email or password");
+  }
+
 
   [HttpPost]
   public async Task<IActionResult> TokenRefresh([FromBody] RefreshTokenRequest request)
@@ -51,7 +81,7 @@ public partial class AccountController
   }
 
   [HttpPost]
-  [Authorize] 
+  [Authorize]
   public async Task<IActionResult> TokenRevoke([FromBody] RevokeTokenRequest request)
   {
     // The purpose of RevokeToken is to invalidate a refresh token so it can no longer be 
@@ -86,5 +116,10 @@ public partial class AccountController
 
     return _Res.Ok("Refresh token revoked successfully.");
   }
-
+  
+  [HttpGet]
+  public async Task<IActionResult> Forbidden()
+  {
+    return StatusCode(403, "Invalid Request");
+  }
 }
