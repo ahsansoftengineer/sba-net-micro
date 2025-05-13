@@ -13,7 +13,7 @@ namespace SBA.Auth.Services;
 public class TokenService
 {
   private readonly UserManager<InfraUser> _userManager;
-  protected readonly JwtSettings _jwtSettings;
+  protected readonly JwtSettings _jwt;
 
   private readonly DBCtxProjectz _context;
 
@@ -22,7 +22,7 @@ public class TokenService
     UserManager<InfraUser> userManager, 
     DBCtxProjectz context)
   {
-    _jwtSettings = jwtSettings.Value;
+    _jwt = jwtSettings.Value;
     _userManager = userManager;
     _context = context;
   }
@@ -44,12 +44,12 @@ public class TokenService
     }
 
     var token = new JwtSecurityToken(
-      issuer: _jwtSettings.Issuer,
-      audience: _jwtSettings.Audience,
-      // expires: DateTime.UtcNow.AddMinutes(_jwtSettings.AccessTokenExpiryHour),
-      expires: DateTime.UtcNow.AddMinutes(_jwtSettings.AccessTokenExpiryMinutes),
+      issuer: _jwt.Issuer,
+      audience: _jwt.Audience,
+      // expires: DateTime.UtcNow.AddMinutes(_jwt.AccessTokenExpiryHour),
+      expires: DateTime.UtcNow.AddMinutes(_jwt.AccessTokenExpiryMinutes),
       claims: authClaims,
-      signingCredentials: new SigningCredentials(_jwtSettings.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256)
+      signingCredentials: new SigningCredentials(_jwt.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256)
     );
 
     return new JwtSecurityTokenHandler().WriteToken(token);
@@ -84,13 +84,13 @@ public class TokenService
     {
         var tokenValidationParameters = new TokenValidationParameters
         {
-            ValidIssuer = _jwtSettings.Issuer,
-            ValidAudience = _jwtSettings.Audience,
-            ValidateIssuer = _jwtSettings.ValidateIssuer,
-            ValidateAudience = _jwtSettings.ValidateAudience,
-            ValidateLifetime = _jwtSettings.ValidateLifetime,
-            ValidateIssuerSigningKey = _jwtSettings.ValidateIssuerSigningKey,
-            IssuerSigningKey = _jwtSettings.GetSymmetricSecurityKey()
+            ValidIssuer = _jwt.Issuer,
+            ValidAudience = _jwt.Audience,
+            ValidateIssuer = _jwt.ValidateIssuer,
+            ValidateAudience = _jwt.ValidateAudience,
+            ValidateLifetime = _jwt.ValidateLifetime,
+            ValidateIssuerSigningKey = _jwt.ValidateIssuerSigningKey,
+            IssuerSigningKey = _jwt.GetSymmetricSecurityKey()
         };
 
         var tokenHandler = new JwtSecurityTokenHandler();

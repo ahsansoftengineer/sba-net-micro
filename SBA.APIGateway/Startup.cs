@@ -1,6 +1,6 @@
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
-using GLOB.API.DI;
+using SBA.Projectz.DI;
 
 namespace SBA.APIGateway;
 

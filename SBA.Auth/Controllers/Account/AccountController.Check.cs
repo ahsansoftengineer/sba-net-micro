@@ -95,9 +95,9 @@ public partial class AccountController
 
 
 
-    var accessTokenExpiry = DateTime.UtcNow.AddMinutes(_jwtSettings.AccessTokenExpiryMinutes);
-    // var accessTokenExpiry = DateTime.UtcNow.AddHours(_jwtSettings.AccessTokenExpiryHour);
-    var refreshTokenExpiry = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpiryDays);
+    var accessTokenExpiry = DateTime.UtcNow.AddMinutes(_jwt.AccessTokenExpiryMinutes);
+    // var accessTokenExpiry = DateTime.UtcNow.AddHours(_jwt.AccessTokenExpiryHour);
+    var refreshTokenExpiry = DateTime.UtcNow.AddDays(_jwt.RefreshTokenExpiryDays);
 
     string ip = HttpContext.Connection.RemoteIpAddress?.ToString();
     await _tokenService.SaveRefreshTokenAsync(user.Id, refreshToken, ip, jti);
@@ -106,8 +106,8 @@ public partial class AccountController
     {
       accessToken,
       refreshToken,
-      // expiresIn = _jwtSettings.AccessTokenExpiryHour,
-      expiresIn = _jwtSettings.AccessTokenExpiryMinutes,
+      // expiresIn = _jwt.AccessTokenExpiryHour,
+      expiresIn = _jwt.AccessTokenExpiryMinutes,
       accessTokenExpiry = accessTokenExpiry.ToString("o"), // ISO 8601
       refreshTokenExpiry = refreshTokenExpiry.ToString("o"),
       tokenType = "Bearer",

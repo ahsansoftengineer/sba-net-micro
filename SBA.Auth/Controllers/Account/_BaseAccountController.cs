@@ -11,7 +11,7 @@ namespace SBA.Auth.Controllers;
 public abstract class AccountBaseController<T> : API_1_ErrorController<T>
 {
   // private IRepoGenericz<AccountId> _repo = null;
-  protected readonly JwtSettings _jwtSettings;
+  protected readonly JwtSettings _jwt;
   protected readonly UserManager<InfraUser> _userManager;
   protected readonly SignInManager<InfraUser> _signInManager;
   protected readonly TokenService _tokenService;
@@ -31,6 +31,6 @@ public abstract class AccountBaseController<T> : API_1_ErrorController<T>
     _tokenService = GetSrvc<TokenService>();
     _emailSender = GetSrvc<SmtpEmailSender>();
     
-    _jwtSettings = GetSrvc<IOptions<JwtSettings>>().Value;
+    _jwt = GetSrvc<IOptions<JwtSettings>>().Value;
   }
 }
