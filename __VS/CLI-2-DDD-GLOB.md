@@ -1,3 +1,12 @@
+### Local Project Source
+
+```bash
+dotnet nuget add source "C:\Packages\" --name MyPackages
+dotnet nuget list source
+dotnet nuget remove source MyPackages # Not Working
+dotnet add ./SBA.Auth/ package Microsoft.AspNetCore.Authentication.Google --version 8.0.7 --source "C:\Packages" # Worked
+```
+
 ### DOMAIN
 ```bash
 dotnet add ./GLOB.Domain/ package Microsoft.AspNetCore.Mvc.NewtonsoftJson
