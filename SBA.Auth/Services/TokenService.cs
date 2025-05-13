@@ -27,7 +27,7 @@ public class TokenService
     _userManager = userManager;
     _context = context;
   }
-  public async Task<dynamic> GetUserClaimSignInCookie(InfraUser user, HttpContext httpContext)
+  public async Task<object> GetUserClaimSignInCookie(InfraUser user, HttpContext httpContext)
   {
     string JTI = Guid.NewGuid().ToString();
     var authClaims = new List<Claim>
@@ -64,7 +64,7 @@ public class TokenService
       roles
     };
   }
-  public async Task<dynamic> GetTokensAndUserClaims(InfraUser user, HttpContext httpContext)
+  public async Task<object> GetTokensAndUserClaims(InfraUser user, HttpContext httpContext)
   {
     var roles = await _userManager.GetRolesAsync(user);
 
