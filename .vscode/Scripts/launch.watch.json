@@ -5,7 +5,7 @@
       "name": "Debug APIGateway",
       "type": "coreclr",
       "request": "launch",
-      "program": "${workspaceFolder}/SBA.APIGateway/bin/Debug/net8.0/SBA.APIGateway.dll",
+      "program": "${workspaceFolder}/SBA.APIGateway/bin/Debug/net9.0/SBA.APIGateway.dll",
       "args": [
         "--launch-profile", "https"
       ],
@@ -20,7 +20,7 @@
       "name": "Debug Auth",
       "type": "coreclr",
       "request": "launch",
-      "program": "${workspaceFolder}/SBA.Auth/bin/Debug/net8.0/SBA.Auth.dll",
+      "program": "${workspaceFolder}/SBA.Auth/bin/Debug/net9.0/SBA.Auth.dll",
       "args": [
         "--launch-profile", "https"
       ],
@@ -31,7 +31,7 @@
       "name": "Debug Hierarchy",
       "type": "coreclr",
       "request": "launch",
-      "program": "${workspaceFolder}/SBA.Hierarchy/bin/Debug/net8.0/SBA.Hierarchy.dll",
+      "program": "${workspaceFolder}/SBA.Hierarchy/bin/Debug/net9.0/SBA.Hierarchy.dll",
       "args": [
         "--launch-profile", "https"
       ],
