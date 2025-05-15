@@ -1,12 +1,5 @@
 ### Local Project Source
 
-```bash
-dotnet nuget add source "C:\Packages\" --name MyPackages
-dotnet nuget list source
-dotnet nuget remove source MyPackages # Not Working
-dotnet add ./SBA.Auth/ package Microsoft.AspNetCore.Authentication.Google --version 8.0.7 --source "C:\Packages" # Worked
-```
-
 ### DOMAIN
 ```bash
 dotnet add ./GLOB.Domain/ package Microsoft.AspNetCore.Mvc.NewtonsoftJson
@@ -25,7 +18,7 @@ dotnet add ./GLOB.Infra/ package Microsoft.AspNetCore.Authentication.OpenIdConne
 dotnet add ./GLOB.Infra/ package Microsoft.Extensions.Options.ConfigurationExtensions -v 8.0.7
 dotnet add ./GLOB.Infra/ package Microsoft.Extensions.Configuration -v 8.0.7 
 
-dotnet add ./GLOB.Infra/ package Microsoft.AspNetCore.Mvc.NewtonsoftJson
+dotnet add ./GLOB.Infra/ package Microsoft.AspNetCore.Mvc.NewtonsoftJson -v 6.0.16
 
 dotnet add ./GLOB.Infra/ package DynamicExpressions.NET -v 1.1.0
 dotnet add ./GLOB.Infra/ package LinqKit.Core
@@ -33,15 +26,15 @@ dotnet add ./GLOB.Infra/ package LinqKit.Core
 ```
 ### API.CONFIG
 ```bash
-dotnet add ./GLOB.API.Config/ package AspNetCoreRateLimit
-dotnet add ./GLOB.API.Config/ package AutoMapper.Extensions.Microsoft.DependencyInjection8
-dotnet add ./GLOB.API.Config/ package Marvin.Cache.Headers
-dotnet add ./GLOB.API.Config/ package Microsoft.AspNetCore.Mvc.Versioning
-dotnet add ./GLOB.API.Config/ package Microsoft.AspNetCore.OpenApi
-dotnet add ./GLOB.API.Config/ package Microsoft.AspNetCore.StaticFiles
-dotnet add ./GLOB.API.Config/ package Microsoft.Extensions.Configuration -v 8.0.7
+dotnet add ./GLOB.API.Config/ package AspNetCoreRateLimit -v 5.0.0
+dotnet add ./GLOB.API.Config/ package AutoMapper.Extensions.Microsoft.DependencyInjection -v 12.0.1 # Deprecated
+dotnet add ./GLOB.API.Config/ package Marvin.Cache.Headers -v 7.2.0
+dotnet add ./GLOB.API.Config/ package Microsoft.AspNetCore.Mvc.Versioning -v 5.1.0 # Deprecated
+dotnet add ./GLOB.API.Config/ package Microsoft.AspNetCore.OpenApi -v 8.0.12
+dotnet add ./GLOB.API.Config/ package Microsoft.Extensions.Configuration -v 8.0.12
+dotnet add ./GLOB.API.Config/ package Microsoft.AspNetCore.StaticFiles -v 2.3.0
 dotnet add ./GLOB.API.Config/ package Microsoft.Extensions.Options.ConfigurationExtensions -v 8.0.7
-dotnet add ./GLOB.API.Config/ package Swashbuckle.AspNetCore
+dotnet add ./GLOB.API.Config/ package Swashbuckle.AspNetCore -v 6.6.2
 
 dotnet add ./GLOB.API.Config/ package Microsoft.AspNetCore.Authentication.JwtBearer -v 8.0.7
 dotnet add ./GLOB.API.Config/ package Microsoft.AspNetCore.Authentication.OpenIdConnect -v 8.0.7

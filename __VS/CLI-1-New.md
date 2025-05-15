@@ -70,3 +70,12 @@ dotnet add ./SBA.Hierarchy/ reference ./GLOB.API/ # WEB API
 dotnet add ./GLOB.API/ reference ./GLOB.API.Config/ # WEB API
 dotnet add ./GLOB.API/ reference ./GLOB.Infra/ # WEB API
 ```
+### Local Packages
+```bash
+cd C:
+mkdir Packages
+dotnet nuget add source "C:\Packages\" --name Packages
+dotnet nuget list source
+dotnet nuget remove source MyPackages # Not Working
+dotnet add ./SBA.Auth/ package Microsoft.AspNetCore.Authentication.Google --version 8.0.7 --source "C:\Packages" # Worked
+```
