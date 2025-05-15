@@ -72,10 +72,23 @@ dotnet add ./GLOB.API/ reference ./GLOB.Infra/ # WEB API
 ```
 ### Local Packages
 ```bash
+# Create Dir
 cd C:
 mkdir Packages
-dotnet nuget add source "C:\Packages\" --name Packages
+
+# Create Source Dir
+dotnet nuget add source 'C:\Packages\' --name Packages 
 dotnet nuget list source
-dotnet nuget remove source MyPackages # Not Working
-dotnet add ./SBA.Auth/ package Microsoft.AspNetCore.Authentication.Google --version 8.0.7 --source "C:\Packages" # Worked
+
+# Remove Source
+dotnet nuget remove source Packages # Not Working
+
+# Disable
+dotnet nuget disable source nuget.org
+dotnet nuget disable source "Microsoft Visual Studio Offline Packages"
+
+```
+### Using Local Package Source
+```bash
+dotnet add ./SBA.Auth/ package Microsoft.AspNetCore.Authentication.Google --version 9.0.4 --source "C:\Packages" # Worked
 ```
