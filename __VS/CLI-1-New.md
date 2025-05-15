@@ -84,6 +84,7 @@ dotnet nuget list source
 dotnet nuget remove source Packages # Not Working
 
 # Disable
+dotnet nuget enable source nuget.org
 dotnet nuget disable source nuget.org
 dotnet nuget disable source "Microsoft Visual Studio Offline Packages"
 
