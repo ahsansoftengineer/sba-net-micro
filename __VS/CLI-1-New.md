@@ -102,9 +102,13 @@ dotnet add ./SBA.Auth/ package Microsoft.AspNetCore.Authentication.Google --vers
 ### Customize Package Location 
 
 ```bash
+# Print File Location for Nuget Packges
+dotnet nuget locals global-packages -l
+
 # DEfault File Location for Nuget Packages
 cd C:\Users\Ahsan1008\.nuget
+
 # Custom File Location
 setx NUGET_PACKAGES 'C:\Packages\'
-dotnet nuget locals global-packages -l
+
 ```

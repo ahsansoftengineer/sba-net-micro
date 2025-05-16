@@ -57,9 +57,9 @@ public class FileUploderz
   }
 
   public async Task<string> UploadFileReflection(
-  IFormFile file,
-  string propertyName,
-  object obj
+    IFormFile file,
+    string propertyName,
+    object obj
   )
   {
     if (file == null || file.Length == 0){
