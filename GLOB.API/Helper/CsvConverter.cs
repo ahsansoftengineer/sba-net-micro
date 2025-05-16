@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Reflection;
 using System.Text;
 
 namespace GLOB.Common.API;
@@ -9,7 +10,10 @@ public static class CsvExportExtensions
   public static IActionResult ToCsvFileResult(this object rawData, string? fileName = null)
   {
     var records = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(
-      JsonConvert.SerializeObject(rawData));
+      JsonConvert.SerializeObject(rawData, new JsonSerializerSettings
+      {
+        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+      }));
 
     if (records == null || records.Count == 0)
     {

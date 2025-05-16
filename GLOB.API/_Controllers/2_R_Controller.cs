@@ -41,11 +41,12 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
   {
     return await _repo.ToActionGetsByIdsLookup(req.Ids);
   }
-  public async Task<IActionResult> GetCSV()
+  [HttpPost]
+  public async Task<IActionResult> GetsCSV([FromBody] DtoRequestGet req)
   {
     try
     {
-      var rawData = await _repo.Gets();
+      var rawData = await _repo.Gets(Include: req.Includes);
       return rawData.ToCsvFileResult();
     }
     catch (Exception ex)
