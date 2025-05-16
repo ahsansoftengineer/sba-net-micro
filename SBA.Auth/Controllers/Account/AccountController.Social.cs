@@ -11,9 +11,7 @@ public partial class AccountController
   [HttpGet]
   public IActionResult LoginGoogleRedirect()
   {
-    var redirectUrl = Url.Action("LoginGoogle", "Auth");
-    var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
-    return Challenge(properties, "Google");
+    return BaseLoginRedirect("Google", "LoginGoogle", "Account", "/");
   }
   [HttpGet]
   public async Task<IActionResult> LoginGoogle([FromBody] ExternalAuthDto model)
@@ -72,19 +70,36 @@ public partial class AccountController
   [HttpGet]
   public IActionResult LoginMicrosoftRedirect(string returnUrl = "/")
   {
-      var redirectUrl = Url.Action("LoginMicrosoft", "Account", new { returnUrl });
-      var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
-      return Challenge(properties, "Microsoft");
+    var redirectUrl = Url.Action("LoginMicrosoft", "Account", new { returnUrl });
+    var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
+    return Challenge(properties, "Microsoft");
   }
 
   [HttpGet]
   public async Task<IActionResult> LoginMicrosoft(string returnUrl = "/")
   {
-      var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-      if (!result.Succeeded)
-          return Unauthorized();
+    var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+    if (!result.Succeeded)
+      return Unauthorized();
 
-      var claims = result.Principal.Claims.Select(c => new { c.Type, c.Value });
-      return Ok(new { Provider = "Microsoft", Claims = claims });
+    var claims = result.Principal.Claims.Select(c => new { c.Type, c.Value });
+    return Ok(new { Provider = "Microsoft", Claims = claims });
+  }
+
+  public IActionResult BaseLoginRedirect(string provider, string action, string controller, string returnUrl = "/")
+  {
+    var redirectUrl = Url.Action(action, controller, new { returnUrl });
+    var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
+    return Challenge(properties, provider);
+  }
+
+  [HttpGet("external-login-callback")]
+  public async Task<IActionResult> BaseLogin(string returnUrl = "/")
+  {
+    var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+    if (!result.Succeeded) return Unauthorized();
+
+    var claims = result.Principal.Claims.ToDictionary(c => c.Type, c => c.Value);
+    return Ok(new { Provider = result.Properties.Items[".AuthScheme"], Claims = claims });
   }
 }
