@@ -1,5 +1,6 @@
 using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
@@ -67,5 +68,23 @@ public partial class AccountController
     }
 
     return Unauthorized();
+  }
+  [HttpGet]
+  public IActionResult LoginMicrosoftRedirect(string returnUrl = "/")
+  {
+      var redirectUrl = Url.Action("LoginMicrosoft", "Account", new { returnUrl });
+      var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
+      return Challenge(properties, "Microsoft");
+  }
+
+  [HttpGet]
+  public async Task<IActionResult> LoginMicrosoft(string returnUrl = "/")
+  {
+      var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+      if (!result.Succeeded)
+          return Unauthorized();
+
+      var claims = result.Principal.Claims.Select(c => new { c.Type, c.Value });
+      return Ok(new { Provider = "Microsoft", Claims = claims });
   }
 }

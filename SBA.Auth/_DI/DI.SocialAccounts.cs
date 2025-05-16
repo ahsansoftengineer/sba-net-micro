@@ -1,4 +1,8 @@
+using System.Net.Http.Headers;
+using System.Security.Claims;
+using System.Text.Json;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.OAuth;
 
 namespace SBA.Projectz.DI;
 
@@ -6,42 +10,57 @@ public static partial class DI_Projectz
 {
   public static AuthenticationBuilder Config_Social_Auth(this AuthenticationBuilder srvc, IConfiguration config)
   {
-
     var accounts = new SocialAccounts();
-    config.GetSection("SocialAccounts").Bind(accounts);
-    return srvc
-    .AddGoogle(opt =>
+    config.GetSection(SocialAccounts.SectionName).Bind(accounts);
+
+    return srvc.Add_OAuthFromAccount(accounts.Google)
+        .Add_OAuthFromAccount(accounts.Facebook)
+        .Add_OAuthFromAccount(accounts.Microsoft)
+        .Add_OAuthFromAccount(accounts.Apple);
+  }
+  private static AuthenticationBuilder Add_OAuthFromAccount(this AuthenticationBuilder builder, SocialAccount account)
+  {
+    return builder.AddOAuth(account.Scheme, opt =>
     {
-      opt.ClientId = accounts.Google.Id;
-      opt.ClientSecret = accounts.Google.Secret;
-      opt.ReturnUrlParameter = accounts.Google.ReturnUrl;
+      opt.ClientId = account.ClientId;
+      opt.ClientSecret = account.ClientSecret;
+      opt.AuthorizationEndpoint = account.AuthorizationEndpoint;
+      opt.TokenEndpoint = account.TokenEndpoint;
+      opt.UserInformationEndpoint = account.UserInformationEndpoint;
+      opt.CallbackPath = new PathString(account.CallbackPath);
       opt.SaveTokens = true;
-      opt.Scope.Add("profile");
-      opt.Scope.Add("email");
-    })
-    .AddFacebook(opt =>
-    {
-      opt.AppId = accounts.Facebook.Id;
-      opt.AppSecret = accounts.Facebook.Secret;
-      opt.ReturnUrlParameter = accounts.Facebook.ReturnUrl;
-      opt.SaveTokens = true;
-      opt.Fields.Add("email");
-    })
-    .AddMicrosoftAccount(options =>
-    {
-      options.ClientId = accounts.Microsoft.Id;
-      options.ClientSecret = accounts.Microsoft.Secret;
-      options.CallbackPath = accounts.Microsoft.ReturnUrl;
-      options.SaveTokens = true;
-      options.Scope.Add("email");
-    })
-    .AddApple(options =>
-    {
-      options.ClientId = "com.your.bundle.id";
-      options.KeyId = "your-key-id";
-      options.TeamId = "your-team-id";
-      options.PrivateKey = null;
-      options.SaveTokens = true;
+
+      foreach (var scope in account.Scopes)
+        opt.Scope.Add(scope);
+
+      foreach (var claimMap in account.ClaimMap)
+      {
+        var claimType = claimMap.Key switch
+        {
+          "nameidentifier" => ClaimTypes.NameIdentifier,
+          "name" => ClaimTypes.Name,
+          "email" => ClaimTypes.Email,
+          _ => claimMap.Key
+        };
+        opt.ClaimActions.MapJsonKey(claimType, claimMap.Value);
+      }
+
+      opt.Events = new OAuthEvents
+      {
+        OnCreatingTicket = async context =>
+        {
+          // Apple does not provide userinfo endpoint; handle separately if needed
+          if (!string.IsNullOrEmpty(opt.UserInformationEndpoint))
+          {
+            var request = new HttpRequestMessage(HttpMethod.Get, opt.UserInformationEndpoint);
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", context.AccessToken);
+            var response = await context.Backchannel.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+            var user = JsonDocument.Parse(await response.Content.ReadAsStringAsync()).RootElement;
+            context.RunClaimActions(user);
+          }
+        }
+      };
     });
   }
 }
@@ -56,9 +75,13 @@ public class SocialAccounts
 }
 public class SocialAccount
 {
-  public string Id { get; set; }
-  public string Secret { get; set; }
-  public string ReturnUrl { get; set; }
-  public string AppleAuthority { get; set; } = "https://appleid.apple.com";
-  public string CallbackPath { get; set; } = "route-of-yourapp";
+  public string Scheme { get; set; } // Google, Microsoft, Facebook, Apple
+  public string ClientId { get; set; }
+  public string ClientSecret { get; set; }
+  public string AuthorizationEndpoint { get; set; }
+  public string TokenEndpoint { get; set; }
+  public string UserInformationEndpoint { get; set; }
+  public string CallbackPath { get; set; }
+  public List<string> Scopes { get; set; } = new();
+  public Dictionary<string, string> ClaimMap { get; set; } = new();
 }

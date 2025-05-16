@@ -11,7 +11,7 @@ public static partial class DI_API_Config
     IHostEnvironment env = srvc.BuildServiceProvider().GetRequiredService<IHostEnvironment>();
 
     var jwt = new JwtSettings();
-    config.GetSection("JwtSettings").Bind(jwt);
+    config.GetSection(JwtSettings.SectionName).Bind(jwt);
 
     return srvc.AddAuthentication(options =>
     {
