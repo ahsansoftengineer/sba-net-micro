@@ -10,18 +10,13 @@ public partial class AccountController
   [HttpGet]
   public IActionResult LoginMicrosoftRedirect(string returnUrl = "/")
   {
-    return BaseLoginRedirect("Microsoft", "LoginMicrosoft", "Account", "/");
+    return BaseLoginRedirect("Microsoft", "LoginMicrosoft", "Account", returnUrl);
   }
 
   [HttpGet]
   public async Task<IActionResult> LoginMicrosoft(string returnUrl = "/")
   {
-    var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-    if (!result.Succeeded)
-      return Unauthorized();
-
-    var claims = result.Principal.Claims.Select(c => new { c.Type, c.Value });
-    return Ok(new { Provider = "Microsoft", Claims = claims });
+    return await BaseLogin("Microsoft");
   }
 
   // Google login callback
@@ -33,15 +28,7 @@ public partial class AccountController
   [HttpGet]
   public async Task<IActionResult> LoginGoogle()
   {
-    var result = await HttpContext.AuthenticateAsync("Google");
-
-    if (result.Succeeded)
-    {
-      // Use result.Principal to extract claims and authenticate the user
-      // return Ok(new { token = generatedJwtToken });
-    }
-
-    return Unauthorized();
+    return await BaseLogin("Google");
   }
 
   [HttpGet]
@@ -52,14 +39,7 @@ public partial class AccountController
   [HttpGet]
   public async Task<IActionResult> LoginFacebook([FromBody] ExternalAuthDto model)
   {
-    var result = await HttpContext.AuthenticateAsync("Facebook");
-
-    if (result.Succeeded)
-    {
-      // Handle login and create JWT
-    }
-
-    return Unauthorized();
+    return await BaseLogin("Facebook");
   }
 
   // Apple login callback
@@ -71,16 +51,8 @@ public partial class AccountController
   [HttpGet]
   public async Task<IActionResult> LoginApple([FromBody] ExternalAuthDto model)
   {
-    var result = await HttpContext.AuthenticateAsync("Apple");
-
-    if (result.Succeeded)
-    {
-      // Handle login and create JWT
-    }
-
-    return Unauthorized();
+    return await BaseLogin("Apple");
   }
-
 
 
   // Base Logins
@@ -90,12 +62,12 @@ public partial class AccountController
     var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
     return Challenge(properties, provider);
   }
-  private async Task<IActionResult> BaseLogin(string returnUrl = "/")
+  private async Task<IActionResult> BaseLogin(string scheme)
   {
-    var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+    var result = await HttpContext.AuthenticateAsync(scheme);
     if (!result.Succeeded) return Unauthorized();
 
     var claims = result.Principal.Claims.ToDictionary(c => c.Type, c => c.Value);
-    return Ok(new { Provider = result.Properties.Items[".AuthScheme"], Claims = claims });
+    return Ok(new { Provider = scheme, Claims = claims });
   }
 }
