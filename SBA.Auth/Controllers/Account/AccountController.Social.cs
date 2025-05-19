@@ -7,6 +7,23 @@ namespace SBA.Auth.Controllers;
 
 public partial class AccountController
 {
+  [HttpGet]
+  public IActionResult LoginMicrosoftRedirect(string returnUrl = "/")
+  {
+    return BaseLoginRedirect("Microsoft", "LoginMicrosoft", "Account", "/");
+  }
+
+  [HttpGet]
+  public async Task<IActionResult> LoginMicrosoft(string returnUrl = "/")
+  {
+    var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+    if (!result.Succeeded)
+      return Unauthorized();
+
+    var claims = result.Principal.Claims.Select(c => new { c.Type, c.Value });
+    return Ok(new { Provider = "Microsoft", Claims = claims });
+  }
+
   // Google login callback
   [HttpGet]
   public IActionResult LoginGoogleRedirect()
@@ -14,7 +31,7 @@ public partial class AccountController
     return BaseLoginRedirect("Google", "LoginGoogle", "Account", "/");
   }
   [HttpGet]
-  public async Task<IActionResult> LoginGoogle([FromBody] ExternalAuthDto model)
+  public async Task<IActionResult> LoginGoogle()
   {
     var result = await HttpContext.AuthenticateAsync("Google");
 
@@ -30,9 +47,7 @@ public partial class AccountController
   [HttpGet]
   public IActionResult LoginFacebookRedirect()
   {
-    var redirectUrl = Url.Action("LoginFacebook", "Auth");
-    var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
-    return Challenge(properties, "Facebook");
+    return BaseLoginRedirect("Facebook", "LoginFacebook", "Account", "/");
   }
   [HttpGet]
   public async Task<IActionResult> LoginFacebook([FromBody] ExternalAuthDto model)
@@ -51,9 +66,7 @@ public partial class AccountController
   [HttpGet]
   public IActionResult LoginAppleRedirect()
   {
-    var redirectUrl = Url.Action("LoginApple", "Auth");
-    var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
-    return Challenge(properties, "Apple");
+    return BaseLoginRedirect("Apple", "LoginApple", "Account", "/");
   }
   [HttpGet]
   public async Task<IActionResult> LoginApple([FromBody] ExternalAuthDto model)
@@ -67,34 +80,17 @@ public partial class AccountController
 
     return Unauthorized();
   }
-  [HttpGet]
-  public IActionResult LoginMicrosoftRedirect(string returnUrl = "/")
-  {
-    var redirectUrl = Url.Action("LoginMicrosoft", "Account", new { returnUrl });
-    var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
-    return Challenge(properties, "Microsoft");
-  }
 
-  [HttpGet]
-  public async Task<IActionResult> LoginMicrosoft(string returnUrl = "/")
-  {
-    var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-    if (!result.Succeeded)
-      return Unauthorized();
 
-    var claims = result.Principal.Claims.Select(c => new { c.Type, c.Value });
-    return Ok(new { Provider = "Microsoft", Claims = claims });
-  }
 
-  public IActionResult BaseLoginRedirect(string provider, string action, string controller, string returnUrl = "/")
+  // Base Logins
+  private IActionResult BaseLoginRedirect(string provider, string action, string controller, string returnUrl = "/")
   {
     var redirectUrl = Url.Action(action, controller, new { returnUrl });
     var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
     return Challenge(properties, provider);
   }
-
-  [HttpGet("external-login-callback")]
-  public async Task<IActionResult> BaseLogin(string returnUrl = "/")
+  private async Task<IActionResult> BaseLogin(string returnUrl = "/")
   {
     var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
     if (!result.Succeeded) return Unauthorized();
