@@ -1,6 +1,5 @@
 using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
@@ -8,66 +7,64 @@ namespace SBA.Auth.Controllers;
 public partial class AccountController
 {
   [HttpGet]
-  public IActionResult LoginMicrosoftRedirect(string returnUrl = "/")
+  public IActionResult LoginMicrosoftRedirect([FromQuery] string? ReturnUrl)
   {
-    return BaseLoginRedirect("Microsoft", "LoginMicrosoft", "Account", returnUrl);
+    return BaseLoginRedirect("Microsoft", "LoginMicrosoft", "Account", ReturnUrl);
   }
 
   [HttpGet]
-  public async Task<IActionResult> LoginMicrosoft(string returnUrl = "/")
+  public async Task<IActionResult> LoginMicrosoft([FromQuery] string? ReturnUrl)
   {
-    return await BaseLogin("Microsoft");
-  }
-
-  // Google login callback
-  [HttpGet]
-  public IActionResult LoginGoogleRedirect()
-  {
-    return BaseLoginRedirect("Google", "LoginGoogle", "Account", "/");
-  }
-  [HttpGet]
-  public async Task<IActionResult> LoginGoogle()
-  {
-    return await BaseLogin("Google");
+    return await BaseLogin("Microsoft", ReturnUrl);
   }
 
   [HttpGet]
-  public IActionResult LoginFacebookRedirect()
+  public IActionResult LoginGoogleRedirect([FromQuery] string? ReturnUrl)
   {
-    return BaseLoginRedirect("Facebook", "LoginFacebook", "Account", "/");
+    return BaseLoginRedirect("Google", "LoginGoogle", "Account", ReturnUrl);
   }
   [HttpGet]
-  public async Task<IActionResult> LoginFacebook([FromBody] ExternalAuthDto model)
+  public async Task<IActionResult> LoginGoogle([FromQuery] string? ReturnUrl)
   {
-    return await BaseLogin("Facebook");
+    return await BaseLogin("Google", ReturnUrl);
   }
 
-  // Apple login callback
   [HttpGet]
-  public IActionResult LoginAppleRedirect()
+  public IActionResult LoginFacebookRedirect([FromQuery] string? ReturnUrl)
   {
-    return BaseLoginRedirect("Apple", "LoginApple", "Account", "/");
+    return BaseLoginRedirect("Facebook", "LoginFacebook", "Account", ReturnUrl);
   }
   [HttpGet]
-  public async Task<IActionResult> LoginApple([FromBody] ExternalAuthDto model)
+  public async Task<IActionResult> LoginFacebook([FromQuery] string? ReturnUrl)
   {
-    return await BaseLogin("Apple");
+    return await BaseLogin("Facebook", ReturnUrl);
+  }
+
+  [HttpGet]
+  public IActionResult LoginAppleRedirect([FromQuery] string? ReturnUrl)
+  {
+    return BaseLoginRedirect("Apple", "LoginApple", "Account", ReturnUrl);
+  }
+  [HttpGet]
+  public async Task<IActionResult> LoginApple([FromQuery] string? ReturnUrl)
+  {
+    return await BaseLogin("Apple", ReturnUrl);
   }
 
 
   // Base Logins
-  private IActionResult BaseLoginRedirect(string provider, string action, string controller, string returnUrl = "/")
+  private IActionResult BaseLoginRedirect(string provider, string action, string controller, string? ReturnUrl)
   {
-    var redirectUrl = Url.Action(action, controller, new { returnUrl });
+    var redirectUrl = Url.Action(action, controller, new { ReturnUrl });
     var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
     return Challenge(properties, provider);
   }
-  private async Task<IActionResult> BaseLogin(string scheme)
+  private async Task<IActionResult> BaseLogin(string Provider, string? ReturnUrl)
   {
-    var result = await HttpContext.AuthenticateAsync(scheme);
+    var result = await HttpContext.AuthenticateAsync(Provider);
     if (!result.Succeeded) return Unauthorized();
 
     var claims = result.Principal.Claims.ToDictionary(c => c.Type, c => c.Value);
-    return Ok(new { Provider = scheme, Claims = claims });
+    return Ok(new { Provider, ReturnUrl, Claims = claims});
   }
 }
