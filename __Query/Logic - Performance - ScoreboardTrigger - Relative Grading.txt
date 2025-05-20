@@ -1,0 +1,70 @@
+ // Relative Grading
+ private static int ConvertToIntReq(double value)
+ {
+     int toSkip = (int)Math.Round(value);
+     if (value % 1 == 0.5)
+         toSkip = (int)Math.Ceiling(value);
+     return toSkip;
+ }
+ public async Task<Response> GetCalculatedGradingz(long id)
+ {
+     try
+     {
+         // if Result Score is the same then prefer the Employee who First Enrolled
+         var listOfEmployees = await _context.ScoreboardCalculatedResult.Where(x => x.ScoreboardTriggerId == id)
+                 .OrderBy(x => x.TotalParametersAchievedValue)
+                 .ThenBy(x => x.EmployeeId).Take(18).ToListAsync();
+         var totalEmployeeCount = listOfEmployees.Count();
+         var gradingId = listOfEmployees.Select(x => x.GradingId).FirstOrDefault() ?? 0;
+         var resultantGradingListing = new List<ScoreboardCalculatedResult>();
+
+         if (gradingId > 0)
+         {
+             var grading = _context.GradingCriteria.Include(x => x.GradingCriteriaDetails).FirstOrDefault(x => x.GradingCriteriaId == gradingId);
+
+             var gradingDetails = grading.GradingCriteriaDetails.ToList();
+             if (grading.GradingCriteriaTypeId == GradingCriteriaTypeEnum.Relative.GetValue())
+             {
+                 var RankedEmployees = listOfEmployees.OrderByDescending(x => x.TotalParametersAchievedValue).ToList();
+                 double lastSkip = 0;
+                 double carryForward = 0;
+                 foreach (var items in gradingDetails.OrderBy(x => x.GradingOrder))
+                 {
+                     double countOfPerson = totalEmployeeCount * (items.ValueFrom / 100.0);
+                     int roundOfPerson = ConvertToIntReq(countOfPerson + carryForward);
+                     int toSkip = ConvertToIntReq(lastSkip);
+                     if (roundOfPerson >= 1)
+                     {
+                         var setOfEmployee = RankedEmployees.Skip(toSkip).Take(roundOfPerson);
+                         resultantGradingListing.AddRange(setOfEmployee.Select(x => new ScoreboardCalculatedResult
+                         {
+                             ScoreboardCalculatedResultId = x.ScoreboardCalculatedResultId,
+                             ScoreboardId = x.ScoreboardId,
+                             EmployeeId = x.EmployeeId,
+                             GradingId = gradingId,
+                             Percent = x.Percent,
+                             ParametersTotalScoreValue = x.ParametersTotalScoreValue,
+                             TotalScoreRatio = x.TotalScoreRatio,
+                             TotalParametersAchievedValue = x.TotalParametersAchievedValue,
+                             Grade = items.Grade,
+                             Rank = x.Rank,
+                             CompanyId = items.CompanyId,
+                             IsDeleted = items.IsDeleted,
+                             CreatedAt = items.CreatedAt,
+                             CreatedBy = items.CreatedBy,
+                         }));
+                     }
+                     carryForward += countOfPerson - roundOfPerson;
+                     lastSkip += countOfPerson;
+                 }
+                 resultantGradingListing = resultantGradingListing.OrderByDescending(x => x.Percent).ToList();
+             }
+             return SuccessResponse(resultObject: resultantGradingListing.Count() > 0 ? resultantGradingListing : listOfEmployees);
+         }
+         return SuccessResponse(resultObject: resultantGradingListing.Count() > 0 ? resultantGradingListing : listOfEmployees);
+     }
+     catch (Exception ex)
+     {
+         return FaultResponse(ex.Message);
+     }
+ }
