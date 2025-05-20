@@ -47,7 +47,10 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
     try
     {
       var rawData = await _repo.Gets(Include: req.Includes);
-      return rawData.ToCsvFileResult();
+      return rawData.ToCsvFileResult(null, (sb) =>
+      {
+        sb.Replace("Id", "ID");
+      });
     }
     catch (Exception ex)
     {

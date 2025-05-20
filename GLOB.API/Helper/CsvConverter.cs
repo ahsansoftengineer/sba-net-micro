@@ -7,7 +7,7 @@ namespace GLOB.Common.API;
 
 public static class CsvExportExtensions
 {
-  public static IActionResult ToCsvFileResult(this object rawData, string? fileName = null)
+  public static IActionResult ToCsvFileResult(this object rawData, string? fileName = null, Action<StringBuilder> changeColumnHeader = null)
   {
     var records = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(
       JsonConvert.SerializeObject(rawData, new JsonSerializerSettings
@@ -31,6 +31,11 @@ public static class CsvExportExtensions
     {
       var values = headers.Select(h => $"\"{record[h]?.ToString().Replace("\"", "\"\"")}\"");
       sb.AppendLine(string.Join(",", values));
+    }
+
+    if (changeColumnHeader != null)
+    {
+      changeColumnHeader(sb);
     }
 
     var bytes = Encoding.UTF8.GetBytes(sb.ToString());
