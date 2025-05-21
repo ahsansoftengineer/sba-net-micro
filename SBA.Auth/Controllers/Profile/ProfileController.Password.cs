@@ -2,13 +2,14 @@ using System.Net;
 using GLOB.API.Config.Configz;
 using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
 
 public partial class ProfileController
 {
-  [HttpPost]
+  [HttpPost] [AllowAnonymous]
   public async Task<IActionResult> PasswordForgot([FromQuery] string email)
   {
     if (!ModelState.IsValid)
@@ -29,7 +30,7 @@ public partial class ProfileController
     return new { message = "Reset link sent to email.", token = resetLink }.Ok();
   }
 
-  [HttpPost]
+  [HttpPost] [AllowAnonymous]
   public async Task<IActionResult> PasswordReset([FromBody] ResetPasswordDto model)
   {
     if (!ModelState.IsValid)
