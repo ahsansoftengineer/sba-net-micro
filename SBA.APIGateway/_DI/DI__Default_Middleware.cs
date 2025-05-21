@@ -4,28 +4,28 @@ using GLOB.API.Config.DI;
 namespace SBA.Projectz.DI;
 public static partial class DI_Projectz
 {
-  private static void Config_DevEnv(this IApplicationBuilder app)
+  private static void Use_DevEnv(this IApplicationBuilder app)
   {
     var env = app.GetSrvc<IWebHostEnvironment>();
     Console.WriteLine($"Current Environment: {env.EnvironmentName}");
     if (env.IsDevelopment())
     {
       app.UseDeveloperExceptionPage();
-      app.Config_Swagger_Gateway();
+      app.Use_Swagger_Gateway();
     }
   }
   public static void Add_API_Default_Middlewares(this IApplicationBuilder app)
   {
     // app.UseMiddleware<GlobalExceptionMiddleware>();
-    // app.Config_ExceptionHandler();
-    app.Config_DevEnv();
+    // app.Use_ExceptionHandler();
+    app.Use_DevEnv();
     // app.UseHttpsRedirection();
     // app.Config_Caching();
     app.UseRouting();
     // app.UseCors("AllowGateway");
     // app.UseAuthentication();
     // app.UseAuthorization();
-    app.Config_Controller();
+    app.Use_Controller();
 
 
   }

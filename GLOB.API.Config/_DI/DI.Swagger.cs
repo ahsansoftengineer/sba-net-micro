@@ -10,7 +10,7 @@ public static partial class DI_API_Config
 {
   // http://localhost:5806/api/Hierarchy/v1/swagger/index.html
   // http://localhost:5806/api/Hierarchy/v1/swagger/v1/swagger.json
-  public static void Config_Swagger(this IServiceCollection services, IConfiguration config)
+  public static void Add_Swagger(this IServiceCollection services, IConfiguration config)
   {
     string hostName = config.GetValueStr("ASPNETCORE_URLS"); // http://localhost:5806
     string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX"); // "api/Hierarchy/v1";
@@ -31,11 +31,11 @@ public static partial class DI_API_Config
       c.IgnoreObsoleteProperties(); // [Obsolete]
 
       // Add JWT Authentication to Swagger
-      // Config_Swagger_JWT(c);
+      // Add_Swagger_JWT(c);
     });
   }
 
-  private static void Config_Swagger_JWT(SwaggerGenOptions c)
+  private static void Add_Swagger_JWT(SwaggerGenOptions c)
   {
     var jwtSecurityScheme = new OpenApiSecurityScheme
     {
@@ -61,14 +61,14 @@ public static partial class DI_API_Config
       });
   }
 
-  public static void Config_Swagger(this IApplicationBuilder app, Action<SwaggerUIOptions> action = null)
+  public static void Use_Swagger(this IApplicationBuilder app, Action<SwaggerUIOptions> action = null)
   {
     IConfiguration config = app.GetSrvc<IConfiguration>();
 
     string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX");
     string projectzName = config.GetValueStr("ASPNETCORE_PROJECTZ_NAME");
 
-    app.Config_StaticFilesHandling(); // Required for Swagger UI
+    app.Use_StaticFiles(); // Required for Swagger UI
 
     app.UseSwagger(c =>
     {

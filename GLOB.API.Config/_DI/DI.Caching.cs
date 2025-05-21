@@ -1,7 +1,7 @@
 namespace GLOB.API.Config.DI;
 public static partial class DI_API_Config
 {
-  public static void Config_CachingService(this IServiceCollection srvc)
+  public static void Add_Caching(this IServiceCollection srvc)
   {
       // API Throttling 1: Adding Service
       // srvc.AddMemoryCache(); // Enable Production
@@ -9,10 +9,10 @@ public static partial class DI_API_Config
       // srvc.Config_RateLimiting();
       srvc.AddHttpContextAccessor();
       // API Caching 6: Adding Services Extensions
-      srvc.Config_HttpCacheHeaders();
+      srvc.Add_HttpCacheHeaders();
   }
   // API Caching : 5 with Marvin.Cache.Headers
-  public static void Config_HttpCacheHeaders(this IServiceCollection srvc)
+  public static void Add_HttpCacheHeaders(this IServiceCollection srvc)
   {
     srvc.AddResponseCaching();
     srvc.AddHttpCacheHeaders(

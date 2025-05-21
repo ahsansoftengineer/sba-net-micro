@@ -12,11 +12,11 @@ public static partial class DI_Projectz
   {
     srvc.Config_Options(config);
 
-    //srvc.Config_Localization(config);
-    srvc.Config_Controllerz(config);
+    //srvc.Add_Localization(config);
+    srvc.Add_Controller(config);
     srvc.Add_Projectz_Auth_Srvc(config);
-    srvc.Config_Swagger(config);
-    srvc.Config_Cors();
+    srvc.Add_Swagger(config);
+    srvc.Add_Cors();
     srvc.Config_DB_SQL<DBCtx, IUOW_Infra, UOW_Projectz>(config);
     // srvc.Config_DB_Identity<DBCtxIdentity, IUOW_Infra, UOW_Projectz>(config);
     srvc.Config_DB_Identity<DBCtxProjectz, IUOW_Projectz, UOW_Projectz>(config);
@@ -31,10 +31,10 @@ public static partial class DI_Projectz
   {
 
 
-    srvc.Config_Authentication_JWT(config)
+    srvc.Add_Authentication_JWT(config)
         .Config_Social_Auth(config);
 
-    srvc.Config_Authorization_JWT(config);
+    srvc.Add_Authorization_JWT(config);
 
 
     // srvc.AddAutoMapper(typeof(API_Base_Mapper));

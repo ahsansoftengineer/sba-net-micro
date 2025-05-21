@@ -6,7 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 namespace GLOB.API.Config.DI;
 public static partial class DI_API_Config
 {
-  public static AuthenticationBuilder Config_Authentication_JWT(this IServiceCollection srvc, IConfiguration config)
+  public static AuthenticationBuilder Add_Authentication_JWT(this IServiceCollection srvc, IConfiguration config)
   {
     IHostEnvironment env = srvc.BuildServiceProvider().GetRequiredService<IHostEnvironment>();
 

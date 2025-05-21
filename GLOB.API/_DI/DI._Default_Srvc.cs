@@ -5,24 +5,24 @@ public static partial class DI_API
 {
 public static void Add_API_Default_Srvc(this IServiceCollection srvc, IConfiguration config)
 {
-    //srvc.Config_Localization(config);
+    //srvc.Add_Localization(config);
 
-    srvc.Config_Controllerz(config);
+    srvc.Add_Controller(config);
 
-    srvc.Config_Authentication_JWT(config);
-    srvc.Config_Authorization_JWT(config);
+    srvc.Add_Authentication_JWT(config);
+    srvc.Add_Authorization_JWT(config);
 
-    srvc.Config_Swagger(config);
-    srvc.Config_Cors();
+    srvc.Add_Swagger(config);
+    srvc.Add_Cors();
     // srvc.AddAutoMapper(typeof(API_Base_Mapper));
 }
 
 public static void Add_API_Default_Srvc2(this IServiceCollection srvc)
 {
-    srvc.Config_Versioning();
-    srvc.Config_HttpCacheHeaders();
+    srvc.Add_Versioning();
+    srvc.Add_HttpCacheHeaders();
     srvc.Config_RateLimiting();
-    // srvc.Config_FileHandling();
+    // srvc.Add_StaticFiles();
 }
 
 }
