@@ -1,14 +1,16 @@
 using GLOB.API.Config.Configz;
 using GLOB.API.Config.OptionSetup;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Newtonsoft.Json;
 
 namespace GLOB.API.Config.DI;
 public static partial class DI_API_Config
 {
  
-  public static void Config_Controller(this IApplicationBuilder app)
+  public static void Use_Controller(this IApplicationBuilder app)
   {
     IConfiguration config = app.GetSrvc<IConfiguration>();
     string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX"); //"api/Hierarchy/v1";
@@ -27,13 +29,12 @@ public static partial class DI_API_Config
       await next();
     });
   }
-  public static void Config_Controllerz(this IServiceCollection srvc, IConfiguration config)
+  public static void Add_Controller(this IServiceCollection srvc, IConfiguration config)
   {
     srvc
       // API Caching 3. Defining Cache Profile
       .AddControllers(opt =>
       {
-        // opt.Conventions.Add(new GlobalRouteConvention());
         opt.Conventions.Add(new RouteTokenTransformerConvention(new KebabCaseRouteTransformer()));
         opt.Conventions.Insert(0, new GlobalRoutePrefixConvention(config.GetValueStr("ASPNETCORE_ROUTE_PREFIX")));
         //opt.Filters<Filters>();
@@ -45,6 +46,9 @@ public static partial class DI_API_Config
           //,VaryByHeader = "I don't know which string"
           //,VaryByQueryKeys = "Any Keys"
         });
+        
+        var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+        opt.Filters.Add(new AuthorizeFilter(policy));
       })
       .ConfigureApiBehaviorOptions(opt =>
       {

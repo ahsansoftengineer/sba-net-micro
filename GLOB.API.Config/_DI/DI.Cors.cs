@@ -1,7 +1,7 @@
 namespace GLOB.API.Config.DI;
 public static partial class DI_API_Config
 {
-  public static void Config_Cors_Gateway(this IServiceCollection srvc)
+  public static void Add_Cors_Gateway(this IServiceCollection srvc)
   {
     srvc.AddCors(opt =>
     {
@@ -13,7 +13,7 @@ public static partial class DI_API_Config
       );
     });
   }
-  public static void Config_Cors(this IServiceCollection srvc)
+  public static void Add_Cors(this IServiceCollection srvc)
   {
     srvc.AddCors(opt =>
     {

@@ -29,7 +29,7 @@ public class _ProjectzLookupzController : API_2_RDS_Controller<_ProjectzLookupzC
     try
     {
       bool hasParent = _uowInfra.ProjectzLookupBases.AnyId(data.ProjectzLookupBaseId);
-      if(!hasParent) return _Res.BadRequestzId("ProjectzLookupBaseId",data.ProjectzLookupBaseId);
+      if (!hasParent) return _Res.BadRequestzId("ProjectzLookupBaseId", data.ProjectzLookupBaseId);
 
       var result = _mapper.Map<ProjectzLookup>(data);
       var entity = await _repo.Insert(result);
@@ -47,13 +47,13 @@ public class _ProjectzLookupzController : API_2_RDS_Controller<_ProjectzLookupzC
   {
     try
     {
-      if(Id < 1) return _Res.NotFoundId(Id);
+      if (Id < 1) return _Res.NotFoundId(Id);
 
       var item = await _repo.Get(q => q.Id == Id);
       if (item == null) return _Res.NotFoundId(Id);
-      
+
       bool hasParent = _uowInfra.ProjectzLookupBases.AnyId(data.ProjectzLookupBaseId);
-      if(!hasParent) return _Res.BadRequestzId("ProjectzLookupBaseId",data.ProjectzLookupBaseId);
+      if (!hasParent) return _Res.BadRequestzId("ProjectzLookupBaseId", data.ProjectzLookupBaseId);
 
       var result = _mapper.Map(data, item);
       _repo.Update(item);

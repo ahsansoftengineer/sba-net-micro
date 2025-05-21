@@ -6,14 +6,14 @@ using Microsoft.IdentityModel.Tokens;
 namespace GLOB.API.Config.DI;
 public static partial class DI_API_Config
 {
-  public static void Config_Authentication_JWT(this IServiceCollection srvc, IConfiguration config)
+  public static AuthenticationBuilder Add_Authentication_JWT(this IServiceCollection srvc, IConfiguration config)
   {
     IHostEnvironment env = srvc.BuildServiceProvider().GetRequiredService<IHostEnvironment>();
 
     var jwt = new JwtSettings();
-    config.GetSection("JwtSettings").Bind(jwt);
+    config.GetSection(JwtSettings.SectionName).Bind(jwt);
 
-    srvc.AddAuthentication(options =>
+    return srvc.AddAuthentication(options =>
     {
       options.Config_AuthenticationOptions();
     })
@@ -66,7 +66,7 @@ public static partial class DI_API_Config
       options.ExpireTimeSpan = TimeSpan.FromMinutes(jwt.AccessTokenExpiryMinutes);
       options.SlidingExpiration = true; // cookie’s lifetime will renew on every request
     });
-
+   
   }
 
   public static void Config_Post_Authentication_JWT_Option(this IServiceCollection srvc)

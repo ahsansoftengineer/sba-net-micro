@@ -1,6 +1,7 @@
 using GLOB.Domain.Base;
 using Microsoft.AspNetCore.Mvc;
 using GLOB.API.Staticz;
+using GLOB.Common.API;
 
 namespace GLOB.API.Controllers.Base;
 // Single, List, Group
@@ -39,5 +40,21 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
   public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds req)
   {
     return await _repo.ToActionGetsByIdsLookup(req.Ids);
+  }
+  [HttpPost]
+  public async Task<IActionResult> GetsCSV([FromBody] DtoRequestGet req)
+  {
+    try
+    {
+      var rawData = await _repo.Gets(Include: req.Includes);
+      return rawData.ToCsvFileResult(null, (sb) =>
+      {
+        sb.Replace("Id", "ID");
+      });
+    }
+    catch (Exception ex)
+    {
+      return new BadRequestObjectResult(ex.Message);
+    }
   }
 }

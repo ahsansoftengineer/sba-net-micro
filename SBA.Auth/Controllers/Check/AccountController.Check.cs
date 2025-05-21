@@ -5,14 +5,26 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
 
-public partial class AccountController
+public partial class CheckAuthController :  AccountBaseController<CheckAuthController>
 {
+  public CheckAuthController(
+    IServiceProvider srvcProvider
+  ) : base(srvcProvider)
+  {
+  }
+
+  // Jwt -> ✅ Login
+  [HttpPost] [AllowAnonymous]
+  public async Task<IActionResult> CheckAllowAnonymous()
+  {
+    return $"Check Allow Anonymous Successfull".Ok();
+  }
   // Jwt -> ✅ Login
   [HttpPost] [Authorize]
   public async Task<IActionResult> CheckLogin()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    return _Res.Ok($"Current User Id {id} Check Login");
+    return $"Current User Id {id} Check Login".Ok();
   }
 
   // JWT -> ✅ Role OR
@@ -20,7 +32,7 @@ public partial class AccountController
   public async Task<IActionResult> CheckRoleOr()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    return _Res.Ok($"Id: {id} Multi Roles OK! (Admin | Super Admin | Customer) ");
+    return $"Id: {id} Multi Roles OK! (Admin | Super Admin | Customer) ".Ok();
   }
 
   // JWT -> ✅ Role And
@@ -28,7 +40,7 @@ public partial class AccountController
   public async Task<IActionResult> CheckRoleAnd()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    return _Res.Ok($"Id: {id} Multi Roles OK! (Admin & Super Admin) ");
+    return $"Id: {id} Multi Roles OK! (Admin & Super Admin) ".Ok();
   }
 
   // JWT -> ✅ Policy-Admin
@@ -58,7 +70,7 @@ public partial class AccountController
 
     var rolez = string.Join(", ", roles);
 
-    return _Res.Ok($"Id: {id}, IsCustomer: {User.IsInRole("Customer")}, Policy: (Policy-Customer)");
+    return $"Id: {id}, IsCustomer: {User.IsInRole("Customer")}, Policy: (Policy-Customer)".Ok();
   }
 
   // JWT -> ✅ Policy Multi Or
@@ -66,7 +78,7 @@ public partial class AccountController
   public async Task<IActionResult> CheckPolicyMulti()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    return _Res.Ok($"Id: {id} Multi Policy Checks OK! (Admin Or Super Admin)");
+    return $"Id: {id} Multi Policy Checks OK! (Admin Or Super Admin)".Ok();
   }
 
   // Cookie -> ✅ Login
@@ -74,15 +86,13 @@ public partial class AccountController
   public async Task<IActionResult> CheckSchemeCookie()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    return _Res.Ok($"Current User Id {id} Cookie Based Token Working");
+    return $"Current User Id {id} Cookie Based Token Working".Ok();
   }
   // Cookie -> ✅ Role Admin
   [HttpPost] [Authorize(AuthenticationSchemes = "AuthorizationCookieScheme", Roles = "Admin")]
   public async Task<IActionResult> CheckSchemeCookieAdmin()
   {
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    return _Res.Ok($"Id: {id}, IsAdmin: {User.IsInRole("Admin")}, Scheme: Cookie, Role: Admin");
+    return $"Id: {id}, IsAdmin: {User.IsInRole("Admin")}, Scheme: Cookie, Role: Admin".Ok();
   }
-
- 
 }

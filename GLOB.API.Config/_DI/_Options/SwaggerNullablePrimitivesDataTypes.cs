@@ -3,7 +3,7 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace GLOB.API.Config.OptionSetup;
-public class SwaggerNullablePrimitivesDataTypes : ISchemaFilter
+public class SwaggerNullablePrimitivesFilter : ISchemaFilter
 {
     public void Apply(OpenApiSchema schema, SchemaFilterContext context)
     {

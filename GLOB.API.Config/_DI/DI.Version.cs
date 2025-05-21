@@ -3,7 +3,7 @@ using AspNetCoreRateLimit;
 namespace GLOB.API.Config.DI;
 public static partial class DI_API_Config
 {
-  public static void Config_Versioning(this IServiceCollection srvc)
+  public static void Add_Versioning(this IServiceCollection srvc)
   {
     srvc.AddApiVersioning(opt =>
     {

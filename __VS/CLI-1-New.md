@@ -70,3 +70,45 @@ dotnet add ./SBA.Hierarchy/ reference ./GLOB.API/ # WEB API
 dotnet add ./GLOB.API/ reference ./GLOB.API.Config/ # WEB API
 dotnet add ./GLOB.API/ reference ./GLOB.Infra/ # WEB API
 ```
+### Local Packages
+- Windows ||| C:\Users\Ahsan1008\.nuget\packages
+- Ubuntu  ||| ~/.nuget/packages
+- So, even if you use .NET 9, .NET 8, or .NET Core 3.1, all package versions are managed under:
+```bash
+# Create Dir
+cd C:
+mkdir Packages
+
+# Create Source Dir
+
+dotnet nuget add source 'C:\Packages\' --name Packages 
+dotnet nuget list source
+
+
+# Remove Source
+dotnet nuget remove source Packages # Not Working
+
+# Disable
+dotnet nuget enable source nuget.org
+dotnet nuget disable source nuget.org
+dotnet nuget enable source "Microsoft Visual Studio Offline Packages"
+
+```
+### Using Local Package Source
+```bash
+dotnet add ./SBA.Auth/ package Microsoft.AspNetCore.Authentication.Google --version 8.0.7 --source "C:\Packages" # Worked
+```
+
+### Customize Package Location 
+
+```bash
+# Print File Location for Nuget Packges
+dotnet nuget locals global-packages -l
+
+# DEfault File Location for Nuget Packages
+cd C:\Users\Ahsan1008\.nuget
+
+# Custom File Location
+setx NUGET_PACKAGES 'C:\Packages\'
+
+```

@@ -1,4 +1,6 @@
+using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
@@ -12,7 +14,7 @@ public partial class AccountController : AccountBaseController<AccountController
   {
   }
 
-  [HttpPost]
+  [HttpPost] [AllowAnonymous]
   public async Task<IActionResult> Register([FromBody] RegisterDto model) 
   {
     var user = UserController.MapUser(model);
@@ -23,7 +25,7 @@ public partial class AccountController : AccountBaseController<AccountController
         return  await Login(new (){ Email = model.Email, Password = model.Password });
     }
 
-    return BadRequest(result.Errors);
+    return result.Errors.BadRequestModel();
   }
   
   [HttpPost]

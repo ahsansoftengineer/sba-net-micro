@@ -5,34 +5,34 @@ using GLOB.API.Config.Middleware;
 namespace GLOB.API.DI;
 public static partial class DI_API
 {
-  private static void Config_DevEnv(this IApplicationBuilder app)
+  private static void Use_DevEnv(this IApplicationBuilder app)
   {
     var env = app.GetSrvc<IWebHostEnvironment>();
     Console.WriteLine($"Current Environment: {env.EnvironmentName}");
     if (env.IsDevelopment())
     {
       app.UseDeveloperExceptionPage();
-      app.Config_Swagger();
+      app.Use_Swagger();
     } else {
       app.UseMiddleware<GlobalExceptionMiddleware>();
     }
   }
   public static void Add_API_Default_Middlewares(this IApplicationBuilder app)
   {
-    app.Config_DevEnv();
+    app.Use_DevEnv();
 
     // app.UseHttpsRedirection();
     // app.Config_Caching();
 
     app.UseRouting();
 
-    app.Config_Localization();
+    //app.Use_Localization();
     app.UseCors("PolicyAllowGateway");
 
     app.UseAuthentication();
     app.UseAuthorization();
 
-    app.Config_Controller();
+    app.Use_Controller();
   }
 
 

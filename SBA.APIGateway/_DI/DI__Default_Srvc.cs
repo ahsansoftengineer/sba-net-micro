@@ -6,20 +6,20 @@ public static partial class DI_Projectz
 
   public static void Add_API_Default_Srvc(this IServiceCollection srvc, IConfiguration config)
   {
-    // Config_CachingService(srvc);
+    // Add_Caching(srvc);
     // srvc.AddAuthentication();
     // srvc.AddAuthorization();
-    srvc.Config_Cors_Gateway();
-    srvc.Config_Swagger_Gateway(config);
-    srvc.Config_Controllerz(config);
-    // srvc.Config_Versioning();
+    srvc.Add_Cors_Gateway();
+    srvc.Add_Swagger_Gateway(config);
+    srvc.Add_Controller(config);
+    // srvc.Add_Versioning();
   }
   public static void Add_API_Default_Srvc2(this IServiceCollection srvc)
   {
     // srvc.Config_Identity();
-    // srvc.Config_Versioning();
-    // srvc.Config_HttpCacheHeaders();
+    // srvc.Add_Versioning();
+    // srvc.Add_HttpCacheHeaders();
     // srvc.Config_RateLimiting();
-    // srvc.Config_FileHandling();
+    // srvc.Add_StaticFiles();
   }
 }

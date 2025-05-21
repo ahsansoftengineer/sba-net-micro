@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace GLOB.API.Config.DI;
 public static partial class DI_API_Config
 {
-  public static void Config_ExceptionHandler(this IApplicationBuilder app)
+  public static void Use_ExceptionHandler(this IApplicationBuilder app)
   {
     app.UseExceptionHandler(error =>
     {
