@@ -1,12 +1,9 @@
-using System.Text;
 using GLOB.API.Controllers.Base;
 using GLOB.API.Staticz;
 using GLOB.Domain.Base;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace SBA.Projectz.Controllers;
-
 public class _ProjectzLookupzController : API_2_RDS_Controller<_ProjectzLookupzController, ProjectzLookup>
 {
   public _ProjectzLookupzController(IServiceProvider srvcProvider) : base(srvcProvider)

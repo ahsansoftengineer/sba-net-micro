@@ -5,8 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
 
-public partial class AccountController
+public partial class CheckAuthController :  AccountBaseController<CheckAuthController>
 {
+  public CheckAuthController(
+    IServiceProvider srvcProvider
+  ) : base(srvcProvider)
+  {
+  }
+
   // Jwt -> ✅ Login
   [HttpPost] [AllowAnonymous]
   public async Task<IActionResult> CheckAllowAnonymous()
@@ -89,6 +95,4 @@ public partial class AccountController
     var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
     return $"Id: {id}, IsAdmin: {User.IsInRole("Admin")}, Scheme: Cookie, Role: Admin".Ok();
   }
-
- 
 }
