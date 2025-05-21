@@ -10,7 +10,7 @@ namespace SBA.Auth.Controllers;
 
 public partial class AccountController
 {
-  [HttpPost]
+  [HttpPost] [AllowAnonymous]
   public async Task<IActionResult> Login([FromBody] LoginDto model)
   {
     var user = await _userManager.FindByEmailAsync(model.Email);
@@ -21,7 +21,7 @@ public partial class AccountController
     return StatusCode(500, "An error occurred during login.");
   }
 
-  [HttpPost]
+  [HttpPost] [AllowAnonymous]
   public async Task<IActionResult> LoginCookie([FromBody] LoginDto model)
   {
     var user = await _userManager.FindByEmailAsync(model.Email);
@@ -64,7 +64,6 @@ public partial class AccountController
   }
 
   [HttpPost]
-  [Authorize]
   public async Task<IActionResult> TokenRevoke([FromBody] RevokeTokenRequest request)
   {
     // The purpose of RevokeToken is to invalidate a refresh token so it can no longer be 

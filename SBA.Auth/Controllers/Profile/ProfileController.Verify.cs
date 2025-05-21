@@ -1,5 +1,6 @@
 using GLOB.API.Staticz;
 using LinqKit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
@@ -14,6 +15,23 @@ public partial class ProfileController : AccountBaseController<ProfileController
   }
 
   [HttpPost]
+  public async Task<IActionResult> VerifyEmailToken([FromQuery] string email)
+  {
+    var user = await _userManager.FindByEmailAsync(email);
+    if (user == null)
+      return _Res.BadRequestzId("Email", email);
+
+    if (user.EmailConfirmed)
+      return _Res.BadRequestModel("Email", "Email already confirmed");
+
+    var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+    var encodedToken = Uri.EscapeDataString(token);
+
+    // Send Email Here
+    return new { token = encodedToken, message = "Email verification token generated" }.Ok();
+  }
+  [HttpPost]
   public async Task<IActionResult> VerifyEmail([FromQuery] string token, [FromQuery] string email)
   {
     var user = await _userManager.FindByEmailAsync(email);
@@ -27,6 +45,22 @@ public partial class ProfileController : AccountBaseController<ProfileController
     return _Res.Ok("Your Email has been verified");
   }
 
+
+  [HttpPost]
+  public async Task<IActionResult> VerifyPhoneToken([FromQuery] string email)
+  {
+    var user = await _userManager.FindByEmailAsync(email);
+    if (user == null)
+      return _Res.BadRequestzId("Email", email);
+
+    if (string.IsNullOrWhiteSpace(user.PhoneNumber))
+      return _Res.BadRequestModel("PhoneNumber", "User does not have a phone number");
+
+    var token = await _userManager.GenerateChangePhoneNumberTokenAsync(user, user.PhoneNumber);
+
+    // Send SMS Here
+    return new { token, message = "Phone verification token generated" }.Ok();
+  }
   [HttpPost]
   public async Task<IActionResult> VerifyPhone([FromQuery] string token, [FromQuery] string email)
   {
@@ -50,6 +84,6 @@ public partial class ProfileController : AccountBaseController<ProfileController
     if (!updateResult.Succeeded)
       return ModelState.BadRequestModel(updateResult.Errors);
 
-    return _Res.Ok("Your phone number has been successfully verified");
+    return "Your phone number has been successfully verified".Ok();
   }
 }

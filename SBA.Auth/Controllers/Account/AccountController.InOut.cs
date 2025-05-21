@@ -1,4 +1,5 @@
 using GLOB.Domain.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
@@ -12,7 +13,7 @@ public partial class AccountController : AccountBaseController<AccountController
   {
   }
 
-  [HttpPost]
+  [HttpPost] [AllowAnonymous]
   public async Task<IActionResult> Register([FromBody] RegisterDto model) 
   {
     var user = UserController.MapUser(model);
