@@ -1,35 +1,55 @@
-// using GLOB.Domain.Auth;
-// using Microsoft.AspNetCore.Mvc;
+using GLOB.API.Staticz;
+using LinqKit;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-// namespace SBA.Auth.Controllers;
+namespace SBA.Auth.Controllers;
 
-// public partial class ProfileController : AccountBaseController<ProfileController>
-// {
-//   public ProfileController(
-//     IServiceProvider srvcProvider
-//   ) : base(srvcProvider)
-//   {
-//   }
+public partial class ProfileController : AccountBaseController<ProfileController>
+{
+  public ProfileController(
+    IServiceProvider srvcProvider
+  ) : base(srvcProvider)
+  {
+  }
 
-//   [HttpPost]
-//   public async Task<IActionResult> VerifyEmail([FromQuery] string token, [FromQuery] string email)
-//   {
-//     var user = await _userManager.FindByEmailAsync(email);
-//     if (user == null)
-//       return BadRequest(new { message = "Email not Found" });
+  [HttpPost]
+  public async Task<IActionResult> VerifyEmail([FromQuery] string token, [FromQuery] string email)
+  {
+    var user = await _userManager.FindByEmailAsync(email);
+    if (user == null)
+      return _Res.BadRequestzId("Email", email);
 
-//     var result = await _userManager.ConfirmEmailAsync(user, token);
-//     return Ok(new { message = "Your Email has been verified" });
-//   }
+    var result = await _userManager.ConfirmEmailAsync(user, token);
+    if (!result.Succeeded)
+      return _Res.BadRequestzId("Token", token);
 
-//   [HttpPost]
-//   public async Task<IActionResult> VerifyPhone([FromQuery] string token, [FromQuery] string email) 
-//   {
-//     var user = await _userManager.FindByEmailAsync(email);
-//     if (user == null)
-//       return BadRequest(new { message = "Email not Found" });
+    return _Res.Ok("Your Email has been verified");
+  }
 
-//     var result = await _userManager.ConfirmEmailAsync(user, token);
-//     return Ok(new { message = "Your Email has been verified" });
-//   }
-// }
+  [HttpPost]
+  public async Task<IActionResult> VerifyPhone([FromQuery] string token, [FromQuery] string email)
+  {
+    if (string.IsNullOrWhiteSpace(token) || string.IsNullOrWhiteSpace(email))
+      return _Res.BadRequestModel("Email & Token", "Email and token are required");
+
+    var user = await _userManager.FindByEmailAsync(email);
+    if (user == null)
+      return _Res.BadRequestzId("Email", email);
+
+    if (string.IsNullOrWhiteSpace(user.PhoneNumber))
+      return _Res.BadRequestModel("PhoneNumber", "User does not have a phone number");
+
+    var isTokenValid = await _userManager.VerifyChangePhoneNumberTokenAsync(user, token, user.PhoneNumber);
+    if (!isTokenValid)
+      return _Res.BadRequestModel("Token", "Invalid or expired phone verification token");
+
+    user.PhoneNumberConfirmed = true;
+    var updateResult = await _userManager.UpdateAsync(user);
+
+    if (!updateResult.Succeeded)
+      return ModelState.BadRequestModel(updateResult.Errors);
+
+    return _Res.Ok("Your phone number has been successfully verified");
+  }
+}

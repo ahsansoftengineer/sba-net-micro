@@ -1,8 +1,6 @@
 // using System.Net;
-// using GLOB.API.Configz;
 // using GLOB.API.Staticz;
 // using GLOB.Domain.Auth;
-// using Microsoft.AspNetCore.Authorization;
 // using Microsoft.AspNetCore.Mvc;
 
 // namespace SBA.Auth.Controllers;
