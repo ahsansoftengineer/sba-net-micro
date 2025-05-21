@@ -13,10 +13,14 @@ public static partial class DI_Projectz
     var accounts = new SocialAccounts();
     config.GetSection(SocialAccounts.SectionName).Bind(accounts);
 
-    return srvc.Add_OAuthFromAccount(accounts.Google)
-        .Add_OAuthFromAccount(accounts.Facebook)
-        .Add_OAuthFromAccount(accounts.Microsoft)
-        .Add_OAuthFromAccount(accounts.Apple);
+    return srvc
+      .Add_OAuthFromAccount(accounts.Google)
+      .Add_OAuthFromAccount(accounts.Microsoft);
+      // .Add_OAuthFromAccount(accounts.Facebook)
+      // .Add_OAuthFromAccount(accounts.Github)
+      // .Add_OAuthFromAccount(accounts.LinkedIn)
+      // .Add_OAuthFromAccount(accounts.Twitter)
+      // .Add_OAuthFromAccount(accounts.Apple);
   }
   private static AuthenticationBuilder Add_OAuthFromAccount(this AuthenticationBuilder builder, SocialAccount account)
   {
@@ -67,9 +71,12 @@ public static partial class DI_Projectz
 public class SocialAccounts
 {
   public static string SectionName = "SocialAccounts";
-  public SocialAccount Microsoft { get; set; }
   public SocialAccount Google { get; set; }
+  public SocialAccount Microsoft { get; set; }
   public SocialAccount Facebook { get; set; }
+  public SocialAccount Github { get; set; }
+  public SocialAccount LinkedIn { get; set; }
+  public SocialAccount Twitter { get; set; }
   public SocialAccount Apple { get; set; }
 
 }
