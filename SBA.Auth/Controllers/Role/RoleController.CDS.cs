@@ -59,12 +59,10 @@ public partial class RoleController: AccountBaseController<RoleController>
     role.Status = dto.Status;
 
     var result = await _roleManager.UpdateAsync(role);
-    if (result.Succeeded) return Ok(role.ToExtVMSingle());
-    result?.Errors?.ForEach(x =>
-    {
-      ModelState.AddModelError(x.Code, x.Description);
-    });
-    return _Res.BadRequestModel(ModelState);
+    if (!result.Succeeded)
+      return result?.Errors.BadRequestModel();
+
+    return Ok(role.ToExtVMSingle());
   }
 
   [HttpDelete("{Id}")]

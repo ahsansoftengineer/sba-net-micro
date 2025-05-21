@@ -1,3 +1,4 @@
+using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,7 @@ public partial class AccountController : AccountBaseController<AccountController
         return  await Login(new (){ Email = model.Email, Password = model.Password });
     }
 
-    return BadRequest(result.Errors);
+    return result.Errors.BadRequestModel();
   }
   
   [HttpPost]

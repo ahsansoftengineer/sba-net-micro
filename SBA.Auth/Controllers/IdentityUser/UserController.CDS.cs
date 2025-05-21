@@ -26,7 +26,7 @@ public partial class UserController : AccountBaseController<UserController>
       return Ok(new { message = "User registered successfully!" });
     }
 
-    return BadRequest(result.Errors);
+    return result.Errors.BadRequestModel();
   }
   [HttpPut("{Id}")]
   public async Task<IActionResult> Update(string Id, [FromBody] UpdateUserDto data)

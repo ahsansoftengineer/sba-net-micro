@@ -25,18 +25,17 @@ public static partial class _Res
     modelState.AddModelError(error.Code, error.Description);
     return BadRequestModel(modelState);
   }
-
+  public static ObjectResult BadRequestModel(this IEnumerable<IdentityError> identityError)
+  {
+    return BadRequestModel(new ModelStateDictionary(), identityError);
+  }
   public static ObjectResult BadRequestModel(this ModelStateDictionary modelState, IEnumerable<IdentityError> identityError)
   {
     foreach (var ms in identityError)
     {
       modelState.AddModelError(ms.Code, ms.Description);
     }
-
-    if (!modelState.Any(x => x.Key == "Message"))
-      modelState.AddModelError("Message", "Bad Request 400");
-
-    return new BadRequestObjectResult(modelState);
+    return BadRequestModel(modelState);
   }
   
   public static ObjectResult BadRequestModel(string Title, string Message)

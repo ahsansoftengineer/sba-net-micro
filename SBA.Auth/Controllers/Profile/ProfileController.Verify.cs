@@ -76,10 +76,10 @@ public partial class ProfileController : AccountBaseController<ProfileController
       return _Res.BadRequestModel("Token", "Invalid or expired phone verification token");
 
     user.PhoneNumberConfirmed = true;
-    var updateResult = await _userManager.UpdateAsync(user);
+    var result = await _userManager.UpdateAsync(user);
 
-    if (!updateResult.Succeeded)
-      return ModelState.BadRequestModel(updateResult.Errors);
+    if (!result.Succeeded)
+      return result.Errors.BadRequestModel();
 
     return "Your phone number has been successfully verified".Ok();
   }
