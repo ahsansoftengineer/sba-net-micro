@@ -1,8 +1,5 @@
 using GLOB.API.Staticz;
-using LinqKit;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace SBA.Auth.Controllers;
 
