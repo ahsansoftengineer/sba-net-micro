@@ -25,7 +25,7 @@ public static partial class DI_API_Config
         Description = $"Host: {hostName}, Prefix: {prefix}, ProjectName: {projectzName}"
       });
 
-      c.SchemaFilter<SwaggerNullablePrimitivesDataTypes>();
+      c.SchemaFilter<SwaggerNullablePrimitivesFilter>();
       c.UseAllOfToExtendReferenceSchemas();
       c.SupportNonNullableReferenceTypes();
       c.IgnoreObsoleteProperties(); // [Obsolete]
