@@ -1,4 +1,5 @@
 using System.Net;
+using System.Text.Json.Serialization;
 using Azure;
 using GLOB.Domain.Base;
 using Microsoft.EntityFrameworkCore;
@@ -60,6 +61,10 @@ public class ResponseRecord<T>
 }
 public class ResponseRecords<T>
 {
-  public T? Records;
+  // [JsonPropertyName("records")]
+  public List<T> Records { get; set; } = new();
+
+  // [JsonPropertyName("status")]
+  [JsonConverter(typeof(JsonStringEnumConverter))]
   public HttpStatusCode Status;
 }

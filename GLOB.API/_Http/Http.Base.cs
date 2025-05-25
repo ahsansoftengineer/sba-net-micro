@@ -1,3 +1,6 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace GLOB.API.Http;
 
 public class HttpBase
@@ -19,7 +22,9 @@ public class HttpBase
   {
     setDefault(req);
     var response = await _httpClient.GetAsync(req.Url);
-    return await DeserializeResponse<T>(response);
+    var result =  await DeserializeResponse<T>(response);
+
+    return result;
   }
 
   public async Task<T?> Post<T>(HttpReq req)
@@ -97,7 +102,13 @@ public class HttpBase
       throw new HttpRequestException($"Status: {response.StatusCode}, Content: {content}");
     }
 
-    return await response.Content.ReadFromJsonAsync<T>();
+    var result = await response.Content.ReadFromJsonAsync<T>(new JsonSerializerOptions
+    {
+      PropertyNameCaseInsensitive = true,
+      Converters = { new JsonStringEnumConverter() }
+    });
+
+    return result;
   }
 }
 

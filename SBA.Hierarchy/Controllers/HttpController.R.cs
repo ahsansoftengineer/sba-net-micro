@@ -13,7 +13,7 @@ public partial class AuthLookupBaseHttpController
   public async Task<IActionResult> Gets()
   {
     // string gatewayUrl = _config.GetValueStr("URLzGateway"); 
-    var result = await AuthLookupBaseHttpz.Gets<ResponseRecords>(
+    var result = await AuthLookupBaseHttpz.Gets<ResponseRecords<ProjectzLookup>>(
       new HttpReq {
         // Host = gatewayUrl,
         // Srvc = Srvc.Auth,
@@ -25,7 +25,8 @@ public partial class AuthLookupBaseHttpController
 
       }
     );
-    return result.Ok();
+    var resultz =  result.Records;
+    return resultz.Ok();
   }
   // // List, Group
   // [HttpGet]

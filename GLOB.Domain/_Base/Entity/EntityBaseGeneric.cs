@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using GLOB.Domain.Contants;
 using GLOB.Domain.Enums;
 
@@ -13,6 +14,7 @@ public abstract class EntityAlpha<TKey> : IEntityAlpha<TKey>, IEntityStatus
   public TKey Id { get; set; }
 
   [Column(Order = 2)]
+  [JsonConverter(typeof(JsonStringEnumConverter))]
   public Status? Status { get; set; } = Constantz.Status;
 
   [Column(Order = 3)] // required

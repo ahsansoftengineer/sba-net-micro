@@ -8,8 +8,8 @@ public static class Srvc
 
 public static class Controllerz
 {
-    public const string LookupBase = "_Projectz-LookupzBase";
-    public const string Lookup = "_Projectz-Lookupz";
+    public const string ProjectzLookupBase = "_Projectz-LookupzBase";
+    public const string ProjectzLookup = "_Projectz-Lookupz";
 }
 
 public static class EP
