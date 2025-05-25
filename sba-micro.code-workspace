@@ -36,18 +36,18 @@
     // 	"name": "SBA.APIGateway",
     // 	"path": "SBA.APIGateway"
     // },
-    {
-      "name": "SBA.Auth",
-      "path": "SBA.Auth"
-    }
+    // {
+    //   "name": "SBA.Auth",
+    //   "path": "SBA.Auth"
+    // }
     // {
     // 	"name": "SBA.Jobz",
     // 	"path": "SBA.Jobz"
     // },
-    // {
-    // 	"name": "SBA.Hierarchy",
-    // 	"path": "SBA.Hierarchy"
-    // },
+    {
+    	"name": "SBA.Hierarchy",
+    	"path": "SBA.Hierarchy"
+    },
     // {
     // 	"name": "PlatformService",
     // 	"path": "PlatformService"

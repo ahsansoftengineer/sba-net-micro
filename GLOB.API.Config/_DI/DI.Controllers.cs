@@ -47,8 +47,9 @@ public static partial class DI_API_Config
           //,VaryByQueryKeys = "Any Keys"
         });
         
-        var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-        opt.Filters.Add(new AuthorizeFilter(policy));
+        // NOTE: TODO: Uncomment For Auth
+        // var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+        // opt.Filters.Add(new AuthorizeFilter(policy));
       })
       .ConfigureApiBehaviorOptions(opt =>
       {
