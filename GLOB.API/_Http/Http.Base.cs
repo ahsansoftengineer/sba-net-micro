@@ -2,9 +2,9 @@ namespace GLOB.API.Http;
 
 public class HttpBase
 {
-  protected readonly string _host;
-  protected readonly string _srvc;
-  protected readonly string _controller;
+  protected readonly string? _host;
+  protected readonly string? _srvc;
+  protected readonly string? _controller;
 
   protected readonly HttpClient _httpClient;
 
@@ -54,13 +54,13 @@ public class HttpBase
   {
 
     if (!string.IsNullOrEmpty(req.Host))
-      req.Host = _host;
+      req.Host = _host ?? "no-host";
 
     if (!string.IsNullOrEmpty(req.Host))
-      req.Srvc = _srvc;
+      req.Srvc = _srvc ?? "no-service";
     
     if (!string.IsNullOrEmpty(req.Controller))
-      req.Controller = _controller;
+      req.Controller = _controller ?? "no-controller";
 
     string action = append(req.Action);
     string res = append(req.Resource);    
@@ -101,7 +101,7 @@ public class HttpBase
   }
 }
 
-public interface HttpReq
+public record HttpReq
 {
   public string? Host { get; set; } // http://www.arab.com || environment.API_req
   public string? Srvc { get; set; } // api/Hierarchy/v1 || environment.API_req

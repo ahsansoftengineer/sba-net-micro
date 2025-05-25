@@ -2,31 +2,35 @@ namespace GLOB.API.Http;
 
 public partial class Httpz
 {
-  protected readonly HttpBase _httpBase;
+  public readonly HttpBase Client;
 
-  public Httpz(IServiceCollection srvcs, string host, string srvc, string controller)
+  public Httpz(string host, string srvc, string controller)
   {
-    _httpBase = new HttpBase(new HttpClient(), host, srvc, controller);
+    Client = new HttpBase(new HttpClient(), host, srvc, controller);
   }
 
-  public async Task<T?> Post<T>(HttpReq req)
+  public async Task<T?> Create<T>(HttpReq req)
   {
-    return await _httpBase.Post<T>(req);
+    req.Action = EP.Create;
+    return await Client.Post<T>(req);
   }
 
-  public async Task<T?> Patch<T>(HttpReq req)
+  public async Task<T?> Status<T>(HttpReq req)
   {
-    return await _httpBase.Patch<T>(req);
+    req.Action = EP.Status;
+    return await Client.Patch<T>(req);
   }
 
-  public async Task<T?> Put<T>(HttpReq req)
+  public async Task<T?> Update<T>(HttpReq req)
   {
-    return await _httpBase.Put<T>(req);
+    req.Action = EP.Update;
+    return await Client.Put<T>(req);
   }
 
   public async Task<bool> Delete(HttpReq req)
   {
-    return await _httpBase.Delete(req);
+    req.Action = EP.Delete;
+    return await Client.Delete(req);
   }
 }
 

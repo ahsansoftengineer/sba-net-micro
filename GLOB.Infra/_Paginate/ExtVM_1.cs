@@ -1,4 +1,5 @@
 using System.Net;
+using Azure;
 using GLOB.Domain.Base;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,16 +7,18 @@ namespace GLOB.Infra.Paginate;
 
 public static partial class ExtResponse
 {
-  public static object ToExtVMSingle(this object? item)
+  public static ResponseRecord ToExtVMSingle(this object? item)
   {
-    return new {
+    return new ResponseRecord 
+    {
       Record = item,
       Status = HttpStatusCode.OK
     };
   }
-  public static object ToExtVMList(this object? list)
+  public static ResponseRecords ToExtVMList(this object? list)
   {
-    return new {
+    return new ResponseRecords 
+    {
       Records = list,
       Status = HttpStatusCode.OK
     };
@@ -37,4 +40,15 @@ public static partial class ExtResponse
     p.Records = await query.ToListAsync();
     return p;
   }
+}
+
+public class ResponseRecord
+{
+  public object? Record;
+  public HttpStatusCode Status;
+}
+public class ResponseRecords
+{
+  public object? Records;
+  public HttpStatusCode Status;
 }
