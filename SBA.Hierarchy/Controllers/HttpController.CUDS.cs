@@ -1,16 +1,16 @@
+using GLOB.API.Config.Configz;
+using GLOB.API.Controllers.Base;
 using GLOB.API.Http;
-using GLOB.Domain.Auth;
-using GLOB.Domain.Base;
-using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
 
-public partial class AuthLookupBaseHttpController
+public partial class AuthLookupBaseHttpController : API_1_ErrorController<AuthLookupBaseHttpController>
 {
   public readonly Httpz AuthLookupBaseHttpz;
-  public AuthLookupBaseHttpController() 
+  public AuthLookupBaseHttpController(IServiceProvider srvc): base(srvc) 
   {
-    AuthLookupBaseHttpz = new Httpz("http://localhost:5802", "api/auth/v1", "lookup-base") ;
+    string gatewayUrl = _config.GetValueStr("URLzGateway"); 
+    AuthLookupBaseHttpz = new Httpz(gatewayUrl, Srvc.Auth, Controllerz.Lookup) ;
   }
  
   // [HttpPost]

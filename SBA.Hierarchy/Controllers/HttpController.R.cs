@@ -1,5 +1,7 @@
+using GLOB.API.Config.Configz;
 using GLOB.API.Http;
 using GLOB.API.Staticz;
+using GLOB.Domain.Base;
 using GLOB.Infra.Paginate;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,15 +12,16 @@ public partial class AuthLookupBaseHttpController
   [HttpPost]
   public async Task<IActionResult> Gets()
   {
+    // string gatewayUrl = _config.GetValueStr("URLzGateway"); 
     var result = await AuthLookupBaseHttpz.Gets<ResponseRecords>(
       new HttpReq {
-        // Host = "http://localhost:5802",
-        // Srvc = "api/auth/v1",
-        // Controller = "lookup-base",
+        // Host = gatewayUrl,
+        // Srvc = Srvc.Auth,
+        // Controller = Controllerz.Lookup,
         Action =  EP.Gets,
         // Resource = "1",
         // Query = new { Id = 101 },
-        // Body = new List<string>() { "Lookup" }
+        Body =  new {} //new  { includes = new List<string>() { "_projectz-lookupz-base"} }
 
       }
     );

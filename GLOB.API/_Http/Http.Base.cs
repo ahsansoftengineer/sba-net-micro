@@ -53,13 +53,13 @@ public class HttpBase
   private HttpReq setDefault(HttpReq req)
   {
 
-    if (!string.IsNullOrEmpty(req.Host))
+    if (string.IsNullOrEmpty(req?.Host))
       req.Host = _host ?? "no-host";
 
-    if (!string.IsNullOrEmpty(req.Host))
+    if (string.IsNullOrEmpty(req?.Srvc))
       req.Srvc = _srvc ?? "no-service";
     
-    if (!string.IsNullOrEmpty(req.Controller))
+    if (string.IsNullOrEmpty(req?.Controller))
       req.Controller = _controller ?? "no-controller";
 
     string action = append(req.Action);
@@ -86,7 +86,7 @@ public class HttpBase
   }
   private string append(string? value)
   {
-    return string.IsNullOrWhiteSpace(value) ? "" : $"/{value}";
+    return string.IsNullOrEmpty(value) ? "" : $"/{value}";
   }
 
   private static async Task<T?> DeserializeResponse<T>(HttpResponseMessage response)

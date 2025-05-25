@@ -52,3 +52,14 @@ public class ResponseRecords
   public object? Records;
   public HttpStatusCode Status;
 }
+
+public class ResponseRecord<T>
+{
+  public T? Record;
+  public HttpStatusCode Status;
+}
+public class ResponseRecords<T>
+{
+  public T? Records;
+  public HttpStatusCode Status;
+}

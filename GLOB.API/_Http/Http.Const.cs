@@ -6,10 +6,10 @@ public static class Srvc
     public const string Hierarchy = "api/hierarchy/v1";
 }
 
-public static class Controller
+public static class Controllerz
 {
-    public const string LookupBase = "LookupBase";
-    public const string Lookup = "Lookup";
+    public const string LookupBase = "_Projectz-LookupzBase";
+    public const string Lookup = "_Projectz-Lookupz";
 }
 
 public static class EP
