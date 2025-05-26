@@ -39,7 +39,15 @@ public partial class Httpz
   }
 
 }
-
+// public async Task<IActionResult> Gets()
+// {
+//   var result = await AuthLookupBaseHttpz.Gets<ResponseRecords<ProjectzLookup>>(new () {
+//     Action =  EP.Gets,
+//     Body =  new { includes = new List<string>() { "ProjectzLookupBase"} }
+//   });
+//   var resultz =  result.Records;
+//   return resultz.Ok();
+// }
 
 
 
