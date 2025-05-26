@@ -33,7 +33,31 @@ public partial class Httpz
     return await Client.Delete(req);
   }
 }
+// public readonly Httpz AuthLookupBaseHttpz;
+// public AuthLookupBaseHttpController(IServiceProvider srvc): base(srvc) 
+// {
+//   string  gatewayUrl = _config.GetValueStr("URLzGateway"); 
+//   AuthLookupBaseHttpz = new Httpz(gatewayUrl, Srvc.Auth, Controllerz.ProjectzLookup) ;
+// }
+// [HttpPost]
+// public async Task<IActionResult> Gets()
+// {
+//   // string gatewayUrl = _config.GetValueStr("URLzGateway"); 
+//   var result = await AuthLookupBaseHttpz.Gets<ResponseRecords<ProjectzLookup>>(
+//     new () {
+//       // Host = gatewayUrl,
+//       // Srvc = Srvc.Auth,
+//       // Controller = Controllerz.Lookup,
+//       Action =  EP.Gets,
+//       // Resource = "1",
+//       // Query = new { Id = 101 },
+//       Body =  new {} //new  { includes = new List<string>() { "_projectz-lookupz-base"} }
 
+//     }
+//   );
+//   var resultz =  result.Records;
+//   return resultz.Ok();
+// }
 
 
 

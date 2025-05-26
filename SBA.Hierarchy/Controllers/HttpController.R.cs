@@ -14,14 +14,9 @@ public partial class AuthLookupBaseHttpController
   {
     // string gatewayUrl = _config.GetValueStr("URLzGateway"); 
     var result = await AuthLookupBaseHttpz.Gets<ResponseRecords<ProjectzLookup>>(
-      new HttpReq {
-        // Host = gatewayUrl,
-        // Srvc = Srvc.Auth,
-        // Controller = Controllerz.Lookup,
+      new () {
         Action =  EP.Gets,
-        // Resource = "1",
-        // Query = new { Id = 101 },
-        Body =  new {} //new  { includes = new List<string>() { "_projectz-lookupz-base"} }
+        Body =  new { includes = new List<string>() { "_projectz-lookupz-base"} }
 
       }
     );
