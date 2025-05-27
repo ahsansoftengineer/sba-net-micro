@@ -55,8 +55,10 @@ public class ResponseRecords
 }
 
 public class ResponseRecord<T>
+  where T: new()
 {
-  public T? Record;
+  public T? Record  { get; set; } = new();
+  [JsonConverter(typeof(JsonStringEnumConverter))]
   public HttpStatusCode Status;
 }
 public class ResponseRecords<T>
