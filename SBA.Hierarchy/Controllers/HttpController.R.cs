@@ -6,44 +6,83 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
 
-public partial class AuthLookupBaseHttpController 
+public partial class AuthLookupBaseHttpController
 {
   [HttpPost]
   public async Task<IActionResult> Gets()
   {
-    var result = await AuthLookupBaseHttpz.Gets<ResponseRecords<ProjectzLookup>>(new () {
-      Action =  EP.Gets,
-      Body =  new { includes = new List<string>() { "ProjectzLookupBase"} }
+    var result = await AuthLookupBaseHttpz.Gets<ResponseRecords<ProjectzLookup>>(new()
+    {
+      Body = new { includes = new List<string>() { "ProjectzLookupBase" } }
     });
-    var resultz =  result.Records;
-    return resultz.Ok();
+    return result.Records.Ok();
   }
-  // // List, Group
-  // [HttpGet]
-  // public async Task<IActionResult> GetsLookup()
-  // {
-  // }
-  // [HttpPost("{Id}")]
-  // public async Task<IActionResult> Get(string Id)
-  // {
-  // }
-  // // List, Filter By Ids
-  // [HttpPost]
-  // public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds<string> req)
-  // {
-  // }
-  // [HttpPost]
-  // public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds<string> req)
-  // {
-  // }
-  
-  // [HttpPost]
-  // public async Task<IActionResult> GetsPaginate(DtoRequestPage<DtoSearch?> req)
-  // {
-  // }
+  // Single, Include
+  [HttpPost("{Id:int}")]
+  public async Task<IActionResult> Get(int Id, [FromBody] DtoRequestGet req)
+  {
+    var result = await AuthLookupBaseHttpz.Get<ResponseRecord<ProjectzLookup>>(new()
+    {
+      Resource = Id.ToString(),
+      Body = new { includes = req?.Includes ?? null }
+    });
+    return result.Record.Ok();
+  }
 
-  // [HttpPost]
-  // public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<DtoSearch?> req)
-  // {
-  // }
+  [HttpGet]
+  public async Task<IActionResult> GetsLookup()
+  {
+    var result = await AuthLookupBaseHttpz.GetsLookup<ResponseRecords>();
+    return result.Records.Ok();
+  }
+  [HttpPost]
+  public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds<string> req)
+  {
+    var result = await AuthLookupBaseHttpz.GetsLookup<ResponseRecords<ProjectzLookup>>(new()
+    {
+      Body = new { req.Ids}
+    });
+    return result.Records.Ok();
+  }
+  [HttpPost]
+  public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds<string> req)
+  {
+    var result = await AuthLookupBaseHttpz.GetsLookup<ResponseRecords>(new()
+    {
+      Body = new { req.Ids}
+    });
+    return result.Records.Ok();
+  }
+
+  [HttpPost]
+  public async Task<IActionResult> GetsPaginate(DtoRequestPage<DtoSearch?> req)
+  {
+    var result = await AuthLookupBaseHttpz.GetsLookup<ResponseRecords<ProjectzLookup>>(new()
+    {
+      Body = new
+      {
+        req.Filter,
+        req.Includes,
+        req.PageNo,
+        req.PageSize
+      }
+    });
+    return result.Records.Ok();
+  }
+
+  [HttpPost]
+  public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<DtoSearch?> req)
+  {
+    var result = await AuthLookupBaseHttpz.GetsLookup<ResponseRecords>(new()
+    {
+      Body = new
+      {
+        req.Filter,
+        req.Includes,
+        req.PageNo,
+        req.PageSize
+      }
+    });
+    return result.Records.Ok();
+  }
 }

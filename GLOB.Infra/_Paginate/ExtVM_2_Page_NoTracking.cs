@@ -33,7 +33,7 @@ public static partial class ExtResponse
   {
     query = query.ToExtQueryFilter(req.Filter); // Fix the Adding Enums to Every Filter
     query = query.ToExtQueryOrderBy(req.Sort); // IEntityBeta
-    query = query.ToExtQueryInclues(req?.Include);
+    query = query.ToExtQueryInclues(req?.Includes);
 
     return await query.AsNoTracking().ToExtPageReq(req);
   }
