@@ -31,7 +31,7 @@ public partial class AuthLookupBaseHttpController
   [HttpGet]
   public async Task<IActionResult> GetsLookup()
   {
-    var result = await AuthLookupBaseHttpz.GetsLookup<ResponseRecord<Dictionary<string, DtoSelect>>>();
+    var result = await AuthLookupBaseHttpz.GetsLookup<ResponseRecord<Dictionary<string, string>>>();
     return result.Record.ToExtVMSingle().Ok();
   }
   [HttpPost]
@@ -46,7 +46,7 @@ public partial class AuthLookupBaseHttpController
   [HttpPost]
   public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds<string> req)
   {
-    var result = await AuthLookupBaseHttpz.GetsByIdsLookup<ResponseRecord<Dictionary<string, DtoSelect>>>(new()
+    var result = await AuthLookupBaseHttpz.GetsByIdsLookup<ResponseRecord<Dictionary<string, string>>>(new()
     {
       Body = new { req.Ids}
     });
