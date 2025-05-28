@@ -1,3 +1,4 @@
+using System.Net;
 using GLOB.Domain.Base;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,7 +12,7 @@ public static partial class _Res
   }
   public static ObjectResult Ok(this string msg)
   {
-    return Ok(new { Message = msg, Status = 200});
+    return Ok(new OkMsg { Message = msg, Status = HttpStatusCode.OK });
   }
   public static ObjectResult CatchException(this Exception ex, string methodName)
   {
@@ -33,4 +34,9 @@ public static partial class _Res
   {
     return new BadRequestObjectResult($"You don't have permission to perform the action");
   }
+}
+public class OkMsg
+{
+  public string Message  { get; set; }
+  public HttpStatusCode Status { get; set; }
 }

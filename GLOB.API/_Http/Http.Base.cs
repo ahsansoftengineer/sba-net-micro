@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using GLOB.API.Staticz;
 
 namespace GLOB.API.Http;
 
@@ -22,7 +23,7 @@ public class HttpBase
   {
     setDefault(req);
     var response = await _httpClient.GetAsync(req.Url);
-    var result =  await DeserializeResponse<T>(response);
+    var result = await DeserializeResponse<T>(response);
 
     return result;
   }
@@ -48,11 +49,14 @@ public class HttpBase
     return await DeserializeResponse<T>(response);
   }
 
-  public async Task<bool> Delete(HttpReq req)
+  // Not Returning anything
+  public async Task<object> Delete(HttpReq req)
   {
     setDefault(req);
-    var response = await _httpClient.DeleteAsync(req.Url);
-    return response.IsSuccessStatusCode;
+    // var response = await _httpClient.DeleteFromJsonAsync<ResponseRecord>(req.Url);
+    var request = new HttpRequestMessage(HttpMethod.Delete, req.Url);
+    var response = await _httpClient.SendAsync(request);
+    return await DeserializeResponse<OkMsg>(response);
   }
 
   private HttpReq setDefault(HttpReq req)
@@ -63,16 +67,16 @@ public class HttpBase
 
     if (string.IsNullOrEmpty(req?.Srvc))
       req.Srvc = _srvc ?? "no-service";
-    
+
     if (string.IsNullOrEmpty(req?.Controller))
       req.Controller = _controller ?? "no-controller";
 
     string action = append(req.Action);
-    string res = append(req.Resource);    
-    
+    string res = append(req.Resource);
+
     var query = System.Web.HttpUtility.ParseQueryString(string.Empty);
-    
-    if(req.Query != null)
+
+    if (req.Query != null)
     {
       foreach (var prop in req.Query.GetType().GetProperties())
       {
@@ -98,8 +102,15 @@ public class HttpBase
   {
     if (!response.IsSuccessStatusCode)
     {
-      var content = await response.Content.ReadAsStringAsync();
-      throw new HttpRequestException($"Status: {response.StatusCode}, Content: {content}");
+      try
+      {
+        // Status: NotFound, Content: {"errors":[{"field":"Id","errors":["Invalid Id 3 does not exsist"]}],"message":"Bad Request, Validation Failed"}
+        
+      }
+      catch(Exception ex){
+        var content = await response.Content.ReadAsStringAsync();
+        throw new HttpRequestException($"Status: {response.StatusCode}, Content: {content}");
+      }
     }
 
     var result = await response.Content.ReadFromJsonAsync<T>(new JsonSerializerOptions
@@ -123,7 +134,7 @@ public record HttpReq
   public object? Query { get; set; } // {id:1, name:Muhammad}
   // public string? Param { get; set; } // ?id=1&name=Muhammad
 
-  public string? Url {get; set;}
+  public string? Url { get; set; }
 
   public object? Body { get; set; } // Specific to CREATE, PATCH, DELETE
 }
