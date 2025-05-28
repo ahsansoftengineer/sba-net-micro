@@ -1,6 +1,7 @@
 using GLOB.API.Controllers.Base;
 using GLOB.API.Staticz;
 using GLOB.Domain.Base;
+using GLOB.Infra.Paginate;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Projectz.Controllers;
@@ -58,7 +59,7 @@ public class _ProjectzLookupzController : API_2_RDS_Controller<_ProjectzLookupzC
       var result = _mapper.Map(data, item);
       _repo.Update(item);
       await _uowInfra.Save();
-      return _Res.Ok(result);
+      return result.ToExtVMSingle().Ok();
     }
     catch (Exception ex)
     {

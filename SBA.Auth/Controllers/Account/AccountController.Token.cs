@@ -96,7 +96,7 @@ public partial class AccountController
 
     await _ctx.SaveChangesAsync();
 
-    return _Res.Ok("Refresh token revoked successfully.");
+    return "Refresh token revoked successfully.".Ok();
   }
 
   [HttpGet]

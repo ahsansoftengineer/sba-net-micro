@@ -28,8 +28,8 @@ public partial class UserController
   public async Task<IActionResult> GetsLookup()
   {
     var result = await _repo.Select(x => new { x.Id, x.Name })
-        .ToDictionaryAsync(x => x.Id, y => new { y.Id, y.Name });
-    return _Res.Ok(result);
+        .ToDictionaryAsync(x => x.Id, y =>  y.Name);
+    return result.ToExtVMSingle().Ok();
   }
 
   // List, Filter By Ids
@@ -49,8 +49,8 @@ public partial class UserController
     var list = await _repo
       .Select(x => new { x.Id, x.Name })
       .Where((x) => req.Ids.Contains(x.Id))
-      .ToDictionaryAsync(x => x.Id, y => new { y.Id, y.Name });
-    return _Res.Ok(list);
+        .ToDictionaryAsync(x => x.Id, y =>  y.Name);
+    return list.ToExtVMSingle().Ok();
    
   }
   

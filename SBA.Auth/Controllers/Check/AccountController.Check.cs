@@ -55,7 +55,7 @@ public partial class CheckAuthController :  AccountBaseController<CheckAuthContr
 
     var rolez = string.Join(", ", roles);
 
-    return _Res.Ok($"Id: {id}, IsAdmin: {User.IsInRole("Admin")}, Roles: (Policy-Admin)");
+    return $"Id: {id}, IsAdmin: {User.IsInRole("Admin")}, Roles: (Policy-Admin)".Ok();
   }
 
   // JWT -> ✅ Policy-Customer

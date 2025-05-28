@@ -1,5 +1,3 @@
-using System.Text.Json;
-using GLOB.API.Http;
 using GLOB.API.Staticz;
 using GLOB.Domain.Base;
 using GLOB.Infra.Paginate;
@@ -43,22 +41,22 @@ public partial class AuthLookupBaseHttpController
     {
       Body = new { req.Ids}
     });
-    return result.Records.ToExtVMList().Ok();
+    return result.Ok();
   }
   [HttpPost]
   public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds<string> req)
   {
-    var result = await AuthLookupBaseHttpz.GetsByIdsLookup<ResponseRecords>(new()
+    var result = await AuthLookupBaseHttpz.GetsByIdsLookup<ResponseRecord<Dictionary<string, DtoSelect>>>(new()
     {
       Body = new { req.Ids}
     });
-    return result.Records.Ok();
+    return result.Record.Ok();
   }
 
   [HttpPost]
   public async Task<IActionResult> GetsPaginate(DtoRequestPage<DtoSearch?> req)
   {
-    var result = await AuthLookupBaseHttpz.GetsLookup<ResponseRecords<ProjectzLookup>>(new()
+    var result = await AuthLookupBaseHttpz.GetsPaginate<VMPaginate<ProjectzLookup>>(new()
     {
       Body = new
       {
@@ -68,13 +66,13 @@ public partial class AuthLookupBaseHttpController
         req.PageSize
       }
     });
-    return result.Records.Ok();
+    return result.Ok();
   }
 
   [HttpPost]
   public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<DtoSearch?> req)
   {
-    var result = await AuthLookupBaseHttpz.GetsLookup<ResponseRecords>(new()
+    var result = await AuthLookupBaseHttpz.GetsPaginateOptions<VMPaginate<DtoSelect>>(new()
     {
       Body = new
       {
@@ -84,6 +82,6 @@ public partial class AuthLookupBaseHttpController
         req.PageSize
       }
     });
-    return result.Records.Ok();
+    return result.Ok();
   }
 }

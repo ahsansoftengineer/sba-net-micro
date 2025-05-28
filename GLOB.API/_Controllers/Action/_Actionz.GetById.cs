@@ -28,7 +28,7 @@ public static partial class _Actionz
       var list = await repo.GetDBSet()
         .Select(x => new { x.Id, x.Name })
         .Where((x)=> Ids.Contains(x.Id))
-        .ToDictionaryAsync(x => x.Id, y => new {y.Id, y.Name});
-      return list.Ok();
+        .ToDictionaryAsync(x => x.Id, y => y.Name);
+      return list.ToExtVMSingle().Ok();
   }
 }
