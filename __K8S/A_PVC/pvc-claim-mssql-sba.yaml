@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: claim-mssql-sba-hierarchy
+  name: claim-mssql-sba-auth
 spec:
   resources:
     requests:
@@ -13,7 +13,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: claim-mssql-sba-auth
+  name: claim-mssql-sba-hierarchy
 spec:
   resources:
     requests:

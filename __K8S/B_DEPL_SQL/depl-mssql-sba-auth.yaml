@@ -1,20 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: depl-mssql-sba-hierarchy
+  name: depl-mssql-sba-auth
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mssql-sba-hierarchy
+      app: mssql-sba-auth
   template:
     metadata:
       labels:
-        app: mssql-sba-hierarchy
+        app: mssql-sba-auth
     spec:
       containers:
         - name: mssql
           image: mcr.microsoft.com/mssql/server:2022-latest
+        # - name: mssql-sba-auth
+        #   image: ahsansoftengineer/mssql-sba-auth
           ports:
             - containerPort: 1433
           resources:
@@ -34,23 +36,27 @@ spec:
                 secretKeyRef:
                   name: mssql
                   key: SA_PASSWORD
+            # The commented-out line should be removed if you're using the secret reference
+            # - name: SA_PASSWORD
+            #   value: "P@55w0rd!123"
           volumeMounts:
             - mountPath: /var/opt/mssql/data
               name: mssqldb
       volumes:
         - name: mssqldb
           persistentVolumeClaim:
-            claimName: claim-mssql-sba-hierarchy
+            claimName: claim-mssql-sba-auth
 
 ---
+# CLUSTER IP FOR MS SQL SERVICE (INTERNAL ACCESS)
 apiVersion: v1
 kind: Service
 metadata:
-  name: srvc-clusterip-mssql-sba-hierarchy
+  name: srvc-clusterip-mssql-sba-auth
 spec:
   type: ClusterIP
   selector:
-    app: mssql-sba-hierarchy
+    app: mssql-sba-auth
   ports:
     - name: mssql
       protocol: TCP
@@ -58,14 +64,15 @@ spec:
       targetPort: 1433
 
 ---
+# LOAD BALANCER FOR MS SQL SERVICE (OPTIONAL EXTERNAL ACCESS)
 apiVersion: v1
 kind: Service
 metadata:
-  name: srvc-loadbalancer-mssql-sba-hierarchy
+  name: srvc-loadbalancer-mssql-sba-auth
 spec:
   type: LoadBalancer
   selector:
-    app: mssql-sba-hierarchy
+    app: mssql-sba-auth
   ports:
     - protocol: TCP
       port: 1433
@@ -79,9 +86,14 @@ spec:
 # kubectl delete secret mssql
 
 ## BASH
-# kubectl apply -f ./__K8S/B_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
-# kubectl delete -f ./__K8S/B_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
+# kubectl apply -f ./__K8S/B_DEPL_SQL/depl-mssql-sba-auth.yaml
+# kubectl delete -f ./__K8S/B_DEPL_SQL/depl-mssql-sba-auth.yaml
 
-# deployment.apps/depl-mssql-sba-hierarchy created
+# deployment.apps/depl-mssql-sba-auth created
 # service/srvc-clusterip-mssql created
 # service/srvc-loadbalancer-mssql created
+
+## Creadentials
+# - 127.0.0.1,1433
+# - sa
+# - 'P@55w0rd!123'
