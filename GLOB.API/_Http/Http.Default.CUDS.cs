@@ -29,7 +29,7 @@ public partial class Httpz
     return await Client.Put<T>(req);
   }
 
-  public async Task<OkMsg> Delete(HttpReq req)
+  public async Task<object> Delete(HttpReq req)
   {
     req.Action = EP.Delete;
     return await Client.Delete(req);

@@ -16,12 +16,12 @@ spec:
         - name: srvc-sba-hierarchy
           image: ahsansoftengineer/srvc-sba-hierarchy
           ports:
-            - containerPort: 8401
+            - containerPort: 5806
           env:
             - name: DOTNET_ENVIRONMENT
               value: DockerK8S
             - name: ASPNETCORE_URLS
-              value: http://+:8401
+              value: http://+:5806
 
 # CLUSTER IP CONFIG
 --- 
@@ -36,23 +36,24 @@ spec:
   ports:
   - name: srvc-sba-hierarchy
     protocol: TCP
-    port: 8401
-    targetPort: 8401
+    port: 5806
+    targetPort: 5806
     # nodePort: 30841 # 30000-32767 (Host Port)
 
 ## BASH BUILD Dockerfile srvc-sba-hierarchy
 # - We need ClusterIP for Inter Service Communication
 ## -t tagname, -f file/reference, ./buildContext  
-# docker build -t ahsansoftengineer/srvc-sba-hierarchy -f ../SBA.Hierarchy/Dockerfile ../SBA.Hierarchy
+# docker build -t ahsansoftengineer/srvc-sba-hierarchy -f ./SBA.Hierarchy/Dockerfile ./SBA.Hierarchy
 # docker push ahsansoftengineer/srvc-sba-hierarchy
 
 ## BASH RUN Deployment srvc-sba-hierarchy
-# kubectl apply -f 1.4_depl-sba-hierarchys.yaml
+# kubectl apply -f ./__K8S/C_DEPL_SRVC/depl-sba-hierarchy.yaml
 # kubectl get pods
 # kubectl get deployments
-# kubectl rollout restart deployments depl-sba-hierarchys
-# kubectl delete -f 1.4_depl-sba-hierarchys.yaml
+# kubectl rollout restart deployments depl-sba-hierarchy
+
 ## Delete (Deployments & Service)
-# kubectl delete deployments depl-sba-hierarchys
-# kubectl delete services srvc-clusterip-sba-hierarchys
+# kubectl delete -f ./__K8S/C_DEPL_SRVC/depl-sba-hierarchy.yaml
+# kubectl delete deployments depl-sba-hierarchy
+# kubectl delete services srvc-clusterip-sba-hierarchy
 
