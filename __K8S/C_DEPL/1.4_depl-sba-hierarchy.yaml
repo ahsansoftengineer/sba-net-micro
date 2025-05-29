@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: depl-hierarchy-d
+  name: depl-sba-hierarchy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hierarchyservice-d
+      app: srvc-sba-hierarchy
   template:
     metadata:
       labels:
-        app: hierarchyservice-d
+        app: srvc-sba-hierarchy
     spec:
       containers:
-        - name: hierarchyservice-d
-          image: ahsansoftengineer/hierarchyservice-d
+        - name: srvc-sba-hierarchy
+          image: ahsansoftengineer/srvc-sba-hierarchy
           ports:
             - containerPort: 8401
           env:
@@ -28,31 +28,31 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: srvc-clusterip-hierarchy
+  name: srvc-clusterip-sba-hierarchy
 spec:
   type: ClusterIP
   selector:
-    app: hierarchyservice-d
+    app: srvc-sba-hierarchy
   ports:
-  - name: hierarchyservice
+  - name: srvc-sba-hierarchy
     protocol: TCP
     port: 8401
     targetPort: 8401
     # nodePort: 30841 # 30000-32767 (Host Port)
 
-## BASH BUILD Dockerfile hierarchyService
+## BASH BUILD Dockerfile srvc-sba-hierarchy
 # - We need ClusterIP for Inter Service Communication
 ## -t tagname, -f file/reference, ./buildContext  
-# docker build -t ahsansoftengineer/hierarchyservice-d -f ../hierarchysService/Dockerfile ../hierarchysService
-# docker push ahsansoftengineer/hierarchyservice-d
+# docker build -t ahsansoftengineer/srvc-sba-hierarchy -f ../SBA.Hierarchy/Dockerfile ../SBA.Hierarchy
+# docker push ahsansoftengineer/srvc-sba-hierarchy
 
-## BASH RUN Deployment hierarchyService
-# kubectl apply -f 1.4_depl-hierarchys.yaml
+## BASH RUN Deployment srvc-sba-hierarchy
+# kubectl apply -f 1.4_depl-sba-hierarchys.yaml
 # kubectl get pods
 # kubectl get deployments
-# kubectl rollout restart deployments depl-hierarchys-d
-# kubectl delete -f 1.4_depl-hierarchys.yaml
+# kubectl rollout restart deployments depl-sba-hierarchys
+# kubectl delete -f 1.4_depl-sba-hierarchys.yaml
 ## Delete (Deployments & Service)
-# kubectl delete deployments depl-hierarchys-d
-# kubectl delete services srvc-clusterip-hierarchys
+# kubectl delete deployments depl-sba-hierarchys
+# kubectl delete services srvc-clusterip-sba-hierarchys
 
