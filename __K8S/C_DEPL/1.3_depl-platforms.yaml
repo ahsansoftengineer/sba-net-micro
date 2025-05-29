@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: depl-platforms-d
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: platformservice-d
+  template:
+    metadata:
+      labels:
+        app: platformservice-d
+    spec:
+      containers:
+        - name: platformservice-d
+          image: ahsansoftengineer/platformservice-d
+          ports:
+            - containerPort: 5401
+          env:
+            - name: DOTNET_ENVIRONMENT
+              value: DockerK8S
+            - name: ASPNETCORE_URLS
+              value: http://+:5401
+            - name: CommandService
+              value: http://srvc-clusterip-commands:8401/api/c/platforms/
+            - name: ConnectionStrings__SbPlatform
+              value: "Server=srvc-clusterip-mssql,1433;Initial Catalog=PlatformDB;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+
+
+# CLUSTER IP CONFIG
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: srvc-clusterip-platforms
+spec:
+  type: ClusterIP
+  selector:
+    app: platformservice-d
+  ports:
+    - name: platformservice-d
+      protocol: TCP
+      port: 5401
+      targetPort: 5401
+
+
+## BASH Build PlatformService
+# # -t tagname, -f file/reference, ./buildContext  
+# docker build -t ahsansoftengineer/platformservice-d -f ../PlatformService/Dockerfile ../PlatformService
+# docker push ahsansoftengineer/platformservice-d
+
+## BASH Run Deployment & ClusterIP Binding
+# kubectl apply -f 1.3_depl-platforms.yaml
+# kubectl get pods
+# kubectl get deployments
+# kubectl rollout restart deployments depl-platforms-d
+# kubectl delete -f 1.3_depl-platforms.yaml
+
+## Delete (Deployments & Service)
+# kubectl delete deployments depl-platforms-d
+# kubectl delete services srvc-clusterip-platforms
+
+## InterService Comm (Cluster IP)
+# - srvc-clusterip-commands:8401/api/c/platforms/

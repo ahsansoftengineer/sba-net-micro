@@ -1,0 +1,100 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: depl-mssql-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mssql
+  template:
+    metadata:
+      labels:
+        app: mssql
+    spec:
+      containers:
+        - name: mssql
+          image: mcr.microsoft.com/mssql/server:2022-latest
+        # - name: mssql-platform-d
+        #   image: ahsansoftengineer/mssql-platform-d
+          ports:
+            - containerPort: 1433
+          resources:
+            limits:
+              memory: 2Gi
+              cpu: "2"
+            requests:
+              memory: 2Gi
+              cpu: "2"
+          env:
+            - name: MSSQL_PID
+              value: "Express"
+            - name: ACCEPT_EULA
+              value: "Y"
+            - name: SA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mssql
+                  key: SA_PASSWORD
+            # The commented-out line should be removed if you're using the secret reference
+            # - name: SA_PASSWORD
+            #   value: "P@55w0rd!123"
+          volumeMounts:
+            - mountPath: /var/opt/mssql/data
+              name: mssqldb
+      volumes:
+        - name: mssqldb
+          persistentVolumeClaim:
+            claimName: claim-mssql
+
+
+--- 
+# CLUSTER IP FOR MS SQL SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: srvc-clusterip-mssql
+spec:
+  type: ClusterIP
+  selector:
+    app: mssql
+  ports:
+    - name: mssql
+      protocol: TCP
+      port: 1433
+      targetPort: 1433
+
+--- 
+# CLUSTER IP FOR MS SQL LOAD BALANCER
+apiVersion: v1
+kind: Service
+metadata:
+  name: srvc-loadbalancer-mssql
+spec:
+  type: LoadBalancer
+  selector:
+    app: mssql
+  ports:
+    - protocol: TCP
+      port: 1433
+      targetPort: 1433
+
+## SECRET
+# - Becareful with Password Complexity
+# kubectl create secret generic mssql --from-literal=SA_PASSWORD='P@55w0rd!123' 
+# kubectl describe secret mssql
+# kubectl get secret mssql
+# kubectl delete secret mssql
+
+## BASH
+# kubectl apply -f 1.2_depl-mssql-platform.yaml
+# kubectl delete -f 1.2_depl-mssql-platform.yaml
+
+# deployment.apps/depl-mssql-platform created
+# service/srvc-clusterip-mssql created
+# service/srvc-loadbalancer-mssql created
+
+## Creadentials
+# - 127.0.0.1,1433
+# - sa
+# - 'P@55w0rd!123'

@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: depl-hierarchy-d
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hierarchyservice-d
+  template:
+    metadata:
+      labels:
+        app: hierarchyservice-d
+    spec:
+      containers:
+        - name: hierarchyservice-d
+          image: ahsansoftengineer/hierarchyservice-d
+          ports:
+            - containerPort: 8401
+          env:
+            - name: DOTNET_ENVIRONMENT
+              value: DockerK8S
+            - name: ASPNETCORE_URLS
+              value: http://+:8401
+
+# CLUSTER IP CONFIG
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: srvc-clusterip-hierarchy
+spec:
+  type: ClusterIP
+  selector:
+    app: hierarchyservice-d
+  ports:
+  - name: hierarchyservice
+    protocol: TCP
+    port: 8401
+    targetPort: 8401
+    # nodePort: 30841 # 30000-32767 (Host Port)
+
+## BASH BUILD Dockerfile hierarchyService
+# - We need ClusterIP for Inter Service Communication
+## -t tagname, -f file/reference, ./buildContext  
+# docker build -t ahsansoftengineer/hierarchyservice-d -f ../hierarchysService/Dockerfile ../hierarchysService
+# docker push ahsansoftengineer/hierarchyservice-d
+
+## BASH RUN Deployment hierarchyService
+# kubectl apply -f 1.4_depl-hierarchys.yaml
+# kubectl get pods
+# kubectl get deployments
+# kubectl rollout restart deployments depl-hierarchys-d
+# kubectl delete -f 1.4_depl-hierarchys.yaml
+## Delete (Deployments & Service)
+# kubectl delete deployments depl-hierarchys-d
+# kubectl delete services srvc-clusterip-hierarchys
+
