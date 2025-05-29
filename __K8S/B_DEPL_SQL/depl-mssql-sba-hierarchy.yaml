@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: depl-mssql-platform
+  name: depl-mssql-sba-hierarchy
 spec:
   replicas: 1
   selector:
@@ -15,8 +15,8 @@ spec:
       containers:
         - name: mssql
           image: mcr.microsoft.com/mssql/server:2022-latest
-        # - name: mssql-platform-d
-        #   image: ahsansoftengineer/mssql-platform-d
+        # - name: mssql-sba-hierarchy
+        #   image: ahsansoftengineer/mssql-sba-hierarchy
           ports:
             - containerPort: 1433
           resources:
@@ -45,11 +45,12 @@ spec:
       volumes:
         - name: mssqldb
           persistentVolumeClaim:
-            claimName: claim-mssql
+            claimName: claim-mssql-sba-hierarchy
 
 
 --- 
 # CLUSTER IP FOR MS SQL SERVICE
+# Internal Access (Srvc Comm)
 apiVersion: v1
 kind: Service
 metadata:
@@ -66,6 +67,7 @@ spec:
 
 --- 
 # CLUSTER IP FOR MS SQL LOAD BALANCER
+# External Access (Srvc Comm) Bad for Production
 apiVersion: v1
 kind: Service
 metadata:
@@ -87,10 +89,10 @@ spec:
 # kubectl delete secret mssql
 
 ## BASH
-# kubectl apply -f 1.2_depl-mssql-platform.yaml
-# kubectl delete -f 1.2_depl-mssql-platform.yaml
+# kubectl apply -f ./__K8S/B_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
+# kubectl delete -f ./__K8S/B_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
 
-# deployment.apps/depl-mssql-platform created
+# deployment.apps/depl-mssql-sba-hierarchy created
 # service/srvc-clusterip-mssql created
 # service/srvc-loadbalancer-mssql created
 

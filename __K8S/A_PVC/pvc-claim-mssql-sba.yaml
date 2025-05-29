@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: claim-mssql-sba-hierarchy
+spec:
+  resources:
+    requests:
+      storage: 500Mi
+  accessModes:
+  - ReadWriteMany
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: claim-mssql-sba-auth
+spec:
+  resources:
+    requests:
+      storage: 500Mi
+  accessModes:
+  - ReadWriteMany
+
+## Master Slave Arch
+## Client Server
+### Create Claims
+# - This Task Done Only Once
+# - Creating Claim for Database
+
+# kubectl apply -f ./__K8S/A_PVC/pvc-claim-mssql-sba.yaml
+# kubectl get pvc
+# kubectl delete pvc claim-mssql-sba
+# kubectl delete -f ./__K8S/A_PVC/pvc-claim-mssql-sba.yaml

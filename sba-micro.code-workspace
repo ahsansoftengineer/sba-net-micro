@@ -56,15 +56,7 @@
     // {
     // 	"name": "SBA.Orderz",
     // 	"path": "SBA.Orderz"
-    // },
-    {
-    	"name": "PlatformService",
-    	"path": "PlatformService"
-    },
-        {
-    	"name": "CommandsService",
-    	"path": "CommandsService"
-    },
+    // }
   ],
   "settings": {
     "dotnet.defaultSolution": "sb-micro/SBA.sln"
