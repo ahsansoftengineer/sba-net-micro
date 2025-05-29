@@ -90,8 +90,8 @@ spec:
 # kubectl delete -f ./__K8S/B_DEPL_SQL/depl-mssql-sba-auth.yaml
 
 # deployment.apps/depl-mssql-sba-auth created
-# service/srvc-clusterip-mssql created
-# service/srvc-loadbalancer-mssql created
+# service/srvc-clusterip-mssql-sba-auth created
+# service/srvc-loadbalancer-mssql-sba-auth created
 
 ## Creadentials
 # - 127.0.0.1,1433

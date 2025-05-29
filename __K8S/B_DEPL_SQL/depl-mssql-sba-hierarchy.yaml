@@ -70,18 +70,6 @@ spec:
     - protocol: TCP
       port: 1433
       targetPort: 1433
-
-## SECRET
-# - Becareful with Password Complexity
-# kubectl create secret generic mssql --from-literal=SA_PASSWORD='P@55w0rd!123' 
-# kubectl describe secret mssql
-# kubectl get secret mssql
-# kubectl delete secret mssql
-
 ## BASH
 # kubectl apply -f ./__K8S/B_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
 # kubectl delete -f ./__K8S/B_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
-
-# deployment.apps/depl-mssql-sba-hierarchy created
-# service/srvc-clusterip-mssql created
-# service/srvc-loadbalancer-mssql created
