@@ -43,7 +43,7 @@ spec:
             - containerPort: 5806
           env:
             - name: DOTNET_ENVIRONMENT
-              value: Development
+              value: K8s
             - name: ASPNETCORE_URLS
               value: http://+:5806
             - name: ConnectionStrings__SqlConnection

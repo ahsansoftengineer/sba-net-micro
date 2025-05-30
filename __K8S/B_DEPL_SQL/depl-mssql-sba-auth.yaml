@@ -31,14 +31,14 @@ spec:
               value: "Express"
             - name: ACCEPT_EULA
               value: "Y"
-            - name: SA_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mssql
-                  key: SA_PASSWORD
-            # The commented-out line should be removed if you're using the secret reference
             # - name: SA_PASSWORD
-            #   value: "P@55w0rd!123"
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: mssql
+            #       key: SA_PASSWORD
+            # The commented-out line should be removed if you're using the secret reference
+            - name: SA_PASSWORD
+              value: "P@55w0rd!123"
           volumeMounts:
             - mountPath: /var/opt/mssql/data
               name: mssqldb
