@@ -40,12 +40,23 @@ spec:
           volumeMounts:
             - mountPath: /var/opt/mssql/data
               name: mssqldb
+      initContainers:
+        - name: fix-perms
+          image: busybox
+          command: ["sh", "-c", "chown -R 10001:0 /var/opt/mssql"]
+          volumeMounts:
+            - name: mssqldb
+              mountPath: /var/opt/mssql
       volumes:
         - name: mssqldb
           persistentVolumeClaim:
             claimName: claim-mssql-sba-hierarchy
 
 ---
+#------------------------------------------------------------------------- 
+#### (2) DB Hierarchy Cluster IP
+# - We need ClusterIP for Inter Service Communication
+# - Production Required
 apiVersion: v1
 kind: Service
 metadata:
@@ -57,10 +68,33 @@ spec:
   ports:
     - name: mssql
       protocol: TCP
-      port: 1433
-      targetPort: 1433
+      port: 1433 # Port -> Cluster 
+      targetPort: 1433 # Port -> (Pod / Container)
 
 ---
+#-------------------------------------------------------------------------
+#### (3) DB Hierarchy Node Port
+# - We need NodePort for External Service Access
+# - No Production Required
+apiVersion: v1
+kind: Service
+metadata:
+  name: srvc-np-mssql-sba-hierarchy
+spec:
+  type: NodePort
+  selector:
+    app: mssql-sba-hierarchy
+  ports:
+    - protocol: TCP
+      port: 1433
+      targetPort: 1433
+      nodePort: 31806 # 30000-32767 (Host Port)
+
+---
+#-------------------------------------------------------------------------
+#### (4) DB Hierarchy LoadBalancer
+# - We need LoadBalancer for External Service Access
+# - No Production Required
 apiVersion: v1
 kind: Service
 metadata:
@@ -73,6 +107,7 @@ spec:
     - protocol: TCP
       port: 1433
       targetPort: 1433
+      nodePort: 31807 # 30000-32767 (Host Port)
 
 
 ## SECRET
@@ -86,7 +121,19 @@ spec:
 # kubectl apply -f ./__K8S/B_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
 # kubectl delete -f ./__K8S/B_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
 
-## Creadentials
-# - 127.0.0.1,1433
+
+## Connect using SSMS
+
+# - kubectl get svc srvc-loadbalancer-mssql-sba-hierarchy
+# - kubectl get svc srvc-np-mssql-sba-hierarchy
+
+
+## Creadentials for NodePort
+# - 127.0.0.1,31806
+# - sa
+# - 'P@55w0rd!123'
+
+## Creadentials for LoadBalancer
+# - 127.0.0.1,31807
 # - sa
 # - 'P@55w0rd!123'

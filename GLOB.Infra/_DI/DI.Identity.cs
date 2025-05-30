@@ -23,8 +23,3 @@ public static partial class DI_Infra
   }
 
 }
-
-// "ConnectionStrings": {
-//   "SqlConnection": "Server=127.0.0.1,1430;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
-// },
-

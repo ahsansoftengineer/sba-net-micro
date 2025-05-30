@@ -43,7 +43,7 @@ spec:
             - containerPort: 5806
           env:
             - name: DOTNET_ENVIRONMENT
-              value: K8s
+              value: K8S
             - name: ASPNETCORE_URLS
               value: http://+:5806
             - name: ConnectionStrings__SqlConnection
@@ -90,8 +90,8 @@ spec:
   ports:
     - name: srvc-sba-hierarchy
       protocol: TCP
-      port: 5806
-      targetPort: 5806
+      port: 5806 # Node Port
+      targetPort: 5806 # Pod's App port
       nodePort: 30806 # 30000-32767 (Host Port)
 
 ## ROUTES (K8S Node Port)
