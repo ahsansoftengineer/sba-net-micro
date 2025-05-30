@@ -19,7 +19,7 @@ spec:
             - containerPort: 5806
           env:
             - name: DOTNET_ENVIRONMENT
-              value: DockerK8S
+              value: Development
             - name: ASPNETCORE_URLS
               value: http://+:5806
 
@@ -38,7 +38,7 @@ spec:
     protocol: TCP
     port: 5806
     targetPort: 5806
-    # nodePort: 30841 # 30000-32767 (Host Port)
+    # nodePort: 30806 # 30000-32767 (Host Port)
 
 ## BASH BUILD Dockerfile srvc-sba-hierarchy
 # - We need ClusterIP for Inter Service Communication
@@ -50,6 +50,8 @@ spec:
 # kubectl apply -f ./__K8S/C_DEPL_SRVC/depl-sba-hierarchy.yaml
 # kubectl get pods
 # kubectl get deployments
+# kubectl logs -l app=srvc-sba-hierarchy
+# kubectl port-forward svc/srvc-clusterip-sba-hierarchy 5806:5806
 # kubectl rollout restart deployments depl-sba-hierarchy
 
 ## Delete (Deployments & Service)
@@ -57,3 +59,5 @@ spec:
 # kubectl delete deployments depl-sba-hierarchy
 # kubectl delete services srvc-clusterip-sba-hierarchy
 
+# http://localhost:5806/api/hierarchy/v1/swagger/index.html
+# http://localhost:5806/api/hierarchy/v1/_projectz-lookup/gets-lookup

@@ -19,11 +19,11 @@ spec:
             - containerPort: 1433
           resources:
             limits:
-              memory: 2Gi
-              cpu: "2"
+              memory: 1Gi
+              cpu: "1"
             requests:
-              memory: 2Gi
-              cpu: "2"
+              memory: 1Gi
+              cpu: "1"
           env:
             - name: MSSQL_PID
               value: "Express"
@@ -73,3 +73,4 @@ spec:
 ## BASH
 # kubectl apply -f ./__K8S/B_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
 # kubectl delete -f ./__K8S/B_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
+
