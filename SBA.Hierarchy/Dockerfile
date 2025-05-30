@@ -33,7 +33,7 @@ COPY --from=build-env /app/out .
 # Runtime environment variables (can be overridden at runtime via CLI, Docker Compose, etc.)
 ENV ASPNETCORE_URLS=http://+:5806
 ENV DOTNET_ENVIRONMENT=Development
-ENV ConnectionStrings__SqlConnection="Server=srvc-clusterip-mssql-sba-hierarchy,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+ENV ConnectionStrings__SqlConnection="Server=host.docker.internal,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
 
 EXPOSE 5806
 
