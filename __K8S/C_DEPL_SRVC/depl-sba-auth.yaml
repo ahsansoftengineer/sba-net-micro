@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: depl-sba-hierarchy
+  name: depl-sba-auth
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: srvc-sba-hierarchy
+      app: srvc-sba-auth
   template:
     metadata:
       labels:
-        app: srvc-sba-hierarchy
+        app: srvc-sba-auth
     spec:
       containers:
-        - name: srvc-sba-hierarchy
-          image: mansanhhub/srvc-sba-hierarchy
+        - name: srvc-sba-auth
+          image: mansanhhub/srvc-sba-auth
           ports:
             - containerPort: 5806
           env:
@@ -28,32 +28,32 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: srvc-clusterip-sba-hierarchy
+  name: srvc-clusterip-sba-auth
 spec:
   type: ClusterIP
   selector:
-    app: srvc-sba-hierarchy
+    app: srvc-sba-auth
   ports:
-  - name: srvc-sba-hierarchy
+  - name: srvc-sba-auth
     protocol: TCP
     port: 5806
     targetPort: 5806
     # nodePort: 30841 # 30000-32767 (Host Port)
 
-## BASH BUILD Dockerfile srvc-sba-hierarchy
+## BASH BUILD Dockerfile srvc-sba-auth
 # - We need ClusterIP for Inter Service Communication
 ## -t tagname, -f file/reference, ./buildContext  
-# docker build -t mansanhhub/srvc-sba-hierarchy -f SBA.Hierarchy/Dockerfile .
-# docker push mansanhhub/srvc-sba-hierarchy
+# docker build -t mansanhhub/srvc-sba-auth -f SBA.Hierarchy/Dockerfile .
+# docker push mansanhhub/srvc-sba-auth
 
-## BASH RUN Deployment srvc-sba-hierarchy
-# kubectl apply -f ./__K8S/C_DEPL_SRVC/depl-sba-hierarchy.yaml
+## BASH RUN Deployment srvc-sba-auth
+# kubectl apply -f ./__K8S/C_DEPL_SRVC/depl-sba-auth.yaml
 # kubectl get pods
 # kubectl get deployments
-# kubectl rollout restart deployments depl-sba-hierarchy
+# kubectl rollout restart deployments depl-sba-auth
 
 ## Delete (Deployments & Service)
-# kubectl delete -f ./__K8S/C_DEPL_SRVC/depl-sba-hierarchy.yaml
-# kubectl delete deployments depl-sba-hierarchy
-# kubectl delete services srvc-clusterip-sba-hierarchy
+# kubectl delete -f ./__K8S/C_DEPL_SRVC/depl-sba-auth.yaml
+# kubectl delete deployments depl-sba-auth
+# kubectl delete services srvc-clusterip-sba-auth
 

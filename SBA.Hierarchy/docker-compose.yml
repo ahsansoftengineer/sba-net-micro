@@ -1,22 +1,22 @@
 version: "3.9"
 
 services:
-  commandservice-b:
+  srvc-sba-hierarchy:
     build:
       context: .
       dockerfile: Dockerfile
-    image: ahsansoftengineer/commandservice-b
-    container_name: commandservice-b
+    image: mansanhhub/srvc-sba-hierarchy
+    container_name: srvc-sba-hierarchy
     environment:
-      - ASPNETCORE_URLS=http://+:8201
+      - ASPNETCORE_URLS=http://+:5806
       - DOTNET_ENVIRONMENT=DockerCompose
     ports:
-      - "8201:8201" # Map host port 8201 to container port 8201
+      - "5806:5806" # Map host port 5806 to container port 5806
 
 # ### Docker Compose CLI
 # docker-compose up -d --build
 # docker-compose down
 
 # ### ROUTE (Docker Port Mapping)
-# - http://localhost:8201/swagger/index.html
-# - http://localhost:8201/api/c/platform POST
+# - http://localhost:5806/api/hierarchy/v1/swagger/index.html
+# - http://localhost:5806/api/hierarchy/v1/_projectz-lookup/gets-lookup
