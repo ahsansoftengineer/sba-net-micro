@@ -3,9 +3,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
 
 # Copy only .csproj files first (to enable Docker caching of restore)
+COPY GLOB.API.Config/*.csproj ./GLOB.API.Config/
 COPY GLOB.Domain/*.csproj ./GLOB.Domain/
 COPY GLOB.Infra/*.csproj ./GLOB.Infra/
-COPY GLOB.API.Config/*.csproj ./GLOB.API.Config/
 COPY GLOB.API/*.csproj ./GLOB.API/
 COPY SBA.Hierarchy/*.csproj ./SBA.Hierarchy/
 
@@ -13,9 +13,9 @@ COPY SBA.Hierarchy/*.csproj ./SBA.Hierarchy/
 RUN dotnet restore ./SBA.Hierarchy/SBA.Hierarchy.csproj
 
 # Copy the rest of the source files
+COPY GLOB.API.Config/ ./GLOB.API.Config/
 COPY GLOB.Domain/ ./GLOB.Domain/
 COPY GLOB.Infra/ ./GLOB.Infra/
-COPY GLOB.API.Config/ ./GLOB.API.Config/
 COPY GLOB.API/ ./GLOB.API/
 COPY SBA.Hierarchy/ ./SBA.Hierarchy/
 
