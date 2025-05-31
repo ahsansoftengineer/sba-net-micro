@@ -94,8 +94,8 @@ spec:
       protocol: TCP
       port: 5802 # Node Port
       targetPort: 5802 # Pod's App port
-      nodePort: 30806 # 30000-32767 (Host Port)
+      nodePort: 30802 # 30000-32767 (Host Port)
 
 ## ROUTES (K8S Node Port)
-# - http://localhost:30806/api/Auth/v1/swagger/index.html
-# - http://localhost:30806/api/Auth/v1/_projectz-lookupz/gets-lookup
+# - http://localhost:30802/api/Auth/v1/swagger/index.html
+# - http://localhost:30802/api/Auth/v1/_projectz-lookupz/gets-lookup
