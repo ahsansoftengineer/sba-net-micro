@@ -5,11 +5,6 @@
 # - ClusterIP
 # - Node Port
 
-#### Run Command
-## BASH
-# kubectl apply -f ./__K8S/A_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
-# kubectl delete -f ./__K8S/A_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
-
 #### (1) DB Password Secret (SQL)
 # - Becareful with Password Complexity
 # kubectl create secret generic mssql --from-literal=SA_PASSWORD='P@55w0rd!123' 
@@ -23,8 +18,7 @@
 # - This Task Done Only Once
 # - Creating Claim for Database
 # kubectl get pvc
-# kubectl get pvc claim-mssql-sba-hierarchy
-# kubectl delete pvc claim-mssql-sba-hierarchy
+# kubectl delete pvc claim-mssql-sba
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -40,9 +34,6 @@ spec:
 
 
 #### (3) DB Deployment (Hierarchy) 
-# - kubectl get deployment
-# - kubectl get deployment depl-mssql-sba-hierarchy
-# - kubectl delete deployment depl-mssql-sba-hierarchy
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -102,8 +93,6 @@ spec:
 #### (4) DB ClusterIP (Hierarchy)
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
-# - kubectl get svc
-# - kubectl get svc srvc-clusterip-mssql-sba-hierarchy
 apiVersion: v1
 kind: Service
 metadata:
@@ -124,7 +113,7 @@ spec:
 # - We need NodePort for External Service Access
 # - No Production Required
 # - kubectl get svc srvc-np-mssql-sba-hierarchy
-# - CREADENTIALS 127.0.0.1,31806 sa 'P@55w0rd!123'
+# - 127.0.0.1,31806 sa 'P@55w0rd!123'
 apiVersion: v1
 kind: Service
 metadata:
@@ -160,3 +149,7 @@ spec:
       port: 1433
       targetPort: 1433
       nodePort: 31807 # 30000-32767 (Host Port)
+
+## BASH
+# kubectl apply -f ./__K8S/A_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
+# kubectl delete -f ./__K8S/A_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
