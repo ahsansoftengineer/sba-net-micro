@@ -1,16 +1,17 @@
 ################~~~~ DB SBA Hierarchy ~~~~~##################
-# - Password Secret
+# - Password Secret (Optional)
 # - Persistent Volume Claim (PVC)
 # - Deployment
 # - ClusterIP
-# - Node Port
+# - Node Port (Optional) External Access
+# - Load Balancer (Optional) External Access
 
 #### Run Command
 ## BASH
 # kubectl apply -f ./__K8S/A_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
 # kubectl delete -f ./__K8S/A_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
 
-#### (1) DB Password Secret (SQL)
+#### (1) DB Password Secret (SQL) (Optional)
 # - Becareful with Password Complexity
 # kubectl create secret generic mssql --from-literal=SA_PASSWORD='P@55w0rd!123' 
 # kubectl describe secret mssql
@@ -120,7 +121,7 @@ spec:
 
 ---
 #-------------------------------------------------------------------------
-#### (5) DB NodePort (Hierarchy)
+#### (5) DB NodePort (Hierarchy) (Optional)
 # - We need NodePort for External Service Access
 # - No Production Required
 # - kubectl get svc srvc-np-mssql-sba-hierarchy
@@ -141,7 +142,7 @@ spec:
 
 ---
 #-------------------------------------------------------------------------
-#### (6) DB LoadBalancer (Hierarchy)
+#### (6) DB LoadBalancer (Hierarchy) (Optional)
 # - We need LoadBalancer for External Service Access
 # - No Production Required
 # - kubectl get svc srvc-loadbalancer-mssql-sba-hierarchy
@@ -159,4 +160,3 @@ spec:
     - protocol: TCP
       port: 1433
       targetPort: 1433
-      nodePort: 31807 # 30000-32767 (Host Port)
