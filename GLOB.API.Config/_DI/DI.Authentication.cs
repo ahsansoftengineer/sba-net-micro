@@ -20,7 +20,7 @@ public static partial class DI_API_Config
     .AddJwtBearer(options =>
     {
       options.SaveToken = true;
-      options.RequireHttpsMetadata = !env.IsDevelopment();
+      options.RequireHttpsMetadata = env.IsProduction();
       options.TokenValidationParameters = new TokenValidationParameters()
       {
         ValidIssuer = jwt.Issuer,

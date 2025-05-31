@@ -21,7 +21,7 @@
 # kubectl delete services srvc-clusterip-sba-hierarchy
 
 
-#### (1) Hierarchy Deployment 
+#### (1) API Hierarchy Deployment 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -56,7 +56,7 @@ spec:
 
 ---
 #------------------------------------------------------------------------- 
-#### (2) Hierarchy Cluster IP
+#### (2) API Cluster IP (Hierarchy)
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
 apiVersion: v1
@@ -76,7 +76,7 @@ spec:
 
 ---
 #-------------------------------------------------------------------------
-#### (3) Hierarchy Node Port
+#### (3) API Node Port (Hierarchy)
 # - We need NodePort for External Service Access
 # - No Production Required
 apiVersion: v1

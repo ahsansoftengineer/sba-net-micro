@@ -1,3 +1,39 @@
+################~~~~ SBA HIERARCHY DB ~~~~~##################
+# - Password Secret
+# - Persistent Volume Claim (PVC)
+# - Deployment
+# - ClusterIP
+# - Node Port
+
+#### (1) Password Secret 
+# - Becareful with Password Complexity
+# kubectl create secret generic mssql --from-literal=SA_PASSWORD='P@55w0rd!123' 
+# kubectl describe secret mssql
+# kubectl get secret mssql
+# kubectl delete secret mssql
+
+
+#### (2) Hierarchy DB Claim 
+
+# - This Task Done Only Once
+# - Creating Claim for Database
+# kubectl get pvc
+# kubectl delete pvc claim-mssql-sba
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: claim-mssql-sba-hierarchy
+spec:
+  resources:
+    requests:
+      storage: 250Mi
+  accessModes:
+  - ReadWriteMany
+
+---
+
+
+#### (3) Hierarchy DB Claim 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -54,7 +90,7 @@ spec:
 
 ---
 #------------------------------------------------------------------------- 
-#### (2) DB Hierarchy Cluster IP
+#### (4) DB ClusterIP (Hierarchy)
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
 apiVersion: v1
@@ -73,9 +109,11 @@ spec:
 
 ---
 #-------------------------------------------------------------------------
-#### (3) DB Hierarchy Node Port
+#### (5) DB NodePort (Hierarchy)
 # - We need NodePort for External Service Access
 # - No Production Required
+# - kubectl get svc srvc-np-mssql-sba-hierarchy
+# - 127.0.0.1,31806 sa 'P@55w0rd!123'
 apiVersion: v1
 kind: Service
 metadata:
@@ -92,9 +130,12 @@ spec:
 
 ---
 #-------------------------------------------------------------------------
-#### (4) DB Hierarchy LoadBalancer
+#### (6) DB LoadBalancer (Hierarchy)
 # - We need LoadBalancer for External Service Access
 # - No Production Required
+# - kubectl get svc srvc-loadbalancer-mssql-sba-hierarchy
+## Creadentials for LoadBalancer
+# - 127.0.0.1,31807 sa 'P@55w0rd!123'
 apiVersion: v1
 kind: Service
 metadata:
@@ -109,31 +150,6 @@ spec:
       targetPort: 1433
       nodePort: 31807 # 30000-32767 (Host Port)
 
-
-## SECRET
-# - Becareful with Password Complexity
-# kubectl create secret generic mssql --from-literal=SA_PASSWORD='P@55w0rd!123' 
-# kubectl describe secret mssql
-# kubectl get secret mssql
-# kubectl delete secret mssql
-
 ## BASH
 # kubectl apply -f ./__K8S/B_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
 # kubectl delete -f ./__K8S/B_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
-
-
-## Connect using SSMS
-
-# - kubectl get svc srvc-loadbalancer-mssql-sba-hierarchy
-# - kubectl get svc srvc-np-mssql-sba-hierarchy
-
-
-## Creadentials for NodePort
-# - 127.0.0.1,31806
-# - sa
-# - 'P@55w0rd!123'
-
-## Creadentials for LoadBalancer
-# - 127.0.0.1,31807
-# - sa
-# - 'P@55w0rd!123'
