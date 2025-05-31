@@ -151,5 +151,5 @@ spec:
       nodePort: 31807 # 30000-32767 (Host Port)
 
 ## BASH
-# kubectl apply -f ./__K8S/B_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
-# kubectl delete -f ./__K8S/B_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
+# kubectl apply -f ./__K8S/A_DEPL_SQL/depl-mssql-sba-hierarchy.yaml
+# kubectl delete -f ./__K8S/A_DEPL_SQL/depl-mssql-sba-hierarchy.yaml

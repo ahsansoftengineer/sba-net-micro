@@ -43,7 +43,7 @@ ENTRYPOINT [ "dotnet", "SBA.Hierarchy.dll" ]
 # Build:
 # docker build -t mansanhhub/srvc-sba-hierarchy -f SBA.Hierarchy/Dockerfile .
 # docker push mansanhhub/srvc-sba-hierarchy
-# docker run -d --name srvc-sba-hierarchy -p 5806:5806 -e DOTNET_ENVIRONMENT=Development mansanhhub/srvc-sba-hierarchy
+# docker run -d --name srvc-sba-hierarchy -p 5806:5806 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-sba-hierarchy
 # docker rm -f srvc-sba-hierarchy
 # docker exec -it <container_id> /bin/bash
 

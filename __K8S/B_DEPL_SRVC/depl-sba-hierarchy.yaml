@@ -7,20 +7,23 @@
 ## -t tagname, -f file/reference, ./buildContext  
 # docker build -t mansanhhub/srvc-sba-hierarchy -f SBA.Hierarchy/Dockerfile .
 # docker push mansanhhub/srvc-sba-hierarchy
+# docker pull mansanhhub/srvc-sba-hierarchy
 
+#------------------------------------------------------------------------- 
 ## BASH RUN Deployment srvc-sba-hierarchy
-# kubectl apply -f ./__K8S/C_DEPL_SRVC/depl-sba-hierarchy.yaml
+# kubectl apply -f ./__K8S/B_DEPL_SRVC/depl-sba-hierarchy.yaml
 # kubectl get pods
 # kubectl get deployments
 # kubectl logs -l app=srvc-sba-hierarchy
 # kubectl rollout restart deployments depl-sba-hierarchy
 
-## Delete (Deployments & Service)
-# kubectl delete -f ./__K8S/C_DEPL_SRVC/depl-sba-hierarchy.yaml
+## Delete (Deployments & Service)8
+# kubectl delete -f ./__K8S/B_DEPL_SRVC/depl-sba-hierarchy.yaml
 # kubectl delete deployments depl-sba-hierarchy
 # kubectl delete services srvc-clusterip-sba-hierarchy
 
 
+#------------------------------------------------------------------------- 
 #### (1) API Hierarchy Deployment 
 apiVersion: apps/v1
 kind: Deployment
@@ -49,16 +52,15 @@ spec:
             - name: ConnectionStrings__SqlConnection
               value: "Server=srvc-clusterip-mssql-sba-hierarchy,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
 
-## Local host Port Forward
-# kubectl port-forward svc/srvc-clusterip-sba-hierarchy 5806:5806
-# http://localhost:5806/api/hierarchy/v1/swagger/index.html
-# http://localhost:5806/api/hierarchy/v1/_projectz-lookup/gets-lookup
-
 ---
 #------------------------------------------------------------------------- 
 #### (2) API Cluster IP (Hierarchy)
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
+# kubectl port-forward svc/srvc-clusterip-sba-hierarchy 5806:5806
+# http://localhost:5806/api/hierarchy/v1/swagger/index.html
+# http://localhost:5806/api/hierarchy/v1/_projectz-lookup/gets-lookup
+
 apiVersion: v1
 kind: Service
 metadata:
