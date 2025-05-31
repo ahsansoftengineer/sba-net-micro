@@ -29,7 +29,7 @@ public class DtoRequestPageNoInclude<TDtoSearch> : DtoRequestPageOption<TDtoSear
 
 public class DtoRequestPage<TDtoSearch> : DtoRequestPageOption<TDtoSearch>
 {
-  public List<string>? Includes { get; set; }
+  public List<string?>? Includes { get; set; }
 }
 
 public class DtoPage()
