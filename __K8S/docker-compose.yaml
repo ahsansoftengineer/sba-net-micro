@@ -1,7 +1,7 @@
 ## Docker Compose CLI
 # -p project-5
-# docker-compose -f 0_docker-compose.yaml up -d --build
-# docker-compose -f 0_docker-compose.yaml down
+# docker-compose -f __K8S/docker-compose.yaml up -d --build
+# docker-compose -f __K8S/docker-compose.yaml down
 # docker exec -it id sh
 # printenv DOTNET_ENVIRONMENT
 
@@ -19,25 +19,29 @@ services:
   srvc-dc-mssql-sba:
     image: mansanhhub/srvc-dc-mssql-dev-all
     container_name: srvc-dc-mssql-sba
-    build:
-      context: .
-      dockerfile: DockerfileSQL
     environment:
       - ACCEPT_EULA=Y
       - MSSQL_PID=Express
       - SA_PASSWORD=P@55w0rd!123
-    volumes:
-      - sql-vol-dc:/var/opt/mssql
     ports:
       - "1433:1433"
+    volumes:
+      - sql-vol-dc:/var/opt/mssql
+      - ./sql:/sql:ro  # This mounts your SQL script(s)
     networks:
       - network-dc-sba
+    command: >
+      /bin/bash -c "
+        /opt/mssql/bin/sqlservr & 
+        sleep 30 && 
+        /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'P@55w0rd!123' -i /sql/init.sql
+      "
 
   srvc-dc-api-sba-gateway:
     image: mansanhhub/srvc-dc-api-sba-gateway
     container_name: srvc-dc-api-sba-gateway
     build:
-      context: ../../SBA.APIGateway/
+      context: ../SBA.APIGateway/
       dockerfile: Dockerfile
     environment:
       - ASPNETCORE_URLS=http://+:1100
@@ -50,7 +54,7 @@ services:
     image: mansanhhub/srvc-dc-api-sba-auth
     container_name: srvc-dc-api-sba-auth
     build:
-      context: ../../SBA.Auth/
+      context: ../SBA.Auth/
       dockerfile: Dockerfile
     environment:
       - ASPNETCORE_URLS=http://+:1102
@@ -64,7 +68,7 @@ services:
     image: mansanhhub/srvc-dc-api-sba-hierarchy
     container_name: srvc-dc-api-sba-hierarchy
     build:
-      context: ../../SBA.Hierarchy/
+      context: ../SBA.Hierarchy/
       dockerfile: Dockerfile
     environment:
       - ASPNETCORE_URLS=http://+:1106
