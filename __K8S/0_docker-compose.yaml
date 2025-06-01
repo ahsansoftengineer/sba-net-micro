@@ -6,15 +6,13 @@
 # printenv DOTNET_ENVIRONMENT
 
 ### ROUTE (Docker-Compose Bridge Network)
-# - http://localhost:5301/swagger/index.html
-# - http://localhost:5301/api/platform
-# - http://localhost:5301/api/platform/1
-
-# - http://localhost:8301/swagger/index.html
-# - http://localhost:8301/api/c/platform POST
+# - http://localhost:5800/api/APIGateway/v1/swagger/index.html
+# - http://localhost:5802/api/Auth/v1/swagger/index.html
+# - http://localhost:5806/api/Hierarchy/v1/swagger/index.html
 
 ### InterService Comm (Bridge Network)
-# - http://commandsservice:8301/api/c/platforms/
+# - http://srvc-dc-api-sba-auth:5802/api/Auth/v1/
+# - http://srvc-dc-api-sba-auth:5806/api/Hierarchy/v1/
 
 version: "3.9"
 services:
@@ -57,6 +55,7 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:1102
       - DOTNET_ENVIRONMENT=DockerCompose
+      - ConnectionStrings__SqlConnection="Server=network-dc-sba,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
     ports:
       - "1102:1102"
     networks:
@@ -70,6 +69,7 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:1106
       - DOTNET_ENVIRONMENT=DockerCompose
+      - ConnectionStrings__SqlConnection="Server=network-dc-sba,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
     ports:
       - "1106:1106"
     networks:
