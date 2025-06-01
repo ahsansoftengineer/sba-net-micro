@@ -46,6 +46,10 @@ ENV ASPNETCORE_URLS=http://+:1106
 ENV DOTNET_ENVIRONMENT=Docker
 ENV ConnectionStrings__SqlConnection="Server=host.docker.internal,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
 
+# Cannot do this
+# Need Network for this
+# ENV Httpz__Auth=http://srvc-auth:1102/api/auth/v1
+
 EXPOSE 1106
 
 ENTRYPOINT [ "dotnet", "SBA.Hierarchy.dll" ]

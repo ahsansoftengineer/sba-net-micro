@@ -52,6 +52,8 @@ spec:
             - name: ConnectionStrings__SqlConnection
               value: "Server=srvc-clusterip-mssql-sba-all-dev,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
               # value: "Server=srvc-clusterip-mssql-sba-hierarchy,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+            - name: URLzGateway
+              value: http://srvc-clusterip-sba-auth:1102
 
 ---
 #------------------------------------------------------------------------- 
@@ -59,8 +61,8 @@ spec:
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
 # kubectl port-forward svc/srvc-clusterip-sba-hierarchy 1106:1106
-# http://localhost:1106/api/hierarchy/v1/swagger/index.html
-# http://localhost:1106/api/hierarchy/v1/_projectz-lookup/gets-lookup
+# http://srvc-clusterip-sba-hierarchy:1106/api/hierarchy/v1/swagger/index.html
+# http://srvc-clusterip-sba-hierarchy:1106/api/hierarchy/v1/_projectz-lookup/gets-lookup
 
 apiVersion: v1
 kind: Service
