@@ -5,9 +5,9 @@
 dotnet watch run --launch-profile https --project ./SBA.APIGateway/    # 1100 1101
 dotnet watch run --launch-profile https --project ./SBA.Auth/          # 1102 1103
 dotnet watch run --launch-profile https --project ./SBA.Hierarchy/     # 1106 1107
-dotnet watch run --launch-profile https --project ./SBA.Jobz/          # 5804 5805
-dotnet watch run --launch-profile https --project ./SBA.Userz/         # 5808 5809
-dotnet watch run --launch-profile https --project ./SBA.Orderz/        # 5810 5011
+dotnet watch run --launch-profile https --project ./SBA.Jobz/          # 1104 1105
+dotnet watch run --launch-profile https --project ./SBA.Userz/         # 1108 1109
+dotnet watch run --launch-profile https --project ./SBA.Orderz/        # 1110 1111
 ```
 
 
