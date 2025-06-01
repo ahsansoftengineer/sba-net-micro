@@ -89,11 +89,11 @@ spec:
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
 # - kubectl get svc
-# - kubectl get svc srvc-clusterip-mssql-sba-all-dev
+# - kubectl get svc srvc-cip-mssql-sba-all-dev
 apiVersion: v1
 kind: Service
 metadata:
-  name: srvc-clusterip-mssql-sba-all-dev
+  name: srvc-cip-mssql-sba-all-dev
 spec:
   type: ClusterIP
   selector:

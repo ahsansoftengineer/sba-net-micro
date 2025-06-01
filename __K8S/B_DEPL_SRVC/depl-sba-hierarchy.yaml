@@ -20,7 +20,7 @@
 ## BASH DELETE (Deployments & Service)8
 # kubectl delete -f ./__K8S/B_DEPL_SRVC/depl-sba-hierarchy.yaml
 # kubectl delete deployments depl-sba-hierarchy
-# kubectl delete services srvc-clusterip-sba-hierarchy
+# kubectl delete services srvc-cip-sba-hierarchy
 
 
 #------------------------------------------------------------------------- 
@@ -50,24 +50,24 @@ spec:
             - name: ASPNETCORE_URLS
               value: http://+:1106
             - name: ConnectionStrings__SqlConnection
-              value: "Server=srvc-clusterip-mssql-sba-all-dev,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
-              # value: "Server=srvc-clusterip-mssql-sba-hierarchy,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+              value: "Server=srvc-cip-mssql-sba-all-dev,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+              # value: "Server=srvc-cip-mssql-sba-hierarchy,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
             - name: URLzGateway
-              value: http://srvc-clusterip-sba-auth:1102
+              value: http://srvc-cip-sba-auth:1102
 
 ---
 #------------------------------------------------------------------------- 
 #### (2) API Cluster IP (Hierarchy)
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
-# kubectl port-forward svc/srvc-clusterip-sba-hierarchy 1106:1106
-# http://srvc-clusterip-sba-hierarchy:1106/api/hierarchy/v1/swagger/index.html
-# http://srvc-clusterip-sba-hierarchy:1106/api/hierarchy/v1/_projectz-lookup/gets-lookup
+# kubectl port-forward svc/srvc-cip-sba-hierarchy 1106:1106
+# http://srvc-cip-sba-hierarchy:1106/api/hierarchy/v1/swagger/index.html
+# http://srvc-cip-sba-hierarchy:1106/api/hierarchy/v1/_projectz-lookup/gets-lookup
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: srvc-clusterip-sba-hierarchy
+  name: srvc-cip-sba-hierarchy
 spec:
   type: ClusterIP
   selector:

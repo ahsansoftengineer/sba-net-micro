@@ -20,7 +20,7 @@
 ## BASH DELETE (Deployments & Service)8
 # kubectl delete -f ./__K8S/B_DEPL_SRVC/depl-sba-auth.yaml
 # kubectl delete deployments depl-sba-auth
-# kubectl delete services srvc-clusterip-sba-auth
+# kubectl delete services srvc-cip-sba-auth
 
 
 #------------------------------------------------------------------------- 
@@ -50,21 +50,21 @@ spec:
             - name: ASPNETCORE_URLS
               value: http://+:1102
             - name: ConnectionStrings__SqlConnection
-              value: "Server=srvc-clusterip-mssql-sba-all-dev,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
-              # value: "Server=srvc-clusterip-mssql-sba-auth,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+              value: "Server=srvc-cip-mssql-sba-all-dev,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+              # value: "Server=srvc-cip-mssql-sba-auth,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
 ---
 #------------------------------------------------------------------------- 
 #### (2) API Cluster IP (Auth)
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
-# kubectl port-forward svc/srvc-clusterip-sba-auth 1102:1102
-# http://srvc-clusterip-sba-auth:1102/api/Auth/v1/swagger/index.html
-# http://srvc-clusterip-sba-auth:1102/api/Auth/v1/_projectz-lookup/gets-lookup
+# kubectl port-forward svc/srvc-cip-sba-auth 1102:1102
+# http://srvc-cip-sba-auth:1102/api/Auth/v1/swagger/index.html
+# http://srvc-cip-sba-auth:1102/api/Auth/v1/_projectz-lookup/gets-lookup
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: srvc-clusterip-sba-auth
+  name: srvc-cip-sba-auth
 spec:
   type: ClusterIP
   selector:
