@@ -4,6 +4,10 @@
 # kubectl apply -f ./__K8S/A_DEPL_SQL/depl-mssql-sba-all-dev.yaml
 # kubectl delete -f ./__K8S/A_DEPL_SQL/depl-mssql-sba-all-dev.yaml
 
+## Connect
+# Server=127.0.0.1,1433;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;
+
+
 #### (3) DB Claim (Hierarchy) 
 
 # - This Task Done Only Once
