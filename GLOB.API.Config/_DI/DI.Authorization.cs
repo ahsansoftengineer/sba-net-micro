@@ -1,3 +1,4 @@
+using GLOB.API.Config.Configz;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace GLOB.API.Config.DI;
