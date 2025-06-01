@@ -58,20 +58,20 @@ Each service uses:
 ### Key Routes:
 | Service   | Local Port | Upstream Path               |
 |-----------|------------|-----------------------------|
-| Auth      | 5802       | `/api/auth/v1/{everything}` |
-| Hierarchy | 5806       | `/api/hierarchy/v1/...`     |
+| Auth      | 1102       | `/api/auth/v1/{everything}` |
+| Hierarchy | 1106       | `/api/hierarchy/v1/...`     |
 | Swagger   | -          | `/swagger-doc/swagger.json` |
 
 ### Sample Route Mapping:
 ```json
 {
   "DownstreamPathTemplate": "/api/auth/v1/{everything}",
-  "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 5802 }],
+  "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 1102 }],
   "UpstreamPathTemplate": "/api/auth/v1/{everything}"
 }
 ```
 
-> `GlobalConfiguration.BaseUrl`: `http://localhost:5800`
+> `GlobalConfiguration.BaseUrl`: `http://localhost:1100`
 
 ---
 
@@ -86,8 +86,8 @@ Each service uses:
 
 ### `appsettings.json`
 ```json
-"ASPNETCORE_URLS": "http://+:5800;https://+:5801",
-"ASPNETCORE_HTTPS_PORT": "5801",
+"ASPNETCORE_URLS": "http://+:1100;https://+:1101",
+"ASPNETCORE_HTTPS_PORT": "1101",
 "ASPNETCORE_ENVIRONMENT": "Development",
 "USE_HTTPS": false,
 "OcelotFileName": "ocelot.json"

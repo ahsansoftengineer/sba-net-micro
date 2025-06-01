@@ -43,12 +43,12 @@ spec:
         - name: srvc-sba-auth
           image: mansanhhub/srvc-sba-auth
           ports:
-            - containerPort: 5802
+            - containerPort: 1102
           env:
             - name: DOTNET_ENVIRONMENT
               value: K8S
             - name: ASPNETCORE_URLS
-              value: http://+:5802
+              value: http://+:1102
             - name: ConnectionStrings__SqlConnection
               value: "Server=srvc-clusterip-mssql-sba-all-dev,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
               # value: "Server=srvc-clusterip-mssql-sba-auth,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
@@ -58,9 +58,9 @@ spec:
 #### (2) API Cluster IP (Auth)
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
-# kubectl port-forward svc/srvc-clusterip-sba-auth 5802:5802
-# http://localhost:5802/api/Auth/v1/swagger/index.html
-# http://localhost:5802/api/Auth/v1/_projectz-lookup/gets-lookup
+# kubectl port-forward svc/srvc-clusterip-sba-auth 1102:1102
+# http://localhost:1102/api/Auth/v1/swagger/index.html
+# http://localhost:1102/api/Auth/v1/_projectz-lookup/gets-lookup
 
 apiVersion: v1
 kind: Service
@@ -73,8 +73,8 @@ spec:
   ports:
   - name: srvc-sba-auth
     protocol: TCP
-    port: 5802
-    targetPort: 5802
+    port: 1102
+    targetPort: 1102
     # nodePort: Not a Valid Option for Cluster IP
 
 ---
@@ -93,10 +93,10 @@ spec:
   ports:
     - name: srvc-sba-auth
       protocol: TCP
-      port: 5802 # Node Port
-      targetPort: 5802 # Pod's App port
-      nodePort: 30802 # 30000-32767 (Host Port)
+      port: 1102 # Node Port
+      targetPort: 1102 # Pod's App port
+      nodePort: 31102 # 30000-32767 (Host Port)
 
 ## ROUTES (K8S Node Port)
-# - http://localhost:30802/api/Auth/v1/swagger/index.html
-# - http://localhost:30802/api/Auth/v1/_projectz-lookupz/gets-lookup
+# - http://localhost:31102/api/Auth/v1/swagger/index.html
+# - http://localhost:31102/api/Auth/v1/_projectz-lookupz/gets-lookup

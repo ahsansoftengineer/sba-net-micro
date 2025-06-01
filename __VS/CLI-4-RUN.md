@@ -2,9 +2,9 @@
 ```bash
 # dotnet run --project ./SBA.Api/
                                                 # http, https
-dotnet watch run --launch-profile https --project ./SBA.APIGateway/    # 5800 5801
-dotnet watch run --launch-profile https --project ./SBA.Auth/          # 5802 5803
-dotnet watch run --launch-profile https --project ./SBA.Hierarchy/     # 5806 5807
+dotnet watch run --launch-profile https --project ./SBA.APIGateway/    # 1100 1101
+dotnet watch run --launch-profile https --project ./SBA.Auth/          # 1102 1103
+dotnet watch run --launch-profile https --project ./SBA.Hierarchy/     # 1106 1107
 dotnet watch run --launch-profile https --project ./SBA.Jobz/          # 5804 5805
 dotnet watch run --launch-profile https --project ./SBA.Userz/         # 5808 5809
 dotnet watch run --launch-profile https --project ./SBA.Orderz/        # 5810 5011

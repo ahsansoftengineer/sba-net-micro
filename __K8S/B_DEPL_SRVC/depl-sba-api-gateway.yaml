@@ -1,0 +1,100 @@
+################~~~~ SBA APIGateway ~~~~~##################
+# - Deployment
+# - ClusterIP
+# - Node Port
+
+## BASH BUILD Dockerfile
+## -t tagname, -f file/reference, ./buildContext  
+# docker build -t mansanhhub/srvc-sba-api-gateway -f SBA.APIGateway/Dockerfile .
+# docker push mansanhhub/srvc-sba-api-gateway
+# docker pull mansanhhub/srvc-sba-api-gateway
+
+#------------------------------------------------------------------------- 
+## BASH RUN Deployment srvc-sba-api-gateway
+# kubectl apply -f ./__K8S/B_DEPL_SRVC/depl-sba-api-gateway.yaml
+# kubectl get pods
+# kubectl get deployments
+# kubectl logs -l app=srvc-sba-api-gateway
+# kubectl rollout restart deployments depl-sba-api-gateway
+
+## BASH DELETE (Deployments & Service)8
+# kubectl delete -f ./__K8S/B_DEPL_SRVC/depl-sba-api-gateway.yaml
+# kubectl delete deployments depl-sba-api-gateway
+# kubectl delete services srvc-clusterip-sba-api-gateway
+
+
+#------------------------------------------------------------------------- 
+#### (1) API Deployment (APIGateway)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: depl-sba-api-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: srvc-sba-api-gateway
+  template:
+    metadata:
+      labels:
+        app: srvc-sba-api-gateway
+    spec:
+      containers:
+        - name: srvc-sba-api-gateway
+          image: mansanhhub/srvc-sba-api-gateway
+          ports:
+            - containerPort: 1100
+          env:
+            - name: DOTNET_ENVIRONMENT
+              value: K8S
+            - name: ASPNETCORE_URLS
+              value: http://+:1100
+
+---
+#------------------------------------------------------------------------- 
+#### (2) API Cluster IP (APIGateway)
+# - We need ClusterIP for Inter Service Communication
+# - Production Required
+# kubectl port-forward svc/srvc-clusterip-sba-api-gateway 1100:1100
+# http://localhost:1100/api/Auth/v1/swagger/index.html
+# http://localhost:1100/api/Auth/v1/_projectz-lookup/gets-lookup
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: srvc-clusterip-sba-api-gateway
+spec:
+  type: ClusterIP
+  selector:
+    app: srvc-sba-api-gateway
+  ports:
+  - name: srvc-sba-api-gateway
+    protocol: TCP
+    port: 1100
+    targetPort: 1100
+    # nodePort: Not a Valid Option for Cluster IP
+
+---
+#-------------------------------------------------------------------------
+#### (3) API Node Port (APIGateway)
+# - We need NodePort for External Service Access
+# - No Production Required
+apiVersion: v1
+kind: Service
+metadata:
+  name: srvc-np-sba-api-gateway
+spec:
+  type: NodePort
+  selector:
+    app: srvc-sba-api-gateway
+  ports:
+    - name: srvc-sba-api-gateway
+      protocol: TCP
+      port: 1100 # Node Port
+      targetPort: 1100 # Pod's App port
+      nodePort: 31100 # 30000-32767 (Host Port)
+
+## ROUTES (K8S Node Port)
+# - http://localhost:31100/api/Hierarchy/v1/swagger/index.html
+# - http://localhost:31100/api/Hierarchy/v1/_projectz-lookupz/gets-lookup
+# - http://localhost:31100/api/Hierarchy/v1/_global-lookupz/gets-lookup

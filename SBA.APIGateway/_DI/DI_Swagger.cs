@@ -6,8 +6,8 @@ using SBA.APIGateway.Model;
 namespace SBA.Projectz.DI;
 public static partial class DI_Projectz
 {
-  // http://localhost:5806/api/Gateway/v1/swagger/index.html
-  // http://localhost:5806/api/Gateway/v1/swagger/v1/swagger.json
+  // http://localhost:1106/api/Gateway/v1/swagger/index.html
+  // http://localhost:1106/api/Gateway/v1/swagger/v1/swagger.json
   public static void Add_Swagger_Gateway(this IServiceCollection srvc, IConfiguration config)
   {
     srvc.Configure<SwaggerServicesOptions>(config.GetSection("SwaggerServices"));

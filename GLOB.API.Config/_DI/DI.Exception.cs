@@ -49,14 +49,14 @@ public class Error
 
 // opt.AddPolicy("AllowGateway", policy =>
 // {
-//     policy.WithOrigins("https://localhost:5801")
+//     policy.WithOrigins("https://localhost:1101")
 //           .AllowAnyHeader()
 //           .AllowAnyMethod();
 // });
 // srvc.AddHttpsRedirection(opt =>
 // {
 //   opt.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
-//   opt.HttpsPort = 5807; // Replace with your HTTPS port number if different
+//   opt.HttpsPort = 1107; // Replace with your HTTPS port number if different
 // });
 //srvc.AddCors(opt =>
 //{

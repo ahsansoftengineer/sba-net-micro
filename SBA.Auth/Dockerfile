@@ -31,11 +31,11 @@ WORKDIR /app/SBA.Auth
 COPY --from=build-env /app/out .
 
 # Runtime environment variables (can be overridden at runtime via CLI, Docker Compose, etc.)
-ENV ASPNETCORE_URLS=http://+:5802
+ENV ASPNETCORE_URLS=http://+:1102
 ENV DOTNET_ENVIRONMENT=Development
 ENV ConnectionStrings__SqlConnection="Server=host.docker.internal,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
 
-EXPOSE 5802
+EXPOSE 1102
 
 ENTRYPOINT [ "dotnet", "SBA.Auth.dll" ]
 
@@ -43,9 +43,9 @@ ENTRYPOINT [ "dotnet", "SBA.Auth.dll" ]
 # Build:
 # docker build -t mansanhhub/srvc-sba-auth -f SBA.Hierarchy/Dockerfile .
 # docker push mansanhhub/srvc-sba-auth
-# docker run -d --name srvc-sba-auth -p 5802:5802 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-sba-auth
+# docker run -d --name srvc-sba-auth -p 1102:1102 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-sba-auth
 # docker rm -f srvc-sba-auth
 # docker exec -it <container_id> /bin/bash
 
-# http://localhost:5802/api/hierarchy/v1/swagger/index.html
-# http://localhost:5802/api/hierarchy/v1/_projectz-lookup/gets-lookup
+# http://localhost:1102/api/hierarchy/v1/swagger/index.html
+# http://localhost:1102/api/hierarchy/v1/_projectz-lookup/gets-lookup

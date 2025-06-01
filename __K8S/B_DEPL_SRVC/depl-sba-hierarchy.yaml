@@ -43,12 +43,12 @@ spec:
         - name: srvc-sba-hierarchy
           image: mansanhhub/srvc-sba-hierarchy
           ports:
-            - containerPort: 5806
+            - containerPort: 1106
           env:
             - name: DOTNET_ENVIRONMENT
               value: K8S
             - name: ASPNETCORE_URLS
-              value: http://+:5806
+              value: http://+:1106
             - name: ConnectionStrings__SqlConnection
               value: "Server=srvc-clusterip-mssql-sba-all-dev,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
               # value: "Server=srvc-clusterip-mssql-sba-hierarchy,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
@@ -58,9 +58,9 @@ spec:
 #### (2) API Cluster IP (Hierarchy)
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
-# kubectl port-forward svc/srvc-clusterip-sba-hierarchy 5806:5806
-# http://localhost:5806/api/hierarchy/v1/swagger/index.html
-# http://localhost:5806/api/hierarchy/v1/_projectz-lookup/gets-lookup
+# kubectl port-forward svc/srvc-clusterip-sba-hierarchy 1106:1106
+# http://localhost:1106/api/hierarchy/v1/swagger/index.html
+# http://localhost:1106/api/hierarchy/v1/_projectz-lookup/gets-lookup
 
 apiVersion: v1
 kind: Service
@@ -73,8 +73,8 @@ spec:
   ports:
   - name: srvc-sba-hierarchy
     protocol: TCP
-    port: 5806
-    targetPort: 5806
+    port: 1106
+    targetPort: 1106
     # nodePort: Not a Valid Option for Cluster IP
 
 ---
@@ -93,10 +93,10 @@ spec:
   ports:
     - name: srvc-sba-hierarchy
       protocol: TCP
-      port: 5806 # Node Port
-      targetPort: 5806 # Pod's App port
-      nodePort: 30806 # 30000-32767 (Host Port)
+      port: 1106 # Node Port
+      targetPort: 1106 # Pod's App port
+      nodePort: 31106 # 30000-32767 (Host Port)
 
 ## ROUTES (K8S Node Port)
-# - http://localhost:30806/api/Hierarchy/v1/swagger/index.html
-# - http://localhost:30806/api/hierarchy/v1/_projectz-lookupz/gets-lookup
+# - http://localhost:31106/api/Hierarchy/v1/swagger/index.html
+# - http://localhost:31106/api/hierarchy/v1/_projectz-lookupz/gets-lookup

@@ -98,8 +98,8 @@ public class JwtSettings
 
   public static string SectionName = "JwtSettings";
   public string SecretKey { get; set; } //"YourSuperStrongSecretKey_ReplaceThis"
-  public string Issuer { get; set; } // "https://localhost:5802/"
-  public string Audience { get; set; } // "https://localhost:5802/"
+  public string Issuer { get; set; } // "https://localhost:1102/"
+  public string Audience { get; set; } // "https://localhost:1102/"
   public int AccessTokenExpiryMinutes { get; set; } //60 -> 15
   public int AccessTokenExpiryHour { get; set; } //1
   public int RefreshTokenExpiryDays { get; set; } //7

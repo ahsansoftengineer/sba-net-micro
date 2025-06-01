@@ -31,11 +31,11 @@ WORKDIR /app/SBA.Hierarchy
 COPY --from=build-env /app/out .
 
 # Runtime environment variables (can be overridden at runtime via CLI, Docker Compose, etc.)
-ENV ASPNETCORE_URLS=http://+:5806
+ENV ASPNETCORE_URLS=http://+:1106
 ENV DOTNET_ENVIRONMENT=Development
 ENV ConnectionStrings__SqlConnection="Server=host.docker.internal,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
 
-EXPOSE 5806
+EXPOSE 1106
 
 ENTRYPOINT [ "dotnet", "SBA.Hierarchy.dll" ]
 
@@ -43,9 +43,9 @@ ENTRYPOINT [ "dotnet", "SBA.Hierarchy.dll" ]
 # Build:
 # docker build -t mansanhhub/srvc-sba-hierarchy -f SBA.Hierarchy/Dockerfile .
 # docker push mansanhhub/srvc-sba-hierarchy
-# docker run -d --name srvc-sba-hierarchy -p 5806:5806 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-sba-hierarchy
+# docker run -d --name srvc-sba-hierarchy -p 1106:1106 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-sba-hierarchy
 # docker rm -f srvc-sba-hierarchy
 # docker exec -it <container_id> /bin/bash
 
-# http://localhost:5806/api/hierarchy/v1/swagger/index.html
-# http://localhost:5806/api/hierarchy/v1/_projectz-lookup/gets-lookup
+# http://localhost:1106/api/hierarchy/v1/swagger/index.html
+# http://localhost:1106/api/hierarchy/v1/_projectz-lookup/gets-lookup
