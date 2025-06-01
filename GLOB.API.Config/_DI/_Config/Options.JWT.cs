@@ -7,24 +7,24 @@ namespace GLOB.API.Config.Configz;
 public class JwtSettings
 {
 
-  public static string SectionName = "JwtSettings";
-  public string SecretKey { get; set; } //"YourSuperStrongSecretKey_ReplaceThis"
-  public string Issuer { get; set; } // "https://localhost:1102/"
-  public string Audience { get; set; } // "https://localhost:1102/"
-  public int AccessTokenExpiryMinutes { get; set; } //60 -> 15
-  public int AccessTokenExpiryHour { get; set; } //1
-  public int RefreshTokenExpiryDays { get; set; } //7
-  public bool ValidateIssuer { get; set; }// = true;
-  public bool ValidateAudience { get; set; }// = true;
-  public bool ValidateLifetime { get; set; }// = true;
-  public bool ValidateIssuerSigningKey { get; set; }// = true;
+  public static string? SectionName = "JwtSettings";
+  public string? SecretKey { get; set; } //"YourSuperStrongSecretKey_ReplaceThis"
+  public string? Issuer { get; set; } // "https://localhost:1102/"
+  public string? Audience { get; set; } // "https://localhost:1102/"
+  public int? AccessTokenExpiryMinutes { get; set; } //60 -> 15
+  public int? AccessTokenExpiryHour { get; set; } //1
+  public int? RefreshTokenExpiryDays { get; set; } //7
+  public bool? ValidateIssuer { get; set; }// = true;
+  public bool? ValidateAudience { get; set; }// = true;
+  public bool? ValidateLifetime { get; set; }// = true;
+  public bool? ValidateIssuerSigningKey { get; set; }// = true;
 
   // Cookie
-  public static string Scheme = "AuthorizationCookieScheme";
-  public string LoginPath { get; set; }
-  public string CookieName { get; set; }
-  public string AccessDeniedPath { get; set; }
-  public bool SlidingExpiration { get; set; }// = true;
+  public static string? Scheme = "AuthorizationCookieScheme";
+  public string? LoginPath { get; set; }
+  public string? CookieName { get; set; }
+  public string? AccessDeniedPath { get; set; }
+  public bool? SlidingExpiration { get; set; }// = true;
 
 
   public SymmetricSecurityKey GetSymmetricSecurityKey()
