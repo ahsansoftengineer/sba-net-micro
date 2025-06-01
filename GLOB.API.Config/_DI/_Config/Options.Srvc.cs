@@ -2,21 +2,24 @@ namespace GLOB.API.Config.Configz;
 
 public class SrvcHttp
 {
-    public string? Gateway { get; set; }
-    public string? Auth { get; set; }
-    public string? Hierarchy { get; set; }
+  public static string SectionName = "SrvcHttp";
+  public string? Gateway { get; set; }
+  public string? Auth { get; set; }
+  public string? Hierarchy { get; set; }
 }
 
 public class SrvcGRPC
 {
-    public string? Gateway { get; set; }
-    public string? Auth { get; set; }
-    public string? Hierarchy { get; set; }
+  public static string SectionName = "SrvcGRPC";
+  public string? Gateway { get; set; }
+  public string? Auth { get; set; }
+  public string? Hierarchy { get; set; }
 }
 
 public class SrvcRabbitMQ
 {
-    public string? Gateway { get; set; }
-    public string? Auth { get; set; }
-    public string? Hierarchy { get; set; }
+  public static string SectionName = "SrvcRabbitMQ";
+  public string? Gateway { get; set; }
+  public string? Auth { get; set; }
+  public string? Hierarchy { get; set; }
 }
