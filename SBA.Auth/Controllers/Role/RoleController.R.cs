@@ -12,7 +12,7 @@ public partial class RoleController
   [HttpPost]
   public async Task<IActionResult> Gets()
   {
-    return _Res.Ok(_repo.ToList().ToExtVMList());
+    return _repo.ToList().ToExtVMList().Ok();
   }
   [HttpPost("{Id}")]
   public async Task<IActionResult> Get(string Id)
@@ -20,15 +20,15 @@ public partial class RoleController
     var data = _repo.FirstOrDefault(x => x.Id == Id);
     if (data == null) return _Res.NotFoundId(Id);
 
-    return _Res.Ok(data.ToExtVMSingle());
+    return data.ToExtVMSingle().Ok();
   }
   // List, Group
   [HttpGet]
   public async Task<IActionResult> GetsLookup()
   {
     var result = await _repo.Select(x => new { x.Id, x.Name })
-        .ToDictionaryAsync(x => x.Id, y => new { y.Id, y.Name });
-    return _Res.Ok(result);
+        .ToDictionaryAsync(x => x.Id, y =>  y.Name);
+    return result.ToExtVMSingle().Ok();
   }
 
   // List, Filter By Ids
@@ -38,8 +38,7 @@ public partial class RoleController
     try
     {
       var list = await _repo.Where(x => req.Ids.Contains(x.Id)).ToListAsync();
-      var result = list.ToExtVMList();
-      return _Res.Ok(result);
+      return  list.ToExtVMList().Ok();
     }
     catch (Exception ex)
     {
@@ -54,8 +53,8 @@ public partial class RoleController
       var list = await _repo
         .Select(x => new { x.Id, x.Name })
         .Where((x) => req.Ids.Contains(x.Id))
-        .ToDictionaryAsync(x => x.Id, y => new { y.Id, y.Name });
-      return _Res.Ok(list);
+        .ToDictionaryAsync(x => x.Id, y =>  y.Name);
+      return list.ToExtVMSingle().Ok();
     }
     catch (Exception ex)
     {
@@ -78,13 +77,13 @@ public partial class RoleController
       });
 
     var result = await query.ToExtPageReq(req);
-    return _Res.Ok(result);
+    return result.Ok();
   }
 
   [HttpPost]
   public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<DtoSearch?> req)
   {
     var list = await _repo.ToExtVMPageOptionsNoTrack<InfraRole, string>(req);
-    return _Res.Ok(list);
+    return list.Ok();
   }
 }

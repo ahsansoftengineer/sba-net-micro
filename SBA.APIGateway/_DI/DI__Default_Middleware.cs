@@ -8,7 +8,7 @@ public static partial class DI_Projectz
   {
     var env = app.GetSrvc<IWebHostEnvironment>();
     Console.WriteLine($"Current Environment: {env.EnvironmentName}");
-    if (env.IsDevelopment())
+    if (!env.IsProduction())
     {
       app.UseDeveloperExceptionPage();
       app.Use_Swagger_Gateway();

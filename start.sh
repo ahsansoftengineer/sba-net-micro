@@ -10,7 +10,7 @@ clean_up() {
     echo "🛑 Stopping services..."
     pkill -f "dotnet watch"
     echo "🧹 Cleaning up ports..."
-    for port in {5800..5820}; do
+    for port in {1100..1120}; do
         fuser -k ${port}/tcp 2>/dev/null
     done
     echo "🧼 Cleaning terminal..."
@@ -43,7 +43,7 @@ Hierarchy_PID=$!
 wait
 
 # 🌐 Open browser with the specific URL after starting the services
-open_url="https://localhost:5800/"
+open_url="https://localhost:1100/"
 echo "🌐 Opening browser with $open_url"
 xdg-open "$open_url"  # Use xdg-open for Linux; on macOS, use open, on Windows use start
 

@@ -9,9 +9,14 @@ public class VMPaginate<T>
   public int Count { get; set; } = 0;
   public int TotalPages => (int)Math.Ceiling(Count / (double)PageSize);
 
-  public bool HasPreviousPage => PageNo > 1 && TotalPages >= PageNo - 1;
-  public bool HasNextPage => PageNo < TotalPages;
+  public bool Back => PageNo > 1 && TotalPages >= PageNo - 1;
+  public bool Next => PageNo < TotalPages;
   public HttpStatusCode Status = HttpStatusCode.OK;
+
+  public VMPaginate()
+  {
+    
+  }
 
   public VMPaginate(DtoPage data)
   {

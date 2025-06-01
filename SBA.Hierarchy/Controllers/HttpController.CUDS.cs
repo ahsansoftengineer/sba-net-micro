@@ -1,6 +1,10 @@
 using GLOB.API.Config.Configz;
 using GLOB.API.Controllers.Base;
 using GLOB.API.Http;
+using GLOB.API.Staticz;
+using GLOB.Domain.Base;
+using GLOB.Infra.Paginate;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
 
@@ -22,12 +26,23 @@ public partial class AuthLookupBaseHttpController : API_1_ErrorController<AuthLo
   // {
   // }
 
-  // [HttpDelete("{Id}")]
-  // public async Task<IActionResult> Delete(string Id)
-  // {
-  // }
-  // [HttpPatch("{Id}")]
-  // public async Task<IActionResult> Status(string Id, [FromBody] DtoRequestStatus req)
-  // {
-  // }
+  [HttpDelete("{Id}")]
+  public async Task<IActionResult> Delete(string Id)
+  {
+    var result = await AuthLookupBaseHttpz.Delete(new()
+    {
+      Resource = Id,
+    });
+    return result.Ok();
+  }
+  [HttpPatch("{Id}")]
+  public async Task<IActionResult> Status(string Id, [FromBody] DtoRequestStatus req)
+  {
+    var result = await AuthLookupBaseHttpz.Status<ResponseRecord<ProjectzLookup>>(new()
+    {
+      Resource = Id,
+      Body = req 
+    });
+    return result.Ok();
+  }
 }

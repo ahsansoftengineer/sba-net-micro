@@ -1,0 +1,8 @@
+| Field                          | `Auth` Value                   | `Hierarchy` Value                   |
+| ------------------------------ | ------------------------------ | ----------------------------------- |
+| Deployment Name                | `depl-mssql-sba-auth`          | `depl-mssql-sba-hierarchy`          |
+| PVC Claim Name                 | `claim-mssql-sba-auth`         | `claim-mssql-sba-hierarchy`         |
+| ClusterIP Service Name         | `srvc-cip-mssql-auth`    | `srvc-cip-mssql-hierarchy`    |
+| LoadBalancer Service Name      | `srvc-loadbalancer-mssql-auth` | `srvc-loadbalancer-mssql-hierarchy` |
+| `app` Label (Deployment + Svc) | `mssql`                        | `mssql-hierarchy`                   |
+| `matchLabels` in services      | `app: mssql`                   | `app: mssql-hierarchy`              |

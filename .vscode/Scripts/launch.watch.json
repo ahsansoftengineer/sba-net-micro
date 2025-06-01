@@ -13,7 +13,7 @@
       "stopAtEntry": false,
       "launchBrowser": {
         "enabled": true,
-        "args": "https://localhost:5800"
+        "args": "https://localhost:1100"
       }
     },
     {

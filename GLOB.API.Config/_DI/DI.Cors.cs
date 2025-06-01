@@ -19,7 +19,7 @@ public static partial class DI_API_Config
     {
       opt.AddPolicy("PolicyAllowGateway",
         builder => builder
-          .WithOrigins("http://localhost:5800", "https://localhost:5801")
+          .WithOrigins("http://localhost:1100", "https://localhost:1101")
           .AllowAnyHeader()
           .AllowAnyMethod());
     });

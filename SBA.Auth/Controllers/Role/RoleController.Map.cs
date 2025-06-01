@@ -26,7 +26,7 @@ public partial class RoleController : AccountBaseController<RoleController>
       u.Status
     });
 
-    return _Res.Ok(result.ToExtVMList());
+    return result.ToExtVMList().Ok();
   }
   
   [HttpGet("{userId}")]
@@ -38,12 +38,12 @@ public partial class RoleController : AccountBaseController<RoleController>
 
     var roles = await _userManager.GetRolesAsync(user);
 
-    return _Res.Ok(new
+    return new
     {
       user.Id,
       user.Email,
       Roles = roles
-    }.ToExtVMSingle());
+    }.ToExtVMSingle().Ok();
   }
 
   [HttpPost]
@@ -64,7 +64,7 @@ public partial class RoleController : AccountBaseController<RoleController>
     var result = await _userManager.AddToRoleAsync(user, rolez.Name);
     if (result.Succeeded)
     {
-      return _Res.Ok($"{user.Email} has successfully been added to role {rolez.Name}");
+      return $"{user.Email} has successfully been added to role {rolez.Name}".Ok();
     }
 
     return _Res.BadRequestModel("Exception", "Something went wrong");

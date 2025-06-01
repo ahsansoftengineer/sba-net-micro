@@ -1,6 +1,7 @@
 using Microsoft.Extensions.FileProviders;
 
 namespace GLOB.API.Config.DI;
+
 public static partial class DI_API_Config
 {
   // FILES HANDING ###############
@@ -20,11 +21,16 @@ public static partial class DI_API_Config
     // https://localhost:5001/assets/ouz/FooterImg348db3b7-e6dc-47f6-8bcd-74f6a35e7859.jpg
     // Optional: Serve files from a custom directory
     var staticFilesPath = Path.Combine(Directory.GetCurrentDirectory(), "assets");
+      // ✅ Ensure directory exists
+    if(!Directory.Exists(staticFilesPath))
+    {
+      Directory.CreateDirectory(staticFilesPath);
+    }
+
     app.UseStaticFiles(new StaticFileOptions
     {
       FileProvider = new PhysicalFileProvider(staticFilesPath),
       RequestPath = "/assets"
     });
   }
-
 }

@@ -39,7 +39,7 @@ public partial class ProfileController : AccountBaseController<ProfileController
     if (!result.Succeeded)
       return _Res.BadRequestzId("Token", token);
 
-    return _Res.Ok("Your Email has been verified");
+    return "Your Email has been verified".Ok();
   }
 
 

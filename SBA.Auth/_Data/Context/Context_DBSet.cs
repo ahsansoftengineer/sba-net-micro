@@ -1,4 +1,3 @@
-
 namespace SBA.Projectz.Data;
 public partial class DBCtxProjectz 
 {
