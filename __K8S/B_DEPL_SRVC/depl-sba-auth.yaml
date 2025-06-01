@@ -24,7 +24,7 @@
 
 
 #------------------------------------------------------------------------- 
-#### (1) API Auth Deployment 
+#### (1) API Deployment (Auth) 
 apiVersion: apps/v1
 kind: Deployment
 metadata:

@@ -56,8 +56,8 @@ spec:
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
 # kubectl port-forward svc/srvc-clusterip-sba-api-gateway 1100:1100
-# http://localhost:1100/api/Auth/v1/swagger/index.html
-# http://localhost:1100/api/Auth/v1/_projectz-lookup/gets-lookup
+# http://localhost:1100/api/Hierarchy/v1/swagger/index.html
+# http://localhost:1100/api/Hierarchy/v1/_projectz-lookup/gets-lookup
 
 apiVersion: v1
 kind: Service

@@ -24,7 +24,7 @@
 
 
 #------------------------------------------------------------------------- 
-#### (1) API Hierarchy Deployment 
+#### (1) API Deployment (Hierarchy) 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
