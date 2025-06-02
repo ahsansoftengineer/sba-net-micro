@@ -11,10 +11,11 @@ public static partial class DI_Projectz
 {
   public static void Add_Projectz_Srvc(this IServiceCollection srvc, IConfiguration config)
   {
+    srvc.Add_Projectz_Config_Options(config);
+
     srvc.Add_API_Default_Srvc(config);
     // srvc.Add_API_Default_Srvc2();
     
-    srvc.Add_Projectz_Config_Options(config);
     srvc.Add_DB_SQL<DBCtxProjectzInfra, IUOW_Infra, UOW_Projectz>(config);
     srvc.Add_DB_SQL<DBCtxProjectz, IUOW_Projectz, UOW_Projectz>(config);
 
