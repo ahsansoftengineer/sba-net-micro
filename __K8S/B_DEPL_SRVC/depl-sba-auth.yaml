@@ -52,6 +52,8 @@ spec:
             - name: ConnectionStrings__SqlConnection
               value: "Server=srvc-cip-mssql-sba-all-dev,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
               # value: "Server=srvc-cip-mssql-sba-auth,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+            - name: SrvcHttp__Gateway
+              value: http://srvc-cip-sba-api-gateway:1100
 ---
 #------------------------------------------------------------------------- 
 #### (2) API Cluster IP (Auth)

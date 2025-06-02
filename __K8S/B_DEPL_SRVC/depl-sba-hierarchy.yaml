@@ -56,8 +56,6 @@ spec:
               value: http://srvc-cip-sba-api-gateway:1100
             - name: SrvcHttp__Auth
               value: http://srvc-cip-sba-auth:1102
-            - name: SrvcHttp__Hierarchy
-              value: http://srvc-cip-sba-hierarchy:1106
 
 ---
 #------------------------------------------------------------------------- 
