@@ -2,7 +2,7 @@ namespace GLOB.API.Config.Configz;
 
 public class AppSettings
 {
-  public static string? SectionName = "AppSettingsc";
+  // public static string? SectionName = "AppSettings";
   public Logging? Logging { get; set; }
   public string? AllowedHosts { get; set; }
   public bool? USE_HTTPS { get; set; }

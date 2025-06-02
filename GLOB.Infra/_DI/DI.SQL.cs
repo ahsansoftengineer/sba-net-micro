@@ -8,7 +8,7 @@ namespace GLOB.Infra.DI;
 public static partial class DI_Infra
 {
 
-  public static void Config_DB_SQL<TContext, TIUOW, TUOW>(this IServiceCollection srvc, IConfiguration config)
+  public static void Add_DB_SQL<TContext, TIUOW, TUOW>(this IServiceCollection srvc, IConfiguration config)
     where TContext : DbContext
     where TIUOW : class, IUOW_Infra
     where TUOW : UOW_Infra, TIUOW
