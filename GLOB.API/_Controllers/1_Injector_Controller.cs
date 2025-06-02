@@ -22,13 +22,15 @@ public abstract class API_1_ErrorController<TController> : ControllerBase
   public API_1_ErrorController(IServiceProvider srvcProvider)
   {
     _srvcProvider = srvcProvider;
-    _mapper = GetSrvc<IMapper>();
     _config = GetSrvc<IConfiguration>();
-    // _appSettings = _config.Get
-    _uowInfra = GetSrvc<IUOW_Infra>();
+    _appSettings = GetSrvc<IOptions<AppSettings>>().Value;
 
+    _mapper = GetSrvc<IMapper>();
+    _uowInfra = GetSrvc<IUOW_Infra>();
     _logger = GetSrvc<ILogger<TController>>();
-    _logger.LogWarning("How does Type Works -> "+ this);
+
+    Console.WriteLine("--> Port: {0}, Prefix: {1}", _appSettings.ASPNETCORE_HTTPS_PORT, _appSettings.ASPNETCORE_ROUTE_PREFIX);
+    Console.WriteLine("--> Action : {0}", this);
   }
 
   protected TService GetSrvc<TService>()

@@ -13,8 +13,8 @@ public partial class AuthLookupBaseHttpController : API_1_ErrorController<AuthLo
   public readonly Httpz AuthLookupBaseHttpz;
   public AuthLookupBaseHttpController(IServiceProvider srvc): base(srvc) 
   {
-    string  gatewayUrl = _config.GetValueStr("URLzGateway"); 
-    AuthLookupBaseHttpz = new Httpz(gatewayUrl, Srvc.Auth, Controllerz.ProjectzLookup) ;
+    // string  gatewayUrl = _config.GetValueStr("URLzGateway"); 
+    AuthLookupBaseHttpz = new Httpz(_appSettings.SrvcHttp.Auth, Srvc.Auth, Controllerz.ProjectzLookup) ;
   }
  
   // [HttpPost]
