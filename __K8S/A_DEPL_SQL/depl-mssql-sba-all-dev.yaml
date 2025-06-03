@@ -3,6 +3,7 @@
 ## BASH
 # kubectl apply -f ./__K8S/A_DEPL_SQL/depl-mssql-sba-all-dev.yaml
 # kubectl delete -f ./__K8S/A_DEPL_SQL/depl-mssql-sba-all-dev.yaml
+# kubectl rollout restart deployments depl-mssql-sba-all-dev
 
 ## Connect
 # Server=127.0.0.1,1433;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;
@@ -54,10 +55,10 @@ spec:
             - containerPort: 1433
           resources:
             limits:
-              memory: 1Gi
+              memory: 2Gi # --> Ubuntu 1Gi / Windows 2Gi
               cpu: "1"
             requests:
-              memory: 1Gi
+              memory: 2Gi # --> Ubuntu 1Gi / Windows 2Gi
               cpu: "1"
           env:
             - name: MSSQL_PID
