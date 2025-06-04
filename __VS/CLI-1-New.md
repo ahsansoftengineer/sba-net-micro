@@ -11,11 +11,12 @@ dotnet new sln -o SBA
 ```bash
 dotnet new classlib -o GLOB.Domain
 dotnet new classlib -o GLOB.Infra
-# dotnet new classlib -o GLOB.APIz
+dotnet new classlib -o GLOB.Cache
 ```
 
 ### LOCAL PROJECTS
 ```bash
+dotnet new webapi -o GLOB.API.Config
 dotnet new webapi -o GLOB.API
 dotnet new webapi -o SBA.APIGateway
 dotnet new webapi -o SBA.Hierarchy
@@ -31,12 +32,13 @@ dotnet new webapi -o SBA.Jobz
 ```bash
 dotnet sln add GLOB.Domain/GLOB.Domain.csproj
 dotnet sln add GLOB.Infra/GLOB.Infra.csproj
+dotnet sln add GLOB.Cache/GLOB.Cache.csproj
 ```
 
 ### LOCAL PROJECTS TO SOLUTION
 ```bash
-dotnet sln add GLOB.API/GLOB.API.csproj
 dotnet sln add GLOB.API.Config/GLOB.API.Config.csproj
+dotnet sln add GLOB.API/GLOB.API.csproj
 
 dotnet sln add SBA.APIGateway/SBA.APIGateway.csproj
 dotnet sln add SBA.Auth/SBA.Auth.csproj
@@ -53,11 +55,14 @@ dotnet sln add SBA.Jobz/SBA.Jobz.csproj
 ```bash
 dotnet build
 dotnet add ./GLOB.API/ reference ./GLOB.Infra/ # WEB API
+dotnet add ./GLOB.API/ reference ./GLOB.Cache/ # WEB API
+
 ```
 ### Web API PACKAGES
 ```bash
-dotnet add ./GLOB.API/ reference ./GLOB.API.Config/ # WEB API
 dotnet add ./GLOB.APIGateway/ reference ./GLOB.API.Config/ # WEB API
+dotnet add ./GLOB.API/ reference ./GLOB.API.Config/ # WEB API
+
 dotnet add ./SBA.Auth/ reference ./GLOB.API/ # WEB API
 dotnet add ./SBA.Hierarchy/ reference ./GLOB.API/ # WEB API
 # dotnet add ./SBA.Userz/ reference ./GLOB.API/ # WEB API
