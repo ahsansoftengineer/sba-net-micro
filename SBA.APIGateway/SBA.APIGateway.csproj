@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GLOB.API.Config\GLOB.API.Config.csproj" />
     <ProjectReference Include="..\GLOB\GLOB.API.Config\GLOB.API.Config.csproj" />
   </ItemGroup>
 

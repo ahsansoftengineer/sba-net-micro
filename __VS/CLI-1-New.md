@@ -39,7 +39,6 @@ dotnet sln add ./GLOB/GLOB.Domain/GLOB.Domain.csproj
 dotnet sln add ./GLOB/GLOB.Infra/GLOB.Infra.csproj
 dotnet sln add ./GLOB/GLOB.Cache/GLOB.Cache.csproj
 dotnet sln add ./GLOB/GLOB.Job/GLOB.Job.csproj
-dotnet sln remove SBA.Jobz/SBA.Jobz.csproj
 ```
 
 ### PROJECTZ TO SOLUTION

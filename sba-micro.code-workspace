@@ -17,21 +17,34 @@
     // 	"path": "__VS"
     // },
     // {
-    // 	"name": "GLOB.Domain",
-    // 	"path": "GLOB.Domain"
-    // },
-    // {
-    // 	"name": "GLOB.Infra",
-    // 	"path": "GLOB.Infra"
+    // 	"name": "GLOB",
+    // 	"path": "./GLOB/"
     // },
     // {
     // 	"name": "GLOB.API.Config",
-    // 	"path": "GLOB.API.Config"
+    // 	"path": "./GLOB/GLOB.API.Config"
     // },
     // {
     // 	"name": "GLOB.API",
-    // 	"path": "GLOB.API"
+    // 	"path": "./GLOB/GLOB.API"
     // },
+    // {
+    // 	"name": "GLOB.Domain",
+    // 	"path": "./GLOB/GLOB.Domain"
+    // },
+    // {
+    // 	"name": "GLOB.Infra",
+    // 	"path": "./GLOB/GLOB.Infra"
+    // },
+    // {
+    // 	"name": "GLOB.Cache",
+    // 	"path": "./GLOB/GLOB.Cache"
+    // },
+    // {
+    // 	"name": "GLOB.Job",
+    // 	"path": ".-/GLOB/GLOB.Job"
+    // },
+
     // {
     // 	"name": "SBA.APIGateway",
     // 	"path": "SBA.APIGateway"
