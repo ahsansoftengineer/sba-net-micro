@@ -7,18 +7,19 @@
 dotnet new sln -o SBA
 ```
 
-### LOCAL LIBRARY
+### GLOB NEW
 ```bash
-dotnet new classlib -o GLOB.Domain
-dotnet new classlib -o GLOB.Infra
-dotnet new classlib -o GLOB.Cache
-dotnet new classlib -o GLOB.Jobz
+dotnet new webapi -o ./GLOB/GLOB.API.Config
+dotnet new webapi -o ./GLOB/GLOB.API
+
+dotnet new classlib -o ./GLOB/GLOB.Domain
+dotnet new classlib -o ./GLOB/GLOB.Infra
+dotnet new classlib -o ./GLOB/GLOB.Cache
+dotnet new classlib -o ./GLOB/GLOB.Jobz
 ```
 
-### LOCAL PROJECTS
+### PROJECTZ NEW
 ```bash
-dotnet new webapi -o GLOB.API.Config
-dotnet new webapi -o GLOB.API
 dotnet new webapi -o SBA.APIGateway
 dotnet new webapi -o SBA.Hierarchy
 dotnet new webapi -o SBA.Auth
@@ -31,52 +32,46 @@ dotnet new webapi -o SBA.Userz
 
 ### GLOB TO SOLUTION
 ```bash
-dotnet sln add GLOB.Domain/GLOB.Domain.csproj
-dotnet sln add GLOB.Infra/GLOB.Infra.csproj
-dotnet sln add GLOB.Cache/GLOB.Cache.csproj
-dotnet sln add GLOB.Job/GLOB.Job.csproj
+dotnet sln add ./GLOB/GLOB.API.Config/GLOB.API.Config.csproj
+dotnet sln add ./GLOB/GLOB.API/GLOB.API.csproj
 
-dotnet sln add GLOB.API.Config/GLOB.API.Config.csproj
-dotnet sln add GLOB.API/GLOB.API.csproj
+dotnet sln add ./GLOB/GLOB.Domain/GLOB.Domain.csproj
+dotnet sln add ./GLOB/GLOB.Infra/GLOB.Infra.csproj
+dotnet sln add ./GLOB/GLOB.Cache/GLOB.Cache.csproj
+dotnet sln add ./GLOB/GLOB.Job/GLOB.Job.csproj
+dotnet sln remove SBA.Jobz/SBA.Jobz.csproj
 ```
 
 ### PROJECTZ TO SOLUTION
 ```bash
-
-
 dotnet sln add SBA.APIGateway/SBA.APIGateway.csproj
 dotnet sln add SBA.Auth/SBA.Auth.csproj
 dotnet sln add SBA.Hierarchy/SBA.Hierarchy.csproj
 dotnet sln add SBA.Userz/SBA.Userz.csproj
 dotnet sln add SBA.Orderz/SBA.Orderz.csproj
-
-# dotnet sln add PlatformService/PlatformService.csproj
-# dotnet sln add CommandsService/CommandsService.csproj
 ```
 
-### LOCAL CLASS LIBRARY RELATION
+### GLOB RELATION
 ```bash
 dotnet build
-dotnet add ./GLOB.API/ reference ./GLOB.Infra/ # WEB API
-dotnet add ./GLOB.API/ reference ./GLOB.Cache/ # WEB API
+dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.Infra/ # WEB API
+dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.Cache/ # WEB API
+
+dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.API.Config/ # WEB API
+dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.Infra/ # WEB API
 
 ```
 ### Web API PACKAGES
 ```bash
-dotnet add ./GLOB.APIGateway/ reference ./GLOB.API.Config/ # WEB API
-dotnet add ./GLOB.API/ reference ./GLOB.API.Config/ # WEB API
+dotnet add ./SBA.APIGateway/ reference ./GLOB/GLOB.API.Config/ # WEB API
 
-dotnet add ./SBA.Auth/ reference ./GLOB.API/ # WEB API
-dotnet add ./SBA.Hierarchy/ reference ./GLOB.API/ # WEB API
-# dotnet add ./SBA.Userz/ reference ./GLOB.API/ # WEB API
-# dotnet add ./SBA.Orderz/ reference ./GLOB.API/ # WEB API
+dotnet add ./SBA.Auth/ reference ./GLOB/GLOB.API/ # WEB API
+dotnet add ./SBA.Hierarchy/ reference ./GLOB/GLOB.API/ # WEB API
+# dotnet remove ./SBA.Userz/ reference ./GLOB/GLOB.API/ # WEB API
+# dotnet remove ./SBA.Orderz/ reference ./GLOB/GLOB.API/ # WEB API
 
-```
 
-### Web API CONFIG PACKAGES
-```bash
-dotnet add ./GLOB.API/ reference ./GLOB.API.Config/ # WEB API
-dotnet add ./GLOB.API/ reference ./GLOB.Infra/ # WEB API
+
 ```
 ### Local Packages
 - Windows ||| C:\Users\Ahsan1008\.nuget\packages

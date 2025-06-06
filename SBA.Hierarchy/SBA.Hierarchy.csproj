@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GLOB.API\GLOB.API.csproj" />
+    <ProjectReference Include="..\GLOB\GLOB.API\GLOB.API.csproj" />
   </ItemGroup>
   
   <ItemGroup>
