@@ -1,6 +1,6 @@
-using GLOB.Infra.Data;
 using GLOB.Infra.UOW_Projectz;
 using GLOB.Infra.DI;
+using GLOB.Infra.Data;
 using SBA.Projectz.Data;
 using SBA.Projectz.Mapper;
 using GLOB.API.DI;
@@ -16,7 +16,7 @@ public static partial class DI_Projectz
     srvc.Add_API_Default_Srvc(config);
     // srvc.Add_API_Default_Srvc2();
     
-    srvc.Add_DB_SQL<DBCtxProjectzInfra, IUOW_Infra, UOW_Projectz>(config);
+    srvc.Add_DB_SQL<DBCtxInfra, IUOW_Infra, UOW_Projectz>(config);
     srvc.Add_DB_SQL<DBCtxProjectz, IUOW_Projectz, UOW_Projectz>(config);
     srvc.Add_Cache_Redis(config);
 
