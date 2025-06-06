@@ -5,7 +5,7 @@
 
 ## BASH BUILD Dockerfile
 ## -t tagname, -f file/reference, ./buildContext  
-# docker build -t mansanhhub/srvc-sba-api-gateway -f SBA.APIGateway/Dockerfile .
+# docker build -t mansanhhub/srvc-sba-api-gateway -f Projects/SBA.APIGateway/Dockerfile .
 # docker push mansanhhub/srvc-sba-api-gateway
 # docker pull mansanhhub/srvc-sba-api-gateway
 

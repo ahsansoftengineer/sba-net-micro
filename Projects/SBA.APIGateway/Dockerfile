@@ -16,22 +16,22 @@ WORKDIR /app
 
 # Copy only .csproj files first (to enable Docker caching of restore)
 COPY GLOB/GLOB.API.Config/*.csproj ./GLOB/GLOB.API.Config/
-COPY SBA.APIGateway/*.csproj ./SBA.APIGateway/
+COPY Projects/SBA.APIGateway/*.csproj ./Projects/SBA.APIGateway/
 
 # Restore dependencies
-RUN dotnet restore ./SBA.APIGateway/SBA.APIGateway.csproj
+RUN dotnet restore ./Projects/SBA.APIGateway/SBA.APIGateway.csproj
 
 # Copy the rest of the source files
 COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/
-COPY SBA.APIGateway/ ./SBA.APIGateway/
+COPY Projects/SBA.APIGateway/ ./Projects/SBA.APIGateway/
 
 # Build and publish
-WORKDIR /app/SBA.APIGateway
+WORKDIR /app/Projects/SBA.APIGateway
 RUN dotnet publish -c Release -o /app/out
 
 # Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
-WORKDIR /app/SBA.APIGateway
+WORKDIR /app/Projects/SBA.APIGateway
 
 # Copy the published app from build stage
 COPY --from=build-env /app/out .
@@ -42,4 +42,4 @@ ENV DOTNET_ENVIRONMENT=Docker
 
 EXPOSE 1100
 
-ENTRYPOINT [ "dotnet", "SBA.APIGateway.dll" ]
+ENTRYPOINT [ "dotnet", "Projects/SBA.APIGateway.dll" ]

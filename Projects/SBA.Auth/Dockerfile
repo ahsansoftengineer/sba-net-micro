@@ -1,6 +1,6 @@
 # ===========================================================
 # Build:
-# docker build -t mansanhhub/srvc-sba-auth -f SBA.Hierarchy/Dockerfile .
+# docker build -t mansanhhub/srvc-sba-auth -f Projects/SBA.Auth/Dockerfile .
 # docker push mansanhhub/srvc-sba-auth
 # docker run -d --name srvc-sba-auth -p 1102:1102 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-sba-auth
 # docker rm -f srvc-sba-auth
@@ -19,25 +19,25 @@ COPY GLOB/GLOB.API.Config/*.csproj ./GLOB/GLOB.API.Config/
 COPY GLOB/GLOB.Domain/*.csproj ./GLOB/GLOB.Domain/
 COPY GLOB/GLOB.Infra/*.csproj ./GLOB/GLOB.Infra/
 COPY GLOB/GLOB.API/*.csproj ./GLOB/GLOB.API/
-COPY SBA.Auth/*.csproj ./SBA.Auth/
+COPY Projects/SBA.Auth/*.csproj ./Projects/SBA.Auth/
 
 # Restore dependencies
-RUN dotnet restore ./SBA.Auth/SBA.Auth.csproj
+RUN dotnet restore ./Projects/SBA.Auth/SBA.Auth.csproj
 
 # Copy the rest of the source files
 COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/
 COPY GLOB/GLOB.Domain/ ./GLOB/GLOB.Domain/
 COPY GLOB/GLOB.Infra/ ./GLOB/GLOB.Infra/
 COPY GLOB/GLOB.API/ ./GLOB/GLOB.API/
-COPY SBA.Auth/ ./SBA.Auth/
+COPY Projects/SBA.Auth/ ./Projects/SBA.Auth/
 
 # Build and publish
-WORKDIR /app/SBA.Auth
+WORKDIR /app/Projects/SBA.Auth
 RUN dotnet publish -c Release -o /app/out
 
 # Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
-WORKDIR /app/SBA.Auth
+WORKDIR /app/Projects/SBA.Auth
 
 # Copy the published app from build stage
 COPY --from=build-env /app/out .

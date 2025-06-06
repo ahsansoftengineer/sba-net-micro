@@ -1,6 +1,6 @@
 # ===========================================================
 # Build:
-# docker build -t mansanhhub/srvc-sba-hierarchy -f SBA.Hierarchy/Dockerfile .
+# docker build -t mansanhhub/srvc-sba-hierarchy -f Projects/SBA.Hierarchy/Dockerfile .
 # docker push mansanhhub/srvc-sba-hierarchy
 # docker run -d --name srvc-sba-hierarchy -p 1106:1106 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-sba-hierarchy
 # docker rm -f srvc-sba-hierarchy
@@ -18,25 +18,25 @@ COPY GLOB/GLOB.API.Config/*.csproj ./GLOB/GLOB.API.Config/
 COPY GLOB/GLOB.Domain/*.csproj ./GLOB/GLOB.Domain/
 COPY GLOB/GLOB.Infra/*.csproj ./GLOB/GLOB.Infra/
 COPY GLOB/GLOB.API/*.csproj ./GLOB/GLOB.API/
-COPY SBA.Hierarchy/*.csproj ./SBA.Hierarchy/
+COPY Projects/SBA.Hierarchy/*.csproj ./Projects/SBA.Hierarchy/
 
 # Restore dependencies
-RUN dotnet restore ./SBA.Hierarchy/SBA.Hierarchy.csproj
+RUN dotnet restore ./Projects/SBA.Hierarchy/SBA.Hierarchy.csproj
 
 # Copy the rest of the source files
 COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/
 COPY GLOB/GLOB.Domain/ ./GLOB/GLOB.Domain/
 COPY GLOB/GLOB.Infra/ ./GLOB/GLOB.Infra/
 COPY GLOB/GLOB.API/ ./GLOB/GLOB.API/
-COPY SBA.Hierarchy/ ./SBA.Hierarchy/
+COPY Projects/SBA.Hierarchy/ ./Projects/SBA.Hierarchy/
 
 # Build and publish
-WORKDIR /app/SBA.Hierarchy
+WORKDIR /app/Projects/SBA.Hierarchy
 RUN dotnet publish -c Release -o /app/out
 
 # Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
-WORKDIR /app/SBA.Hierarchy
+WORKDIR /app/Projects/SBA.Hierarchy
 
 # Copy the published app from build stage
 COPY --from=build-env /app/out .
