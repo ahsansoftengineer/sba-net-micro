@@ -12,6 +12,7 @@ dotnet new sln -o SBA
 dotnet new classlib -o GLOB.Domain
 dotnet new classlib -o GLOB.Infra
 dotnet new classlib -o GLOB.Cache
+dotnet new classlib -o GLOB.Jobz
 ```
 
 ### LOCAL PROJECTS
@@ -23,29 +24,31 @@ dotnet new webapi -o SBA.Hierarchy
 dotnet new webapi -o SBA.Auth
 dotnet new webapi -o SBA.Orderz
 dotnet new webapi -o SBA.Userz
-dotnet new webapi -o SBA.Jobz
+
 # dotnet new webapi -o SBA.Notify
 ```
 
 
-### LOCAL LIBRARY TO SOLUTION
+### GLOB TO SOLUTION
 ```bash
 dotnet sln add GLOB.Domain/GLOB.Domain.csproj
 dotnet sln add GLOB.Infra/GLOB.Infra.csproj
 dotnet sln add GLOB.Cache/GLOB.Cache.csproj
-```
+dotnet sln add GLOB.Job/GLOB.Job.csproj
 
-### LOCAL PROJECTS TO SOLUTION
-```bash
 dotnet sln add GLOB.API.Config/GLOB.API.Config.csproj
 dotnet sln add GLOB.API/GLOB.API.csproj
+```
+
+### PROJECTZ TO SOLUTION
+```bash
+
 
 dotnet sln add SBA.APIGateway/SBA.APIGateway.csproj
 dotnet sln add SBA.Auth/SBA.Auth.csproj
 dotnet sln add SBA.Hierarchy/SBA.Hierarchy.csproj
 dotnet sln add SBA.Userz/SBA.Userz.csproj
 dotnet sln add SBA.Orderz/SBA.Orderz.csproj
-dotnet sln add SBA.Jobz/SBA.Jobz.csproj
 
 # dotnet sln add PlatformService/PlatformService.csproj
 # dotnet sln add CommandsService/CommandsService.csproj
