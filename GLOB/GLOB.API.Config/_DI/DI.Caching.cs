@@ -18,7 +18,7 @@ public static partial class DI_API_Config
     srvc.AddHttpCacheHeaders(
       (expirationOpt) =>
       {
-        expirationOpt.MaxAge = 65;
+        expirationOpt.MaxAge = 5;
         expirationOpt.CacheLocation = Marvin.Cache.Headers.CacheLocation.Private;
       },
       (validationOpt) =>
