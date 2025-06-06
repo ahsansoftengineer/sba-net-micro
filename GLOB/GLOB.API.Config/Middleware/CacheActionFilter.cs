@@ -39,6 +39,7 @@ public class CacheActionFilter : IAsyncActionFilter
     }
 
     var key = $"cache::{context.HttpContext.Request.Path}{context.HttpContext.Request.QueryString}";
+    Console.WriteLine(key);
     var cached = await _cacheService.GetAsync<object>(key);
 
     if (cached != null)

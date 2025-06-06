@@ -6,6 +6,20 @@ docker run -e 'HOMEBREW_NO_ENV_FILTERING=1' -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=P
 docker container ls
 docker ps
 ```
+### DOCKER Redis
+```bash
+docker pull redis
+# docker run --name sba-redis-srvr -p 6379:6379 -d redis
+docker run --name sba-redis-srvr -p 6379:6379 -d redis redis-server --requirepass 'P@55w0rd!123'
+
+sudo apt install redis-tools
+
+redis-cli -a 'P@55w0rd!123'
+set myKey Ahsan
+get myKey
+
+
+```
 
 ### UBUNTU DOTNET INSTALLATION
 ```bash

@@ -37,7 +37,8 @@ dotnet sln add ./GLOB/GLOB.API/GLOB.API.csproj
 
 dotnet sln add ./GLOB/GLOB.Domain/GLOB.Domain.csproj
 dotnet sln add ./GLOB/GLOB.Infra/GLOB.Infra.csproj
-dotnet sln add ./GLOB/GLOB.Cache/GLOB.Cache.csproj
+# dotnet sln add ./GLOB/GLOB.Cache/GLOB.Cache.csproj
+dotnet sln remove ./GLOB/GLOB.Cache/GLOB.Cache.csproj
 dotnet sln add ./GLOB/GLOB.Job/GLOB.Job.csproj
 ```
 
