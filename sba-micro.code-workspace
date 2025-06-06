@@ -16,6 +16,9 @@
     // 	"name": "__VS",
     // 	"path": "__VS"
     // },
+
+
+    
     // {
     // 	"name": "GLOB",
     // 	"path": "./GLOB/"
@@ -45,30 +48,32 @@
     // 	"path": ".-/GLOB/GLOB.Job"
     // },
 
+
+
+    // {
+    // 	"name": "Projects",
+    // 	"path": "./Projects/"
+    // },
     // {
     // 	"name": "SBA.APIGateway",
-    // 	"path": "SBA.APIGateway"
+    // 	"path": "./Projects/SBA.APIGateway"
     // },
     // {
     //   "name": "SBA.Auth",
-    //   "path": "SBA.Auth"
-    // }
-    // {
-    // 	"name": "SBA.Jobz",
-    // 	"path": "SBA.Jobz"
+    //   "path": "./Projects/SBA.Auth"
     // },
     {
     	"name": "SBA.Hierarchy",
-    	"path": "SBA.Hierarchy"
+    	"path": "./Projects/SBA.Hierarchy"
     },
 
     // {
     // 	"name": "SBA.Userz",
-    // 	"path": "SBA.Userz"
+    // 	"path": "./Projects/SBA.Userz"
     // },
     // {
     // 	"name": "SBA.Orderz",
-    // 	"path": "SBA.Orderz"
+    // 	"path": "./Projects/SBA.Orderz"
     // }
   ],
   "settings": {

@@ -20,11 +20,11 @@ dotnet new classlib -o ./GLOB/GLOB.Jobz
 
 ### PROJECTZ NEW
 ```bash
-dotnet new webapi -o SBA.APIGateway
-dotnet new webapi -o SBA.Hierarchy
-dotnet new webapi -o SBA.Auth
-dotnet new webapi -o SBA.Orderz
-dotnet new webapi -o SBA.Userz
+dotnet new webapi -o ./Projects/SBA.APIGateway
+dotnet new webapi -o ./Projects/SBA.Hierarchy
+dotnet new webapi -o ./Projects/SBA.Auth
+dotnet new webapi -o ./Projects/SBA.Orderz
+dotnet new webapi -o ./Projects/SBA.Userz
 
 # dotnet new webapi -o SBA.Notify
 ```
@@ -43,11 +43,11 @@ dotnet sln add ./GLOB/GLOB.Job/GLOB.Job.csproj
 
 ### PROJECTZ TO SOLUTION
 ```bash
-dotnet sln add SBA.APIGateway/SBA.APIGateway.csproj
-dotnet sln add SBA.Auth/SBA.Auth.csproj
-dotnet sln add SBA.Hierarchy/SBA.Hierarchy.csproj
-dotnet sln add SBA.Userz/SBA.Userz.csproj
-dotnet sln add SBA.Orderz/SBA.Orderz.csproj
+dotnet sln add ./Projects/SBA.APIGateway/SBA.APIGateway.csproj
+dotnet sln add ./Projects/SBA.Auth/SBA.Auth.csproj
+dotnet sln add ./Projects/SBA.Hierarchy/SBA.Hierarchy.csproj
+dotnet sln add ./Projects/SBA.Userz/SBA.Userz.csproj
+dotnet sln add ./Projects/SBA.Orderz/SBA.Orderz.csproj
 ```
 
 ### GLOB RELATION
@@ -60,14 +60,14 @@ dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.API.Config/ # WEB API
 dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.Infra/ # WEB API
 
 ```
-### Web API PACKAGES
+### Project Relation
 ```bash
-dotnet add ./SBA.APIGateway/ reference ./GLOB/GLOB.API.Config/ # WEB API
+dotnet add ./Projects/SBA.APIGateway/ reference ./GLOB/GLOB.API.Config/ # WEB API
 
-dotnet add ./SBA.Auth/ reference ./GLOB/GLOB.API/ # WEB API
-dotnet add ./SBA.Hierarchy/ reference ./GLOB/GLOB.API/ # WEB API
-# dotnet remove ./SBA.Userz/ reference ./GLOB/GLOB.API/ # WEB API
-# dotnet remove ./SBA.Orderz/ reference ./GLOB/GLOB.API/ # WEB API
+dotnet add ./Projects/SBA.Auth/ reference ./GLOB/GLOB.API/ # WEB API
+dotnet add ./Projects/SBA.Hierarchy/ reference ./GLOB/GLOB.API/ # WEB API
+# dotnet remove ./Projects/SBA.Userz/ reference ./GLOB/GLOB.API/ # WEB API
+# dotnet remove ./Projects/SBA.Orderz/ reference ./GLOB/GLOB.API/ # WEB API
 
 
 
