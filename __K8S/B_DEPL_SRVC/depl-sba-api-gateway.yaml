@@ -5,7 +5,7 @@
 
 ## BASH BUILD Dockerfile
 ## -t tagname, -f file/reference, ./buildContext  
-# docker build -t mansanhhub/srvc-sba-api-gateway -f SBA.APIGateway/Dockerfile .
+# docker build -t mansanhhub/srvc-sba-api-gateway -f Projects/SBA.APIGateway/Dockerfile .
 # docker push mansanhhub/srvc-sba-api-gateway
 # docker pull mansanhhub/srvc-sba-api-gateway
 
@@ -97,6 +97,4 @@ spec:
       nodePort: 31100 # 30000-32767 (Host Port)
 
 ## ROUTES (K8S Node Port)
-# - http://localhost:31100/api/Hierarchy/v1/swagger/index.html
-# - http://localhost:31100/api/Hierarchy/v1/_projectz-lookupz/gets-lookup
-# - http://localhost:31100/api/Hierarchy/v1/_global-lookupz/gets-lookup
+# - http://localhost:31100/api/Gateway/v1/swagger/index.html

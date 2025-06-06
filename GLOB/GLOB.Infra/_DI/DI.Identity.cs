@@ -1,0 +1,25 @@
+using Microsoft.AspNetCore.Identity;
+using GLOB.Infra.UOW_Projectz;
+using GLOB.Domain.Auth;
+using GLOB.Infra.Data.Auth;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+
+namespace GLOB.Infra.DI;
+public static partial class DI_Infra
+{
+  public static void Add_DB_SQL_Identity<TContext, TIUOW, TUOW>(this IServiceCollection srvc, IConfiguration config)
+    where TContext : DBCtxIdentity
+    where TIUOW : class, IUOW_Infra
+    where TUOW : UOW_Infra, TIUOW
+  {
+    srvc.Add_DB_SQL<TContext, TIUOW, TUOW>(config);
+
+    // Configure Identity with roles
+    // srvc.AddIdentity<InfraUser, InfraRole>()
+    srvc.AddIdentity<InfraUser, InfraRole>()
+        .AddEntityFrameworkStores<TContext>()
+        .AddDefaultTokenProviders();
+  }
+
+}

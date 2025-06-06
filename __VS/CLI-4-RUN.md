@@ -2,12 +2,12 @@
 ```bash
 # dotnet run --project ./SBA.Api/
                                                 # http, https
-dotnet watch run --launch-profile https --project ./SBA.APIGateway/    # 1100 1101
-dotnet watch run --launch-profile https --project ./SBA.Auth/          # 1102 1103
-dotnet watch run --launch-profile https --project ./SBA.Hierarchy/     # 1106 1107
-dotnet watch run --launch-profile https --project ./SBA.Jobz/          # 1104 1105
-dotnet watch run --launch-profile https --project ./SBA.Userz/         # 1108 1109
-dotnet watch run --launch-profile https --project ./SBA.Orderz/        # 1110 1111
+dotnet watch run --launch-profile http --project ./Projects/SBA.APIGateway/    # 1100 1101
+dotnet watch run --launch-profile http --project ./Projects/SBA.Auth/          # 1102 1103
+dotnet watch run --launch-profile http --project ./Projects/SBA.Hierarchy/     # 1106 1107
+dotnet watch run --launch-profile http --project ./Projects/SBA.Jobz/          # 1104 1105
+dotnet watch run --launch-profile http --project ./Projects/SBA.Userz/         # 1108 1109
+dotnet watch run --launch-profile http --project ./Projects/SBA.Orderz/        # 1110 1111
 ```
 
 
