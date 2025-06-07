@@ -1,4 +1,5 @@
 using AutoMapper;
+using GLOB.API.Config.Attributez;
 using GLOB.API.Config.Configz;
 using GLOB.API.Config.Ext;
 using GLOB.API.Config.Srvc;
@@ -9,7 +10,7 @@ using Microsoft.Extensions.Options;
 namespace GLOB.API.Controllers.Base;
 
 [Route("[controller]/[action]")]
-[ApiController] //[NoCache]
+[ApiController] [Cache]
 public abstract class API_1_ErrorController<TController> : ControllerBase
 
 {

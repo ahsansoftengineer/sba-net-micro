@@ -27,9 +27,13 @@ public class RedisCacheService
   {
     string Key = MrgKey(cm);
     var options = new DistributedCacheEntryOptions();
+
+    var jso = new JsonSerializerOptions { WriteIndented = false };
     if (cm.Duration != null)
       options.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(cm.Duration ?? 0);
-    var json = JsonSerializer.Serialize(cm.Value);
+
+
+    var json = JsonSerializer.Serialize(cm.Value, jso);
     await _cache.SetStringAsync(Key, json, options);
   }
 
@@ -37,7 +41,7 @@ public class RedisCacheService
   {
     string Key = MrgKey(cm);
     var json = await _cache.GetStringAsync(Key);
-    return json == null ? default : JsonSerializer.Deserialize<object>(json);
+    return json ?? default;
   }
 
   public async Task Remove(CacheModel cm)
@@ -58,7 +62,7 @@ public class RedisCacheService
   }
   public string MrgKey(CacheModel cm)
   {
-    return $"{cm?.Prefix ?? prefix}:{cm.Controller}:{cm.EP}".Replace("/", ":");
+    return $"{cm?.Prefix ?? prefix}:{cm.Controller ?? "Controller"}:{cm.EP ?? "EP"}:{cm.Res ?? "Res"}".Replace("/", "-");
   }
 }
 
@@ -67,6 +71,7 @@ public class CacheModel
   public string? Prefix { get; set; }
   public string? Controller { get; set; }
   public string? EP { get; set; }
+  public string? Res { get; set; }
   public int? Duration { get; set; }
   public object? Value { get; set; }
 }
