@@ -1,3 +1,4 @@
+using GLOB.API.Config.Attributez;
 using GLOB.API.Staticz;
 using GLOB.Infra.Base;
 using Microsoft.AspNetCore.Mvc;
@@ -14,19 +15,19 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
   public API_3_CRUD_SPO_Controller(IServiceProvider srvcProvider) : base(srvcProvider)
   {
   }
-  [HttpPost]
+  [HttpPost] //[NoCache]
   public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<TDtoSearch?> req)
   {
     return await _repo.ToActionGetsPaginate(req);
   }
 
-  [HttpPost]
+  [HttpPost] //[NoCache]
   public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPageOption<TDtoSearch?> req)
   {
     return await _repo.ToActionGetsPaginateOptions(req);
   }
 
-  [HttpPost]
+  [HttpPost] 
   public async Task<IActionResult> Create([FromBody] TDtoCreate data)
   {
     try

@@ -2,6 +2,7 @@ using GLOB.Infra.Base;
 using Microsoft.AspNetCore.Mvc;
 using GLOB.API.Staticz;
 using GLOB.Common.API;
+using GLOB.API.Config.Attributez;
 
 namespace GLOB.API.Controllers.Base;
 // Single, List, Group
@@ -17,32 +18,32 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
   }
 
   // List, Filter, Include
-  [HttpPost]
+  [HttpPost] //[NoCache]
   public async Task<IActionResult> Gets([FromBody] DtoRequestGet req)
   {
     return await _repo.ToActionGets(req.Includes);
   }
   // List, Group
-  [HttpGet]
+  [HttpGet] //[NoCache]
   public async Task<IActionResult> GetsLookup()
   {
     return await _repo.ToActionGetsLookup();
   }
 
   // List, Filter By Ids
-  [HttpPost]
+  [HttpPost] //[NoCache]
   public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds req)
   {
     return await _repo.ToActionGetsByIds(req.Ids);
   }
 
   // List, Group, Filter By Ids
-  [HttpPost]
+  [HttpPost] //[NoCache]
   public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds req)
   {
     return await _repo.ToActionGetsByIdsLookup(req.Ids);
   }
-  [HttpPost]
+  [HttpPost] //[NoCache]
   public async Task<IActionResult> GetsCSV([FromBody] DtoRequestGet req)
   {
     try

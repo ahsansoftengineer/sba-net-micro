@@ -9,7 +9,7 @@ using Microsoft.Extensions.Options;
 namespace GLOB.API.Controllers.Base;
 
 [Route("[controller]/[action]")]
-[ApiController]
+[ApiController] //[NoCache]
 public abstract class API_1_ErrorController<TController> : ControllerBase
 
 {

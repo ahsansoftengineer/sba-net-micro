@@ -7,10 +7,11 @@ public class CacheAttribute : Attribute
 
   public bool IsPersistent => DurationSeconds == null;
 
-  public CacheAttribute(int? durationSeconds = 60)
+  public CacheAttribute(int? durationSeconds)
   {
     DurationSeconds = durationSeconds;
   }
+  public CacheAttribute() { }
 }
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]

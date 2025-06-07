@@ -35,7 +35,6 @@ public class CacheActionFilter : IAsyncActionFilter
     if (cacheAttr == null)
     {
       await next();
-      return;
     }
 
     var key = $"cache::{context.HttpContext.Request.Path}{context.HttpContext.Request.QueryString}";
