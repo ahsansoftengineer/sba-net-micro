@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Http;
-using GLOB.Domain.Base;
+using GLOB.Infra.Base;
 
 namespace GLOB.Domain.Hierarchy;
 public class OUDtoCreate : DtoCreate

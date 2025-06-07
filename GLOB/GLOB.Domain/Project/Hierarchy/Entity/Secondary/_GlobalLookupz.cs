@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using GLOB.Domain.Base;
+using GLOB.Infra.Base;
 
 namespace GLOB.Hierarchy.Global;
 

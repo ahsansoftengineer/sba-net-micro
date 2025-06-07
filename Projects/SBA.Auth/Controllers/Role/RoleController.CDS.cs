@@ -1,6 +1,6 @@
 using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
-using GLOB.Domain.Base;
+using GLOB.Infra.Base;
 using GLOB.Domain.Contants;
 using GLOB.Infra.Paginate;
 using LinqKit;
@@ -40,7 +40,7 @@ public partial class RoleController: AccountBaseController<RoleController>
     }
 
     var rolz = new InfraRole(role.Name);
-    rolz.Status = GLOB.Domain.Enums.Status.None;
+    rolz.Status = GLOB.Infra.Enumz.Status.None;
     rolz.Id = Constantz.Guidz();
     var result = await _roleManager.CreateAsync(rolz);
     if (result.Succeeded) return Ok(rolz.ToExtVMSingle());

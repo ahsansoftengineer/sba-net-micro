@@ -1,7 +1,7 @@
 using System.ComponentModel;
-using GLOB.Domain.Enums;
+using GLOB.Infra.Enumz;
 
-namespace GLOB.Domain.Base;
+namespace GLOB.Infra.Base;
 
 public class DtoRequestGet
 {

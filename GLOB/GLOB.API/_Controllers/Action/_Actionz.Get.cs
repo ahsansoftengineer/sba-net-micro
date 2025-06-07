@@ -1,4 +1,4 @@
-using GLOB.Domain.Base;
+using GLOB.Infra.Base;
 using GLOB.Infra.Paginate;
 using GLOB.Infra.Repo;
 using Microsoft.AspNetCore.Mvc;

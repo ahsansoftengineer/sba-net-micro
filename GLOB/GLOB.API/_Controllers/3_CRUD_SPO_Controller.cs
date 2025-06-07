@@ -1,5 +1,5 @@
 using GLOB.API.Staticz;
-using GLOB.Domain.Base;
+using GLOB.Infra.Base;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;

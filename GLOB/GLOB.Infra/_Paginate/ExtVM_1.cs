@@ -1,7 +1,7 @@
 using System.Net;
 using System.Text.Json.Serialization;
 using Azure;
-using GLOB.Domain.Base;
+using GLOB.Infra.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Paginate;

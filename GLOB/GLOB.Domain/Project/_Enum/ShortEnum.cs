@@ -1,28 +1,11 @@
-namespace GLOB.Domain.Enums;
+namespace GLOB.Infra.Enumz;
 public enum DonationOption
 {
   OptionGSB,
   OptionSelf,
   OptionMarhoom
 }
-public enum Gender
-{
-  None,
-  Male,
-  Female
-}
-public enum Status
-{
-  None,
-  Active,
-  DeActive,
-  Delete
-}
-public enum YesNo
-{
-  No,
-  Yes,
-}
+
 //public class Status
 //{
 //  private Status(string value) { Value = value; }

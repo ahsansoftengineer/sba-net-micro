@@ -1,7 +1,7 @@
-using GLOB.Domain.Base;
+using GLOB.Infra.Base;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using GLOB.Domain.Enums;
+using GLOB.Infra.Enumz;
 
 namespace GLOB.Infra.Repo;
 
@@ -25,11 +25,12 @@ public interface IRepoGenericz<T, TKey>
     List<string>? Include = null);
   
   Task<T> Insert(T entity);
-  Task InsertRange(IEnumerable<T> entities);
   Task Delete(TKey Id);
-  void DeleteRange(IEnumerable<T> entities);
   void Update(T entity);
   void UpdateStatus(T entity, Status status);
+
+  Task InsertRange(IEnumerable<T> entities);
+  void DeleteRange(IEnumerable<T> entities);
 
   Task<VMPaginate<T>> GetsPaginate<TDtoSearch>(DtoRequestPage<TDtoSearch?> req)
     where TDtoSearch : class, IDtoSearch;

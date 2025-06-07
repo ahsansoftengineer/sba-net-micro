@@ -1,6 +1,6 @@
-using GLOB.Domain.Enums;
+using GLOB.Infra.Enumz;
 
-namespace GLOB.Domain.Base;
+namespace GLOB.Infra.Base;
 
 // Generic Interface
 public interface IEntityAlpha<TKey>

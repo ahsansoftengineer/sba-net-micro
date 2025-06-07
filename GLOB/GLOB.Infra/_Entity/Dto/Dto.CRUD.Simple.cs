@@ -1,8 +1,7 @@
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using GLOB.Domain.Enums;
+using GLOB.Infra.Enumz;
 
-namespace GLOB.Domain.Base;
+namespace GLOB.Infra.Base;
 
 public class DtoCreate
 {
@@ -15,7 +14,7 @@ public class DtoCreate
 }
 public class DtoUpdate : DtoCreate
 {
-  public Status? Status { get; set; } = Enums.Status.None;
+  public Status? Status { get; set; } = Enumz.Status.None;
 
 }
 public class DtoRead : DtoRead<int>

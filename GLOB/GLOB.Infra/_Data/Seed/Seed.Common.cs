@@ -1,5 +1,5 @@
-using GLOB.Domain.Base;
-using GLOB.Domain.Enums;
+using GLOB.Infra.Base;
+using GLOB.Infra.Enumz;
 
 namespace GLOB.Infra.Seed;
 public static partial class InfraSeeder

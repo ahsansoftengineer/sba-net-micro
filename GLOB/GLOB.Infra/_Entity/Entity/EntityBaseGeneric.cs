@@ -2,9 +2,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using GLOB.Domain.Contants;
-using GLOB.Domain.Enums;
+using GLOB.Infra.Enumz;
 
-namespace GLOB.Domain.Base;
+namespace GLOB.Infra.Base;
 
 public abstract class EntityAlpha<TKey> : IEntityAlpha<TKey>, IEntityStatus
   where TKey : IEquatable<TKey>

@@ -2,7 +2,7 @@ using GLOB.API.Config.Configz;
 using GLOB.API.Controllers.Base;
 using GLOB.API.Http;
 using GLOB.API.Staticz;
-using GLOB.Domain.Base;
+using GLOB.Infra.Base;
 using GLOB.Infra.Paginate;
 using Microsoft.AspNetCore.Mvc;
 

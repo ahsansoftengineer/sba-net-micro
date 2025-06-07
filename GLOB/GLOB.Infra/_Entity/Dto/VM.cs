@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace GLOB.Domain.Base;
+namespace GLOB.Infra.Base;
 public class VMPaginate<T> 
 {
   public List<T> Records { get; set; }

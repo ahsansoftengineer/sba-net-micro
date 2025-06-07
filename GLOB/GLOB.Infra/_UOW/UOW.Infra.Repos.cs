@@ -1,5 +1,5 @@
 using GLOB.Infra.Repo;
-using GLOB.Domain.Base;
+using GLOB.Infra.Base;
 
 namespace GLOB.Infra.UOW_Projectz;
 public partial class UOW_Infra : IUOW_Infra

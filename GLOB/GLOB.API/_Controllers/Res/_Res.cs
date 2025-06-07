@@ -1,5 +1,5 @@
 using System.Net;
-using GLOB.Domain.Base;
+using GLOB.Infra.Base;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Staticz;

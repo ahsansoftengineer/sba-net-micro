@@ -1,6 +1,6 @@
 using GLOB.API.Mapper;
 using GLOB.Domain.Auth;
-using GLOB.Domain.Base;
+using GLOB.Infra.Base;
 
 namespace SBA.Projectz.Mapper;
 public partial class ProjectzMapper : API_Base_Mapper

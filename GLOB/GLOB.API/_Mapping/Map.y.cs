@@ -1,4 +1,4 @@
-using GLOB.Domain.Base;
+using GLOB.Infra.Base;
 
 namespace GLOB.API.Mapper;
 public partial class API_Base_Mapper 

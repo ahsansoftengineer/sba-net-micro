@@ -1,5 +1,5 @@
 
-namespace GLOB.Domain.Base;
+namespace GLOB.Infra.Base;
 
 public abstract class EntityAlpha : EntityAlpha<int>, IEntityAlpha
 {

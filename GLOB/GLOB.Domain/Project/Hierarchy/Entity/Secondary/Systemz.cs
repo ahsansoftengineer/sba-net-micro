@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using GLOB.Domain.Base;
+using GLOB.Infra.Base;
 
 namespace GLOB.Domain.Hierarchy;
 public class Systemz : EntityBase

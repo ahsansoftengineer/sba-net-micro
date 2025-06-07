@@ -1,7 +1,7 @@
-using GLOB.Domain.Base;
+using GLOB.Infra.Base;
 using GLOB.Domain.Contants;
 using Microsoft.AspNetCore.Identity;
-using GLOB.Domain.Enums;
+using GLOB.Infra.Enumz;
 
 namespace GLOB.Domain.Auth;
 

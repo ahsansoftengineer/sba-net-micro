@@ -1,4 +1,4 @@
-using GLOB.Domain.Base;
+using GLOB.Infra.Base;
 using GLOB.Domain.Extension;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;

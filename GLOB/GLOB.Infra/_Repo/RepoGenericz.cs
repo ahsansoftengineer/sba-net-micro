@@ -1,5 +1,5 @@
-using GLOB.Domain.Base;
-using GLOB.Domain.Enums;
+using GLOB.Infra.Base;
+using GLOB.Infra.Enumz;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 

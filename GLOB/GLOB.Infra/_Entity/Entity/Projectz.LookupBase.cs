@@ -1,4 +1,4 @@
-namespace GLOB.Domain.Base;
+namespace GLOB.Infra.Base;
 
 public class ProjectzLookupBase : EntityBase
 {

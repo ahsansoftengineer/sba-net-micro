@@ -1,4 +1,4 @@
-using GLOB.Domain.Base;
+using GLOB.Infra.Base;
 using Microsoft.AspNetCore.Mvc;
 using GLOB.API.Staticz;
 using GLOB.Common.API;
@@ -12,6 +12,7 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
   [HttpPost("{Id:int}")]
   public async Task<IActionResult> Get(int Id, [FromBody] DtoRequestGet req)
   {
+    
     return await _repo.ToActionGet(Id, req.Includes);
   }
 

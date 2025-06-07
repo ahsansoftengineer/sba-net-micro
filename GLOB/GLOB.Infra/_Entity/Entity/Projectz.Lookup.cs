@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GLOB.Domain.Base;
+namespace GLOB.Infra.Base;
 
 public class ProjectzLookup : EntityBase
 {

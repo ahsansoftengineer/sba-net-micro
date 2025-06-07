@@ -1,5 +1,5 @@
 using GLOB.Domain.Auth;
-using GLOB.Domain.Base;
+using GLOB.Infra.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Data.Auth;

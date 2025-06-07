@@ -54,8 +54,9 @@ dotnet sln add ./Projects/SBA.Orderz/SBA.Orderz.csproj
 ### GLOB RELATION
 ```bash
 dotnet build
-dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.Infra/ # WEB API
-dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.Cache/ # WEB API
+dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.Domain/ # WEB API
+# dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.Infra/ # WEB API
+# dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.Cache/ # WEB API
 
 dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.API.Config/ # WEB API
 dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.Infra/ # WEB API
