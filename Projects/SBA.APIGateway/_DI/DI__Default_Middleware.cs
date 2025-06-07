@@ -1,5 +1,5 @@
-using GLOB.API.Config.Configz;
 using GLOB.API.Config.DI;
+using GLOB.API.Config.Ext;
 
 namespace SBA.Projectz.DI;
 public static partial class DI_Projectz
