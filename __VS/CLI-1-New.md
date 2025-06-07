@@ -37,8 +37,6 @@ dotnet sln add ./GLOB/GLOB.API/GLOB.API.csproj
 
 dotnet sln add ./GLOB/GLOB.Domain/GLOB.Domain.csproj
 dotnet sln add ./GLOB/GLOB.Infra/GLOB.Infra.csproj
-# dotnet sln add ./GLOB/GLOB.Cache/GLOB.Cache.csproj
-dotnet sln remove ./GLOB/GLOB.Cache/GLOB.Cache.csproj
 dotnet sln add ./GLOB/GLOB.Job/GLOB.Job.csproj
 ```
 
@@ -55,8 +53,6 @@ dotnet sln add ./Projects/SBA.Orderz/SBA.Orderz.csproj
 ```bash
 dotnet build
 dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.Domain/ # WEB API
-# dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.Infra/ # WEB API
-# dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.Cache/ # WEB API
 
 dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.API.Config/ # WEB API
 dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.Infra/ # WEB API
