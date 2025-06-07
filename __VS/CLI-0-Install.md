@@ -7,6 +7,12 @@ docker container ls
 docker ps
 ```
 ### DOCKER Redis
+#### Caching Criteria
+- Cache CUDS            [CacheKey = api/hierarchy/v1/contrller/1]
+- Cache Single          [CacheKey = api/hierarchy/v1/contrller/1]
+- Cache Full List       [CacheKey = api/hierarchy/v1/contrller/list]
+- Cache Full Options    [CacheKey = api/hierarchy/v1/contrller/options]
+- Cache Full Dictionary [CacheKey = api/hierarchy/v1/contrller/dictonary]
 ```bash
 docker pull redis
 # docker run --name sba-redis-srvr -p 6379:6379 -d redis

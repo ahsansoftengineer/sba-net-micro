@@ -9,7 +9,7 @@ public static partial class DI_API_Config
   public static void Add_Cache_Redis(this IServiceCollection srvc, IConfiguration config)
   {
 
-    srvc.AddScoped<ICacheService, RedisCacheService>();
+    srvc.AddScoped<RedisCacheService>();
     srvc.AddScoped<CacheActionFilter>();
 
     srvc.AddStackExchangeRedisCache(options =>
@@ -19,9 +19,6 @@ public static partial class DI_API_Config
 
     srvc.AddSingleton<IConnectionMultiplexer>(sp =>
       ConnectionMultiplexer.Connect(config.GetConnectionString("Redis")));
-
-    srvc.AddScoped<ICacheService, RedisCacheService>();
-    srvc.AddScoped<CacheActionFilter>();
 
   }
 }

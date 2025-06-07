@@ -1,4 +1,4 @@
-using GLOB.API.Config.Configz;
+using GLOB.API.Config.Ext;
 using GLOB.API.Config.OptionSetup;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;

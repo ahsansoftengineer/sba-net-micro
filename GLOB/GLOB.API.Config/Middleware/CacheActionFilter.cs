@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Mvc.Filters;
 namespace GLOB.API.Config.Filterz;
 public class CacheActionFilter : IAsyncActionFilter
 {
-  private readonly ICacheService _cacheService;
+  private readonly RedisCacheService _cacheService;
 
-  public CacheActionFilter(ICacheService cacheService)
+  public CacheActionFilter(RedisCacheService cacheService)
   {
     _cacheService = cacheService;
   }
@@ -40,7 +40,7 @@ public class CacheActionFilter : IAsyncActionFilter
 
     var key = $"cache::{context.HttpContext.Request.Path}{context.HttpContext.Request.QueryString}";
     Console.WriteLine(key);
-    var cached = await _cacheService.GetAsync<object>(key);
+    var cached = await _cacheService.Get<object>(key);
 
     if (cached != null)
     {
@@ -52,7 +52,7 @@ public class CacheActionFilter : IAsyncActionFilter
 
     if (executed.Result is ObjectResult result && result.StatusCode == 200)
     {
-      await _cacheService.SetAsync(key, result.Value, cacheAttr.DurationSeconds);
+      await _cacheService.Set(key, result.Value, cacheAttr.DurationSeconds);
     }
   }
 }
