@@ -1,4 +1,5 @@
 namespace GLOB.Infra.Enumz;
+
 public enum Gender
 {
   None,

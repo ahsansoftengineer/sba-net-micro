@@ -1,5 +1,5 @@
-// using GLOB.Domain.Decorator;
-// using GLOB.Domain.Enum;
+// using GLOB.Infra.Decorator;
+// using GLOB.Domain.Enumz;
 
 // namespace GLOB.Domain.Extension;
 

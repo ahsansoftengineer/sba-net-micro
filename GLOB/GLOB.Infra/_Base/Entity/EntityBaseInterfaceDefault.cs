@@ -1,5 +1,3 @@
-using GLOB.Infra.Enumz;
-
 namespace GLOB.Infra.Base;
 
 // Generic Interface

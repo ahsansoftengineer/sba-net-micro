@@ -1,10 +1,34 @@
-namespace GLOB.Infra.Enumz;
+using GLOB.Infra.Decorator;
+
+namespace GLOB.Domain.Enumz;
+
 public enum DonationOption
 {
   OptionGSB,
   OptionSelf,
   OptionMarhoom
 }
+public enum GENDER
+{
+  [EnumAtr("None")]
+  NONE = 0,
+  [EnumAtr("Male")]
+  MALE = 1,
+  [EnumAtr("Female", "Icons")]
+  FEMALE = 2,
+  [EnumAtr("Other")]
+  OTHER = 3,
+}
+public enum LANGUAGE
+{
+  [EnumAtr("None")]
+  NONE = 0,
+  [EnumAtr("Urdu")]
+  URDU = 1,
+  [EnumAtr("English")]
+  ENG = 2,
+}
+
 
 //public class Status
 //{

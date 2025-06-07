@@ -1,4 +1,4 @@
-namespace GLOB.Domain.Decorator;
+namespace GLOB.Infra.Decorator;
 
 [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
 public class EnumAtrAttribute : Attribute

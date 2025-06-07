@@ -1,6 +1,7 @@
-using GLOB.Domain.Decorator;
 
-namespace GLOB.Domain.Enum;
+using GLOB.Infra.Decorator;
+
+namespace GLOB.Domain.Enumz;
 public enum STATUS_ORDER
 {
   [EnumAtr("None")]
