@@ -18,43 +18,55 @@ public class RedisCacheService
     _redis = sp.GetSrvc<IConnectionMultiplexer>(); ;
     _config = sp.GetSrvc<IConfiguration>();
 
-    prefix = _config.GetValueStr("ASPNETCORE_ROUTE_PREFIX").Replace("/", ":") + ":";
+    prefix = _config.GetValueStr("ASPNETCORE_ROUTE_PREFIX").Replace("/", ":");
 
     Console.WriteLine(prefix);
   }
 
-  public async Task Set<T>(string key, T value, int? durationSeconds = 60)
+  public async Task Set(CacheModel cm)
   {
-    key = $"{prefix}{key}";
+    string Key = MrgKey(cm);
     var options = new DistributedCacheEntryOptions();
-    if (durationSeconds != null)
-      options.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(durationSeconds.Value);
-
-    var json = JsonSerializer.Serialize(value);
-    await _cache.SetStringAsync(key, json, options);
+    if (cm.Duration != null)
+      options.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(cm.Duration ?? 0);
+    var json = JsonSerializer.Serialize(cm.Value);
+    await _cache.SetStringAsync(Key, json, options);
   }
 
-  public async Task<T?> Get<T>(string key)
+  public async Task<Object> Get(CacheModel cm)
   {
-    key = $"{prefix}{key}";
-    var json = await _cache.GetStringAsync(key);
-    return json == null ? default : JsonSerializer.Deserialize<T>(json);
+    string Key = MrgKey(cm);
+    var json = await _cache.GetStringAsync(Key);
+    return json == null ? default : JsonSerializer.Deserialize<object>(json);
   }
 
-  public async Task Remove(string key)
+  public async Task Remove(CacheModel cm)
   {
-    key = $"{prefix}{key}";
-    await _cache.RemoveAsync(key);
+    string Key = MrgKey(cm);
+    await _cache.RemoveAsync(Key);
   }
 
-  public async Task RemoveAll(string key)
+  public async Task RemoveAll(CacheModel cm)
   {
-    key = $"{prefix}{key}";
+    string Key = MrgKey(cm);
     var server = _redis.GetServer(_redis.GetEndPoints().First());
-    var keys = server.Keys(pattern: $"{key}*");
+    var keys = server.Keys(pattern: $"{Key}*");
     foreach (var item in keys)
     {
       await _cache.RemoveAsync(item);
     }
   }
+  public string MrgKey(CacheModel cm)
+  {
+    return $"{cm?.Prefix ?? prefix}:{cm.Controller}:{cm.EP}".Replace("/", ":");
+  }
+}
+
+public class CacheModel
+{
+  public string? Prefix { get; set; }
+  public string? Controller { get; set; }
+  public string? EP { get; set; }
+  public int? Duration { get; set; }
+  public object? Value { get; set; }
 }

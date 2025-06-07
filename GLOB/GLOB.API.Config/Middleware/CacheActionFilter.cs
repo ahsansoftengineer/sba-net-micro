@@ -40,7 +40,7 @@ public class CacheActionFilter : IAsyncActionFilter
 
     var key = $"cache::{context.HttpContext.Request.Path}{context.HttpContext.Request.QueryString}";
     Console.WriteLine(key);
-    var cached = await _cacheService.Get<object>(key);
+    var cached = await _cacheService.Get(new(){ Controller = "", EP = ""});
 
     if (cached != null)
     {
@@ -52,7 +52,7 @@ public class CacheActionFilter : IAsyncActionFilter
 
     if (executed.Result is ObjectResult result && result.StatusCode == 200)
     {
-      await _cacheService.Set(key, result.Value, cacheAttr.DurationSeconds);
+      await _cacheService.Set(new(){ Controller = "", EP = "" });
     }
   }
 }

@@ -55,8 +55,6 @@ dotnet build
 dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.Domain/ # WEB API
 
 dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.API.Config/ # WEB API
-dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.Infra/ # WEB API
-
 ```
 ### Project Relation
 ```bash

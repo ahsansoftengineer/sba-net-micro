@@ -10,7 +10,6 @@
   <ItemGroup>
     <ProjectReference Include="..\GLOB.API.Config\GLOB.API.Config.csproj" />
     <ProjectReference Include="..\GLOB.Domain\GLOB.Domain.csproj" />
-    <!-- <ProjectReference Include="..\GLOB.Infra\GLOB.Infra.csproj" /> -->
   </ItemGroup>
 
 </Project>
