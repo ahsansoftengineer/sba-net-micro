@@ -1,3 +1,4 @@
+using GLOB.API.Config.Ext;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Base;
 using SBA.Projectz.Data;
@@ -9,9 +10,9 @@ public abstract partial class Project_RDS_Controller<TController, TEntity>
   where TEntity : EntityBase
 {
   protected readonly IUOW_Projectz _uowProjectz;
-  public Project_RDS_Controller(IServiceProvider srvcProvider) : 
-    base(srvcProvider)
+  public Project_RDS_Controller(IServiceProvider sp) : 
+    base(sp)
   {
-    _uowProjectz = GetSrvc<IUOW_Projectz>();
+    _uowProjectz = sp.GetSrvc<IUOW_Projectz>();
   }
 }

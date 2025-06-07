@@ -1,5 +1,6 @@
 using GLOB.API.Config.Configz;
 using GLOB.API.Config.DI;
+using GLOB.API.Config.Ext;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Auth;
 using GLOB.Infra.Data.Auth;
@@ -24,14 +25,14 @@ public abstract class AccountBaseController<T> : API_1_ErrorController<T>
     IServiceProvider srvcProvider
   ) : base(srvcProvider)
   {
-    _ctx = GetSrvc<DBCtxProjectz>();
-    _uowProjectz = GetSrvc<IUOW_Projectz>();
+    _ctx = _sp.GetSrvc<DBCtxProjectz>();
+    _uowProjectz = _sp.GetSrvc<IUOW_Projectz>();
 
-    _userManager = GetSrvc<UserManager<InfraUser>>();
-    _signInManager = GetSrvc<SignInManager<InfraUser>>();;
-    _tokenService = GetSrvc<TokenService>();
-    _emailSender = GetSrvc<SmtpEmailSender>();
+    _userManager = _sp.GetSrvc<UserManager<InfraUser>>();
+    _signInManager = _sp.GetSrvc<SignInManager<InfraUser>>();;
+    _tokenService = _sp.GetSrvc<TokenService>();
+    _emailSender = _sp.GetSrvc<SmtpEmailSender>();
     
-    _jwt = GetSrvc<IOptions<JwtSettings>>().Value;
+    _jwt = _sp.GetSrvc<IOptions<JwtSettings>>().Value;
   }
 }

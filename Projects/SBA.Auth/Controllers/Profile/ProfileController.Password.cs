@@ -1,5 +1,5 @@
 using System.Net;
-using GLOB.API.Config.Configz;
+using GLOB.API.Config.Ext;
 using GLOB.API.Staticz;
 using GLOB.Domain.Auth;
 using Microsoft.AspNetCore.Authorization;

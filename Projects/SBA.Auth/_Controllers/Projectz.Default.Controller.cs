@@ -1,3 +1,4 @@
+using GLOB.API.Config.Ext;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Base;
 using SBA.Projectz.Data;
@@ -11,8 +12,8 @@ public abstract class Projectz_Default_Controller<TController, TEntity>
 {
   protected readonly IUOW_Projectz _uowProjectz;
   public Projectz_Default_Controller(
-    IServiceProvider srvcProvider) : base(srvcProvider)
+    IServiceProvider sp) : base(sp)
   {
-    _uowProjectz = GetSrvc<IUOW_Projectz>();
+    _uowProjectz = sp.GetSrvc<IUOW_Projectz>();
   }
 }
