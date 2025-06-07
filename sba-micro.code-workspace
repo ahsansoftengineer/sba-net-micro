@@ -4,77 +4,10 @@
       "name": "sb-micro",
       "path": "."
     },
-    // {
-    // 	"name": "__K8S",
-    // 	"path": "__K8S"
-    // },
-    // {
-    // 	"name": "__Doc",
-    // 	"path": "__Doc"
-    // },
-    // {
-    // 	"name": "__VS",
-    // 	"path": "__VS"
-    // },
-
-
-    
-    // {
-    // 	"name": "GLOB",
-    // 	"path": "./GLOB/"
-    // },
-    // {
-    // 	"name": "GLOB.API.Config",
-    // 	"path": "./GLOB/GLOB.API.Config"
-    // },
-    // {
-    // 	"name": "GLOB.API",
-    // 	"path": "./GLOB/GLOB.API"
-    // },
-    // {
-    // 	"name": "GLOB.Domain",
-    // 	"path": "./GLOB/GLOB.Domain"
-    // },
-    // {
-    // 	"name": "GLOB.Infra",
-    // 	"path": "./GLOB/GLOB.Infra"
-    // },
     {
-    	"name": "GLOB.Cache",
-    	"path": "./GLOB/GLOB.Cache"
-    },
-    // {
-    // 	"name": "GLOB.Job",
-    // 	"path": ".-/GLOB/GLOB.Job"
-    // },
-
-
-
-    // {
-    // 	"name": "Projects",
-    // 	"path": "./Projects/"
-    // },
-    // {
-    // 	"name": "SBA.APIGateway",
-    // 	"path": "./Projects/SBA.APIGateway"
-    // },
-    // {
-    //   "name": "SBA.Auth",
-    //   "path": "./Projects/SBA.Auth"
-    // },
-    {
-    	"name": "SBA.Hierarchy",
-    	"path": "./Projects/SBA.Hierarchy"
-    },
-
-    // {
-    // 	"name": "SBA.Userz",
-    // 	"path": "./Projects/SBA.Userz"
-    // },
-    // {
-    // 	"name": "SBA.Orderz",
-    // 	"path": "./Projects/SBA.Orderz"
-    // }
+      "name": "SBA.Hierarchy",
+      "path": "./Projects/SBA.Hierarchy"
+    }
   ],
   "settings": {
     "dotnet.defaultSolution": "sb-micro/SBA.sln"
