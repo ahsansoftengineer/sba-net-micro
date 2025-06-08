@@ -42,8 +42,10 @@ public class RedisCacheService
     if (Key == null) return null;
     var json = await _cache.GetStringAsync(Key);
     if (json != null && !string.IsNullOrEmpty(json))
+    {
+      Console.WriteLine($"---> Cache = {Key}");
       return JsonConvert.DeserializeObject(json);
-      
+    }
     return json ?? default;
   }
 

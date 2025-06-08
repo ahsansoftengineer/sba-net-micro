@@ -24,7 +24,8 @@ public class FilterCacheActionGets : IAsyncActionFilter
       await next();
       return;
     }
-
+    // await next();
+    // return;
     var route = context.RouteData.Values; // controller, action, Id
     string action = (string)route["action"];
 

@@ -1,3 +1,4 @@
+using System.Net;
 using GLOB.API.Config.Ext;
 using GLOB.API.Config.Srvc;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +29,7 @@ public class FilterCacheActionGet : IAsyncActionFilter
     var route = context.RouteData.Values; // controller, action, Id
     string Id = (string)route["Id"];
 
-    CacheModel cm = new ()
+    CacheModel cm = new()
     {
       Controller = descriptor.ControllerName,
     };
@@ -37,12 +38,25 @@ public class FilterCacheActionGet : IAsyncActionFilter
       cm.Res = Id;
 
     var cached = await _cache.Get(cm);
+   
     if (cached != null)
     {
-      Console.WriteLine("Reading Data from Cache -->");
       context.Result = new ObjectResult(cached);
       return;
     }
-  }
 
+
+
+    var executed = await next();
+
+    if (executed.Result is ObjectResult result)
+    {
+      HttpStatusCode status = (HttpStatusCode)result?.StatusCode;
+      if (status == HttpStatusCode.OK)
+      {
+        cm.Value = result.Value;
+        await _cache.Set(cm);
+      }
+    }
+  }
 }

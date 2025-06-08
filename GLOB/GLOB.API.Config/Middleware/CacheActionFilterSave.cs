@@ -47,21 +47,11 @@ public class FilterCacheActionSave : IAsyncActionFilter
     {
       HttpStatusCode status = (HttpStatusCode)result?.StatusCode;
 
-      if (status == HttpStatusCode.OK)
+      if (status == HttpStatusCode.OK || status == HttpStatusCode.Created)
       {
         Console.WriteLine($"Handling Action {action} Status {status} in Cache -->");
 
-        if (action == "Get")
-        {
-          cm.Value = result.Value;
-          await _cache.Set(cm);
-        }
-        else if (action == "Update")
-        {
-          cm.Value = result.Value;
-          await _cache.Set(cm);
-        }
-        else if (action == "Status")
+        if ("Update, Status".IndexOf(action) != -1)
         {
           cm.Value = result.Value;
           await _cache.Set(cm);
@@ -70,20 +60,20 @@ public class FilterCacheActionSave : IAsyncActionFilter
         {
           await _cache.Remove(cm);
         }
-      }
-      else if (action == "Create" && status == HttpStatusCode.Created)
-      {
-        var prop = result.Value?.GetType().GetProperty("Id");
-        var idValue = prop?.GetValue(result.Value, null);
-        if (idValue != null)
-          cm.Res = idValue.ToString();
-
-        cm.Value = new
+        else if (action == "Create")
         {
-          Record = result.Value,
-          Status = HttpStatusCode.OK
-        };
-        await _cache.Set(cm);
+          var prop = result.Value?.GetType().GetProperty("Id");
+          var id = prop?.GetValue(result.Value, null);
+          if (id != null)
+            cm.Res = id.ToString();
+
+          cm.Value = new
+          {
+            Record = result.Value,
+            Status = HttpStatusCode.OK
+          };
+          await _cache.Set(cm);
+        }
       }
     }
   }
@@ -92,7 +82,7 @@ public class FilterCacheActionSave : IAsyncActionFilter
   public static bool AllowToContinue(
     ActionExecutingContext context,
     out ControllerActionDescriptor? descriptor,
-    string Actions = "Create, Update, Delete, Status, Get"
+    string Actions = "Create, Update, Delete, Status"
     )
   {
     descriptor = context.ActionDescriptor as ControllerActionDescriptor;
