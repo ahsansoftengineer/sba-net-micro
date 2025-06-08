@@ -15,9 +15,6 @@ public class _GlobalLookupController : Project_RDS_Controller<_GlobalLookupContr
   [HttpPost]
   public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<GlobalLookupDtoSearch?> req)
   {
-    int x = 7070;
-    int y = 50;
-    Console.WriteLine(x +""+ y);
     return await _repo.ToActionGetsPaginate(req);
   }
   [HttpPost]

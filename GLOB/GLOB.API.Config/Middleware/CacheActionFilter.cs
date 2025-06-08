@@ -11,80 +11,68 @@ namespace GLOB.API.Config.Filterz;
 public class CacheActionFilter : IAsyncActionFilter
 {
   private readonly RedisCacheService _cache;
-  // private readonly string Prefix;
 
   public CacheActionFilter(IServiceProvider sp)
   {
     _cache = sp.GetSrvc<RedisCacheService>();
-    // Prefix = sp.GetSrvc<IOptions<AppSettings>>()?.Value?.ASPNETCORE_ROUTE_PREFIX ?? "No/Prefix";
   }
 
   public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
   {
     var descriptor = context.ActionDescriptor as ControllerActionDescriptor;
-    if (descriptor != null)
+    if (descriptor == null)
     {
-      var method = descriptor?.MethodInfo;
-      var controller = context.Controller.GetType();
+      await next();
+      return;
+    }
 
-      bool hasNoCache = method?.GetCustomAttribute<NoCacheAttribute>() != null ||
-                controller.GetCustomAttribute<NoCacheAttribute>() != null;
+    var method = descriptor.MethodInfo;
+    var controllerType = context.Controller.GetType();
 
-      if (hasNoCache)
+    bool hasNoCache = method?.GetCustomAttribute<NoCacheAttribute>() != null ||
+                      controllerType.GetCustomAttribute<NoCacheAttribute>() != null;
+
+    var cacheAttr = method?.GetCustomAttribute<CacheAttribute>() ??
+                    controllerType.GetCustomAttribute<CacheAttribute>();
+
+    if (hasNoCache || cacheAttr == null)
+    {
+      await next();
+      return;
+    }
+
+    var routeValues = context.RouteData.Values; // controller, action, Id
+    CacheModel cm = null;
+
+    if (routeValues.TryGetValue("Id", out object idObj) && idObj is string idStr)
+    {
+      cm = new CacheModel
       {
-        await next();
-        return;
-      }
-
-      var cacheAttr = method?.GetCustomAttribute<CacheAttribute>() ??
-        controller.GetCustomAttribute<CacheAttribute>();
-
-      if (cacheAttr == null)
-      {
-        await next();
-        return;
-      }
-
-      var routeValues = context.RouteData.Values;
-
-      CacheModel cm = null;
-      if (routeValues.TryGetValue("Id", out object Id))
-      {
-        cm = new()
-        {
-          Controller = descriptor.ControllerName,
-          // EP = descriptor.ActionName,
-          Res = (string)Id ?? ""
-        };
-      }
-      else
-      {
-        await next();
-        return;
-      }
-
-      var cached = await _cache.Get(cm);
-
-      if (cached != null)
-      {
-        Console.WriteLine("Reading Data from Cache --> ");
-        context.Result = new JsonResult(cached);
-        return;
-      }
-
-      var executed = await next();
-
-      if (executed.Result is ObjectResult result && result.StatusCode == 200)
-      {
-        cm.Value = ((ObjectResult)executed.Result).Value;
-
-        await _cache.Set(cm);
-      }
+        Controller = descriptor.ControllerName,
+        Res = idStr
+      };
     }
     else
     {
       await next();
+      return;
     }
 
+    var cached = await _cache.Get(cm);
+    if (cached != null)
+    {
+      Console.WriteLine("Reading Data from Cache -->");
+      // ✅ Return the actual cached object directly
+      context.Result = new ObjectResult(cached);
+      return;
+    }
+
+    var executed = await next();
+
+    if (executed.Result is ObjectResult result && result.StatusCode == 200)
+    {
+      cm.Value = result.Value;
+      await _cache.Set(cm);
+    }
   }
 }

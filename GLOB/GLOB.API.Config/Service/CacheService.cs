@@ -1,6 +1,7 @@
 using System.Text.Json;
 using GLOB.API.Config.Ext;
 using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json;
 using StackExchange.Redis;
 
 namespace GLOB.API.Config.Srvc;
@@ -33,7 +34,7 @@ public class RedisCacheService
       options.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(cm.Duration ?? 0);
 
 
-    var json = JsonSerializer.Serialize(cm.Value, jso);
+    var json = JsonConvert.SerializeObject(cm.Value);
     await _cache.SetStringAsync(Key, json, options);
   }
 
@@ -41,6 +42,9 @@ public class RedisCacheService
   {
     string Key = MrgKey(cm);
     var json = await _cache.GetStringAsync(Key);
+    if (json != null && !string.IsNullOrEmpty(json))
+      return JsonConvert.DeserializeObject(json);
+      
     return json ?? default;
   }
 
