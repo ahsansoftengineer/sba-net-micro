@@ -19,7 +19,7 @@ public class FilterCacheActionGet : IAsyncActionFilter
   public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
   {
     ControllerActionDescriptor? descriptor;
-    bool flowControl = FilterCacheActionSave.AllowToContinue(context, out descriptor, "Get");
+    bool flowControl = FilterCacheActionSave.AllowToContinue(context, out descriptor, "Gets");
     if (!flowControl)
     {
       await next();
@@ -27,15 +27,11 @@ public class FilterCacheActionGet : IAsyncActionFilter
     }
 
     var route = context.RouteData.Values; // controller, action, Id
-    string Id = (string)route["Id"];
 
     CacheModel cm = new()
     {
       Controller = descriptor.ControllerName,
     };
-
-    if (Id != null)
-      cm.Res = Id;
 
     var cached = await _cache.Get(cm);
    

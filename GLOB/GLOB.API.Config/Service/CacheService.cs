@@ -1,5 +1,5 @@
-using System.Text.Json;
 using GLOB.API.Config.Ext;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 using StackExchange.Redis;
@@ -10,6 +10,7 @@ public class RedisCacheService
 {
   private readonly IDistributedCache _cache;
   private readonly IConnectionMultiplexer _redis;
+  private readonly IServer _server;
   private readonly IConfiguration _config;
   private readonly string prefix;
 
@@ -18,6 +19,7 @@ public class RedisCacheService
     _cache = sp.GetSrvc<IDistributedCache>();
     _redis = sp.GetSrvc<IConnectionMultiplexer>(); ;
     _config = sp.GetSrvc<IConfiguration>();
+    _server = _redis.GetServer(_redis.GetEndPoints().First());
 
     prefix = _config.GetValueStr("ASPNETCORE_ROUTE_PREFIX").Replace("/", "-");
 
@@ -31,10 +33,31 @@ public class RedisCacheService
     if (cm.Duration != null)
       options.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(cm.Duration ?? 0);
 
-
     var json = JsonConvert.SerializeObject(cm.Value);
     await _cache.SetStringAsync(Key, json, options);
   }
+
+  public async Task Sets(CacheModel cm)
+  {
+    string Key = MrgKey(cm);
+    var options = new DistributedCacheEntryOptions();
+    if (cm.Duration != null)
+      options.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(cm.Duration ?? 0);
+    var items = (List<dynamic>)cm.Value;
+    if (items.Count > 0)
+    {
+      await _cache.SetStringAsync(Key, "All", options);
+      items.ForEach(async (item) =>
+      {
+        string json = JsonConvert.SerializeObject(item);
+        string key = Key.Replace("*", item.Id);
+        await _cache.SetStringAsync(key, json, options);
+      });
+    }
+  }
+
+
+
 
   public async Task<Object> Get(CacheModel cm)
   {
@@ -48,6 +71,20 @@ public class RedisCacheService
     }
     return json ?? default;
   }
+  public async Task<Object> Gets(CacheModel cm)
+  {
+    string? Key = MrgKey(cm);
+    _server.Keys(pattern: Key);
+    if (Key == null) return null;
+    var json = await _cache.GetStringAsync(Key);
+    if (json != null && !string.IsNullOrEmpty(json))
+    {
+      Console.WriteLine($"---> Cache = {Key}");
+      return JsonConvert.DeserializeObject(json);
+    }
+    return json ?? default;
+  }
+
 
   public async Task Remove(CacheModel cm)
   {
@@ -59,8 +96,7 @@ public class RedisCacheService
   public async Task RemoveAll(CacheModel cm)
   {
     string Key = MrgKey(cm);
-    var server = _redis.GetServer(_redis.GetEndPoints().First());
-    var keys = server.Keys(pattern: $"{Key}*");
+    var keys = _server.Keys(pattern: Key);
     foreach (var item in keys)
     {
       await _cache.RemoveAsync(item);
@@ -69,7 +105,7 @@ public class RedisCacheService
   public string? MrgKey(CacheModel? cm)
   {
     if (cm == null || cm?.Controller == null || cm?.Res == null) return null;
-    return $"{cm?.Prefix ?? prefix}:{cm?.Controller ?? "Controller"}-{cm?.EP ?? "EP"}:{cm?.Res ?? "Res"}";
+    return $"{cm?.Prefix ?? prefix}:{cm?.Controller ?? "Controller"}-{cm?.EP ?? "EP"}:{cm?.Res ?? "*"}";
   }
 }
 

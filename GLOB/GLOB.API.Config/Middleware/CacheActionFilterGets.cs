@@ -1,3 +1,4 @@
+using System.Net;
 using GLOB.API.Config.Ext;
 using GLOB.API.Config.Srvc;
 using Microsoft.AspNetCore.Mvc;
@@ -18,29 +19,44 @@ public class FilterCacheActionGets : IAsyncActionFilter
   public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
   {
     ControllerActionDescriptor? descriptor;
-    bool flowControl = FilterCacheActionSave.AllowToContinue(context, out descriptor, "Gets");
+    bool flowControl = FilterCacheActionSave.AllowToContinue(context, out descriptor, "Get");
     if (!flowControl)
     {
       await next();
       return;
     }
-    // await next();
-    // return;
-    var route = context.RouteData.Values; // controller, action, Id
-    string action = (string)route["action"];
 
-    CacheModel cm = new ()
+    var route = context.RouteData.Values; // controller, action, Id
+    string Id = (string)route["Id"];
+
+    CacheModel cm = new()
     {
       Controller = descriptor.ControllerName,
     };
 
-    // Serve From Cache 
+    if (Id != null)
+      cm.Res = Id;
+
     var cached = await _cache.Get(cm);
+   
     if (cached != null)
     {
-      Console.WriteLine("Reading Data from Cache -->");
       context.Result = new ObjectResult(cached);
       return;
+    }
+
+
+
+    var executed = await next();
+
+    if (executed.Result is ObjectResult result)
+    {
+      HttpStatusCode status = (HttpStatusCode)result?.StatusCode;
+      if (status == HttpStatusCode.OK)
+      {
+        cm.Value = result.Value;
+        await _cache.Set(cm);
+      }
     }
   }
 
