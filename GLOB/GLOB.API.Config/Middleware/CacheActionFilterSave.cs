@@ -6,15 +6,14 @@ using GLOB.API.Config.Srvc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Newtonsoft.Json;
 
 namespace GLOB.API.Config.Filterz;
 
-public class CacheActionFilter : IAsyncActionFilter
+public class FilterCacheActionSave : IAsyncActionFilter
 {
   private readonly RedisCacheService _cache;
 
-  public CacheActionFilter(IServiceProvider sp)
+  public FilterCacheActionSave(IServiceProvider sp)
   {
     _cache = sp.GetSrvc<RedisCacheService>();
   }
@@ -29,29 +28,17 @@ public class CacheActionFilter : IAsyncActionFilter
       return;
     }
 
-    var routeValues = context.RouteData.Values; // controller, action, Id
-    string action = (string)routeValues["action"];
-    string Id = (string)routeValues["Id"];
+    var route = context.RouteData.Values; // controller, action, Id
+    string action = (string)route["action"];
+    string Id = (string)route["Id"];
 
-    CacheModel cm = new ()
+    CacheModel cm = new()
     {
       Controller = descriptor.ControllerName,
     };
 
     if (Id != null)
       cm.Res = Id;
-
-    // Serve From Cache 
-    if (action == "Get")
-    {
-      var cached = await _cache.Get(cm);
-      if (cached != null)
-      {
-        Console.WriteLine("Reading Data from Cache -->");
-        context.Result = new ObjectResult(cached);
-        return;
-      }
-    }
 
     // Setting Cache By Read
     var executed = await next();
@@ -100,8 +87,13 @@ public class CacheActionFilter : IAsyncActionFilter
       }
     }
   }
+  
 
-  private static bool AllowToContinue(ActionExecutingContext context, out ControllerActionDescriptor? descriptor)
+  public static bool AllowToContinue(
+    ActionExecutingContext context,
+    out ControllerActionDescriptor? descriptor,
+    string Actions = "Create, Update, Delete, Status, Get"
+    )
   {
     descriptor = context.ActionDescriptor as ControllerActionDescriptor;
     if (descriptor == null)
@@ -121,7 +113,7 @@ public class CacheActionFilter : IAsyncActionFilter
 
     var action = (string)context.RouteData.Values["action"]; // controller, action, Id
 
-    if (action == null || "Create, Update, Delete, Status, Get".IndexOf(action) == -1)
+    if (action == null || Actions.IndexOf(action) == -1)
       return false;
 
     return true;

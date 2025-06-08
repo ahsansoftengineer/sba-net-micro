@@ -9,8 +9,10 @@ public static partial class DI_API_Config
   public static void Add_Cache_Redis(this IServiceCollection srvc, IConfiguration config)
   {
 
-    srvc.AddScoped<RedisCacheService>();
-    srvc.AddScoped<CacheActionFilter>();
+    srvc.AddSingleton<RedisCacheService>();
+    srvc.AddSingleton<FilterCacheActionGet>();
+    srvc.AddSingleton<FilterCacheActionGets>();
+    srvc.AddSingleton<FilterCacheActionSave>();
 
     srvc.AddStackExchangeRedisCache(options =>
     {

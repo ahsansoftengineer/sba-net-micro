@@ -49,7 +49,9 @@ public static partial class DI_API_Config
           //,VaryByQueryKeys = "Any Keys"
         });
 
-        opt.Filters.Add<CacheActionFilter>();
+        opt.Filters.Add<FilterCacheActionGet>();
+        opt.Filters.Add<FilterCacheActionGets>();
+        opt.Filters.Add<FilterCacheActionSave>();
 
         // NOTE: TODO: Uncomment For Auth
         // var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
