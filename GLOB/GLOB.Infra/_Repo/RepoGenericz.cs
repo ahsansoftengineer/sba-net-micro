@@ -61,10 +61,11 @@ public partial class RepoGenericz<T, TKey> : IRepoGenericz<T, TKey>
     await _db.AddRangeAsync(entities);
   }
 
-  public void Update(T entity)
+  public T Update(T entity)
   {
     _db.Attach(entity);
     _context.Entry(entity).State = EntityState.Modified;
+    return entity;
   }
   public void UpdateStatus(T entity, Status status)
   {

@@ -3,6 +3,7 @@ using GLOB.Infra.Base;
 using GLOB.Hierarchy.Global;
 using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;
+using GLOB.Infra.Paginate;
 
 namespace SBA.Hierarchy.Controllers;
 public class _GlobalLookupController : Project_RDS_Controller<_GlobalLookupController, GlobalLookup>
@@ -52,6 +53,6 @@ public class _GlobalLookupController : Project_RDS_Controller<_GlobalLookupContr
     var result = _mapper.Map(data, item);
     _repo.Update(item);
     await _uowProjectz.Save();
-    return NoContent();
+    return result.ToExtVMSingle().Ok();
   }
 }

@@ -55,9 +55,9 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
       if (item == null) return _Res.NotFoundId(Id);
 
       var result = _mapper.Map(data, item);
-      _repo.Update(result);
+      var dataz = _repo.Update(result);
       await _uowInfra.Save();
-      return result.ToExtVMSingle().Ok();
+      return dataz.ToExtVMSingle().Ok();
     }
     catch (Exception ex)
     {

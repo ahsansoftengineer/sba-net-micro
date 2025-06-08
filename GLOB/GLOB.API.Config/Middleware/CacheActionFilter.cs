@@ -33,20 +33,13 @@ public class CacheActionFilter : IAsyncActionFilter
     string action = (string)routeValues["action"];
     string Id = (string)routeValues["Id"];
 
-    CacheModel cm = new CacheModel
+    CacheModel cm = new ()
     {
       Controller = descriptor.ControllerName,
     };
 
     if (Id != null)
-    {
       cm.Res = Id;
-    }
-    else if (action != "Create")
-    {
-      await next();
-      return;
-    }
 
     // Serve From Cache 
     if (action == "Get")
@@ -124,6 +117,11 @@ public class CacheActionFilter : IAsyncActionFilter
                     controllerType.GetCustomAttribute<CacheAttribute>();
 
     if (hasNoCache || cacheAttr == null)
+      return false;
+
+    var action = (string)context.RouteData.Values["action"]; // controller, action, Id
+
+    if (action == null || "Create, Update, Delete, Status, Get".IndexOf(action) == -1)
       return false;
 
     return true;

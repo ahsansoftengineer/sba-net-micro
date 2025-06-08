@@ -26,7 +26,7 @@ public interface IRepoGenericz<T, TKey>
   
   Task<T> Insert(T entity);
   Task Delete(TKey Id);
-  void Update(T entity);
+  T Update(T entity);
   void UpdateStatus(T entity, Status status);
 
   Task InsertRange(IEnumerable<T> entities);
