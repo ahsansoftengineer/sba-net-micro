@@ -33,15 +33,14 @@ public class CacheActionFilter : IAsyncActionFilter
     string action = (string)routeValues["action"];
     string Id = (string)routeValues["Id"];
 
-    CacheModel cm = null;
+    CacheModel cm = new CacheModel
+    {
+      Controller = descriptor.ControllerName,
+    };
 
     if (Id != null)
     {
-      cm = new CacheModel
-      {
-        Controller = descriptor.ControllerName,
-        Res = Id
-      };
+      cm.Res = Id;
     }
     else if (action != "Create")
     {
@@ -50,12 +49,15 @@ public class CacheActionFilter : IAsyncActionFilter
     }
 
     // Serve From Cache 
-    var cached = await _cache.Get(cm);
-    if (cached != null && action == "Get")
+    if (action == "Get")
     {
-      Console.WriteLine("Reading Data from Cache -->");
-      context.Result = new ObjectResult(cached);
-      return;
+      var cached = await _cache.Get(cm);
+      if (cached != null)
+      {
+        Console.WriteLine("Reading Data from Cache -->");
+        context.Result = new ObjectResult(cached);
+        return;
+      }
     }
 
     // Setting Cache By Read
@@ -87,10 +89,16 @@ public class CacheActionFilter : IAsyncActionFilter
       }
       else if (action == "Create" && status == HttpStatusCode.Created)
       {
-        // ToExtVMSingle()
-        dynamic obj = result.Value;
-        cm.Res = obj?.Id;
-        cm.Value = result.Value;
+        var prop = result.Value?.GetType().GetProperty("Id");
+        var idValue = prop?.GetValue(result.Value, null);
+        if (idValue != null)
+          cm.Res = idValue.ToString();
+
+        cm.Value = new
+        {
+          Record = result.Value,
+          Status = HttpStatusCode.OK
+        };
         await _cache.Set(cm);
       }
       else if (action == "Delete" && status == HttpStatusCode.NoContent)
@@ -120,10 +128,4 @@ public class CacheActionFilter : IAsyncActionFilter
 
     return true;
   }
-}
-
-public interface IEntityAlpha
-{
-  public string Id { get; set; }
-  public string Name { get; set; }
 }

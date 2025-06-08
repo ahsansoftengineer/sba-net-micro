@@ -19,7 +19,7 @@ public class RedisCacheService
     _redis = sp.GetSrvc<IConnectionMultiplexer>(); ;
     _config = sp.GetSrvc<IConfiguration>();
 
-    prefix = _config.GetValueStr("ASPNETCORE_ROUTE_PREFIX").Replace("/", ":");
+    prefix = _config.GetValueStr("ASPNETCORE_ROUTE_PREFIX").Replace("/", "-");
 
     Console.WriteLine(prefix);
   }
@@ -28,8 +28,6 @@ public class RedisCacheService
   {
     string Key = MrgKey(cm);
     var options = new DistributedCacheEntryOptions();
-
-    var jso = new JsonSerializerOptions { WriteIndented = false };
     if (cm.Duration != null)
       options.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(cm.Duration ?? 0);
 
@@ -40,7 +38,8 @@ public class RedisCacheService
 
   public async Task<Object> Get(CacheModel cm)
   {
-    string Key = MrgKey(cm);
+    string? Key = MrgKey(cm);
+    if (Key == null) return null;
     var json = await _cache.GetStringAsync(Key);
     if (json != null && !string.IsNullOrEmpty(json))
       return JsonConvert.DeserializeObject(json);
@@ -50,8 +49,9 @@ public class RedisCacheService
 
   public async Task Remove(CacheModel cm)
   {
-    string Key = MrgKey(cm);
-    await _cache.RemoveAsync(Key);
+    string? Key = MrgKey(cm);
+    if (Key != null)
+      await _cache.RemoveAsync(Key);
   }
 
   public async Task RemoveAll(CacheModel cm)
@@ -64,9 +64,10 @@ public class RedisCacheService
       await _cache.RemoveAsync(item);
     }
   }
-  public string MrgKey(CacheModel cm)
+  public string? MrgKey(CacheModel? cm)
   {
-    return $"{cm?.Prefix ?? prefix}:{cm.Controller ?? "Controller"}:{cm.EP ?? "EP"}:{cm.Res ?? "Res"}".Replace("/", "-");
+    if (cm == null || cm?.Controller == null || cm?.Res == null) return null;
+    return $"{cm?.Prefix ?? prefix}:{cm?.Controller ?? "Controller"}-{cm?.EP ?? "EP"}:{cm?.Res ?? "Res"}";
   }
 }
 
