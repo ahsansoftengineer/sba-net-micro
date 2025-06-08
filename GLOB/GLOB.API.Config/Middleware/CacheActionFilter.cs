@@ -79,6 +79,10 @@ public class CacheActionFilter : IAsyncActionFilter
           cm.Value = result.Value;
           await _cache.Set(cm);
         }
+        else if (action == "Delete")
+        {
+          await _cache.Remove(cm);
+        }
       }
       else if (action == "Create" && status == HttpStatusCode.Created)
       {
@@ -93,10 +97,6 @@ public class CacheActionFilter : IAsyncActionFilter
           Status = HttpStatusCode.OK
         };
         await _cache.Set(cm);
-      }
-      else if (action == "Delete" && status == HttpStatusCode.NoContent)
-      {
-        await _cache.Remove(cm);
       }
     }
   }
