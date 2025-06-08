@@ -1,6 +1,6 @@
-using GLOB.API.Config.Attributez;
 using GLOB.API.Staticz;
 using GLOB.Infra.Base;
+using GLOB.Infra.Paginate;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;
@@ -55,9 +55,9 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
       if (item == null) return _Res.NotFoundId(Id);
 
       var result = _mapper.Map(data, item);
-      _repo.Update(item);
+      _repo.Update(result);
       await _uowInfra.Save();
-      return NoContent();
+      return result.ToExtVMSingle().Ok();
     }
     catch (Exception ex)
     {
