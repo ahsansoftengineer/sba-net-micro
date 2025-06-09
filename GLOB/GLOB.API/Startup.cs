@@ -2,10 +2,9 @@
 using GLOB.API.Config.DI;
 using GLOB.API.DI;
 using GLOB.API.Mapper;
-using GLOB.Infra.Data;
+using GLOB.Infra.Data.Sqlz;
 using GLOB.Infra.Data.Auth;
 using GLOB.Infra.DI;
-using GLOB.Infra.UOW_Projectz;
 
 namespace GLOB.API;
 // Note: Servicies are required when not in Micro Arch

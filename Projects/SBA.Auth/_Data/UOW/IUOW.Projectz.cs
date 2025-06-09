@@ -1,4 +1,4 @@
-using GLOB.Infra.UOW_Projectz;
+using GLOB.Infra.UOW;
 
 namespace SBA.Projectz.Data;
 

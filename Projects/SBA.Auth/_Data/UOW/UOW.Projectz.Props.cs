@@ -1,4 +1,4 @@
-using GLOB.Infra.UOW_Projectz;
+using GLOB.Infra.UOW;
 
 namespace SBA.Projectz.Data;
 public partial class UOW_Projectz : UOW_Infra, IUOW_Projectz

@@ -1,10 +1,11 @@
 using GLOB.Infra.Utils.Extz;
+using LinqKit;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 
-namespace GLOB.Infra.Utils.Srvcz;
+namespace GLOB.Infra.Data.Redisz;
 
 public class RedisCacheService
 {
@@ -25,7 +26,6 @@ public class RedisCacheService
 
     Console.WriteLine(prefix);
   }
-
   public async Task Set(CacheModel cm)
   {
     string Key = MrgKey(cm);
@@ -55,9 +55,7 @@ public class RedisCacheService
       });
     }
   }
-
-
-
+  
 
   public async Task<Object> Get(CacheModel cm)
   {
@@ -74,15 +72,25 @@ public class RedisCacheService
   public async Task<Object> Gets(CacheModel cm)
   {
     string? Key = MrgKey(cm);
-    _server.Keys(pattern: Key);
-    if (Key == null) return null;
-    var json = await _cache.GetStringAsync(Key);
-    if (json != null && !string.IsNullOrEmpty(json))
+    var hasList = await _cache.GetStringAsync(Key);
+    if (hasList == null || string.IsNullOrEmpty(hasList))
+      return null;
+
+    if (hasList == "true")
     {
+      var list = _server.Keys(pattern: Key.Replace("All", "*"));
+      list.ForEach((item) =>
+      {
+        Console.WriteLine(item);
+      });
+      // var parsedList = JsonConvert.DeserializeObject<List<object>>(list);
+
+
       Console.WriteLine($"---> Cache = {Key}");
-      return JsonConvert.DeserializeObject(json);
+      // return JsonConvert.DeserializeObject();
+      return null;
     }
-    return json ?? default;
+    return null;
   }
 
 

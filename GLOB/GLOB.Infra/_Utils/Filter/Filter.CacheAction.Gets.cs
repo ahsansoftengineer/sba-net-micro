@@ -1,57 +1,45 @@
 using System.Net;
 using GLOB.Infra.Utils.Extz;
-using GLOB.Infra.Utils.Srvcz;
+using GLOB.Infra.Data.Redisz;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace GLOB.Infra.Utils.MIddlewarez;
 
-public class FilterCacheActionGet : IAsyncActionFilter
+public class FilterCacheActionGets : IAsyncActionFilter
 {
   private readonly RedisCacheService _cache;
 
-  public FilterCacheActionGet(IServiceProvider sp)
+  public FilterCacheActionGets(IServiceProvider sp)
   {
     _cache = sp.GetSrvc<RedisCacheService>();
   }
 
   public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
   {
-
-    var route = context.RouteData.Values; // controller, action, Id
-    string Id = (string)route["Id"];
-    if (Id == null)
-    {
-      await next();
-      return;
-    }
-
     ControllerActionDescriptor? descriptor;
-    bool flowControl = FilterCacheActionSave.AllowToContinue(context, out descriptor, "Get");
+    bool flowControl = FilterCacheActionSave.AllowToContinue(context, out descriptor, "Gets");
     if (!flowControl)
     {
       await next();
       return;
     }
-
-      
+    string controller = descriptor.ControllerName;
 
     CacheModel cm = new()
     {
-      Controller = descriptor.ControllerName,
-      Res = Id
+      Controller = controller,
+      Res = "All"
     };
-
+    
     var cached = await _cache.Get(cm);
-   
+    
     if (cached != null)
     {
       context.Result = new ObjectResult(cached);
       return;
     }
-
-
 
     var executed = await next();
 
@@ -65,4 +53,5 @@ public class FilterCacheActionGet : IAsyncActionFilter
       }
     }
   }
+
 }

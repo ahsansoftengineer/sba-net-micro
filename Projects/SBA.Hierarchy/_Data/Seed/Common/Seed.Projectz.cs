@@ -1,4 +1,3 @@
-using GLOB.Infra.Seed;
 using GLOB.Projectz.Seed;
 using Microsoft.EntityFrameworkCore;
 

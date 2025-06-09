@@ -1,7 +1,7 @@
 using GLOB.Infra.Model.Base;
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.UOW_Projectz;
+namespace GLOB.Infra.UOW;
 public partial class UOW_Infra 
 {
   public readonly DbContext _context;

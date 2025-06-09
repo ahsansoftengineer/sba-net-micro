@@ -1,7 +1,7 @@
 using GLOB.Infra.Model.Base;
 using GLOB.Infra.Repo;
 
-namespace GLOB.Infra.UOW_Projectz;
+namespace GLOB.Infra.UOW;
 public interface IUOW_Infra : IDisposable
 {
   Task Save();

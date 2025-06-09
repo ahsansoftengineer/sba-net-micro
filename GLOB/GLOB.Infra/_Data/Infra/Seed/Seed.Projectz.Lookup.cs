@@ -1,9 +1,8 @@
 using GLOB.Infra.Model.Base;
 using GLOB.Infra.Enumz;
-using GLOB.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Seed;
+namespace GLOB.Infra.Data.Sqlz;
 public static partial class SeedzInfra
 {
   public static void SeedProjectzLookup(this DBCtx context)

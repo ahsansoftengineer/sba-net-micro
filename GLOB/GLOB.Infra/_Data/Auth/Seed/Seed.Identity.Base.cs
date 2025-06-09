@@ -1,13 +1,12 @@
-using GLOB.Infra.Data.Auth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
-using GLOB.Infra.Seed;
 using GLOB.Domain.Model.Auth;
+using GLOB.Infra.Data.Sqlz;
 
-namespace GLOB.Infra.Data.Seedz;
-public static partial class InfraSeederIdentity
+namespace GLOB.Infra.Data.Auth;
+public static partial class InfraSeedIdentity
 {
   public static IApplicationBuilder app;
   // Seed for Development through (CLI)

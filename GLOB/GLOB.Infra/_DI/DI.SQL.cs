@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using GLOB.Infra.UOW_Projectz;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using GLOB.Infra.UOW;
 
 namespace GLOB.Infra.DI;
 public static partial class DI_Infra
