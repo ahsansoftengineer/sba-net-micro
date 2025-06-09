@@ -13,7 +13,7 @@ public static partial class DI_Projectz
     srvc.Add_Projectz_Config_Options(config);
 
     //srvc.Add_Localization(config);
-    srvc.Add_Controller(config);
+    srvc.Add_Controller_Srvc_Extend(config);
 
     srvc.Add_Authentication_JWT(config)
         .Config_Social_Auth(config);

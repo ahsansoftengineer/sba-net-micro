@@ -1,10 +1,10 @@
-using GLOB.API.Config.Ext;
-using Microsoft.AspNetCore.Http.Features;
+using GLOB.Infra.Utils.Extz;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 
-namespace GLOB.API.Config.Srvc;
+namespace GLOB.Infra.Utils.Srvcz;
 
 public class RedisCacheService
 {

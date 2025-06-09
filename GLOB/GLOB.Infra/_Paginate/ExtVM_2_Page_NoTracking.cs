@@ -10,7 +10,7 @@ public static partial class ExtResponse
     this IQueryable<T> query,
     Expression<Func<T, bool>>? expression,
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy,
-    List<string>? Includes)
+    List<string?>? Includes)
     where T : class
   {
     return await query.ToExtQuery_Query(expression, orderBy, Includes).AsNoTracking().ToListAsync();

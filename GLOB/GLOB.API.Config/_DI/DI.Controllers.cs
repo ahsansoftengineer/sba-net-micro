@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Newtonsoft.Json;
 
 using GLOB.API.Config.Configz;
-using GLOB.API.Config.Filterz;
 using GLOB.API.Config.OptionSetup;
 using GLOB.API.Config.Ext;
 
@@ -31,7 +30,10 @@ public static partial class DI_API_Config
       await next();
     });
   }
-  public static void Add_Controller(this IServiceCollection srvc, IConfiguration config)
+  public static void Add_Controller(
+    this IServiceCollection srvc,
+    IConfiguration config,
+    Action<MvcOptions>? configureMvcOptions = null)
   {
     srvc
       // API Caching 3. Defining Cache Profile
@@ -48,10 +50,7 @@ public static partial class DI_API_Config
           //,VaryByHeader = "I don't know which string"
           //,VaryByQueryKeys = "Any Keys"
         });
-
-        opt.Filters.Add<FilterCacheActionGet>();
-        opt.Filters.Add<FilterCacheActionGets>();
-        opt.Filters.Add<FilterCacheActionSave>();
+        configureMvcOptions?.Invoke(opt);
 
         // NOTE: TODO: Uncomment For Auth
         // var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();

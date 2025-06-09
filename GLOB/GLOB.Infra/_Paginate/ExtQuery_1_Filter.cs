@@ -1,5 +1,5 @@
 using GLOB.Infra.Base;
-using GLOB.Domain.Extension;
+using GLOB.Infra.Utils.Extz;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;

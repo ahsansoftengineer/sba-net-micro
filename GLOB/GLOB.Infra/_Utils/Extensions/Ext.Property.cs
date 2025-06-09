@@ -1,5 +1,5 @@
-namespace GLOB.Domain.Extension;
-public static partial class Helperz
+namespace GLOB.Infra.Utils.Extz;
+public static partial class Ext
 {
     public static bool HasValidProperty<T>(this string propertyName)
     {

@@ -9,7 +9,7 @@ public static partial class ExtQuery
       this IQueryable<T> query,
       Expression<Func<T, bool>>? expression,
       Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy,
-      List<string>? Include)
+      List<string?>? Include)
     where T : class
   {
     if (expression != null)

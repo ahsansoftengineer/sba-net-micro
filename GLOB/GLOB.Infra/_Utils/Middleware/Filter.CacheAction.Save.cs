@@ -1,13 +1,13 @@
 using System.Net;
 using System.Reflection;
-using GLOB.API.Config.Attributez;
-using GLOB.API.Config.Ext;
-using GLOB.API.Config.Srvc;
+using GLOB.Infra.Utils.Attributez;
+using GLOB.Infra.Utils.Extz;
+using GLOB.Infra.Utils.Srvcz;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace GLOB.API.Config.Filterz;
+namespace GLOB.Infra.Utils.MIddlewarez;
 
 public class FilterCacheActionSave : IAsyncActionFilter
 {
@@ -45,7 +45,7 @@ public class FilterCacheActionSave : IAsyncActionFilter
 
     if (executed.Result is ObjectResult result)
     {
-      HttpStatusCode status = (HttpStatusCode)result?.StatusCode;
+      HttpStatusCode? status = (HttpStatusCode?)result?.StatusCode;
 
       if (status == HttpStatusCode.OK || status == HttpStatusCode.Created)
       {

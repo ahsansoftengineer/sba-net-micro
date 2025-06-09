@@ -5,8 +5,8 @@
 // using GLOB.Infra.Data.Auth;
 // using Microsoft.IdentityModel.Tokens;
 
-// namespace GLOB.Infra.Helper;
-// public static class HelperAuth
+// namespace GLOB.Infra.Utils.Extz;
+// public static partial class Ext
 // {
 //   public static string GenerateJwtToken(InfraUser user, JwtSettings opt)
 //   {

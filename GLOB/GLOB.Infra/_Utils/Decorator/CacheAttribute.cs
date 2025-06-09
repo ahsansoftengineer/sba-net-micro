@@ -1,4 +1,4 @@
-namespace GLOB.API.Config.Attributez;
+namespace GLOB.Infra.Utils.Attributez;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
 public class CacheAttribute : Attribute

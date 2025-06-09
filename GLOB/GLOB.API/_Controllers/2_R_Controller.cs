@@ -2,7 +2,6 @@ using GLOB.Infra.Base;
 using Microsoft.AspNetCore.Mvc;
 using GLOB.API.Staticz;
 using GLOB.Common.API;
-using GLOB.API.Config.Attributez;
 
 namespace GLOB.API.Controllers.Base;
 // Single, List, Group

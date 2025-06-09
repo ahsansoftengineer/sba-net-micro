@@ -1,6 +1,6 @@
 using System.Linq.Dynamic.Core;
 using GLOB.Infra.Base;
-using GLOB.Domain.Extension;
+using GLOB.Infra.Utils.Extz;
 
 namespace GLOB.Infra.Paginate;
 public static partial class ExtQuery
