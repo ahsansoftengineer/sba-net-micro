@@ -30,7 +30,7 @@ public class RedisCacheService
   {
     string Key = MrgKey(cm);
     var options = new DistributedCacheEntryOptions();
-    if (cm.Duration != null)
+    if (cm?.Duration != null)
       options.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(cm.Duration ?? 0);
 
     var json = JsonConvert.SerializeObject(cm.Value);
@@ -41,7 +41,7 @@ public class RedisCacheService
   {
     string Key = MrgKey(cm);
     var options = new DistributedCacheEntryOptions();
-    if (cm.Duration != null)
+    if (cm?.Duration != null)
       options.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(cm.Duration ?? 0);
     var items = (List<dynamic>)cm.Value;
     if (items.Count > 0)

@@ -13,7 +13,7 @@ public static partial class DI_API_Config
 
     srvc.AddSingleton<RedisCacheService>();
     srvc.AddSingleton<FilterCacheActionGet>();
-    srvc.AddSingleton<FilterCacheActionGets>();
+    // srvc.AddSingleton<FilterCacheActionGets>();
     srvc.AddSingleton<FilterCacheActionSave>();
 
     srvc.AddStackExchangeRedisCache(options =>

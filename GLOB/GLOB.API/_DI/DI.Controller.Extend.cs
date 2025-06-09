@@ -8,7 +8,7 @@ public static partial class DI_API
     srvc.Add_Controller(config, (opt) =>
     {
       opt.Filters.Add<FilterCacheActionGet>();
-      opt.Filters.Add<FilterCacheActionGets>();
+      // opt.Filters.Add<FilterCacheActionGets>();
       opt.Filters.Add<FilterCacheActionSave>();
     });
   }
