@@ -27,23 +27,19 @@ public class FilterCacheActionGets : IAsyncActionFilter
     }
     string controller = descriptor.ControllerName;
 
-    var cached = await _cache.Get(new()
+    CacheModel cm = new()
     {
       Controller = controller,
       Res = "All"
-    });
-
-
-    CacheModel cm = new() { Controller = controller };
+    };
+    
+    var cached = await _cache.Get(cm);
+    
     if (cached != null)
     {
-      cm.Value = await _cache.Gets(cm);
-
-      context.Result = new ObjectResult(cm.Value);
+      context.Result = new ObjectResult(cached);
       return;
     }
-
-
 
     var executed = await next();
 
@@ -53,7 +49,7 @@ public class FilterCacheActionGets : IAsyncActionFilter
       if (status == HttpStatusCode.OK)
       {
         cm.Value = result.Value;
-        await _cache.Sets(cm);
+        await _cache.Set(cm);
       }
     }
   }

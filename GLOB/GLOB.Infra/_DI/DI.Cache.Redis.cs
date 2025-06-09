@@ -22,8 +22,8 @@ public static partial class DI_Infra
     srvc.AddSingleton<RedisCacheService>();
 
     srvc.AddSingleton<FilterCacheActionGet>();
-    // srvc.AddSingleton<FilterCacheActionGets>();
     srvc.AddSingleton<FilterCacheActionSave>();
+    srvc.AddSingleton<FilterCacheActionGets>();
 
 
 

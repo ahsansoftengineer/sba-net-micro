@@ -35,8 +35,6 @@ public class FilterCacheActionGet : IAsyncActionFilter
       return;
     }
 
-      
-
     CacheModel cm = new()
     {
       Controller = descriptor.ControllerName,
@@ -50,8 +48,6 @@ public class FilterCacheActionGet : IAsyncActionFilter
       context.Result = new ObjectResult(cached);
       return;
     }
-
-
 
     var executed = await next();
 
