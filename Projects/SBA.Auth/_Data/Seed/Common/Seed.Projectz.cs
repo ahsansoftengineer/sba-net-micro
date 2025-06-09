@@ -1,5 +1,5 @@
 using GLOB.Infra.Data;
-using GLOB.Infra.Data.Seedz;
+using GLOB.Infra.Data.Auth;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Projectz.Data;

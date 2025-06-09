@@ -1,9 +1,8 @@
 using GLOB.Domain.Model.Auth;
-using GLOB.Infra.Data.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Seed;
+namespace GLOB.Infra.Data.Auth;
 public static partial class SeedzInfra
 {
   public static void SeedInfraUser(this ModelBuilder mb)

@@ -4,9 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
 
-namespace GLOB.API.Config.DI;
+namespace GLOB.Infra.DI;
 
-public static partial class DI_API_Config
+public static partial class DI_Infra
 {
   public static void Add_Infra_Cache_Redis(this IServiceCollection srvc, IConfiguration config)
   {

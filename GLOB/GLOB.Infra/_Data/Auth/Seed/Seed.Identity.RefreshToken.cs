@@ -3,7 +3,7 @@
 // using GLOB.Infra.Data.Auth;
 // using Microsoft.EntityFrameworkCore;
 
-// namespace GLOB.Infra.Seed;
+// namespace GLOB.Infra.Data.Auth;
 // public static partial class SeedzInfra
 // {
 //   public static void SeedRefreshToken(this ModelBuilder mb)
