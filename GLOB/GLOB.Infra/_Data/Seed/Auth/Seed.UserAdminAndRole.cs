@@ -1,10 +1,10 @@
 using System.Security.Claims;
-using GLOB.Domain.Auth;
+using GLOB.Domain.Model.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GLOB.Infra.Seed;
-public static partial class InfraSeeder
+public static partial class SeedzInfra
 {
   public static async Task SeedInfraRolesAndAdmin(IServiceProvider srvc)
   {

@@ -11,14 +11,14 @@ public static partial class Seeder
   {
     if (!context.GlobalLookupBases.Any(x => x.Id > 0))
     {
-      context.GlobalLookupBases.AddRange(InfraSeeder.SeedDataEntityBase<GlobalLookupBase>());
+      context.GlobalLookupBases.AddRange(SeedzInfra.SeedDataEntityBase<GlobalLookupBase>());
       context.SaveChanges();
     }
   }
   // For DB Context (Identity) (Dev CLI) 
   public static void SeedGlobalLookupBase(this ModelBuilder builder)
   {
-    builder.Entity<GlobalLookupBase>().HasData(InfraSeeder.SeedDataEntityBase<GlobalLookupBase>());
+    builder.Entity<GlobalLookupBase>().HasData(SeedzInfra.SeedDataEntityBase<GlobalLookupBase>());
   }
 
   

@@ -1,5 +1,5 @@
 using AutoMapper;
-using GLOB.Domain.Base;
+using GLOB.Infra.Model.Base;
 
 namespace GLOB.API.Mapper;
 

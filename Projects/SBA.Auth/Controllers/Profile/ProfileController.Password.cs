@@ -1,7 +1,7 @@
 using System.Net;
-using GLOB.API.Config.Configz;
+using GLOB.API.Config.Extz;
 using GLOB.API.Staticz;
-using GLOB.Domain.Auth;
+using GLOB.Domain.Model.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

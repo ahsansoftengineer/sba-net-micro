@@ -6,7 +6,7 @@ using System.Reflection;
 namespace GLOB.Infra.Paginate;
 public static partial class ExtQuery
 {
-  public static IQueryable<T> ToExtQueryInclues<T>(this IQueryable<T> source, List<string>? Include)
+  public static IQueryable<T> ToExtQueryInclues<T>(this IQueryable<T> source, List<string?>? Include)
     where T : class
   {
     if (Include == null || Include?.Count < 1) return source;
@@ -17,7 +17,7 @@ public static partial class ExtQuery
       Attribute.IsDefined(property, typeof(RemoteAttribute)) ||
       property.GetAccessors().Any(a => a.IsVirtual)
       );
-    IEqualityComparer<string> comparer = new CustomStringEqualityComparer();
+    IEqualityComparer<string?> comparer = new CustomStringEqualityComparer();
     var matchingProperties = navigationProperty.Select(x => x.Name).Intersect(Include, comparer);
 
     if (matchingProperties != null)

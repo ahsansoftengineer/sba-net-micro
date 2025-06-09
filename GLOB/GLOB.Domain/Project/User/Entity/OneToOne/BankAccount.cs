@@ -1,4 +1,4 @@
-using GLOB.Domain.Base;
+using GLOB.Infra.Model.Base;
 
 namespace GLOB.Domain.Hierarchy;
 public class BankAccount : EntityBase

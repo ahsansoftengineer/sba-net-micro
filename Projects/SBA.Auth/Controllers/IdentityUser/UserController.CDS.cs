@@ -1,6 +1,6 @@
 using GLOB.API.Staticz;
-using GLOB.Domain.Auth;
-using GLOB.Domain.Base;
+using GLOB.Domain.Model.Auth;
+using GLOB.Infra.Model.Base;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 

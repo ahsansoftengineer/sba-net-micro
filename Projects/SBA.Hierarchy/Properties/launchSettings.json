@@ -12,7 +12,7 @@
     "http": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchUrl": "/",
+      "launchUrl": "api/Hierarchy/v1/swagger/index.html",
       "launchBrowser": true,
       "applicationUrl": "http://localhost:1106",
       "environmentVariables": {

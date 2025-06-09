@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using GLOB.Domain.Base;
+using GLOB.Infra.Model.Base;
 namespace GLOB.Domain.Hierarchy;
 public abstract class UserNormal : BaseUser
 {

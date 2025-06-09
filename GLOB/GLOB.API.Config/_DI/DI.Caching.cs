@@ -3,13 +3,13 @@ public static partial class DI_API_Config
 {
   public static void Add_Caching(this IServiceCollection srvc)
   {
-      // API Throttling 1: Adding Service
-      // srvc.AddMemoryCache(); // Enable Production
-      // API Throttling 3
-      // srvc.Config_RateLimiting();
-      srvc.AddHttpContextAccessor();
-      // API Caching 6: Adding Services Extensions
-      srvc.Add_HttpCacheHeaders();
+    // API Throttling 1: Adding Service
+    // srvc.AddMemoryCache(); // Enable Production
+    // API Throttling 3
+    // srvc.Config_RateLimiting();
+    srvc.AddHttpContextAccessor();
+    // API Caching 6: Adding Services Extensions
+    srvc.Add_HttpCacheHeaders();
   }
   // API Caching : 5 with Marvin.Cache.Headers
   public static void Add_HttpCacheHeaders(this IServiceCollection srvc)
@@ -18,7 +18,7 @@ public static partial class DI_API_Config
     srvc.AddHttpCacheHeaders(
       (expirationOpt) =>
       {
-        expirationOpt.MaxAge = 65;
+        expirationOpt.MaxAge = 5;
         expirationOpt.CacheLocation = Marvin.Cache.Headers.CacheLocation.Private;
       },
       (validationOpt) =>
@@ -30,7 +30,6 @@ public static partial class DI_API_Config
   // CACHING VERSIONING ######################
   public static void Config_Caching(this IApplicationBuilder app)
   {
-
     // API Caching 2. Setting up Caching
     // app.UseResponseCaching(); // Enable Production
     // API Caching 7. Setting up Caching Profile at Globally

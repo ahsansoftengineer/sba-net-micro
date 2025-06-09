@@ -1,17 +1,15 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using GLOB.API.Config.Configz;
-using GLOB.API.Config.OptionSetup;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Newtonsoft.Json;
 
+using GLOB.API.Config.OptionSetup;
+using GLOB.API.Config.Extz;
+
 namespace GLOB.API.Config.DI;
+
 public static partial class DI_API_Config
 {
- 
+
   public static void Use_Controller(this IApplicationBuilder app)
   {
     IConfiguration config = app.GetSrvc<IConfiguration>();
@@ -31,7 +29,10 @@ public static partial class DI_API_Config
       await next();
     });
   }
-  public static void Add_Controller(this IServiceCollection srvc, IConfiguration config)
+  public static void Add_Controller(
+    this IServiceCollection srvc,
+    IConfiguration config,
+    Action<MvcOptions>? configureMvcOptions = null)
   {
     srvc
       // API Caching 3. Defining Cache Profile
@@ -39,7 +40,7 @@ public static partial class DI_API_Config
       {
         opt.Conventions.Add(new RouteTokenTransformerConvention(new KebabCaseRouteTransformer()));
         opt.Conventions.Insert(0, new GlobalRoutePrefixConvention(config.GetValueStr("ASPNETCORE_ROUTE_PREFIX")));
-        //opt.Filters<Filters>();
+
         opt.CacheProfiles.Add("120SecondsDuration", new CacheProfile
         {
           Duration = 5
@@ -48,7 +49,8 @@ public static partial class DI_API_Config
           //,VaryByHeader = "I don't know which string"
           //,VaryByQueryKeys = "Any Keys"
         });
-        
+        configureMvcOptions?.Invoke(opt);
+
         // NOTE: TODO: Uncomment For Auth
         // var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
         // opt.Filters.Add(new AuthorizeFilter(policy));

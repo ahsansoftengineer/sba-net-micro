@@ -6,6 +6,26 @@ docker run -e 'HOMEBREW_NO_ENV_FILTERING=1' -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=P
 docker container ls
 docker ps
 ```
+### DOCKER Redis
+#### Caching Criteria
+- Cache CUDS            [CacheKey = api/hierarchy/v1/contrller/1]
+- Cache Single          [CacheKey = api/hierarchy/v1/contrller/1]
+- Cache Full List       [CacheKey = api/hierarchy/v1/contrller/list]
+- Cache Full Options    [CacheKey = api/hierarchy/v1/contrller/options]
+- Cache Full Dictionary [CacheKey = api/hierarchy/v1/contrller/dictonary]
+```bash
+docker pull redis
+# docker run --name sba-redis-srvr -p 6379:6379 -d redis
+docker run --name sba-redis-srvr -p 6379:6379 -d redis redis-server --requirepass 'P@55w0rd!123'
+
+sudo apt install redis-tools
+
+redis-cli -a 'P@55w0rd!123'
+set myKey Ahsan
+get myKey
+
+
+```
 
 ### UBUNTU DOTNET INSTALLATION
 ```bash

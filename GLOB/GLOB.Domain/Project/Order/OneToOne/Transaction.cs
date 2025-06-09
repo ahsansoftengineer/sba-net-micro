@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using GLOB.Domain.Base;
-using GLOB.Domain.Enum;
+using GLOB.Infra.Model.Base;
+using GLOB.Domain.Enumz;
 
 namespace GLOB.Domain.Hierarchy;
 public class Transactionz : EntityBeta

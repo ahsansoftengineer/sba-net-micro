@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
-using GLOB.Domain.Base;
-using GLOB.Domain.Enums;
+using GLOB.Infra.Model.Base;
+using GLOB.Infra.Enumz;
+using GLOB.Domain.Enumz;
 
 namespace GLOB.Domain.DTOs.Donor;
 public class DonorGSBDto : DonorBasicDto

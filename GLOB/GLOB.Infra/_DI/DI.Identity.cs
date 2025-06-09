@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using GLOB.Infra.UOW_Projectz;
-using GLOB.Domain.Auth;
+using GLOB.Domain.Model.Auth;
 using GLOB.Infra.Data.Auth;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;

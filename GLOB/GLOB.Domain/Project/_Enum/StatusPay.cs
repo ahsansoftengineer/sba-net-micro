@@ -1,6 +1,6 @@
-using GLOB.Domain.Decorator;
+using GLOB.Infra.Utils.Attributez;
 
-namespace GLOB.Domain.Enum;
+namespace GLOB.Domain.Enumz;
 public enum STATUS_PAY
 {
   [EnumAtr("None")]

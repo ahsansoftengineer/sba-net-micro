@@ -1,28 +1,35 @@
-namespace GLOB.Domain.Enums;
+using GLOB.Infra.Utils.Attributez;
+
+namespace GLOB.Domain.Enumz;
+
 public enum DonationOption
 {
   OptionGSB,
   OptionSelf,
   OptionMarhoom
 }
-public enum Gender
+public enum GENDER
 {
-  None,
-  Male,
-  Female
+  [EnumAtr("None")]
+  NONE = 0,
+  [EnumAtr("Male")]
+  MALE = 1,
+  [EnumAtr("Female", "Icons")]
+  FEMALE = 2,
+  [EnumAtr("Other")]
+  OTHER = 3,
 }
-public enum Status
+public enum LANGUAGE
 {
-  None,
-  Active,
-  DeActive,
-  Delete
+  [EnumAtr("None")]
+  NONE = 0,
+  [EnumAtr("Urdu")]
+  URDU = 1,
+  [EnumAtr("English")]
+  ENG = 2,
 }
-public enum YesNo
-{
-  No,
-  Yes,
-}
+
+
 //public class Status
 //{
 //  private Status(string value) { Value = value; }

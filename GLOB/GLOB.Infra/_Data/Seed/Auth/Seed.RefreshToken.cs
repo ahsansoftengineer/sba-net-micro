@@ -1,10 +1,10 @@
-// using GLOB.Domain.Auth;
+// using GLOB.Domain.Model.Auth;
 // using GLOB.Infra.Data;
 // using GLOB.Infra.Data.Auth;
 // using Microsoft.EntityFrameworkCore;
 
 // namespace GLOB.Infra.Seed;
-// public static partial class InfraSeeder
+// public static partial class SeedzInfra
 // {
 //   public static void SeedRefreshToken(this ModelBuilder mb)
 //   {

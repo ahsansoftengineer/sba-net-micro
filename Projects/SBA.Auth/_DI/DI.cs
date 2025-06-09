@@ -1,5 +1,6 @@
 using GLOB.Infra.UOW_Projectz;
 using SBA.Projectz.Data;
+using GLOB.Infra.Data;
 using GLOB.Infra.DI;
 using GLOB.API.Config.DI;
 
@@ -12,7 +13,7 @@ public static partial class DI_Projectz
     srvc.Add_Projectz_Config_Options(config);
 
     //srvc.Add_Localization(config);
-    srvc.Add_Controller(config);
+    srvc.Add_Controller_Srvc_Extend(config);
 
     srvc.Add_Authentication_JWT(config)
         .Config_Social_Auth(config);
@@ -21,7 +22,7 @@ public static partial class DI_Projectz
     srvc.Add_Swagger(config);
     srvc.Add_Cors();
     // srvc.Add_DB_SQL_Identity<DBCtxIdentity, IUOW_Projectz, UOW_Projectz>(config);
-    srvc.Add_DB_SQL<DBCtxProjectzInfra, IUOW_Infra, UOW_Projectz>(config);
+    srvc.Add_DB_SQL<DBCtxInfra, IUOW_Infra, UOW_Projectz>(config);
     srvc.Add_DB_SQL_Identity<DBCtxProjectz, IUOW_Projectz, UOW_Projectz>(config);
     srvc.Config_Post_Authentication_JWT_Option();
     // srvc.AddAuthorization();

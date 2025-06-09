@@ -1,4 +1,4 @@
-using GLOB.Domain.Base;
+using GLOB.Infra.Model.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Paginate;
