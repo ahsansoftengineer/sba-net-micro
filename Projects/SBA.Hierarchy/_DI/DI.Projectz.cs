@@ -19,7 +19,7 @@ public static partial class DI_Projectz
     srvc.Add_Infra_DB_SQL<DBCtxInfra, IUOW_Infra, UOW_Projectz>(config);
     srvc.Add_Infra_DB_SQL<DBCtxProjectz, IUOW_Projectz, UOW_Projectz>(config);
 
-    // srvc.Config_Post_Authentication_JWT_Option(); // Because of Identity
+    // srvc.Add_API_Config_JWT_Option(); // Because of Identity
     srvc.AddAutoMapper(typeof(ProjectzMapper));
   }
 }

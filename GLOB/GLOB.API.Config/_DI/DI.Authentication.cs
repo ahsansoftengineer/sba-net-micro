@@ -69,7 +69,7 @@ public static partial class DI_API_Config
    
   }
 
-  public static void Config_Post_Authentication_JWT_Option(this IServiceCollection srvc)
+  public static void Add_API_Config_JWT_Option(this IServiceCollection srvc)
   {
     srvc.PostConfigure<AuthenticationOptions>(options =>
     {
