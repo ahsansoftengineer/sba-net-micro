@@ -9,7 +9,7 @@ public partial class DBCtxProjectz : DBCtx
   {
     ConfigManyToOne(mb);
     // ConfigMicroServiceArch(mb);
-    Seeder.Seed(mb);
+    SeedProjectz.Seed(mb);
     base.OnModelCreating(mb);
   }
 }

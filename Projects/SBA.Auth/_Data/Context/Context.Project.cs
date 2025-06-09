@@ -11,7 +11,7 @@ public partial class DBCtxProjectz : DBCtxIdentity
     ConfigManyToOne(mb);
     ConfigProjectzMapping(mb);
     // ConfigMicroServiceArch(mb);
-    Seeder.Seed(mb);
+    SeedProjectz.Seed(mb);
     base.OnModelCreating(mb);
   }
 }

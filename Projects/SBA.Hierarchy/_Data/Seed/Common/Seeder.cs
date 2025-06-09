@@ -3,7 +3,7 @@ using GLOB.Projectz.Seed;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Projectz.Data;
-public static partial class Seeder
+public static partial class SeedProjectz
 {
   // Dev (When Running Migration throw CLI)
   public static void Seed(this ModelBuilder mb)

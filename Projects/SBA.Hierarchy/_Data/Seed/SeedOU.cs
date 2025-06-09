@@ -2,7 +2,7 @@ using GLOB.Domain.Hierarchy;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Projectz.Data;
-public static partial class Seeder
+public static partial class SeedProjectz
 {
   public static void SeedOU(this DBCtxProjectz context)
   {
