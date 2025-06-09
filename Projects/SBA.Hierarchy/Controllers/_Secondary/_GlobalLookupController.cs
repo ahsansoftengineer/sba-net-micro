@@ -3,7 +3,7 @@ using GLOB.Infra.Model.Base;
 using GLOB.Hierarchy.Global;
 using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;
-using GLOB.Infra.Paginate;
+using GLOB.Infra.Utils.Paginate.Extz;
 
 namespace SBA.Hierarchy.Controllers;
 public class _GlobalLookupController : Project_RDS_Controller<_GlobalLookupController, GlobalLookup>
