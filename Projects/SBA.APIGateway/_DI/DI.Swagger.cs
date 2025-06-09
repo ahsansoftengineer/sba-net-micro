@@ -11,12 +11,12 @@ public static partial class DI_Projectz
   public static void Add_Swagger_Gateway(this IServiceCollection srvc, IConfiguration config)
   {
     srvc.Configure<SwaggerServicesOptions>(config.GetSection("SwaggerServices"));
-    srvc.Add_Swagger(config);
+    srvc.Add_API_Config_Swagger(config);
   }
 
   public static void Use_Swagger_Gateway(this IApplicationBuilder app)
   {
-    app.Use_Swagger((c) => {
+    app.Use_API_Config_Swagger((c) => {
       var Option = app.GetSrvc<IOptions<SwaggerServicesOptions>>();
       foreach (var service in Option?.Value?.Services)
       {
