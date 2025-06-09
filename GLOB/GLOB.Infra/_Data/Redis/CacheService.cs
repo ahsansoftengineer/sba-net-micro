@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 
-namespace GLOB.Infra.Utils.Srvcz;
+namespace GLOB.Infra.Data.Redisz;
 
 public class RedisCacheService
 {

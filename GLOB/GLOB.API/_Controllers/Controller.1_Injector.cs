@@ -3,7 +3,7 @@ using GLOB.API.Config.Configz;
 using GLOB.API.Config.Extz;
 using GLOB.Infra.UOW;
 using GLOB.Infra.Utils.Attributez;
-using GLOB.Infra.Utils.Srvcz;
+using GLOB.Infra.Data.Redisz;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
