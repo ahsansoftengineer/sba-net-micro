@@ -1,4 +1,4 @@
-using GLOB.Infra.Seedz;
+using GLOB.Infra.Data.Seedz;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Data;
