@@ -1,5 +1,5 @@
 using GLOB.API.Staticz;
-using GLOB.Infra.Base;
+using GLOB.Infra.Model.Base;
 using GLOB.Infra.Paginate;
 using Microsoft.AspNetCore.Mvc;
 

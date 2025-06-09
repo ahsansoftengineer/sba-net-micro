@@ -1,6 +1,6 @@
 using System.Security.Claims;
 using GLOB.API.Staticz;
-using GLOB.Domain.Auth;
+using GLOB.Domain.Model.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

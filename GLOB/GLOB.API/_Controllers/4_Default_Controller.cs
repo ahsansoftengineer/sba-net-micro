@@ -1,4 +1,4 @@
-using GLOB.Infra.Base;
+using GLOB.Infra.Model.Base;
 
 namespace GLOB.API.Controllers.Base;
 // Exting CRUD_SPO_Controller with Default Implementation

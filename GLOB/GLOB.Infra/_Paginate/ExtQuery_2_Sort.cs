@@ -1,5 +1,5 @@
 using System.Linq.Dynamic.Core;
-using GLOB.Infra.Base;
+using GLOB.Infra.Model.Base;
 using GLOB.Infra.Utils.Extz;
 
 namespace GLOB.Infra.Paginate;

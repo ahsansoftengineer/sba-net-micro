@@ -1,6 +1,6 @@
 using GLOB.API.Staticz;
-using GLOB.Domain.Auth;
-using GLOB.Infra.Base;
+using GLOB.Domain.Model.Auth;
+using GLOB.Infra.Model.Base;
 using GLOB.Domain.Contants;
 using GLOB.Infra.Paginate;
 using LinqKit;

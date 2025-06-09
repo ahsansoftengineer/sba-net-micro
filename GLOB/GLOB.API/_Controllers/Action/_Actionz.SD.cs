@@ -1,4 +1,4 @@
-using GLOB.Infra.Base;
+using GLOB.Infra.Model.Base;
 using GLOB.Infra.Enumz;
 using GLOB.Infra.Paginate;
 using GLOB.Infra.Repo;

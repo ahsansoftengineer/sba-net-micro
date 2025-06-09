@@ -1,4 +1,4 @@
-// using GLOB.Domain.Auth;
+// using GLOB.Domain.Model.Auth;
 // using GLOB.Infra.Data;
 // using GLOB.Infra.Data.Auth;
 // using Microsoft.EntityFrameworkCore;

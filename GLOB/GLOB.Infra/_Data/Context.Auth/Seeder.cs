@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using GLOB.Infra.Seed;
 using GLOB.Infra.Data;
-using GLOB.Domain.Auth;
+using GLOB.Domain.Model.Auth;
 
 namespace GLOB.Infra.Seedz;
 public static partial class InfraSeederIdentity

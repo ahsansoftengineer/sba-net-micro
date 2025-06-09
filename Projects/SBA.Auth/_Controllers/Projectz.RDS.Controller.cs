@@ -1,6 +1,6 @@
 using GLOB.API.Config.Ext;
 using GLOB.API.Controllers.Base;
-using GLOB.Infra.Base;
+using GLOB.Infra.Model.Base;
 using SBA.Projectz.Data;
 
 namespace SBA.Projectz.Controllers.Base;

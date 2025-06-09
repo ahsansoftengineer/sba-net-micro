@@ -1,5 +1,5 @@
 using System.Linq.Expressions;
-using GLOB.Infra.Base;
+using GLOB.Infra.Model.Base;
 
 namespace GLOB.Infra.Paginate;
 

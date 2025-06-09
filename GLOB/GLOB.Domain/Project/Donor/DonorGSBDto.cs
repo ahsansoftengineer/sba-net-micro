@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-using GLOB.Infra.Base;
+using GLOB.Infra.Model.Base;
 using GLOB.Infra.Enumz;
 using GLOB.Domain.Enumz;
 

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Http;
 
-namespace GLOB.Infra.Base;
+namespace GLOB.Infra.Model.Base;
 public abstract class BaseUser : EntityBase, IEntityBase
 {
   public string? UrlImg { get; set; }

@@ -1,5 +1,5 @@
 using GLOB.API.Staticz;
-using GLOB.Infra.Base;
+using GLOB.Infra.Model.Base;
 using GLOB.Domain.Hierarchy;
 using Microsoft.AspNetCore.Mvc;
 using SBA.Projectz.Controllers.Base;

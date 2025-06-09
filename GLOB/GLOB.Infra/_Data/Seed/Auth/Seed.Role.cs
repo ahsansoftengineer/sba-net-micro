@@ -1,4 +1,4 @@
-using GLOB.Domain.Auth;
+using GLOB.Domain.Model.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

@@ -1,7 +1,7 @@
 // using System.IdentityModel.Tokens.Jwt;
 // using System.Security.Claims;
 // using System.Text;
-// using GLOB.Domain.Auth;
+// using GLOB.Domain.Model.Auth;
 // using GLOB.Infra.Data.Auth;
 // using Microsoft.IdentityModel.Tokens;
 
