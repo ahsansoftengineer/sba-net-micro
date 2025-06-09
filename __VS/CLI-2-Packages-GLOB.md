@@ -13,12 +13,12 @@ dotnet add ./GLOB/GLOB.Infra/ package LinqKit.Core -v 1.2.5
 dotnet add ./GLOB/GLOB.Infra/ package Microsoft.AspNetCore.Authentication.JwtBearer -v 8.0.7
 dotnet add ./GLOB/GLOB.Infra/ package Microsoft.AspNetCore.Authentication.OpenIdConnect -v 8.0.7
 dotnet add ./GLOB/GLOB.Infra/ package Microsoft.AspNetCore.Mvc.NewtonsoftJson -v 6.0.16
-
 dotnet add ./GLOB/GLOB.Infra/ package Microsoft.EntityFrameworkCore -v 8.0.7
 dotnet add ./GLOB/GLOB.Infra/ package Microsoft.EntityFrameworkCore.Design -v 8.0.7
 dotnet add ./GLOB/GLOB.Infra/ package Microsoft.EntityFrameworkCore.DynamicLinq -v 8.4.4
 dotnet add ./GLOB/GLOB.Infra/ package Microsoft.EntityFrameworkCore.SqlServer -v 8.0.7
 dotnet add ./GLOB/GLOB.Infra/ package Microsoft.EntityFrameworkCore.Tools -v 8.0.7
+dotnet add ./GLOB/GLOB.Infra/ package Microsoft.Extensions.Caching.StackExchangeRedis -v 9.0.5
 
 dotnet add ./GLOB/GLOB.Infra/ package Microsoft.Extensions.Configuration -v 8.0.7
 dotnet add ./GLOB/GLOB.Infra/ package Microsoft.Extensions.Configuration.Json -v 8.0.7
@@ -47,7 +47,7 @@ dotnet add ./GLOB/GLOB.API.Config/ package Microsoft.Extensions.Caching.StackExc
 
 ### API
 ```bash
-
+dotnet add ./GLOB/GLOB.API.Config/ package RabbitMQ.Client -v 7.1.2
 ```
 
    
