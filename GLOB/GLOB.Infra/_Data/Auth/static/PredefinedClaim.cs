@@ -1,3 +1,4 @@
+namespace GLOB.Infra.Data.Auth;
 public class ACTION
 {
     public static readonly string ALL =  "ALL";

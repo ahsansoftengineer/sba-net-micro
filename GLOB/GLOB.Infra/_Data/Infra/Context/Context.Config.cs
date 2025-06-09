@@ -1,7 +1,7 @@
 using GLOB.Infra.Model.Base;
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Data;
+namespace GLOB.Infra.Data.Sqlz;
 public partial class DBCtx
 {
   public static void EntityMappingConfig(ModelBuilder mb)

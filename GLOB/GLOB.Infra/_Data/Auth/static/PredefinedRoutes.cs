@@ -1,4 +1,5 @@
 // ROUTE TABLE
+namespace GLOB.Infra.Data.Auth;
 public class ROUTES
 {
     public static readonly string USER_ADMIN = "USER_ADMIN";

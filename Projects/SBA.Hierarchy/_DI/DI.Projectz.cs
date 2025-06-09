@@ -1,10 +1,9 @@
-using GLOB.Infra.UOW_Projectz;
 using GLOB.Infra.DI;
-using GLOB.Infra.Data;
+using GLOB.Infra.Data.Sqlz;
 using SBA.Projectz.Data;
 using SBA.Projectz.Mapper;
 using GLOB.API.DI;
-using GLOB.API.Config.DI;
+using GLOB.Infra.UOW;
 
 namespace SBA.Projectz.DI;
 public static partial class DI_Projectz

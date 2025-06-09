@@ -1,8 +1,7 @@
 using GLOB.Infra.Model.Base;
-using GLOB.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Seed;
+namespace GLOB.Infra.Data.Sqlz;
 public static partial class SeedzInfra
 {
   // For DB Context (Normal) (Prod Automate) 

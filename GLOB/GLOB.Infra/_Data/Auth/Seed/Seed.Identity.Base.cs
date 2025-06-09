@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using GLOB.Domain.Model.Auth;
-using GLOB.Infra.Data.Seedz;
+using GLOB.Infra.Data.Sqlz;
 
 namespace GLOB.Infra.Data.Auth;
-public static partial class InfraSeederIdentity
+public static partial class InfraSeedIdentity
 {
   public static IApplicationBuilder app;
   // Seed for Development through (CLI)

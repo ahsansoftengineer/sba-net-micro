@@ -1,4 +1,4 @@
-using GLOB.Infra.Data;
+using GLOB.Infra.Data.Sqlz;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Projectz.Data;

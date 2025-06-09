@@ -1,8 +1,8 @@
-using GLOB.Infra.UOW_Projectz;
 using SBA.Projectz.Data;
-using GLOB.Infra.Data;
+using GLOB.Infra.Data.Sqlz;
 using GLOB.Infra.DI;
 using GLOB.API.Config.DI;
+using GLOB.Infra.UOW;
 
 namespace SBA.Projectz.DI;
 

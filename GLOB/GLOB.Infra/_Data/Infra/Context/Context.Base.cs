@@ -1,7 +1,6 @@
-using GLOB.Infra.Data.Seedz;
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Data;
+namespace GLOB.Infra.Data.Sqlz;
 public partial class DBCtx : DbContext
 {
   public DBCtx(DbContextOptions options) : base(options) { }

@@ -1,7 +1,7 @@
 using GLOB.Infra.Repo;
 using GLOB.Infra.Model.Base;
 
-namespace GLOB.Infra.UOW_Projectz;
+namespace GLOB.Infra.UOW;
 public partial class UOW_Infra : IUOW_Infra
 {
   private IRepoGenericz<ProjectzLookupBase>? _ProjectzLookupBase;

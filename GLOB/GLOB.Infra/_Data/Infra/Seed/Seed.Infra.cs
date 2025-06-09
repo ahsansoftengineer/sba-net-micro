@@ -1,9 +1,8 @@
-using GLOB.Infra.Seed;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GLOB.Infra.Data.Seedz;
+namespace GLOB.Infra.Data.Sqlz;
 public static partial class SeedzInfra
 {
   // Seed for Development through (CLI)

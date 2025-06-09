@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Data.Auth;
-public static partial class SeedzInfra
+public static partial class InfraSeedIdentity
 {
   public static void SeedInfraRole(this ModelBuilder mb)
   {

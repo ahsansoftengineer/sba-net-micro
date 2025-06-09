@@ -1,4 +1,5 @@
 using GLOB.Domain.Model.Auth;
+using GLOB.Infra.Data.Sqlz;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

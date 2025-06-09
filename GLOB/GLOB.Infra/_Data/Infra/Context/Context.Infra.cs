@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Data;
+namespace GLOB.Infra.Data.Sqlz;
 
 public class DBCtxInfra : DBCtx
 {
