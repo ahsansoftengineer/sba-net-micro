@@ -1,7 +1,7 @@
 using GLOB.Infra.Model.Base;
 using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Paginate;
+namespace GLOB.Infra.Utils.Paginate.Extz;
 
 public static partial class ExtResponse
 {

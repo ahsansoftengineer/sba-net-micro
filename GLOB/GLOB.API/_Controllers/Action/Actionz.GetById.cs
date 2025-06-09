@@ -1,5 +1,5 @@
 using GLOB.Infra.Model.Base;
-using GLOB.Infra.Paginate;
+using GLOB.Infra.Utils.Paginate.Extz;
 using GLOB.Infra.Repo;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

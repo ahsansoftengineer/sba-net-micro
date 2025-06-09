@@ -1,6 +1,6 @@
 using GLOB.Infra.Model.Base;
 using GLOB.Infra.Enumz;
-using GLOB.Infra.Paginate;
+using GLOB.Infra.Utils.Paginate.Extz;
 using GLOB.Infra.Repo;
 using GLOB.Infra.UOW_Projectz;
 using Microsoft.AspNetCore.Mvc;
