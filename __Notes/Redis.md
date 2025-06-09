@@ -1,5 +1,7 @@
 ### REDIS DOCS
 - appsettings.json
+- Filter Sets for Following Actions
+- - Get, Gets, Create, Delete, Update, Status,   
 ```json
 {
   "ASPNETCORE_ROUTE_PREFIX": "api/Auth/v1",
@@ -14,3 +16,4 @@
     srvc.Add_API_Controller_Srvc_Extend(config);
     srvc.Add_Infra_Cache_Redis(config);
 ```
+
