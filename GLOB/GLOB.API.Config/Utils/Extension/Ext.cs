@@ -12,7 +12,7 @@ public static partial class Extz
     catch(Exception ex) 
     {
       Console.WriteLine($"------------------------****-*-****------------------------");
-      Console.WriteLine($"Please Regiseter Service in DI {nameof(TService)}");
+      Console.WriteLine($"Please Regiseter Service in DI {typeof(TService).Name}");
       Console.WriteLine(ex.Message);
       return null;
     }

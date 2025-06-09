@@ -21,9 +21,10 @@ public static partial class DI_Projectz
 
     srvc.Add_Swagger(config);
     srvc.Add_Cors();
-    // srvc.Add_DB_SQL_Identity<DBCtxIdentity, IUOW_Projectz, UOW_Projectz>(config);
-    srvc.Add_DB_SQL<DBCtxInfra, IUOW_Infra, UOW_Projectz>(config);
-    srvc.Add_DB_SQL_Identity<DBCtxProjectz, IUOW_Projectz, UOW_Projectz>(config);
+    // srvc.Add_Infra_DB_SQL_Identity<DBCtxIdentity, IUOW_Projectz, UOW_Projectz>(config);
+    srvc.Add_Infra_Cache_Redis(config);
+    srvc.Add_Infra_DB_SQL<DBCtxInfra, IUOW_Infra, UOW_Projectz>(config);
+    srvc.Add_Infra_DB_SQL_Identity<DBCtxProjectz, IUOW_Projectz, UOW_Projectz>(config);
     srvc.Config_Post_Authentication_JWT_Option();
     // srvc.AddAuthorization();
     

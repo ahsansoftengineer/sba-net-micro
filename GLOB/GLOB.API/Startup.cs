@@ -21,8 +21,8 @@ public class Startup
   public void ConfigureServices(IServiceCollection srvc)
   {
     // srvc.Add_API_Default_Srvc(_config);
-    // srvc.Add_DB_SQL<DBCtx, IUOW_Infra, UOW_Infra>(_config);
-    // srvc.Add_DB_SQL_Identity<DBCtxIdentity, IUOW_Infra, UOW_Infra>(_config);
+    // srvc.Add_Infra_DB_SQL<DBCtx, IUOW_Infra, UOW_Infra>(_config);
+    // srvc.Add_Infra_DB_SQL_Identity<DBCtxIdentity, IUOW_Infra, UOW_Infra>(_config);
     // srvc.AddAutoMapper(typeof(API_Base_Mapper));
     // srvc.Add_API_Default_Srvc2();
   }
