@@ -19,7 +19,7 @@ public class FilterCacheActionGets : IAsyncActionFilter
   public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
   {
     ControllerActionDescriptor? descriptor;
-    bool flowControl = FilterCacheActionSave.AllowToContinue(context, out descriptor, "Get");
+    bool flowControl = FilterCacheActionSave.AllowToContinue(context, out descriptor, "Gets");
     if (!flowControl)
     {
       await next();

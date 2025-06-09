@@ -3,7 +3,7 @@ using AspNetCoreRateLimit;
 namespace GLOB.API.Config.DI;
 public static partial class DI_API_Config
 {
-  public static void Add_Versioning(this IServiceCollection srvc)
+  public static void Add_API_Config_Versioning(this IServiceCollection srvc)
   {
     srvc.AddApiVersioning(opt =>
     {
@@ -13,7 +13,7 @@ public static partial class DI_API_Config
     });
   }
   // API Throttling 2: 
-  public static void Config_RateLimiting(this IServiceCollection srvc)
+  public static void Add_API_Config_RateLimiting(this IServiceCollection srvc)
   {
     var rateLimitRules = new List<RateLimitRule>
     {

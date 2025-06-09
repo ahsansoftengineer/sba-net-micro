@@ -4,7 +4,7 @@ using GLOB.API.Config.Extz;
 namespace SBA.Projectz.DI;
 public static partial class DI_Projectz
 {
-  private static void Use_DevEnv(this IApplicationBuilder app)
+  private static void Use_API_Gateway_DevEnv(this IApplicationBuilder app)
   {
     var env = app.GetSrvc<IWebHostEnvironment>();
     Console.WriteLine($"Current Environment: {env.EnvironmentName}");
@@ -17,15 +17,15 @@ public static partial class DI_Projectz
   public static void Add_API_Default_Middlewares(this IApplicationBuilder app)
   {
     // app.UseMiddleware<GlobalExceptionMiddleware>();
-    // app.Use_ExceptionHandler();
-    app.Use_DevEnv();
+    // app.Use_API_Config_ExceptionHandler();
+    app.Use_API_Gateway_DevEnv();
     // app.UseHttpsRedirection();
-    // app.Config_Caching();
+    // app.Use_API_Config_Caching();
     app.UseRouting();
     // app.UseCors("AllowGateway");
     // app.UseAuthentication();
     // app.UseAuthorization();
-    app.Use_Controller();
+    app.Use_API_Config_Controller();
 
 
   }

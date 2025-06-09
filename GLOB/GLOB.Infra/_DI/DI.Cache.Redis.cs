@@ -8,12 +8,12 @@ namespace GLOB.API.Config.DI;
 
 public static partial class DI_API_Config
 {
-  public static void Add_Cache_Redis(this IServiceCollection srvc, IConfiguration config)
+  public static void Add_Infra_Cache_Redis(this IServiceCollection srvc, IConfiguration config)
   {
 
     srvc.AddSingleton<RedisCacheService>();
     srvc.AddSingleton<FilterCacheActionGet>();
-    srvc.AddSingleton<FilterCacheActionGets>();
+    // srvc.AddSingleton<FilterCacheActionGets>();
     srvc.AddSingleton<FilterCacheActionSave>();
 
     srvc.AddStackExchangeRedisCache(options =>

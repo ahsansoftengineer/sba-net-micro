@@ -10,7 +10,7 @@ namespace GLOB.API.Config.DI;
 public static partial class DI_API_Config
 {
 
-  public static void Use_Controller(this IApplicationBuilder app)
+  public static void Use_API_Config_Controller(this IApplicationBuilder app)
   {
     IConfiguration config = app.GetSrvc<IConfiguration>();
     string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX"); //"api/Hierarchy/v1";
@@ -29,7 +29,7 @@ public static partial class DI_API_Config
       await next();
     });
   }
-  public static void Add_Controller(
+  public static void Add_API_Config_Controller(
     this IServiceCollection srvc,
     IConfiguration config,
     Action<MvcOptions>? configureMvcOptions = null)
