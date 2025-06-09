@@ -1,4 +1,4 @@
-using GLOB.API.Config.Ext;
+using GLOB.API.Config.Extz;
 using GLOB.API.Controllers.Base;
 using GLOB.Infra.Model.Base;
 using SBA.Projectz.Data;

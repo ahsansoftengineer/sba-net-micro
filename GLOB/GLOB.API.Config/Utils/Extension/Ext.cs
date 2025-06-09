@@ -1,6 +1,6 @@
-namespace GLOB.API.Config.Ext;
+namespace GLOB.API.Config.Extz;
 
-public static class Ext
+public static partial class Extz
 {
   public static TService GetSrvc<TService>(this IServiceProvider sp)
     where TService: class

@@ -2,9 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Newtonsoft.Json;
 
-using GLOB.API.Config.Configz;
 using GLOB.API.Config.OptionSetup;
-using GLOB.API.Config.Ext;
+using GLOB.API.Config.Extz;
 
 namespace GLOB.API.Config.DI;
 

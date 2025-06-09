@@ -1,5 +1,5 @@
 using GLOB.API.Config.DI;
-using GLOB.API.Config.Ext;
+using GLOB.API.Config.Extz;
 using Microsoft.Extensions.Options;
 using SBA.APIGateway.Model;
 

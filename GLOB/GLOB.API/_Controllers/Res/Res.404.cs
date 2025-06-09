@@ -1,4 +1,4 @@
-using GLOB.API.Config.Configz;
+using GLOB.API.Config.Extz;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -26,7 +26,7 @@ public static partial class _Res
     var modelState = new ModelStateDictionary();
     modelState.AddModelError(key, $"Invalid {key} {id} does not exsist");
 
-    var errors = ExtConfig.ToExtValidationError(modelState);
+    var errors = modelState.ToExtValidationError();
     return new NotFoundObjectResult(new
     {
         Errors = errors,
