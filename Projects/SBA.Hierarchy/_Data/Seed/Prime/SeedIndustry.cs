@@ -3,7 +3,7 @@ using GLOB.Infra.Seed;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Projectz.Data;
-public static partial class Seeder
+public static partial class SeedProjectz
 {
   public static void SeedIndustry(this DBCtxProjectz context)
   {

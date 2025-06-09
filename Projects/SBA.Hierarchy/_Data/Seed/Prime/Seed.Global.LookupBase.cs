@@ -4,7 +4,7 @@ using SBA.Projectz.Data;
 using GLOB.Infra.Seed;
 
 namespace GLOB.Projectz.Seed;
-public static partial class Seeder
+public static partial class SeedProjectz
 {
   // For DB Context (Normal) (Prod Automate) 
   public static void SeedGlobalLookupBase(this DBCtxProjectz context)

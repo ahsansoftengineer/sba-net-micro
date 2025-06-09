@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SBA.Projectz.Data;
 
 namespace GLOB.Projectz.Seed;
-public static partial class Seeder
+public static partial class SeedProjectz
 {
   public static void SeedGlobalLookup(this DBCtxProjectz context)
   {
