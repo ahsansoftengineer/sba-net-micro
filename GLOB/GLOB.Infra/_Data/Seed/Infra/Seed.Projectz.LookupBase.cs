@@ -3,7 +3,7 @@ using GLOB.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Seed;
-public static partial class InfraSeeder
+public static partial class SeedzInfra
 {
   // For DB Context (Normal) (Prod Automate) 
   public static void SeedProjectzLookupBase(this DBCtx context)

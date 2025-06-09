@@ -2,7 +2,7 @@ using GLOB.Infra.Model.Base;
 using GLOB.Infra.Enumz;
 
 namespace GLOB.Infra.Seed;
-public static partial class InfraSeeder
+public static partial class SeedzInfra
 {
   // // For DB Context (Normal) (Prod Automate) 
   // public static void SeedTestInfra(this DBCtx context)
