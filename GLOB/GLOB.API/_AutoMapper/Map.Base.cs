@@ -8,7 +8,7 @@ public partial class API_Base_Mapper : Profile
   public API_Base_Mapper()
   {
     MapCommon();
-    MapAll();
+    MapCustom();
   }
   // Used When The Base (Dtos and Entity)
   protected void CreateMap_Entity_DefaultDtos<TEntity>()
