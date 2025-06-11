@@ -1,4 +1,4 @@
-################~~~~ rbmq SBA Hierarchy ~~~~~##################
+################~~~~ Rabbit MQ SBA ~~~~~##################
 #### Run Command
 ## BASH
 # kubectl apply -f ./__K8S/A_DEPL_Broker/depl-rbmq-sba.yaml
@@ -14,7 +14,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: depl-rbmq-sba
+  name: depl-rabbitmq-sba
 spec:
   replicas: 1
   selector:
