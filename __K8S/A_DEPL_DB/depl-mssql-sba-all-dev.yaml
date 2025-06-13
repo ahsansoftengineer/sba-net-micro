@@ -1,9 +1,9 @@
 ################~~~~ DB SBA Hierarchy ~~~~~##################
 #### Run Command
 ## BASH
-# kubectl apply -f ./__K8S/A_DEPL_DB/depl-mssql-sba-all-dev.yaml
-# kubectl delete -f ./__K8S/A_DEPL_DB/depl-mssql-sba-all-dev.yaml
-# kubectl rollout restart deployments depl-mssql-sba-all-dev
+# kubectl apply -f ./__K8S/A_DEPL_DB/depl-mssql-sba-dev.yaml
+# kubectl delete -f ./__K8S/A_DEPL_DB/depl-mssql-sba-dev.yaml
+# kubectl rollout restart deployments depl-mssql-sba-dev
 
 ## Connect
 # Server=127.0.0.1,1433;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;
@@ -14,12 +14,12 @@
 # - This Task Done Only Once
 # - Creating Claim for Database
 # kubectl get pvc
-# kubectl get pvc claim-mssql-sba-all-dev
-# kubectl delete pvc claim-mssql-sba-all-dev
+# kubectl get pvc claim-mssql-sba-dev
+# kubectl delete pvc claim-mssql-sba-dev
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: claim-mssql-sba-all-dev
+  name: claim-mssql-sba-dev
 spec:
   resources:
     requests:
@@ -32,21 +32,21 @@ spec:
 
 #### (3) DB Deployment (Hierarchy) 
 # - kubectl get deployment
-# - kubectl get deployment depl-mssql-sba-all-dev
-# - kubectl delete deployment depl-mssql-sba-all-dev
+# - kubectl get deployment depl-mssql-sba-dev
+# - kubectl delete deployment depl-mssql-sba-dev
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: depl-mssql-sba-all-dev
+  name: depl-mssql-sba-dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mssql-sba-all-dev
+      app: mssql-sba-dev
   template:
     metadata:
       labels:
-        app: mssql-sba-all-dev
+        app: mssql-sba-dev
     spec:
       containers:
         - name: mssql
@@ -86,7 +86,7 @@ spec:
       volumes:
         - name: mssqldb
           persistentVolumeClaim:
-            claimName: claim-mssql-sba-all-dev
+            claimName: claim-mssql-sba-dev
 
 ---
 #------------------------------------------------------------------------- 
@@ -94,15 +94,15 @@ spec:
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
 # - kubectl get svc
-# - kubectl get svc srvc-cip-mssql-sba-all-dev
+# - kubectl get svc srvc-cip-mssql-sba-dev
 apiVersion: v1
 kind: Service
 metadata:
-  name: srvc-cip-mssql-sba-all-dev
+  name: srvc-cip-mssql-sba-dev
 spec:
   type: ClusterIP
   selector:
-    app: mssql-sba-all-dev
+    app: mssql-sba-dev
   ports:
     - name: mssql
       protocol: TCP
@@ -114,17 +114,17 @@ spec:
 #### (6) DB LoadBalancer (Hierarchy)
 # - We need LoadBalancer for External Service Access
 # - No Production Required
-# - kubectl get svc srvc-lb-mssql-sba-all-dev
+# - kubectl get svc srvc-lb-mssql-sba-dev
 ## Creadentials for LoadBalancer
 # - 127.0.0.1,1433 sa 'P@55w0rd!123'
 apiVersion: v1
 kind: Service
 metadata:
-  name: srvc-lb-mssql-sba-all-dev
+  name: srvc-lb-mssql-sba-dev
 spec:
   type: LoadBalancer
   selector:
-    app: mssql-sba-all-dev
+    app: mssql-sba-dev
   ports:
     - protocol: TCP
       port: 1433
