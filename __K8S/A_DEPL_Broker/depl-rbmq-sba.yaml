@@ -14,7 +14,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: depl-rabbitmq-sba
+  name: depl-rbmq-sba
 spec:
   replicas: 1
   selector:
