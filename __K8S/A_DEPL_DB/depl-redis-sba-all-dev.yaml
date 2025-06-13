@@ -95,13 +95,13 @@ spec:
 #### (6) Redis LoadBalancer (Hierarchy)
 # - We need LoadBalancer for External Service Access
 # - No Production Required
-# - kubectl get svc srvc-loadbalancer-redis-sba-all-dev
+# - kubectl get svc srvc-lb-redis-sba-all-dev
 ## Credentials for LoadBalancer
 # - 127.0.0.1,6379 'P@55w0rd!123'
 apiVersion: v1
 kind: Service
 metadata:
-  name: srvc-loadbalancer-redis-sba-all-dev
+  name: srvc-lb-redis-sba-all-dev
 spec:
   type: LoadBalancer
   selector:

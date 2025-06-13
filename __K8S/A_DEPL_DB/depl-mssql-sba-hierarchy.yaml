@@ -145,13 +145,13 @@ spec:
 #### (6) DB LoadBalancer (Hierarchy) (Optional)
 # - We need LoadBalancer for External Service Access
 # - No Production Required
-# - kubectl get svc srvc-loadbalancer-mssql-sba-hierarchy
+# - kubectl get svc srvc-lb-mssql-sba-hierarchy
 ## Creadentials for LoadBalancer
 # - 127.0.0.1,31807 sa 'P@55w0rd!123'
 apiVersion: v1
 kind: Service
 metadata:
-  name: srvc-loadbalancer-mssql-sba-hierarchy
+  name: srvc-lb-mssql-sba-hierarchy
 spec:
   type: LoadBalancer
   selector:
