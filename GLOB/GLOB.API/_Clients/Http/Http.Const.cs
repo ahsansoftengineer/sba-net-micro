@@ -1,4 +1,4 @@
-namespace GLOB.API.Http;
+namespace GLOB.API.Clientz;
 
 public static class Srvc
 {

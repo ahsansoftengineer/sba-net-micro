@@ -1,6 +1,6 @@
 using GLOB.API.Staticz;
 
-namespace GLOB.API.Http;
+namespace GLOB.API.Clientz;
 
 public partial class Httpz
 {

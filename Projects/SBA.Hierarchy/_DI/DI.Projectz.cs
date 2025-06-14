@@ -4,7 +4,7 @@ using SBA.Projectz.Data;
 using SBA.Projectz.Mapper;
 using GLOB.API.DI;
 using GLOB.Infra.UOW;
-using GLOB.API.Http;
+using GLOB.API.Clientz;
 
 namespace SBA.Projectz.DI;
 public static partial class DI_Projectz

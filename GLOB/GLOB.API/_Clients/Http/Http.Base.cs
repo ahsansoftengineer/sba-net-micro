@@ -2,7 +2,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using GLOB.API.Staticz;
 
-namespace GLOB.API.Http;
+namespace GLOB.API.Clientz;
 
 public class HttpBase
 {

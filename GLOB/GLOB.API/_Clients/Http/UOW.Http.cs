@@ -4,7 +4,7 @@ using GLOB.API.Config.Configz;
 using GLOB.API.Config.Extz;
 using Microsoft.Extensions.Options;
 
-namespace GLOB.API.Http;
+namespace GLOB.API.Clientz;
 
 public partial class UOW_Httpz
 {
