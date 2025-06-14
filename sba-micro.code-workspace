@@ -1,6 +1,10 @@
 {
   "folders": [
     {
+      "name": "__",
+      "path": "./__"
+    },
+    {
       "name": "GLOB",
       "path": "./GLOB"
     },
