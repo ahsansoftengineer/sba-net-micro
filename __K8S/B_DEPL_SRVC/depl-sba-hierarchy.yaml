@@ -55,14 +55,14 @@ spec:
               value: "Server=srvc-cip-mssql-sba-dev.default.svc.cluster.local,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
               # value: "Server=srvc-cip-mssql-sba-hierarchy,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
 
-            - name: SrvcMsg__RabbitMQHost
+            - name: Clientz__RabbitMQHost
               value: srvc-cip-rbmq-sba
-            - name: SrvcMsg__RabbitMQPort
+            - name: Clientz__RabbitMQPort
               value: 5672
             
-            - name: SrvcHttp__Gateway
+            - name: Clientz__Http__Gateway
               value: http://srvc-cip-sba-api-gateway:1100
-            - name: SrvcHttp__Auth
+            - name: Clientz__Http__Auth
               value: http://srvc-cip-sba-auth:1102
 
 ---
