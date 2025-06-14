@@ -23,7 +23,7 @@ public static partial class DI_Infra
 
     srvc.AddSingleton<FilterCacheActionGet>();
     srvc.AddSingleton<FilterCacheActionSave>();
-    srvc.AddSingleton<FilterCacheActionGets>();
+    // srvc.AddSingleton<FilterCacheActionGets>();
 
 
 

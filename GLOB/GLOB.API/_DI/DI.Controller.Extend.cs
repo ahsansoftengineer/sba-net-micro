@@ -9,7 +9,7 @@ public static partial class DI_API
     {
       opt.Filters.Add<FilterCacheActionGet>();
       opt.Filters.Add<FilterCacheActionSave>();
-      opt.Filters.Add<FilterCacheActionGets>();
+      // opt.Filters.Add<FilterCacheActionGets>();
     });
   }
 }
