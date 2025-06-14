@@ -16,5 +16,5 @@ public partial class UOW_Httpz
     _appSettings = sp.GetSrvc<IOptions<AppSettings>>().Value;
   }
 
-  public Httpz AuthLookupBaseHttpz => _AuthLookupBaseHttpz = new Httpz(_appSettings.SrvcHttp.Auth, Srvc.Auth, Controllerz.ProjectzLookup) ;
+  public Httpz AuthLookupBaseHttpz => _AuthLookupBaseHttpz = new Httpz(_appSettings.Clientz.Httpz.Auth, Srvc.Auth, Controllerz.ProjectzLookup) ;
 }

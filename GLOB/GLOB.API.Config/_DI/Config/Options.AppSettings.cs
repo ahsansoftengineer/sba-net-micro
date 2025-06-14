@@ -15,7 +15,7 @@ public class AppSettings
 
   public ConnectionStrings? ConnectionStrings { get; set; }
 
-  public SrvcHttp? SrvcHttp { get; set; }
-  public SrvcGRPC? SrvcGRPC { get; set; }
-  public SrvcRabbitMQ? SrvcRabbitMQ { get; set; }
+  public ClientzSettings Clientz { get; set; }
 }
+
+

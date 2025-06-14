@@ -34,6 +34,18 @@ public static partial class Extz
     }
     return result;
   }
+  public static int GetValueInt(this IConfiguration configuration, string key)
+  {
+    string result = configuration.GetValue(key, default(string));
+    if (string.IsNullOrEmpty(result)){
+      string msg = $"Env has no Value for [{key}]";
+      Console.WriteLine(msg);
+      return 0;
+    }
+    int value = 0;
+    int.TryParse(result, out value);
+    return value;
+  }
   public static T GetSrvc<T>(this IApplicationBuilder app)
     where T : notnull
   {
