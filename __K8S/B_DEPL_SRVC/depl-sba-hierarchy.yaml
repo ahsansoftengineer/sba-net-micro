@@ -50,10 +50,16 @@ spec:
             - name: ASPNETCORE_URLS
               value: http://+:1106
             - name: ConnectionStrings__Redis
-              value: "localhost:6379,password=P@55w0rd!123"
+              value: "srvc-cip-redis-sba-dev:6379,password=P@55w0rd!123"
             - name: ConnectionStrings__SqlConnection
-              value: "Server=srvc-cip-mssql-sba-all-dev.default.svc.cluster.local,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+              value: "Server=srvc-cip-mssql-sba-dev.default.svc.cluster.local,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
               # value: "Server=srvc-cip-mssql-sba-hierarchy,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+
+            - name: SrvcMsg__RabbitMQHost
+              value: srvc-cip-rbmq-sba
+            - name: SrvcMsg__RabbitMQPort
+              value: 5672
+            
             - name: SrvcHttp__Gateway
               value: http://srvc-cip-sba-api-gateway:1100
             - name: SrvcHttp__Auth
