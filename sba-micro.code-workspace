@@ -1,13 +1,21 @@
 {
   "folders": [
     {
-      "name": "sb-micro",
-      "path": "."
+      "name": "GLOB",
+      "path": "./GLOB"
+    },
+    {
+      "name": "SBA.Auth",
+      "path": "./Projects/SBA.Auth"
     },
     {
       "name": "SBA.Hierarchy",
       "path": "./Projects/SBA.Hierarchy"
-    }
+    },
+    {
+      "name": "sb-micro",
+      "path": "."
+    },
   ],
   "settings": {
     "dotnet.defaultSolution": "sb-micro/SBA.sln"

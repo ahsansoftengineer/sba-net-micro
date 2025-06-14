@@ -5,45 +5,71 @@ using GLOB.API.Staticz;
 using GLOB.Infra.Model.Base;
 using GLOB.Infra.Utils.Paginate.Extz;
 using Microsoft.AspNetCore.Mvc;
+using GLOB.Infra.Enumz;
+using GLOB.Infra.Utils.Attributez;
 
 namespace SBA.Auth.Controllers;
 
 public partial class _RabbitMQController : API_1_ErrorController<_RabbitMQController>
 {
-  public readonly Httpz AuthLookupBaseHttpz;
+  private readonly RabbitMQ_XYZ RabbitMQ_Name;
+  public readonly Httpz Httpz_AuthLookup;
   public _RabbitMQController(IServiceProvider sp) : base(sp)
   {
     // string  gatewayUrl = _config.GetValueStr("URLzGateway"); 
-    // AuthLookupBaseHttpz = new Httpz(_appSettings.SrvcHttp.Auth, Srvc.Auth, Controllerz.ProjectzLookup);
-    AuthLookupBaseHttpz = sp.GetSrvc<UOW_Httpz>().AuthLookupBaseHttpz;
+    // Httpz_AuthLookup = new Httpz(_appSettings.SrvcHttp.Auth, Srvc.Auth, Controllerz.ProjectzLookup);
+    Httpz_AuthLookup = sp.GetSrvc<UOW_Httpz>().Httpz_AuthLookup;
+    RabbitMQ_Name = sp.GetSrvc<RabbitMQ_XYZ>();
+
   }
- 
-  // [HttpPost]
-  // public async Task<IActionResult> Create([FromBody] RegisterDto model)
-  // {
-  // }
+
+  [HttpPost] [NoCache]
+  public async Task<IActionResult> Create([FromBody] ProjectzLookupDtoCreate model)
+  {
+    try
+    {
+      var data = new
+      {
+        model.Name,
+        model.Code,
+        model.Desc,
+        model.ProjectzLookupBaseId,
+        Status.Active,
+        Event = $"ProjectzLookupz_{EP.Create}"
+      };
+      await RabbitMQ_Name.PublishAsync(data);
+      return data.ToExtVMSingle().Ok();
+    }
+    catch (Exception ex)
+    {
+      return ex.Ok();
+      return $"--> Rabbit MQ Error : {ex.Message}".ToExtVMSingle().Ok();
+    }
+
+  }
   // [HttpPut("{Id}")]
   // public async Task<IActionResult> Update(string Id, [FromBody] UpdateUserDto data)
   // {
   // }
 
-  [HttpDelete("{Id}")]
-  public async Task<IActionResult> Delete(string Id)
-  {
-    var result = await AuthLookupBaseHttpz.Delete(new()
-    {
-      Resource = Id,
-    });
-    return result.Ok();
-  }
-  [HttpPatch("{Id}")]
-  public async Task<IActionResult> Status(string Id, [FromBody] DtoRequestStatus req)
-  {
-    var result = await AuthLookupBaseHttpz.Status<ResponseRecord<ProjectzLookup>>(new()
-    {
-      Resource = Id,
-      Body = req 
-    });
-    return result.Ok();
-  }
+  // [HttpDelete("{Id}")]
+  // public async Task<IActionResult> Delete(string Id)
+  // {
+  //   var result = await Httpz_AuthLookup.Delete(new()
+  //   {
+  //     Resource = Id,
+  //   });
+  //   return result.Ok();
+  // }
+  
+  // [HttpPatch("{Id}")]
+  // public async Task<IActionResult> StatusChange(string Id, [FromBody] DtoRequestStatus req)
+  // {
+  //   var result = await Httpz_AuthLookup.Status<ResponseRecord<ProjectzLookup>>(new()
+  //   {
+  //     Resource = Id,
+  //     Body = req
+  //   });
+  //   return result.Ok();
+  // }
 }

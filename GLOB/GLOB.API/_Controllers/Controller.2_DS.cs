@@ -23,7 +23,7 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
     return await _repo.ToActionDelete(_uowInfra, Id);
   }
   [HttpPatch("{Id:int}")]
-  public async Task<IActionResult> Status(int Id, [FromBody] DtoRequestStatus req)
+  public async Task<IActionResult> StatusChange(int Id, [FromBody] DtoRequestStatus req)
   {
     return await _repo.ToActionStatus(_uowInfra, Id, req.Status);
   }

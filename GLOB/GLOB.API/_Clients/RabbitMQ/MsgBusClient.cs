@@ -8,13 +8,13 @@ using System.Text.Json;
 
 namespace GLOB.API.Clientz;
 
-public class MsgBusClient : IDisposable
+public class RabbitMQ_XYZ : IDisposable
 {
   private readonly AppSettings _appSettings;
   private IConnection _connection;
   private IModel _channel;
 
-  public MsgBusClient(IServiceProvider sp)
+  public RabbitMQ_XYZ(IServiceProvider sp)
   {
     _appSettings = sp.GetSrvc<IOptions<AppSettings>>().Value;
   }
@@ -28,10 +28,6 @@ public class MsgBusClient : IDisposable
     };
     try
     {
-
-    }
-    catch (Exception ex)
-    {
       _connection = factory.CreateConnection();
       _channel = _connection.CreateModel();
 
@@ -39,9 +35,12 @@ public class MsgBusClient : IDisposable
           exchange: "trigger",
           type: ExchangeType.Fanout
       );
-
       _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
       Console.WriteLine("--> Connection Msg Bus Successfull");
+    }
+    catch (Exception ex)
+    {
+
     }
 
 
@@ -53,7 +52,7 @@ public class MsgBusClient : IDisposable
     throw new NotImplementedException();
   }
 
-  public Task PublishAsync(ProjectzLookupBase data)
+  public Task PublishAsync(object data)
   {
     var message = JsonSerializer.Serialize(data);
     if (_connection.IsOpen)

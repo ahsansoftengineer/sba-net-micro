@@ -35,17 +35,17 @@ public partial class Httpz
     return await Client.Delete(req);
   }
 }
-// public readonly Httpz AuthLookupBaseHttpz;
+// public readonly Httpz Httpz_AuthLookup;
 // public AuthLookupBaseHttpController(IServiceProvider srvc): base(srvc) 
 // {
 //   string  gatewayUrl = _config.GetValueStr("URLzGateway"); 
-//   AuthLookupBaseHttpz = new Httpz(gatewayUrl, Srvc.Auth, Controllerz.ProjectzLookup) ;
+//   Httpz_AuthLookup = new Httpz(gatewayUrl, Srvc.Auth, Controllerz.ProjectzLookup) ;
 // }
 // [HttpPost]
 // public async Task<IActionResult> Gets()
 // {
 //   // string gatewayUrl = _config.GetValueStr("URLzGateway"); 
-//   var result = await AuthLookupBaseHttpz.Gets<ResponseRecords<ProjectzLookup>>(
+//   var result = await Httpz_AuthLookup.Gets<ResponseRecords<ProjectzLookup>>(
 //     new () {
 //       // Host = gatewayUrl,
 //       // Srvc = Srvc.Auth,

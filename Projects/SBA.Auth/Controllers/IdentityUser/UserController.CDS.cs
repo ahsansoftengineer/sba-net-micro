@@ -57,7 +57,7 @@ public partial class UserController : AccountBaseController<UserController>
     return NoContent();
   }
   [HttpPatch("{Id}")]
-  public async Task<IActionResult> Status(string Id, [FromBody] DtoRequestStatus req)
+  public async Task<IActionResult> StatusChange(string Id, [FromBody] DtoRequestStatus req)
   {
 
     if (Id.IsNullOrEmpty()) return _Res.NotFoundId(Id);

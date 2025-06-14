@@ -10,12 +10,12 @@ namespace SBA.Auth.Controllers;
 
 public partial class _HttpController : API_1_ErrorController<_HttpController>
 {
-  public readonly Httpz AuthLookupBaseHttpz;
+  public readonly Httpz Httpz_AuthLookup;
   public _HttpController(IServiceProvider sp) : base(sp)
   {
     // string  gatewayUrl = _config.GetValueStr("URLzGateway"); 
-    // AuthLookupBaseHttpz = new Httpz(_appSettings.SrvcHttp.Auth, Srvc.Auth, Controllerz.ProjectzLookup);
-    AuthLookupBaseHttpz = sp.GetSrvc<UOW_Httpz>().AuthLookupBaseHttpz;
+    // Httpz_AuthLookup = new Httpz(_appSettings.SrvcHttp.Auth, Srvc.Auth, Controllerz.ProjectzLookup);
+    Httpz_AuthLookup = sp.GetSrvc<UOW_Httpz>().Httpz_AuthLookup;
   }
  
   // [HttpPost]
@@ -30,16 +30,16 @@ public partial class _HttpController : API_1_ErrorController<_HttpController>
   [HttpDelete("{Id}")]
   public async Task<IActionResult> Delete(string Id)
   {
-    var result = await AuthLookupBaseHttpz.Delete(new()
+    var result = await Httpz_AuthLookup.Delete(new()
     {
       Resource = Id,
     });
     return result.Ok();
   }
   [HttpPatch("{Id}")]
-  public async Task<IActionResult> Status(string Id, [FromBody] DtoRequestStatus req)
+  public async Task<IActionResult> StatusChange(string Id, [FromBody] DtoRequestStatus req)
   {
-    var result = await AuthLookupBaseHttpz.Status<ResponseRecord<ProjectzLookup>>(new()
+    var result = await Httpz_AuthLookup.Status<ResponseRecord<ProjectzLookup>>(new()
     {
       Resource = Id,
       Body = req 
