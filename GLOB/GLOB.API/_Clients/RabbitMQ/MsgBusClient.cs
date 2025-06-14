@@ -1,10 +1,9 @@
 using GLOB.API.Config.Configz;
 using GLOB.API.Config.Extz;
-using GLOB.Infra.Model.Base;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using RabbitMQ.Client;
 using System.Text;
-using System.Text.Json;
 
 namespace GLOB.API.Clientz;
 
@@ -17,14 +16,17 @@ public class RabbitMQ_XYZ : IDisposable
   public RabbitMQ_XYZ(IServiceProvider sp)
   {
     _appSettings = sp.GetSrvc<IOptions<AppSettings>>().Value;
+    Init();
   }
 
-  public async Task InitializeAsync()
+  public void Init()
   {
+    string HostName = _appSettings.Clientz.RabbitMQHost;
+    int Port = _appSettings.Clientz.RabbitMQPort;
     var factory = new ConnectionFactory
     {
-      HostName = _appSettings.Clientz.RabbitMQHost,
-      Port = _appSettings.Clientz.RabbitMQPort
+      HostName = HostName,
+      Port = Port
     };
     try
     {
@@ -40,6 +42,7 @@ public class RabbitMQ_XYZ : IDisposable
     }
     catch (Exception ex)
     {
+      Console.WriteLine("--> Connection Msg Bus Failed");
 
     }
 
@@ -49,23 +52,38 @@ public class RabbitMQ_XYZ : IDisposable
   private void RabbitMQ_ConnectionShutdown(object? sender, ShutdownEventArgs e)
   {
     Console.WriteLine("--> RabbitMQ connection was shut down.");
-    throw new NotImplementedException();
+
   }
 
-  public Task PublishAsync(object data)
+  public void Publish(object data)
   {
-    var message = JsonSerializer.Serialize(data);
-    if (_connection.IsOpen)
+    try
     {
-      Console.WriteLine("--> RabbitMQ Connection Open, sending message...");
-      SendMessage(message);
+      // var options = new JsonSerializerOptions
+      // {
+      //   ReferenceHandler = ReferenceHandler.IgnoreCycles,
+      //   WriteIndented = false
+      // };
+
+      // var message = JsonSerializer.Serialize(data, options); // line 61
+      var message = JsonConvert.SerializeObject(data); // line 61
+      if (_connection.IsOpen)
+      {
+        Console.WriteLine("--> RabbitMQ Connection Open, sending message...");
+        SendMessage(message);
+      }
+      else
+      {
+        Console.WriteLine("--> RabbitMQ Connection Close, not sending");
+      }
     }
-    else
+    catch (Exception ex)
     {
-      Console.WriteLine("--> RabbitMQ Connection Close, not sending");
+      Console.WriteLine($"Serialization failed: {ex.Message}");
+      Console.WriteLine(ex.StackTrace);
     }
 
-    return Task.CompletedTask;
+
   }
   private void SendMessage(string message)
   {

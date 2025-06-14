@@ -37,7 +37,7 @@ public partial class _RabbitMQController : API_1_ErrorController<_RabbitMQContro
         Status.Active,
         Event = $"ProjectzLookupz_{EP.Create}"
       };
-      await RabbitMQ_Name.PublishAsync(data);
+      RabbitMQ_Name.Publish(data);
       return data.ToExtVMSingle().Ok();
     }
     catch (Exception ex)
