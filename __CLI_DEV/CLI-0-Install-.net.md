@@ -21,21 +21,23 @@ echo 'export PATH=$PATH:$HOME/.dotnet/tools' >> ~/.bashrc
 source ~/.bashrc
 
 # Add SDK and Tools path to the environment (for Zsh)
-echo 'export DOTNET_ROOT=/usr/share/dotnet' >> ~/.zshrc
-echo 'export PATH=$PATH:$DOTNET_ROOT' >> ~/.zshrc
-echo 'export PATH=$PATH:$HOME/.dotnet/tools' >> ~/.zshrc
-source ~/.zshrc
+# echo 'export DOTNET_ROOT=/usr/share/dotnet' >> ~/.zshrc
+# echo 'export PATH=$PATH:$DOTNET_ROOT' >> ~/.zshrc
+# echo 'export PATH=$PATH:$HOME/.dotnet/tools' >> ~/.zshrc
+# source ~/.zshrc
 
 # Verify environment configuration
 echo $DOTNET_ROOT
 echo $PATH
 
 # Reinstall dotnet-ef tool
-dotnet tool uninstall --global dotnet-ef
+dotnet tool uninstall --global dotnet-ef --version 8.0.7
 dotnet tool install --global dotnet-ef
 
 # Verify dotnet-ef tool installation
-dotnet ef
+dotnet ef --version
+# nano ~/.bashrc
+
 
 ```
 

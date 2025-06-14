@@ -1,8 +1,5 @@
 ### COMMON
 ```bash
-dotnet tool install --global dotnet-ef
-
-
 dotnet ef database update -p ./GLOB/GLOB.Infra -s SBA.Hierarchy --connection "Server=.;Database=Hierarchy;User Id=sa;Password=P@55w0rd!123;Encrypt=false;TrustServerCertificate=True;"
 
 dotnet ef migrations add Init -p ./GLOB/GLOB.Infra -s SBA.Hierarchy --context DBCtx
@@ -14,7 +11,7 @@ dotnet run --project SBA.Api
 ```bash
 dotnet ef migrations add Init -s ./Projects/SBA.Hierarchy --context DBCtxProjectz
 dotnet ef database update -s ./Projects/SBA.Hierarchy --context DBCtxProjectz
-dotnet ef migrations remove -s ./Projects/SBA.Hierarchy --context DBCtxProjectz
+dotnet ef migrations remove -s ./Projects/SBA.Hierarcy --context DBCtxProjectz
 dotnet ef database drop --force -s ./Projects/SBA.Hierarchy --context DBCtxProjectz
 ```
 ### AUTH
