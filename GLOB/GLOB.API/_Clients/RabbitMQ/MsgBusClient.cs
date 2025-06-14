@@ -8,7 +8,7 @@ using System.Text.Json;
 
 namespace GLOB.API.Clientz;
 
-public class MsgBusClient : IAsyncDisposable
+public class MsgBusClient : IDisposable
 {
   private readonly AppSettings _appSettings;
   private IConnection _connection;
@@ -26,16 +26,25 @@ public class MsgBusClient : IAsyncDisposable
       HostName = _appSettings.Clientz.RabbitMQHost,
       Port = _appSettings.Clientz.RabbitMQPort
     };
+    try
+    {
 
-    _connection = factory.CreateConnection();
-    _channel = _connection.CreateModel();
+    }
+    catch (Exception ex)
+    {
+      _connection = factory.CreateConnection();
+      _channel = _connection.CreateModel();
 
-    _channel.ExchangeDeclare(
-        exchange: "trigger",
-        type: ExchangeType.Fanout
-    );
+      _channel.ExchangeDeclare(
+          exchange: "trigger",
+          type: ExchangeType.Fanout
+      );
 
-    _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
+      _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
+      Console.WriteLine("--> Connection Msg Bus Successfull");
+    }
+
+
   }
 
   private void RabbitMQ_ConnectionShutdown(object? sender, ShutdownEventArgs e)
@@ -47,21 +56,30 @@ public class MsgBusClient : IAsyncDisposable
   public Task PublishAsync(ProjectzLookupBase data)
   {
     var message = JsonSerializer.Serialize(data);
-    var body = Encoding.UTF8.GetBytes(message);
-
-    _channel.BasicPublish(
-        exchange: "trigger",
-        routingKey: "",
-        basicProperties: null,
-        body: body
-    );
-
-    Console.WriteLine($"--> Message sent: {message}");
+    if (_connection.IsOpen)
+    {
+      Console.WriteLine("--> RabbitMQ Connection Open, sending message...");
+      SendMessage(message);
+    }
+    else
+    {
+      Console.WriteLine("--> RabbitMQ Connection Close, not sending");
+    }
 
     return Task.CompletedTask;
   }
-
-  public async ValueTask DisposeAsync()
+  private void SendMessage(string message)
+  {
+    var body = Encoding.UTF8.GetBytes(message);
+    _channel.BasicPublish(
+      exchange: "trigger",
+      routingKey: "",
+      basicProperties: null,
+      body
+    );
+    Console.WriteLine($"--> We have send: {message}");
+  }
+  public void Dispose()
   {
     if (_channel != null && _channel.IsOpen)
     {
@@ -74,7 +92,5 @@ public class MsgBusClient : IAsyncDisposable
       _connection.Close();
       _connection.Dispose();
     }
-
-    await Task.CompletedTask;
   }
 }
