@@ -8,10 +8,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
 
-public partial class _HttpController : API_1_ErrorController<_HttpController>
+public partial class _RabbitMQController : API_1_ErrorController<_RabbitMQController>
 {
   public readonly Httpz AuthLookupBaseHttpz;
-  public _HttpController(IServiceProvider sp) : base(sp)
+  public _RabbitMQController(IServiceProvider sp) : base(sp)
   {
     // string  gatewayUrl = _config.GetValueStr("URLzGateway"); 
     // AuthLookupBaseHttpz = new Httpz(_appSettings.SrvcHttp.Auth, Srvc.Auth, Controllerz.ProjectzLookup);

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
 
-public partial class _HttpController
+public partial class _RabbitMQController
 {
   [HttpPost]
   public async Task<IActionResult> Gets()
