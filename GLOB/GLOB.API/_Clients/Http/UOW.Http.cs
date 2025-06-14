@@ -8,7 +8,7 @@ namespace GLOB.API.Http;
 
 public partial class UOW_Httpz
 {
-  public readonly AppSettings _appSettings;
+  private readonly AppSettings _appSettings;
   private Httpz _AuthLookupBaseHttpz;
 
   public UOW_Httpz(IServiceProvider sp)

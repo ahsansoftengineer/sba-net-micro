@@ -1,3 +1,4 @@
+using GLOB.API.Config.Extz;
 using GLOB.API.Controllers.Base;
 using GLOB.API.Http;
 using GLOB.API.Staticz;
@@ -10,10 +11,11 @@ namespace SBA.Auth.Controllers;
 public partial class AuthLookupBaseHttpController : API_1_ErrorController<AuthLookupBaseHttpController>
 {
   public readonly Httpz AuthLookupBaseHttpz;
-  public AuthLookupBaseHttpController(IServiceProvider srvc): base(srvc) 
+  public AuthLookupBaseHttpController(IServiceProvider sp) : base(sp)
   {
     // string  gatewayUrl = _config.GetValueStr("URLzGateway"); 
-    AuthLookupBaseHttpz = new Httpz(_appSettings.SrvcHttp.Auth, Srvc.Auth, Controllerz.ProjectzLookup) ;
+    // AuthLookupBaseHttpz = new Httpz(_appSettings.SrvcHttp.Auth, Srvc.Auth, Controllerz.ProjectzLookup);
+    AuthLookupBaseHttpz = sp.GetSrvc<UOW_Httpz>().AuthLookupBaseHttpz;
   }
  
   // [HttpPost]
