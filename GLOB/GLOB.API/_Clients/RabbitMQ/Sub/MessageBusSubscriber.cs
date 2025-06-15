@@ -7,7 +7,7 @@ using RabbitMQ.Client.Events;
 
 namespace GLOB.API.Clientz;
 
-public class MessageBusSubscriber : BackgroundService
+public class MsgBusSubs : BackgroundService
 {
   private readonly IConfiguration _config;
   private readonly EventProcessor _eventProcessor;
@@ -16,11 +16,12 @@ public class MessageBusSubscriber : BackgroundService
   private IModel _channel;
   private string _queueName;
 
-  public MessageBusSubscriber(IServiceProvider sp)
+  public MsgBusSubs(IServiceProvider sp)
   {
     _config = sp.GetSrvc<IConfiguration>();
     _eventProcessor = sp.GetSrvc<EventProcessor>();
     _appSettings = sp.GetSrvc<IOptions<AppSettings>>().Value;
+    InitRabbitMQ();
   }
 
   private void InitRabbitMQ()
@@ -48,8 +49,6 @@ public class MessageBusSubscriber : BackgroundService
     _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
 
     Console.WriteLine("--> Listening on the Message Bus...");
-
-
   }
 
   protected override Task ExecuteAsync(CancellationToken stoppingToken)
@@ -90,6 +89,7 @@ public class MessageBusSubscriber : BackgroundService
       _connection.Close();
       _connection.Dispose();
     }
+    base.Dispose();
   }
 
 
