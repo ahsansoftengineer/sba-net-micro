@@ -17,7 +17,7 @@ public class EventProcessor
     _mapper = sp.GetSrvc<IMapper>();
   }
 
-  private void AddPlatform(string message)
+  public void AddPlatform(string message)
   {
     using (var scope = _scopeFactory.CreateScope())
     {

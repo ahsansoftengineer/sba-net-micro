@@ -39,8 +39,7 @@ public class RabbitMQ_Base : IDisposable
     }
     catch (Exception ex)
     {
-      Console.WriteLine("--> Connection Msg Bus Failed");
-
+      Console.WriteLine($"--> Connection Msg Bus Failed{ex.Message}");
     }
   }
 

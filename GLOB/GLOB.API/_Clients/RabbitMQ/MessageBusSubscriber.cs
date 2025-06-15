@@ -77,7 +77,7 @@ public class MessageBusSubscriber : BackgroundService
     Console.WriteLine("--> RabbitMQ connection was shut down.");
 
   }
-  public void Dispose()
+  public override void Dispose()
   {
     if (_channel != null && _channel.IsOpen)
     {
