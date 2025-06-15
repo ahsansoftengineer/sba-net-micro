@@ -46,18 +46,22 @@ public class EventProcessor
   }
   public void ProcessEvent(string message)
   {
-    switch (message)
+
+    var EventType = JsonConvert.DeserializeObject<GenericEventDto>(message);   
+    switch (EventType?.Event)
     {
-      case "ProjectzLookupz_Create":
+      case "ProjectzLookupz_create":
+        Console.WriteLine($"Known Event {message}");
         AddPlatform(message);
         // TODO
         break;
       default:
+        Console.WriteLine($"Unknown Event {message}");
         break;
     }
   }
 }
 class GenericEventDto
 {
-  public string Event { get; set; }
+  public string? Event { get; set; }
 }
