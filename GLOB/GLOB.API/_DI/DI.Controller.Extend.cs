@@ -4,13 +4,7 @@ using GLOB.Infra.Utils.MIddlewarez;
 
 public static partial class DI_API
 {
-  public static void Add_API_Clientz(this IServiceCollection srvc)
-  {
-    srvc.AddSingleton<UOW_Httpz>();
-    srvc.AddSingleton<MsgBusPub>();
-    srvc.AddSingleton<EventProcessor>();
-    // srvc.AddSingleton<GRPCClient>();
-  }
+
 
   public static void Add_API_Controller_Srvc_Extend(this IServiceCollection srvc, IConfiguration config)
   {
