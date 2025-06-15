@@ -23,8 +23,4 @@ public class Startup
       app.Seed().GetAwaiter().GetResult();
     }
   }
-  public void RunFun()
-  {
-    
-  }
 }

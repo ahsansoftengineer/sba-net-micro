@@ -8,7 +8,7 @@ public static partial class SeedzInfra
   // Seed for Development through (CLI)
   public static void SeedInfra(this ModelBuilder mb)
   {
-    Console.WriteLine("--> Infra -> Applying Migrations ModelBuilder (Dev)");
+    Console.WriteLine("--> ModelBuilder -> Infra -> SeedzInfra");
     mb.SeedProjectzLookupBase();
     mb.SeedProjectzLookup();
   }

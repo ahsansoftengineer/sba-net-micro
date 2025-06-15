@@ -14,14 +14,7 @@ public class MsgBusPub : MsgBusBase, IDisposable
   {
     try
     {
-      // var options = new JsonSerializerOptions
-      // {
-      //   ReferenceHandler = ReferenceHandler.IgnoreCycles,
-      //   WriteIndented = false
-      // };
-
-      // var message = JsonSerializer.Serialize(data, options); // line 61
-      var message = JsonConvert.SerializeObject(data); // line 61
+      var message = JsonConvert.SerializeObject(data);
       if (_connection.IsOpen)
       {
         Console.WriteLine("--> RabbitMQ Connection Open, sending message...");

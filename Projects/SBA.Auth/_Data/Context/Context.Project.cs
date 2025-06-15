@@ -4,14 +4,19 @@ using Microsoft.EntityFrameworkCore;
 namespace SBA.Projectz.Data;
 public partial class DBCtxProjectz : DBCtxIdentity
 {
-  public DBCtxProjectz(DbContextOptions<DBCtxProjectz> options) : base(options) { }
+  public DBCtxProjectz(IServiceProvider sp, DbContextOptions<DBCtxProjectz> options) : base(options, sp)
+  {}
 
   protected override void OnModelCreating(ModelBuilder mb)
   {
+
     ConfigManyToOne(mb);
     ConfigProjectzMapping(mb);
     // ConfigMicroServiceArch(mb);
-    SeedProjectz.Seed(mb);
+    // if (DOTNET_ENVIRONMENT != "Development")
+    // {
+      SeedProjectz.Seed(mb);
+    // }
     base.OnModelCreating(mb);
   }
 }

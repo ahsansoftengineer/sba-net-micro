@@ -30,6 +30,7 @@ public class EventProcessor
         {
           uow.ProjectzLookups.Insert(model);
           uow.Save();
+          Console.WriteLine("ProjectzLookupz Created Successfully");
         }
         else
         {
@@ -45,37 +46,16 @@ public class EventProcessor
   }
   public void ProcessEvent(string message)
   {
-    var eventType = DetermineEvent(message);
-    switch (eventType)
+    switch (message)
     {
-      case EventType.ProjectzLookup_Create:
+      case "ProjectzLookupz_Create":
+        AddPlatform(message);
         // TODO
         break;
       default:
         break;
     }
   }
-  private EventType DetermineEvent(string notificationMessage)
-  {
-    Console.WriteLine("--> Determining Event");
-    var eventType = JsonConvert.DeserializeObject<GenericEventDto>(notificationMessage);
-
-    switch (eventType.Event)
-    {
-      case "ProjectzLookup_Create":
-        Console.WriteLine("Platform Published Event Detected");
-        return EventType.ProjectzLookup_Create;
-      default:
-        Console.WriteLine("--> Could not Determine the Event Type");
-        return EventType.Undetermined;
-    }
-  }
-}
-
-enum EventType
-{
-  ProjectzLookup_Create,
-  Undetermined,
 }
 class GenericEventDto
 {

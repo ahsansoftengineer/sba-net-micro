@@ -40,6 +40,7 @@ public static partial class DI_Projectz
     srvc.AddAutoMapper(typeof(ProjectzMapper));
     srvc.AddScoped<SmtpEmailSender>();
     srvc.AddScoped<TokenService>();
+    srvc.Add_Projectz_Clientz();
 
    
   }
