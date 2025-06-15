@@ -8,6 +8,7 @@ public static partial class DI_API
   {
     srvc.AddSingleton<UOW_Httpz>();
     srvc.AddSingleton<RabbitMQ_XYZ>();
+    srvc.AddSingleton<EventProcessor>();
     // srvc.AddSingleton<GRPCClient>();
   }
 
