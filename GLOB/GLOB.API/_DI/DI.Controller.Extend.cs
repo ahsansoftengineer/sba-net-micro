@@ -7,7 +7,7 @@ public static partial class DI_API
   public static void Add_API_Clientz(this IServiceCollection srvc)
   {
     srvc.AddSingleton<UOW_Httpz>();
-    srvc.AddSingleton<RabbitMQ_XYZ>();
+    srvc.AddSingleton<MsgBusPub>();
     srvc.AddSingleton<EventProcessor>();
     // srvc.AddSingleton<GRPCClient>();
   }

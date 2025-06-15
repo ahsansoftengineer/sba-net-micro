@@ -4,13 +4,13 @@ using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 
 namespace GLOB.API.Clientz;
-public class RabbitMQ_Base : IDisposable
+public class MsgBusBase : IDisposable
 {
   protected readonly AppSettings _appSettings;
   protected IConnection _connection;
   protected IModel _channel;
 
-  public RabbitMQ_Base(IServiceProvider sp)
+  public MsgBusBase(IServiceProvider sp)
   {
     _appSettings = sp.GetSrvc<IOptions<AppSettings>>().Value;
     Init();

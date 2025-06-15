@@ -4,10 +4,10 @@ using System.Text;
 
 namespace GLOB.API.Clientz;
 
-public class RabbitMQ_XYZ : RabbitMQ_Base, IDisposable
+public class MsgBusPub : MsgBusBase, IDisposable
 {
 
-  public RabbitMQ_XYZ(IServiceProvider sp): base(sp)
+  public MsgBusPub(IServiceProvider sp): base(sp)
   {
   }
   public void Publish(object data)

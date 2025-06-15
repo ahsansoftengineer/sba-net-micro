@@ -3,6 +3,9 @@ using GLOB.Infra.Data.Sqlz;
 using GLOB.Infra.DI;
 using GLOB.API.Config.DI;
 using GLOB.Infra.UOW;
+using SBA.Projectz.Mapper;
+using SBA.Auth.Services;
+using GLOB.API.Clientz;
 
 namespace SBA.Projectz.DI;
 
@@ -29,9 +32,16 @@ public static partial class DI_Projectz
 
     srvc.Add_API_Config_JWT_Option();
     // srvc.AddAuthorization();
-    
+    srvc.Add_Projectz_Srvc2();
 
-    srvc.Add_Projectz_Local_Srvc();
+  }
+  public static void Add_Projectz_Srvc2(this IServiceCollection srvc)
+  {
+    srvc.AddAutoMapper(typeof(ProjectzMapper));
+    srvc.AddScoped<SmtpEmailSender>();
+    srvc.AddScoped<TokenService>();
     
+    srvc.AddHostedService<MsgBusSubs>();
+    srvc.AddSingleton<EventProcessor>();
   }
 }
