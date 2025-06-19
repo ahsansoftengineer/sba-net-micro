@@ -6,20 +6,20 @@ using RabbitMQ.Client;
 namespace GLOB.API.Clientz;
 public class MsgBusBase : IDisposable
 {
-  protected readonly AppSettings _appSettings;
+  protected readonly ClientzSettings _clientzOption;
   protected IConnection _connection;
   protected IModel _channel;
 
   public MsgBusBase(IServiceProvider sp)
   {
-    _appSettings = sp.GetSrvc<IOptions<AppSettings>>().Value;
+    _clientzOption = sp.GetSrvc<IOptions<AppSettings>>().Value.Clientz;
     Init();
   }
 
   public void Init()
   {
-    string HostName = _appSettings.Clientz.RabbitMQHost;
-    int Port = _appSettings.Clientz.RabbitMQPort;
+    string HostName = _clientzOption.RabbitMQHost;
+    int Port = _clientzOption.RabbitMQPort;
     var factory = new ConnectionFactory
     {
       HostName = HostName,
