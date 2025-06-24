@@ -26,12 +26,10 @@ public class RabbitBase
 
   public void Pub(RabbitMQParam param)
   {
-    SetDefaultRoute(param.route);
-
     SetExchange(param);
     SetQueue(param);
 
-    _channel.QueueBind(param.route.Queue, param.route.Exchange, param.route.Key);
+    _channel.QueueBind(param.route.Queue ?? "q-default", param.route.Exchange ?? "ex-default", param.route.Key ?? "k-default");
 
     var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(param.body));
     _channel.BasicPublish(param.route.Exchange, param.route.Key, body: body);
@@ -39,12 +37,8 @@ public class RabbitBase
 
   public void Subs<T>(RabbitMQParam param, Action<T> handler)
   {
-    SetDefaultRoute(param.route);
-
     SetExchange(param);
     SetQueue(param);
-
-
 
     _channel.QueueBind(param.route.Queue, param.route.Exchange, param.route.Key);
 
@@ -57,31 +51,24 @@ public class RabbitBase
         handler(message);
     };
 
-    _channel.BasicConsume(queue: param.route.Queue, autoAck: param.options.AutoAck, consumer: consumer);
+    _channel.BasicConsume(queue: param.route.Queue ?? "q-default", autoAck: param.options.AutoAck ?? true, consumer: consumer);
   }
   private void SetExchange(RabbitMQParam param)
   { 
     _channel.ExchangeDeclare(
-      exchange: param.route.Exchange,
-      type: param.route.Typez,
-      durable: param.options.Durable,
-      autoDelete: param.options.AutoAck
+      exchange: param.route.Exchange ?? "ex-default",
+      type: param.route.Typez ?? ExchangeType.Direct,
+      durable: param.options.Durable ?? true,
+      autoDelete: param.options.AutoAck ?? true
     );
   }
   private void SetQueue(RabbitMQParam param)
   {
     _channel.QueueDeclare(
-      queue: param.route.Queue,
-      durable: param.options.QueueDurable,
-      exclusive: param.options.QueueExclusive,
-      autoDelete: param.options.AutoDelete
+      queue: param.route.Queue ?? "q-default",
+      durable: param.options.QueueDurable ?? true,
+      exclusive: param.options.QueueExclusive ?? true,
+      autoDelete: param.options.AutoDelete ?? true
     );
-  }
-  private void SetDefaultRoute(RabbitMQRoute param)
-  {
-    param.Typez ??= ExchangeType.Direct;
-    param.Exchange = "ex-" + param.Exchange;
-    param.Queue = "qu-" + param.Queue;
-    param.Key = "r-" + param.Key;
   }
 }
