@@ -18,3 +18,45 @@
 ---
 
 Let me know if you'd like a version of this as a formatted `.md` table or code comments for reference.
+
+
+```c#
+_rabbit = new RabbitBase();
+var param = new RabbitMQParam
+{
+    body = data,
+    route = new RabbitMQRoute
+    {
+        Exchange = "ex-sample",
+        Queue = "q-sample",
+        Key = "sample.key"
+    },
+    options = new RabbitMQOptions
+    {
+        ExchangeDurable = true,
+        QueueDurable = true
+    }
+};
+
+_rabbit.Pubs(param);
+
+
+ var param = new RabbitMQParam
+{
+    route = new RabbitMQRoute
+    {
+        Exchange = "ex-sample",
+        Queue = "q-sample",
+        Key = "sample.key"
+    },
+    options = new RabbitMQOptions
+    {
+        AutoAck = false
+    }
+};
+
+_rabbit.Subs<SampleMessage>(param, message =>
+{
+    Console.WriteLine($"[Subscriber] Received: {message.Text} at {message.Time}");
+});
+```

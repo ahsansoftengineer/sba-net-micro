@@ -5,10 +5,11 @@ using System.Text.Json;
 
 namespace GLOB.API.Clientz;
 
-public class RabbitBase
+public class RabbitBase : IDisposable
 {
   private readonly IConnection _connection;
-  private readonly IModel _channel;
+  private readonly IModel _pubChannel;
+  private readonly IModel _subChannel;
 
   public RabbitBase(string hostName = "localhost", string virtualHost = "/", string user = "guest", string password = "guest")
   {
@@ -21,54 +22,84 @@ public class RabbitBase
     };
 
     _connection = factory.CreateConnection();
-    _channel = _connection.CreateModel();
+    _pubChannel = _connection.CreateModel();
+    _subChannel = _connection.CreateModel();
   }
-  
-  public RabbitMQParam Pubs(RabbitMQParam param)
+
+  public void Pubs(RabbitMQParam param)
   {
-    SetPubSubDefault(param);
+    SetPubSubDefault(_pubChannel, param);
 
     var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(param.body));
-    _channel.BasicPublish(param.route.Exchange, param.route.Key, body: body);
-    return param;
+    var props = _pubChannel.CreateBasicProperties();
+    props.ContentType = "application/json";
 
+    if (param.options.Headers != null)
+    {
+      props.Headers = param.options.Headers;
+    }
+
+    _pubChannel.BasicPublish(param.route.Exchange, param.route.Key, param.options.Mandatory ?? false, props, body);
   }
 
   public void Subs<T>(RabbitMQParam param, Action<T> handler)
   {
-    SetPubSubDefault(param);
+    SetPubSubDefault(_subChannel, param);
 
-    var consumer = new EventingBasicConsumer(_channel);
+    var consumer = new EventingBasicConsumer(_subChannel);
     consumer.Received += (_, ea) =>
     {
-      var body = ea.Body.ToArray();
-      var message = JsonSerializer.Deserialize<T>(Encoding.UTF8.GetString(body));
-      if (message != null)
-        handler(message);
+      try
+      {
+        var body = ea.Body.ToArray();
+        var message = JsonSerializer.Deserialize<T>(Encoding.UTF8.GetString(body));
+        if (message != null)
+          handler(message);
+
+        if (!(param.options.AutoAck ?? true))
+          _subChannel.BasicAck(ea.DeliveryTag, false);
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine($"[RabbitMQ] Error in message handler: {ex.Message}");
+        if (!(param.options.AutoAck ?? true))
+          _subChannel.BasicNack(ea.DeliveryTag, false, requeue: true);
+      }
     };
 
-    _channel.BasicConsume(queue: param.route.Queue ?? "q-default", autoAck: param.options.AutoAck ?? true, consumer: consumer);
+    _subChannel.BasicConsume(queue: param.route.Queue ?? "q-default",
+                             autoAck: param.options.AutoAck ?? true,
+                             consumer: consumer);
   }
-  public void SetPubSubDefault(RabbitMQParam param)
-  {
-    // Declare Exchange
-    _channel.ExchangeDeclare(
-     exchange: param.route.Exchange ?? "ex-default",
-     type: param.route.Typez ?? ExchangeType.Direct,
-     durable: param.options.ExchangeDurable ?? true,
-     autoDelete: param.options.AutoAck ?? true
-   );
 
-    // Declare Queue
-    _channel.QueueDeclare(
-      queue: param.route.Queue ?? "q-default",
-      durable: param.options.QueueDurable ?? true,
-      exclusive: param.options.QueueExclusive ?? true,
-      autoDelete: param.options.ExchangeAutoDelete ?? true
+  private void SetPubSubDefault(IModel channel, RabbitMQParam param)
+  {
+    var exchange = param.route.Exchange ?? "ex-default";
+    var queue = param.route.Queue ?? "q-default";
+    var routingKey = param.route.Key ?? "k-default";
+
+    channel.ExchangeDeclare(
+        exchange: exchange,
+        type: param.route.Typez ?? ExchangeType.Direct,
+        durable: param.options.ExchangeDurable ?? true,
+        autoDelete: param.options.ExchangeAutoDelete ?? false
     );
 
-    // Bind Exchange, Queue, Route
-    _channel.QueueBind(param.route.Queue ?? "q-default", param.route.Exchange ?? "ex-default", param.route.Key ?? "k-default");
-    
+    channel.QueueDeclare(
+        queue: queue,
+        durable: param.options.QueueDurable ?? true,
+        exclusive: param.options.QueueExclusive ?? false,
+        autoDelete: param.options.QueueAutoDelete ?? false,
+        arguments: param.options.QueueArguments
+    );
+
+    channel.QueueBind(queue, exchange, routingKey);
+  }
+
+  public void Dispose()
+  {
+    _subChannel?.Close();
+    _pubChannel?.Close();
+    _connection?.Close();
   }
 }
