@@ -23,24 +23,20 @@ public class RabbitBase
     _connection = factory.CreateConnection();
     _channel = _connection.CreateModel();
   }
-
-  public void Pub(RabbitMQParam param)
+  
+  public RabbitMQParam Pubs(RabbitMQParam param)
   {
-    SetExchange(param);
-    SetQueue(param);
-
-    _channel.QueueBind(param.route.Queue ?? "q-default", param.route.Exchange ?? "ex-default", param.route.Key ?? "k-default");
+    SetPubSubDefault(param);
 
     var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(param.body));
     _channel.BasicPublish(param.route.Exchange, param.route.Key, body: body);
+    return param;
+
   }
 
   public void Subs<T>(RabbitMQParam param, Action<T> handler)
   {
-    SetExchange(param);
-    SetQueue(param);
-
-    _channel.QueueBind(param.route.Queue, param.route.Exchange, param.route.Key);
+    SetPubSubDefault(param);
 
     var consumer = new EventingBasicConsumer(_channel);
     consumer.Received += (_, ea) =>
@@ -53,22 +49,26 @@ public class RabbitBase
 
     _channel.BasicConsume(queue: param.route.Queue ?? "q-default", autoAck: param.options.AutoAck ?? true, consumer: consumer);
   }
-  private void SetExchange(RabbitMQParam param)
-  { 
-    _channel.ExchangeDeclare(
-      exchange: param.route.Exchange ?? "ex-default",
-      type: param.route.Typez ?? ExchangeType.Direct,
-      durable: param.options.Durable ?? true,
-      autoDelete: param.options.AutoAck ?? true
-    );
-  }
-  private void SetQueue(RabbitMQParam param)
+  public void SetPubSubDefault(RabbitMQParam param)
   {
+    // Declare Exchange
+    _channel.ExchangeDeclare(
+     exchange: param.route.Exchange ?? "ex-default",
+     type: param.route.Typez ?? ExchangeType.Direct,
+     durable: param.options.ExchangeDurable ?? true,
+     autoDelete: param.options.AutoAck ?? true
+   );
+
+    // Declare Queue
     _channel.QueueDeclare(
       queue: param.route.Queue ?? "q-default",
       durable: param.options.QueueDurable ?? true,
       exclusive: param.options.QueueExclusive ?? true,
-      autoDelete: param.options.AutoDelete ?? true
+      autoDelete: param.options.ExchangeAutoDelete ?? true
     );
+
+    // Bind Exchange, Queue, Route
+    _channel.QueueBind(param.route.Queue ?? "q-default", param.route.Exchange ?? "ex-default", param.route.Key ?? "k-default");
+    
   }
 }

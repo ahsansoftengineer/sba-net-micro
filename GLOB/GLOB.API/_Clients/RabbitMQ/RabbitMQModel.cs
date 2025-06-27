@@ -17,8 +17,8 @@ public class RabbitMQRoute
 public class RabbitMQOption
 {
   // Exchange
-  public bool? Durable { get; set; }
-  public bool? AutoDelete { get; set; }
+  public bool? ExchangeDurable { get; set; }
+  public bool? ExchangeAutoDelete { get; set; }
 
   // Queue
   public bool? QueueDurable { get; set; }
