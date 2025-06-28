@@ -50,29 +50,28 @@ public partial class API_RabbitMQ : IDisposable
   
   protected void SetPubSubDefault(IModel channel, RabbitMQParam param)
   {
-    if(param.route == null) param.route = new();
-    if(param.options == null) param.options = new();
+    param.route ??= new();
+    param.options ??= new();
 
-    var exchange = param.route.Exchange ?? "ex-default";
-    var queue = param.route.Queue ?? "q-default";
-    var routingKey = param.route.Key ?? "k-default";
+    var Route = param.route;
+    var Option = param.options;
 
     channel.ExchangeDeclare(
-        exchange: exchange,
-        type: param.route.Typez ?? ExchangeType.Direct,
-        durable: param.options.ExchangeDurable ?? true,
-        autoDelete: param.options.ExchangeAutoDelete ?? false
+        exchange: Route.Exchange ??= "ex-default",
+        type: Route.Typez ??= ExchangeType.Direct,
+        durable: Option.ExchangeDurable ??= true,
+        autoDelete: Option.ExchangeAutoDelete ??= false
     );
 
     channel.QueueDeclare(
-        queue: queue,
-        durable: param.options.QueueDurable ?? true,
-        exclusive: param.options.QueueExclusive ?? false,
-        autoDelete: param.options.QueueAutoDelete ?? false,
-        arguments: param.options.QueueArguments
+        queue: Route.Queue ??= "q-default",
+        durable: Option.QueueDurable ??= true,
+        exclusive: Option.QueueExclusive ??= false,
+        autoDelete: Option.QueueAutoDelete ??= false,
+        arguments: Option.QueueArguments
     );
 
-    channel.QueueBind(queue, exchange, routingKey);
+    channel.QueueBind(Route.Queue, Route.Exchange, Route.Key ??= "k-default");
     
     _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
     Console.WriteLine("--> API_RabbitMQ Connected Successfully.");
@@ -105,3 +104,10 @@ public partial class API_RabbitMQ : IDisposable
     }
   }
 }
+
+// Is it Ok to Three Connection Shuts Down as per Application
+// When Application Terminates
+// dotnet watch 🛑 Shutdown requested. Press Ctrl+C again to force exit.
+// --> API_RabbitMQ connection was shut down.
+// --> API_RabbitMQ connection was shut down.
+// --> API_RabbitMQ connection was shut down.
