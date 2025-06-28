@@ -57,18 +57,18 @@ public partial class API_RabbitMQ : IDisposable
     var Option = param.options;
 
     channel.ExchangeDeclare(
-        exchange: Route.Exchange ??= "ex-default",
-        type: Route.Typez ??= ExchangeType.Direct,
-        durable: Option.ExchangeDurable ??= true,
-        autoDelete: Option.ExchangeAutoDelete ??= false
+      exchange: Route.Exchange ??= "ex-default",
+      type: Route.Typez ??= ExchangeType.Direct,
+      durable: Option.ExchangeDurable ??= true,
+      autoDelete: Option.ExchangeAutoDelete ??= false
     );
 
     channel.QueueDeclare(
-        queue: Route.Queue ??= "q-default",
-        durable: Option.QueueDurable ??= true,
-        exclusive: Option.QueueExclusive ??= false,
-        autoDelete: Option.QueueAutoDelete ??= false,
-        arguments: Option.QueueArguments
+      queue: Route.Queue ??= "q-default",
+      durable: Option.QueueDurable ??= true,
+      exclusive: Option.QueueExclusive ??= false,
+      autoDelete: Option.QueueAutoDelete ??= false,
+      arguments: Option.QueueArguments
     );
 
     channel.QueueBind(Route.Queue, Route.Exchange, Route.Key ??= "k-default");
