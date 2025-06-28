@@ -18,7 +18,7 @@ public partial class __RabbitMQController : API_1_ErrorController<__RabbitMQCont
   {
     RabbitMQ_Name = sp.GetSrvc<MsgBusPub>();
     _API_RabbitMQ = sp.GetSrvc<API_RabbitMQ>();
-    Route = new(MQ_Exch.Auth, Controllerz.ProjectzLookup,  EP.Status);
+    Route = new(MQ_Exch.Auth, Controllerz.ProjectzLookup);
   }
 
   [HttpPost] [NoCache]
