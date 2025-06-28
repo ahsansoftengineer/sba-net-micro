@@ -19,79 +19,78 @@ public class API_HttpBase
     _srvc = srvc;
     _controller = controller;
   }
-  public async Task<T?> Get<T>(HttpParam req)
+  public async Task<T?> Get<T>(HttpParam param)
   {
-    setDefault(req);
-    var response = await _httpClient.GetAsync(req.Url);
+    setDefault(param);
+    var response = await _httpClient.GetAsync(param.Url);
     var result = await DeserializeResponse<T>(response);
 
     return result;
   }
 
-  public async Task<T?> Post<T>(HttpParam req)
+  public async Task<T?> Post<T>(HttpParam param)
   {
-    setDefault(req);
-    var response = await _httpClient.PostAsJsonAsync(req.Url, req.Body);
+    setDefault(param);
+    var response = await _httpClient.PostAsJsonAsync(param.Url, param.Body);
     return await DeserializeResponse<T>(response);
   }
 
-  public async Task<T?> Patch<T>(HttpParam req)
+  public async Task<T?> Patch<T>(HttpParam param)
   {
-    setDefault(req);
-    var response = await _httpClient.PatchAsJsonAsync(req.Url, req.Body);
+    setDefault(param);
+    var response = await _httpClient.PatchAsJsonAsync(param.Url, param.Body);
     return await DeserializeResponse<T>(response);
   }
 
-  public async Task<T?> Put<T>(HttpParam req)
+  public async Task<T?> Put<T>(HttpParam param)
   {
-    setDefault(req);
-    var response = await _httpClient.PutAsJsonAsync(req.Url, req.Body);
+    setDefault(param);
+    var response = await _httpClient.PutAsJsonAsync(param.Url, param.Body);
     return await DeserializeResponse<T>(response);
   }
 
   // Not Returning anything
-  public async Task<object> Delete(HttpParam req)
+  public async Task<object> Delete(HttpParam param)
   {
-    setDefault(req);
-    // var response = await _httpClient.DeleteFromJsonAsync<ResponseRecord>(req.Url);
-    var request = new HttpRequestMessage(HttpMethod.Delete, req.Url);
+    setDefault(param);
+    // var response = await _httpClient.DeleteFromJsonAsync<ResponseRecord>(param.Url);
+    var request = new HttpRequestMessage(HttpMethod.Delete, param.Url);
     var response = await _httpClient.SendAsync(request);
     return await DeserializeResponse<OkMsg>(response);
   }
 
-  private HttpParam setDefault(HttpParam req)
+  private HttpParam setDefault(HttpParam param)
   {
 
-    if (string.IsNullOrEmpty(req?.Host))
-      req.Host = _host ?? "no-host";
+    if (string.IsNullOrEmpty(param?.Host))
+      param.Host = _host ?? "no-host";
 
-    if (string.IsNullOrEmpty(req?.Srvc))
-      req.Srvc = _srvc ?? "no-service";
+    if (string.IsNullOrEmpty(param?.Srvc))
+      param.Srvc = _srvc ?? "no-service";
 
-    if (string.IsNullOrEmpty(req?.Controller))
-      req.Controller = _controller ?? "no-controller";
+    if (string.IsNullOrEmpty(param?.Controller))
+      param.Controller = _controller ?? "no-controller";
 
-    string action = append(req.Action);
-    string res = append(req.Resource);
+    string action = append(param.Action);
+    string res = append(param.Resource);
 
     var query = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
-    if (req.Query != null)
+    if (param.Query != null)
     {
-      foreach (var prop in req.Query.GetType().GetProperties())
+      foreach (var prop in param.Query.GetType().GetProperties())
       {
-        var value = prop.GetValue(req.Query)?.ToString();
+        var value = prop.GetValue(param.Query)?.ToString();
         if (!string.IsNullOrWhiteSpace(value))
           query[prop.Name] = value;
       }
     }
 
-
     string queryString = query.HasKeys() ? $"?{query}" : "";
 
-    req.Url = $"{req.Host}/{req.Srvc}/{req.Controller}{action}{res}{queryString}";
+    param.Url = $"{param.Host}/{param.Srvc}/{param.Controller}{action}{res}{queryString}";
 
-    return req;
+    return param;
   }
   private string append(string? value)
   {

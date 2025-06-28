@@ -37,7 +37,6 @@ public partial class API_RabbitMQ : IDisposable
   }
   protected void InitRabbitMQ()
   {
-
     // var factory = new ConnectionFactory
     // {
     //   Uri = _option_RabbitMQ.Uri,
@@ -47,9 +46,6 @@ public partial class API_RabbitMQ : IDisposable
     //   UserName = _option_RabbitMQ.UserName,
     //   Password = _option_RabbitMQ.Password
     // };
-    
-
-
   }
   
   protected void SetPubSubDefault(IModel channel, RabbitMQParam param)
@@ -76,16 +72,17 @@ public partial class API_RabbitMQ : IDisposable
     channel.QueueBind(queue, exchange, routingKey);
     
     _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
+    Console.WriteLine("--> API_RabbitMQ Connected Successfully.");
   }
 
   protected void RabbitMQ_ConnectionShutdown(object? sender, ShutdownEventArgs e)
   {
-    Console.WriteLine("--> RabbitMQ connection was shut down.");
+    Console.WriteLine("--> API_RabbitMQ connection was shut down.");
   }
 
   public void Dispose()
   {
-    Console.WriteLine("--> RabbitMQ connection was shut down.");
+    Console.WriteLine("--> API_RabbitMQ connection was shut down.");
     if (_subChannel != null && _subChannel.IsOpen)
     {
       _subChannel.Close();

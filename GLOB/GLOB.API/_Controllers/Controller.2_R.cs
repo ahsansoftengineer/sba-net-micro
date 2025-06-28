@@ -10,17 +10,17 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
 
   // Single, Include
   [HttpPost("{Id:int}")]
-  public async Task<IActionResult> Get(int Id, [FromBody] DtoRequestGet req)
+  public async Task<IActionResult> Get(int Id, [FromBody] DtoRequestGet dto)
   {
     
-    return await _repo.ToActionGet(Id, req.Includes);
+    return await _repo.ToActionGet(Id, dto.Includes);
   }
 
   // List, Filter, Include
   [HttpPost] //[NoCache]
-  public async Task<IActionResult> Gets([FromBody] DtoRequestGet req)
+  public async Task<IActionResult> Gets([FromBody] DtoRequestGet dto)
   {
-    return await _repo.ToActionGets(req.Includes);
+    return await _repo.ToActionGets(dto.Includes);
   }
   // List, Group
   [HttpGet] //[NoCache]
@@ -31,23 +31,23 @@ public abstract partial class API_2_RDS_Controller<TController, TEntity>
 
   // List, Filter By Ids
   [HttpPost] //[NoCache]
-  public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds req)
+  public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds dto)
   {
-    return await _repo.ToActionGetsByIds(req.Ids);
+    return await _repo.ToActionGetsByIds(dto.Ids);
   }
 
   // List, Group, Filter By Ids
   [HttpPost] //[NoCache]
-  public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds req)
+  public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds dto)
   {
-    return await _repo.ToActionGetsByIdsLookup(req.Ids);
+    return await _repo.ToActionGetsByIdsLookup(dto.Ids);
   }
   [HttpPost] //[NoCache]
-  public async Task<IActionResult> GetsCSV([FromBody] DtoRequestGet req)
+  public async Task<IActionResult> GetsCSV([FromBody] DtoRequestGet dto)
   {
     try
     {
-      var rawData = await _repo.Gets(Include: req.Includes);
+      var rawData = await _repo.Gets(Include: dto.Includes);
       return rawData.ToCsvFileResult(null, (sb) =>
       {
         sb.Replace("Id", "ID");

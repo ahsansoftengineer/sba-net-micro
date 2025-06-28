@@ -16,16 +16,16 @@ public partial class RepoGenericz<T, TKey>
     return await query.ToExtList(expression, orderBy, Includes);
   }
   // Filter, OrderBy, Include, Pagination,
-  public async Task<VMPaginate<T>> GetsPaginate<TDtoSearch>(DtoRequestPage<TDtoSearch?> req) 
+  public async Task<VMPaginate<T>> GetsPaginate<TDtoSearch>(DtoRequestPage<TDtoSearch?> dto) 
     where TDtoSearch : class, IDtoSearch
   {
-    return await _db.ToExtVMPageNoTrack(req);
+    return await _db.ToExtVMPageNoTrack(dto);
   }
   
-  public async Task<VMPaginate<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(DtoRequestPageOption<TDtoSearch?> req) 
+  public async Task<VMPaginate<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(DtoRequestPageOption<TDtoSearch?> dto) 
     where TDtoSearch : class, IDtoSearch
   {
-    return await _db.ToExtVMPageOptionsNoTrack<T, TKey,  TDtoSearch>(req);
+    return await _db.ToExtVMPageOptionsNoTrack<T, TKey,  TDtoSearch>(dto);
   }
 }
 

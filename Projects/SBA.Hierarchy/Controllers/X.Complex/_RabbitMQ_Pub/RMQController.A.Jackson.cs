@@ -16,7 +16,7 @@ public partial class _RabbitMQController : API_1_ErrorController<_RabbitMQContro
   public _RabbitMQController(IServiceProvider sp) : base(sp)
   {
     RabbitMQ_Name = sp.GetSrvc<MsgBusPub>();
-    API_RabbitMQ = sp.GetSrvc<API_RabbitMQ>();
+    _API_RabbitMQ = sp.GetSrvc<API_RabbitMQ>();
 
   }
 

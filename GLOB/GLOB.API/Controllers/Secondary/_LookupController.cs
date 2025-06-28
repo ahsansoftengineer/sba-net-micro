@@ -13,15 +13,15 @@ public class _ProjectzLookupzController : API_2_RDS_Controller<_ProjectzLookupzC
   }
 
   [HttpPost]
-  public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<ProjectzLookupDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<ProjectzLookupDtoSearch?> dto)
   {
-    return await _repo.ToActionGetsPaginate(req);
+    return await _repo.ToActionGetsPaginate(dto);
   }
 
   [HttpPost]
-  public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPage<ProjectzLookupDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPage<ProjectzLookupDtoSearch?> dto)
   {
-    return await _repo.ToActionGetsPaginateOptions(req);
+    return await _repo.ToActionGetsPaginateOptions(dto);
   }
 
   [HttpPost]

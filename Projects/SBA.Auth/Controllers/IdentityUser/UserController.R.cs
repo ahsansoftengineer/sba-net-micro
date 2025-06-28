@@ -34,32 +34,32 @@ public partial class UserController
 
   // List, Filter By Ids
   [HttpPost]
-  public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds<string> req)
+  public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds<string> dto)
   {
    
-    var list = await _repo.Where(x => req.Ids.Contains(x.Id)).ToListAsync();
+    var list = await _repo.Where(x => dto.Ids.Contains(x.Id)).ToListAsync();
     var result = _mapper.Map<List<InfraUserDtoRead>>(list).ToExtVMList();
     return Ok(result);
   
   }
   [HttpPost]
-  public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds<string> req)
+  public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds<string> dto)
   {
    
     var list = await _repo
       .Select(x => new { x.Id, x.Name })
-      .Where((x) => req.Ids.Contains(x.Id))
+      .Where((x) => dto.Ids.Contains(x.Id))
         .ToDictionaryAsync(x => x.Id, y =>  y.Name);
     return list.ToExtVMSingle().Ok();
    
   }
   
   [HttpPost]
-  public async Task<IActionResult> GetsPaginate(DtoRequestPage<DtoSearch?> req)
+  public async Task<IActionResult> GetsPaginate(DtoRequestPage<DtoSearch?> dto)
   {
     var query = _repo
-      .ToExtQueryFilter(req.Filter)
-      .ToExtQueryOrderBy(req.Sort)
+      .ToExtQueryFilter(dto.Filter)
+      .ToExtQueryOrderBy(dto.Sort)
       .Select(x => new {
         x.Id,
         x.Name, 
@@ -70,14 +70,14 @@ public partial class UserController
         x.UpdatedAt
       });
    
-    var result = await query.ToExtPageReq(req);
+    var result = await query.ToExtPageReq(dto);
     return Ok(result);
   }
 
   [HttpPost]
-  public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<DtoSearch?> req)
+  public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<DtoSearch?> dto)
   {
-    var list = await _repo.ToExtVMPageOptionsNoTrack<InfraUser, string>(req);
+    var list = await _repo.ToExtVMPageOptionsNoTrack<InfraUser, string>(dto);
     return Ok(list);
   }
 }

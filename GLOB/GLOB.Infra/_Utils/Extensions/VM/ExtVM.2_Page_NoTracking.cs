@@ -16,26 +16,26 @@ public static partial class ExtResponse
     return await query.ToExtQuery_Query(expression, orderBy, Includes).AsNoTracking().ToListAsync();
   }
   public static async Task<VMPaginate<T>> ToExtPageReq<T, TDtoSearch>(
-    this IQueryable<T> source, DtoRequestPageOption<TDtoSearch?> req)
+    this IQueryable<T> source, DtoRequestPageOption<TDtoSearch?> dto)
   {
     var dtoPage = new DtoPage(){
-      PageNo = req.PageNo,
-      PageSize = req.PageSize,
+      PageNo = dto.PageNo,
+      PageSize = dto.PageSize,
     };
     return await source.ToExtVMPage(new(dtoPage));
   }
 
   public static async Task<VMPaginate<T>> ToExtVMPageNoTrack<T, TDtoSearch>(
       this IQueryable<T> query,
-      DtoRequestPage<TDtoSearch?> req)
+      DtoRequestPage<TDtoSearch?> dto)
     where TDtoSearch : class, IDtoSearch
     where T : class, IEntityBeta
   {
-    query = query.ToExtQueryFilter(req.Filter); // Fix the Adding Enums to Every Filter
-    query = query.ToExtQueryOrderBy(req.Sort); // IEntityBeta
-    query = query.ToExtQueryInclues(req?.Includes);
+    query = query.ToExtQueryFilter(dto.Filter); // Fix the Adding Enums to Every Filter
+    query = query.ToExtQueryOrderBy(dto.Sort); // IEntityBeta
+    query = query.ToExtQueryInclues(dto?.Includes);
 
-    return await query.AsNoTracking().ToExtPageReq(req);
+    return await query.AsNoTracking().ToExtPageReq(dto);
   }
  
 

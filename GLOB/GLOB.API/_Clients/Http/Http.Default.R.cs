@@ -2,44 +2,44 @@ namespace GLOB.API.Clientz;
 
 public partial class API_Httpz
 {
-  public async Task<T?> Get<T>(HttpParam? req = null)
+  public async Task<T?> Get<T>(HttpParam? param = null)
   {
-    if (req == null) req = new();
-    req.Action = EP.Get;
-    return  await Client.Post<T?>(req);
+    if (param == null) param = new();
+    param.Action = EP.Get;
+    return  await Client.Post<T?>(param);
   }
-  public async Task<T?> Gets<T>(HttpParam? req = null)
+  public async Task<T?> Gets<T>(HttpParam? param = null)
   {
-    if (req == null) req = new();
-    req.Action = EP.Gets;
-    return  await Client.Post<T?>(req);
+    if (param == null) param = new();
+    param.Action = EP.Gets;
+    return  await Client.Post<T?>(param);
   }
-  public async Task<T?> GetsLookup<T>(HttpParam? req = null)
+  public async Task<T?> GetsLookup<T>(HttpParam? param = null)
   {
-    if (req == null) req = new();
-    req.Action = EP.GetsLookup;
-    return  await Client.Get<T?>(req);
+    if (param == null) param = new();
+    param.Action = EP.GetsLookup;
+    return  await Client.Get<T?>(param);
   }
-  public async Task<T?> GetsByIds<T>(HttpParam? req = null)
+  public async Task<T?> GetsByIds<T>(HttpParam? param = null)
   {
-    if (req == null) req = new();
-    req.Action = EP.GetsByIds;
-    return  await Client.Post<T?>(req);
+    if (param == null) param = new();
+    param.Action = EP.GetsByIds;
+    return  await Client.Post<T?>(param);
   }
-  public async Task<T?> GetsByIdsLookup<T>(HttpParam req)
+  public async Task<T?> GetsByIdsLookup<T>(HttpParam param)
   {
-    req.Action = EP.GetsByIdsLookup;
-    return  await Client.Post<T?>(req);
+    param.Action = EP.GetsByIdsLookup;
+    return  await Client.Post<T?>(param);
   }
-  public async Task<T?> GetsPaginate<T>(HttpParam req)
+  public async Task<T?> GetsPaginate<T>(HttpParam param)
   {
-    req.Action = EP.GetsPaginate;
-    return  await Client.Post<T?>(req);
+    param.Action = EP.GetsPaginate;
+    return  await Client.Post<T?>(param);
   }
-  public async Task<T?> GetsPaginateOptions<T>(HttpParam req)
+  public async Task<T?> GetsPaginateOptions<T>(HttpParam param)
   {
-    req.Action = EP.GetsPaginateOptions;
-    return  await Client.Post<T?>(req);
+    param.Action = EP.GetsPaginateOptions;
+    return  await Client.Post<T?>(param);
   }
 
 }

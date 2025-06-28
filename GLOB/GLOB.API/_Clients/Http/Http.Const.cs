@@ -16,8 +16,8 @@ public static class EP
 {
     public const string Create = "create";
     public const string Update = "update";
+    public const string Status = "update-status";
     public const string Delete = "delete";
-    public const string Status = "status";
     public const string Get = "get";
     public const string Gets = "gets";
     public const string GetsPaginate = "gets-paginate";

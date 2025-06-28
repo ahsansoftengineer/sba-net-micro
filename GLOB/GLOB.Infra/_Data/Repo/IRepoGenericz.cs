@@ -32,9 +32,9 @@ public interface IRepoGenericz<T, TKey>
   Task InsertRange(IEnumerable<T> entities);
   void DeleteRange(IEnumerable<T> entities);
 
-  Task<VMPaginate<T>> GetsPaginate<TDtoSearch>(DtoRequestPage<TDtoSearch?> req)
+  Task<VMPaginate<T>> GetsPaginate<TDtoSearch>(DtoRequestPage<TDtoSearch?> dto)
     where TDtoSearch : class, IDtoSearch;
 
-  Task<VMPaginate<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(DtoRequestPageOption<TDtoSearch?> req)
+  Task<VMPaginate<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(DtoRequestPageOption<TDtoSearch?> dto)
     where TDtoSearch : class, IDtoSearch;
 }

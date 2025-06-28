@@ -84,18 +84,18 @@ public partial class RoleController: AccountBaseController<RoleController>
     return NoContent();
   }
   [HttpPatch("{Id}")]
-  public async Task<IActionResult> Status(string Id, [FromBody] DtoRequestStatus req)
+  public async Task<IActionResult> Status(string Id, [FromBody] DtoRequestStatus dto)
   {
     try
     {
       if (Id.IsNullOrEmpty()) return _Res.NotFoundId(Id);
-      if (!Enum.IsDefined(req.Status)) return _Res.InvalidEnums(req.Status.ToString());
+      if (!Enum.IsDefined(dto.Status)) return _Res.InvalidEnums(dto.Status.ToString());
 
       var item = await _roleManager.FindByIdAsync(Id);
 
       if (item == null) return _Res.NotFoundId(Id);
 
-      item.Status = req.Status;
+      item.Status = dto.Status;
       await _roleManager.UpdateAsync(item);
       await _uowProjectz.Save();
       return Ok(item);

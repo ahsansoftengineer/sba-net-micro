@@ -7,10 +7,10 @@ public static partial class ExtResponse
 {
   public static async Task<VMPaginate<DtoSelect<int>>> ToExtVMPageOptionsNoTrack<T>(
       this IQueryable<T> query,
-      DtoRequestPageOption<DtoSearch?> req)
+      DtoRequestPageOption<DtoSearch?> dto)
     where T : class, IEntityAlpha, IEntityBeta, IEntityStatus
   {
-      return await query.ToExtVMPageOptionsNoTrack<T, int>(req);
+      return await query.ToExtVMPageOptionsNoTrack<T, int>(dto);
   }
   public static async Task<VMPaginate<DtoSelect<TKey>>> ToExtVMPageOptionsNoTrack<T, TKey>(
       this IQueryable<T> query,

@@ -11,28 +11,28 @@ public partial class API_Httpz
     Client = new API_HttpBase(new HttpClient(), host, srvc, controller);
   }
 
-  public async Task<T?> Create<T>(HttpParam req)
+  public async Task<T?> Create<T>(HttpParam param)
   {
-    req.Action = EP.Create;
-    return await Client.Post<T>(req);
+    param.Action = EP.Create;
+    return await Client.Post<T>(param);
   }
 
-  public async Task<T?> Status<T>(HttpParam req)
+  public async Task<T?> Status<T>(HttpParam param)
   {
-    req.Action = EP.Status;
-    return await Client.Patch<T>(req);
+    param.Action = EP.Status;
+    return await Client.Patch<T>(param);
   }
 
-  public async Task<T?> Update<T>(HttpParam req)
+  public async Task<T?> Update<T>(HttpParam param)
   {
-    req.Action = EP.Update;
-    return await Client.Put<T>(req);
+    param.Action = EP.Update;
+    return await Client.Put<T>(param);
   }
 
-  public async Task<object> Delete(HttpParam req)
+  public async Task<object> Delete(HttpParam param)
   {
-    req.Action = EP.Delete;
-    return await Client.Delete(req);
+    param.Action = EP.Delete;
+    return await Client.Delete(param);
   }
 }
 // public readonly API_Httpz API_Httpz_AuthLookup;

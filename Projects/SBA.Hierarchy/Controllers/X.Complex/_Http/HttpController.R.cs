@@ -18,12 +18,12 @@ public partial class _HttpController
   }
   // Single, Include
   [HttpPost("{Id:int}")]
-  public async Task<IActionResult> Get(int Id, [FromBody] DtoRequestGet req)
+  public async Task<IActionResult> Get(int Id, [FromBody] DtoRequestGet dto)
   {
     var result = await API_Httpz_AuthLookup.Get<ResponseRecord<ProjectzLookup>>(new()
     {
       Resource = Id.ToString(),
-      Body = new { Includes = req?.Includes ?? null }
+      Body = new { Includes = dto?.Includes ?? null }
     });
     return result.Record.ToExtVMSingle().Ok();
   }

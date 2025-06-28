@@ -37,12 +37,12 @@ public partial class _HttpController : API_1_ErrorController<_HttpController>
     return result.Ok();
   }
   [HttpPatch("{Id}")]
-  public async Task<IActionResult> UpdateStatus(string Id, [FromBody] DtoRequestStatus req)
+  public async Task<IActionResult> UpdateStatus(string Id, [FromBody] DtoRequestStatus dto)
   {
     var result = await API_Httpz_AuthLookup.Status<ResponseRecord<ProjectzLookup>>(new()
     {
       Resource = Id,
-      Body = req 
+      Body = dto 
     });
     return result.Ok();
   }
