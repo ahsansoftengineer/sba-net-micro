@@ -20,7 +20,7 @@ public class Option_RabbitMQ
 public class Option_Clientz
 {
   public Option_RabbitMQ RabbitMQz { get; set; }
-  public Option_Http Httpz { get; set; } = new Option_Http();
+  public Option_Http API_Httpz { get; set; } = new Option_Http();
 }
 
 

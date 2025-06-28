@@ -27,7 +27,7 @@ public static partial class DI_Projectz
   }
   public static void Add_Projectz_Clientz(this IServiceCollection srvc)
   {
-    srvc.AddSingleton<UOW_Httpz>();
+    srvc.AddSingleton<UOW_API_Httpz>();
     srvc.AddSingleton<MsgBusPub>();
     srvc.AddSingleton<>();
     srvc.AddSingleton<EventProcessor>();

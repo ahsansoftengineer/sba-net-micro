@@ -15,7 +15,7 @@
 //   [HttpPost]
 //   public async Task<IActionResult> Gets()
 //   {
-//     // var result = await Httpz_AuthLookup.Gets<ResponseRecords<ProjectzLookup>>(new()
+//     // var result = await API_Httpz_AuthLookup.Gets<ResponseRecords<ProjectzLookup>>(new()
 //     // {
 //     //   Body = new { includes = new List<string>() { "ProjectzLookupBase" } }
 //     // });
@@ -26,7 +26,7 @@
 //   [HttpPost("{Id:int}")]
 //   public async Task<IActionResult> Get(int Id, [FromBody] DtoRequestGet req)
 //   {
-//     // var result = await Httpz_AuthLookup.Get<ResponseRecord<ProjectzLookup>>(new()
+//     // var result = await API_Httpz_AuthLookup.Get<ResponseRecord<ProjectzLookup>>(new()
 //     // {
 //     //   Resource = Id.ToString(),
 //     //   Body = new { Includes = req?.Includes ?? null }
@@ -38,14 +38,14 @@
 //   [HttpGet]
 //   public async Task<IActionResult> GetsLookup()
 //   {
-//     // var result = await Httpz_AuthLookup.GetsLookup<ResponseRecord<Dictionary<string, string>>>();
+//     // var result = await API_Httpz_AuthLookup.GetsLookup<ResponseRecord<Dictionary<string, string>>>();
 //     // return result.Record.ToExtVMSingle().Ok();
 //     return null;
 //   }
 //   [HttpPost]
 //   public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds<string> req)
 //   {
-//     // var result = await Httpz_AuthLookup.GetsByIds<ResponseRecords<ProjectzLookup>>(new()
+//     // var result = await API_Httpz_AuthLookup.GetsByIds<ResponseRecords<ProjectzLookup>>(new()
 //     // {
 //     //   Body = new { req.Ids}
 //     // });
@@ -55,7 +55,7 @@
 //   [HttpPost]
 //   public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds<string> req)
 //   {
-//     // var result = await Httpz_AuthLookup.GetsByIdsLookup<ResponseRecord<Dictionary<string, string>>>(new()
+//     // var result = await API_Httpz_AuthLookup.GetsByIdsLookup<ResponseRecord<Dictionary<string, string>>>(new()
 //     // {
 //     //   Body = new { req.Ids}
 //     // });
@@ -66,7 +66,7 @@
 //   [HttpPost]
 //   public async Task<IActionResult> GetsPaginate(DtoRequestPage<DtoSearch?> req)
 //   {
-//     // var result = await Httpz_AuthLookup.GetsPaginate<VMPaginate<ProjectzLookup>>(new()
+//     // var result = await API_Httpz_AuthLookup.GetsPaginate<VMPaginate<ProjectzLookup>>(new()
 //     // {
 //     //   Body = new
 //     //   {
@@ -83,7 +83,7 @@
 //   [HttpPost]
 //   public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<DtoSearch?> req)
 //   {
-//     // var result = await Httpz_AuthLookup.GetsPaginateOptions<VMPaginate<DtoSelect>>(new()
+//     // var result = await API_Httpz_AuthLookup.GetsPaginateOptions<VMPaginate<DtoSelect>>(new()
 //     // {
 //     //   Body = new
 //     //   {

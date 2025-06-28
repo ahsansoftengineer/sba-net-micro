@@ -46,7 +46,7 @@ public partial class _RabbitMQController
   // [HttpDelete("{Id}")]
   // public async Task<IActionResult> Delete(string Id)
   // {
-  //   var result = await Httpz_AuthLookup.Delete(new()
+  //   var result = await API_Httpz_AuthLookup.Delete(new()
   //   {
   //     Resource = Id,
   //   });
@@ -56,7 +56,7 @@ public partial class _RabbitMQController
   // [HttpPatch("{Id}")]
   // public async Task<IActionResult> UpdateStatus(string Id, [FromBody] DtoRequestStatus req)
   // {
-  //   var result = await Httpz_AuthLookup.Status<ResponseRecord<ProjectzLookup>>(new()
+  //   var result = await API_Httpz_AuthLookup.Status<ResponseRecord<ProjectzLookup>>(new()
   //   {
   //     Resource = Id,
   //     Body = req

@@ -4,7 +4,7 @@ using GLOB.API.Staticz;
 
 namespace GLOB.API.Clientz;
 
-public class HttpBase
+public class API_HttpBase
 {
   protected readonly string? _host;
   protected readonly string? _srvc;
@@ -12,7 +12,7 @@ public class HttpBase
 
   protected readonly HttpClient _httpClient;
 
-  public HttpBase(HttpClient httpClient, string host, string srvc, string controller)
+  public API_HttpBase(HttpClient httpClient, string host, string srvc, string controller)
   {
     _httpClient = httpClient;
     _host = host;
