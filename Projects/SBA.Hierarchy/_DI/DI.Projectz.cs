@@ -29,6 +29,7 @@ public static partial class DI_Projectz
   {
     srvc.AddSingleton<UOW_Httpz>();
     srvc.AddSingleton<MsgBusPub>();
+    srvc.AddSingleton<>();
     srvc.AddSingleton<EventProcessor>();
     // srvc.AddSingleton<GRPCClient>();
   }

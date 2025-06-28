@@ -13,12 +13,8 @@ namespace SBA.Auth.Controllers;
 public partial class _RabbitMQController : API_1_ErrorController<_RabbitMQController>
 {
   private readonly MsgBusPub RabbitMQ_Name;
-  public readonly Httpz Httpz_AuthLookup;
   public _RabbitMQController(IServiceProvider sp) : base(sp)
   {
-    // string  gatewayUrl = _config.GetValueStr("URLzGateway"); 
-    // Httpz_AuthLookup = new Httpz(_Option_App.SrvcHttp.Auth, Srvc.Auth, Controllerz.ProjectzLookup);
-    Httpz_AuthLookup = sp.GetSrvc<UOW_Httpz>().Httpz_AuthLookup;
     RabbitMQ_Name = sp.GetSrvc<MsgBusPub>();
 
   }

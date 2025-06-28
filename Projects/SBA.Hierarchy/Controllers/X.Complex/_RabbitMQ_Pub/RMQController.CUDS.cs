@@ -10,8 +10,10 @@ using GLOB.Infra.Utils.Attributez;
 
 namespace SBA.Auth.Controllers;
 
-public partial class _RabbitMQController : API_1_ErrorController<_RabbitMQController>
+public partial class _RabbitMQController 
 {
+  private readonly MsgBusPub RabbitMQ_Name;
+
   [HttpPost] [NoCache]
   public async Task<IActionResult> Createz([FromBody] ProjectzLookupDtoCreate model)
   {

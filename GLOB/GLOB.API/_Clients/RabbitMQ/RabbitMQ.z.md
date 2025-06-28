@@ -41,7 +41,7 @@ var param = new RabbitMQParam
 _rabbit.Pubs(param);
 
 
- var param = new RabbitMQParam
+var param = new RabbitMQParam
 {
     route = new RabbitMQRoute
     {
