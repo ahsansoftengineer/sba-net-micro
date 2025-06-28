@@ -14,7 +14,7 @@ public partial class _HttpController : API_1_ErrorController<_HttpController>
   public _HttpController(IServiceProvider sp) : base(sp)
   {
     // string  gatewayUrl = _config.GetValueStr("URLzGateway"); 
-    // Httpz_AuthLookup = new Httpz(_appSettings.SrvcHttp.Auth, Srvc.Auth, Controllerz.ProjectzLookup);
+    // Httpz_AuthLookup = new Httpz(_Option_App.SrvcHttp.Auth, Srvc.Auth, Controllerz.ProjectzLookup);
     Httpz_AuthLookup = sp.GetSrvc<UOW_Httpz>().Httpz_AuthLookup;
   }
  

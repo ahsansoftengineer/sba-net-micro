@@ -1,8 +1,8 @@
 namespace GLOB.API.Config.Configz;
 
-public class AppSettings
+public class Option_App
 {
-  // public static string? SectionName = "AppSettings";
+  // public static string? SectionName = "Option_App";
   public Logging? Logging { get; set; }
   public string? AllowedHosts { get; set; }
   public bool? USE_HTTPS { get; set; }
@@ -15,7 +15,7 @@ public class AppSettings
 
   public ConnectionStrings? ConnectionStrings { get; set; }
 
-  public ClientzSettings Clientz { get; set; }
+  public Option_Clientz Clientz { get; set; }
 }
 
 

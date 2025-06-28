@@ -2,78 +2,54 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
 using System.Text.Json;
+using GLOB.API.Config.Configz;
+using GLOB.API.Config.Extz;
+using Microsoft.Extensions.Options;
 
 namespace GLOB.API.Clientz;
 
-public class RabbitBase : IDisposable
+public partial class API_RabbitMQ : IDisposable
 {
   private readonly IConnection _connection;
   private readonly IModel _pubChannel;
   private readonly IModel _subChannel;
 
-  public RabbitBase(string hostName = "localhost", string virtualHost = "/", string user = "guest", string password = "guest")
-  {
-    var factory = new ConnectionFactory
-    {
-      // Uri = "",
-      // Port = 5672,
-      HostName = hostName,
-      VirtualHost = virtualHost,
-      UserName = user,
-      Password = password
-    };
+  private readonly IConfiguration _config;
+  private readonly EventProcessor _eventProcessor;
+  private readonly Option_RabbitMQ _option_RabbitMQ;
 
+  public API_RabbitMQ(IServiceProvider sp)
+  {
+    _config = sp.GetSrvc<IConfiguration>();
+    _eventProcessor = sp.GetSrvc<EventProcessor>();
+    _option_RabbitMQ = sp.GetSrvc<IOptions<Option_App>>().Value.Clientz.RabbitMQz;
+    // InitRabbitMQ();
+    var factory = new ConnectionFactory()
+    {
+      HostName = _option_RabbitMQ.HostName,
+      Port = _option_RabbitMQ.Port
+    };
     _connection = factory.CreateConnection();
     _pubChannel = _connection.CreateModel();
     _subChannel = _connection.CreateModel();
+    
   }
-
-  public void Pubs(RabbitMQParam param)
+  private void InitRabbitMQ()
   {
-    SetPubSubDefault(_pubChannel, param);
 
-    var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(param.body));
-    var props = _pubChannel.CreateBasicProperties();
-    props.ContentType = "application/json";
+    // var factory = new ConnectionFactory
+    // {
+    //   Uri = _option_RabbitMQ.Uri,
+    //   Port = _option_RabbitMQ.Port,
+    //   HostName = _option_RabbitMQ.HostName,
+    //   VirtualHost = _option_RabbitMQ.VirtualHost,
+    //   UserName = _option_RabbitMQ.UserName,
+    //   Password = _option_RabbitMQ.Password
+    // };
 
-    if (param.options.Headers != null)
-    {
-      props.Headers = param.options.Headers;
-    }
 
-    _pubChannel.BasicPublish(param.route.Exchange, param.route.Key, param.options.Mandatory ?? false, props, body);
   }
-
-  public void Subs<T>(RabbitMQParam param, Action<T> handler)
-  {
-    SetPubSubDefault(_subChannel, param);
-
-    var consumer = new EventingBasicConsumer(_subChannel);
-    consumer.Received += (_, ea) =>
-    {
-      try
-      {
-        var body = ea.Body.ToArray();
-        var message = JsonSerializer.Deserialize<T>(Encoding.UTF8.GetString(body));
-        if (message != null)
-          handler(message);
-
-        if (!(param.options.AutoAck ?? true))
-          _subChannel.BasicAck(ea.DeliveryTag, false);
-      }
-      catch (Exception ex)
-      {
-        Console.WriteLine($"[RabbitMQ] Error in message handler: {ex.Message}");
-        if (!(param.options.AutoAck ?? true))
-          _subChannel.BasicNack(ea.DeliveryTag, false, requeue: true);
-      }
-    };
-
-    _subChannel.BasicConsume(queue: param.route.Queue ?? "q-default",
-                             autoAck: param.options.AutoAck ?? true,
-                             consumer: consumer);
-  }
-
+  
   private void SetPubSubDefault(IModel channel, RabbitMQParam param)
   {
     var exchange = param.route.Exchange ?? "ex-default";
@@ -124,6 +100,5 @@ public class RabbitBase : IDisposable
       _connection.Close();
       _connection.Dispose();
     }
-    base.Dispose();
   }
 }

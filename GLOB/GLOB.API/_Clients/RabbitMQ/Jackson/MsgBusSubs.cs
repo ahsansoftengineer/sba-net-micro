@@ -11,7 +11,7 @@ public class MsgBusSubs : BackgroundService
 {
   private readonly IConfiguration _config;
   private readonly EventProcessor _eventProcessor;
-  private readonly AppSettings _appSettings;
+  private readonly Option_RabbitMQ _option_RabbitMQ;
   private IConnection _connection;
   private IModel _channel;
   private string _queueName;
@@ -20,7 +20,7 @@ public class MsgBusSubs : BackgroundService
   {
     _config = sp.GetSrvc<IConfiguration>();
     _eventProcessor = sp.GetSrvc<EventProcessor>();
-    _appSettings = sp.GetSrvc<IOptions<AppSettings>>().Value;
+    _option_RabbitMQ = sp.GetSrvc<IOptions<Option_App>>().Value.Clientz.RabbitMQz;
     InitRabbitMQ();
   }
 
@@ -28,8 +28,8 @@ public class MsgBusSubs : BackgroundService
   {
     var factory = new ConnectionFactory()
     {
-      HostName = _appSettings.Clientz.RabbitMQHost,
-      Port = _appSettings.Clientz.RabbitMQPort
+      HostName = _option_RabbitMQ.HostName,
+      Port = _option_RabbitMQ.Port
     };
 
     _connection = factory.CreateConnection();

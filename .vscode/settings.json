@@ -4,8 +4,8 @@
   "omnisharp.useModernNet": true,
   "json.schemas": [
     {
-      "fileMatch": ["appsettings*.json"],
-      "url": "./appsettings.schema.json"
+      "fileMatch": ["Option_App*.json"],
+      "url": "./Option_App.schema.json"
     }
   ]
 }

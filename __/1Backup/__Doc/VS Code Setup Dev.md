@@ -84,7 +84,7 @@ Each service uses:
 - Launch browser set to true
 - Profile: `https`
 
-### `appsettings.json`
+### `Option_App.json`
 ```json
 "ASPNETCORE_URLS": "http://+:1100;https://+:1101",
 "ASPNETCORE_HTTPS_PORT": "1101",

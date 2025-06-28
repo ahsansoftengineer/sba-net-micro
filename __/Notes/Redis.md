@@ -1,5 +1,5 @@
 ### REDIS DOCS
-- appsettings.json
+- Option_App.json
 - Filter Sets for Following Actions
 - - Get, Gets, Create, Delete, Update, Status,   
 ```json
