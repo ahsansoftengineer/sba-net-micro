@@ -15,6 +15,8 @@ public class RabbitBase : IDisposable
   {
     var factory = new ConnectionFactory
     {
+      // Uri = "",
+      // Port = 5672,
       HostName = hostName,
       VirtualHost = virtualHost,
       UserName = user,
@@ -94,12 +96,34 @@ public class RabbitBase : IDisposable
     );
 
     channel.QueueBind(queue, exchange, routingKey);
+    
+    _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
+  }
+
+  private void RabbitMQ_ConnectionShutdown(object? sender, ShutdownEventArgs e)
+  {
+    Console.WriteLine("--> RabbitMQ connection was shut down.");
   }
 
   public void Dispose()
   {
-    _subChannel?.Close();
-    _pubChannel?.Close();
-    _connection?.Close();
+    if (_subChannel != null && _subChannel.IsOpen)
+    {
+      _subChannel.Close();
+      _subChannel.Dispose();
+    }
+
+    if (_pubChannel != null && _pubChannel.IsOpen)
+    {
+      _pubChannel.Close();
+      _pubChannel.Dispose();
+    }
+
+    if (_connection != null && _connection.IsOpen)
+    {
+      _connection.Close();
+      _connection.Dispose();
+    }
+    base.Dispose();
   }
 }

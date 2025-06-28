@@ -18,12 +18,10 @@ public class MsgBusBase : IDisposable
 
   public void Init()
   {
-    string HostName = _clientzOption.RabbitMQHost;
-    int Port = _clientzOption.RabbitMQPort;
     var factory = new ConnectionFactory
     {
-      HostName = HostName,
-      Port = Port
+      HostName = _clientzOption.RabbitMQHost,
+      Port = _clientzOption.RabbitMQPort
     };
     try
     {
