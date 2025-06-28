@@ -10,7 +10,7 @@ using GLOB.Infra.Utils.Attributez;
 
 namespace SBA.Auth.Controllers;
 
-public partial class _RabbitMQController 
+public partial class __RabbitMQController 
 {
   private readonly API_RabbitMQ _API_RabbitMQ;
 
@@ -27,12 +27,7 @@ public partial class _RabbitMQController
           Body = dto,
           Event = $"ProjectzLookupz_{EP.Create}"
         },
-        route = new()
-        {
-          Exchange = "auth",
-          Queue = "projectz-lookup",
-          Key = $"{EP.Create}"
-        },
+        route = new(MQ_Exch.Auth, Controllerz.ProjectzLookup,  EP.Create),
         options = new()
         {
           ExchangeDurable = true,
@@ -52,6 +47,7 @@ public partial class _RabbitMQController
   [HttpPut("{Id}")] [NoCache]
   public async Task<IActionResult> Update(string Id, [FromBody] ProjectzLookupDtoCreate dto)
   {
+    Route.Key = EP.Update;
     var param = new RabbitMQParam
     {
       payload = new()
@@ -60,22 +56,17 @@ public partial class _RabbitMQController
         Body = dto,
         Event = $"ProjectzLookupz_{EP.Update}"
       },
-      route = new()
-      {
-        Exchange = "auth",
-        Queue = "projectz-lookup",
-        Key = $"{EP.Update}"
-      }
+      route = Route
     };
 
     _API_RabbitMQ.Pubs(param);
     return param.payload.ToExtVMSingle().Ok();
-
   }
 
   [HttpDelete("{Id}")] [NoCache]
   public async Task<IActionResult> Delete(string Id)
   {
+    Route.Key = EP.Delete;
     var param = new RabbitMQParam
     {
       payload = new()
@@ -83,12 +74,7 @@ public partial class _RabbitMQController
         Resource = Id,
         Event = $"ProjectzLookupz_{EP.Delete}"
       },
-      route = new()
-      {
-        Exchange = "auth",
-        Queue = "projectz-lookup",
-        Key = $"{EP.Delete}"
-      }
+      route = Route
     };
 
     _API_RabbitMQ.Pubs(param);
@@ -99,6 +85,7 @@ public partial class _RabbitMQController
   [HttpPatch("{Id}")] [NoCache]
   public async Task<IActionResult> UpdateStatus(string Id, [FromBody] DtoRequestStatus dto)
   {
+    Route.Key = EP.Status;
     var param = new RabbitMQParam
     {
       payload = new()
@@ -107,12 +94,7 @@ public partial class _RabbitMQController
         Body = dto,
         Event = $"ProjectzLookupz_{EP.Status}"
       },
-      route = new()
-      {
-        Exchange = "auth",
-        Queue = "projectz-lookup",
-        Key = $"{EP.Status}"
-      }
+      route = Route
     };
 
     _API_RabbitMQ.Pubs(param);

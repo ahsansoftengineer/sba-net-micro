@@ -8,13 +8,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
 
-public partial class _HttpController : API_1_ErrorController<_HttpController>
+public partial class __HttpController : API_1_ErrorController<__HttpController>
 {
   public readonly API_Httpz API_Httpz_AuthLookup;
-  public _HttpController(IServiceProvider sp) : base(sp)
+  public __HttpController(IServiceProvider sp) : base(sp)
   {
     // string  gatewayUrl = _config.GetValueStr("URLzGateway"); 
-    // API_Httpz_AuthLookup = new API_Httpz(_Option_App.SrvcHttp.Auth, Srvc.Auth, Controllerz.ProjectzLookup);
+    // API_Httpz_AuthLookup = new API_Httpz(_Option_App.SrvcHttp.Auth, PrefixHttp.Auth, Controllerz.ProjectzLookup);
     API_Httpz_AuthLookup = sp.GetSrvc<UOW_API_Httpz>().API_Httpz_AuthLookup;
   }
  

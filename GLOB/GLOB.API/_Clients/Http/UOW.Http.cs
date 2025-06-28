@@ -16,5 +16,5 @@ public partial class UOW_API_Httpz
     _option_Http = sp.GetSrvc<IOptions<Option_App>>().Value.Clientz.API_Httpz;
   }
 
-  public API_Httpz API_Httpz_AuthLookup => _API_Httpz_AuthLookup = new API_Httpz(_option_Http.Auth, Srvc.Auth, Controllerz.ProjectzLookup) ;
+  public API_Httpz API_Httpz_AuthLookup => _API_Httpz_AuthLookup = new API_Httpz(_option_Http.Auth, PrefixHttp.Auth, Controllerz.ProjectzLookup) ;
 }

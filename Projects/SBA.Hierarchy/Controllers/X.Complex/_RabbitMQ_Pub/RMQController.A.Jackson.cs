@@ -10,14 +10,15 @@ using GLOB.Infra.Utils.Attributez;
 
 namespace SBA.Auth.Controllers;
 
-public partial class _RabbitMQController : API_1_ErrorController<_RabbitMQController>
+public partial class __RabbitMQController : API_1_ErrorController<__RabbitMQController>
 {
   private readonly MsgBusPub RabbitMQ_Name;
-  public _RabbitMQController(IServiceProvider sp) : base(sp)
+  public RabbitMQRoute Route = null;
+  public __RabbitMQController(IServiceProvider sp) : base(sp)
   {
     RabbitMQ_Name = sp.GetSrvc<MsgBusPub>();
     _API_RabbitMQ = sp.GetSrvc<API_RabbitMQ>();
-
+    Route = new(MQ_Exch.Auth, Controllerz.ProjectzLookup,  EP.Status);
   }
 
   [HttpPost] [NoCache]

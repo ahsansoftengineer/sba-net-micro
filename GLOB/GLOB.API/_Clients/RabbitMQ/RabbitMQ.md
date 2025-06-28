@@ -18,29 +18,63 @@
 ---
 
 Let me know if you'd like a version of this as a formatted `.md` table or code comments for reference.
-
-
+### Example Pub 1
 ```c#
-_rabbit = new RabbitBase();
-var param = new RabbitMQParam
+[HttpPost] [NoCache]
+public async Task<IActionResult> Createz([FromBody] ProjectzLookupDtoCreate dto)
 {
-    body = data,
-    route = new RabbitMQRoute
+    try
     {
-        Exchange = "ex-sample",
-        Queue = "q-sample",
-        Key = "sample.key"
-    },
-    options = new RabbitMQOptions
-    {
-        ExchangeDurable = true,
-        QueueDurable = true
+        var param = new RabbitMQParam
+        {
+        payload = new()
+        {
+            Body = dto,
+            Event = $"ProjectzLookupz_{EP.Create}"
+        },
+        route = new(MQ_Exch.Auth, Controllerz.ProjectzLookup,  EP.Create),
+        options = new()
+        {
+            ExchangeDurable = true,
+            QueueDurable = true
+        }
+        };
+        _API_RabbitMQ.Pubs(param);
+        return param.payload.ToExtVMSingle().Ok();
     }
-};
+    catch (Exception ex)
+    {
+        // return ex.Ok();
+        return $"--> Rabbit MQ Error : {ex.Message}".ToExtVMSingle().Ok();
+    }
 
-_rabbit.Pubs(param);
+}
 
+```
+### Example Pub 2
+```c#
+  [HttpPut("{Id}")] [NoCache]
+  public async Task<IActionResult> Update(string Id, [FromBody] ProjectzLookupDtoCreate dto)
+  {
+    Route.Key = EP.Update;
+    var param = new RabbitMQParam
+    {
+      payload = new()
+      {
+        Resource = Id,
+        Body = dto,
+        Event = $"ProjectzLookupz_{EP.Update}"
+      },
+      route = Route
+    };
 
+    _API_RabbitMQ.Pubs(param);
+    return param.payload.ToExtVMSingle().Ok();
+  }  
+
+```
+### Example Sub 1
+```c#
 var param = new RabbitMQParam
 {
     route = new RabbitMQRoute

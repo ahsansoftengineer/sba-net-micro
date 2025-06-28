@@ -6,13 +6,13 @@
 # printenv DOTNET_ENVIRONMENT
 
 ### ROUTE (Docker-Compose Bridge Network)
-# - http://localhost:5800/api/APIGateway/v1/swagger/index.html
-# - http://localhost:5802/api/Auth/v1/swagger/index.html
-# - http://localhost:5806/api/Hierarchy/v1/swagger/index.html
+# - http://localhost:1100/api/APIGateway/v1/swagger/index.html
+# - http://localhost:1102/api/Auth/v1/swagger/index.html
+# - http://localhost:1106/api/Hierarchy/v1/swagger/index.html
 
 ### InterService Comm (Bridge Network)
-# - http://srvc-dc-api-sba-auth:5802/api/Auth/v1/
-# - http://srvc-dc-api-sba-auth:5806/api/Hierarchy/v1/
+# - http://srvc-dc-api-sba-auth:1102/api/Auth/v1/
+# - http://srvc-dc-api-sba-auth:1106/api/Hierarchy/v1/
 
 version: "3.9"
 services:

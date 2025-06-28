@@ -1,9 +1,15 @@
 namespace GLOB.API.Clientz;
 
-public static class Srvc
+public static class PrefixHttp
 {
     public const string Auth = "api/auth/v1";
     public const string Hierarchy = "api/hierarchy/v1";
+}
+
+public static class MQ_Exch
+{
+    public const string Auth = "auth";
+    public const string Hierarchy = "hierarchy";
 }
 
 public static class Controllerz

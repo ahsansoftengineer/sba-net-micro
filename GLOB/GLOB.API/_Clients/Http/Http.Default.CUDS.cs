@@ -39,7 +39,7 @@ public partial class API_Httpz
 // public AuthLookupBaseHttpController(IServiceProvider srvc): base(srvc) 
 // {
 //   string  gatewayUrl = _config.GetValueStr("URLzGateway"); 
-//   API_Httpz_AuthLookup = new API_Httpz(gatewayUrl, Srvc.Auth, Controllerz.ProjectzLookup) ;
+//   API_Httpz_AuthLookup = new API_Httpz(gatewayUrl, PrefixHttp.Auth, Controllerz.ProjectzLookup) ;
 // }
 // [HttpPost]
 // public async Task<IActionResult> Gets()
@@ -48,7 +48,7 @@ public partial class API_Httpz
 //   var result = await API_Httpz_AuthLookup.Gets<ResponseRecords<ProjectzLookup>>(
 //     new () {
 //       // Host = gatewayUrl,
-//       // Srvc = Srvc.Auth,
+//       // Srvc = PrefixHttp.Auth,
 //       // Controller = Controllerz.Lookup,
 //       Action =  EP.Gets,
 //       // Resource = "1",
