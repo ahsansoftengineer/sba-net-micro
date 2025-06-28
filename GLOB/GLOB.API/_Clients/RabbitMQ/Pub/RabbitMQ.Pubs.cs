@@ -11,7 +11,7 @@ public partial class API_RabbitMQ
   {
     SetPubSubDefault(_pubChannel, param);
 
-    var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(param.body));
+    var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(param.payload));
     var props = _pubChannel.CreateBasicProperties();
     props.ContentType = "application/json";
 

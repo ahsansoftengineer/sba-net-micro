@@ -50,6 +50,9 @@ public partial class API_RabbitMQ : IDisposable
   
   protected void SetPubSubDefault(IModel channel, RabbitMQParam param)
   {
+    if(param.route == null) param.route = new();
+    if(param.options == null) param.options = new();
+
     var exchange = param.route.Exchange ?? "ex-default";
     var queue = param.route.Queue ?? "q-default";
     var routingKey = param.route.Key ?? "k-default";

@@ -20,30 +20,27 @@ public partial class _RabbitMQController
     // dto.Status = Status.Active;
     try
     {
-      var data = new
-      {
-        Body = dto,
-        Event = $"ProjectzLookupz_{EP.Create}"
-      };
-
       var param = new RabbitMQParam
       {
-        body = data,
-        route = new RabbitMQRoute
+        payload = new()
         {
-            Exchange = "auth",
-            Queue = "projectz-lookup",
-            Key = $"{EP.Create}"
+          Body = dto,
+          Event = $"ProjectzLookupz_{EP.Create}"
         },
-        options = new RabbitMQOptions
+        route = new()
         {
-            ExchangeDurable = true,
-            QueueDurable = true
+          Exchange = "auth",
+          Queue = "projectz-lookup",
+          Key = $"{EP.Create}"
+        },
+        options = new()
+        {
+          ExchangeDurable = true,
+          QueueDurable = true
         }
       };
-
       _API_RabbitMQ.Pubs(param);
-      return data.ToExtVMSingle().Ok();
+      return param.payload.ToExtVMSingle().Ok();
     }
     catch (Exception ex)
     {
@@ -52,94 +49,73 @@ public partial class _RabbitMQController
     }
 
   }
-  [HttpPut("{Id}")]
+  [HttpPut("{Id}")] [NoCache]
   public async Task<IActionResult> Update(string Id, [FromBody] ProjectzLookupDtoCreate dto)
   {
-    var data = new
-    {
-      Resource = Id,
-      Body = dto,
-      Event = $"ProjectzLookupz_{EP.Update}"
-    };
-
     var param = new RabbitMQParam
     {
-      body = data,
-      route = new RabbitMQRoute
+      payload = new()
       {
-          Exchange = "auth",
-          Queue = "projectz-lookup",
-          Key = $"{EP.Update}"
+        Resource = Id,
+        Body = dto,
+        Event = $"ProjectzLookupz_{EP.Update}"
       },
-      options = new RabbitMQOptions
+      route = new()
       {
-          ExchangeDurable = true,
-          QueueDurable = true
+        Exchange = "auth",
+        Queue = "projectz-lookup",
+        Key = $"{EP.Update}"
       }
     };
 
     _API_RabbitMQ.Pubs(param);
-    return data.ToExtVMSingle().Ok();
+    return param.payload.ToExtVMSingle().Ok();
 
   }
 
-  [HttpDelete("{Id}")]
+  [HttpDelete("{Id}")] [NoCache]
   public async Task<IActionResult> Delete(string Id)
   {
-    var data = new
-    {
-      Resource = Id,
-      Event = $"ProjectzLookupz_{EP.Delete}"
-    };
-
     var param = new RabbitMQParam
     {
-      body = data,
-      route = new RabbitMQRoute
+      payload = new()
+      {
+        Resource = Id,
+        Event = $"ProjectzLookupz_{EP.Delete}"
+      },
+      route = new()
       {
         Exchange = "auth",
         Queue = "projectz-lookup",
         Key = $"{EP.Delete}"
-      },
-      options = new RabbitMQOptions
-      {
-        ExchangeDurable = true,
-        QueueDurable = true
       }
     };
 
     _API_RabbitMQ.Pubs(param);
-    return data.ToExtVMSingle().Ok();
+    return param.payload.ToExtVMSingle().Ok();
     
   }
   
-  [HttpPatch("{Id}")]
+  [HttpPatch("{Id}")] [NoCache]
   public async Task<IActionResult> UpdateStatus(string Id, [FromBody] DtoRequestStatus dto)
   {
-    var data = new
-    {
-      Resource = Id,
-      Body = dto,
-      Event = $"ProjectzLookupz_{EP.Status}"
-    };
-
     var param = new RabbitMQParam
     {
-      body = data,
-      route = new RabbitMQRoute
+      payload = new()
+      {
+        Resource = Id,
+        Body = dto,
+        Event = $"ProjectzLookupz_{EP.Status}"
+      },
+      route = new()
       {
         Exchange = "auth",
         Queue = "projectz-lookup",
         Key = $"{EP.Status}"
-      },
-      options = new RabbitMQOptions
-      {
-        ExchangeDurable = true,
-        QueueDurable = true
       }
     };
 
     _API_RabbitMQ.Pubs(param);
-    return data.Ok();
+    return param.payload.Ok();
   }
 }
