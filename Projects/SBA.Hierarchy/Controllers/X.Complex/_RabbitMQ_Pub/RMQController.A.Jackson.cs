@@ -16,6 +16,7 @@ public partial class _RabbitMQController : API_1_ErrorController<_RabbitMQContro
   public _RabbitMQController(IServiceProvider sp) : base(sp)
   {
     RabbitMQ_Name = sp.GetSrvc<MsgBusPub>();
+    API_RabbitMQ = sp.GetSrvc<API_RabbitMQ>();
 
   }
 
@@ -38,7 +39,7 @@ public partial class _RabbitMQController : API_1_ErrorController<_RabbitMQContro
     }
     catch (Exception ex)
     {
-      return ex.Ok();
+      // return ex.Ok();
       return $"--> Rabbit MQ Error : {ex.Message}".ToExtVMSingle().Ok();
     }
 

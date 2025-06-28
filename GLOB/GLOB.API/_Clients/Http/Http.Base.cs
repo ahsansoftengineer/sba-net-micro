@@ -19,7 +19,7 @@ public class API_HttpBase
     _srvc = srvc;
     _controller = controller;
   }
-  public async Task<T?> Get<T>(HttpReq req)
+  public async Task<T?> Get<T>(HttpParam req)
   {
     setDefault(req);
     var response = await _httpClient.GetAsync(req.Url);
@@ -28,21 +28,21 @@ public class API_HttpBase
     return result;
   }
 
-  public async Task<T?> Post<T>(HttpReq req)
+  public async Task<T?> Post<T>(HttpParam req)
   {
     setDefault(req);
     var response = await _httpClient.PostAsJsonAsync(req.Url, req.Body);
     return await DeserializeResponse<T>(response);
   }
 
-  public async Task<T?> Patch<T>(HttpReq req)
+  public async Task<T?> Patch<T>(HttpParam req)
   {
     setDefault(req);
     var response = await _httpClient.PatchAsJsonAsync(req.Url, req.Body);
     return await DeserializeResponse<T>(response);
   }
 
-  public async Task<T?> Put<T>(HttpReq req)
+  public async Task<T?> Put<T>(HttpParam req)
   {
     setDefault(req);
     var response = await _httpClient.PutAsJsonAsync(req.Url, req.Body);
@@ -50,7 +50,7 @@ public class API_HttpBase
   }
 
   // Not Returning anything
-  public async Task<object> Delete(HttpReq req)
+  public async Task<object> Delete(HttpParam req)
   {
     setDefault(req);
     // var response = await _httpClient.DeleteFromJsonAsync<ResponseRecord>(req.Url);
@@ -59,7 +59,7 @@ public class API_HttpBase
     return await DeserializeResponse<OkMsg>(response);
   }
 
-  private HttpReq setDefault(HttpReq req)
+  private HttpParam setDefault(HttpParam req)
   {
 
     if (string.IsNullOrEmpty(req?.Host))
@@ -123,7 +123,7 @@ public class API_HttpBase
   }
 }
 
-public record HttpReq
+public record HttpParam
 {
   public string? Host { get; set; } // http://www.arab.com || environment.API_req
   public string? Srvc { get; set; } // api/Hierarchy/v1 || environment.API_req

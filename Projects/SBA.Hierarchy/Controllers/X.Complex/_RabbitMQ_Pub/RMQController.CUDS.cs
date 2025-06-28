@@ -12,7 +12,7 @@ namespace SBA.Auth.Controllers;
 
 public partial class _RabbitMQController 
 {
-  private readonly MsgBusPub RabbitMQ_Name;
+  private readonly API_RabbitMQ API_RabbitMQ;
 
   [HttpPost] [NoCache]
   public async Task<IActionResult> Createz([FromBody] ProjectzLookupDtoCreate model)
@@ -28,12 +28,29 @@ public partial class _RabbitMQController
         Status.Active,
         Event = $"ProjectzLookupz_{EP.Create}"
       };
-      RabbitMQ_Name.Publish(data);
+
+      var param = new RabbitMQParam
+      {
+        body = data,
+        route = new RabbitMQRoute
+        {
+            Exchange = "ex-sample",
+            Queue = "q-sample",
+            Key = "sample.key"
+        },
+        options = new RabbitMQOptions
+        {
+            ExchangeDurable = true,
+            QueueDurable = true
+        }
+      };
+
+      API_RabbitMQ.Pubs(param);
       return data.ToExtVMSingle().Ok();
     }
     catch (Exception ex)
     {
-      return ex.Ok();
+      // return ex.Ok();
       return $"--> Rabbit MQ Error : {ex.Message}".ToExtVMSingle().Ok();
     }
 

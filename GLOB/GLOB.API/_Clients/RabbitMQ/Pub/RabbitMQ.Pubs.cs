@@ -5,7 +5,7 @@ using System.Text.Json;
 
 namespace GLOB.API.Clientz;
 
-public partial class API_RabbitMQ : IDisposable
+public partial class API_RabbitMQ
 {
   public void Pubs(RabbitMQParam param)
   {

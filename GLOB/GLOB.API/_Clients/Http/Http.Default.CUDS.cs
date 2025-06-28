@@ -11,25 +11,25 @@ public partial class API_Httpz
     Client = new API_HttpBase(new HttpClient(), host, srvc, controller);
   }
 
-  public async Task<T?> Create<T>(HttpReq req)
+  public async Task<T?> Create<T>(HttpParam req)
   {
     req.Action = EP.Create;
     return await Client.Post<T>(req);
   }
 
-  public async Task<T?> Status<T>(HttpReq req)
+  public async Task<T?> Status<T>(HttpParam req)
   {
     req.Action = EP.Status;
     return await Client.Patch<T>(req);
   }
 
-  public async Task<T?> Update<T>(HttpReq req)
+  public async Task<T?> Update<T>(HttpParam req)
   {
     req.Action = EP.Update;
     return await Client.Put<T>(req);
   }
 
-  public async Task<object> Delete(HttpReq req)
+  public async Task<object> Delete(HttpParam req)
   {
     req.Action = EP.Delete;
     return await Client.Delete(req);
