@@ -45,7 +45,7 @@ public partial class API_Client_Http
 }
 // public async Task<IActionResult> Gets()
 // {
-//   var result = await Http_Auth_Lookup.Gets<ResponseRecords<ProjectzLookup>>(new () {
+//   var result = await ClientHttpAuth.Gets<ResponseRecords<ProjectzLookup>>(new () {
 //     Action =  EP.Gets,
 //     Body =  new { includes = new List<string>() { "ProjectzLookupBase"} }
 //   });

@@ -25,7 +25,7 @@ public partial class __RabbitMQController
     // dto.Status = Status.Active;
     try
     {
-      var route = new RabbitMQRoute(MQ_Exch.Auth, Controllerz.ProjectzLookup)
+      var route = new RabbitMQRoute(MQ_Exch.Auth, Controllerz.Auth.ProjectzLookup)
       {
         Typez = ExchangeType.Direct,
         Key = EP.Create

@@ -35,17 +35,17 @@ public partial class API_Client_Http
     return await Client.Delete(param);
   }
 }
-// public readonly API_Client_Http Http_Auth_Lookup;
+// public readonly API_Client_Http ClientHttpAuth;
 // public AuthLookupBaseHttpController(IServiceProvider srvc): base(srvc) 
 // {
 //   string  gatewayUrl = _config.GetValueStr("URLzGateway"); 
-//   Http_Auth_Lookup = new API_Client_Http(gatewayUrl, PrefixHttp.Auth, Controllerz.ProjectzLookup) ;
+//   ClientHttpAuth = new API_Client_Http(gatewayUrl, PrefixHttp.Auth, Controllerz.ProjectzLookup) ;
 // }
 // [HttpPost]
 // public async Task<IActionResult> Gets()
 // {
 //   // string gatewayUrl = _config.GetValueStr("URLzGateway"); 
-//   var result = await Http_Auth_Lookup.Gets<ResponseRecords<ProjectzLookup>>(
+//   var result = await ClientHttpAuth.Gets<ResponseRecords<ProjectzLookup>>(
 //     new () {
 //       // Host = gatewayUrl,
 //       // Srvc = PrefixHttp.Auth,
