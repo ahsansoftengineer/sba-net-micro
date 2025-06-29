@@ -1,6 +1,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using GLOB.API.Staticz;
+using GLOB.API.Config.Configz;
+using GLOB.API.Config.Extz;
 
 namespace GLOB.API.Clientz;
 
@@ -12,9 +14,9 @@ public class API_HttpBase
 
   protected readonly HttpClient _httpClient;
 
-  public API_HttpBase(HttpClient httpClient, string host, string srvc, string controller)
+  public API_HttpBase(IServiceProvider sp, string host, string srvc, string controller)
   {
-    _httpClient = httpClient;
+    _httpClient = sp.GetSrvc<HttpClient>();
     _host = host;
     _srvc = srvc;
     _controller = controller;

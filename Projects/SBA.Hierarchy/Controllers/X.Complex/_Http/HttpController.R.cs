@@ -10,7 +10,7 @@ public partial class __HttpController
   [HttpPost]
   public async Task<IActionResult> Gets()
   {
-    var result = await API_Httpz_AuthLookup.Gets<ResponseRecords<ProjectzLookup>>(new()
+    var result = await Http_Auth_Lookup.Gets<ResponseRecords<ProjectzLookup>>(new()
     {
       Body = new { includes = new List<string>() { "ProjectzLookupBase" } }
     });
@@ -20,7 +20,7 @@ public partial class __HttpController
   [HttpPost("{Id:int}")]
   public async Task<IActionResult> Get(int Id, [FromBody] DtoRequestGet dto)
   {
-    var result = await API_Httpz_AuthLookup.Get<ResponseRecord<ProjectzLookup>>(new()
+    var result = await Http_Auth_Lookup.Get<ResponseRecord<ProjectzLookup>>(new()
     {
       Resource = Id.ToString(),
       Body = new { Includes = dto?.Includes ?? null }
@@ -31,13 +31,13 @@ public partial class __HttpController
   [HttpGet]
   public async Task<IActionResult> GetsLookup()
   {
-    var result = await API_Httpz_AuthLookup.GetsLookup<ResponseRecord<Dictionary<string, string>>>();
+    var result = await Http_Auth_Lookup.GetsLookup<ResponseRecord<Dictionary<string, string>>>();
     return result.Record.ToExtVMSingle().Ok();
   }
   [HttpPost]
   public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds<string> req)
   {
-    var result = await API_Httpz_AuthLookup.GetsByIds<ResponseRecords<ProjectzLookup>>(new()
+    var result = await Http_Auth_Lookup.GetsByIds<ResponseRecords<ProjectzLookup>>(new()
     {
       Body = new { req.Ids}
     });
@@ -46,7 +46,7 @@ public partial class __HttpController
   [HttpPost]
   public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds<string> req)
   {
-    var result = await API_Httpz_AuthLookup.GetsByIdsLookup<ResponseRecord<Dictionary<string, string>>>(new()
+    var result = await Http_Auth_Lookup.GetsByIdsLookup<ResponseRecord<Dictionary<string, string>>>(new()
     {
       Body = new { req.Ids}
     });
@@ -56,7 +56,7 @@ public partial class __HttpController
   [HttpPost]
   public async Task<IActionResult> GetsPaginate(DtoRequestPage<DtoSearch?> req)
   {
-    var result = await API_Httpz_AuthLookup.GetsPaginate<VMPaginate<ProjectzLookup>>(new()
+    var result = await Http_Auth_Lookup.GetsPaginate<VMPaginate<ProjectzLookup>>(new()
     {
       Body = new
       {
@@ -72,7 +72,7 @@ public partial class __HttpController
   [HttpPost]
   public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<DtoSearch?> req)
   {
-    var result = await API_Httpz_AuthLookup.GetsPaginateOptions<VMPaginate<DtoSelect>>(new()
+    var result = await Http_Auth_Lookup.GetsPaginateOptions<VMPaginate<DtoSelect>>(new()
     {
       Body = new
       {

@@ -8,13 +8,15 @@ namespace GLOB.API.Clientz;
 
 public partial class UOW_API_Httpz
 {
+  private readonly IServiceProvider _sp;
   private readonly Option_Http _option_Http;
-  private API_Httpz _API_Httpz_AuthLookup;
+  private API_Client_Http _API_Httpz_AuthLookup;
 
   public UOW_API_Httpz(IServiceProvider sp)
   {
-    _option_Http = sp.GetSrvc<IOptions<Option_App>>().Value.Clientz.API_Httpz;
+    _sp = sp;
+    _option_Http = sp.GetSrvc<IOptions<Option_App>>().Value.Clientz.API_Client_Http;
   }
 
-  public API_Httpz API_Httpz_AuthLookup => _API_Httpz_AuthLookup = new API_Httpz(_option_Http.Auth, PrefixHttp.Auth, Controllerz.ProjectzLookup) ;
+  public API_Client_Http Http_Auth_Lookup => _API_Httpz_AuthLookup = null;//new API_Client_Http(_sp, _option_Http.Auth, PrefixHttp.Auth, Controllerz.Auth.ProjectzLookup) ;
 }

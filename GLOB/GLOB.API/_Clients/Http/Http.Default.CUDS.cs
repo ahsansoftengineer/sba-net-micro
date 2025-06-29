@@ -2,13 +2,13 @@ using GLOB.API.Staticz;
 
 namespace GLOB.API.Clientz;
 
-public partial class API_Httpz
+public partial class API_Client_Http
 {
   public readonly API_HttpBase Client;
 
-  public API_Httpz(string host, string srvc, string controller)
+  public API_Client_Http(IServiceProvider sp, string host, string srvc, string controller)
   {
-    Client = new API_HttpBase(new HttpClient(), host, srvc, controller);
+    Client = new API_HttpBase(sp, host, srvc, controller);
   }
 
   public async Task<T?> Create<T>(HttpParam param)
@@ -35,17 +35,17 @@ public partial class API_Httpz
     return await Client.Delete(param);
   }
 }
-// public readonly API_Httpz API_Httpz_AuthLookup;
+// public readonly API_Client_Http Http_Auth_Lookup;
 // public AuthLookupBaseHttpController(IServiceProvider srvc): base(srvc) 
 // {
 //   string  gatewayUrl = _config.GetValueStr("URLzGateway"); 
-//   API_Httpz_AuthLookup = new API_Httpz(gatewayUrl, PrefixHttp.Auth, Controllerz.ProjectzLookup) ;
+//   Http_Auth_Lookup = new API_Client_Http(gatewayUrl, PrefixHttp.Auth, Controllerz.ProjectzLookup) ;
 // }
 // [HttpPost]
 // public async Task<IActionResult> Gets()
 // {
 //   // string gatewayUrl = _config.GetValueStr("URLzGateway"); 
-//   var result = await API_Httpz_AuthLookup.Gets<ResponseRecords<ProjectzLookup>>(
+//   var result = await Http_Auth_Lookup.Gets<ResponseRecords<ProjectzLookup>>(
 //     new () {
 //       // Host = gatewayUrl,
 //       // Srvc = PrefixHttp.Auth,

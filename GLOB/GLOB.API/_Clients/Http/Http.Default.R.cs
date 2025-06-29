@@ -1,6 +1,6 @@
 namespace GLOB.API.Clientz;
 
-public partial class API_Httpz
+public partial class API_Client_Http
 {
   public async Task<T?> Get<T>(HttpParam? param = null)
   {
@@ -45,7 +45,7 @@ public partial class API_Httpz
 }
 // public async Task<IActionResult> Gets()
 // {
-//   var result = await API_Httpz_AuthLookup.Gets<ResponseRecords<ProjectzLookup>>(new () {
+//   var result = await Http_Auth_Lookup.Gets<ResponseRecords<ProjectzLookup>>(new () {
 //     Action =  EP.Gets,
 //     Body =  new { includes = new List<string>() { "ProjectzLookupBase"} }
 //   });
