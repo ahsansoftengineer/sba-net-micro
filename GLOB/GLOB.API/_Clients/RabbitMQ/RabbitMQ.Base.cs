@@ -26,26 +26,18 @@ public partial class API_RabbitMQ : IDisposable
     
     var factory = new ConnectionFactory()
     {
+      // Uri = _option_RabbitMQ.Uri,
+      // VirtualHost = _option_RabbitMQ.VirtualHost,
       HostName = _option_RabbitMQ.HostName,
-      Port = _option_RabbitMQ.Port
+      Port = _option_RabbitMQ.Port,
+      // UserName = _option_RabbitMQ.UserName,
+      // Password = _option_RabbitMQ.Password
     };
     _connection = factory.CreateConnection();
     _pubChannel = _connection.CreateModel();
     _subChannel = _connection.CreateModel();
    
     
-  }
-  protected void InitRabbitMQ()
-  {
-    // var factory = new ConnectionFactory
-    // {
-    //   Uri = _option_RabbitMQ.Uri,
-    //   Port = _option_RabbitMQ.Port,
-    //   HostName = _option_RabbitMQ.HostName,
-    //   VirtualHost = _option_RabbitMQ.VirtualHost,
-    //   UserName = _option_RabbitMQ.UserName,
-    //   Password = _option_RabbitMQ.Password
-    // };
   }
   
   protected void SetPubSubDefault(IModel channel, RabbitMQParam param)

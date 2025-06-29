@@ -7,6 +7,7 @@ using GLOB.Infra.Utils.Paginate.Extz;
 using Microsoft.AspNetCore.Mvc;
 using GLOB.Infra.Enumz;
 using GLOB.Infra.Utils.Attributez;
+using RabbitMQ.Client;
 
 namespace SBA.Auth.Controllers;
 
@@ -20,21 +21,22 @@ public partial class __RabbitMQController
     // dto.Status = Status.Active;
     try
     {
+      var route = new RabbitMQRoute(MQ_Exch.Auth, Controllerz.ProjectzLookup)
+      {
+        Typez = ExchangeType.Direct,
+        Key = EP.Create
+      };
       var param = new RabbitMQParam
       {
         payload = new()
         {
           Body = dto,
-          Event = $"ProjectzLookupz_{EP.Create}"
+          Event = $"ProjectzLookupz_{route.Key}"
         },
-        route = new(MQ_Exch.Auth, Controllerz.ProjectzLookup,  EP.Create),
-        options = new()
-        {
-          ExchangeDurable = true,
-          QueueDurable = true
-        }
+        route = route 
       };
       _API_RabbitMQ.Pubs(param);
+      Console.WriteLine($"--> RabbitMQ : CRUD - Pub - {route.Key}");
       return param.payload.ToExtVMSingle().Ok();
     }
     catch (Exception ex)
@@ -47,57 +49,86 @@ public partial class __RabbitMQController
   [HttpPut("{Id}")] [NoCache]
   public async Task<IActionResult> Update(string Id, [FromBody] ProjectzLookupDtoCreate dto)
   {
-    Route.Key = EP.Update;
-    var param = new RabbitMQParam
+    try
     {
-      payload = new()
+      Route.Key = EP.Update;
+      var param = new RabbitMQParam
       {
-        Resource = Id,
-        Body = dto,
-        Event = $"ProjectzLookupz_{EP.Update}"
-      },
-      route = Route
-    };
+        payload = new()
+        {
+          Resource = Id,
+          Body = dto,
+          Event = $"ProjectzLookupz_{Route.Key}"
+        },
+        route = Route
+      };
 
-    _API_RabbitMQ.Pubs(param);
-    return param.payload.ToExtVMSingle().Ok();
+      _API_RabbitMQ.Pubs(param);
+      Console.WriteLine($"--> RabbitMQ : CRUD - Pub - {Route.Key}");
+      return param.payload.ToExtVMSingle().Ok();
+    }
+    catch (Exception ex)
+    {
+      // return ex.Ok();
+      return $"--> Rabbit MQ Error : {ex.Message}".ToExtVMSingle().Ok();
+    }
+    
   }
 
   [HttpDelete("{Id}")] [NoCache]
   public async Task<IActionResult> Delete(string Id)
   {
-    Route.Key = EP.Delete;
-    var param = new RabbitMQParam
+    try
     {
-      payload = new()
+      Route.Key = EP.Delete;
+      var param = new RabbitMQParam
       {
-        Resource = Id,
-        Event = $"ProjectzLookupz_{EP.Delete}"
-      },
-      route = Route
-    };
+        payload = new()
+        {
+          Resource = Id,
+          Event = $"ProjectzLookupz_{Route.Key}"
+        },
+        route = Route
+      };
 
-    _API_RabbitMQ.Pubs(param);
-    return param.payload.ToExtVMSingle().Ok();
+      _API_RabbitMQ.Pubs(param);
+      Console.WriteLine($"--> RabbitMQ : CRUD - Pub - {Route.Key}");
+      return param.payload.ToExtVMSingle().Ok();
+    }
+    catch (Exception ex)
+    {
+      // return ex.Ok();
+      return $"--> Rabbit MQ Error : {ex.Message}".ToExtVMSingle().Ok();
+    }
     
   }
   
   [HttpPatch("{Id}")] [NoCache]
   public async Task<IActionResult> UpdateStatus(string Id, [FromBody] DtoRequestStatus dto)
   {
-    Route.Key = EP.Status;
-    var param = new RabbitMQParam
+    try
     {
-      payload = new()
+      Route.Key = EP.Status;
+      var param = new RabbitMQParam
       {
-        Resource = Id,
-        Body = dto,
-        Event = $"ProjectzLookupz_{EP.Status}"
-      },
-      route = Route
-    };
+        payload = new()
+        {
+          Resource = Id,
+          Body = dto,
+          Event = $"ProjectzLookupz_{Route.Key}"
+        },
+        route = Route
+      };
 
-    _API_RabbitMQ.Pubs(param);
-    return param.payload.Ok();
+      _API_RabbitMQ.Pubs(param);
+      Console.WriteLine($"--> RabbitMQ : CRUD - Pub - {Route.Key}");
+      return param.payload.Ok();
+    }
+    catch (Exception ex)
+    {
+      // return ex.Ok();
+      return $"--> Rabbit MQ Error : {ex.Message}".ToExtVMSingle().Ok();
+    }
+    
   }
 }
