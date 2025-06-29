@@ -40,7 +40,7 @@ public class EventProcessor
       }
       catch (Exception ex)
       {
-        Console.WriteLine("--> ProjectzLookup not Created");
+        Console.WriteLine($"--> ProjectzLookup not Created {ex.Message}");
       }
     }
   }

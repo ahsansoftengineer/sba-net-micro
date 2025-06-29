@@ -49,21 +49,22 @@ public partial class API_RabbitMQ : IDisposable
     var Option = param.options;
 
     channel.ExchangeDeclare(
-      exchange: Route.Exchange ??= "ex-default",
+      exchange: Route.Exchange ??= "NameExchane",
       type: Route.Typez ??= ExchangeType.Direct,
       durable: Option.ExchangeDurable ??= true,
       autoDelete: Option.ExchangeAutoDelete ??= false
     );
-
+    string? queue = $"{Route.Exchange}_{Route.Queue ??= "q-default"}" ;
+    
     channel.QueueDeclare(
-      queue: Route.Queue ??= "q-default",
+      queue: queue ??= "NameQueue",
       durable: Option.QueueDurable ??= true,
       exclusive: Option.QueueExclusive ??= false,
       autoDelete: Option.QueueAutoDelete ??= false,
       arguments: Option.QueueArguments
     );
 
-    channel.QueueBind(Route.Queue, Route.Exchange, Route.Key ??= "k-default");
+    channel.QueueBind(Route.Queue, Route.Exchange, Route.Key ??= "NameRoute");
     
     _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
     Console.WriteLine("--> API_RabbitMQ Connected Successfully.");
@@ -96,10 +97,3 @@ public partial class API_RabbitMQ : IDisposable
     }
   }
 }
-
-// Is it Ok to Three Connection Shuts Down as per Application
-// When Application Terminates
-// dotnet watch 🛑 Shutdown requested. Press Ctrl+C again to force exit.
-// --> API_RabbitMQ connection was shut down.
-// --> API_RabbitMQ connection was shut down.
-// --> API_RabbitMQ connection was shut down.

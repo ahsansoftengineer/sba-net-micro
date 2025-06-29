@@ -1,12 +1,15 @@
+using Microsoft.AspNetCore.Mvc;
+
 using GLOB.API.Config.Extz;
 using GLOB.API.Controllers.Base;
 using GLOB.API.Clientz;
 using GLOB.API.Staticz;
 using GLOB.Infra.Model.Base;
 using GLOB.Infra.Utils.Paginate.Extz;
-using Microsoft.AspNetCore.Mvc;
 using GLOB.Infra.Enumz;
 using GLOB.Infra.Utils.Attributez;
+
+using SBA.Projectz.Clientz;
 
 namespace SBA.Auth.Controllers;
 
@@ -17,7 +20,7 @@ public partial class __RabbitMQController : API_1_ErrorController<__RabbitMQCont
   public __RabbitMQController(IServiceProvider sp) : base(sp)
   {
     RabbitMQ_Name = sp.GetSrvc<MsgBusPub>();
-    _API_RabbitMQ = sp.GetSrvc<API_RabbitMQ>();
+    _Projectz_RabbitMQ = sp.GetSrvc<Projectz_RabbitMQ>();
     Route = new(MQ_Exch.Auth, Controllerz.ProjectzLookup);
   }
 

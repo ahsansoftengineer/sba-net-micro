@@ -1,19 +1,23 @@
+using Microsoft.AspNetCore.Mvc;
+using RabbitMQ.Client;
+
 using GLOB.API.Config.Extz;
 using GLOB.API.Controllers.Base;
 using GLOB.API.Clientz;
 using GLOB.API.Staticz;
 using GLOB.Infra.Model.Base;
 using GLOB.Infra.Utils.Paginate.Extz;
-using Microsoft.AspNetCore.Mvc;
 using GLOB.Infra.Enumz;
 using GLOB.Infra.Utils.Attributez;
-using RabbitMQ.Client;
+
+using SBA.Projectz.Clientz;
+
 
 namespace SBA.Auth.Controllers;
 
 public partial class __RabbitMQController 
 {
-  private readonly API_RabbitMQ _API_RabbitMQ;
+  private readonly Projectz_RabbitMQ _Projectz_RabbitMQ;
 
   [HttpPost] [NoCache]
   public async Task<IActionResult> Createz([FromBody] ProjectzLookupDtoCreate dto)
@@ -35,7 +39,7 @@ public partial class __RabbitMQController
         },
         route = route 
       };
-      _API_RabbitMQ.Pubs(param);
+      _Projectz_RabbitMQ.Pubs(param);
       Console.WriteLine($"--> RabbitMQ : CRUD - Pub - {route.Key}");
       return param.payload.ToExtVMSingle().Ok();
     }
@@ -63,7 +67,7 @@ public partial class __RabbitMQController
         route = Route
       };
 
-      _API_RabbitMQ.Pubs(param);
+      _Projectz_RabbitMQ.Pubs(param);
       Console.WriteLine($"--> RabbitMQ : CRUD - Pub - {Route.Key}");
       return param.payload.ToExtVMSingle().Ok();
     }
@@ -91,7 +95,7 @@ public partial class __RabbitMQController
         route = Route
       };
 
-      _API_RabbitMQ.Pubs(param);
+      _Projectz_RabbitMQ.Pubs(param);
       Console.WriteLine($"--> RabbitMQ : CRUD - Pub - {Route.Key}");
       return param.payload.ToExtVMSingle().Ok();
     }
@@ -120,7 +124,7 @@ public partial class __RabbitMQController
         route = Route
       };
 
-      _API_RabbitMQ.Pubs(param);
+      _Projectz_RabbitMQ.Pubs(param);
       Console.WriteLine($"--> RabbitMQ : CRUD - Pub - {Route.Key}");
       return param.payload.Ok();
     }

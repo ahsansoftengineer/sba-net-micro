@@ -1,10 +1,13 @@
 using GLOB.Infra.DI;
 using GLOB.Infra.Data.Sqlz;
-using SBA.Projectz.Data;
-using SBA.Projectz.Mapper;
 using GLOB.API.DI;
 using GLOB.Infra.UOW;
 using GLOB.API.Clientz;
+
+using SBA.Projectz.Data;
+using SBA.Projectz.Mapper;
+using SBA.Projectz.Clientz;
+
 
 namespace SBA.Projectz.DI;
 
@@ -28,7 +31,7 @@ public static partial class DI_Projectz
   public static void Add_Projectz_Clientz(this IServiceCollection srvc)
   {
     srvc.AddSingleton<UOW_API_Httpz>();
-    srvc.AddSingleton<API_RabbitMQ>();
+    srvc.AddSingleton<Projectz_RabbitMQ>();
     srvc.AddSingleton<MsgBusPub>();
     srvc.AddSingleton<EventProcessor>();
     // srvc.AddSingleton<GRPCClient>();
