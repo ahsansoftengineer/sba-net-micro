@@ -8,10 +8,10 @@ namespace SBA.Projectz.Clientz;
 
 public partial class Projectz_RabbitMQ
 {
-  // public void SubsAuth(RabbitMQParam param)
-  // {
-  //   param.route ??= new();
-  //   param.route.Exchange = "auth";
-  //   Subs(param);
-  // }
+  public void SubsAuth<T>(RabbitMQParam param, Action<T> handler)
+  {
+    param.route ??= new();
+    param.route.Exchange = "auth";
+    Subs<T>(param, handler);
+  }
 }
