@@ -5,9 +5,9 @@ using GLOB.Infra.Utils.Paginate.Extz;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Projectz.Controllers;
-public class _ProjectzLookupzController : API_2_RDS_Controller<_ProjectzLookupzController, ProjectzLookup>
+public class _ProjectzLookupController : API_2_RDS_Controller<_ProjectzLookupController, ProjectzLookup>
 {
-  public _ProjectzLookupzController(IServiceProvider srvcProvider) : base(srvcProvider)
+  public _ProjectzLookupController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
     _repo = _uowInfra.ProjectzLookups;
   }

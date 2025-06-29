@@ -21,7 +21,7 @@ public partial class __RabbitMQController : API_1_ErrorController<__RabbitMQCont
   {
     RabbitMQ_Name = sp.GetSrvc<MsgBusPub>();
     _Projectz_RabbitMQ = sp.GetSrvc<Projectz_RabbitMQ>();
-    Route = new(MQ_Exch.Auth, Controllerz.ProjectzLookup);
+    Route = new(MQ_Exch.Auth, Controllerz.Auth.ProjectzLookup);
   }
 
   [HttpPost] [NoCache]
@@ -36,7 +36,7 @@ public partial class __RabbitMQController : API_1_ErrorController<__RabbitMQCont
         model.Desc,
         model.ProjectzLookupBaseId,
         Status.Active,
-        Event = $"ProjectzLookupz_{EP.Create}"
+        Event = $"ProjectzLookup_{EP.Create}"
       };
       RabbitMQ_Name.Publish(data);
       return data.ToExtVMSingle().Ok();

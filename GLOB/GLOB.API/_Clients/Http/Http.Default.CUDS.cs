@@ -53,7 +53,7 @@ public partial class API_Httpz
 //       Action =  EP.Gets,
 //       // Resource = "1",
 //       // Query = new { Id = 101 },
-//       Body =  new {} //new  { includes = new List<string>() { "_projectz-lookupz-base"} }
+//       Body =  new {} //new  { includes = new List<string>() { "_projectz-lookup-base"} }
 
 //     }
 //   );

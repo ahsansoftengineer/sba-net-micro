@@ -30,7 +30,7 @@ public class EventProcessor
         {
           uow.ProjectzLookups.Insert(model);
           uow.Save();
-          Console.WriteLine("ProjectzLookupz Created Successfully");
+          Console.WriteLine("ProjectzLookup Created Successfully");
         }
         else
         {
@@ -50,7 +50,7 @@ public class EventProcessor
     var EventType = JsonConvert.DeserializeObject<GenericEventDto>(message);   
     switch (EventType?.Event)
     {
-      case "ProjectzLookupz_create":
+      case "ProjectzLookup_create":
         Console.WriteLine($"Known Event {message}");
         AddPlatform(message);
         // TODO

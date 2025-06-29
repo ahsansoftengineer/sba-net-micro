@@ -12,11 +12,7 @@ public static class MQ_Exch
     public const string Hierarchy = "hierarchy";
 }
 
-public static class Controllerz
-{
-    public const string ProjectzLookupBase = "_projectz-lookupz-base";
-    public const string ProjectzLookup = "_projectz-lookupz";
-}
+
 
 public static class EP
 {
