@@ -1,8 +1,3 @@
-using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
-using System.Text;
-using System.Text.Json;
-
 using GLOB.API.Clientz;
 namespace SBA.Projectz.Clientz;
 
