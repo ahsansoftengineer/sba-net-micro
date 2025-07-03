@@ -6,6 +6,7 @@ using GLOB.Infra.UOW;
 using SBA.Projectz.Mapper;
 using SBA.Auth.Services;
 using GLOB.API.Clientz;
+using SBA.Projectz.Clientz;
 
 namespace SBA.Projectz.DI;
 
@@ -50,7 +51,7 @@ public static partial class DI_Projectz
     // srvc.AddSingleton<MsgBusPub>();
     // srvc.AddSingleton<EventProcessor>();
     // srvc.AddSingleton<GRPCClient>();
-
+    srvc.AddHostedService<RabbitMQ_ProjectzLookup>();
     srvc.AddHostedService<MsgBusSubs>();
     srvc.AddSingleton<EventProcessor>();
   }

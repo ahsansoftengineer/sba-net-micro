@@ -48,7 +48,7 @@ public class MsgBusSubs : BackgroundService
     );
     _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
 
-    Console.WriteLine("--> Listening on the Message Bus...");
+    Console.WriteLine("--> [Rabbit MQ] Listening on the Message Bus...");
   }
 
   protected override Task ExecuteAsync(CancellationToken stoppingToken)
@@ -57,7 +57,7 @@ public class MsgBusSubs : BackgroundService
     var consumer = new EventingBasicConsumer(_channel);
     consumer.Received += (ModuleHandle, ea) =>
     {
-      Console.WriteLine("--> Message Recieved");
+      Console.WriteLine("--> [Rabbit MQ] Message Recieved");
       var body = ea.Body;
       var notificationMessage = Encoding.UTF8.GetString(body.ToArray());
 
@@ -73,7 +73,7 @@ public class MsgBusSubs : BackgroundService
   }
   private void RabbitMQ_ConnectionShutdown(object? sender, ShutdownEventArgs e)
   {
-    Console.WriteLine("--> RabbitMQ connection was shut down.");
+    Console.WriteLine("--> [Rabbit MQ] connection was shut down.");
 
   }
   public override void Dispose()

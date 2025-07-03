@@ -23,12 +23,12 @@ public class MsgBusPub : IDisposable
       var message = JsonConvert.SerializeObject(data);
       if (_connection.IsOpen)
       {
-        Console.WriteLine("--> RabbitMQ Connection Open, sending message...");
+        Console.WriteLine("--> [Rabbit MQ] Connection Open, sending message...");
         SendMessage(message);
       }
       else
       {
-        Console.WriteLine("--> RabbitMQ Connection Close, not sending");
+        Console.WriteLine("--> [Rabbit MQ] Connection Close, not sending");
       }
     }
     catch (Exception ex)
@@ -69,17 +69,17 @@ public class MsgBusPub : IDisposable
           type: ExchangeType.Fanout
       );
       _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
-      Console.WriteLine("--> Connection Msg Bus Successfull");
+      Console.WriteLine("--> [Rabbit MQ] Connection Successfull");
     }
     catch (Exception ex)
     {
-      Console.WriteLine($"--> Connection Msg Bus Failed{ex.Message}");
+      Console.WriteLine($"--> [Rabbit MQ] Connection Failed{ex.Message}");
     }
   }
 
   private void RabbitMQ_ConnectionShutdown(object? sender, ShutdownEventArgs e)
   {
-    Console.WriteLine("--> RabbitMQ connection was shut down.");
+    Console.WriteLine("--> [Rabbit MQ] connection was shut down.");
   }
   
   public void Dispose()

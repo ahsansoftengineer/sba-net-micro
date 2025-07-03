@@ -64,12 +64,12 @@ public partial class API_RabbitMQ_Base : IDisposable
   }
   public void RabbitMQ_ConnectionShutdown(object? sender, ShutdownEventArgs e)
   {
-    Console.WriteLine("--> API_RabbitMQ_Base connection was shut down.");
+    Console.WriteLine("--> [Rabbit MQ] connection was shut down.");
   }
 
   public void Dispose()
   {
-    Console.WriteLine("--> API_RabbitMQ_Base connection was shut down.");
+    Console.WriteLine("--> [Rabbit MQ] connection was shut down.");
     if (_connection != null && _connection.IsOpen)
     {
       _connection.Close();
