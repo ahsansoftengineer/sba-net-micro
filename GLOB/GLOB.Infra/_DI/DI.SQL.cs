@@ -17,7 +17,8 @@ public static partial class DI_Infra
     
     srvc.AddDbContext<TContext>(opt =>
     {
-      opt.EnableSensitiveDataLogging(true);
+      opt.EnableDetailedErrors();
+      opt.EnableSensitiveDataLogging();
       opt.UseSqlServer(connStr, sqlOptions =>
       {
         sqlOptions.EnableRetryOnFailure(
@@ -26,7 +27,7 @@ public static partial class DI_Infra
           errorNumbersToAdd: null
         );
       });
-      opt.LogTo(Console.WriteLine, LogLevel.Information);
+      opt.LogTo(Console.WriteLine, LogLevel.Trace);
     });
 
     srvc.AddScoped<TIUOW, TUOW>();

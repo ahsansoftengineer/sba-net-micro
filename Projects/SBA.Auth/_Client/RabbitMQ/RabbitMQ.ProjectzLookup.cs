@@ -12,10 +12,8 @@ namespace SBA.Projectz.Clientz;
 public partial class RabbitMQ_ProjectzLookup : API_RabbitMQ_Base_Subs
 {
   // protected readonly IUOW_Projectz _uowProjectz;
-   private readonly IServiceScopeFactory _scopeFactory;
-  public RabbitMQ_ProjectzLookup(IServiceProvider sp) : base(sp)
+  public RabbitMQ_ProjectzLookup(IServiceProvider sp, IServiceScopeFactory sf) : base(sp, sf)
   {
-    _scopeFactory = sp.GetSrvc<IServiceScopeFactory>();
   }
   protected override Task ExecuteAsync(CancellationToken stoppingToken)
   {

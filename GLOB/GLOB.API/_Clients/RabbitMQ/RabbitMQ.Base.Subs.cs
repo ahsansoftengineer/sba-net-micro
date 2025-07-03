@@ -6,8 +6,10 @@ namespace GLOB.API.Clientz;
 public partial class API_RabbitMQ_Base_Subs : BackgroundService
 {
   protected readonly API_RabbitMQ_Base _rmq;
-  public API_RabbitMQ_Base_Subs(IServiceProvider sp)
+  protected readonly IServiceScopeFactory _scopeFactory;
+  public API_RabbitMQ_Base_Subs(IServiceProvider sp, IServiceScopeFactory scopeFactory)
   {
+    _scopeFactory = scopeFactory;
     _rmq = sp.GetSrvc<API_RabbitMQ_Base>();
   }
   protected override Task ExecuteAsync(CancellationToken stoppingToken)
