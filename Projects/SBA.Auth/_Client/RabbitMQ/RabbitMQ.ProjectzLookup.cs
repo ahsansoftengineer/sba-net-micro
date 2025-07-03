@@ -39,14 +39,19 @@ public partial class RabbitMQ_ProjectzLookup : API_RabbitMQ_Base_Subs
         var body = ea.Body.ToArray();
         var message = JsonSerializer.Deserialize<ProjectzLookup>(Encoding.UTF8.GetString(body));
         if (message != null)
+        {
           Console.WriteLine(body);
+          // _uowProjectz.ProjectzLookups.Insert(message);
+          
+        }
+
 
         if (!(param.options.AutoAck ?? true))
           channel.BasicAck(ea.DeliveryTag, false);
       }
       catch (Exception ex)
       {
-        Console.WriteLine($"[RabbitMQ] Error in message handler: {ex.Message}");
+        Console.WriteLine($"--> [Rabbit MQ] Error in message handler: {ex.Message}");
         if (!(param.options.AutoAck ?? true))
           channel.BasicNack(ea.DeliveryTag, false, requeue: true);
       }

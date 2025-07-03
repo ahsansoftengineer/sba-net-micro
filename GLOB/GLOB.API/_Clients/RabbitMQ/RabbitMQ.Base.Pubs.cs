@@ -18,22 +18,22 @@ public partial class API_RabbitMQ_Base_Pubs
     {
       var channel = _rmq.SetPubSubDefault(param);
 
-      Console.WriteLine("--> [RabbitMQ] Serializing Object");
+      Console.WriteLine("--> [Rabbit MQ] Serializing Object");
       var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(param.payload));
       var props = channel.CreateBasicProperties();
       props.ContentType = "application/json";
 
       if (param.options.Headers != null)
       {
-        Console.WriteLine("--> [RabbitMQ] Settings Headers");
+        Console.WriteLine("--> [Rabbit MQ] Settings Headers");
         props.Headers = param.options.Headers;
       }
 
       if (!_rmq._connection.IsOpen)
-        Console.WriteLine("--> [RabbitMQ] Connection Close, not sending");
+        Console.WriteLine("--> [Rabbit MQ] Connection Close, not sending");
       else
       {
-        Console.WriteLine("--> [RabbitMQ] Connection Open, sending message...");
+        Console.WriteLine("--> [Rabbit MQ] Connection Open, sending message...");
         channel.BasicPublish(param.route.Exchange, param.route.Key, param.options.Mandatory ?? false, props, body);
         _rmq.PrintRoute(param, true);
       }
@@ -41,7 +41,7 @@ public partial class API_RabbitMQ_Base_Pubs
     }
     catch (Exception ex)
     {
-      Console.WriteLine($"[RabbitMQ] Serialization failed: {ex.Message}");
+      Console.WriteLine($"[Rabbit MQ] Serialization failed: {ex.Message}");
       Console.WriteLine(ex.StackTrace);
     }
   }
