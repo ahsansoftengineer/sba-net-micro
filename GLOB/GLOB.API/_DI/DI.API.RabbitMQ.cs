@@ -28,8 +28,14 @@ public static partial class DI_API
     srvc.AddSingleton<IConnection>(sp =>
     {
       var factory = sp.GetSrvc<ConnectionFactory>();
-      return factory.CreateConnection();
+      IConnection conn = factory.CreateConnection();
+      conn.ConnectionShutdown += (_, e) =>
+      {
+          Console.WriteLine("--> [Rabbit MQ] Singleton connection shutdown: " + e.ReplyText);
+      };
+      return conn;
     });
+
     srvc.AddSingleton<ChannelManager>();
     srvc.AddSingleton<API_RabbitMQ_Base>();
     srvc.AddSingleton<API_RabbitMQ_Base_Pubs>();

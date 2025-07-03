@@ -19,8 +19,7 @@ public partial class RabbitMQ_ProjectzLookup : API_RabbitMQ_Base_Subs
   }
   protected override Task ExecuteAsync(CancellationToken stoppingToken)
   {
-    // using var scope = _scopeFactory.CreateScope();
-    // var _uowProjectz = scope.ServiceProvider.GetRequiredService<IUOW_Projectz>();
+  
     stoppingToken.ThrowIfCancellationRequested();
     var param = new RabbitMQParam
     {
@@ -34,16 +33,30 @@ public partial class RabbitMQ_ProjectzLookup : API_RabbitMQ_Base_Subs
     var channel = _rmq.SetPubSubDefault(param);
 
     var consumer = new EventingBasicConsumer(channel);
+
+
     consumer.Received += (_, ea) =>
     {
       try
       {
         var body = ea.Body.ToArray();
-        var message = JsonSerializer.Deserialize<ProjectzLookup>(Encoding.UTF8.GetString(body));
+        Console.WriteLine(Encoding.UTF8.GetString(body));
+
+        var message = JsonSerializer.Deserialize<RabbitMQPayload<ProjectzLookup>>(Encoding.UTF8.GetString(body));
         if (message != null)
         {
-          Console.WriteLine(body);
-          // _uowProjectz.ProjectzLookups.Insert(message);
+          var dto = message.Body;
+
+          using var scope = _scopeFactory.CreateScope();
+          var _uowProjectz = scope.ServiceProvider.GetRequiredService<IUOW_Projectz>();
+          _uowProjectz.ProjectzLookups.Insert(new()
+          {
+            Name = dto.Name,
+            ProjectzLookupBaseId = dto.ProjectzLookupBaseId,
+            Code = dto.Code,
+            Desc = dto.Desc,
+          });
+          _uowProjectz.Save();
           
         }
 

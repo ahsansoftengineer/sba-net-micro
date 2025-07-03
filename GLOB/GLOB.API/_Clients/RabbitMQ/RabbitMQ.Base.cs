@@ -44,8 +44,6 @@ public partial class API_RabbitMQ_Base : IDisposable
 
     channel.QueueBind(Route.Queue, Route.Exchange, Route.Key ??= "NameRoute");
 
-    _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
-    
     Console.WriteLine("--> [Rabbit MQ] Connected Successfully. Exchange: {0} Queue {1}", 
                           param.route.Exchange,
                           param.route.Queue);
@@ -62,16 +60,12 @@ public partial class API_RabbitMQ_Base : IDisposable
                      );
     Console.WriteLine("-------------xxx-------------");
   }
-  public void RabbitMQ_ConnectionShutdown(object? sender, ShutdownEventArgs e)
-  {
-    Console.WriteLine("--> [Rabbit MQ] connection was shut down.");
-  }
 
   public void Dispose()
   {
-    Console.WriteLine("--> [Rabbit MQ] connection was shut down.");
     if (_connection != null && _connection.IsOpen)
     {
+      Console.WriteLine("--> [Rabbit MQ] Connection Getting Down. (Dispose)");
       _connection.Close();
       _connection.Dispose();
     }

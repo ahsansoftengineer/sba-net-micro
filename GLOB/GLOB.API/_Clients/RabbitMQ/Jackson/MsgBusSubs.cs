@@ -73,8 +73,7 @@ public class MsgBusSubs : BackgroundService
   }
   private void RabbitMQ_ConnectionShutdown(object? sender, ShutdownEventArgs e)
   {
-    Console.WriteLine("--> [Rabbit MQ] connection was shut down.");
-
+    Console.WriteLine("--> [Rabbit MQ] connection was shut down. Jackson");
   }
   public override void Dispose()
   {

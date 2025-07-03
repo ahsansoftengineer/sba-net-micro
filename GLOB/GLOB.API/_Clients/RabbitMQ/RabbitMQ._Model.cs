@@ -13,8 +13,11 @@ public class RabbitMQPayload
 {
   public object? Body { get; set; }
   public string? Resource { get; set; }
-  public string? Event { get; set; }
-
+}
+public class RabbitMQPayload<T>
+{
+  public T? Body { get; set; }
+  public string? Resource { get; set; }
 }
 public class RabbitMQRoute
 {

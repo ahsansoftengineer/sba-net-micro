@@ -30,7 +30,6 @@ public partial class __RabbitMQController
         payload = new()
         {
           Body = dto,
-          Event = $"ProjectzLookup_{route.Key}"
         },
         route = route 
       };
@@ -57,7 +56,6 @@ public partial class __RabbitMQController
         {
           Resource = Id,
           Body = dto,
-          Event = $"ProjectzLookup_{Route.Key}"
         },
         route = Route
       };
@@ -85,7 +83,6 @@ public partial class __RabbitMQController
         payload = new()
         {
           Resource = Id,
-          Event = $"ProjectzLookup_{Route.Key}"
         },
         route = Route
       };
@@ -114,7 +111,6 @@ public partial class __RabbitMQController
         {
           Resource = Id,
           Body = dto,
-          Event = $"ProjectzLookup_{Route.Key}"
         },
         route = Route
       };
