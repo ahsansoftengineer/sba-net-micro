@@ -57,7 +57,7 @@ public partial class API_RabbitMQ : IDisposable
   protected void PrintRoute(RabbitMQParam param, bool isPub)
   {
     Console.WriteLine("[Rabbit MQ]" + (isPub ? "Publish" : "Subscribe") + " Successfully");
-    Console.WriteLine("-->Exchange: {0}/n Queue: {1}/n Route & Topic: {2}/n Headers: {3}/n",
+    Console.WriteLine("-->\n\t Exchange: {0}\n\t Queue: {1}\n\t Route & Topic: {2}\n\t Headers: {3}\n\t",
                      param.route.Exchange,
                      param.route.Queue,
                      param.route.Key,
