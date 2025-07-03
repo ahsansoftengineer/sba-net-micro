@@ -5,14 +5,17 @@ using System.Text.Json;
 using GLOB.API.Config.Configz;
 using GLOB.API.Config.Extz;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Identity;
 
 namespace GLOB.API.Clientz;
 
 public partial class API_RabbitMQ : IDisposable
 {
+  protected readonly ConnectionFactory _factory;
   protected readonly IConnection _connection;
   protected readonly IModel _pubChannel;
-  protected readonly IModel _subChannel;
+  protected readonly IModel _subChannel; 
+
 
   protected readonly IConfiguration _config;
   protected readonly EventProcessor _eventProcessor;
@@ -23,17 +26,13 @@ public partial class API_RabbitMQ : IDisposable
     _config = sp.GetSrvc<IConfiguration>();
     _eventProcessor = sp.GetSrvc<EventProcessor>();
     _option_RabbitMQ = sp.GetSrvc<IOptions<Option_App>>().Value.Clientz.RabbitMQz;
-    
-    var factory = new ConnectionFactory()
-    {
-      // Uri = _option_RabbitMQ.Uri,
-      // VirtualHost = _option_RabbitMQ.VirtualHost,
-      HostName = _option_RabbitMQ.HostName,
-      Port = _option_RabbitMQ.Port,
-      // UserName = _option_RabbitMQ.UserName,
-      // Password = _option_RabbitMQ.Password
-    };
-    _connection = factory.CreateConnection();
+
+    _factory = sp.GetSrvc<ConnectionFactory>();
+    _connection = sp.GetSrvc<IConnection>();;
+
+    // IModel is not thread-safe. Using it for both pub/sub concurrently can cause race
+    // One channel for publishing, one for consuming = clear responsibility, easier debugging.
+    // Consumers are long-running. Blocking ops on same channel can affect publisher.
     _pubChannel = _connection.CreateModel();
     _subChannel = _connection.CreateModel();
    

@@ -29,7 +29,7 @@ public class MsgBusSubs : BackgroundService
     var factory = new ConnectionFactory()
     {
       HostName = _option_RabbitMQ.HostName,
-      Port = _option_RabbitMQ.Port
+      Port = _option_RabbitMQ.Port,
     };
 
     _connection = factory.CreateConnection();

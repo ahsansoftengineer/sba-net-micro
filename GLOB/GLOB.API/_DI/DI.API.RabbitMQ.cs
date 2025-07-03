@@ -1,5 +1,6 @@
 using GLOB.API.Clientz;
 using GLOB.API.Config.Configz;
+using GLOB.API.Config.Extz;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 
@@ -9,23 +10,26 @@ public static partial class DI_API
 {
   public static void Add_API_RabbitMQ(this IServiceCollection srvc, IConfiguration config)
   {
-    // srvc.AddSingleton<API_RabbitMQ>(); // Singleton
-    srvc.AddSingleton<IConnection>(sp =>
+    srvc.AddSingleton<API_RabbitMQ>(); // Singleton
+    srvc.AddSingleton<ConnectionFactory>(sp =>
     {
-        var option = sp.GetRequiredService<IOptions<Option_App>>().Value.Clientz.RabbitMQz;
-        var factory = new ConnectionFactory
-        {
-            HostName = option.HostName,
-            Port = option.Port,
-            // other options
-        };
-        return factory.CreateConnection();
+      var option = sp.GetSrvc<IOptions<Option_App>>().Value.Clientz.RabbitMQz;
+      var factory = new ConnectionFactory
+      {
+        HostName = option.HostName,
+        Port = option.Port,
+        // Uri = _option_RabbitMQ.Uri,
+        // VirtualHost = _option_RabbitMQ.VirtualHost,
+        // UserName = _option_RabbitMQ.UserName,
+        // Password = _option_RabbitMQ.Password
+      };
+      return factory;
     });
 
-    srvc.AddSingleton<IModel>(sp =>
+    srvc.AddSingleton<IConnection>(sp =>
     {
-        var connection = sp.GetRequiredService<IConnection>();
-        return connection.CreateModel(); // You can register a second IModel for subscriber too
+      var factory = sp.GetSrvc<ConnectionFactory>();
+      return factory.CreateConnection();
     });
   }
 }
