@@ -9,11 +9,7 @@ public class RabbitMQParam
   public RabbitMQOptions? options { get; set; } = new();
   public RabbitMQPayload? payload { get; set; } = new();
 }
-public class RabbitMQPayload
-{
-  public object? Body { get; set; }
-  public string? Resource { get; set; }
-}
+public class RabbitMQPayload : RabbitMQPayload<object> { }
 public class RabbitMQPayload<T>
 {
   public T? Body { get; set; }
