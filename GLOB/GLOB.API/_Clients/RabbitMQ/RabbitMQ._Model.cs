@@ -19,7 +19,7 @@ public class RabbitMQPayload
 public class RabbitMQRoute
 {
   public RabbitMQRoute() {}
-  public RabbitMQRoute(string exch, string queue, string? type = ExchangeType.Direct) 
+  public RabbitMQRoute(string exch, string queue, string type = ExchangeType.Direct) 
   {
     Exchange = exch;
     Queue = queue;
