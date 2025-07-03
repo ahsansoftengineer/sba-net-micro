@@ -7,6 +7,7 @@ using SBA.Projectz.Mapper;
 using SBA.Auth.Services;
 using GLOB.API.Clientz;
 using SBA.Projectz.Clientz;
+using GLOB.API.DI;
 
 namespace SBA.Projectz.DI;
 
@@ -33,24 +34,22 @@ public static partial class DI_Projectz
 
     srvc.Add_API_Config_JWT_Option();
     // srvc.AddAuthorization();
-    srvc.Add_Projectz_Srvc2();
+    srvc.Add_Projectz_Srvc2(config);
 
   }
-  public static void Add_Projectz_Srvc2(this IServiceCollection srvc)
+  public static void Add_Projectz_Srvc2(this IServiceCollection srvc, IConfiguration config)
   {
     srvc.AddAutoMapper(typeof(ProjectzMapper));
     srvc.AddScoped<SmtpEmailSender>();
     srvc.AddScoped<TokenService>();
-    srvc.Add_Projectz_Clientz();
+    srvc.Add_Projectz_Clientz(config);
 
-   
+
   }
-  public static void Add_Projectz_Clientz(this IServiceCollection srvc)
+  public static void Add_Projectz_Clientz(this IServiceCollection srvc, IConfiguration config)
   {
     srvc.AddSingleton<UOW_API_Httpz>();
-    // srvc.AddSingleton<MsgBusPub>();
-    // srvc.AddSingleton<EventProcessor>();
-    // srvc.AddSingleton<GRPCClient>();
+    srvc.Add_API_RabbitMQ(config);
     srvc.AddHostedService<RabbitMQ_ProjectzLookup>();
     srvc.AddHostedService<MsgBusSubs>();
     srvc.AddSingleton<EventProcessor>();
