@@ -36,10 +36,9 @@ public partial class API_RabbitMQ : IDisposable
       durable: Option.ExchangeDurable ??= true,
       autoDelete: Option.ExchangeAutoDelete ??= false
     );
-    string? queue = $"{Route.Exchange}_{Route.Queue ??= "q-default"}";
 
     channel.QueueDeclare(
-      queue: queue ??= "NameQueue",
+      queue: Route.Queue ??= "NameQueue",
       durable: Option.QueueDurable ??= true,
       exclusive: Option.QueueExclusive ??= false,
       autoDelete: Option.QueueAutoDelete ??= false,
@@ -49,10 +48,23 @@ public partial class API_RabbitMQ : IDisposable
     channel.QueueBind(Route.Queue, Route.Exchange, Route.Key ??= "NameRoute");
 
     _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
-    Console.WriteLine("--> API_RabbitMQ Connected Successfully.");
+    
+    Console.WriteLine("--> [Rabbit MQ] Connected Successfully. Exchange: {0} Queue {1}", 
+                          param.route.Exchange,
+                          param.route.Queue);
     return channel;
   }
-
+  protected void PrintRoute(RabbitMQParam param, bool isPub)
+  {
+    Console.WriteLine("[Rabbit MQ]" + (isPub ? "Publish" : "Subscribe") + " Successfully");
+    Console.WriteLine("-->Exchange: {0}/n Queue: {1}/n Route & Topic: {2}/n Headers: {3}/n",
+                     param.route.Exchange,
+                     param.route.Queue,
+                     param.route.Key,
+                     param.options.Headers
+                     );
+    Console.WriteLine("-------------xxx-------------");
+  }
   protected void RabbitMQ_ConnectionShutdown(object? sender, ShutdownEventArgs e)
   {
     Console.WriteLine("--> API_RabbitMQ connection was shut down.");

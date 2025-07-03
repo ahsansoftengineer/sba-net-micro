@@ -46,7 +46,7 @@ public partial class __RabbitMQController
     catch (Exception ex)
     {
       // return ex.Ok();
-      return $"--> Rabbit MQ Error : {ex.Message}".ToExtVMSingle().Ok();
+      return $"--> [Rabbit MQ] Error : {ex.Message}".ToExtVMSingle().Ok();
     }
 
   }
@@ -74,7 +74,7 @@ public partial class __RabbitMQController
     catch (Exception ex)
     {
       // return ex.Ok();
-      return $"--> Rabbit MQ Error : {ex.Message}".ToExtVMSingle().Ok();
+      return $"--> [Rabbit MQ] Error : {ex.Message}".ToExtVMSingle().Ok();
     }
     
   }
@@ -102,7 +102,7 @@ public partial class __RabbitMQController
     catch (Exception ex)
     {
       // return ex.Ok();
-      return $"--> Rabbit MQ Error : {ex.Message}".ToExtVMSingle().Ok();
+      return $"--> [Rabbit MQ] Error : {ex.Message}".ToExtVMSingle().Ok();
     }
     
   }
@@ -131,7 +131,7 @@ public partial class __RabbitMQController
     catch (Exception ex)
     {
       // return ex.Ok();
-      return $"--> Rabbit MQ Error : {ex.Message}".ToExtVMSingle().Ok();
+      return $"--> [Rabbit MQ] Error : {ex.Message}".ToExtVMSingle().Ok();
     }
     
   }

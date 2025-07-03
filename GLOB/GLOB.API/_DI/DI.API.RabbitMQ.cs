@@ -10,7 +10,6 @@ public static partial class DI_API
 {
   public static void Add_API_RabbitMQ(this IServiceCollection srvc, IConfiguration config)
   {
-    srvc.AddSingleton<API_RabbitMQ>(); // Singleton
     srvc.AddSingleton<ConnectionFactory>(sp =>
     {
       var option = sp.GetSrvc<IOptions<Option_App>>().Value.Clientz.RabbitMQz;
@@ -31,5 +30,7 @@ public static partial class DI_API
       var factory = sp.GetSrvc<ConnectionFactory>();
       return factory.CreateConnection();
     });
+    srvc.AddSingleton<API_RabbitMQ>();
+    srvc.AddSingleton<ChannelManager>();
   }
 }

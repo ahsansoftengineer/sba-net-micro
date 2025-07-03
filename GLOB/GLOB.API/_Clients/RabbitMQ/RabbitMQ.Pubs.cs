@@ -20,5 +20,7 @@ public partial class API_RabbitMQ
     }
 
     channel.BasicPublish(param.route.Exchange, param.route.Key, param.options.Mandatory ?? false, props, body);
+
+    PrintRoute(param, true);
   }
 }

@@ -44,7 +44,7 @@ public partial class __RabbitMQController : API_1_ErrorController<__RabbitMQCont
     catch (Exception ex)
     {
       // return ex.Ok();
-      return $"--> Rabbit MQ Error : {ex.Message}".ToExtVMSingle().Ok();
+      return $"--> [Rabbit MQ] Error : {ex.Message}".ToExtVMSingle().Ok();
     }
 
   }

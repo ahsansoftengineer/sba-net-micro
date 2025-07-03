@@ -35,5 +35,6 @@ public partial class API_RabbitMQ
     channel.BasicConsume(queue: param.route.Queue ?? "q-default",
                              autoAck: param.options.AutoAck ?? true,
                              consumer: consumer);
+    PrintRoute(param, false);
   }
 }
