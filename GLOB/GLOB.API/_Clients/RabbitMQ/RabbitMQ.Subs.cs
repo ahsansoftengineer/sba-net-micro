@@ -9,9 +9,9 @@ public partial class API_RabbitMQ
 {
   public void Subs<T>(RabbitMQParam param, Action<T> handler)
   {
-    SetPubSubDefault(_subChannel, param);
+    var channel = SetPubSubDefault(param);
 
-    var consumer = new EventingBasicConsumer(_subChannel);
+    var consumer = new EventingBasicConsumer(channel);
     consumer.Received += (_, ea) =>
     {
       try
@@ -22,17 +22,17 @@ public partial class API_RabbitMQ
           handler(message);
 
         if (!(param.options.AutoAck ?? true))
-          _subChannel.BasicAck(ea.DeliveryTag, false);
+          channel.BasicAck(ea.DeliveryTag, false);
       }
       catch (Exception ex)
       {
         Console.WriteLine($"[RabbitMQ] Error in message handler: {ex.Message}");
         if (!(param.options.AutoAck ?? true))
-          _subChannel.BasicNack(ea.DeliveryTag, false, requeue: true);
+          channel.BasicNack(ea.DeliveryTag, false, requeue: true);
       }
     };
 
-    _subChannel.BasicConsume(queue: param.route.Queue ?? "q-default",
+    channel.BasicConsume(queue: param.route.Queue ?? "q-default",
                              autoAck: param.options.AutoAck ?? true,
                              consumer: consumer);
   }

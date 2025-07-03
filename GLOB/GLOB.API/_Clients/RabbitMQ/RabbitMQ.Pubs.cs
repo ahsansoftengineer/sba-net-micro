@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace GLOB.API.Clientz;
 
@@ -7,10 +8,10 @@ public partial class API_RabbitMQ
 {
   public void Pubs(RabbitMQParam param)
   {
-    SetPubSubDefault(_pubChannel, param);
+    var channel = SetPubSubDefault(param);
 
     var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(param.payload));
-    var props = _pubChannel.CreateBasicProperties();
+    var props = channel.CreateBasicProperties();
     props.ContentType = "application/json";
 
     if (param.options.Headers != null)
@@ -18,6 +19,6 @@ public partial class API_RabbitMQ
       props.Headers = param.options.Headers;
     }
 
-    _pubChannel.BasicPublish(param.route.Exchange, param.route.Key, param.options.Mandatory ?? false, props, body);
+    channel.BasicPublish(param.route.Exchange, param.route.Key, param.options.Mandatory ?? false, props, body);
   }
 }
