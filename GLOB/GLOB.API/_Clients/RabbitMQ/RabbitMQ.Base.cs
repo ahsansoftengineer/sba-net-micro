@@ -4,22 +4,19 @@ using System.Collections.Concurrent;
 
 namespace GLOB.API.Clientz;
 
-public partial class API_RabbitMQ : IDisposable
+public partial class API_RabbitMQ_Base : IDisposable
 {
-  protected readonly IConnection _connection;
-  protected readonly ChannelManager _channelMngr;
-  protected readonly ConcurrentDictionary<string, IModel> _channels = new();
+  public readonly IConnection _connection;
+  public readonly ChannelManager _channelMngr;
+  public readonly ConcurrentDictionary<string, IModel> _channels = new();
 
-  protected readonly EventProcessor _eventProcessor;
-
-  public API_RabbitMQ(IServiceProvider sp)
+  public API_RabbitMQ_Base(IServiceProvider sp)
   {
     _connection = sp.GetSrvc<IConnection>();
     _channelMngr = sp.GetSrvc<ChannelManager>();
-    _eventProcessor = sp.GetSrvc<EventProcessor>();
   }
 
-  protected IModel SetPubSubDefault(RabbitMQParam param)
+  public IModel SetPubSubDefault(RabbitMQParam param)
   {
     // IModel channel = _channelManager.GetOrCreateChannel($"pub:{param.route.Exchange}:{param.route.Key}");
     IModel channel = _channelMngr.GetOrCreateChannel($"{param.route.Exchange}:{param.route.Key}");
@@ -54,7 +51,7 @@ public partial class API_RabbitMQ : IDisposable
                           param.route.Queue);
     return channel;
   }
-  protected void PrintRoute(RabbitMQParam param, bool isPub)
+  public void PrintRoute(RabbitMQParam param, bool isPub)
   {
     Console.WriteLine("[Rabbit MQ]" + (isPub ? "Publish" : "Subscribe") + " Successfully");
     Console.WriteLine("-->\n\t Exchange: {0}\n\t Queue: {1}\n\t Route & Topic: {2}\n\t Headers: {3}\n\t",
@@ -65,14 +62,14 @@ public partial class API_RabbitMQ : IDisposable
                      );
     Console.WriteLine("-------------xxx-------------");
   }
-  protected void RabbitMQ_ConnectionShutdown(object? sender, ShutdownEventArgs e)
+  public void RabbitMQ_ConnectionShutdown(object? sender, ShutdownEventArgs e)
   {
-    Console.WriteLine("--> API_RabbitMQ connection was shut down.");
+    Console.WriteLine("--> API_RabbitMQ_Base connection was shut down.");
   }
 
   public void Dispose()
   {
-    Console.WriteLine("--> API_RabbitMQ connection was shut down.");
+    Console.WriteLine("--> API_RabbitMQ_Base connection was shut down.");
     if (_connection != null && _connection.IsOpen)
     {
       _connection.Close();

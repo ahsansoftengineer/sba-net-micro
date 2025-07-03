@@ -14,12 +14,12 @@ namespace SBA.Auth.Controllers;
 public partial class __RabbitMQController : API_1_ErrorController<__RabbitMQController>
 {
   private readonly MsgBusPub RabbitMQ_Name;
-  private readonly API_RabbitMQ _rmq;
+  private readonly API_RabbitMQ_Base_Pubs _rmqPubs;
   public RabbitMQRoute Route = null;
   public __RabbitMQController(IServiceProvider sp) : base(sp)
   {
     RabbitMQ_Name = sp.GetSrvc<MsgBusPub>();
-    _rmq = sp.GetSrvc<API_RabbitMQ>();
+    _rmqPubs = sp.GetSrvc<API_RabbitMQ_Base_Pubs>();
     Route = new RabbitMQRoute(MQ_Exch.Auth, Controllerz.Auth.ProjectzLookup);
   }
 

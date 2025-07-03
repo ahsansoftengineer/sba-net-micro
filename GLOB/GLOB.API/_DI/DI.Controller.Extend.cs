@@ -15,7 +15,8 @@ public static partial class DI_API
       // opt.Filters.Add<FilterCacheActionGets>();
     });
 
-    // srvc.AddSingleton<API_RabbitMQ>();
+    // srvc.AddSingleton<API_RabbitMQ_Base>();
+    // srvc.AddSingleton<API_RabbitMQ_Base_Pubs>();
 
   }
 }

@@ -30,7 +30,9 @@ public static partial class DI_API
       var factory = sp.GetSrvc<ConnectionFactory>();
       return factory.CreateConnection();
     });
-    srvc.AddSingleton<API_RabbitMQ>();
     srvc.AddSingleton<ChannelManager>();
+    srvc.AddSingleton<API_RabbitMQ_Base>();
+    srvc.AddSingleton<API_RabbitMQ_Base_Pubs>();
+    // srvc.AddSingleton<API_RabbitMQ_Base_Subs>();
   }
 }

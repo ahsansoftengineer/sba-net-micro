@@ -34,7 +34,7 @@ public partial class __RabbitMQController
         },
         route = route 
       };
-      _rmq.Pubs(param);
+      _rmqPubs.Pubs(param);
       Console.WriteLine($"--> RabbitMQ : CRUD - Pub - {route.Key}");
       return param.payload.ToExtVMSingle().Ok();
     }
@@ -62,7 +62,7 @@ public partial class __RabbitMQController
         route = Route
       };
 
-      _rmq.Pubs(param);
+      _rmqPubs.Pubs(param);
       Console.WriteLine($"--> RabbitMQ : CRUD - Pub - {Route.Key}");
       return param.payload.ToExtVMSingle().Ok();
     }
@@ -90,7 +90,7 @@ public partial class __RabbitMQController
         route = Route
       };
 
-      _rmq.Pubs(param);
+      _rmqPubs.Pubs(param);
       Console.WriteLine($"--> RabbitMQ : CRUD - Pub - {Route.Key}");
       return param.payload.ToExtVMSingle().Ok();
     }
@@ -119,7 +119,7 @@ public partial class __RabbitMQController
         route = Route
       };
 
-      _rmq.Pubs(param);
+      _rmqPubs.Pubs(param);
       Console.WriteLine($"--> RabbitMQ : CRUD - Pub - {Route.Key}");
       return param.payload.Ok();
     }
