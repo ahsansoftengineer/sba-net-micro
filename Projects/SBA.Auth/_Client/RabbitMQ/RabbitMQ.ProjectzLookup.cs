@@ -1,28 +1,34 @@
+using GLOB.API.Clientz;
+using GLOB.API.Config.Extz;
 using GLOB.Infra.Model.Base;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using SBA.Projectz.Data;
 using System.Text;
 using System.Text.Json;
 
-namespace GLOB.API.Clientz;
+namespace SBA.Projectz.Clientz;
 
 public partial class RabbitMQ_ProjectzLookup : API_RabbitMQ_Base_Subs
 {
-  public RabbitMQ_ProjectzLookup(IServiceProvider sp): base(sp)
+  protected readonly IUOW_Projectz _uowProjectz;
+  
+  public RabbitMQ_ProjectzLookup(IServiceProvider sp) : base(sp)
   {
+    _uowProjectz = sp.GetSrvc<IUOW_Projectz>();
   }
   protected override Task ExecuteAsync(CancellationToken stoppingToken)
   {
     stoppingToken.ThrowIfCancellationRequested();
-    RabbitMQParam param = new()
+    var param = new RabbitMQParam
     {
-      route = new()
+      route = new RabbitMQRoute(MQ_Exch.Auth, Controllerz.Auth.ProjectzLookup)
       {
-        Exchange = "my-exchange",
-        Queue = "my-queue",
-        Key = "my.key"
+        Typez = ExchangeType.Direct,
+        Key = EP.Create
       }
     };
+
     var channel = _rmq.SetPubSubDefault(param);
 
     var consumer = new EventingBasicConsumer(channel);
@@ -33,6 +39,7 @@ public partial class RabbitMQ_ProjectzLookup : API_RabbitMQ_Base_Subs
         var body = ea.Body.ToArray();
         var message = JsonSerializer.Deserialize<ProjectzLookup>(Encoding.UTF8.GetString(body));
         if (message != null)
+          Console.WriteLine(body);
 
         if (!(param.options.AutoAck ?? true))
           channel.BasicAck(ea.DeliveryTag, false);
@@ -49,6 +56,7 @@ public partial class RabbitMQ_ProjectzLookup : API_RabbitMQ_Base_Subs
                           autoAck: param.options.AutoAck ?? true,
                           consumer: consumer);
     _rmq.PrintRoute(param, false); 
+
     return Task.CompletedTask;
   }
 }
