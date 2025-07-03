@@ -9,18 +9,17 @@ using GLOB.Infra.Utils.Paginate.Extz;
 using GLOB.Infra.Enumz;
 using GLOB.Infra.Utils.Attributez;
 
-using SBA.Projectz.Clientz;
-
 namespace SBA.Auth.Controllers;
 
 public partial class __RabbitMQController : API_1_ErrorController<__RabbitMQController>
 {
   private readonly MsgBusPub RabbitMQ_Name;
+  private readonly API_RabbitMQ _rmq;
   public RabbitMQRoute Route = null;
   public __RabbitMQController(IServiceProvider sp) : base(sp)
   {
     RabbitMQ_Name = sp.GetSrvc<MsgBusPub>();
-    _Projectz_RabbitMQ = sp.GetSrvc<Projectz_RabbitMQ>();
+    _rmq = sp.GetSrvc<API_RabbitMQ>();
     Route = new RabbitMQRoute(MQ_Exch.Auth, Controllerz.Auth.ProjectzLookup);
   }
 
