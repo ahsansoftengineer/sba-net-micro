@@ -5,3 +5,5 @@ global using GLOB.API.DI;
 global using GLOB.Infra.Model.Base;
 global using SBA.Projectz.Data;
 global using SBA.Projectz.DI;
+
+global using GLOB.Infra.Data.Sqlz;

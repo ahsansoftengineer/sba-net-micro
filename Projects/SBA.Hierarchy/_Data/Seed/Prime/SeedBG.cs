@@ -1,5 +1,4 @@
 using GLOB.Domain.Hierarchy;
-using GLOB.Infra.Data.Sqlz;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Projectz.Data;

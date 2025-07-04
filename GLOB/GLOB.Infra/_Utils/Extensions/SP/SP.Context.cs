@@ -1,4 +1,3 @@
-using GLOB.Infra.Data.Sqlz;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 

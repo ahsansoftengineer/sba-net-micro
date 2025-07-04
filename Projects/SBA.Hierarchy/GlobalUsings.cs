@@ -6,3 +6,5 @@ global using GLOB.Infra.Enumz;
 
 global using SBA.Projectz.Data;
 global using SBA.Projectz.DI;
+
+global using GLOB.Infra.Data.Sqlz;

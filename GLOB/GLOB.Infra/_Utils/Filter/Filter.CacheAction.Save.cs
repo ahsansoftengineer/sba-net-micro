@@ -1,7 +1,6 @@
 using System.Net;
 using System.Reflection;
 using GLOB.Infra.Utils.Attributez;
-using GLOB.Infra.Utils.Extz;
 using GLOB.Infra.Data.Redisz;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;

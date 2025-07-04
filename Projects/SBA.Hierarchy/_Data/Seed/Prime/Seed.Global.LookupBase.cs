@@ -1,5 +1,4 @@
 using GLOB.Hierarchy.Global;
-using GLOB.Infra.Data.Sqlz;
 using Microsoft.EntityFrameworkCore;
 
 

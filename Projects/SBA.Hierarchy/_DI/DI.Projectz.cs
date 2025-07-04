@@ -1,5 +1,4 @@
 using GLOB.Infra.DI;
-using GLOB.Infra.Data.Sqlz;
 using GLOB.Infra.UOW;
 using GLOB.API.Clientz;
 
