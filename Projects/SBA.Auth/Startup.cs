@@ -1,4 +1,3 @@
-using GLOB.API.DI;
 using SBA.Projectz.Data;
 using SBA.Projectz.DI;
 
@@ -22,9 +21,5 @@ public class Startup
     if(!env.IsDevelopment()){
       app.Seed().GetAwaiter().GetResult();
     }
-  }
-  public void RunFun()
-  {
-    
   }
 }

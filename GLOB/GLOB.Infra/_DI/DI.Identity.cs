@@ -18,8 +18,8 @@ public static partial class DI_Infra
     // Configure Identity with roles
     // srvc.AddIdentity<InfraUser, InfraRole>()
     srvc.AddIdentity<InfraUser, InfraRole>()
-        .AddEntityFrameworkStores<TContext>()
-        .AddDefaultTokenProviders();
+    .AddEntityFrameworkStores<TContext>()
+    .AddDefaultTokenProviders();
   }
 
 }

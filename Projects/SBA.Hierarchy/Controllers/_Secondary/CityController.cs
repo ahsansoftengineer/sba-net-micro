@@ -12,14 +12,14 @@ public class CityController : Project_RDS_Controller<CityController, City>
     _repo = _uowProjectz.Citys;
   }
   [HttpPost]
-  public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<CityDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<CityDtoSearch?> dto)
   {
-    return await _repo.ToActionGetsPaginate(req);
+    return await _repo.ToActionGetsPaginate(dto);
   }
   [HttpPost]
-  public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPage<CityDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPage<CityDtoSearch?> dto)
   {
-    return await _repo.ToActionGetsPaginateOptions(req);
+    return await _repo.ToActionGetsPaginateOptions(dto);
   }
 
   [HttpPost]

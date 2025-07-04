@@ -1,6 +1,4 @@
 using AutoMapper;
-using GLOB.API.Config.Configz;
-using GLOB.API.Config.Extz;
 using GLOB.Infra.UOW;
 using GLOB.Infra.Utils.Attributez;
 using GLOB.Infra.Data.Redisz;
@@ -19,7 +17,7 @@ public abstract class API_1_ErrorController<TController> : ControllerBase
   protected readonly IUOW_Infra _uowInfra;
   protected readonly ILogger _logger;
   protected readonly IConfiguration _config;
-  protected readonly AppSettings _appSettings;
+  protected readonly Option_App _Option_App;
 
   protected readonly RedisCacheService _redis;
 
@@ -27,7 +25,7 @@ public abstract class API_1_ErrorController<TController> : ControllerBase
   {
     _sp = sp;
     _config = sp.GetSrvc<IConfiguration>();
-    _appSettings = sp.GetSrvc<IOptions<AppSettings>>().Value;
+    _Option_App = sp.GetSrvc<IOptions<Option_App>>().Value;
 
     _mapper = sp.GetSrvc<IMapper>();
     _uowInfra = sp.GetSrvc<IUOW_Infra>();
@@ -37,7 +35,7 @@ public abstract class API_1_ErrorController<TController> : ControllerBase
 
     
 
-    Console.WriteLine("--> Port: {0}, Prefix: {1}", _appSettings.ASPNETCORE_HTTPS_PORT, _appSettings.ASPNETCORE_ROUTE_PREFIX);
+    Console.WriteLine("--> Port: {0}, Prefix: {1}", _Option_App.ASPNETCORE_HTTPS_PORT, _Option_App.ASPNETCORE_ROUTE_PREFIX);
     Console.WriteLine("--> Action : {0}", this);
   }
 

@@ -48,7 +48,7 @@ ENV ConnectionStrings__SqlConnection="Server=host.docker.internal,1433;Initial C
 
 # Cannot do this
 # Need Network for this
-# ENV Httpz__Auth=http://srvc-auth:1102/api/auth/v1
+# ENV API_Httpz__Auth=http://srvc-auth:1102/api/auth/v1
 
 EXPOSE 1106
 

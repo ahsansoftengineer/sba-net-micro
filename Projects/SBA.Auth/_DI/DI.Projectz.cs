@@ -1,8 +1,11 @@
 using SBA.Projectz.Data;
 using GLOB.Infra.Data.Sqlz;
 using GLOB.Infra.DI;
-using GLOB.API.Config.DI;
 using GLOB.Infra.UOW;
+using SBA.Projectz.Mapper;
+using SBA.Auth.Services;
+using GLOB.API.Clientz;
+using SBA.Projectz.Clientz;
 
 namespace SBA.Projectz.DI;
 
@@ -29,9 +32,29 @@ public static partial class DI_Projectz
 
     srvc.Add_API_Config_JWT_Option();
     // srvc.AddAuthorization();
-    
+    srvc.Add_Projectz_Srvc2(config);
 
-    srvc.Add_Projectz_Local_Srvc();
+  }
+  public static void Add_Projectz_Srvc2(this IServiceCollection srvc, IConfiguration config)
+  {
+    srvc.AddAutoMapper(typeof(ProjectzMapper));
+    srvc.AddScoped<SmtpEmailSender>();
+    srvc.AddScoped<TokenService>();
+    srvc.Add_Projectz_Clientz(config);
+
+
+  }
+  public static void Add_Projectz_Clientz(this IServiceCollection srvc, IConfiguration config)
+  {
+    srvc.AddSingleton<UOW_API_Httpz>();
+    srvc.Add_API_RabbitMQ(config);
+    // Jackson
+    srvc.AddHostedService<MsgBusSubs>();
+    srvc.AddSingleton<EventProcessor>();
+
+    // Ahsan
+    srvc.AddHostedService<RabbitMQ_ProjectzLookup>();
+    srvc.AddSingleton<EventProjectzLookupCreate>();
     
   }
 }

@@ -8,7 +8,7 @@ public static partial class SeedProjectz
   // Dev (When Running Migration throw CLI)
   public static void Seed(this ModelBuilder mb)
   {
-    Console.WriteLine("--> Auth -> Applying Migrations ModelBuilder");
+    Console.WriteLine("-->  ModelBuilder --> Auth -> SeedProjectz");
     mb.SeedInfraIdentity(); // base.OnModelCreating
 
   }

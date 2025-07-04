@@ -5,23 +5,23 @@ using GLOB.Infra.Utils.Paginate.Extz;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Projectz.Controllers;
-public class _ProjectzLookupzController : API_2_RDS_Controller<_ProjectzLookupzController, ProjectzLookup>
+public class _ProjectzLookupController : API_2_RDS_Controller<_ProjectzLookupController, ProjectzLookup>
 {
-  public _ProjectzLookupzController(IServiceProvider srvcProvider) : base(srvcProvider)
+  public _ProjectzLookupController(IServiceProvider srvcProvider) : base(srvcProvider)
   {
     _repo = _uowInfra.ProjectzLookups;
   }
 
   [HttpPost]
-  public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<ProjectzLookupDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<ProjectzLookupDtoSearch?> dto)
   {
-    return await _repo.ToActionGetsPaginate(req);
+    return await _repo.ToActionGetsPaginate(dto);
   }
 
   [HttpPost]
-  public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPage<ProjectzLookupDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPage<ProjectzLookupDtoSearch?> dto)
   {
-    return await _repo.ToActionGetsPaginateOptions(req);
+    return await _repo.ToActionGetsPaginateOptions(dto);
   }
 
   [HttpPost]

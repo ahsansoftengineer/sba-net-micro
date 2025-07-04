@@ -1,9 +1,18 @@
+using GLOB.Infra.Utils.Extz;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace GLOB.Infra.Data.Sqlz;
 public partial class DBCtx : DbContext
 {
-  public DBCtx(DbContextOptions options) : base(options) { }
+  protected readonly IConfiguration _config;
+
+  public string DOTNET_ENVIRONMENT { get; }
+  public DBCtx(DbContextOptions options, IServiceProvider sp) : base(options)
+  {
+    _config = sp.GetSrvc<IConfiguration>();
+    DOTNET_ENVIRONMENT = _config.GetValueStr("DOTNET_ENVIRONMENT");
+  }
 
   // TODO: NOTE: Here we need to work for Seeding Data
   protected override void OnModelCreating(ModelBuilder mb)
@@ -12,6 +21,7 @@ public partial class DBCtx : DbContext
     EntityMappingConfig(mb);
     // OnModelCreatingEnumConfig(mb);
     // ConfigEnums(mb);
+    
     mb.SeedInfra();
 
     base.OnModelCreating(mb);

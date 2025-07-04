@@ -1,11 +1,15 @@
 using GLOB.Infra.DI;
 using GLOB.Infra.Data.Sqlz;
+using GLOB.Infra.UOW;
+using GLOB.API.Clientz;
+
 using SBA.Projectz.Data;
 using SBA.Projectz.Mapper;
 using GLOB.API.DI;
-using GLOB.Infra.UOW;
+
 
 namespace SBA.Projectz.DI;
+
 public static partial class DI_Projectz
 {
   public static void Add_Projectz_Srvc(this IServiceCollection srvc, IConfiguration config)
@@ -13,8 +17,9 @@ public static partial class DI_Projectz
     srvc.Add_Projectz_Config_Options(config);
 
     srvc.Add_API_Default_Srvc(config);
+    srvc.Add_Projectz_Clientz(config);
     // srvc.Add_API_Default_Srvc2();
-    
+
     srvc.Add_Infra_Cache_Redis(config);
     srvc.Add_Infra_DB_SQL<DBCtxInfra, IUOW_Infra, UOW_Projectz>(config);
     srvc.Add_Infra_DB_SQL<DBCtxProjectz, IUOW_Projectz, UOW_Projectz>(config);
@@ -22,4 +27,11 @@ public static partial class DI_Projectz
     // srvc.Add_API_Config_JWT_Option(); // Because of Identity
     srvc.AddAutoMapper(typeof(ProjectzMapper));
   }
+  public static void Add_Projectz_Clientz(this IServiceCollection srvc, IConfiguration config)
+  {
+    srvc.AddSingleton<UOW_API_Httpz>();
+    srvc.AddSingleton<MsgBusPub>();
+    srvc.Add_API_RabbitMQ(config);
+  }
+  
 }

@@ -12,7 +12,7 @@ public static partial class InfraSeedIdentity
   // Seed for Development through (CLI)
   public static void SeedInfraIdentity(this ModelBuilder mb)
   {
-    Console.WriteLine("--> Infra Identity -> Applying Migrations ModelBuilder (Dev)");
+    Console.WriteLine("--> ModelBuilder -> InfraSeedIdentity -> SeedInfra");
     mb.SeedInfra();
     mb.SeedInfraRole();
     mb.SeedInfraUser();

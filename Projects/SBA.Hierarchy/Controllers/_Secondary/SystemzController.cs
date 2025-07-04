@@ -12,14 +12,14 @@ public class SystemzController : Project_RDS_Controller<SystemzController, Syste
     _repo = _uowProjectz.Systemzs;
   }
   [HttpPost]
-  public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<SystemzDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginate([FromBody] DtoRequestPage<SystemzDtoSearch?> dto)
   {
-    return await _repo.ToActionGetsPaginate(req);
+    return await _repo.ToActionGetsPaginate(dto);
   }
   [HttpPost]
-  public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPage<SystemzDtoSearch?> req)
+  public async Task<IActionResult> GetsPaginateOptions([FromBody] DtoRequestPage<SystemzDtoSearch?> dto)
   {
-    return await _repo.ToActionGetsPaginateOptions(req);
+    return await _repo.ToActionGetsPaginateOptions(dto);
   }
   [HttpPost]
   public async Task<IActionResult> Create([FromBody] SystemzDtoCreate data)

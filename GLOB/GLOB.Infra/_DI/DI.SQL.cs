@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using GLOB.Infra.UOW;
+using Serilog;
 
 namespace GLOB.Infra.DI;
 public static partial class DI_Infra
@@ -17,7 +18,8 @@ public static partial class DI_Infra
     
     srvc.AddDbContext<TContext>(opt =>
     {
-      opt.EnableSensitiveDataLogging(true);
+      opt.EnableDetailedErrors();
+      opt.EnableSensitiveDataLogging();
       opt.UseSqlServer(connStr, sqlOptions =>
       {
         sqlOptions.EnableRetryOnFailure(
@@ -26,7 +28,7 @@ public static partial class DI_Infra
           errorNumbersToAdd: null
         );
       });
-      opt.LogTo(Console.WriteLine, LogLevel.Information);
+      opt.LogTo(Log.Logger.Information, LogLevel.Information);
     });
 
     srvc.AddScoped<TIUOW, TUOW>();

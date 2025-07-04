@@ -1,6 +1,3 @@
-using GLOB.API.Config.Configz;
-using GLOB.API.Config.DI;
-using GLOB.API.Config.Extz;
 using GLOB.API.Controllers.Base;
 using GLOB.Domain.Model.Auth;
 using GLOB.Infra.Data.Auth;

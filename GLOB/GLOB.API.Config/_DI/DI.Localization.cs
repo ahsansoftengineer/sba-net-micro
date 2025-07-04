@@ -1,4 +1,3 @@
-using GLOB.API.Config.Extz;
 
 namespace GLOB.API.Config.DI;
 public static partial class DI_API_Config

@@ -33,11 +33,11 @@ public partial class RoleController
 
   // List, Filter By Ids
   [HttpPost]
-  public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds<string> req)
+  public async Task<IActionResult> GetsByIds([FromBody] DtoRequestGetByIds<string> dto)
   {
     try
     {
-      var list = await _repo.Where(x => req.Ids.Contains(x.Id)).ToListAsync();
+      var list = await _repo.Where(x => dto.Ids.Contains(x.Id)).ToListAsync();
       return  list.ToExtVMList().Ok();
     }
     catch (Exception ex)
@@ -46,13 +46,13 @@ public partial class RoleController
     }
   }
   [HttpPost]
-  public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds<string> req)
+  public async Task<IActionResult> GetsByIdsLookup([FromBody] DtoRequestGetByIds<string> dto)
   {
     try
     {
       var list = await _repo
         .Select(x => new { x.Id, x.Name })
-        .Where((x) => req.Ids.Contains(x.Id))
+        .Where((x) => dto.Ids.Contains(x.Id))
         .ToDictionaryAsync(x => x.Id, y =>  y.Name);
       return list.ToExtVMSingle().Ok();
     }
@@ -62,11 +62,11 @@ public partial class RoleController
     }
   }
   [HttpPost]
-  public async Task<IActionResult> GetsPaginate(DtoRequestPageNoInclude req)
+  public async Task<IActionResult> GetsPaginate(DtoRequestPageNoInclude dto)
   {
     var query = _repo
-      .ToExtQueryFilter(req.Filter)
-      .ToExtQueryOrderBy(req.Sort)
+      .ToExtQueryFilter(dto.Filter)
+      .ToExtQueryOrderBy(dto.Sort)
       .Select(x => new
       {
         x.Id,
@@ -76,14 +76,14 @@ public partial class RoleController
         x.UpdatedAt
       });
 
-    var result = await query.ToExtPageReq(req);
+    var result = await query.ToExtPageReq(dto);
     return result.Ok();
   }
 
   [HttpPost]
-  public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<DtoSearch?> req)
+  public async Task<IActionResult> GetsPaginateOptions(DtoRequestPage<DtoSearch?> dto)
   {
-    var list = await _repo.ToExtVMPageOptionsNoTrack<InfraRole, string>(req);
+    var list = await _repo.ToExtVMPageOptionsNoTrack<InfraRole, string>(dto);
     return list.Ok();
   }
 }

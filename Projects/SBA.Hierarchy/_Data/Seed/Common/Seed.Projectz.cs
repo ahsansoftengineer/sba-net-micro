@@ -7,7 +7,7 @@ public static partial class SeedProjectz
   // Dev (When Running Migration throw CLI)
   public static void Seed(this ModelBuilder mb)
   {
-    Console.WriteLine("--> Hierarchy -> Applying Migrations ModelBuilder");
+    Console.WriteLine("-->  ModelBuilder --> Hierarchy -> SeedProjectz");
     // .-*
     mb.SeedGlobalLookupBase();
     mb.SeedOrg();

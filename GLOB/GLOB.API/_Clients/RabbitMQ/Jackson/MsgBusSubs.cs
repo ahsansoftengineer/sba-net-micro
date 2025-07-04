@@ -1,0 +1,93 @@
+using System.Text;
+using Microsoft.Extensions.Options;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
+
+namespace GLOB.API.Clientz;
+
+public class MsgBusSubs : BackgroundService
+{
+  private readonly IConfiguration _config;
+  private readonly EventProcessor _eventProcessor;
+  private readonly Option_RabbitMQ _option_RabbitMQ;
+  private IConnection _connection;
+  private IModel _channel;
+  private string _queueName;
+
+  public MsgBusSubs(IServiceProvider sp)
+  {
+    _config = sp.GetSrvc<IConfiguration>();
+    _eventProcessor = sp.GetSrvc<EventProcessor>();
+    _option_RabbitMQ = sp.GetSrvc<IOptions<Option_App>>().Value.Clientz.RabbitMQz;
+    InitRabbitMQ();
+  }
+
+  private void InitRabbitMQ()
+  {
+    var factory = new ConnectionFactory()
+    {
+      HostName = _option_RabbitMQ.HostName,
+      Port = _option_RabbitMQ.Port,
+    };
+
+    _connection = factory.CreateConnection();
+    _channel = _connection.CreateModel();
+    _channel.ExchangeDeclare(
+      exchange: "trigger",
+      type: ExchangeType.Fanout
+    );
+
+    _queueName = _channel.QueueDeclare().QueueName;
+
+    _channel.QueueBind(
+      queue: _queueName,
+      exchange: "trigger",
+      routingKey: ""
+    );
+    _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
+
+    Console.WriteLine("--> [Rabbit MQ] Listening on the Message Bus...");
+  }
+
+  protected override Task ExecuteAsync(CancellationToken stoppingToken)
+  {
+    stoppingToken.ThrowIfCancellationRequested();
+    var consumer = new EventingBasicConsumer(_channel);
+    consumer.Received += (ModuleHandle, ea) =>
+    {
+      Console.WriteLine("--> [Rabbit MQ] Message Recieved");
+      var body = ea.Body;
+      var notificationMessage = Encoding.UTF8.GetString(body.ToArray());
+
+      _eventProcessor.ProcessEvent(notificationMessage);
+
+    };
+    _channel.BasicConsume(
+      queue: _queueName,
+      autoAck: true,
+      consumer: consumer
+    );
+    return Task.CompletedTask;
+  }
+  private void RabbitMQ_ConnectionShutdown(object? sender, ShutdownEventArgs e)
+  {
+    Console.WriteLine("--> [Rabbit MQ] connection was shut down. Jackson");
+  }
+  public override void Dispose()
+  {
+    if (_channel != null && _channel.IsOpen)
+    {
+      _channel.Close();
+      _channel.Dispose();
+    }
+
+    if (_connection != null && _connection.IsOpen)
+    {
+      _connection.Close();
+      _connection.Dispose();
+    }
+    base.Dispose();
+  }
+
+
+}
