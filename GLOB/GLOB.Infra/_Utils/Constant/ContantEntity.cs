@@ -1,6 +1,6 @@
 using GLOB.Infra.Enumz;
 
-namespace GLOB.Domain.Contants;
+namespace GLOB.Infra.Contants;
 public static class Constantz
 {
   // TODO: We need to have a way of setting Default Date for Migration on 

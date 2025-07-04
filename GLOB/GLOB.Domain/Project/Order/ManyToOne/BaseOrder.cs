@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using GLOB.Infra.Model.Base;
 using GLOB.Domain.Enumz;
 namespace GLOB.Domain.Hierarchy;
 public abstract class BaseOrder : EntityBeta

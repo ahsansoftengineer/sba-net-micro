@@ -1,5 +1,4 @@
 using GLOB.Domain.Model.Auth;
-using GLOB.Infra.Model.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Data.Auth;

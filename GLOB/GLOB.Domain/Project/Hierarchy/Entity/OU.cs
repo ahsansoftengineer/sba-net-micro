@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using GLOB.Infra.Model.Base;
 
 namespace GLOB.Domain.Hierarchy;
 public class OU : EntityBase

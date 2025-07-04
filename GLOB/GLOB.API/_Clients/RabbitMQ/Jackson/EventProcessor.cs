@@ -1,5 +1,4 @@
 using AutoMapper;
-using GLOB.Infra.Model.Base;
 using GLOB.Infra.UOW;
 using Newtonsoft.Json;
 

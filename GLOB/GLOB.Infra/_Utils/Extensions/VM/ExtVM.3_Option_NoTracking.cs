@@ -1,4 +1,3 @@
-using GLOB.Infra.Model.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Utils.Paginate.Extz;

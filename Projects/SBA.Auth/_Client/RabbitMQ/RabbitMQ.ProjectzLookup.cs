@@ -1,5 +1,4 @@
 using GLOB.API.Clientz;
-using GLOB.Infra.Model.Base;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using SBA.Projectz.Data;
