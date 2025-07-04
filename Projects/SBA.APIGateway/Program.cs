@@ -1,3 +1,5 @@
+using Serilog;
+
 namespace SBA.APIGateway;
 public class Program
 {
@@ -8,6 +10,7 @@ public class Program
 
   public static IHostBuilder CreateHostBuilder(string[] args) =>
     Host.CreateDefaultBuilder(args)
+      .UseSerilog()
       .ConfigureAppConfiguration((hostingContext, config) =>
       {
         var env = hostingContext.HostingEnvironment;

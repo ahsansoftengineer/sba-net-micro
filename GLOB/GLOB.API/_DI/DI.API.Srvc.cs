@@ -8,7 +8,6 @@ public static partial class DI_API
   {
     //srvc.Add_API_Config_Localization(config);
     // srvc.Add_API_Config_Options(config);
-    DI_API_Config.Reg_API_Config_Serilog();
     srvc.Add_API_Controller_Srvc_Extend(config);
 
     srvc.Add_API_Config_Authentication_JWT(config);

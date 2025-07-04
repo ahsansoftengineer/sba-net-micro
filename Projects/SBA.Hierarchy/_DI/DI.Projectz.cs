@@ -6,6 +6,7 @@ using GLOB.API.Clientz;
 
 using SBA.Projectz.Data;
 using SBA.Projectz.Mapper;
+using GLOB.API.Config.DI;
 
 
 namespace SBA.Projectz.DI;
@@ -14,6 +15,7 @@ public static partial class DI_Projectz
 {
   public static void Add_Projectz_Srvc(this IServiceCollection srvc, IConfiguration config)
   {
+    DI_API_Config.Reg_API_Config_Serilog();
     srvc.Add_Projectz_Config_Options(config);
 
     srvc.Add_API_Default_Srvc(config);
