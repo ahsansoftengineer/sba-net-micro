@@ -1,18 +1,28 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Library</OutputType>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>12.0</LangVersion>
   </PropertyGroup>
-
-
+  <ItemGroup>
+    <Using Include="Microsoft.AspNetCore.Hosting" />
+    <Using Include="Microsoft.Extensions.DependencyInjection" />
+    <Using Include="Microsoft.AspNetCore.Builder" />
+    <Using Include="Microsoft.AspNetCore.Http" />
+    <Using Include="Microsoft.Extensions.Configuration" />
+    <Using Include="Microsoft.Extensions.Logging" />
+    <Using Include="Microsoft.Extensions.Hosting" />
+    <Using Include="Microsoft.AspNetCore.Routing" />
+  </ItemGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GLOB.API.Config\GLOB.API.Config.csproj" />
     <ProjectReference Include="..\GLOB.Domain\GLOB.Domain.csproj" />
   </ItemGroup>
-
-
   <ItemGroup>
     <PackageReference Include="RabbitMQ.Client" Version="6.2.2" />
   </ItemGroup>
