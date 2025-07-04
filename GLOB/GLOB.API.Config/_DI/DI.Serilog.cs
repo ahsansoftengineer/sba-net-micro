@@ -9,8 +9,8 @@ public static partial class DI_API_Config
   {
     // Verbose,Debug,Information,Warning,Error,Fatal
     Log.Logger = new LoggerConfiguration()
-      .MinimumLevel.Debug() // or Information in production
-      .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+      .MinimumLevel.Information() // or Information in production
+      .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
       .Enrich.FromLogContext()
       .WriteTo.Console(
           outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}",
