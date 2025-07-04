@@ -1,5 +1,4 @@
 using System.ComponentModel;
-using GLOB.Infra.Enumz;
 
 namespace GLOB.Infra.Model.Base;
 

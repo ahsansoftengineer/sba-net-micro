@@ -1,6 +1,3 @@
-using SBA.Projectz.Data;
-using SBA.Projectz.DI;
-
 namespace SBA.Hierarchy;
 public class Startup
 {
@@ -22,9 +19,5 @@ public class Startup
     if(!env.IsDevelopment()){
       app.Seed();
     }
-  }
-  public void RunFun()
-  {
-    
   }
 }

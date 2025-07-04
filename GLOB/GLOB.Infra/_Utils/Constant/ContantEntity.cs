@@ -1,4 +1,3 @@
-using GLOB.Infra.Enumz;
 
 namespace GLOB.Infra.Contants;
 public static class Constantz

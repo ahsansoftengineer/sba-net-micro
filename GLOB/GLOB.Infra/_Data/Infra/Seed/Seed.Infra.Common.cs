@@ -1,4 +1,3 @@
-using GLOB.Infra.Enumz;
 
 namespace GLOB.Infra.Data.Sqlz;
 public static partial class SeedzInfra

@@ -4,7 +4,7 @@ using GLOB.Infra.Data.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using SBA.Auth.Services;
-using SBA.Projectz.Data;
+
 
 namespace SBA.Auth.Controllers;
 public abstract class AccountBaseController<T> : API_1_ErrorController<T>

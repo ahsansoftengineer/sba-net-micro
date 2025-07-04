@@ -1,9 +1,8 @@
 using GLOB.Infra.DI;
-using GLOB.Infra.Data.Sqlz;
 using GLOB.Infra.UOW;
 using GLOB.API.Clientz;
 
-using SBA.Projectz.Data;
+
 using SBA.Projectz.Mapper;
 using GLOB.API.DI;
 

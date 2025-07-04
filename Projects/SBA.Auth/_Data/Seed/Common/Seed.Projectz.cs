@@ -1,4 +1,3 @@
-using GLOB.Infra.Data.Sqlz;
 using GLOB.Infra.Data.Auth;
 using Microsoft.EntityFrameworkCore;
 

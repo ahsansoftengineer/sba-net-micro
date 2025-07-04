@@ -1,4 +1,3 @@
-using GLOB.Infra.Enumz;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Data.Sqlz;

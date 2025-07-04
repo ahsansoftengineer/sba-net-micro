@@ -15,3 +15,4 @@ global using GLOB.API.Config.Extz;
 global using GLOB.API.Config.Configz;
 
 global using GLOB.Infra.Model.Base;
+global using GLOB.Infra.Enumz;

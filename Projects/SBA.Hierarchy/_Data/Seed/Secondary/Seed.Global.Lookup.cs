@@ -1,7 +1,6 @@
-using GLOB.Infra.Enumz;
 using GLOB.Hierarchy.Global;
 using Microsoft.EntityFrameworkCore;
-using SBA.Projectz.Data;
+
 
 namespace GLOB.Projectz.Seed;
 public static partial class SeedProjectz

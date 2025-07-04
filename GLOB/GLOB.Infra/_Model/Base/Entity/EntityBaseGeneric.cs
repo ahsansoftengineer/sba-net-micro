@@ -1,8 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
-using GLOB.Infra.Contants;
-using GLOB.Infra.Enumz;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Model.Base;

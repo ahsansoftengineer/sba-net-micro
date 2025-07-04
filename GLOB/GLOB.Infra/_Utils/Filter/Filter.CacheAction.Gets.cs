@@ -1,5 +1,4 @@
 using System.Net;
-using GLOB.Infra.Utils.Extz;
 using GLOB.Infra.Data.Redisz;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
