@@ -50,8 +50,13 @@ public static partial class DI_Projectz
   {
     srvc.AddSingleton<UOW_API_Httpz>();
     srvc.Add_API_RabbitMQ(config);
-    srvc.AddHostedService<RabbitMQ_ProjectzLookup>();
+    // Jackson
     srvc.AddHostedService<MsgBusSubs>();
     srvc.AddSingleton<EventProcessor>();
+
+    // Ahsan
+    srvc.AddHostedService<RabbitMQ_ProjectzLookup>();
+    srvc.AddSingleton<EventProjectzLookupCreate>();
+    
   }
 }

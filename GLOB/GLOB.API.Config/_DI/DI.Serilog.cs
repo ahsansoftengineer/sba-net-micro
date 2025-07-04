@@ -1,0 +1,22 @@
+using AspNetCoreRateLimit;
+using Serilog;
+using Serilog.Events;
+using Serilog.Sinks.SystemConsole.Themes;
+
+namespace GLOB.API.Config.DI;
+public static partial class DI_API_Config
+{
+  public static void Reg_API_Config_Serilog()
+  {
+    Log.Logger = new LoggerConfiguration()
+      .MinimumLevel.Debug() // or Information in production
+      .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+      .Enrich.FromLogContext()
+      .WriteTo.Console(
+          outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {SourceContext} - {Message:lj}{NewLine}{Exception}",
+          theme: AnsiConsoleTheme.Code
+      )
+      .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day)
+      .CreateLogger();
+  }
+}

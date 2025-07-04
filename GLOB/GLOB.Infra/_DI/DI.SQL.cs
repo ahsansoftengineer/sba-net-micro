@@ -27,7 +27,7 @@ public static partial class DI_Infra
           errorNumbersToAdd: null
         );
       });
-      opt.LogTo(Console.WriteLine, LogLevel.Trace);
+      opt.LogTo(Console.WriteLine, LogLevel.Information);
     });
 
     srvc.AddScoped<TIUOW, TUOW>();

@@ -1,31 +1,35 @@
 using AutoMapper;
+using GLOB.API.Clientz;
 using GLOB.API.Config.Extz;
 using GLOB.Infra.Model.Base;
 using GLOB.Infra.UOW;
 using Newtonsoft.Json;
 
-namespace GLOB.API.Clientz;
+namespace SBA.Projectz.Clientz;
 
-public class EventProcessor
+public class EventProjectzLookupCreate
 {
   private readonly IServiceScopeFactory _scopeFactory;
 
-  public EventProcessor(IServiceScopeFactory scopeFactory)
+  public EventProjectzLookupCreate(IServiceScopeFactory scopeFactory)
   {
     _scopeFactory = scopeFactory;
   }
+
+
   public void ProcessEvent(string message)
   {
-    using (var scope = _scopeFactory.CreateScope())
+     using (var scope = _scopeFactory.CreateScope())
     {
       var uow = scope.ServiceProvider.GetRequiredService<IUOW_Infra>();
-      var model = JsonConvert.DeserializeObject<ProjectzLookup>(message);
+      Console.WriteLine(message);
+      var model = JsonConvert.DeserializeObject<RabbitMQPayload<ProjectzLookup>>(message);
 
       try
       {
-        if (uow.ProjectzLookupBases.AnyId(model?.ProjectzLookupBaseId ?? 0))
+        if (uow.ProjectzLookupBases.AnyId(model.Body?.ProjectzLookupBaseId ?? 0))
         {
-          uow.ProjectzLookups.Insert(model);
+          uow.ProjectzLookups.Insert(model.Body);
           uow.Save();
           Console.WriteLine("ProjectzLookup Created Successfully");
         }

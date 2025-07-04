@@ -15,7 +15,7 @@ public class Startup
 
   public void ConfigureServices(IServiceCollection srvc)
   {
-    srvc.Add_API_Default_Srvc(_config);
+    srvc.Add_Projectz_Srvc(_config);
     srvc.AddOcelot(_config);
   }
 

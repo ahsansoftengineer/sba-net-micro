@@ -32,8 +32,6 @@ public static partial class DI_Projectz
     srvc.AddSingleton<UOW_API_Httpz>();
     srvc.AddSingleton<MsgBusPub>();
     srvc.Add_API_RabbitMQ(config);
-    srvc.AddSingleton<EventProcessor>();
-    // srvc.AddSingleton<GRPCClient>();
   }
   
 }

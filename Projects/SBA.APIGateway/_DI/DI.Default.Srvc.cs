@@ -4,7 +4,7 @@ namespace SBA.Projectz.DI;
 public static partial class DI_Projectz
 {
 
-  public static void Add_API_Default_Srvc(this IServiceCollection srvc, IConfiguration config)
+  public static void Add_Projectz_Srvc(this IServiceCollection srvc, IConfiguration config)
   {
     // Add_API_Config_Caching(srvc);
     // srvc.AddAuthentication();
@@ -14,7 +14,7 @@ public static partial class DI_Projectz
     srvc.Add_API_Config_Controller(config);
     // srvc.Add_API_Config_Versioning();
   }
-  public static void Add_API_Default_Srvc2(this IServiceCollection srvc)
+  public static void Add_Projectz_Srvc2(this IServiceCollection srvc)
   {
     // srvc.Config_Identity();
     // srvc.Add_API_Config_Versioning();

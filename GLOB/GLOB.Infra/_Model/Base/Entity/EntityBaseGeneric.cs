@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using GLOB.Domain.Contants;
 using GLOB.Infra.Enumz;
+using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Model.Base;
 
@@ -18,6 +19,8 @@ public abstract class EntityAlpha<TKey> : IEntityAlpha<TKey>, IEntityStatus
   public Status? Status { get; set; } = Constantz.Status;
 
   [Column(Order = 3)] // required
+  [Unicode(false)]
+  [MaxLength(100)]
   public string Name { get; set; }
 }
 public abstract class EntityBeta<TKey> : EntityAlpha<TKey>, IEntityBeta
@@ -35,6 +38,8 @@ public abstract class EntityBase<TKey> : EntityBeta<TKey>, IEntityBase
 {
 
   [Column(Order = 4)]
+  [Unicode(false)]
+  [MaxLength(250)]
   public string? Desc { get; set; }
 
   [NotMapped]

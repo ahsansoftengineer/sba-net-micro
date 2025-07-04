@@ -11,9 +11,10 @@ namespace SBA.Projectz.Clientz;
 
 public partial class RabbitMQ_ProjectzLookup : API_RabbitMQ_Base_Subs
 {
-  // protected readonly IUOW_Projectz _uowProjectz;
+  private readonly EventProjectzLookupCreate _eventProcessor;
   public RabbitMQ_ProjectzLookup(IServiceProvider sp, IServiceScopeFactory sf) : base(sp, sf)
   {
+    _eventProcessor = sp.GetSrvc<EventProjectzLookupCreate>();
   }
   protected override Task ExecuteAsync(CancellationToken stoppingToken)
   {
@@ -32,42 +33,13 @@ public partial class RabbitMQ_ProjectzLookup : API_RabbitMQ_Base_Subs
 
     var consumer = new EventingBasicConsumer(channel);
 
-
     consumer.Received += (_, ea) =>
     {
-      try
-      {
-        var body = ea.Body.ToArray();
-        Console.WriteLine(Encoding.UTF8.GetString(body));
+      Console.WriteLine("--> [Rabbit MQ] Message Recieved");
+      var body = ea.Body;
+      var notificationMessage = Encoding.UTF8.GetString(body.ToArray());
 
-        var message = JsonSerializer.Deserialize<RabbitMQPayload<ProjectzLookup>>(Encoding.UTF8.GetString(body));
-        if (message != null)
-        {
-          var dto = message.Body;
-
-          using var scope = _scopeFactory.CreateScope();
-          var _uowProjectz = scope.ServiceProvider.GetRequiredService<IUOW_Projectz>();
-          _uowProjectz.ProjectzLookups.Insert(new()
-          {
-            Name = dto.Name,
-            ProjectzLookupBaseId = dto.ProjectzLookupBaseId,
-            Code = dto.Code,
-            Desc = dto.Desc,
-          });
-          _uowProjectz.Save();
-          
-        }
-
-
-        if (!(param.options.AutoAck ?? true))
-          channel.BasicAck(ea.DeliveryTag, false);
-      }
-      catch (Exception ex)
-      {
-        Console.WriteLine($"--> [Rabbit MQ] Error in message handler: {ex.Message}");
-        if (!(param.options.AutoAck ?? true))
-          channel.BasicNack(ea.DeliveryTag, false, requeue: true);
-      }
+      _eventProcessor.ProcessEvent(notificationMessage);
     };
 
     channel.BasicConsume(queue: param.route.Queue ?? "q-default",
