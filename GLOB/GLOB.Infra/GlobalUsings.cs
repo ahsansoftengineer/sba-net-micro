@@ -6,4 +6,4 @@ global using GLOB.Infra.UOW;
 global using GLOB.Infra.DI;
 global using GLOB.Infra.Contants;
 global using GLOB.Infra.Model.Base;
-
+global using GLOB.Infra.Enumz;

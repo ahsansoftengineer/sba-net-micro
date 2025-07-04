@@ -1,6 +1,5 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using GLOB.Infra.Enumz;
 
 namespace GLOB.Infra.Repo;
 

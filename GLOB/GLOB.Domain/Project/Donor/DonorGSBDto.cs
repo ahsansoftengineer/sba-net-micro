@@ -1,5 +1,4 @@
 using Newtonsoft.Json;
-using GLOB.Infra.Enumz;
 using GLOB.Domain.Enumz;
 
 namespace GLOB.Domain.DTOs.Donor;

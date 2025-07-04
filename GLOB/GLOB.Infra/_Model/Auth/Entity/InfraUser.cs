@@ -1,6 +1,5 @@
 using GLOB.Infra.Contants;
 using Microsoft.AspNetCore.Identity;
-using GLOB.Infra.Enumz;
 
 namespace GLOB.Domain.Model.Auth;
 
