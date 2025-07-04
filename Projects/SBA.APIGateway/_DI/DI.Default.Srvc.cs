@@ -6,8 +6,6 @@ public static partial class DI_Projectz
 
   public static void Add_Projectz_Srvc(this IServiceCollection srvc, IConfiguration config)
   {
-    DI_API_Config.Reg_API_Config_Serilog();
-
     // Add_API_Config_Caching(srvc);
     // srvc.AddAuthentication();
     // srvc.AddAuthorization();

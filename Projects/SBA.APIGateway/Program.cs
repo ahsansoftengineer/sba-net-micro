@@ -1,3 +1,4 @@
+using GLOB.API.Config.DI;
 using Serilog;
 
 namespace SBA.APIGateway;
@@ -5,7 +6,15 @@ public class Program
 {
   public static void Main(string[] args)
   {
-    CreateHostBuilder(args).Build().Run();
+    DI_API_Config.Reg_API_Config_Serilog();
+    try
+    {
+      CreateHostBuilder(args).Build().Run();
+    }
+    catch (Exception e)
+    {
+      Log.Fatal(e, "Application Failed to start");
+    }
   }
 
   public static IHostBuilder CreateHostBuilder(string[] args) =>

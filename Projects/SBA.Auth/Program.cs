@@ -1,3 +1,4 @@
+using GLOB.API.Config.DI;
 using Serilog;
 
 namespace SBA.Auth;
@@ -5,13 +6,14 @@ public class Program
 {
   public static void Main(string[] args)
   {
+    DI_API_Config.Reg_API_Config_Serilog();
     try
     {
       CreateHostBuilder(args).Build().Run();
     }
     catch (Exception e)
     {
-      Console.WriteLine(e.Message);
+      Log.Fatal(e, "Application Failed to start");
     }
   }
 
