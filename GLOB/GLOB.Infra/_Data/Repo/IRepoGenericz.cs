@@ -1,4 +1,3 @@
-using GLOB.Infra.Model.Base;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using GLOB.Infra.Enumz;

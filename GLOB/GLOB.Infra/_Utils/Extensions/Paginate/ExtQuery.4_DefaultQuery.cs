@@ -1,5 +1,4 @@
 using System.Linq.Expressions;
-using GLOB.Infra.Model.Base;
 
 namespace GLOB.Infra.Utils.Paginate.Extz;
 

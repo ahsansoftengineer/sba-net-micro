@@ -1,4 +1,3 @@
-using GLOB.API.Config.Middleware;
 
 namespace GLOB.API.DI;
 public static partial class DI_API

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using GLOB.API.Controllers.Base;
 using GLOB.API.Clientz;
 using GLOB.API.Staticz;
-using GLOB.Infra.Model.Base;
 using GLOB.Infra.Utils.Paginate.Extz;
 using GLOB.Infra.Enumz;
 using GLOB.Infra.Utils.Attributez;

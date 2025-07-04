@@ -1,4 +1,3 @@
-using GLOB.Infra.Model.Base;
 using Microsoft.AspNetCore.Mvc;
 using GLOB.API.Staticz;
 using GLOB.Common.API;

@@ -1,4 +1,3 @@
-using GLOB.Infra.Model.Base;
 using GLOB.Infra.Utils.Extz;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;

@@ -1,7 +1,6 @@
 using System.Net;
 using System.Text.Json.Serialization;
 using Azure;
-using GLOB.Infra.Model.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace GLOB.Infra.Utils.Paginate.Extz;

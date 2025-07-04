@@ -1,5 +1,4 @@
 
-using GLOB.Infra.Model.Base;
 
 namespace GLOB.Infra.Utils.Paginate.Extz;
 public static partial class ExtQuery

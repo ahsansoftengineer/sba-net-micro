@@ -1,5 +1,4 @@
 using GLOB.Infra.Repo;
-using GLOB.Infra.Model.Base;
 
 namespace GLOB.Infra.UOW;
 public partial class UOW_Infra : IUOW_Infra
