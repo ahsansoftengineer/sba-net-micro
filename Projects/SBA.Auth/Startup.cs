@@ -1,6 +1,3 @@
-using SBA.Projectz.Data;
-using SBA.Projectz.DI;
-
 namespace SBA.Auth;
 public class Startup
 {

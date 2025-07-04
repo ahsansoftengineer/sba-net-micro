@@ -1,7 +1,7 @@
 using GLOB.Hierarchy.Global;
 using GLOB.Infra.Data.Sqlz;
 using Microsoft.EntityFrameworkCore;
-using SBA.Projectz.Data;
+
 
 namespace GLOB.Projectz.Seed;
 public static partial class SeedProjectz

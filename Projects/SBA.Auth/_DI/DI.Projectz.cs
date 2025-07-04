@@ -1,4 +1,4 @@
-using SBA.Projectz.Data;
+
 using GLOB.Infra.Data.Sqlz;
 using GLOB.Infra.DI;
 using GLOB.Infra.UOW;

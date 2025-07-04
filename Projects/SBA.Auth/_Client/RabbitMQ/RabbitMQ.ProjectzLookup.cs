@@ -1,7 +1,7 @@
 using GLOB.API.Clientz;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using SBA.Projectz.Data;
+
 using System.Text;
 using System.Text.Json;
 
