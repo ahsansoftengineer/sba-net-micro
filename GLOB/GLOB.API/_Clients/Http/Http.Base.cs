@@ -1,7 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using GLOB.API.Staticz;
-using GLOB.API.Config.Extz;
 using System.Net.Http.Json;
 
 namespace GLOB.API.Clientz;

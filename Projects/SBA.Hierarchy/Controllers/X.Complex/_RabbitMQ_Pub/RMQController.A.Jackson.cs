@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 
-using GLOB.API.Config.Extz;
 using GLOB.API.Controllers.Base;
 using GLOB.API.Clientz;
 using GLOB.API.Staticz;

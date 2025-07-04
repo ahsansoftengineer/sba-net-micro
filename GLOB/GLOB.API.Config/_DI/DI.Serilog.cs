@@ -12,8 +12,8 @@ public static partial class DI_API_Config
       .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
       .Enrich.FromLogContext()
       .WriteTo.Console(
-          outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {SourceContext} - {Message:lj}{NewLine}{Exception}",
-          theme: AnsiConsoleTheme.Code
+          outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}",
+          theme: AnsiConsoleTheme.Sixteen
       )
       .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day)
       .CreateLogger();

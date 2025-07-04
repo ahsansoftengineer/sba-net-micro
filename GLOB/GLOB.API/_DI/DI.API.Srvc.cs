@@ -1,4 +1,3 @@
-using GLOB.API.Config.DI;
 
 namespace GLOB.API.DI;
 

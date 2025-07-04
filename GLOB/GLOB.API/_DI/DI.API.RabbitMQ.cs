@@ -1,6 +1,4 @@
 using GLOB.API.Clientz;
-using GLOB.API.Config.Configz;
-using GLOB.API.Config.Extz;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 

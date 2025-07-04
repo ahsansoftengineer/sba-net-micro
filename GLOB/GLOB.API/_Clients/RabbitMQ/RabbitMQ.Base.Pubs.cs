@@ -1,6 +1,5 @@
 using System.Text;
 using System.Text.Json;
-using GLOB.API.Config.Extz;
 
 namespace GLOB.API.Clientz;
 

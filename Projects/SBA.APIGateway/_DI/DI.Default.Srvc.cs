@@ -1,4 +1,3 @@
-using GLOB.API.Config.DI;
 
 namespace SBA.Projectz.DI;
 public static partial class DI_Projectz

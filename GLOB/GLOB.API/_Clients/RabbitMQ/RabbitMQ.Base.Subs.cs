@@ -1,4 +1,3 @@
-using GLOB.API.Config.Extz;
 
 namespace GLOB.API.Clientz;
 

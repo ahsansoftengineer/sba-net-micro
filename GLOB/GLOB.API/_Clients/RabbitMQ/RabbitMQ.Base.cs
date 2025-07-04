@@ -1,5 +1,4 @@
 using RabbitMQ.Client;
-using GLOB.API.Config.Extz;
 using System.Collections.Concurrent;
 
 namespace GLOB.API.Clientz;

@@ -1,6 +1,4 @@
 using System.Text;
-using GLOB.API.Config.Configz;
-using GLOB.API.Config.Extz;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;

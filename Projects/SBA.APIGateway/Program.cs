@@ -1,4 +1,3 @@
-using GLOB.API.Config.DI;
 using Serilog;
 
 namespace SBA.APIGateway;

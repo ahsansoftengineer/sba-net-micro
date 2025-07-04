@@ -1,5 +1,4 @@
 using GLOB.API.Clientz;
-using GLOB.API.Config.DI;
 using GLOB.Infra.Utils.MIddlewarez;
 
 public static partial class DI_API

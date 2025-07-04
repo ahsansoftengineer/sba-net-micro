@@ -1,13 +1,11 @@
 using SBA.Projectz.Data;
 using GLOB.Infra.Data.Sqlz;
 using GLOB.Infra.DI;
-using GLOB.API.Config.DI;
 using GLOB.Infra.UOW;
 using SBA.Projectz.Mapper;
 using SBA.Auth.Services;
 using GLOB.API.Clientz;
 using SBA.Projectz.Clientz;
-using GLOB.API.DI;
 
 namespace SBA.Projectz.DI;
 
