@@ -1,3 +1,7 @@
+using System.Text;
+using Newtonsoft.Json;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
 
 namespace GLOB.API.Clientz;
 
@@ -15,6 +19,35 @@ public partial class API_RabbitMQ_Base_Subs : BackgroundService
   {
     stoppingToken.ThrowIfCancellationRequested();
     return Task.CompletedTask;
+  }
+
+  public void BasicConsumeHandler(IModel channel, RabbitMQParam param, EventHandler<BasicDeliverEventArgs> handler)
+  {
+    var consumer = new EventingBasicConsumer(channel);
+
+    consumer.Received += handler;
+
+    channel.BasicConsume(queue: param.route.Queue ?? "q-default",
+                          autoAck: param.options.AutoAck ?? true,
+                          consumer: consumer);
+  }
+
+  public RabbitMQPayload<T> ToByteType<T>(ReadOnlyMemory<byte>  data)
+    where T : class
+  {
+    try
+    {
+      var dataz = data.ToArray();
+      var msg = Encoding.UTF8.GetString(dataz);
+      var model = JsonConvert.DeserializeObject<RabbitMQPayload<T>>(msg);
+      return model;
+    }
+    catch (Exception ex)
+    {
+      Console.WriteLine(ex.Message);
+
+      return null;
+    }
   }
   // protected override Task ExecuteAsync(CancellationToken stoppingToken)
   // {

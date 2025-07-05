@@ -1,9 +1,5 @@
 using GLOB.API.Clientz;
-using Newtonsoft.Json;
 using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
-
-using System.Text;
 
 namespace SBA.Projectz.Clientz;
 
@@ -27,33 +23,26 @@ public partial class RabbitMQ_ProjectzLookup : API_RabbitMQ_Base_Subs
 
     var channel = _rmq.SetPubSubDefault(param);
 
-    var consumer = new EventingBasicConsumer(channel);
 
-    consumer.Received += async (_, ea) =>
+    BasicConsumeHandler(channel, param, async (_, ea) =>
     {
-      Console.WriteLine("--> [Rabbit MQ] Message Recieved");
-      var body = ea.Body;
-      var notificationMessage = Encoding.UTF8.GetString(body.ToArray());
-
-      await ProcessEvent(notificationMessage);
-    };
-
-    channel.BasicConsume(queue: param.route.Queue ?? "q-default",
-                          autoAck: param.options.AutoAck ?? true,
-                          consumer: consumer);
-    _rmq.PrintRoute(param, false);
+      
+      var vm = ToByteType<ProjectzLookup>(ea.Body);
+      await ProcessEvent(vm);
+      _rmq.PrintRoute(param, false);
+    });
 
     return Task.CompletedTask;
   }
-  
 
-  private async Task ProcessEvent(string message)
+
+
+  private async Task ProcessEvent(RabbitMQPayload<ProjectzLookup> model)
   {
     try
     {
       using var scope = _scopeFactory.CreateScope();
       using var uow = scope.ServiceProvider.GetRequiredService<IUOW_Projectz>();
-      var model = JsonConvert.DeserializeObject<RabbitMQPayload<ProjectzLookup>>(message);
 
       if (uow.ProjectzLookupBases.AnyId(model.Body?.ProjectzLookupBaseId ?? 0))
       {
