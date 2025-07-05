@@ -10,7 +10,6 @@ public partial class RabbitMQ_ProjectzLookup : API_RabbitMQ_Base_Subs
   }
   protected override Task ExecuteAsync(CancellationToken stoppingToken)
   {
-
     stoppingToken.ThrowIfCancellationRequested();
     var param = new RabbitMQParam
     {
@@ -23,7 +22,6 @@ public partial class RabbitMQ_ProjectzLookup : API_RabbitMQ_Base_Subs
 
     var channel = _rmq.SetPubSubDefault(param);
 
-
     BasicConsumeHandler(channel, param, async (_, ea) =>
     {
       
@@ -34,8 +32,6 @@ public partial class RabbitMQ_ProjectzLookup : API_RabbitMQ_Base_Subs
 
     return Task.CompletedTask;
   }
-
-
 
   private async Task ProcessEvent(RabbitMQPayload<ProjectzLookup> model)
   {
