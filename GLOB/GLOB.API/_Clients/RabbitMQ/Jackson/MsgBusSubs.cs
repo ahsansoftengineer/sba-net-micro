@@ -1,5 +1,7 @@
 using System.Text;
+using GLOB.Infra.UOW;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -8,7 +10,7 @@ namespace GLOB.API.Clientz;
 public class MsgBusSubs : BackgroundService
 {
   private readonly IConfiguration _config;
-  private readonly EventProcessor _eventProcessor;
+  private readonly IServiceScopeFactory _scopeFactory;
   private readonly Option_RabbitMQ _option_RabbitMQ;
   private IConnection _connection;
   private IModel _channel;
@@ -17,7 +19,7 @@ public class MsgBusSubs : BackgroundService
   public MsgBusSubs(IServiceProvider sp)
   {
     _config = sp.GetSrvc<IConfiguration>();
-    _eventProcessor = sp.GetSrvc<EventProcessor>();
+    _scopeFactory = sp.GetSrvc<IServiceScopeFactory>();
     _option_RabbitMQ = sp.GetSrvc<IOptions<Option_App>>().Value.Clientz.RabbitMQz;
     InitRabbitMQ();
   }
@@ -53,13 +55,13 @@ public class MsgBusSubs : BackgroundService
   {
     stoppingToken.ThrowIfCancellationRequested();
     var consumer = new EventingBasicConsumer(_channel);
-    consumer.Received += (ModuleHandle, ea) =>
+    consumer.Received += async (ModuleHandle, ea) =>
     {
       Console.WriteLine("--> [Rabbit MQ] Message Recieved");
       var body = ea.Body;
       var notificationMessage = Encoding.UTF8.GetString(body.ToArray());
 
-      _eventProcessor.ProcessEvent(notificationMessage);
+      await ProcessEvent(notificationMessage);
 
     };
     _channel.BasicConsume(
@@ -69,6 +71,33 @@ public class MsgBusSubs : BackgroundService
     );
     return Task.CompletedTask;
   }
+
+  public async Task ProcessEvent(string message)
+  {
+    try
+    {
+      using var scope = _scopeFactory.CreateScope();
+      using var uow = scope.ServiceProvider.GetRequiredService<IUOW_Infra>();
+      var model = JsonConvert.DeserializeObject<ProjectzLookup>(message);
+
+      if (uow.ProjectzLookupBases.AnyId(model?.ProjectzLookupBaseId ?? 0))
+      {
+        await uow.ProjectzLookups.Insert(model);
+        await uow.Save();
+        Console.WriteLine("ProjectzLookup Created Successfully");
+      }
+      else
+      {
+        Console.WriteLine("ProjectzLookupBaseId Does not Exsist");
+      }
+
+    }
+    catch (Exception ex)
+    {
+      Console.WriteLine($"--> ProjectzLookup not Created {ex.Message}");
+    }
+  }
+
   private void RabbitMQ_ConnectionShutdown(object? sender, ShutdownEventArgs e)
   {
     Console.WriteLine("--> [Rabbit MQ] connection was shut down. Jackson");
