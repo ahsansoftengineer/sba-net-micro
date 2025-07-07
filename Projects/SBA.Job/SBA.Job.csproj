@@ -5,7 +5,9 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
+  <ItemGroup>
+    <ProjectReference Include="..\..\GLOB\GLOB.API\GLOB.API.csproj" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Hangfire" Version="1.8.20" />
     <PackageReference Include="Hangfire.Core" Version="1.8.20" />
