@@ -3,12 +3,22 @@
     "Name": "New Profile",
     "Projects": [
       {
-        "Path": "SBA.Auth\\SBA.Auth.csproj",
+        "Path": "GLOB\\GLOB.Job\\GLOB.Job.csproj",
         "Action": "Start",
         "DebugTarget": "http"
       },
       {
-        "Path": "SBA.Hierarchy\\SBA.Hierarchy.csproj",
+        "Path": "Projects\\SBA.APIGateway\\SBA.APIGateway.csproj",
+        "Action": "Start",
+        "DebugTarget": "http"
+      },
+      {
+        "Path": "Projects\\SBA.Auth\\SBA.Auth.csproj",
+        "Action": "Start",
+        "DebugTarget": "http"
+      },
+      {
+        "Path": "Projects\\SBA.Hierarchy\\SBA.Hierarchy.csproj",
         "Action": "Start",
         "DebugTarget": "http"
       }

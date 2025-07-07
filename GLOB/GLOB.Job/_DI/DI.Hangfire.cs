@@ -1,7 +1,6 @@
 using Hangfire;
 using Hangfire.Storage.SQLite;
 
-
 namespace SBA.Projectz.DI;
 
 public static partial class DI_Projectz

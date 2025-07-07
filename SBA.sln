@@ -28,9 +28,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SBA.Orderz", "Projects\SBA.Orderz\SBA.Orderz.csproj", "{A07CEC6A-EA7B-446E-A1A0-5908BF01D441}"
 EndProject
 Global
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
@@ -160,6 +157,9 @@ Global
 		{A07CEC6A-EA7B-446E-A1A0-5908BF01D441}.Release|x64.Build.0 = Release|Any CPU
 		{A07CEC6A-EA7B-446E-A1A0-5908BF01D441}.Release|x86.ActiveCfg = Release|Any CPU
 		{A07CEC6A-EA7B-446E-A1A0-5908BF01D441}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{246E289E-480D-457A-BBE6-F5810C3A7899} = {1DC6B352-3708-43D4-A506-F4732CC575AE}
