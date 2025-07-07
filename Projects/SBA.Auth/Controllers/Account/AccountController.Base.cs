@@ -1,4 +1,3 @@
-using GLOB.API.Controllers.Base;
 using GLOB.Domain.Model.Auth;
 using GLOB.Infra.Data.Auth;
 using Microsoft.AspNetCore.Identity;

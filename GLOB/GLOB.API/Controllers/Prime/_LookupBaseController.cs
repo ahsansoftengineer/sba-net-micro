@@ -1,6 +1,5 @@
-using GLOB.API.Controllers.Base;
 
-namespace GLOB.Projectz.Controllers;
+namespace SBA.Projectz.Controllers;
 public class _ProjectzLookupBaseController : API_4_Default_Controller<_ProjectzLookupBaseController, ProjectzLookupBase>
 {
   public _ProjectzLookupBaseController(
