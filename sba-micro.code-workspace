@@ -9,6 +9,14 @@
       "path": "./GLOB"
     },
     {
+      "name": "SBA.APIGateway",
+      "path": "./Projects/SBA.APIGateway"
+    },
+    {
+      "name": "SBA.Job",
+      "path": "./Projects/SBA.Job"
+    },
+    {
       "name": "SBA.Auth",
       "path": "./Projects/SBA.Auth"
     },
