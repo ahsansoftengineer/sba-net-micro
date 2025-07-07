@@ -7,6 +7,13 @@ dotnet ef migrations remove  -p ./GLOB/GLOB.Infra -s SBA.Hierarchz --context DBC
 dotnet ef database drop --force -p ./GLOB/GLOB.Infra -s SBA.Hierarchy --context DBCtx
 dotnet run --project SBA.Api
 ```
+### JOB
+```bash
+dotnet ef migrations add Init -s ./Projects/SBA.Job --context DBCtxProjectz
+dotnet ef database update -s ./Projects/SBA.Job --context DBCtxProjectz
+dotnet ef migrations remove -s ./Projects/SBA.Job --context DBCtxProjectz
+dotnet ef database drop --force -s ./Projects/SBA.Job --context DBCtxProjectz
+```
 ### HIERARCHY
 ```bash
 dotnet ef migrations add Init -s ./Projects/SBA.Hierarchy --context DBCtxProjectz
