@@ -1,4 +1,3 @@
-using GLOB.Projectz.Seed;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Projectz.Data;
