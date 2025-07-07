@@ -1,4 +1,3 @@
-
 namespace GLOB.API.Controllers.Base;
 // Exting CRUD_SPO_Controller with Default Implementation
 public abstract class API_4_Default_Controller<TController, TEntity> 

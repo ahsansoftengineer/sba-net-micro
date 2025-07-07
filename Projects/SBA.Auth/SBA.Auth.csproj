@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-   <ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\GLOB\GLOB.API\GLOB.API.csproj" />
   </ItemGroup>
   

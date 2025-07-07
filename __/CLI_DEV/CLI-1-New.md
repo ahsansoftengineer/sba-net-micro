@@ -15,7 +15,7 @@ dotnet new webapi -o ./GLOB/GLOB.API
 dotnet new classlib -o ./GLOB/GLOB.Domain
 dotnet new classlib -o ./GLOB/GLOB.Infra
 dotnet new classlib -o ./GLOB/GLOB.Cache
-dotnet new classlib -o ./GLOB/GLOB.Jobz
+dotnet new classlib -o ./GLOB/GLOB.Job
 ```
 
 ### PROJECTZ NEW

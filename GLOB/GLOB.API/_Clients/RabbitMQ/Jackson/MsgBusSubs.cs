@@ -1,5 +1,5 @@
 using System.Text;
-using GLOB.Infra.UOW;
+
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using RabbitMQ.Client;

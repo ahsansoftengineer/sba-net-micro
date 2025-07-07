@@ -10,5 +10,4 @@ global using GLOB.Infra.UOW;
 global using GLOB.Infra.DI;
 global using GLOB.Infra.Enumz;
 
-global using SBA.Projectz.Data;
 global using SBA.Projectz.DI;

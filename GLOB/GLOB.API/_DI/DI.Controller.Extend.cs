@@ -1,5 +1,6 @@
 using GLOB.Infra.Utils.MIddlewarez;
 
+namespace GLOB.API.DI;
 public static partial class DI_API
 {
   public static void Add_API_Controller_Srvc_Extend(this IServiceCollection srvc, IConfiguration config)
