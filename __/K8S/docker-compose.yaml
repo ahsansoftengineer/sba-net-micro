@@ -7,11 +7,11 @@
 
 ### ROUTE (Docker-Compose Bridge Network)
 # - http://localhost:1100/api/APIGateway/v1/swagger/index.html
-# - http://localhost:1102/api/Auth/v1/swagger/index.html
+# - http://localhost:1104/api/Auth/v1/swagger/index.html
 # - http://localhost:1106/api/Hierarchy/v1/swagger/index.html
 
 ### InterService Comm (Bridge Network)
-# - http://srvc-dc-api-sba-auth:1102/api/Auth/v1/
+# - http://srvc-dc-api-sba-auth:1104/api/Auth/v1/
 # - http://srvc-dc-api-sba-auth:1106/api/Hierarchy/v1/
 
 version: "3.9"
@@ -57,11 +57,11 @@ services:
       context: ../SBA.Auth/
       dockerfile: Dockerfile
     environment:
-      - ASPNETCORE_URLS=http://+:1102
+      - ASPNETCORE_URLS=http://+:1104
       - DOTNET_ENVIRONMENT=DockerCompose
       - ConnectionStrings__SqlConnection="Server=network-dc-sba,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
     ports:
-      - "1102:1102"
+      - "1104:1104"
     networks:
       - network-dc-sba
   srvc-dc-api-sba-hierarchy:

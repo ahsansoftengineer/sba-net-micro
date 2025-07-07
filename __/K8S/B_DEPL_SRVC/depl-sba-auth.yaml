@@ -43,12 +43,12 @@ spec:
         - name: srvc-sba-auth
           image: mansanhhub/srvc-sba-auth
           ports:
-            - containerPort: 1102
+            - containerPort: 1104
           env:
             - name: DOTNET_ENVIRONMENT
               value: K8S
             - name: ASPNETCORE_URLS
-              value: http://+:1102
+              value: http://+:1104
             - name: ConnectionStrings__Redis
               value: "srvc-cip-redis-sba-dev:6379,password=P@55w0rd!123"
             - name: ConnectionStrings__SqlConnection
@@ -66,9 +66,9 @@ spec:
 #### (2) API Cluster IP (Auth)
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
-# kubectl port-forward svc/srvc-cip-sba-auth 1102:1102
-# http://srvc-cip-sba-auth:1102/api/Auth/v1/swagger/index.html
-# http://srvc-cip-sba-auth:1102/api/Auth/v1/_projectz-lookup/gets-lookup
+# kubectl port-forward svc/srvc-cip-sba-auth 1104:1104
+# http://srvc-cip-sba-auth:1104/api/Auth/v1/swagger/index.html
+# http://srvc-cip-sba-auth:1104/api/Auth/v1/_projectz-lookup/gets-lookup
 
 apiVersion: v1
 kind: Service
@@ -81,8 +81,8 @@ spec:
   ports:
   - name: srvc-sba-auth
     protocol: TCP
-    port: 1102
-    targetPort: 1102
+    port: 1104
+    targetPort: 1104
     # nodePort: Not a Valid Option for Cluster IP
 
 ---
@@ -101,10 +101,10 @@ spec:
   ports:
     - name: srvc-sba-auth
       protocol: TCP
-      port: 1102 # Node Port
-      targetPort: 1102 # Pod's App port
-      nodePort: 31102 # 30000-32767 (Host Port)
+      port: 1104 # Node Port
+      targetPort: 1104 # Pod's App port
+      nodePort: 31104 # 30000-32767 (Host Port)
 
 ## ROUTES (K8S Node Port)
-# - http://localhost:31102/api/Auth/v1/swagger/index.html
-# - http://localhost:31102/api/Auth/v1/_projectz-lookup/gets-lookup
+# - http://localhost:31104/api/Auth/v1/swagger/index.html
+# - http://localhost:31104/api/Auth/v1/_projectz-lookup/gets-lookup

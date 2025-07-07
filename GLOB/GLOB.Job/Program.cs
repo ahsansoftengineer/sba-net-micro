@@ -1,18 +1,18 @@
-// using Serilog;
+using Serilog;
 
 namespace GLOB.Job;
 public class Program
 {
   public static void Main(string[] args)
   {
-    // DI_API_Config.Reg_API_Config_Serilog();
+    DI_API_Config.Reg_API_Config_Serilog();
     try
     {
       CreateHostBuilder(args).Build().Run();
     }
     catch (Exception e)
     {
-      // Log.Fatal(e, "Application Failed to start");
+      Log.Fatal(e, "Application Failed to start");
     }
   }
 

@@ -58,7 +58,7 @@ function refreshToken() {
 
     // Call the refresh token API
     pm.sendRequest({
-        url: 'http://localhost:1102/api/auth/v1/account/login', // Change this to your RefreshToken endpoint
+        url: 'http://localhost:1104/api/auth/v1/account/login', // Change this to your RefreshToken endpoint
         method: 'POST',
         header: {
             'postman-header': 'Ahsan Header Here', // Corrected headers with key-value pairs

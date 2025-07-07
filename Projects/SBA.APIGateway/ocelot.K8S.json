@@ -5,7 +5,7 @@
       "DownstreamPathTemplate": "/api/auth/v1/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "srvc-cip-sba-auth", "Port": 1102 }
+        { "Host": "srvc-cip-sba-auth", "Port": 1104 }
       ],
       "UpstreamPathTemplate": "/api/auth/v1/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ]
@@ -15,7 +15,7 @@
       "DownstreamPathTemplate": "/api/auth/v1/swagger-doc/swagger.json",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "srvc-cip-sba-auth", "Port": 1102 }
+        { "Host": "srvc-cip-sba-auth", "Port": 1104 }
       ],
       "UpstreamPathTemplate": "/api/auth/v1/swagger-doc/swagger.json",
       "UpstreamHttpMethod": [ "GET" ]

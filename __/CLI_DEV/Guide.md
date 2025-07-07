@@ -36,8 +36,8 @@ This project demonstrates a **.NET microservices architecture** with a **shared 
 | GLOB.API                  |      |       | Generic Controller, Mapper |
 | GLOB.Infra                |      |       | DBContext, RepoGeneric, UOW_Projectz, Seed |
 | SBA.APIGateway            | 1100 | 1101  | Api Gateway |
-| SBA.Auth                  | 1102 | 1103  | Authentication, Authorization |
-| SBA.Jobz                  | 1104 | 1105  | Schedular, Jobs, Crone |
+| SBA.Auth                  | 1104 | 1105  | Authentication, Authorization |
+| SBA.Jobz                  | 1102 | 1103  | Schedular, Jobs, Crone |
 | SBA.Hierarchy             | 1106 | 1107  | Simple Entities |
 | SBA.Userz                 | 1108 | 1109  | Users (Standard, Business, Creator)|
 | SBA.Order                 | 1110 | 1111  | Standard, Business, Custom |
