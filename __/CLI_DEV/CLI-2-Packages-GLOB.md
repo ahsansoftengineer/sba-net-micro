@@ -47,12 +47,6 @@ dotnet add ./GLOB/GLOB.API.Config/ package Microsoft.Extensions.Caching.StackExc
 dotnet add ./GLOB/GLOB.API.Config/ package RabbitMQ.Client -v 7.1.2
 ```
 
-### Job
-```bash
-dotnet add ./GLOB/GLOB.Job/ package Hangfire -v 1.8.20
-dotnet add ./GLOB/GLOB.Job/ package Hangfire.Core -v 1.8.20
-dotnet add ./GLOB/GLOB.Job/ package Hangfire.Storage.SQLite -v 0.4.2
-```
 
    
     
