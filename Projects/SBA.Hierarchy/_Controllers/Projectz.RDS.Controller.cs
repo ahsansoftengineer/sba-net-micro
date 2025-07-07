@@ -1,5 +1,4 @@
 
-
 namespace SBA.Projectz.Controllers.Base;
 public abstract partial class Project_RDS_Controller<TController, TEntity>
     : API_2_RDS_Controller<TController, TEntity>

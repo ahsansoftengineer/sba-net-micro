@@ -1,5 +1,4 @@
 
-
 namespace SBA.Projectz.Controllers.Base;
 
 public abstract class Projectz_Default_Controller<TController, TEntity>
