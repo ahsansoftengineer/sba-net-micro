@@ -15,5 +15,6 @@ public class Startup
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
     app.Add_API_Default_Middlewares();
+    app.Use_Hangfire();
   }
 }

@@ -9,9 +9,21 @@ public static partial class DI_Projectz
   {
     srvc.AddHangfire(opt =>
     {
-      opt.UseSimpleAssemblyNameTypeSerializer()
-         .UseRecommendedSerializerSettings()
-         .UseSQLiteStorage(config.GetConnectionString("SQLite"));
+      opt
+        .UseSimpleAssemblyNameTypeSerializer()
+        .UseRecommendedSerializerSettings(opt =>
+        {
+        
+        })
+        .UseSQLiteStorage(config.GetConnectionString("SQLite"));
+    });
+  }
+  public static void Use_Hangfire(this IApplicationBuilder app)
+  {
+    app.UseHangfireDashboard();
+    app.UseEndpoints(endpoints =>
+    {
+      endpoints.MapHangfireDashboard("/hangfire"); // Optionally specify path
     });
   }  
 }

@@ -20,6 +20,7 @@ public static partial class DI_Projectz
 
     // srvc.Add_API_Config_JWT_Option(); // Because of Identity
     srvc.AddAutoMapper(typeof(ProjectzMapper));
+    srvc.Add_Hangfire(config);
   }
   public static void Add_Projectz_Clientz(this IServiceCollection srvc, IConfiguration config)
   {
