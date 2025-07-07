@@ -12,7 +12,7 @@
     "http": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:1102",
+      "applicationUrl": "http://localhost:1104",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +20,7 @@
     "https": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:1103;http://localhost:1102",
+      "applicationUrl": "https://localhost:1105;http://localhost:1104",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

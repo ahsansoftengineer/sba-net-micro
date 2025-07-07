@@ -25,7 +25,7 @@ public partial class RabbitMQ_ProjectzLookup : API_RabbitMQ_Base_Subs
     BasicConsumeHandler(channel, param, async (_, ea) =>
     {
       
-      var vm = ToByteType<ProjectzLookup>(ea.Body);
+      var vm = ToByteToClass<RabbitMQPayload<ProjectzLookup>>(ea.Body);
       await ProcessEvent(vm);
       _rmq.PrintRoute(param, false);
     });

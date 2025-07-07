@@ -39,16 +39,14 @@ dotnet add ./GLOB/GLOB.API.Config/ package Microsoft.AspNetCore.StaticFiles -v 2
 dotnet add ./GLOB/GLOB.API.Config/ package Microsoft.Extensions.Configuration -v 8.0.12
 dotnet add ./GLOB/GLOB.API.Config/ package Microsoft.Extensions.Options.ConfigurationExtensions -v 8.0.7
 dotnet add ./GLOB/GLOB.API.Config/ package Swashbuckle.AspNetCore -v 6.6.2
-
 dotnet add ./GLOB/GLOB.API.Config/ package Microsoft.Extensions.Caching.StackExchangeRedis
-
-
 ```
 
 ### API
 ```bash
 dotnet add ./GLOB/GLOB.API.Config/ package RabbitMQ.Client -v 7.1.2
 ```
+
 
    
     

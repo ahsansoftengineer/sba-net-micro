@@ -1,10 +1,6 @@
-using GLOB.Infra.DI;
-using GLOB.Infra.UOW;
 using GLOB.API.Clientz;
-
-
 using SBA.Projectz.Mapper;
-using GLOB.API.DI;
+
 
 
 namespace SBA.Projectz.DI;

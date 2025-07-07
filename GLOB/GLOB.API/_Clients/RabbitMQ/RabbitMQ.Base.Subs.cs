@@ -32,14 +32,14 @@ public partial class API_RabbitMQ_Base_Subs : BackgroundService
                           consumer: consumer);
   }
 
-  public RabbitMQPayload<T> ToByteType<T>(ReadOnlyMemory<byte>  data)
+  public T ToByteToClass<T>(ReadOnlyMemory<byte>  data)
     where T : class
   {
     try
     {
       var dataz = data.ToArray();
       var msg = Encoding.UTF8.GetString(dataz);
-      var model = JsonConvert.DeserializeObject<RabbitMQPayload<T>>(msg);
+      var model = JsonConvert.DeserializeObject<T>(msg);
       return model;
     }
     catch (Exception ex)

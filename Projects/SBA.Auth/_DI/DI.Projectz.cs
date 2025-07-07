@@ -1,6 +1,3 @@
-
-using GLOB.Infra.DI;
-using GLOB.Infra.UOW;
 using SBA.Projectz.Mapper;
 using SBA.Auth.Services;
 using GLOB.API.Clientz;

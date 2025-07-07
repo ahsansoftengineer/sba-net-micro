@@ -14,15 +14,16 @@ dotnet new webapi -o ./GLOB/GLOB.API
 
 dotnet new classlib -o ./GLOB/GLOB.Domain
 dotnet new classlib -o ./GLOB/GLOB.Infra
-dotnet new classlib -o ./GLOB/GLOB.Cache
-dotnet new classlib -o ./GLOB/GLOB.Jobz
+# dotnet new classlib -o ./GLOB/GLOB.Cache
 ```
 
 ### PROJECTZ NEW
 ```bash
 dotnet new webapi -o ./Projects/SBA.APIGateway
-dotnet new webapi -o ./Projects/SBA.Hierarchy
+dotnet new webapi -o ./Projects/SBA.Job
 dotnet new webapi -o ./Projects/SBA.Auth
+
+dotnet new webapi -o ./Projects/SBA.Hierarchy
 dotnet new webapi -o ./Projects/SBA.Orderz
 dotnet new webapi -o ./Projects/SBA.Userz
 

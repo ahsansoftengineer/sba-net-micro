@@ -13,10 +13,10 @@ public partial class DBCtxProjectz : DBCtxIdentity
     ConfigManyToOne(mb);
     ConfigProjectzMapping(mb);
     // ConfigMicroServiceArch(mb);
-    // if (DOTNET_ENVIRONMENT != "Development")
-    // {
+    if (DOTNET_ENVIRONMENT != "Development")
+    {
       SeedProjectz.Seed(mb);
-    // }
+    }
     base.OnModelCreating(mb);
   }
 }
