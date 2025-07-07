@@ -47,7 +47,7 @@ public static partial class DI_Infra
         },
         new[] { DbLoggerCategory.Database.Command.Name },
         LogLevel.Debug,
-        DbContextLoggerOptions.SingleLine | DbContextLoggerOptions.DefaultWithLocalTime
+        DbContextLoggerOptions.Category | DbContextLoggerOptions.DefaultWithLocalTime
       );
 
     });
