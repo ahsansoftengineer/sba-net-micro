@@ -10,4 +10,4 @@ global using Microsoft.Extensions.Hosting;
 
 // Project namespaces
 global using GLOB.API.Config.Extz;
-global using GLOB.API.Config.Configz;
+global using GLOB.API.Config.Optionz;
