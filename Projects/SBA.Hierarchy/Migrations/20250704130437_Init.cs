@@ -20,8 +20,8 @@ namespace SBA.Hierarchy.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Desc = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: true),
                     Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
@@ -37,8 +37,8 @@ namespace SBA.Hierarchy.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Desc = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: true),
                     Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
@@ -54,8 +54,8 @@ namespace SBA.Hierarchy.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Desc = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: true),
                     Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
@@ -71,8 +71,8 @@ namespace SBA.Hierarchy.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Desc = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: true),
                     Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
@@ -88,8 +88,8 @@ namespace SBA.Hierarchy.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Desc = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: true),
                     Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
@@ -105,8 +105,8 @@ namespace SBA.Hierarchy.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Desc = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: true),
                     Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
@@ -122,8 +122,8 @@ namespace SBA.Hierarchy.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Desc = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: true),
                     Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
@@ -139,8 +139,8 @@ namespace SBA.Hierarchy.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Desc = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: true),
                     Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
@@ -156,8 +156,8 @@ namespace SBA.Hierarchy.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Desc = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: true),
                     Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
@@ -173,8 +173,8 @@ namespace SBA.Hierarchy.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Desc = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: true),
                     BGId = table.Column<int>(type: "int", nullable: false),
                     Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
@@ -196,8 +196,8 @@ namespace SBA.Hierarchy.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Desc = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: true),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GlobalLookupBaseId = table.Column<int>(type: "int", nullable: true),
                     Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
@@ -220,8 +220,8 @@ namespace SBA.Hierarchy.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Desc = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: true),
                     OrgId = table.Column<int>(type: "int", nullable: false),
                     Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
@@ -243,8 +243,8 @@ namespace SBA.Hierarchy.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Desc = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: true),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProjectzLookupBaseId = table.Column<int>(type: "int", nullable: true),
                     Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
@@ -268,8 +268,8 @@ namespace SBA.Hierarchy.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Desc = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: true),
                     StateId = table.Column<int>(type: "int", nullable: true),
                     Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
@@ -291,8 +291,8 @@ namespace SBA.Hierarchy.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Desc = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: true),
                     LEId = table.Column<int>(type: "int", nullable: false),
                     Law = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -321,8 +321,8 @@ namespace SBA.Hierarchy.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Desc = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: true),
                     OUId = table.Column<int>(type: "int", nullable: false),
                     Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)

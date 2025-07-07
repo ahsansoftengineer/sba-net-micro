@@ -18,7 +18,7 @@ namespace SBA.Auth.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Status = table.Column<int>(type: "int", nullable: true),
                     CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
@@ -66,8 +66,8 @@ namespace SBA.Auth.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Desc = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: true),
                     Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
@@ -188,15 +188,16 @@ namespace SBA.Auth.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ExpiresAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    JwtId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsRevoked = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedByIp = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RevokedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    IsUsed = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedByIp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    ExpiresAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     InfraUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    Updated_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                    InfraUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -207,6 +208,11 @@ namespace SBA.Auth.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RefreshTokens_AspNetUsers_InfraUserId1",
+                        column: x => x.InfraUserId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -216,8 +222,8 @@ namespace SBA.Auth.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Desc = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: true),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProjectzLookupBaseId = table.Column<int>(type: "int", nullable: true),
                     Created_At = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
@@ -322,6 +328,11 @@ namespace SBA.Auth.Migrations
                 name: "IX_RefreshTokens_InfraUserId",
                 table: "RefreshTokens",
                 column: "InfraUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RefreshTokens_InfraUserId1",
+                table: "RefreshTokens",
+                column: "InfraUserId1");
         }
 
         /// <inheritdoc />

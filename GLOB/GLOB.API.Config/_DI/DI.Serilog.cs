@@ -16,7 +16,10 @@ public static partial class DI_API_Config
           outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}",
           theme: AnsiConsoleTheme.Sixteen
       )
-      .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day)
+      .WriteTo.File(
+        "Logs/log.txt",
+        rollingInterval: RollingInterval.Day,
+        restrictedToMinimumLevel: LogEventLevel.Warning)
       .CreateLogger();
   }
 }

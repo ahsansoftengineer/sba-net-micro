@@ -22,7 +22,7 @@ namespace SBA.Auth.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("GLOB.Domain.Auth.InfraRole", b =>
+            modelBuilder.Entity("GLOB.Domain.Model.Auth.InfraRole", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -87,7 +87,7 @@ namespace SBA.Auth.Migrations
                         });
                 });
 
-            modelBuilder.Entity("GLOB.Domain.Auth.InfraUser", b =>
+            modelBuilder.Entity("GLOB.Domain.Model.Auth.InfraUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -230,7 +230,7 @@ namespace SBA.Auth.Migrations
                         });
                 });
 
-            modelBuilder.Entity("GLOB.Domain.Auth.RefreshToken", b =>
+            modelBuilder.Entity("GLOB.Domain.Model.Auth.RefreshToken", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -280,7 +280,7 @@ namespace SBA.Auth.Migrations
                     b.ToTable("RefreshTokens");
                 });
 
-            modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookup", b =>
+            modelBuilder.Entity("GLOB.Infra.Model.Base.ProjectzLookup", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -297,12 +297,16 @@ namespace SBA.Auth.Migrations
                         .HasColumnName("Created_At");
 
                     b.Property<string>("Desc")
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(250)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(250)")
                         .HasColumnOrder(4);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)")
                         .HasColumnOrder(3);
 
                     b.Property<int?>("ProjectzLookupBaseId")
@@ -358,7 +362,7 @@ namespace SBA.Auth.Migrations
                         });
                 });
 
-            modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookupBase", b =>
+            modelBuilder.Entity("GLOB.Infra.Model.Base.ProjectzLookupBase", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -372,12 +376,16 @@ namespace SBA.Auth.Migrations
                         .HasColumnName("Created_At");
 
                     b.Property<string>("Desc")
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(250)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(250)")
                         .HasColumnOrder(4);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)")
                         .HasColumnOrder(3);
 
                     b.Property<int?>("Status")
@@ -528,24 +536,24 @@ namespace SBA.Auth.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("GLOB.Domain.Auth.RefreshToken", b =>
+            modelBuilder.Entity("GLOB.Domain.Model.Auth.RefreshToken", b =>
                 {
-                    b.HasOne("GLOB.Domain.Auth.InfraUser", "InfraUser")
+                    b.HasOne("GLOB.Domain.Model.Auth.InfraUser", "InfraUser")
                         .WithMany()
                         .HasForeignKey("InfraUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GLOB.Domain.Auth.InfraUser", null)
+                    b.HasOne("GLOB.Domain.Model.Auth.InfraUser", null)
                         .WithMany("RefreshTokens")
                         .HasForeignKey("InfraUserId1");
 
                     b.Navigation("InfraUser");
                 });
 
-            modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookup", b =>
+            modelBuilder.Entity("GLOB.Infra.Model.Base.ProjectzLookup", b =>
                 {
-                    b.HasOne("GLOB.Domain.Base.ProjectzLookupBase", "ProjectzLookupBase")
+                    b.HasOne("GLOB.Infra.Model.Base.ProjectzLookupBase", "ProjectzLookupBase")
                         .WithMany("ProjectzLookup")
                         .HasForeignKey("ProjectzLookupBaseId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -555,7 +563,7 @@ namespace SBA.Auth.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("GLOB.Domain.Auth.InfraRole", null)
+                    b.HasOne("GLOB.Domain.Model.Auth.InfraRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -564,7 +572,7 @@ namespace SBA.Auth.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("GLOB.Domain.Auth.InfraUser", null)
+                    b.HasOne("GLOB.Domain.Model.Auth.InfraUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -573,7 +581,7 @@ namespace SBA.Auth.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("GLOB.Domain.Auth.InfraUser", null)
+                    b.HasOne("GLOB.Domain.Model.Auth.InfraUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -582,13 +590,13 @@ namespace SBA.Auth.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("GLOB.Domain.Auth.InfraRole", null)
+                    b.HasOne("GLOB.Domain.Model.Auth.InfraRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GLOB.Domain.Auth.InfraUser", null)
+                    b.HasOne("GLOB.Domain.Model.Auth.InfraUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -597,19 +605,19 @@ namespace SBA.Auth.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("GLOB.Domain.Auth.InfraUser", null)
+                    b.HasOne("GLOB.Domain.Model.Auth.InfraUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("GLOB.Domain.Auth.InfraUser", b =>
+            modelBuilder.Entity("GLOB.Domain.Model.Auth.InfraUser", b =>
                 {
                     b.Navigation("RefreshTokens");
                 });
 
-            modelBuilder.Entity("GLOB.Domain.Base.ProjectzLookupBase", b =>
+            modelBuilder.Entity("GLOB.Infra.Model.Base.ProjectzLookupBase", b =>
                 {
                     b.Navigation("ProjectzLookup");
                 });

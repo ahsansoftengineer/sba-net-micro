@@ -49,11 +49,9 @@ public static partial class DI_Projectz
     srvc.Add_API_RabbitMQ(config);
     // Jackson
     srvc.AddHostedService<MsgBusSubs>();
-    srvc.AddSingleton<EventProcessor>();
 
     // Ahsan
     srvc.AddHostedService<RabbitMQ_ProjectzLookup>();
-    srvc.AddSingleton<EventProjectzLookupCreate>();
     
   }
 }
