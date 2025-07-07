@@ -4,8 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 using Serilog;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace GLOB.Infra.DI;
+
 public static partial class DI_Infra
 {
 
@@ -15,7 +17,7 @@ public static partial class DI_Infra
     where TUOW : UOW_Infra, TIUOW
   {
     string connStr = config.GetConnectionString("SqlConnection");
-    
+
     srvc.AddDbContext<TContext>(opt =>
     {
       opt.EnableDetailedErrors();
@@ -28,7 +30,26 @@ public static partial class DI_Infra
           errorNumbersToAdd: null
         );
       });
-      opt.LogTo(Log.Logger.Information, LogLevel.Information);
+      // opt.LogTo(Log.Logger.Warning, LogLevel.Information);
+      opt.LogTo(
+        message =>
+        {
+          if (
+              message.Contains("CommandExecuted", StringComparison.OrdinalIgnoreCase) &&
+              !message.Contains("SELECT", StringComparison.OrdinalIgnoreCase) &&
+              (message.Contains("INSERT", StringComparison.OrdinalIgnoreCase) ||
+              message.Contains("UPDATE", StringComparison.OrdinalIgnoreCase) ||
+              message.Contains("DELETE", StringComparison.OrdinalIgnoreCase))
+          )
+          {
+            Log.ForContext("CUDSQL", true).Information(message); // 💡 Tagged specifically
+          }
+        },
+        new[] { DbLoggerCategory.Database.Command.Name },
+        LogLevel.Debug,
+        DbContextLoggerOptions.Category | DbContextLoggerOptions.DefaultWithLocalTime
+      );
+
     });
 
     srvc.AddScoped<TIUOW, TUOW>();

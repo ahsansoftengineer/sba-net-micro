@@ -1,5 +1,6 @@
 using Serilog;
 using Serilog.Events;
+using Serilog.Filters;
 using Serilog.Sinks.SystemConsole.Themes;
 
 namespace GLOB.API.Config.DI;
@@ -16,10 +17,16 @@ public static partial class DI_API_Config
           outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}",
           theme: AnsiConsoleTheme.Sixteen
       )
-      .WriteTo.File(
-        "Logs/log.txt",
-        rollingInterval: RollingInterval.Day,
-        restrictedToMinimumLevel: LogEventLevel.Warning)
-      .CreateLogger();
+       .WriteTo.Logger(lc => lc
+        .Filter.ByIncludingOnly(logEvent =>
+            logEvent.Properties.ContainsKey("CUDSQL") &&
+            logEvent.Properties["CUDSQL"].ToString() == "True")
+        .WriteTo.File(
+            "Logs/log.txt",
+            rollingInterval: RollingInterval.Day,
+            restrictedToMinimumLevel: LogEventLevel.Debug,
+            outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
+    )
+    .CreateLogger();
   }
 }

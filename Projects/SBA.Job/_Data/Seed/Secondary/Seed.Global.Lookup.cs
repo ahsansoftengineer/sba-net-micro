@@ -2,7 +2,7 @@ using GLOB.Hierarchy.Global;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace GLOB.Projectz.Seed;
+namespace SBA.Projectz.Data;
 public static partial class SeedProjectz
 {
   public static void SeedGlobalLookup(this DBCtxProjectz context)
