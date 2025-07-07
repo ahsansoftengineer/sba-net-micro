@@ -1,4 +1,3 @@
-
 namespace SBA.Projectz.Mapper;
 public partial class ProjectzMapper 
 {
