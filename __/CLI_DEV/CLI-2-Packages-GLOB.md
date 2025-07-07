@@ -39,15 +39,19 @@ dotnet add ./GLOB/GLOB.API.Config/ package Microsoft.AspNetCore.StaticFiles -v 2
 dotnet add ./GLOB/GLOB.API.Config/ package Microsoft.Extensions.Configuration -v 8.0.12
 dotnet add ./GLOB/GLOB.API.Config/ package Microsoft.Extensions.Options.ConfigurationExtensions -v 8.0.7
 dotnet add ./GLOB/GLOB.API.Config/ package Swashbuckle.AspNetCore -v 6.6.2
-
 dotnet add ./GLOB/GLOB.API.Config/ package Microsoft.Extensions.Caching.StackExchangeRedis
-
-
 ```
 
 ### API
 ```bash
 dotnet add ./GLOB/GLOB.API.Config/ package RabbitMQ.Client -v 7.1.2
+```
+
+### Job
+```bash
+dotnet add ./GLOB/GLOB.Job/ package Hangfire -v 1.8.20
+dotnet add ./GLOB/GLOB.Job/ package Hangfire.Core -v 1.8.20
+dotnet add ./GLOB/GLOB.Job/ package Hangfire.Storage.SQLite -v 0.4.2
 ```
 
    
