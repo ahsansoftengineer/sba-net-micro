@@ -18,8 +18,8 @@ public static partial class DI_Projectz
         })
         .UseSQLiteStorage(config.GetConnectionString("SQLite"));
     });
+    srvc.AddHangfireServer();
     srvc.Add_Hangfire_Srvcs(config);
-
   }
   public static void Use_Hangfire(this IApplicationBuilder app)
   {
