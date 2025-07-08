@@ -3,9 +3,12 @@ using SBA.Projectz.Srvc;
 
 public static partial class DI_Projectz
 {
-  public static void Add_Hangfire_Recuring_Srvc(this IApplicationBuilder app)
+  // https://freeformatter.com/cron-expression-generator-quartz.html
+  public static void Call_Hangfire_Recuring_Jobs(this IApplicationBuilder app)
   {
-    RecurringJob.AddOrUpdate<SrvcInfo>(opt => opt.SendEmail(), "");
-    RecurringJob.AddOrUpdate<SrvcProjectzLookup>(opt => opt.BulkCreate(), "");
+    // 0/10 0 0 ? * * * -> Every 10 Secs
+    // 0 * * ? * * -> Every Minutes
+    RecurringJob.AddOrUpdate<SrvcInfo>(opt => opt.SendEmail(), "0 * * ? * *");
+    RecurringJob.AddOrUpdate<SrvcProjectzLookup>(opt => opt.BulkCreate(), "0 * * ? * *");
   }
 }
