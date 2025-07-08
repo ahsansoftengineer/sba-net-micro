@@ -7,13 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- <ProjectReference Include="..\..\GLOB\GLOB.API\GLOB.API.csproj" /> -->
+    <ProjectReference Include="..\..\GLOB\GLOB.API\GLOB.API.csproj" />
     <ProjectReference Include="..\..\GLOB\GLOB.Domain\GLOB.Domain.csproj" />
   </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="AspNet.Security.OAuth.Apple" Version="8.0.0" />
-    <PackageReference Include="GLOB.API" Version="1.0.0" />
+    <!-- <PackageReference Include="GLOB.API" Version="1.0.0" /> -->
     <PackageReference Include="MailKit" Version="4.11.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="8.0.7" />

@@ -6,11 +6,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <!-- <ProjectReference Include="..\..\GLOB\GLOB.API\GLOB.API.csproj" /> -->
+    <ProjectReference Include="..\..\GLOB\GLOB.API\GLOB.API.csproj" />
     <ProjectReference Include="..\..\GLOB\GLOB.Domain\GLOB.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="GLOB.API" Version="1.0.0" />
+    <!-- <PackageReference Include="GLOB.API" Version="1.0.0" /> -->
     <PackageReference Include="Hangfire" Version="1.8.20" />
     <PackageReference Include="Hangfire.Core" Version="1.8.20" />
     <PackageReference Include="Hangfire.Storage.SQLite" Version="0.4.2" />

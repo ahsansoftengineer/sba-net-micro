@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GLOB.API.Config" Version="1.0.0" />
+    <!-- <PackageReference Include="GLOB.API.Config" Version="1.0.0" /> -->
     <PackageReference Include="MMLib.SwaggerForOcelot" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <!-- <ProjectReference Include="..\..\GLOB\GLOB.API.Config\GLOB.API.Config.csproj" /> -->
+    <ProjectReference Include="..\..\GLOB\GLOB.API.Config\GLOB.API.Config.csproj" />
   </ItemGroup>
 
 </Project>
