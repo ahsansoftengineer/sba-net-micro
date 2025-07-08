@@ -9,8 +9,6 @@ dotnet watch run --launch-profile http --project ./Projects/SBA.Job/          # 
 dotnet watch run --launch-profile http --project ./Projects/SBA.Userz/         # 1108 1109
 dotnet watch run --launch-profile http --project ./Projects/SBA.Orderz/        # 1110 1111
 ```
-
-
 #### USER SECRETS
 ```bash 
 dotnet user-secrets init --project ./SBA.Api/

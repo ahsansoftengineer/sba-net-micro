@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-
-
 namespace SBA.Auth.Services;
 
 public class TokenService
@@ -70,9 +68,6 @@ public class TokenService
     string jti;
     var accessToken = GetAccessToken(user, roles, out jti);
     var refreshToken = GetRefreshToken();
-
-
-
     var accessTokenExpiry = DateTime.UtcNow.AddMinutes(_jwt.AccessTokenExpiryMinutes);
     // var accessTokenExpiry = DateTime.UtcNow.AddHours(_jwt.AccessTokenExpiryHour);
     var refreshTokenExpiry = DateTime.UtcNow.AddDays(_jwt.RefreshTokenExpiryDays);

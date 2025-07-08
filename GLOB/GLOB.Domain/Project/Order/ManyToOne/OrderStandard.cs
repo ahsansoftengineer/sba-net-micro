@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using GLOB.Domain.Enumz;
 
 namespace GLOB.Domain.Hierarchy;
+
 public class OrderStandard : BaseOrder
 {
   public int? UserStandardID { get; set; }
@@ -10,8 +11,6 @@ public class OrderStandard : BaseOrder
 
   public int? TransactionzID { get; set; }
   public Transactionz? Transactionz { get; set; }
-
-
   // Detail of Shoutout Order
   public SHOUTOUT_FOR ShoutoutFor { get; set; }
   public LANGUAGE Language { get; set; }
@@ -22,8 +21,6 @@ public class OrderStandard : BaseOrder
   public required string OrderTitle { get; set; } // Cusotm, Standard Events (Aniversery, Birthday, Eid ...)
 
   public bool IsVideoPublic { get; set; } = false;
-
-
 }
 // {
 

@@ -21,8 +21,6 @@
 # kubectl delete -f ./__K8S/B_DEPL_SRVC/depl-sba-hierarchy.yaml
 # kubectl delete deployments depl-sba-hierarchy
 # kubectl delete services srvc-cip-sba-hierarchy
-
-
 #------------------------------------------------------------------------- 
 #### (1) API Deployment (Hierarchy) 
 apiVersion: apps/v1

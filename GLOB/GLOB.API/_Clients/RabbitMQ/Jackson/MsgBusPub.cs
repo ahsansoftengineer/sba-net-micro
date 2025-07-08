@@ -13,7 +13,7 @@ public class MsgBusPub : IDisposable
   {
     _option_RabbitMQ = sp.GetSrvc<IOptions<Option_App>>().Value.Clientz.RabbitMQz;
     Init();
-  }  
+  }
   public void Publish(object data)
   {
     try
@@ -34,8 +34,6 @@ public class MsgBusPub : IDisposable
       Console.WriteLine($"Serialization failed: {ex.Message}");
       Console.WriteLine(ex.StackTrace);
     }
-
-
   }
   private void SendMessage(string message)
   {
@@ -48,8 +46,6 @@ public class MsgBusPub : IDisposable
     );
     Console.WriteLine($"--> We have send: {message}");
   }
-
-
   public void Init()
   {
     var factory = new ConnectionFactory

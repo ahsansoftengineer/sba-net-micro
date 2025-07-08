@@ -24,8 +24,6 @@ public static partial class DI_Projectz
     // app.UseAuthentication();
     // app.UseAuthorization();
     app.Use_API_Config_Controller();
-
-
   }
 
 }

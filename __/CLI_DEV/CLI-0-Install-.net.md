@@ -37,8 +37,6 @@ dotnet tool install --global dotnet-ef
 # Verify dotnet-ef tool installation
 dotnet ef --version
 # nano ~/.bashrc
-
-
 ```
 
 ### UBUNTU UNINSTALL DOTNET 
@@ -66,8 +64,6 @@ sudo apt-get autoremove
 sudo apt-get clean
 
 ```
-
-
 ### EF TOOLS
 ```bash
 dotnet tool install --global dotnet-ef

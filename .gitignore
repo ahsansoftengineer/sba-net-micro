@@ -409,8 +409,6 @@ FodyWeavers.xsd
 ##
 ## Visual studio for Mac
 ##
-
-
 # globs
 Makefile.in
 *.userprefs
@@ -436,8 +434,6 @@ test-results/
 
 # Icon must end with two \r
 Icon
-
-
 # Thumbnails
 ._*
 

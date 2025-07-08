@@ -29,8 +29,6 @@ dotnet new webapi -o ./Projects/SBA.Userz
 
 # dotnet new webapi -o SBA.Notify
 ```
-
-
 ### GLOB TO SOLUTION
 ```bash
 dotnet sln add ./GLOB/GLOB.API.Config/GLOB.API.Config.csproj
@@ -65,9 +63,6 @@ dotnet add ./Projects/SBA.Auth/ reference ./GLOB/GLOB.API/ # WEB API
 dotnet add ./Projects/SBA.Hierarchy/ reference ./GLOB/GLOB.API/ # WEB API
 # dotnet remove ./Projects/SBA.Userz/ reference ./GLOB/GLOB.API/ # WEB API
 # dotnet remove ./Projects/SBA.Orderz/ reference ./GLOB/GLOB.API/ # WEB API
-
-
-
 ```
 ### Local Packages
 - Windows ||| C:\Users\Ahsan1008\.nuget\packages
@@ -81,10 +76,7 @@ mkdir Packages
 # Create Source Dir
 
 dotnet nuget add source 'C:\Packages\' --name Packages 
-dotnet nuget list source
-
-
-# Remove Source
+dotnet nuget list source# Remove Source
 dotnet nuget remove source Packages # Not Working
 
 # Disable

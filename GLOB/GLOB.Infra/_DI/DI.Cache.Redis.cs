@@ -17,16 +17,11 @@ public static partial class DI_Infra
 
     srvc.AddSingleton<IConnectionMultiplexer>(sp =>
       ConnectionMultiplexer.Connect(config.GetConnectionString("Redis")));
-
-
     srvc.AddSingleton<RedisCacheService>();
 
     srvc.AddSingleton<FilterCacheActionGet>();
     srvc.AddSingleton<FilterCacheActionSave>();
     // srvc.AddSingleton<FilterCacheActionGets>();
-
-
-
   }
 }
 

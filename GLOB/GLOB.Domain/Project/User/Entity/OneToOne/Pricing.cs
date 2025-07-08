@@ -56,12 +56,6 @@ public class Pricing : EntityBeta
   //// Custom
   public bool CustomIsActive { get; set; } = false;
   public int Custom { get; set; } = 0;
-
-
-
-
-
-
   // Business Shoutout
   public bool BusinessIsActive { get; set; } = false;
   public int Business_VideoOnly { get; set; } = 0;

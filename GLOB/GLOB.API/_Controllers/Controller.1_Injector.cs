@@ -4,8 +4,6 @@ using GLOB.Infra.Utils.Attributez;
 using GLOB.Infra.Data.Redisz;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-
-
 namespace GLOB.API.Controllers.Base;
 
 [Route("[controller]/[action]")]

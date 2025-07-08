@@ -4,6 +4,6 @@ public partial class API_Base_Mapper
 {
   public virtual void MapCustom()
   {
-    CreateMapAll<ProjectzLookup, ProjectzLookupDtoCreate, ProjectzLookupDtoSearch>();
+    MapCRUD<ProjectzLookup, ProjectzLookupDtoCreate, ProjectzLookupDtoSearch>();
   }
 }

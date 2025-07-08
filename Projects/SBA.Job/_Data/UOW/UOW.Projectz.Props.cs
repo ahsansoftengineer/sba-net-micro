@@ -1,7 +1,5 @@
 using GLOB.Infra.Repo;
 using GLOB.Hierarchy.Global;
-
-
 namespace SBA.Projectz.Data;
 public partial class UOW_Projectz : UOW_Infra, IUOW_Projectz
 {

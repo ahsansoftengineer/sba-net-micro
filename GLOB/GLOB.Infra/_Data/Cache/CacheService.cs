@@ -83,16 +83,12 @@ public class RedisCacheService
         Console.WriteLine(item);
       });
       // var parsedList = JsonConvert.DeserializeObject<List<object>>(list);
-
-
       Console.WriteLine($"---> Cache = {Key}");
       // return JsonConvert.DeserializeObject();
       return null;
     }
     return null;
   }
-
-
   public async Task Remove(CacheModel cm)
   {
     string? Key = MrgKey(cm);

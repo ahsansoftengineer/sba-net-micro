@@ -23,8 +23,6 @@ spec:
   - ReadWriteMany
 
 ---
-
-
 #### (3) DB Deployment (Hierarchy) 
 # - kubectl get deployment
 # - kubectl get deployment depl-mssql-sba-auth

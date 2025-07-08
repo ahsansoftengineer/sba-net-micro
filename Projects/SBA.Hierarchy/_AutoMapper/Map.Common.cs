@@ -7,14 +7,14 @@ public partial class ProjectzMapper
   public override void MapCommon() 
   {
     base.MapCommon();
-    CreateMap_Entity_DefaultDtos<GlobalLookupBase>();
+    MapDefaults<GlobalLookupBase>();
 
-    CreateMap_Entity_DefaultDtos<Org>();
-    CreateMap_Entity_DefaultDtos<BG>();
-    CreateMap_Entity_DefaultDtos<Bank>();
-    CreateMap_Entity_DefaultDtos<Brand>();
-    CreateMap_Entity_DefaultDtos<Industry>();
-    CreateMap_Entity_DefaultDtos<Profession>();
-    CreateMap_Entity_DefaultDtos<State>();
+    MapDefaults<Org>();
+    MapDefaults<BG>();
+    MapDefaults<Bank>();
+    MapDefaults<Brand>();
+    MapDefaults<Industry>();
+    MapDefaults<Profession>();
+    MapDefaults<State>();
   }
 }

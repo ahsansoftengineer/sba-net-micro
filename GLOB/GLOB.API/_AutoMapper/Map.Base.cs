@@ -10,24 +10,24 @@ public partial class API_Base_Mapper : Profile
     MapCustom();
   }
   // Used When The Base (Dtos and Entity)
-  protected void CreateMap_Entity_DefaultDtos<TEntity>()
+  protected void MapDefaults<TEntity>()
     where TEntity : EntityBase
   {
-    CreateMapAll<TEntity, DtoCreate, DtoUpdate, DtoRead, DtoSearch, DtoSearch>();
+    MapCRUD<TEntity, DtoCreate, DtoUpdate, DtoRead, DtoSearch, DtoSearch>();
   }
 
   // Three Param
-  protected void CreateMapAll<TEntity, TDtoCreateUpdateRead, TDtoSearch>()
+  protected void MapCRUD<TEntity, TDtoCreateUpdateRead, TDtoSearch>()
   {
-    CreateMapAll<TEntity, TDtoCreateUpdateRead, TDtoSearch, DtoSelect>();
+    MapCRUD<TEntity, TDtoCreateUpdateRead, TDtoSearch, DtoSelect>();
   }
   // Four Param
-  protected void CreateMapAll<TEntity, TDtoCreateUpdate, TDtoRead, TDtoSearch>()
+  protected void MapCRUD<TEntity, TDtoCreateUpdate, TDtoRead, TDtoSearch>()
   {
-    CreateMapAll<TEntity, TDtoCreateUpdate, TDtoCreateUpdate, TDtoRead, TDtoSearch, DtoSelect>();
+    MapCRUD<TEntity, TDtoCreateUpdate, TDtoCreateUpdate, TDtoRead, TDtoSearch, DtoSelect>();
   }
   // Six Param
-  protected void CreateMapAll<TEntity, TDtoCreate, TDtoUpdate, TDtoRead, TDtoSearch, TDtoSelect>()
+  protected void MapCRUD<TEntity, TDtoCreate, TDtoUpdate, TDtoRead, TDtoSearch, TDtoSelect>()
   {
     CreateMap<TDtoCreate, TEntity>().ReverseMap();
     CreateMap<TDtoUpdate, TEntity>().ReverseMap();

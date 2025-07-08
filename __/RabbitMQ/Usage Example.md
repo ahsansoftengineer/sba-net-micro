@@ -4,8 +4,6 @@
 | Topic         | Wildcard match | ✅ Yes          | ❌ No           | Logging, user activity |
 | Fanout        | Broadcast      | ❌ Ignored      | ❌ No           | Global notifications   |
 | Headers       | Header match   | ❌ No           | ✅ Yes          | Advanced filtering     |
-
-
 ### Direct
 - Routing key must match exactly
 - Use case: Targeted messaging between services (e.g., order -> inventory)

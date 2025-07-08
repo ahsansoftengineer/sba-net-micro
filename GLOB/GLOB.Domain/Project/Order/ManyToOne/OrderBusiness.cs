@@ -17,20 +17,13 @@ public class OrderBusiness : BaseOrder
   [NotMapped]
   public string? ConfirmPassword { get; set; } = "";
 
-  // -----
-
-
+  // -----  
   // Business Inquiry
   // Base.Message = Inquiry Details
-  public string? InquiryBudget { get; set; } // (0 - 50,000 PKR)
-
-
-  // public object BusinessMarketingRights { get; set; } = { days_15 = 1000, days_30 = 2000}
+  public string? InquiryBudget { get; set; } // (0 - 50,000 PKR)  // public object BusinessMarketingRights { get; set; } = { days_15 = 1000, days_30 = 2000}
 
   public string? Script { get; set; }
   public string? AdminComment { get; set; }
-
-
   // *-.
   public int? UserBusinessID { get; set; }
   [NotMapped]

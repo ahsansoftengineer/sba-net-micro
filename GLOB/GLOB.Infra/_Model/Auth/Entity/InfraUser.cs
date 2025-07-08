@@ -19,8 +19,6 @@ public class InfraUser : IdentityUser<string>, IEntityBeta, IEntityStatus, IEnti
   // public int OrgId { get; set; }
   // public int SystemzId { get; set; }
 }
-
-
 public class InfraUserDtoCreate : InfraUserDtoUpdate
 {
   public required string UserName { get; set; }
@@ -34,16 +32,12 @@ public class InfraUserDtoUpdate
   public required string Name { get; set; }
   public Status? Status { get; set; }
 }
-
-
 public class InfraUserDtoRead : DtoRead<string>
 {
   public string PhoneNumber { get; set; }
   public string UserName { get; set; }
   public string Email { get; set; }
 }
-
-
 public class InfraUserDtoSearch: DtoSearch
 {
   public string? EMAIL { get; set; }

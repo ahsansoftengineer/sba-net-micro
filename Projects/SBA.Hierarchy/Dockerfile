@@ -53,5 +53,3 @@ ENV ConnectionStrings__SqlConnection="Server=host.docker.internal,1433;Initial C
 EXPOSE 1106
 
 ENTRYPOINT [ "dotnet", "SBA.Hierarchy.dll" ]
-
-

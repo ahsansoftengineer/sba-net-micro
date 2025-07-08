@@ -11,8 +11,6 @@ public class RegisterDto : UpdateUserDto
 {
     public string Email { get; set; }
 }
-
-
 public class RefreshTokenDto
 {
     public string RefreshToken { get; set; }

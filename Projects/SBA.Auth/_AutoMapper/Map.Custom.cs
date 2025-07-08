@@ -10,8 +10,8 @@ public partial class ProjectzMapper : API_Base_Mapper
   public override void MapCustom() 
   {
     base.MapCustom();
-    CreateMapAll<InfraUser, InfraUserDtoCreate, InfraUserDtoUpdate, InfraUserDtoRead, InfraUserDtoSearch, DtoSelect>();
+    MapCRUD<InfraUser, InfraUserDtoCreate, InfraUserDtoUpdate, InfraUserDtoRead, InfraUserDtoSearch, DtoSelect>();
     
-    // CreateMapAll<Systemz, SystemzDto, SystemzDtoCreate, SystemzDtoSearch>();
+    // MapCRUD<Systemz, SystemzDto, SystemzDtoCreate, SystemzDtoSearch>();
   }
 }

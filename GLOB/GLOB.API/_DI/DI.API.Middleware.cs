@@ -1,5 +1,6 @@
 
 namespace GLOB.API.DI;
+
 public static partial class DI_API
 {
   private static void Use_API_DevEnv(this IApplicationBuilder app)
@@ -10,7 +11,9 @@ public static partial class DI_API
     {
       app.UseDeveloperExceptionPage();
       app.Use_API_Config_Swagger();
-    } else {
+    }
+    else
+    {
       app.UseMiddleware<GlobalExceptionMiddleware>();
     }
   }
@@ -31,6 +34,4 @@ public static partial class DI_API
 
     app.Use_API_Config_Controller();
   }
-
-
 }

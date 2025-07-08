@@ -28,8 +28,6 @@ public enum LANGUAGE
   [EnumAtr("English")]
   ENG = 2,
 }
-
-
 //public class Status
 //{
 //  private Status(string value) { Value = value; }
