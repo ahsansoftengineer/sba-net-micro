@@ -34,10 +34,14 @@ public static partial class DI_Projectz
   }
   public static void Use_Hangfire(this IApplicationBuilder app)
   {
+    IConfiguration config = app.GetSrvc<IConfiguration>();
+    string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX");
+
     app.UseHangfireDashboard();
     app.UseEndpoints(endpoints =>
     {
-      endpoints.MapHangfireDashboard("/hangfire"); // Optionally specify path
+      // http://localhost:1102/api/Job/v1/hangfire
+      endpoints.MapHangfireDashboard($"/{prefix}/hangfire"); // Optionally specify path
     });
 
     app.Call_Hangfire_Recuring_Jobs();
