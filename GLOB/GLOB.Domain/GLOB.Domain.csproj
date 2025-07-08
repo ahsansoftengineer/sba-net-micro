@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GLOB.Infra\GLOB.Infra.csproj" />
+    <!-- <ProjectReference Include="..\GLOB.Infra\GLOB.Infra.csproj" /> -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GLOB.Infra" Version="1.0.0" />
   </ItemGroup>
 </Project>
