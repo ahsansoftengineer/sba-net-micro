@@ -93,7 +93,8 @@ var predicate = new DynamicFilterBuilder<Product>()
   .And(b => b.And("Price", FilterOperator.GreaterThanOrEqual, 20).And("Price", FilterOperator.LessThanOrEqual, 100))
   .Build();
 
-var products = _dbContext.Products.AsQueryable().Where(predicate).ToList() HOW DOES IT WORKS UNDER THE HOOD
+var products = _dbContext.Products.AsQueryable().Where(predicate).ToList() 
+HOW DOES IT WORKS UNDER THE HOOD
 public static Expression<Func<TEntity, object>> GetPropertyGetter<TEntity>(string property)
 {
   if (property == null)

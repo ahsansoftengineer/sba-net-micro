@@ -76,7 +76,9 @@ mkdir Packages
 # Create Source Dir
 
 dotnet nuget add source 'C:\Packages\' --name Packages 
-dotnet nuget list source# Remove Source
+dotnet nuget list source
+
+# Remove Source
 dotnet nuget remove source Packages # Not Working
 
 # Disable

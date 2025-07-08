@@ -39,7 +39,9 @@ This project demonstrates a **.NET microservices architecture** with a **shared 
 | SBA.Hierarchy             | 1106 | 1107  | Simple Entities |
 | SBA.Userz                 | 1108 | 1109  | Users (Standard, Business, Creator)|
 | SBA.Order                 | 1110 | 1111  | Standard, Business, Custom |
-| NONE                      | - | -  | - |### CURL COMMAND
+| NONE                      | - | -  | - |
+
+### CURL COMMAND
 - Undermentioned Commands only works with Bash
 - Before Using that you have to Stop Https Middleware
 - Running your app with http in Visual Studio
