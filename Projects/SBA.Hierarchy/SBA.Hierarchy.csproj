@@ -11,6 +11,7 @@
   </ItemGroup> -->
   <ItemGroup>
     <ProjectReference Include="..\..\GLOB\GLOB.API\GLOB.API.csproj" />
+    <ProjectReference Include="..\..\GLOB\GLOB.Domain\GLOB.Domain.csproj" />
   </ItemGroup>
   
   <ItemGroup>
