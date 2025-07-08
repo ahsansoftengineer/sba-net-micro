@@ -18,9 +18,8 @@ public static partial class DI_Projectz
         })
         .UseSQLiteStorage(config.GetConnectionString("SQLite"));
     });
-    
-    srvc.AddTransient<SrvcInfo>();
-    srvc.AddTransient<SrvcProjectzLookup>();
+    srvc.Add_Hangfire_Job_Srvc(config);
+
   }
   public static void Use_Hangfire(this IApplicationBuilder app)
   {
@@ -29,5 +28,7 @@ public static partial class DI_Projectz
     {
       endpoints.MapHangfireDashboard("/hangfire"); // Optionally specify path
     });
+
+    app.Add_Hangfire_Recuring_Srvc();
   }  
 }
