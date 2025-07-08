@@ -11,12 +11,12 @@ public partial class ProjectzMapper : API_Base_Mapper
   public override void MapCustom() 
   {
     base.MapCustom();
-    CreateMapAll<GlobalLookup, GlobalLookupDtoCreate, GlobalLookupDtoRead, GlobalLookupDtoSearch>();
+    MapCRUD<GlobalLookup, GlobalLookupDtoCreate, GlobalLookupDtoRead, GlobalLookupDtoSearch>();
 
-    CreateMapAll<Systemz, SystemzDtoCreate, SystemzDtoRead, SystemzDtoSearch>();
-    CreateMapAll<LE, LEDtoCreate, LEDtoRead, LEDtoSearch>();
-    CreateMapAll<OU, OUDtoCreate, OUDtoRead, OUDtoSearch>();
-    CreateMapAll<SU, SUDtoCreate, SUDtoRead, SUDtoSearch>();
-    CreateMapAll<City, CityDtoCreate, CityDtoRead, CityDtoSearch>();
+    MapCRUD<Systemz, SystemzDtoCreate, SystemzDtoRead, SystemzDtoSearch>();
+    MapCRUD<LE, LEDtoCreate, LEDtoRead, LEDtoSearch>();
+    MapCRUD<OU, OUDtoCreate, OUDtoRead, OUDtoSearch>();
+    MapCRUD<SU, SUDtoCreate, SUDtoRead, SUDtoSearch>();
+    MapCRUD<City, CityDtoCreate, CityDtoRead, CityDtoSearch>();
   }
 }
