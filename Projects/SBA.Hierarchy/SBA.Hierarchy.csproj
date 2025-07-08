@@ -5,15 +5,13 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-  <!-- <ItemGroup>
-      <Using Include="GLOB.API.Config.Extz" />
-      <Using Include="GLOB.API.Config.DI" />
-  </ItemGroup> -->
   <ItemGroup>
     <ProjectReference Include="..\..\GLOB\GLOB.API\GLOB.API.csproj" />
+    <ProjectReference Include="..\..\GLOB\GLOB.Domain\GLOB.Domain.csproj" />
   </ItemGroup>
   
   <ItemGroup>
+    <!-- <PackageReference Include="GLOB.API" Version="1.0.0" /> -->
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>

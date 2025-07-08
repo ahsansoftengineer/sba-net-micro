@@ -12,6 +12,9 @@ public static partial class DI_API_Config
     Log.Logger = new LoggerConfiguration()
       .MinimumLevel.Information() // or Information in production
       .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+      .MinimumLevel.Override("System", LogEventLevel.Warning)
+      // .MinimumLevel.Override("Hangfire.Storage.SQLite.ExpirationManager", LogEventLevel.Warning)
+      // .MinimumLevel.Override("Hangfire.Server.BackgroundServerProcess", LogEventLevel.Warning)
       .Enrich.FromLogContext()
       .WriteTo.Console(
           outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}",

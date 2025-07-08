@@ -1,6 +1,26 @@
 {
   "Routes": [
     {
+      "For":"-------Job--------",
+      "DownstreamPathTemplate": "/api/job/v1/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 1102 }
+      ],
+      "UpstreamPathTemplate": "/api/job/v1/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ]
+    },
+    {
+      "For":"-------Swagger--------",
+      "DownstreamPathTemplate": "/api/job/v1/swagger-doc/swagger.json",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 1102 }
+      ],
+      "UpstreamPathTemplate": "/api/job/v1/swagger-doc/swagger.json",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
       "For":"-------Auth--------",
       "DownstreamPathTemplate": "/api/auth/v1/{everything}",
       "DownstreamScheme": "http",

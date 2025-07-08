@@ -17,7 +17,8 @@
 | Acknowledge a message       | `basic.ack`                                  |
 | Publish a message           | `basic.publish`, `basic.return`              |
 | Enable publisher confirms   | `confirm.select`, `basic.ack/nack` responses |
-| Set prefetch                | `basic.qos`                                  |### Summary Table (Class Behavior vs AMQP Methods)
+| Set prefetch                | `basic.qos`                                  |
+### Summary Table (Class Behavior vs AMQP Methods)
 | Concept               | Description                                |
 | --------------------- | ------------------------------------------ |
 | **Producer**          | Sends messages to an exchange              |

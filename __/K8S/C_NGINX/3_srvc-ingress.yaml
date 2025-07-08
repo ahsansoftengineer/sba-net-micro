@@ -89,7 +89,9 @@ spec:
 # 127.0.0.1 kubernetes.docker.internal
 # End of section
 ## Nginx Srvc Config
-################### WINDOWS ############################################## UBUNTU ###########################
+################### WINDOWS #############################
+
+################# UBUNTU ###########################
 ### nano /etc/hosts
 ### gedit /etc/hosts
 # 127.0.0.1 ahsan.com
