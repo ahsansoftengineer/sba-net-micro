@@ -5,7 +5,7 @@ using Microsoft.Extensions.Options;
 using SBA.Auth.Services;
 
 namespace SBA.Auth.Controllers;
-public abstract class AccountBaseController<T> : API_1_ErrorController<T>
+public abstract class AccountBaseController<T> : API_1_InjectorController<T>
 {
   // private IRepoGenericz<AccountId> _repo = null;
   protected readonly JwtSettings _jwt;

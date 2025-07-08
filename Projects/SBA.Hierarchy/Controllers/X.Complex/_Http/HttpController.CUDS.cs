@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
 
-public partial class __HttpController : API_1_ErrorController<__HttpController>
+public partial class __HttpController : API_1_InjectorController<__HttpController>
 {
   public readonly API_Client_Http ClientHttpAuth;
   public __HttpController(IServiceProvider sp) : base(sp)

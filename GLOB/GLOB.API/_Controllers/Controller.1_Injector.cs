@@ -8,7 +8,7 @@ namespace GLOB.API.Controllers.Base;
 
 [Route("[controller]/[action]")]
 [ApiController] [Cache]
-public abstract class API_1_ErrorController<TController> : ControllerBase
+public abstract class API_1_InjectorController<TController> : ControllerBase
 
 {
   protected readonly IServiceProvider _sp;
@@ -20,7 +20,7 @@ public abstract class API_1_ErrorController<TController> : ControllerBase
 
   protected readonly RedisCacheService _redis;
 
-  public API_1_ErrorController(IServiceProvider sp)
+  public API_1_InjectorController(IServiceProvider sp)
   {
     _sp = sp;
     _config = sp.GetSrvc<IConfiguration>();

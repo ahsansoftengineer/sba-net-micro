@@ -6,7 +6,7 @@ using GLOB.Infra.Utils.Paginate.Extz;
 using GLOB.Infra.Utils.Attributez;
 namespace SBA.Auth.Controllers;
 
-public partial class __RabbitMQController : API_1_ErrorController<__RabbitMQController>
+public partial class __RabbitMQController : API_1_InjectorController<__RabbitMQController>
 {
   private readonly MsgBusPub RabbitMQ_Name;
   private readonly API_RabbitMQ_Base_Pubs _rmqPubs;

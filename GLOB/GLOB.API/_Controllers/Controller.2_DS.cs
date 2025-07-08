@@ -5,7 +5,7 @@ using GLOB.API.Staticz;
 namespace GLOB.API.Controllers.Base;
 // Read, Delete, Status
 public abstract partial class API_2_RDS_Controller<TController, TEntity>
-  : API_1_ErrorController<TController>
+  : API_1_InjectorController<TController>
     where TEntity : class, IEntityAlpha, IEntityStatus // (ID, Status)
     where TController : class
 {
