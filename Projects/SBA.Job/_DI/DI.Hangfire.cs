@@ -1,5 +1,6 @@
 using Hangfire;
 using Hangfire.Storage.SQLite;
+using SBA.Projectz.Srvc;
 
 namespace SBA.Projectz.DI;
 
@@ -13,10 +14,13 @@ public static partial class DI_Projectz
         .UseSimpleAssemblyNameTypeSerializer()
         .UseRecommendedSerializerSettings(opt =>
         {
-        
+
         })
         .UseSQLiteStorage(config.GetConnectionString("SQLite"));
     });
+    
+    srvc.AddTransient<SrvcInfo>();
+    srvc.AddTransient<SrvcProjectzLookup>();
   }
   public static void Use_Hangfire(this IApplicationBuilder app)
   {

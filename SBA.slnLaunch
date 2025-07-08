@@ -3,12 +3,12 @@
     "Name": "Ahsan Profile",
     "Projects": [
       {
-        "Path": "GLOB\\GLOB.Job\\GLOB.Job.csproj",
+        "Path": "Projects\\SBA.APIGateway\\SBA.APIGateway.csproj",
         "Action": "Start",
         "DebugTarget": "http"
       },
       {
-        "Path": "Projects\\SBA.APIGateway\\SBA.APIGateway.csproj",
+        "Path": "Projects\\SBA.Job\\SBA.Job.csproj",
         "Action": "Start",
         "DebugTarget": "http"
       },
