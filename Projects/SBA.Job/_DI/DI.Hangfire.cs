@@ -16,9 +16,14 @@ public static partial class DI_Projectz
         {
 
         })
-        .UseSQLiteStorage(config.GetConnectionString("SQLite"), new SQLiteStorageOptions
+        // Production
+        // .UseSqlServerStorage(config.GetConnectionString("SqlConnection"));
+        // Development Store Out of the Solution
+        .UseSQLiteStorage(Path.Combine("../../../", config.GetConnectionString("SQLite")), new SQLiteStorageOptions
         {
-          // DisableExpirationManager = true
+          QueuePollInterval = TimeSpan.FromSeconds(30), // Less frequent polling
+          JobExpirationCheckInterval = TimeSpan.FromHours(6), // Less frequent expiration checks
+          CountersAggregateInterval = TimeSpan.FromMinutes(30) // Less frequent counter updates
         });
     });
     srvc.AddHangfireServer();
