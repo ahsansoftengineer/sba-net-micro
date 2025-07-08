@@ -12,6 +12,8 @@ public class InfoController : API_1_InjectorController<InfoController>
   {
   }
 
+
+  // Fire when need
   [HttpPost]
   public async Task<IActionResult> BulkCreateProjectzLookup([FromBody] bool isSuccess)
   {
@@ -22,6 +24,7 @@ public class InfoController : API_1_InjectorController<InfoController>
     return "Email Sent Successfully".Ok();
   }
 
+  // Fire when need
   [HttpPost]
   public async Task<IActionResult> BulkUpdateProjectzLookup([FromBody] bool isSuccess)
   {
@@ -32,7 +35,8 @@ public class InfoController : API_1_InjectorController<InfoController>
     return "Email Sent Successfully".Ok();
   }
   
-    [HttpPost]
+  // Fire and Forget
+  [HttpPost]
   public async Task<IActionResult> UpdateDBProjectzLookup([FromBody] bool isSuccess)
   {
     if (!isSuccess)
@@ -41,8 +45,8 @@ public class InfoController : API_1_InjectorController<InfoController>
      RecurringJob.AddOrUpdate<SrvcProjectzLookup>(
       recurringJobId: "job-notify-send-email",
       methodCall: x => x.UpdateDatabase(),
-      cronExpression: Cron.Minutely, // Every 10 Secs
-      queue: "queue-short-time",
+      cronExpression: Cron.Daily, // Every Day
+      queue: "queue-daily",
       options: new RecurringJobOptions
       {
         TimeZone = TimeZoneInfo.Local,
