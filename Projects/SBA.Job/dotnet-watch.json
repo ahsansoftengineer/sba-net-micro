@@ -1,0 +1,7 @@
+{
+  "watch": {
+    "exclude": [
+      "**Job.SQLite.db**"
+    ]
+  }
+}
