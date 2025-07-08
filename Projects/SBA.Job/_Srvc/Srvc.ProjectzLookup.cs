@@ -1,9 +1,8 @@
-
 namespace SBA.Projectz.Srvc;
 
 public class SrvcProjectzLookup
 {
-  public string date = DateTime.Now.ToString("dd-MMM-yyyy HH:mm:ss");
+  public string date => DateTime.Now.ToString("dd-MMM-yyyy HH:mm:ss");
   public void GenerateMerchandise()
   {
     Console.WriteLine($"GenerateMerchandise: Long Running Task {date}");
