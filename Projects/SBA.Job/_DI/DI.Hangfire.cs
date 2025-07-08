@@ -16,7 +16,10 @@ public static partial class DI_Projectz
         {
 
         })
-        .UseSQLiteStorage(config.GetConnectionString("SQLite"));
+        .UseSQLiteStorage(config.GetConnectionString("SQLite"), new SQLiteStorageOptions
+        {
+          // DisableExpirationManager = true
+        });
     });
     srvc.AddHangfireServer();
     srvc.Add_Hangfire_Srvcs(config);
