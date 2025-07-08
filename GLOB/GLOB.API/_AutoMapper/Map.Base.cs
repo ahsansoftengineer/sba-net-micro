@@ -10,7 +10,7 @@ public partial class API_Base_Mapper : Profile
     MapCustom();
   }
   // Used When The Base (Dtos and Entity)
-  protected void CreateMap_Entity_DefaultDtos<TEntity>()
+  protected void MapDefaults<TEntity>()
     where TEntity : EntityBase
   {
     MapCRUD<TEntity, DtoCreate, DtoUpdate, DtoRead, DtoSearch, DtoSearch>();
