@@ -46,3 +46,4 @@ dotnet add ./GLOB/GLOB.API.Config/ package Microsoft.Extensions.Caching.StackExc
 ```bash
 dotnet add ./GLOB/GLOB.API.Config/ package RabbitMQ.Client -v 7.1.2
 ```
+
