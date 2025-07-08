@@ -17,5 +17,3 @@ public class Option_App
 
   public Option_Clientz Clientz { get; set; }
 }
-
-

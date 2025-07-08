@@ -8,8 +8,6 @@
 
 # http://localhost:1104/api/hierarchy/v1/swagger/index.html
 # http://localhost:1104/api/hierarchy/v1/_projectz-lookup/gets-lookup
-
-
 # Stage 1: Build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app

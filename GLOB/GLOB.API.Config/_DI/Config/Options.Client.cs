@@ -22,8 +22,6 @@ public class Option_Clientz
   public Option_RabbitMQ RabbitMQz { get; set; }
   public Option_Host Http_Host { get; set; } = new Option_Host();
 }
-
-
     //   // Uri = "",
     //   // Port = 5672,
     //   HostName = hostName,

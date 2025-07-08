@@ -7,8 +7,6 @@ public interface IEntityAlpha<TKey>
   TKey Id { get; set; }
   string Name { get; set; }
 }
-
-
 public interface IEntityStatus<TKey>
 {
   Status? Status { get; set; }

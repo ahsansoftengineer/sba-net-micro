@@ -61,8 +61,6 @@ spec:
 # kubectl apply -f 1.3_depl-platforms.yaml
 # kubectl apply -f 1.4_depl-commands.yaml
 # kubectl apply -f 3_srvc-ingress.yaml
-
-
 ################## INSTALLATION GUIDE ###########################
 ### NGINX PROXY SERVER
 ## RESOURCE LINKS
@@ -91,10 +89,7 @@ spec:
 # 127.0.0.1 kubernetes.docker.internal
 # End of section
 ## Nginx Srvc Config
-################### WINDOWS ###########################
-
-
-################### UBUNTU ###########################
+################### WINDOWS ############################################## UBUNTU ###########################
 ### nano /etc/hosts
 ### gedit /etc/hosts
 # 127.0.0.1 ahsan.com

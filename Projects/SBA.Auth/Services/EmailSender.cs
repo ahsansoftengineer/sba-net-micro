@@ -31,8 +31,6 @@ public class SmtpEmailSender : IEmailSender
         await smtp.DisconnectAsync(true);
     }
 }
-
-
 public class EmailSettings
 {
     public static string SectionName = "EmailSettings";

@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using GLOB.Domain.Enumz;
 namespace GLOB.Domain.Hierarchy;
+
 public abstract class BaseOrder : EntityBeta
 {
   public required string Message { get; set; } // Business Iquriy, (Standard / Custom) Order Message
@@ -15,8 +16,6 @@ public abstract class BaseOrder : EntityBeta
   public string? UrlThumbnail { get; set; }
   public STATUS_ORDER? StatusOrder { get; set; }
   public string? OrderDeclinedReason { get; set; }
-
-
   // public int BusinessInquiryID { get; set;} // Delete
   // public string CreatorName { get; set;} // Delete
   // public string Reason { get; set;} // Desc

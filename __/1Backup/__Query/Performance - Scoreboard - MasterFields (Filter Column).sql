@@ -25,7 +25,4 @@ VALUES
 
     ('A1BD0419-C829-4AFE-9CB4-A697DF2AB7B1', 'Emp Id', 'EmployeeId', 1, 'Employee', 'Employee');
 
-GO
-
-
- 
+GO 

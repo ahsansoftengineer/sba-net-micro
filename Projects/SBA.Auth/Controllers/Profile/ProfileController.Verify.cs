@@ -41,8 +41,6 @@ public partial class ProfileController : AccountBaseController<ProfileController
 
     return "Your Email has been verified".Ok();
   }
-
-
   [HttpPost]
   public async Task<IActionResult> VerifyPhoneToken([FromQuery] string email)
   {

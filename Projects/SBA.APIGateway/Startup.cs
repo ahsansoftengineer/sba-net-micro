@@ -1,7 +1,5 @@
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
-
-
 namespace SBA.APIGateway;
 
 public class Startup

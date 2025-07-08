@@ -3,8 +3,6 @@ using GLOB.Domain.Model.Auth;
 using GLOB.Infra.Data.Auth;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-
-
 namespace GLOB.Infra.DI;
 public static partial class DI_Infra
 {

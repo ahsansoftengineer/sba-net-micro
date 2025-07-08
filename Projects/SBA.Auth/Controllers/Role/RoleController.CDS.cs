@@ -9,7 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace SBA.Auth.Controllers;
 
-public partial class RoleController: AccountBaseController<RoleController>
+public partial class RoleController : AccountBaseController<RoleController>
 {
   private readonly RoleManager<InfraRole> _roleManager;
   private readonly IQueryable<InfraRole> _repo;
@@ -104,6 +104,4 @@ public partial class RoleController: AccountBaseController<RoleController>
       return _Res.CatchException(ex, nameof(Status));
     }
   }
-
-
 }

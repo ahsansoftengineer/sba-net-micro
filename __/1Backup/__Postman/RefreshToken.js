@@ -9,9 +9,6 @@ function manageToken() {
         console.log("Access token is still valid.");
     }
 }
-
-
-
 // Function to add headers to the request
 function addHeaders() {
     const headers = pm.request.headers;

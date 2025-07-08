@@ -17,8 +17,6 @@
 # kubectl describe secret mssql
 # kubectl get secret mssql
 # kubectl delete secret mssql
-
-
 #### (3) DB Claim (Hierarchy) 
 
 # - This Task Done Only Once
@@ -38,8 +36,6 @@ spec:
   - ReadWriteMany
 
 ---
-
-
 #### (3) DB Deployment (Hierarchy) 
 # - kubectl get deployment
 # - kubectl get deployment depl-mssql-sba-hierarchy

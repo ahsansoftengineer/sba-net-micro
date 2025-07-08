@@ -41,8 +41,6 @@ public static class DBCtxExtensions
 //     .FromSqlRaw("EXEC GetUserSummaries")
 //     .AsNoTracking()
 //     .ToList();
-
-
 // protected override void Up(MigrationBuilder migrationBuilder)
 // {
 //     var spSql = File.ReadAllText("Migrations/SQL/GetUsersByRole.sql");

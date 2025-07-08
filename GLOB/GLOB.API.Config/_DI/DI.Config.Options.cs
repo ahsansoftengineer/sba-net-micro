@@ -7,5 +7,3 @@ public static partial class DI_API_Config
     srvc.Configure<Option_App>(config);
   }
 }
-
-

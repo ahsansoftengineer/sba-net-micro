@@ -21,8 +21,6 @@
 # kubectl delete -f ./__K8S/B_DEPL_SRVC/depl-sba-auth.yaml
 # kubectl delete deployments depl-sba-auth
 # kubectl delete services srvc-cip-sba-auth
-
-
 #------------------------------------------------------------------------- 
 #### (1) API Deployment (Auth) 
 apiVersion: apps/v1
@@ -58,10 +56,7 @@ spec:
             - name: Clientz__RabbitMQz__HostName
               value: srvc-cip-rbmq-sba
             - name: Clientz__RabbitMQz__Port
-              value: 5672
-
-
----
+              value: 5672---
 #------------------------------------------------------------------------- 
 #### (2) API Cluster IP (Auth)
 # - We need ClusterIP for Inter Service Communication

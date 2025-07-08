@@ -29,8 +29,6 @@ public class UserCreator : UserNormal
   // *-.
   public ICollection<OrderBusiness>? OrderBusinesss { get; set; } = null;
   public ICollection<OrderStandard>? OrderStandards { get; set; } = null;
-
-
   // *-* Relationship
   [NotMapped]
   public ICollection<Mapping_UserCreatorIndustry>? UserCreatorIndustrys { get; set; } = null;

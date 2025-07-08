@@ -60,8 +60,3 @@ public partial class API_Client_Http
 //   var resultz =  result.Records;
 //   return resultz.Ok();
 // }
-
-
-
-
-

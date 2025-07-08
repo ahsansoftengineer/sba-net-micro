@@ -2,8 +2,6 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
 namespace GLOB.API.Config.Optionz;
-
-
 public class JwtSettings
 {
 
@@ -25,8 +23,6 @@ public class JwtSettings
   public string? CookieName { get; set; }
   public string? AccessDeniedPath { get; set; }
   public bool? SlidingExpiration { get; set; }// = true;
-
-
   public SymmetricSecurityKey GetSymmetricSecurityKey()
   {
     return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SecretKey));

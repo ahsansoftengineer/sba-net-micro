@@ -15,20 +15,18 @@ public partial class RepoGenericz<T, TKey>
     return await query.ToExtList(expression, orderBy, Includes);
   }
   // Filter, OrderBy, Include, Pagination,
-  public async Task<VMPaginate<T>> GetsPaginate<TDtoSearch>(DtoRequestPage<TDtoSearch?> dto) 
+  public async Task<VMPaginate<T>> GetsPaginate<TDtoSearch>(DtoRequestPage<TDtoSearch?> dto)
     where TDtoSearch : class, IDtoSearch
   {
     return await _db.ToExtVMPageNoTrack(dto);
   }
-  
-  public async Task<VMPaginate<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(DtoRequestPageOption<TDtoSearch?> dto) 
+
+  public async Task<VMPaginate<DtoSelect<TKey>>> GetsPaginateOptions<TDtoSearch>(DtoRequestPageOption<TDtoSearch?> dto)
     where TDtoSearch : class, IDtoSearch
   {
-    return await _db.ToExtVMPageOptionsNoTrack<T, TKey,  TDtoSearch>(dto);
+    return await _db.ToExtVMPageOptionsNoTrack<T, TKey, TDtoSearch>(dto);
   }
 }
-
-
 /** 
  https://blog.zhaytam.com/2020/05/17/dynamic-sorting-filtering-csharp/
 
@@ -71,9 +69,6 @@ MANUAL DYNAMIC ADVANCE FILTER
 (Product.Brand == "Nike" || Product.Brand == "Adidas")
 && (Product.Price >= 20 && Product.Price <= 100)
 && Product.Enabled
-
-
-
  APPROACH 2. WITH DYNAMIC.NET LIBRARY
  Dynamic.NET ->  TODO
 
@@ -98,10 +93,7 @@ var predicate = new DynamicFilterBuilder<Product>()
   .And(b => b.And("Price", FilterOperator.GreaterThanOrEqual, 20).And("Price", FilterOperator.LessThanOrEqual, 100))
   .Build();
 
-var products = _dbContext.Products.AsQueryable().Where(predicate).ToList()
-
-
- HOW DOES IT WORKS UNDER THE HOOD
+var products = _dbContext.Products.AsQueryable().Where(predicate).ToList() HOW DOES IT WORKS UNDER THE HOOD
 public static Expression<Func<TEntity, object>> GetPropertyGetter<TEntity>(string property)
 {
   if (property == null)

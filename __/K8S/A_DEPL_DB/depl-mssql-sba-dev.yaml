@@ -7,8 +7,6 @@
 
 ## Connect
 # Server=127.0.0.1,1433;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;
-
-
 #### (3) DB Claim (Hierarchy) 
 
 # - This Task Done Only Once
@@ -28,8 +26,6 @@ spec:
   - ReadWriteMany
 
 ---
-
-
 #### (3) DB Deployment (Hierarchy) 
 # - kubectl get deployment
 # - kubectl get deployment depl-mssql-sba-dev

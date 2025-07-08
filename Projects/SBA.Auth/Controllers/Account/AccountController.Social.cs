@@ -50,8 +50,6 @@ public partial class AccountController
   {
     return await BaseLogin("Apple", ReturnUrl);
   }
-
-
   // Base Logins
   private IActionResult BaseLoginRedirect(string provider, string action, string controller, string? ReturnUrl)
   {

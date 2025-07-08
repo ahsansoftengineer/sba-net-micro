@@ -4,7 +4,7 @@ namespace GLOB.API.Config.Extz;
 
 public static partial class Ext
 {
-  
+
   public static IEnumerable<ErrorModel> ToExtValidationError(this ModelStateDictionary modelState)
   {
     return modelState
@@ -16,8 +16,6 @@ public static partial class Ext
       });
   }
 }
-
-
 public class ErrorModel
 {
   public string Field { get; set; }

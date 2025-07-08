@@ -37,8 +37,6 @@ public static partial class DI_Projectz
     srvc.AddScoped<SmtpEmailSender>();
     srvc.AddScoped<TokenService>();
     srvc.Add_Projectz_Clientz(config);
-
-
   }
   public static void Add_Projectz_Clientz(this IServiceCollection srvc, IConfiguration config)
   {

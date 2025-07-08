@@ -21,8 +21,6 @@
 # kubectl delete -f ./__K8S/B_DEPL_SRVC/depl-sba-api-gateway.yaml
 # kubectl delete deployments depl-sba-api-gateway
 # kubectl delete services srvc-cip-sba-api-gateway
-
-
 #------------------------------------------------------------------------- 
 #### (1) API Deployment (APIGateway)
 apiVersion: apps/v1

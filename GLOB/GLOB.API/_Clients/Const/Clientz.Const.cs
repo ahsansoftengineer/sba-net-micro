@@ -11,9 +11,6 @@ public static class MQ_Exch
     public const string Auth = "auth";
     public const string Hierarchy = "hierarchy";
 }
-
-
-
 public static class EP
 {
     public const string Create = "create";
