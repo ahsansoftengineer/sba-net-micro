@@ -1,5 +1,7 @@
 using Hangfire;
 using Hangfire.Storage.SQLite;
+using HangfireBasicAuthenticationFilter;
+using Microsoft.Extensions.Options;
 
 namespace SBA.Projectz.DI;
 
@@ -36,8 +38,21 @@ public static partial class DI_Projectz
   {
     IConfiguration config = app.GetSrvc<IConfiguration>();
     string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX");
+    string title = config.GetValueStr("Hangfire__Title");
+    var users = config.GetSection<IOptions<HangfireCustomBasicAuthenticationFilter>>("Hangfire__Users");
 
-    app.UseHangfireDashboard();
+    app.UseHangfireDashboard($"/{prefix}/hangfire", new()
+    {
+      DashboardTitle = $"Hangfire {title}",
+      Authorization = new[] {
+        new HangfireCustomBasicAuthenticationFilter()
+        {
+          User = "guest",
+          Pass = "guest"
+        }
+      }
+      
+    });
     app.UseEndpoints(endpoints =>
     {
       // http://localhost:1102/api/Job/v1/hangfire
