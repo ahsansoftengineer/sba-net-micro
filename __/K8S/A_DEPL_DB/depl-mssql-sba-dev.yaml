@@ -1,8 +1,8 @@
 ################~~~~ DB SBA Hierarchy ~~~~~##################
 #### Run Command
 ## BASH
-# kubectl apply -f ./__K8S/A_DEPL_DB/depl-mssql-sba-dev.yaml
-# kubectl delete -f ./__K8S/A_DEPL_DB/depl-mssql-sba-dev.yaml
+# kubectl apply -f ./__/K8S/A_DEPL_DB/depl-mssql-sba-dev.yaml
+# kubectl delete -f ./__/K8S/A_DEPL_DB/depl-mssql-sba-dev.yaml
 # kubectl rollout restart deployments depl-mssql-sba-dev
 
 ## Connect

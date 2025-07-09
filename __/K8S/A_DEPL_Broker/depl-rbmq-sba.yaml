@@ -1,8 +1,8 @@
 ################~~~~ Rabbit MQ SBA ~~~~~##################
 #### Run Command
 ## BASH
-# kubectl apply -f ./__K8S/A_DEPL_Broker/depl-rbmq-sba.yaml
-# kubectl delete -f ./__K8S/A_DEPL_Broker/depl-rbmq-sba.yaml
+# kubectl apply -f ./__/K8S/A_DEPL_Broker/depl-rbmq-sba.yaml
+# kubectl delete -f ./__/K8S/A_DEPL_Broker/depl-rbmq-sba.yaml
 # kubectl rollout restart deployments depl-rbmq-sba
 
 #-----------------------------#
