@@ -2,6 +2,7 @@ using GLOB.API.Staticz;
 using GLOB.Infra.Utils.Paginate.Extz;
 using Microsoft.AspNetCore.Mvc;
 namespace SBA.Projectz.Controllers;
+
 public class _ProjectzLookupController : API_2_RDS_Controller<_ProjectzLookupController, ProjectzLookup>
 {
   public _ProjectzLookupController(IServiceProvider srvcProvider) : base(srvcProvider)
