@@ -21,14 +21,14 @@ public class SystemzController : Project_RDS_Controller<SystemzController, Syste
     return await _repo.ToActionGetsPaginateOptions(dto);
   }
   [HttpPost]
-  public async Task<IActionResult> Create([FromBody] SystemzDtoCreate data)
+  public async Task<IActionResult> Add([FromBody] SystemzDtoCreate data)
   {
    
     bool hasParent = _uowProjectz.Orgs.AnyId(data.OrgId);
     if(!hasParent) return _Res.BadRequestzId("OrgId",data.OrgId);
 
     var result = _mapper.Map<Systemz>(data);
-    await _repo.Insert(result);
+    await _repo.Add(result);
     await _uowInfra.Save();
     return Ok(result);
    

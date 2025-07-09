@@ -82,7 +82,7 @@ public class MsgBusSubs : BackgroundService
 
       if (uow.ProjectzLookupBases.AnyId(model?.ProjectzLookupBaseId ?? 0))
       {
-        await uow.ProjectzLookups.Insert(model);
+        await uow.ProjectzLookups.Add(model);
         await uow.Save();
         Console.WriteLine("ProjectzLookup Created Successfully");
       }

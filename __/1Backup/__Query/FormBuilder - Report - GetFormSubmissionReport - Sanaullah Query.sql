@@ -10,7 +10,7 @@
         WHERE SFR.IsDeleted = 0 AND SFR.ScoreBoardTriggerId = @ScoreBoardTriggerId
     )
 
-    -- Insert factor names into the table
+    -- Add factor names into the table
 
     INSERT INTO @factorNames (FactorRank, FactorName)
     SELECT ROW_NUMBER() OVER (ORDER BY Name) AS FactorRank, Name
@@ -22,7 +22,7 @@
         WHERE PR.IsDeleted = 0 AND PR.ScoreBoardTriggerId = @ScoreBoardTriggerId
     )
 
-    -- Insert parameter names into the table
+    -- Add parameter names into the table
     INSERT INTO @parameterNames (ParameterRank, ParameterName)
     SELECT ROW_NUMBER() OVER (ORDER BY Name) AS ParameterRank, Name
     FROM DistinctParameters;

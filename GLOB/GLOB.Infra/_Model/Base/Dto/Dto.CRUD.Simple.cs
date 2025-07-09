@@ -6,9 +6,9 @@ public class DtoCreate
 {
   [Required]
   [StringLength(maximumLength: 50, ErrorMessage = "Max Characters 50 Allowed")]
-  public string Name { get; set; } = "Create";
+  public string Name { get; set; } = "Add Name";
   [StringLength(maximumLength: 100, ErrorMessage = "Max Characters 100 Allowed")]
-  public string? Desc { get; set; } = "Create Desc";
+  public string? Desc { get; set; } = "Add Desc";
 
 }
 public class DtoUpdate : DtoCreate

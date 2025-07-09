@@ -59,7 +59,7 @@ public class FilterCacheActionSave : IAsyncActionFilter
         {
           await _cache.Remove(cm);
         }
-        else if (action == "Create")
+        else if (action == "Add")
         {
           var prop = result.Value?.GetType().GetProperty("Id");
           var id = prop?.GetValue(result.Value, null);
@@ -81,7 +81,7 @@ public class FilterCacheActionSave : IAsyncActionFilter
   public static bool AllowToContinue(
     ActionExecutingContext context,
     out ControllerActionDescriptor? descriptor,
-    string Actions = "Create, Update, Delete, Status"
+    string Actions = "Add, Update, Delete, Status"
     )
   {
     descriptor = context.ActionDescriptor as ControllerActionDescriptor;

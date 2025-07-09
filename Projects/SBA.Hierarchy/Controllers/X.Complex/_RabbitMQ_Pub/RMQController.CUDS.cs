@@ -19,7 +19,7 @@ public partial class __RabbitMQController
       var route = new RabbitMQRoute(MQ_Exch.Auth, Controllerz.Auth.ProjectzLookup)
       {
         Typez = ExchangeType.Direct,
-        Key = EP.Create
+        Key = EP.Add
       };
       var param = new RabbitMQParam
       {

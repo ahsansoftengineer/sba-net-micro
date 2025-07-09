@@ -3,7 +3,7 @@ using GLOB.Infra.Utils.Paginate.Extz;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLOB.API.Controllers.Base;
-// Create, Read, Update, Delete, Status, Paginate, Options
+// Add, Read, Update, Delete, Status, Paginate, Options
 public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TDtoSearch, TDtoCreate>
   : API_2_RDS_Controller<TController, TEntity>
   where TController : class
@@ -27,18 +27,18 @@ public abstract partial class API_3_CRUD_SPO_Controller<TController, TEntity, TD
   }
 
   [HttpPost] 
-  public async Task<IActionResult> Create([FromBody] TDtoCreate data)
+  public async Task<IActionResult> Add([FromBody] TDtoCreate data)
   {
     try
     {
       var mapped = _mapper.Map<TEntity>(data);
-      var entity = await _repo.Insert(mapped);
+      var entity = await _repo.Add(mapped);
       await _uowInfra.Save();
       return _Res.CreatedAtAction(this, nameof(Get), entity);
     }
     catch (Exception ex)
     {
-      return _Res.CatchException(ex, nameof(Create));
+      return _Res.CatchException(ex, nameof(Add));
     }
   }
 

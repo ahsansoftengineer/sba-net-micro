@@ -41,7 +41,7 @@ public class TokenService
     {
       authClaims.Add(new Claim(ClaimTypes.Role, role));
     }
-    // Create identity and principal
+    // Add identity and principal
     var identity = new ClaimsIdentity(authClaims, Option_JwtSettings.Scheme);
     var principal = new ClaimsPrincipal(identity);
 

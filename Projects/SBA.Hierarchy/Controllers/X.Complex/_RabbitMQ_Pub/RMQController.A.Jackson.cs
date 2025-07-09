@@ -19,7 +19,7 @@ public partial class __RabbitMQController : API_1_InjectorController<__RabbitMQC
   }
 
   [HttpPost] [NoCache]
-  public async Task<IActionResult> Create([FromBody] ProjectzLookupDtoCreate model)
+  public async Task<IActionResult> Add([FromBody] ProjectzLookupDtoCreate model)
   {
     try
     {
@@ -30,7 +30,7 @@ public partial class __RabbitMQController : API_1_InjectorController<__RabbitMQC
         model.Desc,
         model.ProjectzLookupBaseId,
         Status.Active,
-        Event = $"ProjectzLookup_{EP.Create}"
+        Event = $"ProjectzLookup_{EP.Add}"
       };
       RabbitMQ_Name.Publish(data);
       return data.ToExtVMSingle().Ok();

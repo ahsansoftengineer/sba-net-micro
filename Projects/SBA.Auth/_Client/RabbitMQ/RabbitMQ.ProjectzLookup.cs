@@ -16,7 +16,7 @@ public partial class RabbitMQ_ProjectzLookup : API_RabbitMQ_Base_Subs
       route = new RabbitMQRoute(MQ_Exch.Auth, Controllerz.Auth.ProjectzLookup)
       {
         Typez = ExchangeType.Direct,
-        Key = EP.Create
+        Key = EP.Add
       }
     };
 
@@ -42,7 +42,7 @@ public partial class RabbitMQ_ProjectzLookup : API_RabbitMQ_Base_Subs
 
       if (uow.ProjectzLookupBases.AnyId(model.Body?.ProjectzLookupBaseId ?? 0))
       {
-        await uow.ProjectzLookups.Insert(model.Body);
+        await uow.ProjectzLookups.Add(model.Body);
         await uow.Save();
         Console.WriteLine("ProjectzLookup Created Successfully");
       }

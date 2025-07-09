@@ -13,7 +13,7 @@ public static class MQ_Exch
 }
 public static class EP
 {
-    public const string Create = "create";
+    public const string Add = "add";
     public const string Update = "update";
     public const string Status = "update-status";
     public const string Delete = "delete";

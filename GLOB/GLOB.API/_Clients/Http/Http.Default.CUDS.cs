@@ -9,9 +9,9 @@ public partial class API_Client_Http
     Client = new API_HttpBase(sp, host, srvc, controller);
   }
 
-  public async Task<T?> Create<T>(HttpParam param)
+  public async Task<T?> Add<T>(HttpParam param)
   {
-    param.Action = EP.Create;
+    param.Action = EP.Add;
     return await Client.Post<T>(param);
   }
 

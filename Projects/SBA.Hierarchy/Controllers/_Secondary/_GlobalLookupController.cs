@@ -23,7 +23,7 @@ public class _GlobalLookupController : Project_RDS_Controller<_GlobalLookupContr
     return await _repo.ToActionGetsPaginateOptions(req);
   }
   [HttpPost]
-  public async Task<IActionResult> Create([FromBody] GlobalLookupDtoCreate data)
+  public async Task<IActionResult> Add([FromBody] GlobalLookupDtoCreate data)
   {
     try
     {
@@ -31,13 +31,13 @@ public class _GlobalLookupController : Project_RDS_Controller<_GlobalLookupContr
       if(!hasParent) return _Res.BadRequestzId("GlobalLookupBaseId",data.GlobalLookupBaseId);
       
       var result = _mapper.Map<GlobalLookup>(data);
-      var entity = await _repo.Insert(result);
+      var entity = await _repo.Add(result);
       await _uowProjectz.Save();
       return _Res.CreatedAtAction(this, nameof(Get), entity);
     }
     catch (Exception ex)
     {
-      return _Res.CatchException(ex, nameof(Create));
+      return _Res.CatchException(ex, nameof(Add));
     }
   }
 

@@ -19,7 +19,7 @@ public class _ProjectzLookupBaseController : API_4_Default_Controller<_ProjectzL
     try
     {
       var result = _mapper.Map<ProjectzLookupBase>(data);
-      await _repo.Insert(result);
+      await _repo.Add(result);
       // await _repo.GetDBSet().AddAsync(result);
       await _uowInfra.Save();
       return result.ToExtVMSingle().Ok();

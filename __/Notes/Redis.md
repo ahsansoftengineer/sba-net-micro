@@ -1,7 +1,7 @@
 ### REDIS DOCS
 - Option_App.json
 - Filter Sets for Following Actions
-- - Get, Gets, Create, Delete, Update, Status,   
+- - Get, Gets, Add, Delete, Update, Status,   
 ```json
 {
   "ASPNETCORE_ROUTE_PREFIX": "api/Auth/v1",

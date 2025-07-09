@@ -16,7 +16,7 @@ public partial class __HttpController : API_1_InjectorController<__HttpControlle
   }
  
   // [HttpPost]
-  // public async Task<IActionResult> Create([FromBody] RegisterDto model)
+  // public async Task<IActionResult> Add([FromBody] RegisterDto model)
   // {
   // }
   // [HttpPut("{Id}")]
