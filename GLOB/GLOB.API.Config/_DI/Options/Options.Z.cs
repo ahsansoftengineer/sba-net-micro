@@ -1,12 +1,12 @@
 namespace GLOB.API.Config.Optionz;
 
-public class Logging
+public class Option_Logging
 {
     public static string SectionName = "Logging";
-    public LogLevel? LogLevel { get; set; }
+    public Option_LogLevel? LogLevel { get; set; }
 }
 
-public class LogLevel
+public class Option_LogLevel
 {
     public static string SectionName = "LogLevel";
     public string? Default { get; set; }
