@@ -1,8 +1,8 @@
 namespace GLOB.Infra.Data.Auth;
 
-public class IdentitySettings
+public class Option_Identity
 {
-  public static string SectionName = "IdentitySettings";
+  public static string SectionName = "Identity";
   public bool RequireUniqueEmail { get; set; }
   public PasswordSettings Password { get; set; }
   public LockoutSettings Lockout { get; set; }
