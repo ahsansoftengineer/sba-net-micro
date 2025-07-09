@@ -11,9 +11,9 @@ public class Option_App
   public string? DOTNET_ENVIRONMENT { get; set; }
   public string? ASPNETCORE_PROJECTZ_NAME { get; set; }
   public string? ASPNETCORE_ROUTE_PREFIX { get; set; }
-  public JwtSettings? JwtSettings { get; set; }
+  public Option_JwtSettings? Option_JwtSettings { get; set; }
 
   public ConnectionStrings? ConnectionStrings { get; set; }
 
-  public Option_Clientz Clientz { get; set; }
+  public Option_Clients Clients { get; set; }
 }

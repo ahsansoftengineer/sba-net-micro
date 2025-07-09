@@ -7,9 +7,9 @@ public static partial class DI_Projectz
   public static void Add_Projectz_Config_Options(this IServiceCollection srvc, IConfiguration config)
   {
     srvc.Add_API_Config_Options(config);
-    srvc.Configure<JwtSettings>(config.GetSection(JwtSettings.SectionName));
+    srvc.Configure<Option_JwtSettings>(config.GetSection(Option_JwtSettings.SectionName));
     srvc.Configure<EmailSettings>(config.GetSection(EmailSettings.SectionName));
     srvc.Configure<IdentitySettings>(config.GetSection(IdentitySettings.SectionName));
-    srvc.Configure<SocialAccounts>(config.GetSection(SocialAccounts.SectionName));
+    srvc.Configure<Option_SocialAccounts>(config.GetSection(Option_SocialAccounts.SectionName));
   }
 }

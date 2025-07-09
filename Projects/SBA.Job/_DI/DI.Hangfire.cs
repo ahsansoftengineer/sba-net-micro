@@ -39,7 +39,7 @@ public static partial class DI_Projectz
     IConfiguration config = app.GetSrvc<IConfiguration>();
     string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX");
     string title = config.GetValueStr("Hangfire__Title");
-    var users = config.GetSection<IOptions<HangfireCustomBasicAuthenticationFilter>>("Hangfire__Users");
+    var users = config.GetValue<List<HangfireCustomBasicAuthenticationFilter>>("Hangfire__Users");
 
     app.UseHangfireDashboard($"/{prefix}/hangfire", new()
     {

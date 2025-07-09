@@ -2,7 +2,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
 namespace GLOB.API.Config.Optionz;
-public class JwtSettings
+public class Option_JwtSettings
 {
 
   public static string? SectionName = "JwtSettings";

@@ -11,16 +11,16 @@ namespace SBA.Auth.Services;
 public class TokenService
 {
   private readonly UserManager<InfraUser> _userManager;
-  protected readonly JwtSettings _jwt;
+  protected readonly Option_JwtSettings _jwt;
 
   private readonly DBCtxProjectz _context;
 
   public TokenService(
-    IOptions<JwtSettings> jwtSettings,
+    IOptions<Option_JwtSettings> Option_JwtSettings,
     UserManager<InfraUser> userManager,
     DBCtxProjectz context)
   {
-    _jwt = jwtSettings.Value;
+    _jwt = Option_JwtSettings.Value;
     _userManager = userManager;
     _context = context;
   }
@@ -42,11 +42,11 @@ public class TokenService
       authClaims.Add(new Claim(ClaimTypes.Role, role));
     }
     // Create identity and principal
-    var identity = new ClaimsIdentity(authClaims, JwtSettings.Scheme);
+    var identity = new ClaimsIdentity(authClaims, Option_JwtSettings.Scheme);
     var principal = new ClaimsPrincipal(identity);
 
     // Sign in using cookie
-    await httpContext.SignInAsync(JwtSettings.Scheme, principal);
+    await httpContext.SignInAsync(Option_JwtSettings.Scheme, principal);
     return new
     {
 

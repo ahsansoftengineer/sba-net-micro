@@ -15,7 +15,7 @@ public static partial class DI_API_Config
       // Enable Both (JWT and Cookie) 
       options.AddPolicy("JwtOrCookie", policy =>
       {
-        policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme, "Bearer", JwtSettings.Scheme);
+        policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme, "Bearer", Option_JwtSettings.Scheme);
         policy.RequireAuthenticatedUser();
       });
     });

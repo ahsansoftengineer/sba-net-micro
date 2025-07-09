@@ -12,7 +12,7 @@ dotnet watch run --launch-profile http --project ./Projects/SBA.Orderz/        #
 #### USER SECRETS
 ```bash 
 dotnet user-secrets init --project ./SBA.Api/
-dotnet user-secrets set --project ./SBA.Api/ "JwtSettings:Secret" "super-secret-key-from-user-secrets"
+dotnet user-secrets set --project ./SBA.Api/ "Option_JwtSettings:Secret" "super-secret-key-from-user-secrets"
 dotnet user-secrets list --project ./SBA.Api/
 ```
 

@@ -11,7 +11,7 @@ public partial class __HttpController : API_1_InjectorController<__HttpControlle
   public __HttpController(IServiceProvider sp) : base(sp)
   {
     // string  gatewayUrl = _config.GetValueStr("URLzGateway"); 
-    // ClientHttpAuth = new API_Client_Http(_Option_App.SrvcHttp.Auth, PrefixHttp.Auth, Controllerz.ProjectzLookup);
+    // ClientHttpAuth = new API_Client_Http(_Option_App.Option_Http.Auth, PrefixHttp.Auth, Controllerz.ProjectzLookup);
     ClientHttpAuth = sp.GetSrvc<UOW_API_Httpz>().ClientHttpAuth;
   }
  
