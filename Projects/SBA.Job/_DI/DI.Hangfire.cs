@@ -36,27 +36,23 @@ public static partial class DI_Projectz
   }
   public static void Use_Hangfire(this IApplicationBuilder app)
   {
-    IConfiguration config = app.GetSrvc<IConfiguration>();
-    string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX");
-    string title = config.GetValueStr("Hangfire__Title");
-    var users = config.GetValue<List<HangfireCustomBasicAuthenticationFilter>>("Hangfire__Users");
+    var option = app.GetSrvc<IOptions<Option_App>>().Value;
 
-    app.UseHangfireDashboard($"/{prefix}/hangfire", new()
+    var result = option.Hangfire.Users.Select(x => new HangfireCustomBasicAuthenticationFilter()
     {
-      DashboardTitle = $"Hangfire {title}",
-      Authorization = new[] {
-        new HangfireCustomBasicAuthenticationFilter()
-        {
-          User = "guest",
-          Pass = "guest"
-        }
-      }
-      
+      User = x.User,
+      Pass = x.Pass
     });
+    app.UseHangfireDashboard($"/{option.ASPNETCORE_ROUTE_PREFIX}/hangfire", new()
+    {
+      DashboardTitle = $"Hangfire {option.Hangfire.Title}",
+      Authorization = result
+    });
+    
     app.UseEndpoints(endpoints =>
     {
       // http://localhost:1102/api/Job/v1/hangfire
-      endpoints.MapHangfireDashboard($"/{prefix}/hangfire"); // Optionally specify path
+      endpoints.MapHangfireDashboard($"/{option.ASPNETCORE_ROUTE_PREFIX}/hangfire"); // Optionally specify path
     });
 
     app.Call_Hangfire_Recuring_Jobs();
