@@ -22,14 +22,14 @@ public class CityController : Project_RDS_Controller<CityController, City>
   }
 
   [HttpPost]
-  public async Task<IActionResult> Create([FromBody] CityDtoCreate data)
+  public async Task<IActionResult> Add([FromBody] CityDtoCreate data)
   {
    
     bool hasParent = _uowProjectz.States.AnyId(data.StateId);
     if(!hasParent) return _Res.BadRequestzId("StateId",data.StateId);
 
     var result = _mapper.Map<City>(data);
-    var entity = await _repo.Insert(result);
+    var entity = await _repo.Add(result);
     await _uowInfra.Save();
     return _Res.CreatedAtAction(this, nameof(Get), entity);
    

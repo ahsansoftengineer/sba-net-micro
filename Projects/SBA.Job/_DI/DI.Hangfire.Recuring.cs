@@ -10,21 +10,46 @@ public static partial class DI_Projectz
     // 0 * * ? * * -> Every Minutes
     // RecurringJob.AddOrUpdate<SrvcInfo>(opt => opt.SendEmail(), "0 * * ? * *");
 
+    SendEmail(new { });
+    SendSMS(new { });
+    SendNotification(new { });
+
+  }
+  // Send Email Every Minute
+  public static void SendEmail(object data)
+  {
     RecurringJob.AddOrUpdate<SrvcInfo>(
       recurringJobId: "job-notify-send-email",
-      methodCall: x => x.SendEmail(),
-      cronExpression: "0 * * ? * *", // every hour
+      methodCall: x => x.SendEmail(data),
+      cronExpression:  Cron.Minutely, //"* * * ? * *",
       queue: "queue-short-time",
       options: new RecurringJobOptions
       {
         TimeZone = TimeZoneInfo.Local,
       }
     );
+  }
 
-    RecurringJob.AddOrUpdate<SrvcProjectzLookup>(
-      recurringJobId: "job-notify-send-email",
-      methodCall: x => x.BulkCreate(),
-      cronExpression: "0 * * ? * *", // every hour
+  public static void SendNotification(object data)
+  {
+    RecurringJob.AddOrUpdate<SrvcInfo>(
+      recurringJobId: "job-notify-send-notification",
+      methodCall: x => x.SendNotification(data),
+      cronExpression: Cron.Hourly, //"*/30 * * ? * *", // Every 30 Minutes
+      queue: "queue-long-time",
+      options: new RecurringJobOptions
+      {
+        TimeZone = TimeZoneInfo.Local,
+      }
+    );
+  }
+
+  public static void SendSMS(object data)
+  {
+    RecurringJob.AddOrUpdate<SrvcInfo>(
+      recurringJobId: "job-notify-send-sms",
+      methodCall: x => x.SendSMS(data),
+      cronExpression: Cron.Daily, // "0 * * ? * *",
       queue: "queue-long-time",
       options: new RecurringJobOptions
       {

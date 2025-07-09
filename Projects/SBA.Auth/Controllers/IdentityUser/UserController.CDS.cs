@@ -15,7 +15,7 @@ public partial class UserController : AccountBaseController<UserController>
   }
  
   [HttpPost]
-  public async Task<IActionResult> Create([FromBody] RegisterDto model)
+  public async Task<IActionResult> Add([FromBody] RegisterDto model)
   {
     InfraUser user = MapUser(model);
     var result = await _userManager.CreateAsync(user, model.Password);

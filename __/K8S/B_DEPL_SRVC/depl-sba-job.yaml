@@ -1,45 +1,45 @@
-################~~~~ SBA HIERARCHY ~~~~~##################
+################~~~~ SBA JOB ~~~~~##################
 # - Deployment
 # - ClusterIP
 # - Node Port
 
-## BASH BUILD Dockerfile srvc-sba-hierarchy
+## BASH BUILD Dockerfile srvc-sba-job
 ## -t tagname, -f file/reference, ./buildContext  
-# docker build -t mansanhhub/srvc-sba-hierarchy -f Projects/SBA.Hierarchy/Dockerfile .
-# docker push mansanhhub/srvc-sba-hierarchy
-# docker pull mansanhhub/srvc-sba-hierarchy
+# docker build -t mansanhhub/srvc-sba-job -f Projects/SBA.Job/Dockerfile .
+# docker push mansanhhub/srvc-sba-job
+# docker pull mansanhhub/srvc-sba-job
 
 #------------------------------------------------------------------------- 
-## BASH RUN Deployment srvc-sba-hierarchy
-# kubectl apply -f ./__/K8S/B_DEPL_SRVC/depl-sba-hierarchy.yaml
+## BASH RUN Deployment srvc-sba-job
+# kubectl apply -f ./__/K8S/B_DEPL_SRVC/depl-sba-job.yaml
 # kubectl get pods
 # kubectl get deployments
-# kubectl logs -l app=srvc-sba-hierarchy
-# kubectl rollout restart deployments depl-sba-hierarchy
+# kubectl logs -l app=srvc-sba-job
+# kubectl rollout restart deployments depl-sba-job
 
 ## BASH DELETE (Deployments & Service)8
-# kubectl delete -f ./__/K8S/B_DEPL_SRVC/depl-sba-hierarchy.yaml
-# kubectl delete deployments depl-sba-hierarchy
-# kubectl delete services srvc-cip-sba-hierarchy
+# kubectl delete -f ./__/K8S/B_DEPL_SRVC/depl-sba-job.yaml
+# kubectl delete deployments depl-sba-job
+# kubectl delete services srvc-cip-sba-job
 #------------------------------------------------------------------------- 
-#### (1) API Deployment (Hierarchy) 
+#### (1) API Deployment (Job) 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: depl-sba-hierarchy
+  name: depl-sba-job
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: srvc-sba-hierarchy
+      app: srvc-sba-job
   template:
     metadata:
       labels:
-        app: srvc-sba-hierarchy
+        app: srvc-sba-job
     spec:
       containers:
-        - name: srvc-sba-hierarchy
-          image: mansanhhub/srvc-sba-hierarchy
+        - name: srvc-sba-job
+          image: mansanhhub/srvc-sba-job
           ports:
             - containerPort: 1106
           env:
@@ -50,8 +50,8 @@ spec:
             - name: ConnectionStrings__Redis
               value: "srvc-cip-redis-sba-dev:6379,password=P@55w0rd!123"
             - name: ConnectionStrings__SqlConnection
-              value: "Server=srvc-cip-mssql-sba-dev.default.svc.cluster.local,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
-              # value: "Server=srvc-cip-mssql-sba-hierarchy,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+              value: "Server=srvc-cip-mssql-sba-dev.default.svc.cluster.local,1433;Initial Catalog=SBA_Job;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+              # value: "Server=srvc-cip-mssql-sba-job,1433;Initial Catalog=SBA_Job;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
 
             - name: Clientz__RabbitMQz__HostName
               value: srvc-cip-rbmq-sba
@@ -65,23 +65,24 @@ spec:
 
 ---
 #------------------------------------------------------------------------- 
-#### (2) API Cluster IP (Hierarchy)
+#### (2) API Cluster IP (Job)
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
-# kubectl port-forward svc/srvc-cip-sba-hierarchy 1106:1106
-# http://srvc-cip-sba-hierarchy:1106/api/hierarchy/v1/swagger/index.html
-# http://srvc-cip-sba-hierarchy:1106/api/hierarchy/v1/_projectz-lookup/gets-lookup
+# kubectl port-forward svc/srvc-cip-sba-job 1106:1106
+# http://srvc-cip-sba-job:1106/api/job/v1/swagger/index.html
+# http://srvc-cip-sba-job:1106/api/job/v1/_projectz-lookup/gets-lookup
+# http://srvc-cip-sba-job:1106/api/job/v1/hangfire
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: srvc-cip-sba-hierarchy
+  name: srvc-cip-sba-job
 spec:
   type: ClusterIP
   selector:
-    app: srvc-sba-hierarchy
+    app: srvc-sba-job
   ports:
-  - name: srvc-sba-hierarchy
+  - name: srvc-sba-job
     protocol: TCP
     port: 1106
     targetPort: 1106
@@ -89,24 +90,25 @@ spec:
 
 ---
 #-------------------------------------------------------------------------
-#### (3) API Node Port (Hierarchy)
+#### (3) API Node Port (Job)
 # - We need NodePort for External Service Access
 # - No Production Required
 apiVersion: v1
 kind: Service
 metadata:
-  name: srvc-np-sba-hierarchy
+  name: srvc-np-sba-job
 spec:
   type: NodePort
   selector:
-    app: srvc-sba-hierarchy
+    app: srvc-sba-job
   ports:
-    - name: srvc-sba-hierarchy
+    - name: srvc-sba-job
       protocol: TCP
       port: 1106 # Node Port
       targetPort: 1106 # Pod's App port
       nodePort: 31106 # 30000-32767 (Host Port)
 
 ## ROUTES (K8S Node Port)
-# - http://localhost:31106/api/Hierarchy/v1/swagger/index.html
-# - http://localhost:31106/api/hierarchy/v1/_projectz-lookup/gets-lookup
+# - http://localhost:31106/api/Job/v1/swagger/index.html
+# - http://localhost:31106/api/job/v1/_projectz-lookup/gets-lookup
+# - http://localhost:31106/api/job/v1/hangfire

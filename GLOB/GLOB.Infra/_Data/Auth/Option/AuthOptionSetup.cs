@@ -4,9 +4,9 @@ using Microsoft.Extensions.Options;
 namespace GLOB.Infra.Data.Auth;
 public class AuthOptionSetup : IConfigureOptions<IdentityOptions>
 {
-    private readonly IdentitySettings _settings;
+    private readonly Option_Identity _settings;
 
-    public AuthOptionSetup(IOptions<IdentitySettings> identitySettings)
+    public AuthOptionSetup(IOptions<Option_Identity> identitySettings)
     {
         _settings = identitySettings.Value;
     }

@@ -47,14 +47,14 @@ public partial class RepoGenericz<T, TKey> : IRepoGenericz<T, TKey>
   {
     _db.RemoveRange(entities);
   }
-  public async Task<T> Insert(T entity)
+  public async Task<T> Add(T entity)
   {
     var result = await _db.AddAsync(entity);
     return result.Entity;
     //await _context.SaveChangesAsync();
   }
 
-  public async Task InsertRange(IEnumerable<T> entities)
+  public async Task AddRange(IEnumerable<T> entities)
   {
     await _db.AddRangeAsync(entities);
   }

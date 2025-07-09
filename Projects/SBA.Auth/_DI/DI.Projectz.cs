@@ -9,7 +9,7 @@ public static partial class DI_Projectz
 {
   public static void Add_Projectz_Srvc(this IServiceCollection srvc, IConfiguration config)
   {
-    srvc.Add_Projectz_Config_Options(config);
+    srvc.Add_Projectz_Options(config);
 
     //srvc.Add_API_Config_Localization(config);
     srvc.Add_API_Controller_Srvc_Extend(config);

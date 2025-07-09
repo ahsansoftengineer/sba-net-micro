@@ -1,7 +1,7 @@
 ### Common Actions
 
 ### CUDS
-- Create
+- Add
 - Update
 - Delete
 - Status

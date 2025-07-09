@@ -22,12 +22,12 @@ public interface IRepoGenericz<T, TKey>
     Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
     List<string>? Include = null);
   
-  Task<T> Insert(T entity);
+  Task<T> Add(T entity);
   Task Delete(TKey Id);
   T Update(T entity);
   void UpdateStatus(T entity, Status status);
 
-  Task InsertRange(IEnumerable<T> entities);
+  Task AddRange(IEnumerable<T> entities);
   void DeleteRange(IEnumerable<T> entities);
 
   Task<VMPaginate<T>> GetsPaginate<TDtoSearch>(DtoRequestPage<TDtoSearch?> dto)

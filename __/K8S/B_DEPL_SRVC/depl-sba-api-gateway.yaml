@@ -11,14 +11,14 @@
 
 #------------------------------------------------------------------------- 
 ## BASH RUN Deployment srvc-sba-api-gateway
-# kubectl apply -f ./__K8S/B_DEPL_SRVC/depl-sba-api-gateway.yaml
+# kubectl apply -f ./__/K8S/B_DEPL_SRVC/depl-sba-api-gateway.yaml
 # kubectl get pods
 # kubectl get deployments
 # kubectl logs -l app=srvc-sba-api-gateway
 # kubectl rollout restart deployments depl-sba-api-gateway
 
 ## BASH DELETE (Deployments & Service)8
-# kubectl delete -f ./__K8S/B_DEPL_SRVC/depl-sba-api-gateway.yaml
+# kubectl delete -f ./__/K8S/B_DEPL_SRVC/depl-sba-api-gateway.yaml
 # kubectl delete deployments depl-sba-api-gateway
 # kubectl delete services srvc-cip-sba-api-gateway
 #------------------------------------------------------------------------- 
@@ -56,7 +56,7 @@ spec:
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
 # kubectl port-forward svc/srvc-cip-sba-api-gateway 1100:1100
-# http://localhost:1100/api/Hierarchy/v1/swagger/index.html
+# http://localhost:1100/api/Gateway/v1/swagger/index.html
 # http://localhost:1100/api/Hierarchy/v1/_projectz-lookup/gets-lookup
 
 apiVersion: v1

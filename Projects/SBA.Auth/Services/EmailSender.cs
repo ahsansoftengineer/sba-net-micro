@@ -9,9 +9,9 @@ namespace SBA.Auth.Services;
 
 public class SmtpEmailSender : IEmailSender
 {
-    private readonly EmailSettings _email;
+    private readonly Option_EmailSettings _email;
 
-    public SmtpEmailSender(IOptions<EmailSettings> emailSettings)
+    public SmtpEmailSender(IOptions<Option_EmailSettings> emailSettings)
     {
         _email = emailSettings.Value;
     }
@@ -31,7 +31,7 @@ public class SmtpEmailSender : IEmailSender
         await smtp.DisconnectAsync(true);
     }
 }
-public class EmailSettings
+public class Option_EmailSettings
 {
     public static string SectionName = "EmailSettings";
     public string From { get; set; }

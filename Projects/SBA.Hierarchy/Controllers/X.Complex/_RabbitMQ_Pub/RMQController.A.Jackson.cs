@@ -6,7 +6,7 @@ using GLOB.Infra.Utils.Paginate.Extz;
 using GLOB.Infra.Utils.Attributez;
 namespace SBA.Auth.Controllers;
 
-public partial class __RabbitMQController : API_1_ErrorController<__RabbitMQController>
+public partial class __RabbitMQController : API_1_InjectorController<__RabbitMQController>
 {
   private readonly MsgBusPub RabbitMQ_Name;
   private readonly API_RabbitMQ_Base_Pubs _rmqPubs;
@@ -19,7 +19,7 @@ public partial class __RabbitMQController : API_1_ErrorController<__RabbitMQCont
   }
 
   [HttpPost] [NoCache]
-  public async Task<IActionResult> Create([FromBody] ProjectzLookupDtoCreate model)
+  public async Task<IActionResult> Add([FromBody] ProjectzLookupDtoCreate model)
   {
     try
     {
@@ -30,7 +30,7 @@ public partial class __RabbitMQController : API_1_ErrorController<__RabbitMQCont
         model.Desc,
         model.ProjectzLookupBaseId,
         Status.Active,
-        Event = $"ProjectzLookup_{EP.Create}"
+        Event = $"ProjectzLookup_{EP.Add}"
       };
       RabbitMQ_Name.Publish(data);
       return data.ToExtVMSingle().Ok();

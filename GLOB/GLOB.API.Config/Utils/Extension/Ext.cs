@@ -2,22 +2,26 @@ namespace GLOB.API.Config.Extz;
 
 public static partial class Extz
 {
-  public static TService GetSrvc<TService>(this IServiceProvider sp)
-    where TService: class
+  public static T GetSrvc<T>(this IServiceProvider sp)
+    where T: class
   {
     try
     {
-      return sp.GetRequiredService<TService>();
+      return sp.GetRequiredService<T>();
     } 
     catch(Exception ex) 
     {
       Console.WriteLine($"------------------------****-*-****------------------------");
-      Console.WriteLine($"Please Regiseter Service in DI {typeof(TService).Name}");
+      Console.WriteLine($"Please Regiseter Service in DI {typeof(T).Name}");
       Console.WriteLine(ex.Message);
       return null;
     }
   }
-  
+  public static T GetSrvc<T>(this IApplicationBuilder app)
+    where T : notnull
+  {
+    return app.ApplicationServices.GetRequiredService<T>();
+  }
   public static string GetWebUrl(this IConfiguration configuration)
   {
     string hostName = configuration.GetValueStr("ASPNETCORE_URLS");
@@ -45,10 +49,5 @@ public static partial class Extz
     int value = 0;
     int.TryParse(result, out value);
     return value;
-  }
-  public static T GetSrvc<T>(this IApplicationBuilder app)
-    where T : notnull
-  {
-    return app.ApplicationServices.GetRequiredService<T>();
   }
 }

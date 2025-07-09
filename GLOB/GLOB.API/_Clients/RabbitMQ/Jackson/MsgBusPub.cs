@@ -11,7 +11,7 @@ public class MsgBusPub : IDisposable
   protected IModel _channel;
   public MsgBusPub(IServiceProvider sp)
   {
-    _option_RabbitMQ = sp.GetSrvc<IOptions<Option_App>>().Value.Clientz.RabbitMQz;
+    _option_RabbitMQ = sp.GetSrvc<IOptions<Option_App>>().Value.Clients.RabbitMQz;
     Init();
   }
   public void Publish(object data)

@@ -20,7 +20,7 @@ public class MsgBusSubs : BackgroundService
   {
     _config = sp.GetSrvc<IConfiguration>();
     _scopeFactory = sp.GetSrvc<IServiceScopeFactory>();
-    _option_RabbitMQ = sp.GetSrvc<IOptions<Option_App>>().Value.Clientz.RabbitMQz;
+    _option_RabbitMQ = sp.GetSrvc<IOptions<Option_App>>().Value.Clients.RabbitMQz;
     InitRabbitMQ();
   }
 
@@ -82,7 +82,7 @@ public class MsgBusSubs : BackgroundService
 
       if (uow.ProjectzLookupBases.AnyId(model?.ProjectzLookupBaseId ?? 0))
       {
-        await uow.ProjectzLookups.Insert(model);
+        await uow.ProjectzLookups.Add(model);
         await uow.Save();
         Console.WriteLine("ProjectzLookup Created Successfully");
       }

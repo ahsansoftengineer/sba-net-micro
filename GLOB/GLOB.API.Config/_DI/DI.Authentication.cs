@@ -9,8 +9,8 @@ public static partial class DI_API_Config
   {
     IHostEnvironment env = srvc.BuildServiceProvider().GetRequiredService<IHostEnvironment>();
 
-    var jwt = new JwtSettings();
-    config.GetSection(JwtSettings.SectionName).Bind(jwt);
+    var jwt = new Option_JwtSettings();
+    config.GetSection(Option_JwtSettings.SectionName).Bind(jwt);
 
     return srvc.AddAuthentication(options =>
     {
@@ -57,7 +57,7 @@ public static partial class DI_API_Config
         }
       };
     })
-    .AddCookie(JwtSettings.Scheme, options =>
+    .AddCookie(Option_JwtSettings.Scheme, options =>
     {
       options.LoginPath = jwt.LoginPath; // Specify your login path if required
       options.Cookie.Name = jwt.CookieName;

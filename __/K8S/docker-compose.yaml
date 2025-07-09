@@ -1,7 +1,7 @@
 ## Docker Compose CLI
 # -p project-5
-# docker-compose -f __K8S/docker-compose.yaml up -d --build
-# docker-compose -f __K8S/docker-compose.yaml down
+# docker-compose -f ./__/K8S/docker-compose.yaml up -d --build
+# docker-compose -f ./__/K8S/docker-compose.yaml down
 # docker exec -it id sh
 # printenv DOTNET_ENVIRONMENT
 

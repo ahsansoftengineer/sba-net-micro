@@ -12,7 +12,7 @@ public partial class DBCtx
   {
     mb.Entity<ProjectzLookup>()
       .HasOne(p => p.ProjectzLookupBase)
-      .WithMany(b => b.ProjectzLookup) // assumes navigation collection exists
+      .WithMany(b => b.ProjectzLookups) // assumes navigation collection exists
       .HasForeignKey(p => p.ProjectzLookupBaseId)
       .OnDelete(DeleteBehavior.Cascade);
   }

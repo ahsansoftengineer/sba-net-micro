@@ -1,18 +1,18 @@
 namespace GLOB.API.Config.Optionz;
 
-public class SocialAccounts
+public class Option_SocialAccounts
 {
   public static string SectionName = "SocialAccounts";
-  public SocialAccount Google { get; set; }
-  public SocialAccount Microsoft { get; set; }
-  public SocialAccount Facebook { get; set; }
-  public SocialAccount Github { get; set; }
-  public SocialAccount LinkedIn { get; set; }
-  public SocialAccount Twitter { get; set; }
-  public SocialAccount Apple { get; set; }
+  public Option_SocialAccount Google { get; set; }
+  public Option_SocialAccount Microsoft { get; set; }
+  public Option_SocialAccount Facebook { get; set; }
+  public Option_SocialAccount Github { get; set; }
+  public Option_SocialAccount LinkedIn { get; set; }
+  public Option_SocialAccount Twitter { get; set; }
+  public Option_SocialAccount Apple { get; set; }
 
 }
-public class SocialAccount
+public class Option_SocialAccount
 {
   public string Scheme { get; set; } // Google, Microsoft, Facebook, Apple
   public string ClientId { get; set; }

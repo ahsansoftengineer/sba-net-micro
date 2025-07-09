@@ -5,8 +5,8 @@
 # docker rm -f srvc-sba-api-gateway
 # docker exec -it <container_id> /bin/bash
 
-# http://localhost:1100/api/hierarchy/v1/swagger/index.html
-# http://localhost:1100/api/hierarchy/v1/_projectz-lookup/gets-lookup
+# http://localhost:1100/api/gateway/v1/swagger/index.html
+# http://localhost:1100/api/gateway/v1/_projectz-lookup/gets-lookup
 
 # ===========================================================
 

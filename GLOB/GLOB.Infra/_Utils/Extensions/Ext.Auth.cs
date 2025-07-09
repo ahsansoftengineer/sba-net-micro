@@ -8,7 +8,7 @@
 // namespace GLOB.Infra.Utils.Extz;
 // public static partial class Ext
 // {
-//   public static string GenerateJwtToken(InfraUser user, JwtSettings opt)
+//   public static string GenerateJwtToken(InfraUser user, Option_JwtSettings opt)
 //   {
 //     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(opt.SecretKey));
 //     var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

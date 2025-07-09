@@ -6,7 +6,7 @@
 
 // namespace SBA.Auth.Controllers;
 
-// public partial class _RabbitMQController : API_1_ErrorController<_RabbitMQController>
+// public partial class _RabbitMQController : API_1_InjectorController<_RabbitMQController>
 // {
 //   [HttpPost]
 //   public async Task<IActionResult> Gets()

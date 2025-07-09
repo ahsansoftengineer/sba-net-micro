@@ -5,20 +5,20 @@
 
 ## BASH BUILD Dockerfile
 ## -t tagname, -f file/reference, ./buildContext  
-# docker build -t mansanhhub/srvc-sba-auth -f SBA.Auth/Dockerfile .
+# docker build -t mansanhhub/srvc-sba-auth -f Projects/SBA.Auth/Dockerfile .
 # docker push mansanhhub/srvc-sba-auth
 # docker pull mansanhhub/srvc-sba-auth
 
 #------------------------------------------------------------------------- 
 ## BASH RUN Deployment srvc-sba-auth
-# kubectl apply -f ./__K8S/B_DEPL_SRVC/depl-sba-auth.yaml
+# kubectl apply -f ./__/K8S/B_DEPL_SRVC/depl-sba-auth.yaml
 # kubectl get pods
 # kubectl get deployments
 # kubectl logs -l app=srvc-sba-auth
 # kubectl rollout restart deployments depl-sba-auth
 
 ## BASH DELETE (Deployments & Service)8
-# kubectl delete -f ./__K8S/B_DEPL_SRVC/depl-sba-auth.yaml
+# kubectl delete -f ./__/K8S/B_DEPL_SRVC/depl-sba-auth.yaml
 # kubectl delete deployments depl-sba-auth
 # kubectl delete services srvc-cip-sba-auth
 #------------------------------------------------------------------------- 
@@ -64,7 +64,7 @@ spec:
 # kubectl port-forward svc/srvc-cip-sba-auth 1104:1104
 # http://srvc-cip-sba-auth:1104/api/Auth/v1/swagger/index.html
 # http://srvc-cip-sba-auth:1104/api/Auth/v1/_projectz-lookup/gets-lookup
-
+---
 apiVersion: v1
 kind: Service
 metadata:

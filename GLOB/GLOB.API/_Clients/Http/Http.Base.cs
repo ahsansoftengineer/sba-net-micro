@@ -108,6 +108,7 @@ public class API_HttpBase
         
       }
       catch(Exception ex){
+        Console.WriteLine(ex.Message);
         var content = await response.Content.ReadAsStringAsync();
         throw new HttpRequestException($"Status: {response.StatusCode}, Content: {content}");
       }

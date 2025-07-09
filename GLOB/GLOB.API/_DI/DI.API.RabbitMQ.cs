@@ -10,7 +10,7 @@ public static partial class DI_API
   {
     srvc.AddSingleton<ConnectionFactory>(sp =>
     {
-      var option = sp.GetSrvc<IOptions<Option_App>>().Value.Clientz.RabbitMQz;
+      var option = sp.GetSrvc<IOptions<Option_App>>().Value.Clients.RabbitMQz;
       var factory = new ConnectionFactory
       {
         HostName = option.HostName,

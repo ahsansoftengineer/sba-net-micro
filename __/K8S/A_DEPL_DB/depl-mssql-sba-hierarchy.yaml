@@ -8,8 +8,8 @@
 
 #### Run Command
 ## BASH
-# kubectl apply -f ./__K8S/A_DEPL_DB/depl-mssql-sba-hierarchy.yaml
-# kubectl delete -f ./__K8S/A_DEPL_DB/depl-mssql-sba-hierarchy.yaml
+# kubectl apply -f ./__/K8S/A_DEPL_DB/depl-mssql-sba-hierarchy.yaml
+# kubectl delete -f ./__/K8S/A_DEPL_DB/depl-mssql-sba-hierarchy.yaml
 
 #### (1) DB Password Secret (SQL) (Optional)
 # - Becareful with Password Complexity

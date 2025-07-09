@@ -2,6 +2,7 @@ using GLOB.API.Staticz;
 using GLOB.Infra.Utils.Paginate.Extz;
 using Microsoft.AspNetCore.Mvc;
 namespace SBA.Projectz.Controllers;
+
 public class _ProjectzLookupController : API_2_RDS_Controller<_ProjectzLookupController, ProjectzLookup>
 {
   public _ProjectzLookupController(IServiceProvider srvcProvider) : base(srvcProvider)
@@ -22,7 +23,7 @@ public class _ProjectzLookupController : API_2_RDS_Controller<_ProjectzLookupCon
   }
 
   [HttpPost]
-  public async Task<IActionResult> Create([FromBody] ProjectzLookupDtoCreate data)
+  public async Task<IActionResult> Add([FromBody] ProjectzLookupDtoCreate data)
   {
     try
     {
@@ -30,13 +31,13 @@ public class _ProjectzLookupController : API_2_RDS_Controller<_ProjectzLookupCon
       if (!hasParent) return _Res.BadRequestzId("ProjectzLookupBaseId", data.ProjectzLookupBaseId);
 
       var result = _mapper.Map<ProjectzLookup>(data);
-      var entity = await _repo.Insert(result);
+      var entity = await _repo.Add(result);
       await _uowInfra.Save();
       return _Res.CreatedAtAction(this, nameof(Get), entity);
     }
     catch (Exception ex)
     {
-      return _Res.CatchException(ex, nameof(Create));
+      return _Res.CatchException(ex, nameof(Add));
     }
   }
 

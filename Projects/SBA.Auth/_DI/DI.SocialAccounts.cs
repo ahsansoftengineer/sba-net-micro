@@ -10,8 +10,8 @@ public static partial class DI_Projectz
 {
   public static AuthenticationBuilder Config_Social_Auth(this AuthenticationBuilder srvc, IConfiguration config)
   {
-    var accounts = new SocialAccounts();
-    config.GetSection(SocialAccounts.SectionName).Bind(accounts);
+    var accounts = new Option_SocialAccounts();
+    config.GetSection(Option_SocialAccounts.SectionName).Bind(accounts);
 
     return srvc
       .Add_OAuthFromAccount(accounts.Google)
@@ -22,7 +22,7 @@ public static partial class DI_Projectz
       // .Add_OAuthFromAccount(accounts.Twitter)
       // .Add_OAuthFromAccount(accounts.Apple);
   }
-  private static AuthenticationBuilder Add_OAuthFromAccount(this AuthenticationBuilder builder, SocialAccount account)
+  private static AuthenticationBuilder Add_OAuthFromAccount(this AuthenticationBuilder builder, Option_SocialAccount account)
   {
     return builder.AddOAuth(account.Scheme, opt =>
     {

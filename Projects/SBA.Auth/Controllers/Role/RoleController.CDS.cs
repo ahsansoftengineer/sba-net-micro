@@ -23,7 +23,7 @@ public partial class RoleController : AccountBaseController<RoleController>
   }
 
   [HttpPost]
-  public async Task<IActionResult> Create([FromBody] DtoCreate role)
+  public async Task<IActionResult> Add([FromBody] DtoCreate role)
   {
     if (!ModelState.IsValid) return _Res.BadRequestModel(ModelState);
     if (string.IsNullOrWhiteSpace(role.Name))
