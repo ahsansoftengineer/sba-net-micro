@@ -42,18 +42,29 @@ public static partial class DI_Projectz
     {
       User = x.User,
       Pass = x.Pass
-    });
-    app.UseHangfireDashboard($"/{option.ASPNETCORE_ROUTE_PREFIX}/hangfire", new()
-    {
-      DashboardTitle = $"Hangfire {option.Hangfire.Title}",
-      Authorization = result
-    });
+    }).ToList();
     
-    app.UseEndpoints(endpoints =>
-    {
-      // http://localhost:1102/api/Job/v1/hangfire
-      endpoints.MapHangfireDashboard($"/{option.ASPNETCORE_ROUTE_PREFIX}/hangfire"); // Optionally specify path
-    });
+    app.UseHangfireDashboard($"/{option.ASPNETCORE_ROUTE_PREFIX}/hangfire"
+      ,new DashboardOptions()
+      {
+        DashboardTitle = $"Hangfire {option.Hangfire.Title}",
+        AppPath = $"swagger/index.html", // Not Required -> Back To Site
+        DarkModeEnabled = true,
+        // PrefixPath = $"{option.ASPNETCORE_ROUTE_PREFIX}",
+        DefaultRecordsPerPage = 50,
+        Authorization = result
+      }
+     );
+    
+    // app.UseEndpoints(endpoints =>
+    // {
+    //   // http://localhost:1102/api/Job/v1/hangfire
+    //   endpoints.MapHangfireDashboard(new DashboardOptions()
+    //   {
+    //     DashboardTitle = "Use EP Hangfire Title",
+    //     AppPath = $"/hangfire",
+    //   });
+    // });
 
     app.Call_Hangfire_Recuring_Jobs();
   }
