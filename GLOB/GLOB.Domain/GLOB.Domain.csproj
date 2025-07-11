@@ -9,11 +9,15 @@
     <NoWarn>CS0162;CS8604;CS1998;NETSDK1206</NoWarn>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\GLOB.Infra\GLOB.Infra.csproj" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(UseProjectReferences)' == ''">
+    <UseProjectReferences>false</UseProjectReferences>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(UseProjectReferences)' == 'true'">
+    <PackageReference Include="GLOB.Infra" Version="1.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <!-- <PackageReference Include="GLOB.Infra" Version="1.0.0" /> -->
+  <ItemGroup Condition="'$(UseProjectReferences)' == 'false'">
+    <ProjectReference Include="..\..\GLOB\GLOB.Infra\GLOB.Infra.csproj" />
   </ItemGroup>
 </Project>

@@ -7,14 +7,22 @@
     <LangVersion>preview</LangVersion>
     <NoWarn>CS0162;CS8604;CS1998;NETSDK1206</NoWarn>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(UseProjectReferences)' == ''">
+    <UseProjectReferences>false</UseProjectReferences>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(UseProjectReferences)' == 'true'">
+    <PackageReference Include="GLOB.API.Config" Version="1.0.0" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(UseProjectReferences)' == 'false'">
+    <ProjectReference Include="..\..\GLOB\GLOB.API.Config\GLOB.API.Config.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
-    <!-- <PackageReference Include="GLOB.API.Config" Version="1.0.0" /> -->
     <PackageReference Include="MMLib.SwaggerForOcelot" Version="8.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\GLOB\GLOB.API.Config\GLOB.API.Config.csproj" />
   </ItemGroup>
 
 </Project>
