@@ -6,7 +6,7 @@ sudo dpkg -i packages-microsoft-prod.deb
 
 # Update package list and install .NET SDK
 sudo apt-get update
-sudo apt-get install -y dotnet-sdk-8.0
+sudo apt-get install -y dotnet-sdk-9.0
 
 # Verify .NET installation
 dotnet --list-sdks
