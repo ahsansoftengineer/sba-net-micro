@@ -13,11 +13,13 @@
 
   <ItemGroup Condition="'$(UseProjectReferences)' == 'true'">
     <PackageReference Include="GLOB.API" Version="1.0.3" />
-    <PackageReference Include="GLOB.Domain" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(UseProjectReferences)' == 'false'">
     <ProjectReference Include="..\..\GLOB\GLOB.API\GLOB.API.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <ProjectReference Include="..\..\GLOB\GLOB.Domain\GLOB.Domain.csproj" />
   </ItemGroup>
   
