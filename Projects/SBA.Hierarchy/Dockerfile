@@ -10,7 +10,7 @@
 # http://localhost:1106/api/hierarchy/v1/_projectz-lookup/gets-lookup
 
 # Stage 1: Build
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build-env
 WORKDIR /app
 
 # Copy only .csproj files first (to enable Docker caching of restore)
@@ -37,7 +37,7 @@ WORKDIR /app/Projects/SBA.Hierarchy
 RUN dotnet publish -c Release -o /app/out
 
 # Stage 2: Runtime
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app/Projects/SBA.Hierarchy
 
 # Copy the published app from build stage
