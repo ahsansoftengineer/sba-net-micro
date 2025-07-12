@@ -13,20 +13,22 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
 
 # Copy only .csproj files first (to enable Docker caching of restore)
-COPY GLOB/GLOB.API.Config/*.csproj ./GLOB/GLOB.API.Config/
+# COPY GLOB/GLOB.API.Config/*.csproj ./GLOB/GLOB.API.Config/
+# COPY GLOB/GLOB.Infra/*.csproj ./GLOB/GLOB.Infra/
+# COPY GLOB/GLOB.API/*.csproj ./GLOB/GLOB.API/
+
 COPY GLOB/GLOB.Domain/*.csproj ./GLOB/GLOB.Domain/
-COPY GLOB/GLOB.Infra/*.csproj ./GLOB/GLOB.Infra/
-COPY GLOB/GLOB.API/*.csproj ./GLOB/GLOB.API/
 COPY Projects/SBA.Job/*.csproj ./Projects/SBA.Job/
 
 # Restore dependencies
 RUN dotnet restore ./Projects/SBA.Job/SBA.Job.csproj
 
 # Copy the rest of the source files
-COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/
+# COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/
+# COPY GLOB/GLOB.Infra/ ./GLOB/GLOB.Infra/
+# COPY GLOB/GLOB.API/ ./GLOB/GLOB.API/
+
 COPY GLOB/GLOB.Domain/ ./GLOB/GLOB.Domain/
-COPY GLOB/GLOB.Infra/ ./GLOB/GLOB.Infra/
-COPY GLOB/GLOB.API/ ./GLOB/GLOB.API/
 COPY Projects/SBA.Job/ ./Projects/SBA.Job/
 
 # Build and publish

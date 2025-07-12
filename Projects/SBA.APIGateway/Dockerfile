@@ -15,14 +15,14 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
 
 # Copy only .csproj files first (to enable Docker caching of restore)
-COPY GLOB/GLOB.API.Config/*.csproj ./GLOB/GLOB.API.Config/
+# COPY GLOB/GLOB.API.Config/*.csproj ./GLOB/GLOB.API.Config/
 COPY Projects/SBA.APIGateway/*.csproj ./Projects/SBA.APIGateway/
 
 # Restore dependencies
 RUN dotnet restore ./Projects/SBA.APIGateway/SBA.APIGateway.csproj
 
 # Copy the rest of the source files
-COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/
+# COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/
 COPY Projects/SBA.APIGateway/ ./Projects/SBA.APIGateway/
 
 # Build and publish
