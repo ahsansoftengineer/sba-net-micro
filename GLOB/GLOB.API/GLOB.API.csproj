@@ -11,23 +11,21 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
-  <!-- <PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(UseProjectReferences)' == ''">
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(UseProjectReferences)' == ''">
     <UseProjectReferences>false</UseProjectReferences>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(UseProjectReferences)' == 'true'">
-    <PackageReference Include="GLOB.API.Config" Version="1.0.0" />
-    <PackageReference Include="GLOB.Infra" Version="1.0.0" />
+    <PackageReference Include="GLOB.API.Config" Version="1.0.3" />
+    <PackageReference Include="GLOB.Infra" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(UseProjectReferences)' == 'false'">
     <ProjectReference Include="..\GLOB.API.Config\GLOB.API.Config.csproj" />
     <ProjectReference Include="..\GLOB.Infra\GLOB.Infra.csproj" />
-  </ItemGroup> -->
+  </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GLOB.API.Config\GLOB.API.Config.csproj" />
-    <ProjectReference Include="..\GLOB.Infra\GLOB.Infra.csproj" />
     <PackageReference Include="RabbitMQ.Client" Version="6.2.2" />
   </ItemGroup>
 </Project>
