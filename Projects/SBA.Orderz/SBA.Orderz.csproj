@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>preview</LangVersion>
-    <NoWarn>CS0162;CS8604;CS1998;NETSDK1206</NoWarn>
+    <!-- <NoWarn>CS0162;CS8604;CS1998;NETSDK1206</NoWarn> -->
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(UseProjectReferences)' == ''">
     <UseProjectReferences>false</UseProjectReferences>
@@ -22,7 +22,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

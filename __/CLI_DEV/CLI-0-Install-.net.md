@@ -31,7 +31,7 @@ echo $DOTNET_ROOT
 echo $PATH
 
 # Reinstall dotnet-ef tool
-dotnet tool uninstall --global dotnet-ef --version 8.0.7
+dotnet tool uninstall --global dotnet-ef --version 9.0.0
 dotnet tool install --global dotnet-ef
 
 # Verify dotnet-ef tool installation
