@@ -89,7 +89,7 @@ dotnet nuget enable source "Microsoft Visual Studio Offline Packages"
 ```
 ### Using Local Package Source
 ```bash
-dotnet add ./SBA.Auth/ package Microsoft.AspNetCore.Authentication.Google --version 8.0.7 --source "C:\Packages" # Worked
+dotnet add ./SBA.Auth/ package Microsoft.AspNetCore.Authentication.Google --version 9.0.0 --source "C:\Packages" # Worked
 ```
 
 ### Customize Package Location 

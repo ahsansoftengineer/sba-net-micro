@@ -4,14 +4,23 @@
     <OutputType>Library</OutputType>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <LangVersion>12.0</LangVersion>
+    <LangVersion>preview</LangVersion>
+    <!-- <NoWarn>CS0162;CS8604;CS1998;NETSDK1206</NoWarn> -->
   </PropertyGroup>
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(UseProjectReferences)' == ''">
+    <UseProjectReferences>false</UseProjectReferences>
+  </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(UseProjectReferences)' == 'true'">
+    <PackageReference Include="GLOB.API.Config" Version="1.0.3" />
+    <PackageReference Include="GLOB.Infra" Version="1.0.3" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UseProjectReferences)' == 'false'">
     <ProjectReference Include="..\GLOB.API.Config\GLOB.API.Config.csproj" />
     <ProjectReference Include="..\GLOB.Infra\GLOB.Infra.csproj" />
   </ItemGroup>

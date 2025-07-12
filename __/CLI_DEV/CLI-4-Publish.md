@@ -1,3 +1,6 @@
+## Nuget Time Frame
+- It takes 15 Minutes to publish
+
 
 ### PUBLISH Class Library
 - oy2admcfuhtm3ub5pnu5qghl2y6ykti2u5ovdy5dl55i66m
@@ -5,24 +8,25 @@
 #### GLOB.API.Config
 - oy2abz6ry2ev5umiibufqs64izjruy5duppzurlosmyoxye
 ```bash
-dotnet build ./GLOB/GLOB.API.Config/GLOB.API.Config.csproj -c Release
-dotnet pack ./GLOB/GLOB.API.Config/GLOB.API.Config.csproj -c Release
-dotnet nuget push ./GLOB/GLOB.API.Config/bin/Release/GLOB.API.Config.1.0.0.nupkg --api-key oy2abz6ry2ev5umiibufqs64izjruy5duppzurlosmyoxye --source https://api.nuget.org/v3/index.json
+dotnet build ./GLOB/GLOB.API.Config/GLOB.API.Config.csproj -c Release /p:PackageVersion=1.0.3
+dotnet pack ./GLOB/GLOB.API.Config/GLOB.API.Config.csproj -c Release /p:PackageVersion=1.0.3
+dotnet nuget push ./GLOB/GLOB.API.Config/bin/Release/GLOB.API.Config.1.0.3.nupkg --api-key oy2abz6ry2ev5umiibufqs64izjruy5duppzurlosmyoxye --source https://api.nuget.org/v3/index.json
 
 ```
 #### GLOB.Infra
 ```bash
-dotnet build ./GLOB/GLOB.Infra/GLOB.Infra.csproj -c Release
-dotnet pack ./GLOB/GLOB.Infra/GLOB.Infra.csproj -c Release
-dotnet nuget push ./GLOB/GLOB.Infra/bin/Release/GLOB.Infra.1.0.0.nupkg --api-key oy2admcfuhtm3ub5pnu5qghl2y6ykti2u5ovdy5dl55i66m --source https://api.nuget.org/v3/index.json
+dotnet build ./GLOB/GLOB.Infra/GLOB.Infra.csproj -c Release /p:PackageVersion=1.0.3
+dotnet pack ./GLOB/GLOB.Infra/GLOB.Infra.csproj -c Release /p:PackageVersion=1.0.3
+dotnet nuget push ./GLOB/GLOB.Infra/bin/Release/GLOB.Infra.1.0.3.nupkg --api-key oy2admcfuhtm3ub5pnu5qghl2y6ykti2u5ovdy5dl55i66m --source https://api.nuget.org/v3/index.json
 
 ```
 
 #### GLOB.API
 ```bash
-dotnet build ./GLOB/GLOB.API/GLOB.API.csproj -c Release
-dotnet pack ./GLOB/GLOB.API/GLOB.API.csproj -c Release
-dotnet nuget push ./GLOB/GLOB.API/bin/Release/GLOB.API.1.0.0.nupkg --api-key oy2admcfuhtm3ub5pnu5qghl2y6ykti2u5ovdy5dl55i66m --source https://api.nuget.org/v3/index.json
+dotnet build ./GLOB/GLOB.API/GLOB.API.csproj -c Release /p:PackageVersion=1.0.3 -p:UseProjectReferences=true
+dotnet pack ./GLOB/GLOB.API/GLOB.API.csproj -c Release /p:PackageVersion=1.0.3 -p:UseProjectReferences=true
+
+dotnet nuget push ./GLOB/GLOB.API/bin/Release/GLOB.API.1.0.3.nupkg --api-key oy2admcfuhtm3ub5pnu5qghl2y6ykti2u5ovdy5dl55i66m --source https://api.nuget.org/v3/index.json
 
 ```
 ### Adding the Packages to Class Library

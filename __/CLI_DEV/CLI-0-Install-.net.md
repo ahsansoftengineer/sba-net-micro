@@ -6,7 +6,7 @@ sudo dpkg -i packages-microsoft-prod.deb
 
 # Update package list and install .NET SDK
 sudo apt-get update
-sudo apt-get install -y dotnet-sdk-8.0
+sudo apt-get install -y dotnet-sdk-9.0
 
 # Verify .NET installation
 dotnet --list-sdks
@@ -31,7 +31,7 @@ echo $DOTNET_ROOT
 echo $PATH
 
 # Reinstall dotnet-ef tool
-dotnet tool uninstall --global dotnet-ef --version 8.0.7
+dotnet tool uninstall --global dotnet-ef --version 9.0.0
 dotnet tool install --global dotnet-ef
 
 # Verify dotnet-ef tool installation

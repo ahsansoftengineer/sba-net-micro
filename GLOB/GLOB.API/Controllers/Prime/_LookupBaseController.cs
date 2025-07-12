@@ -27,7 +27,7 @@ public class _ProjectzLookupBaseController : API_4_Default_Controller<_ProjectzL
     catch (Exception ex)
     {
       return ex.Message.Ok();
-      return _Res.CatchException(ex, nameof(CreateParentChild));
+      // return _Res.CatchException(ex, nameof(CreateParentChild));
     }
   }
 }
