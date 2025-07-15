@@ -33,6 +33,7 @@ COPY Projects/SBA.Auth/ ./Projects/SBA.Auth/
 
 # Build and publish
 WORKDIR /app/Projects/SBA.Auth
+# RUN dotnet publish -c Release -o /app/out --property:UseProjectReferences=true
 RUN dotnet publish -c Release -o /app/out --property:UseProjectReferences=true
 
 # Stage 2: Runtime

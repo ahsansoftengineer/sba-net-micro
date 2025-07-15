@@ -56,7 +56,7 @@ spec:
             - name: Clientz__RabbitMQz__HostName
               value: srvc-cip-rbmq-sba
             - name: Clientz__RabbitMQz__Port
-              value: 5672
+              value: "5672"
             
             - name: Clientz__Http_Host__Gateway
               value: http://srvc-cip-sba-api-gateway:1100

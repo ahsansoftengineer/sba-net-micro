@@ -41,12 +41,12 @@ spec:
         - name: srvc-sba-job
           image: mansanhhub/srvc-sba-job
           ports:
-            - containerPort: 1106
+            - containerPort: 1102
           env:
             - name: DOTNET_ENVIRONMENT
               value: K8S
             - name: ASPNETCORE_URLS
-              value: http://+:1106
+              value: http://+:1102
             - name: ConnectionStrings__Redis
               value: "srvc-cip-redis-sba-dev:6379,password=P@55w0rd!123"
             - name: ConnectionStrings__SqlConnection
@@ -56,7 +56,7 @@ spec:
             - name: Clientz__RabbitMQz__HostName
               value: srvc-cip-rbmq-sba
             - name: Clientz__RabbitMQz__Port
-              value: 5672
+              value: "5672"
             
             - name: Clientz__Http_Host__Gateway
               value: http://srvc-cip-sba-api-gateway:1100
@@ -68,10 +68,10 @@ spec:
 #### (2) API Cluster IP (Job)
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
-# kubectl port-forward svc/srvc-cip-sba-job 1106:1106
-# http://srvc-cip-sba-job:1106/api/job/v1/swagger/index.html
-# http://srvc-cip-sba-job:1106/api/job/v1/_projectz-lookup/gets-lookup
-# http://srvc-cip-sba-job:1106/api/job/v1/hangfire
+# kubectl port-forward svc/srvc-cip-sba-job 1102:1102
+# http://srvc-cip-sba-job:1102/api/job/v1/swagger/index.html
+# http://srvc-cip-sba-job:1102/api/job/v1/_projectz-lookup/gets-lookup
+# http://srvc-cip-sba-job:1102/api/job/v1/hangfire
 
 apiVersion: v1
 kind: Service
@@ -84,8 +84,8 @@ spec:
   ports:
   - name: srvc-sba-job
     protocol: TCP
-    port: 1106
-    targetPort: 1106
+    port: 1102
+    targetPort: 1102
     # nodePort: Not a Valid Option for Cluster IP
 
 ---
@@ -104,11 +104,11 @@ spec:
   ports:
     - name: srvc-sba-job
       protocol: TCP
-      port: 1106 # Node Port
-      targetPort: 1106 # Pod's App port
-      nodePort: 31106 # 30000-32767 (Host Port)
+      port: 1102 # Node Port
+      targetPort: 1102 # Pod's App port
+      nodePort: 31102 # 30000-32767 (Host Port)
 
 ## ROUTES (K8S Node Port)
-# - http://localhost:31106/api/Job/v1/swagger/index.html
-# - http://localhost:31106/api/job/v1/_projectz-lookup/gets-lookup
-# - http://localhost:31106/api/job/v1/hangfire
+# - http://localhost:31102/api/Job/v1/swagger/index.html
+# - http://localhost:31102/api/job/v1/_projectz-lookup/gets-lookup
+# - http://localhost:31102/api/job/v1/hangfire
