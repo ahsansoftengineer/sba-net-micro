@@ -1,5 +1,5 @@
 # Build:
-# docker build -t mansanhhub/srvc-sba-api-gateway -f SBA.APIGateway/Dockerfile .
+# docker build -t mansanhhub/srvc-sba-api-gateway -f Projects/SBA.APIGateway/Dockerfile .
 # docker push mansanhhub/srvc-sba-api-gateway
 # docker run -d --name srvc-sba-api-gateway -p 1104:1104 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-sba-api-gateway
 # docker rm -f srvc-sba-api-gateway
@@ -27,7 +27,7 @@ COPY Projects/SBA.APIGateway/ ./Projects/SBA.APIGateway/
 
 # Build and publish
 WORKDIR /app/Projects/SBA.APIGateway
-RUN dotnet publish -c Release -o /app/out
+RUN dotnet publish -c Release -o /app/out --property:UseProjectReferences=true
 
 # Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:9.0

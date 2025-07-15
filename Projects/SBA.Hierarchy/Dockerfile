@@ -34,7 +34,7 @@ COPY Projects/SBA.Hierarchy/ ./Projects/SBA.Hierarchy/
 
 # Build and publish
 WORKDIR /app/Projects/SBA.Hierarchy
-RUN dotnet publish -c Release -o /app/out
+RUN dotnet publish -c Release -o /app/out --property:UseProjectReferences=true
 
 # Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
