@@ -10,13 +10,15 @@ public static partial class DI_Infra
 {
   public static void Add_Infra_Cache_Redis(this IServiceCollection srvc, IConfiguration config)
   {
+    string conn = config.GetConnectionString("Redis");
+    Console.WriteLine(" --> Redis : " + conn);
     srvc.AddStackExchangeRedisCache(options =>
     {
-      options.Configuration = config.GetConnectionString("Redis");
+      options.Configuration = conn;
     });
 
     srvc.AddSingleton<IConnectionMultiplexer>(sp =>
-      ConnectionMultiplexer.Connect(config.GetConnectionString("Redis")));
+      ConnectionMultiplexer.Connect(conn));
     srvc.AddSingleton<RedisCacheService>();
 
     srvc.AddSingleton<FilterCacheActionGet>();

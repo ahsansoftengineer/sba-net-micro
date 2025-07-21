@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Newtonsoft.Json;
 
 using GLOB.API.Config.OptionSetup;
+using Microsoft.Extensions.Options;
 
 namespace GLOB.API.Config.DI;
 
@@ -11,8 +12,9 @@ public static partial class DI_API_Config
 
   public static void Use_API_Config_Controller(this IApplicationBuilder app)
   {
-    IConfiguration config = app.GetSrvc<IConfiguration>();
-    string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX"); //"api/Hierarchy/v1";
+    Option_App appConfig = app.GetSrvc<IOptions<Option_App>>().Value;
+    Console.WriteLine(JsonConvert.SerializeObject(appConfig, Formatting.Indented));
+
     app.UseEndpoints(ep =>
     {
       ep.MapControllers();
@@ -22,7 +24,8 @@ public static partial class DI_API_Config
       string path = context.Request.Path;
       if (path == "/")
       {
-        context.Response.Redirect($"/{prefix}/swagger/index.html");
+        //"api/Hierarchy/v1";
+        context.Response.Redirect($"/{appConfig.ASPNETCORE_ROUTE_PREFIX}/swagger/index.html");
         return;
       }
       await next();
