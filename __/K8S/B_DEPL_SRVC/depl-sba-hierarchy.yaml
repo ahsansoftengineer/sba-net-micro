@@ -51,9 +51,11 @@ spec:
               value: http://+:1106
             - name: ConnectionStrings__Redis
               value: "srvc-cip-redis-sba-dev:6379,password=P@55w0rd!123"
+              
             - name: ConnectionStrings__SqlConnection
-              value: "Server=srvc-cip-mssql-sba-dev,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;Encrypt=False;"
-              # value: "Server=srvc-cip-mssql-sba-hierarchy,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;Encrypt=False;"
+              value: "Server=srvc-cip-mssql-sba-dev.default.svc.cluster.local,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+              # value: "Server=srvc-cip-mssql-sba-hierarchy,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+            
             - name: Clients__Http_Host__Gateway
               value: http://srvc-cip-sba-api-gateway:1100
             - name: Clients__Http_Host__Auth
