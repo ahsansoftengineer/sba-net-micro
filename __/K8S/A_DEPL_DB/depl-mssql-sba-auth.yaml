@@ -1,10 +1,10 @@
-################~~~~ DB SBA Hierarchy ~~~~~##################
+################~~~~ DB SBA Auth ~~~~~##################
 #### Run Command
 ## BASH
 # kubectl apply -f ./__/K8S/A_DEPL_DB/depl-mssql-sba-auth.yaml
 # kubectl delete -f ./__/K8S/A_DEPL_DB/depl-mssql-sba-auth.yaml
 
-#### (3) DB Claim (Hierarchy) 
+#### (3) DB Claim (Auth) 
 
 # - This Task Done Only Once
 # - Creating Claim for Database
@@ -23,7 +23,7 @@ spec:
   - ReadWriteMany
 
 ---
-#### (3) DB Deployment (Hierarchy) 
+#### (3) DB Deployment (Auth) 
 # - kubectl get deployment
 # - kubectl get deployment depl-mssql-sba-auth
 # - kubectl delete deployment depl-mssql-sba-auth
@@ -83,7 +83,7 @@ spec:
 
 ---
 #------------------------------------------------------------------------- 
-#### (4) DB ClusterIP (Hierarchy)
+#### (4) DB ClusterIP (Auth)
 # - We need ClusterIP for Inter Service Communication
 # - Production Required
 # - kubectl get svc
@@ -104,7 +104,7 @@ spec:
 
 ---
 #-------------------------------------------------------------------------
-#### (6) DB LoadBalancer (Hierarchy)
+#### (6) DB LoadBalancer (Auth)
 # - We need LoadBalancer for External Service Access
 # - No Production Required
 # - kubectl get svc srvc-lb-mssql-sba-auth
@@ -120,5 +120,5 @@ spec:
     app: mssql-sba-auth
   ports:
     - protocol: TCP
-      port: 1433 # External
+      port: 2004 # External
       targetPort: 1433
