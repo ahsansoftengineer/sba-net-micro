@@ -19,7 +19,7 @@ public class DonorBasicDto : DtoRead
 }
 public class DonorBasicDtoCreate : DtoCreate
 {
-  public string Mobile { get; set; }
+  public string Mobile { get; set; } = string.Empty;
   public string? Email { get; set; }
   public string? Address { get; set; }
   public Gender? Gender { get; set; }// = Gender.None;

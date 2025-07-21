@@ -24,7 +24,7 @@ public partial class ProfileController
     string url = _config.GetWebUrl();
     var resetLink = $"{url}/profile/password-reset?email={email}&token={encodedToken}";
     // Send Email Here
-    // await _emailSender.SendEmailAsync(user.Email, "Reset Password", $"Click <a href='{resetLink}'>here</a> to reset your password.");
+    // await _emailSender.SendEmailAsync(user?.Email, "Reset Password", $"Click <a href='{resetLink}'>here</a> to reset your password.");
 
     return new { message = "Reset link sent to email.", token = resetLink }.Ok();
   }

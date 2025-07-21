@@ -41,7 +41,7 @@ public partial class RoleController : AccountBaseController<RoleController>
     return new
     {
       user.Id,
-      user.Email,
+      user?.Email,
       Roles = roles
     }.ToExtVMSingle().Ok();
   }
@@ -59,12 +59,12 @@ public partial class RoleController : AccountBaseController<RoleController>
 
     // Check if user is already in role
     if (await _userManager.IsInRoleAsync(user, rolez.Name))
-      return _Res.BadRequestModel("Role", $"{user.Email} is already assigned to role {rolez.Name}");
+      return _Res.BadRequestModel("Role", $"{user?.Email} is already assigned to role {rolez.Name}");
 
     var result = await _userManager.AddToRoleAsync(user, rolez.Name);
     if (result.Succeeded)
     {
-      return $"{user.Email} has successfully been added to role {rolez.Name}".Ok();
+      return $"{user?.Email} has successfully been added to role {rolez.Name}".Ok();
     }
 
     return _Res.BadRequestModel("Exception", "Something went wrong");

@@ -52,8 +52,8 @@ public class TokenService
 
       user.Id,
       user.UserName,
-      user.Email,
-      user.EmailConfirmed,
+      user?.Email,
+      user?.EmailConfirmed,
       user.PhoneNumber,
       user.PhoneNumberConfirmed,
       user.TwoFactorEnabled,
@@ -88,8 +88,8 @@ public class TokenService
       {
         user.Id,
         user.UserName,
-        user.Email,
-        user.EmailConfirmed,
+        user?.Email,
+        user?.EmailConfirmed,
         user.PhoneNumber,
         user.PhoneNumberConfirmed,
         user.TwoFactorEnabled,

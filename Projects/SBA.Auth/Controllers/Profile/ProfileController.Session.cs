@@ -14,7 +14,7 @@
 //     return Ok(new {
 //         user.Id,
 //         user.UserName,
-//         user.Email,
+//         user?.Email,
 //         Roles = await _userManager.GetRolesAsync(user)
 //     });
 //   }

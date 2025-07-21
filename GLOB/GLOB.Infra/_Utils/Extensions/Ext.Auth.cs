@@ -14,7 +14,7 @@
 //     var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 //     var claims = new[]
 //     {
-//       new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+//       new Claim(JwtRegisteredClaimNames.Sub, user?.Email),
 //       new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
 //       new Claim("UserId", user.Id)
 //     };

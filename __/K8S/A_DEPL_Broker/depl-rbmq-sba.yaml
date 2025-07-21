@@ -28,6 +28,11 @@ spec:
       containers:
         - name: rbmq
           image: rabbitmq:3-management
+          env:
+            - name: RABBITMQ_DEFAULT_USER
+              value: admin
+            - name: RABBITMQ_DEFAULT_PASS
+              value: admin123
           ports:
             - name: management
               containerPort: 15672

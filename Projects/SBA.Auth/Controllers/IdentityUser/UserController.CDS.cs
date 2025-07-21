@@ -1,7 +1,6 @@
 using GLOB.API.Staticz;
 using GLOB.Domain.Model.Auth;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 
 namespace SBA.Auth.Controllers;
 
@@ -47,7 +46,7 @@ public partial class UserController : AccountBaseController<UserController>
   [HttpDelete("{Id}")]
   public async Task<IActionResult> Delete(string Id)
   {
-    if (Id.IsNullOrEmpty()) return _Res.NotFoundId(Id);
+    if (string.IsNullOrEmpty(Id)) return _Res.NotFoundId(Id);
 
     var item = await _userManager.FindByIdAsync(Id);
     // if (item == null) return _Res.NotFoundId(Id);
@@ -56,10 +55,10 @@ public partial class UserController : AccountBaseController<UserController>
     return NoContent();
   }
   [HttpPatch("{Id}")]
-  public async Task<IActionResult> UpdateStatus(string Id, [FromBody] DtoRequestStatus dto)
+  public async Task<IActionResult> UpdateStatus(string? Id, [FromBody] DtoRequestStatus dto)
   {
 
-    if (Id.IsNullOrEmpty()) return _Res.NotFoundId(Id);
+    if (string.IsNullOrEmpty(Id)) return _Res.NotFoundId(Id);
     if (!Enum.IsDefined(dto.Status)) return _Res.InvalidEnums(dto.Status.ToString());
 
     var item = await _userManager.FindByIdAsync(Id);

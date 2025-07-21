@@ -67,7 +67,7 @@ public partial class RoleController : AccountBaseController<RoleController>
   [HttpDelete("{Id}")]
   public async Task<IActionResult> Delete(string Id)
   {
-    if (Id.IsNullOrEmpty()) return _Res.NotFoundId(Id);
+    if (string.IsNullOrEmpty(Id)) return _Res.NotFoundId(Id);
 
     var item = await _roleManager.FindByIdAsync(Id);
     if (item == null) return _Res.NotFoundId(Id);
@@ -87,7 +87,7 @@ public partial class RoleController : AccountBaseController<RoleController>
   {
     try
     {
-      if (Id.IsNullOrEmpty()) return _Res.NotFoundId(Id);
+      if (string.IsNullOrEmpty(Id)) return _Res.NotFoundId(Id);
       if (!Enum.IsDefined(dto.Status)) return _Res.InvalidEnums(dto.Status.ToString());
 
       var item = await _roleManager.FindByIdAsync(Id);
