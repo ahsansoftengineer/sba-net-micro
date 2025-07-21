@@ -36,7 +36,8 @@ public static partial class SeedProjectz
       {
         // context.Database.EnsureCreated();
         Console.WriteLine("--> Hierarchy -> Applying Migrations AppBuilder");
-        context.Database.Migrate();
+        // Why I added this
+        // context.Database.Migrate();
         {
           // .-*
           context.SeedGlobalLookupBase();
