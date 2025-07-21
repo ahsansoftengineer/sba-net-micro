@@ -15,9 +15,11 @@
 # kubectl get pods
 # kubectl get deployments
 # kubectl logs -l app=srvc-sba-hierarchy
+# kubectl logs -l app=srvc-sba-hierarchy --all-containers=true --tail=-1
+# kubectl logs -l app=srvc-sba-hierarchy -f --all-containers=true
 # kubectl rollout restart deployments depl-sba-hierarchy
 
-## BASH DELETE (Deployments & Service)8
+## BASH DELETE (Deployments & Service)
 # kubectl delete -f ./__/K8S/B_DEPL_SRVC/depl-sba-hierarchy.yaml
 # kubectl delete deployments depl-sba-hierarchy
 # kubectl delete services srvc-cip-sba-hierarchy
@@ -50,8 +52,8 @@ spec:
             - name: ConnectionStrings__Redis
               value: "srvc-cip-redis-sba-dev:6379,password=P@55w0rd!123"
             - name: ConnectionStrings__SqlConnection
-              value: "Server=srvc-cip-mssql-sba-dev,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;Encrypt=False;"
-              # value: "Server=srvc-cip-mssql-sba-hierarchy,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+              # value: "Server=srvc-cip-mssql-sba-dev,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;Encrypt=False;"
+              value: "Server=srvc-cip-mssql-sba-hierarchy,1433;Initial Catalog=SBA_Hierarchy;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;Encrypt=False;"
             - name: Clientz__Http_Host__Gateway
               value: http://srvc-cip-sba-api-gateway:1100
             - name: Clientz__Http_Host__Auth

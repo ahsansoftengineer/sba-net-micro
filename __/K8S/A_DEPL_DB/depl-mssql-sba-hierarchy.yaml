@@ -121,7 +121,7 @@ spec:
 # - We need NodePort for External Service Access
 # - No Production Required
 # - kubectl get svc srvc-np-mssql-sba-hierarchy
-# - CREADENTIALS 127.0.0.1,31806 sa 'P@55w0rd!123'
+# - CREADENTIALS 127.0.0.1,31106 sa 'P@55w0rd!123'
 apiVersion: v1
 kind: Service
 metadata:
@@ -134,7 +134,7 @@ spec:
     - protocol: TCP
       port: 1433
       targetPort: 1433
-      nodePort: 31806 # 30000-32767 (Host Port)
+      nodePort: 31106 # 30000-32767 (Host Port)
 
 ---
 #-------------------------------------------------------------------------
