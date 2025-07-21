@@ -24,7 +24,7 @@ public static partial class DI_API
         // ✅ If NOT Development → set credentials (Production/K8S)
         if (!env.Equals("Development", StringComparison.OrdinalIgnoreCase))
         {
-            factory.VirtualHost = string.IsNullOrEmpty(option.VirtualHost) ? "/" : option.VirtualHost;
+            factory.VirtualHost = option.VirtualHost ?? "/";
             factory.UserName = option.UserName;   // admin (from appsettings.K8S.json)
             factory.Password = option.Password;   // admin123
         }

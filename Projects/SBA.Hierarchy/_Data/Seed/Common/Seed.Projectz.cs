@@ -34,6 +34,7 @@ public static partial class SeedProjectz
       DBCtxProjectz? context = srvcScp.ServiceProvider.GetService<DBCtxProjectz>();
       if (context != null)
       {
+        // context.Database.EnsureCreated();
         Console.WriteLine("--> Hierarchy -> Applying Migrations AppBuilder");
         context.Database.Migrate();
         {
