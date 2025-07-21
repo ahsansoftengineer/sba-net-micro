@@ -120,5 +120,5 @@ spec:
     app: mssql-sba-auth
   ports:
     - protocol: TCP
-      port: 1433
+      port: 1433 # External
       targetPort: 1433

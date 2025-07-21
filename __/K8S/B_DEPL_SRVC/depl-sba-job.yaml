@@ -53,20 +53,20 @@ spec:
               value: "Server=srvc-cip-mssql-sba-job,1433;Initial Catalog=SBA_Job;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
               # value: "Server=srvc-cip-mssql-sba-dev.default.svc.cluster.local,1433;Initial Catalog=SBA_Job;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
 
-            - name: Clientz__Http_Host__Gateway
+            - name: Clients__Http_Host__Gateway
               value: http://srvc-cip-sba-api-gateway:1100
-            - name: Clientz__Http_Host__Auth
+            - name: Clients__Http_Host__Auth
               value: http://srvc-cip-sba-auth:1104
 
-            - name: Clientz__RabbitMQz__HostName
+            - name: Clients__RabbitMQz__HostName
               value: srvc-cip-rbmq-sba
-            - name: Clientz__RabbitMQz__Port
+            - name: Clients__RabbitMQz__Port
               value: "5672"
-            - name: Clientz__RabbitMQz__VirtualHost
+            - name: Clients__RabbitMQz__VirtualHost
               value: /sba
-            - name: Clientz__RabbitMQz__Username
+            - name: Clients__RabbitMQz__Username
               value: admin
-            - name: Clientz__RabbitMQz__Password
+            - name: Clients__RabbitMQz__Password
               value: admin123
 ---
 #------------------------------------------------------------------------- 

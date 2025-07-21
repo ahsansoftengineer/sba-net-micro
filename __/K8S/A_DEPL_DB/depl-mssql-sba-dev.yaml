@@ -123,5 +123,5 @@ spec:
     app: mssql-sba-dev
   ports:
     - protocol: TCP
-      port: 1433
+      port: 1433 # External
       targetPort: 1433
