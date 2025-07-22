@@ -44,17 +44,17 @@ public partial class RabbitMQ_ProjectzLookup : API_RabbitMQ_Base_Subs
       {
         await uow.ProjectzLookups.Add(model.Body);
         await uow.Save();
-        Console.WriteLine("ProjectzLookup Created Successfully");
+        "ProjectzLookup Created Successfully".Print();
       }
       else
       {
-        Console.WriteLine("ProjectzLookupBaseId Does not Exsist");
+        "ProjectzLookupBaseId Does not Exsist".Print();
       }
 
     }
     catch (Exception ex)
     {
-      Console.WriteLine($"--> ProjectzLookup not Created {ex.Message}");
+      ex.Print();
     }
   }
 }

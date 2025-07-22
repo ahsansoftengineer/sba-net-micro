@@ -29,7 +29,7 @@ public class FileUploderz
     // Specify the directory where you want to save the file
     //var uploadDirectory = "D:/Directory";
     var uploadDirectory = hostEnv.ContentRootPath + storageFiles;
-    Console.WriteLine(hostEnv.ContentRootPath);
+    hostEnv.ContentRootPath.Print();
 
     // Create the directory if it doesn't exist
     if (!Directory.Exists(uploadDirectory))
@@ -69,7 +69,7 @@ public class FileUploderz
     // Specify the directory where you want to save the file
     //var uploadDirectory = "D:/Directory";
     var uploadDirectory = hostEnv.ContentRootPath + storageFiles;
-    Console.WriteLine(hostEnv.ContentRootPath);
+    hostEnv.ContentRootPath.Print();
 
     // Create the directory if it doesn't exist
     if (!Directory.Exists(uploadDirectory))

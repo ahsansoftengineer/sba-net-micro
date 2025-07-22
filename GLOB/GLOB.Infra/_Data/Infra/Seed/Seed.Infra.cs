@@ -8,7 +8,7 @@ public static partial class SeedzInfra
   // Seed for Development through (CLI)
   public static void SeedInfra(this ModelBuilder mb)
   {
-    Console.WriteLine("--> ModelBuilder -> Infra -> SeedzInfra");
+    Console.WriteLine("--> ModelBuilder -> Infra -> SeedzInfra (Dev)");
     mb.SeedProjectzLookupBase();
     mb.SeedProjectzLookup();
   }
@@ -18,7 +18,7 @@ public static partial class SeedzInfra
   {
     using(var srvcScp = app.ApplicationServices.CreateScope())
     {
-      DBCtx? context = srvcScp.ServiceProvider.GetService<DBCtx>();
+      DBCtx? context = srvcScp.ServiceProvider.GetSrvc<DBCtx>();
       if (context != null)
       {
         Console.WriteLine("--> Infra -> Applying Migrations AppBuilder (Prod)");

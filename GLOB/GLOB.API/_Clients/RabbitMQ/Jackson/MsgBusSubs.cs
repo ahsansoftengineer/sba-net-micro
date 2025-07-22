@@ -48,7 +48,7 @@ public class MsgBusSubs : BackgroundService
     );
     _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
 
-    Console.WriteLine("--> [Rabbit MQ] Listening on the Message Bus...");
+    "Listening on the Message Bus...".Print("[Rabbit MQ]");
   }
 
   protected override Task ExecuteAsync(CancellationToken stoppingToken)
@@ -57,7 +57,7 @@ public class MsgBusSubs : BackgroundService
     var consumer = new EventingBasicConsumer(_channel);
     consumer.Received += async (ModuleHandle, ea) =>
     {
-      Console.WriteLine("--> [Rabbit MQ] Message Recieved");
+      "Message Recieved".Print("[Rabbit MQ]");
       var body = ea.Body;
       var notificationMessage = Encoding.UTF8.GetString(body.ToArray());
 
@@ -84,23 +84,23 @@ public class MsgBusSubs : BackgroundService
       {
         await uow.ProjectzLookups.Add(model);
         await uow.Save();
-        Console.WriteLine("ProjectzLookup Created Successfully");
+        "ProjectzLookup Created Successfully".Print();
       }
       else
       {
-        Console.WriteLine("ProjectzLookupBaseId Does not Exsist");
+        "ProjectzLookupBaseId Does not Exsist".Print();
       }
 
     }
     catch (Exception ex)
     {
-      Console.WriteLine($"--> ProjectzLookup not Created {ex.Message}");
+      $"ProjectzLookup not Created {ex.Message}".Print();
     }
   }
 
   private void RabbitMQ_ConnectionShutdown(object? sender, ShutdownEventArgs e)
   {
-    Console.WriteLine("--> [Rabbit MQ] connection was shut down. Jackson");
+    "connection was shut down. Jackson".Print("[Rabbit MQ]");
   }
   public override void Dispose()
   {
