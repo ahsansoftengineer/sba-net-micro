@@ -46,6 +46,7 @@ spec:
       labels:
         app: mssql-sba-dev
     spec:
+      enableServiceLinks: false   # ✅ disables auto-injected env vars
       containers:
         - name: mssql
           image: mcr.microsoft.com/mssql/server:2022-latest

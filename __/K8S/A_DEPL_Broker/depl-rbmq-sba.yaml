@@ -18,27 +18,27 @@
 # - kubectl describe configmap cm-def-rabbit
 # - kubectl get configmap cm-def-rabbit -o yaml
 #-----------------------------#
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: cm-def-rabbit
-data:
-  definitions.json: |
-    {
-      "vhosts": [
-        { "name": "/sba" }
-      ],
-      "permissions": [
-        {
-          "user": "admin",
-          "vhost": "/sba",
-          "configure": ".*",
-          "write": ".*",
-          "read": ".*"
-        }
-      ]
-    }
----
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: cm-def-rabbit
+# data:
+#   definitions.json: |
+#     {
+#       "vhosts": [
+#         { "name": "/sba" }
+#       ],
+#       "permissions": [
+#         {
+#           "user": "admin",
+#           "vhost": "/sba",
+#           "configure": ".*",
+#           "write": ".*",
+#           "read": ".*"
+#         }
+#       ]
+#     }
+# ---
 #-----------------------------#
 # (1) RabbitMQ Deployment (SBA)
 # - kubectl get deployment
@@ -61,14 +61,15 @@ spec:
       labels:
         app: rbmq-sba
     spec:
+      enableServiceLinks: false   # ✅ disables auto-injected env vars
       containers:
         - name: rbmq
           image: rabbitmq:3-management
           env:
             - name: RABBITMQ_DEFAULT_USER
-              value: admin
+              value: guest
             - name: RABBITMQ_DEFAULT_PASS
-              value: admin123
+              value: guest
             - name: RABBITMQ_LOAD_DEFINITIONS
               value: /etc/rabbitmq/definitions.json
           ports:
@@ -78,14 +79,14 @@ spec:
             - name: amqp
               containerPort: 5672
               protocol: TCP
-          volumeMounts:
-            - name: cm-def-rabbit-name
-              mountPath: /etc/rabbitmq/definitions.json
-              subPath: definitions.json
-      volumes:
-        - name: cm-def-rabbit-name
-          configMap:
-            name: cm-def-rabbit
+      #     volumeMounts:
+      #       - name: cm-def-rabbit-name
+      #         mountPath: /etc/rabbitmq/definitions.json
+      #         subPath: definitions.json
+      # volumes:
+      #   - name: cm-def-rabbit-name
+      #     configMap:
+      #       name: cm-def-rabbit
 ---
 #---------------------------------------------#
 # (2) RabbitMQ ClusterIP Service (for internal)
@@ -117,7 +118,7 @@ spec:
 # - Production Required
 # - kubectl get svc
 # - kubectl get svc srvc-lb-rbmq-sba
-# - http://localhost:15672/#/exchanges
+# - http://localhost:15670/#/exchanges
 #---------------------------------------------#
 apiVersion: v1
 kind: Service
@@ -129,7 +130,7 @@ spec:
     app: rbmq-sba
   ports:
     - name: management
-      port: 15672
+      port: 15670 # External Port
       targetPort: 15672
       protocol: TCP
     - name: amqp

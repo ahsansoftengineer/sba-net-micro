@@ -46,6 +46,7 @@ spec:
       labels:
         app: redis-sba-dev
     spec:
+      enableServiceLinks: false   # ✅ disables auto-injected env vars
       containers:
         - name: redis
           image: redis:latest

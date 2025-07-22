@@ -63,15 +63,17 @@ spec:
               value: http://srvc-cip-sba-auth:1104
 
             - name: Clients__RabbitMQz__HostName
-              value: srvc-cip-rbmq-sba
+              value: srvc-cip-rbmq-sba.default.svc.cluster.local
             - name: Clients__RabbitMQz__Port
               value: "5672"
             - name: Clients__RabbitMQz__VirtualHost
-              value: /sba
+              value: /
             - name: Clients__RabbitMQz__Username
-              value: admin
+              value: guest
             - name: Clients__RabbitMQz__Password
-              value: admin123
+              value: guest
+            # - name: Clients__RabbitMQz__Uri
+            #   value: amqp://guest:guest@srvc-cip-rbmq-sba.default.svc.cluster.local/sba
 ---
 #------------------------------------------------------------------------- 
 #### (2) API Cluster IP (Hierarchy)
