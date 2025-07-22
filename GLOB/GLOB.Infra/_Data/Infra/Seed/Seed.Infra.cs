@@ -22,7 +22,7 @@ public static partial class SeedzInfra
       if (context != null)
       {
         Console.WriteLine("--> Infra -> Applying Migrations AppBuilder (Prod)");
-        context.Database.Migrate();
+        // context.Database.Migrate();
         {
           context.SeedProjectzLookupBase();
           context.SeedProjectzLookup();

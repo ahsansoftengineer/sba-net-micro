@@ -22,7 +22,8 @@ public static partial class SeedProjectz
       if (context != null)
       {
         Console.WriteLine("--> Auth -> Applying Migrations AppBuilder");
-        context.Database.Migrate();
+        
+        // context.Database.Migrate();
         {
           await app.SeedInfraIdentity();
         }

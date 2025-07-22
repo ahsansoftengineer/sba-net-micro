@@ -22,16 +22,19 @@ public static partial class InfraSeedIdentity
   {
     using(var srvcScp = app.ApplicationServices.CreateScope())
     {
+
       var srvc = srvcScp.ServiceProvider;
       var context = srvc.GetService<DBCtxIdentity>();
       var contextz = srvc.GetService<DBCtx>();
+      context.Database.EnsureCreated();
+      contextz.Database.EnsureCreated();
       var userManager = srvc.GetRequiredService<UserManager<InfraUser>>();
       var roleManager = srvc.GetRequiredService<RoleManager<InfraRole>>();
 
       if (context != null)
       {
         Console.WriteLine("--> Infra Identity -> Applying Migrations AppBuilder (Prod)");
-        context.Database.Migrate();
+        // context.Database.Migrate();
         {
           await roleManager.SeedInfraRole();
           await userManager.SeedInfraUser();

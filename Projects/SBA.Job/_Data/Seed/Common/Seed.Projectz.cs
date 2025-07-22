@@ -21,7 +21,7 @@ public static partial class SeedProjectz
       if (context != null)
       {
         Console.WriteLine("--> Hierarchy -> Applying Migrations AppBuilder");
-        context.Database.Migrate();
+        // context.Database.Migrate();
         {
           // .-*
 
