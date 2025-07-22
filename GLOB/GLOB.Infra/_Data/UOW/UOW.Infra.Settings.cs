@@ -29,7 +29,7 @@ public partial class UOW_Infra
     foreach (var entity in entities)
     {
       var now = DateTimeOffset.UtcNow; // current datetime
-      Console.WriteLine(entity.State);
+      entity.Print();
       if (entity.State == EntityState.Added)
       {
         ((IEntityBeta)entity.Entity).CreatedAt = now;

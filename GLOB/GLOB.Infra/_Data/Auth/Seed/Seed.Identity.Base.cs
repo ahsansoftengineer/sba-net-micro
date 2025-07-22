@@ -11,7 +11,7 @@ public static partial class InfraSeedIdentity
   // Seed for Development through (CLI)
   public static void SeedInfraIdentity(this ModelBuilder mb)
   {
-    Console.WriteLine("--> ModelBuilder -> InfraSeedIdentity -> SeedInfra");
+    "--> ModelBuilder -> InfraSeedIdentity -> SeedInfra".Print("[EF Core]");
     mb.SeedInfra();
     mb.SeedInfraRole();
     mb.SeedInfraUser();
@@ -22,16 +22,19 @@ public static partial class InfraSeedIdentity
   {
     using(var srvcScp = app.ApplicationServices.CreateScope())
     {
+
       var srvc = srvcScp.ServiceProvider;
-      var context = srvc.GetService<DBCtxIdentity>();
-      var contextz = srvc.GetService<DBCtx>();
+      var context = srvc.GetSrvc<DBCtxIdentity>();
+      var contextz = srvc.GetSrvc<DBCtx>();
+      context.Database.EnsureCreated();
+      contextz.Database.EnsureCreated();
       var userManager = srvc.GetRequiredService<UserManager<InfraUser>>();
       var roleManager = srvc.GetRequiredService<RoleManager<InfraRole>>();
 
       if (context != null)
       {
-        Console.WriteLine("--> Infra Identity -> Applying Migrations AppBuilder (Prod)");
-        context.Database.Migrate();
+        "--> Infra Identity -> Applying Migrations AppBuilder (Prod)".Print("[EF Core]");
+        // context.Database.Migrate();
         {
           await roleManager.SeedInfraRole();
           await userManager.SeedInfraUser();

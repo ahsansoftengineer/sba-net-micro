@@ -13,7 +13,7 @@ public class HangfireCustomBasicAuthenticationFilter : IDashboardAuthorizationFi
     {
         var httpContext = context.GetHttpContext();
         var authHeader = httpContext.Request.Headers["Authorization"].FirstOrDefault();
-        Console.WriteLine(httpContext.Request.Headers["Authorization"]);
+        httpContext.Request.Headers["Authorization"].Print("[Headers]");
 
         if (string.IsNullOrWhiteSpace(authHeader) || !authHeader.StartsWith("Basic "))
         {

@@ -6,7 +6,7 @@ public static partial class SeedProjectz
   // Dev (When Running Migration throw CLI)
   public static void Seed(this ModelBuilder mb)
   {
-    Console.WriteLine("-->  ModelBuilder --> Hierarchy -> SeedProjectz");
+    "Hierarchy -> SeedProjectz".Print("ModelBuilder");
     // .-*
     mb.SeedGlobalLookupBase();
     mb.SeedOrg();
@@ -31,11 +31,13 @@ public static partial class SeedProjectz
   {
     using (var srvcScp = app.ApplicationServices.CreateScope())
     {
-      DBCtxProjectz? context = srvcScp.ServiceProvider.GetService<DBCtxProjectz>();
+      DBCtxProjectz? context = srvcScp.ServiceProvider.GetSrvc<DBCtxProjectz>();
       if (context != null)
       {
-        Console.WriteLine("--> Hierarchy -> Applying Migrations AppBuilder");
-        context.Database.Migrate();
+        context.Database.EnsureCreated();
+        "Hierarchy -> Applying Migrations AppBuilder".Print("[EF Core]");
+        // Why I added this
+        // context.Database.Migrate();
         {
           // .-*
           context.SeedGlobalLookupBase();

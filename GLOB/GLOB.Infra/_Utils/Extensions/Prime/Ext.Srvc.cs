@@ -16,8 +16,8 @@ public static partial class Ext
     catch(Exception ex) 
     {
       Console.WriteLine($"------------------------****-*-****------------------------");
-      Console.WriteLine($"Please Regiseter Service in DI {typeof(TService).Name}");
-      Console.WriteLine(ex.Message);
+      $"Please Regiseter Service in DI {typeof(TService).Name}".Print();
+      ex.Print();
       return null;
     }
   }

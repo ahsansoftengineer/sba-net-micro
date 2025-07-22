@@ -44,8 +44,7 @@ public partial class API_RabbitMQ_Base_Subs : BackgroundService
     }
     catch (Exception ex)
     {
-      Console.WriteLine(ex.Message);
-
+      ex.Print();
       return null;
     }
   }

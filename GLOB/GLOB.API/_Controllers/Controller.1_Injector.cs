@@ -31,11 +31,6 @@ public abstract class API_1_InjectorController<TController> : ControllerBase
     _redis = sp.GetSrvc<RedisCacheService>();
 
     _logger = sp.GetSrvc<ILogger<TController>>();
-
-    
-
-    Console.WriteLine("--> Port: {0}, Prefix: {1}", _Option_App.ASPNETCORE_HTTPS_PORT, _Option_App.ASPNETCORE_ROUTE_PREFIX);
-    Console.WriteLine("--> Action : {0}", this);
   }
 
 }

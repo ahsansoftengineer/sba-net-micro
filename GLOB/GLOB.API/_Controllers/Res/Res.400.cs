@@ -10,7 +10,7 @@ public static partial class _Res
   {
     foreach (var ms in modelState)
     {
-      Console.WriteLine($"{ms.Key} :\t {ms.Value}");
+      $"{ms.Key} :\t {ms.Value}".Print("[Validation]");;
     }
 
     if (!modelState.Any(x => x.Key == "Message"))

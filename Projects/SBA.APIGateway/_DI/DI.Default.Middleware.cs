@@ -5,7 +5,7 @@ public static partial class DI_Projectz
   private static void Use_API_Gateway_DevEnv(this IApplicationBuilder app)
   {
     var env = app.GetSrvc<IWebHostEnvironment>();
-    Console.WriteLine($"Current Environment: {env.EnvironmentName}");
+    $"Current Environment: {env.EnvironmentName}".Print();
     if (!env.IsProduction())
     {
       app.UseDeveloperExceptionPage();

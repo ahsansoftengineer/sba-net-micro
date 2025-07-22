@@ -14,7 +14,7 @@
 # kubectl apply -f ./__/K8S/B_DEPL_SRVC/depl-sba-auth.yaml
 # kubectl get pods
 # kubectl get deployments
-# kubectl logs -l app=srvc-sba-auth
+# kubectl logs -l app=srvc-sba-auth --all-containers=true --tail=-1
 # kubectl rollout restart deployments depl-sba-auth
 
 ## BASH DELETE (Deployments & Service)8
@@ -37,6 +37,7 @@ spec:
       labels:
         app: srvc-sba-auth
     spec:
+      enableServiceLinks: false   # ✅ disables auto-injected env vars
       containers:
         - name: srvc-sba-auth
           image: mansanhhub/srvc-sba-auth
@@ -47,27 +48,30 @@ spec:
               value: K8S
             - name: ASPNETCORE_URLS
               value: http://+:1104
+              
             - name: ConnectionStrings__Redis
               value: "srvc-cip-redis-sba-dev:6379,password=P@55w0rd!123"
             - name: ConnectionStrings__SqlConnection
-              value: "Server=srvc-cip-mssql-sba-dev,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
-              # value: "Server=srvc-cip-mssql-sba-auth,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+              value: "Server=srvc-cip-mssql-sba-dev.default.svc.cluster.local,1433;Initial Catalog=SBA_Auth;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
             
-            - name: Clientz__Http_Host__Gateway
+            - name: Clients__Http_Host__Gateway
               value: http://srvc-cip-sba-api-gateway:1100
-            - name: Clientz__Http_Host__Auth
+            - name: Clients__Http_Host__Auth
               value: http://srvc-cip-sba-auth:1104
 
-            - name: Clientz__RabbitMQz__HostName
-              value: srvc-cip-rbmq-sba
-            - name: Clientz__RabbitMQz__Port
+
+            - name: Clients__RabbitMQz__HostName
+              value: srvc-cip-rbmq-sba.default.svc.cluster.local
+            - name: Clients__RabbitMQz__Port
               value: "5672"
-            - name: Clientz__RabbitMQz__VirtualHost
-              value: sba
-            - name: Clientz__RabbitMQz__Username
-              value: admin
-            - name: Clientz__RabbitMQz__Password
-              value: admin123
+            - name: Clients__RabbitMQz__VirtualHost
+              value: /
+            - name: Clients__RabbitMQz__Username
+              value: guest
+            - name: Clients__RabbitMQz__Password
+              value: guest
+            # - name: Clients__RabbitMQz__Uri
+            #   value: amqp://guest:guest@srvc-cip-rbmq-sba.default.svc.cluster.local/sba
 ---
 #------------------------------------------------------------------------- 
 #### (2) API Cluster IP (Auth)

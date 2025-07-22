@@ -16,6 +16,7 @@ public static partial class DI_Infra
     where TIUOW : class, IUOW_Infra
     where TUOW : UOW_Infra, TIUOW
   {
+
     string connStr = config.GetConnectionString("SqlConnection");
 
     srvc.AddDbContext<TContext>(opt =>

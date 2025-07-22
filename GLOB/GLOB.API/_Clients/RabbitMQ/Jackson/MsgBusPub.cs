@@ -21,18 +21,18 @@ public class MsgBusPub : IDisposable
       var message = JsonConvert.SerializeObject(data);
       if (_connection.IsOpen)
       {
-        Console.WriteLine("--> [Rabbit MQ] Connection Open, sending message...");
+        "Connection Open, sending message...".Print("[Rabbit MQ]");;
         SendMessage(message);
       }
       else
       {
-        Console.WriteLine("--> [Rabbit MQ] Connection Close, not sending");
+        "Connection Close, not sending".Print("[Rabbit MQ]");
       }
     }
     catch (Exception ex)
     {
-      Console.WriteLine($"Serialization failed: {ex.Message}");
-      Console.WriteLine(ex.StackTrace);
+      $"Serialization failed: {ex.Message}".Print("[Rabbit MQ]");
+      ex.StackTrace.Print();
     }
   }
   private void SendMessage(string message)
@@ -44,7 +44,7 @@ public class MsgBusPub : IDisposable
       basicProperties: null,
       body
     );
-    Console.WriteLine($"--> We have send: {message}");
+    $"--> We have send: {message}".Print("[Rabbit MQ]");;
   }
   public void Init()
   {
@@ -63,17 +63,17 @@ public class MsgBusPub : IDisposable
           type: ExchangeType.Fanout
       );
       _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
-      Console.WriteLine("--> [Rabbit MQ] Connection Successfull");
+      "Connection Successfull".Print("[Rabbit MQ]");;
     }
     catch (Exception ex)
     {
-      Console.WriteLine($"--> [Rabbit MQ] Connection Failed{ex.Message}");
+      $"Connection Failed{ex.Message}".Print("[Rabbit MQ]");;
     }
   }
 
   private void RabbitMQ_ConnectionShutdown(object? sender, ShutdownEventArgs e)
   {
-    Console.WriteLine("--> [Rabbit MQ] connection was shut down. Jackson");
+    "connection was shut down. Jackson".Print("[Rabbit MQ]");
   }
   
   public void Dispose()

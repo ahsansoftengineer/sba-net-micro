@@ -14,7 +14,7 @@
 # kubectl apply -f ./__/K8S/B_DEPL_SRVC/depl-sba-job.yaml
 # kubectl get pods
 # kubectl get deployments
-# kubectl logs -l app=srvc-sba-job
+# kubectl logs -l app=srvc-sba-job --all-containers=true --tail=-1
 # kubectl rollout restart deployments depl-sba-job
 
 ## BASH DELETE (Deployments & Service)8
@@ -37,6 +37,7 @@ spec:
       labels:
         app: srvc-sba-job
     spec:
+      enableServiceLinks: false   # ✅ disables auto-injected env vars
       containers:
         - name: srvc-sba-job
           image: mansanhhub/srvc-sba-job
@@ -47,26 +48,26 @@ spec:
               value: K8S
             - name: ASPNETCORE_URLS
               value: http://+:1102
+
             - name: ConnectionStrings__Redis
               value: "srvc-cip-redis-sba-dev:6379,password=P@55w0rd!123"
             - name: ConnectionStrings__SqlConnection
               value: "Server=srvc-cip-mssql-sba-dev.default.svc.cluster.local,1433;Initial Catalog=SBA_Job;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
-              # value: "Server=srvc-cip-mssql-sba-job,1433;Initial Catalog=SBA_Job;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
 
-            - name: Clientz__Http_Host__Gateway
+            - name: Clients__Http_Host__Gateway
               value: http://srvc-cip-sba-api-gateway:1100
-            - name: Clientz__Http_Host__Auth
+            - name: Clients__Http_Host__Auth
               value: http://srvc-cip-sba-auth:1104
 
-            - name: Clientz__RabbitMQz__HostName
+            - name: Clients__RabbitMQz__HostName
               value: srvc-cip-rbmq-sba
-            - name: Clientz__RabbitMQz__Port
+            - name: Clients__RabbitMQz__Port
               value: "5672"
-            - name: Clientz__RabbitMQz__VirtualHost
-              value: sba
-            - name: Clientz__RabbitMQz__Username
+            - name: Clients__RabbitMQz__VirtualHost
+              value: /sba
+            - name: Clients__RabbitMQz__Username
               value: admin
-            - name: Clientz__RabbitMQz__Password
+            - name: Clients__RabbitMQz__Password
               value: admin123
 ---
 #------------------------------------------------------------------------- 

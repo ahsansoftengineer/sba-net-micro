@@ -19,7 +19,7 @@ public class InfoController : API_1_InjectorController<InfoController>
   {
     if (!isSuccess)
       return "Failed to Send Email".Ok();
-    Console.WriteLine("--> BackgroundJob.Enqueue<SrvcProjectzLookup>(x => x.BulkCreate());");
+    "--> BackgroundJob.Enqueue<SrvcProjectzLookup>(x => x.BulkCreate());".Print("[Job]");
     BackgroundJob.Enqueue<SrvcProjectzLookup>(x => x.BulkCreate());
     return "Email Sent Successfully".Ok();
   }
@@ -31,7 +31,7 @@ public class InfoController : API_1_InjectorController<InfoController>
     if (!isSuccess)
       return "Failed to Send Email".Ok();
 
-    Console.WriteLine("--> BackgroundJob.Enqueue<SrvcProjectzLookup>(x => x.BulkUpdate());");
+    "--> BackgroundJob.Enqueue<SrvcProjectzLookup>(x => x.BulkUpdate());".Print("[Job]");
     BackgroundJob.Enqueue<SrvcProjectzLookup>(x => x.BulkUpdate());
     return "Email Sent Successfully".Ok();
   }
@@ -43,7 +43,7 @@ public class InfoController : API_1_InjectorController<InfoController>
     if (!isSuccess)
       return "Failed to Send Email".Ok();
 
-      Console.WriteLine("--> RecurringJob.AddOrUpdate<SrvcProjectzLookup> x.UpdateDatabase() Minutly");
+      "--> RecurringJob.AddOrUpdate<SrvcProjectzLookup> x.UpdateDatabase() Minutly".Print("[Job]");
      RecurringJob.AddOrUpdate<SrvcProjectzLookup>(
       recurringJobId: "job-notify-send-email",
       methodCall: x => x.UpdateDatabase(),

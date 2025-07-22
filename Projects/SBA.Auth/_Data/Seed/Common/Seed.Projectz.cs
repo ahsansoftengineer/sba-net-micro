@@ -7,7 +7,7 @@ public static partial class SeedProjectz
   // Dev (When Running Migration throw CLI)
   public static void Seed(this ModelBuilder mb)
   {
-    Console.WriteLine("-->  ModelBuilder --> Auth -> SeedProjectz");
+    "-->  ModelBuilder --> Auth -> SeedProjectz".Print("[EF Core]");
     mb.SeedInfraIdentity(); // base.OnModelCreating
 
   }
@@ -17,12 +17,13 @@ public static partial class SeedProjectz
     using (var srvcScp = app.ApplicationServices.CreateScope())
     { 
       var provider = srvcScp.ServiceProvider;
-      DBCtxProjectz? context = provider.GetService<DBCtxProjectz>();
-      DBCtx contextz = provider.GetService<DBCtx>();
+      DBCtxProjectz? context = provider.GetSrvc<DBCtxProjectz>();
+      DBCtx contextz = provider.GetSrvc<DBCtx>();
       if (context != null)
       {
-        Console.WriteLine("--> Auth -> Applying Migrations AppBuilder");
-        context.Database.Migrate();
+        "--> Auth -> Applying Migrations AppBuilder".Print("[EF Core]");
+        
+        // context.Database.Migrate();
         {
           await app.SeedInfraIdentity();
         }
