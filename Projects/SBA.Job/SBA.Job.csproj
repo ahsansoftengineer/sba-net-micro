@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup Condition="'$(UseProjectReferences)' == 'true'">
-    <PackageReference Include="GLOB.API" Version="1.0.4" />
+    <PackageReference Include="GLOB.API" Version="1.0.41" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(UseProjectReferences)' == 'false'">
