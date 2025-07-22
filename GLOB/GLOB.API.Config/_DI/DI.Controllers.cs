@@ -9,33 +9,14 @@ namespace GLOB.API.Config.DI;
 
 public static partial class DI_API_Config
 {
-
-  public static void Use_API_Config_Controller(this IApplicationBuilder app)
-  {
-    Option_App appConfig = app.GetSrvc<IOptions<Option_App>>().Value;
-    Console.WriteLine(JsonConvert.SerializeObject(appConfig, Formatting.Indented));
-
-    app.UseEndpoints(ep =>
-    {
-      ep.MapControllers();
-    });
-    app.Use(async (context, next) =>
-    {
-      string path = context.Request.Path;
-      if (path == "/")
-      {
-        //"api/Hierarchy/v1";
-        context.Response.Redirect($"/{appConfig.ASPNETCORE_ROUTE_PREFIX}/swagger/index.html");
-        return;
-      }
-      await next();
-    });
-  }
-  public static void Add_API_Config_Controller(
+public static void Add_API_Config_Controller(
     this IServiceCollection srvc,
     IConfiguration config,
     Action<MvcOptions>? configureMvcOptions = null)
   {
+    var appConfig = config.GetSection("Option_App").Get<Option_App>();
+    Console.WriteLine(JsonConvert.SerializeObject(appConfig, Formatting.Indented));
+
     srvc
       // API Caching 3. Defining Cache Profile
       .AddControllers(opt =>
@@ -83,4 +64,26 @@ public static partial class DI_API_Config
 
   }
 
+  public static void Use_API_Config_Controller(this IApplicationBuilder app)
+  {
+    Option_App appConfig = app.GetSrvc<IOptions<Option_App>>().Value;
+    Console.WriteLine(JsonConvert.SerializeObject(appConfig, Formatting.Indented));
+
+    app.UseEndpoints(ep =>
+    {
+      ep.MapControllers();
+    });
+    app.Use(async (context, next) =>
+    {
+      string path = context.Request.Path;
+      if (path == "/")
+      {
+        //"api/Hierarchy/v1";
+        context.Response.Redirect($"/{appConfig.ASPNETCORE_ROUTE_PREFIX}/swagger/index.html");
+        return;
+      }
+      await next();
+    });
+  }
+  
 }

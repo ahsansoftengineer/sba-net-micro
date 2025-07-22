@@ -39,6 +39,7 @@ spec:
       labels:
         app: srvc-sba-hierarchy
     spec:
+      enableServiceLinks: false   # ✅ disables auto-injected env vars
       containers:
         - name: srvc-sba-hierarchy
           image: mansanhhub/srvc-sba-hierarchy

@@ -5,13 +5,18 @@
 # kubectl delete -f ./__/K8S/A_DEPL_Broker/depl-rbmq-sba.yaml
 # kubectl rollout restart deployments depl-rbmq-sba
 
+## Adding VHost to RabbitMQ
+# kubectl exec -it deploy/depl-rbmq-sba -- rabbitmqctl add_vhost /sba
+# kubectl exec -it deploy/depl-rbmq-sba -- rabbitmqctl set_permissions -p /sba admin ".*" ".*" ".*"
+
+
 #-----------------------------#
 # (0) RabbitMQ Virtual Host (vhost)
 # - kubectl get configmaps
 # - kubectl get configmaps cm-def-rabbit
 # - kubectl delete configmaps cm-def-rabbit
-# - kubectl describe configmap rabbit-definitions-cm
-# - kubectl get configmap rabbit-definitions-cm -o yaml
+# - kubectl describe configmap cm-def-rabbit
+# - kubectl get configmap cm-def-rabbit -o yaml
 #-----------------------------#
 apiVersion: v1
 kind: ConfigMap

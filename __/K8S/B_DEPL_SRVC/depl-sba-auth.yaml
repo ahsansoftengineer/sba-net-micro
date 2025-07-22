@@ -37,6 +37,7 @@ spec:
       labels:
         app: srvc-sba-auth
     spec:
+      enableServiceLinks: false   # ✅ disables auto-injected env vars
       containers:
         - name: srvc-sba-auth
           image: mansanhhub/srvc-sba-auth
@@ -59,7 +60,7 @@ spec:
               value: http://srvc-cip-sba-auth:1104
 
             - name: Clients__RabbitMQz__HostName
-              value: srvc-cip-rbmq-sba
+              value: srvc-cip-rbmq-sba.default.svc.cluster.local
             - name: Clients__RabbitMQz__Port
               value: "5672"
             - name: Clients__RabbitMQz__VirtualHost

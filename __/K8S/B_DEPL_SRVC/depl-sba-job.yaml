@@ -37,6 +37,7 @@ spec:
       labels:
         app: srvc-sba-job
     spec:
+      enableServiceLinks: false   # ✅ disables auto-injected env vars
       containers:
         - name: srvc-sba-job
           image: mansanhhub/srvc-sba-job

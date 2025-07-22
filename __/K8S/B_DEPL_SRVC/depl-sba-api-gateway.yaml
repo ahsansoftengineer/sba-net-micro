@@ -37,6 +37,7 @@ spec:
       labels:
         app: srvc-sba-api-gateway
     spec:
+      enableServiceLinks: false   # ✅ disables auto-injected env vars
       containers:
         - name: srvc-sba-api-gateway
           image: mansanhhub/srvc-sba-api-gateway
