@@ -14,7 +14,7 @@
 # kubectl apply -f ./__/K8S/B_DEPL_SRVC/depl-sba-auth.yaml
 # kubectl get pods
 # kubectl get deployments
-# kubectl logs -l app=srvc-sba-auth
+# kubectl logs -l app=srvc-sba-auth --all-containers=true --tail=-1
 # kubectl rollout restart deployments depl-sba-auth
 
 ## BASH DELETE (Deployments & Service)8

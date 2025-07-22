@@ -14,7 +14,7 @@
 # kubectl apply -f ./__/K8S/B_DEPL_SRVC/depl-sba-job.yaml
 # kubectl get pods
 # kubectl get deployments
-# kubectl logs -l app=srvc-sba-job
+# kubectl logs -l app=srvc-sba-job --all-containers=true --tail=-1
 # kubectl rollout restart deployments depl-sba-job
 
 ## BASH DELETE (Deployments & Service)8

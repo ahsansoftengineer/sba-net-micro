@@ -6,9 +6,40 @@
 # kubectl rollout restart deployments depl-rbmq-sba
 
 #-----------------------------#
+# (0) RabbitMQ Virtual Host (vhost)
+# - kubectl get configmaps
+# - kubectl get configmaps cm-def-rabbit
+# - kubectl delete configmaps cm-def-rabbit
+# - kubectl describe configmap rabbit-definitions-cm
+# - kubectl get configmap rabbit-definitions-cm -o yaml
+#-----------------------------#
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-def-rabbit
+data:
+  definitions.json: |
+    {
+      "vhosts": [
+        { "name": "/sba" }
+      ],
+      "permissions": [
+        {
+          "user": "admin",
+          "vhost": "/sba",
+          "configure": ".*",
+          "write": ".*",
+          "read": ".*"
+        }
+      ]
+    }
+---
+#-----------------------------#
 # (1) RabbitMQ Deployment (SBA)
 # - kubectl get deployment
 # - kubectl get deployment depl-rbmq-sba
+# - docker exec -it contID rabbitmqctl list_users # aec4
+# - docker exec -it aec4 rabbitmqctl list_vhosts
 # - kubectl delete deployment depl-rbmq-sba
 #-----------------------------#
 apiVersion: apps/v1
@@ -33,6 +64,8 @@ spec:
               value: admin
             - name: RABBITMQ_DEFAULT_PASS
               value: admin123
+            - name: RABBITMQ_LOAD_DEFINITIONS
+              value: /etc/rabbitmq/definitions.json
           ports:
             - name: management
               containerPort: 15672
@@ -40,6 +73,14 @@ spec:
             - name: amqp
               containerPort: 5672
               protocol: TCP
+          volumeMounts:
+            - name: cm-def-rabbit-name
+              mountPath: /etc/rabbitmq/definitions.json
+              subPath: definitions.json
+      volumes:
+        - name: cm-def-rabbit-name
+          configMap:
+            name: cm-def-rabbit
 ---
 #---------------------------------------------#
 # (2) RabbitMQ ClusterIP Service (for internal)
