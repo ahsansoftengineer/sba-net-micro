@@ -23,7 +23,7 @@ public class RedisCacheService
 
     prefix = _config.GetValueStr("ASPNETCORE_ROUTE_PREFIX").Replace("/", "-");
 
-    Console.WriteLine(prefix);
+    prefix.Print("[Redis]");
   }
   public async Task Set(CacheModel cm)
   {

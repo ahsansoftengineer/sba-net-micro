@@ -48,7 +48,7 @@ public class FilterCacheActionSave : IAsyncActionFilter
 
       if (status == HttpStatusCode.OK || status == HttpStatusCode.Created)
       {
-        Console.WriteLine($"Handling Action {action} Status {status} in Cache -->");
+        $"Handling Action {action} Status {status} in Cache -->".Print();
 
         if ("Update, Status".IndexOf(action) != -1)
         {
