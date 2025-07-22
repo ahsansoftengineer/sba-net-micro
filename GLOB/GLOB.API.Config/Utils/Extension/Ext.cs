@@ -4,27 +4,26 @@ namespace GLOB.API.Config.Extz;
 
 public static partial class Extz
 {
-  public static void Print<T>(this T obj, string heading = "Msg")
-    where T: class
+  public static void Print(this object obj, string? heading = null)
   {
     try
     {
       string result = JsonConvert.SerializeObject(obj, Formatting.Indented);
       result = result.Replace("\"", "");
-      result.Print(heading);
+      Console.WriteLine("--> {0} \n{1}", $"[{heading ?? "Object"}]", result);
     }
     catch (Exception ex)
     {
-      Console.WriteLine("--> Print Error : " + ex.Message);
+      Console.WriteLine("--> Print Exception : " + ex.Message);
     }
   }
-  public static void Print(this Exception obj, string heading = "Msg")
+  public static void Print(this Exception obj, string? heading = null)
   {
-    obj.Message.Print(heading);
+    obj.Message.Print($"[{heading ?? "Exception"}]");
   }
-  public static void Print(this string value, string heading = "Msg")
+  public static void Print(this string value, string? heading = null)
   {
-    Console.WriteLine("--> {0} \n\t{1}\n\n", heading, value);
+    Console.WriteLine("--> {0} ~\t{1}\n", (heading ?? "[Message]"), value);
   }
   public static T GetSrvc<T>(this IServiceProvider sp)
     where T : class
@@ -37,7 +36,7 @@ public static partial class Extz
     {
       Console.WriteLine($"------------------------****-*-****------------------------");
       Console.WriteLine($"Please Regiseter Service in DI {typeof(T).Name}");
-      Console.WriteLine(ex.Message);
+      ex.Print();
       return null;
     }
   }
@@ -57,7 +56,7 @@ public static partial class Extz
     string result = configuration.GetValue(key, default(string));
     if (string.IsNullOrEmpty(result)){
       string msg = $"Env has no Value for [{key}]";
-      Console.WriteLine(msg);
+      msg.Print();
       return msg;
     }
     return result;
@@ -67,7 +66,7 @@ public static partial class Extz
     string result = configuration.GetValue(key, default(string));
     if (string.IsNullOrEmpty(result)){
       string msg = $"Env has no Value for [{key}]";
-      Console.WriteLine(msg);
+      msg.Print();
       return 0;
     }
     int value = 0;

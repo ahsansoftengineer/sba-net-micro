@@ -41,7 +41,7 @@ public partial class API_RabbitMQ_Base_Pubs
     catch (Exception ex)
     {
       $"[Rabbit MQ] Serialization failed: {ex.Message}".Print("[Rabbit MQ]");
-      Console.WriteLine(ex.StackTrace);
+      ex.StackTrace.Print();
     }
   }
 }

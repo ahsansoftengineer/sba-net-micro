@@ -5,27 +5,26 @@ namespace GLOB.Infra.Utils.Extz;
 
 public static partial class Ext
 {
-  public static void Print<T>(this T obj, string heading = "Msg")
-    where T : class
+  public static void Print(this object obj, string? heading = null)
   {
     try
     {
       string result = JsonConvert.SerializeObject(obj, Formatting.Indented);
       result = result.Replace("\"", "");
-      result.Print(heading);
+      Console.WriteLine("--> {0} \n{1}", heading ?? "[Object]", result);
     }
     catch (Exception ex)
     {
-      Console.WriteLine("--> Print Error : " + ex.Message);
+      Console.WriteLine("--> Print Exception : " + ex.Message);
     }
   }
   public static void Print(this Exception obj, string? heading = null)
   {
     obj.Message.Print($"[{heading ?? "Exception"}]");
   }
-  public static void Print(this string value, string heading = "Msg")
+  public static void Print(this string value, string? heading = null)
   {
-    Console.WriteLine("--> {0} \n\t{1}\n\n", heading, value);
+    Console.WriteLine("--> {0} ~\t{1}\n", heading ?? "[Message]", value);
   }
   public static string GetWebUrl(this IConfiguration configuration)
   {

@@ -15,4 +15,3 @@ public enum SHOUTOUT_TYPE : int
   [EnumAtr("Business Multi Order")]
   BUSINESS_MULTI = 4,
 }
-//  Console.WriteLine(GetEnumDescription(OrderStatus.Shipped));

@@ -19,7 +19,6 @@ public static partial class DI_Infra
 
     string connStr = config.GetConnectionString("SqlConnection");
 
-    $"--> SqlConn : {connStr}".Print();
     srvc.AddDbContext<TContext>(opt =>
     {
       opt.EnableDetailedErrors();

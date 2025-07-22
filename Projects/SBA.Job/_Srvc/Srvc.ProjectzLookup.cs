@@ -5,24 +5,24 @@ public class SrvcProjectzLookup
   public string date => DateTime.Now.ToString("dd-MMM-yyyy HH:mm:ss");
   public void GenerateMerchandise()
   {
-    Console.WriteLine($"GenerateMerchandise: Long Running Task {date}");
+    $"GenerateMerchandise: Long Running Task {date}".Print("[Job]");
   }
   public void BulkCreate()
   {
-    Console.WriteLine($"BulkCreate: Long Running Task {date}");
+    $"BulkCreate: Long Running Task {date}".Print("[Job]");
   }
 
   public void BulkUpdate()
   {
-    Console.WriteLine($"BulkUpdate: Long Running Task {date}");
+    $"BulkUpdate: Long Running Task {date}".Print("[Job]");
   }
   public void SyncData()
   {
-    Console.WriteLine($"SyncData: Long Running Task {date}");
+    $"SyncData: Long Running Task {date}".Print("[Job]");
   }
   public void UpdateDatabase()
   {
-    Console.WriteLine($"UpdateDatabase: Long Running Task {date}");
+    $"UpdateDatabase: Long Running Task {date}".Print("[Job]");
   }
   
 }

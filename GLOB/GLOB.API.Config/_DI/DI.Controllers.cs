@@ -15,7 +15,7 @@ public static void Add_API_Config_Controller(
     Action<MvcOptions>? configureMvcOptions = null)
   {
     var appConfig = config.GetSection("Option_App").Get<Option_App>();
-    Console.WriteLine(JsonConvert.SerializeObject(appConfig, Formatting.Indented));
+    appConfig.Print("ENV");
 
     srvc
       // API Caching 3. Defining Cache Profile
@@ -67,7 +67,7 @@ public static void Add_API_Config_Controller(
   public static void Use_API_Config_Controller(this IApplicationBuilder app)
   {
     Option_App appConfig = app.GetSrvc<IOptions<Option_App>>().Value;
-    Console.WriteLine(JsonConvert.SerializeObject(appConfig, Formatting.Indented));
+    appConfig.Print("ENV");
 
     app.UseEndpoints(ep =>
     {

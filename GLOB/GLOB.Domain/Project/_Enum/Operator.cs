@@ -23,4 +23,3 @@ public enum OPERATOR
   [EnumAtr("Visa Master")]
   VISA_MASTER = 100013,
 }
-//  Console.WriteLine(GetEnumDescription(OrderStatus.Shipped));
