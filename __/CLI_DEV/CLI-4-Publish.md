@@ -24,7 +24,6 @@ dotnet nuget push ./GLOB/GLOB.Infra/bin/Release/GLOB.Infra.1.0.41.nupkg --api-ke
 ```bash
 dotnet build ./GLOB/GLOB.API/GLOB.API.csproj -c Release -p:PackageVersion=1.0.41 -p:UseProjectReferences=true
 dotnet pack ./GLOB/GLOB.API/GLOB.API.csproj -c Release -p:PackageVersion=1.0.41 -p:UseProjectReferences=true
-
 dotnet nuget push ./GLOB/GLOB.API/bin/Release/GLOB.API.1.0.41.nupkg --api-key oy2admcfuhtm3ub5pnu5qghl2y6ykti2u5ovdy5dl55i66m --source https://api.nuget.org/v3/index.json
 
 ```
