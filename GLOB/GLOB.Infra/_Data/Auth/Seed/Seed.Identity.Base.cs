@@ -25,7 +25,7 @@ public static partial class InfraSeedIdentity
 
       var srvc = srvcScp.ServiceProvider;
       var context = srvc.GetSrvc<DBCtxIdentity>();
-      var contextz = srvc.GetSrvc<DBCtx>();
+      var contextz = srvc.GetSrvc<DBCtxInfra>();
       context.Database.EnsureCreated();
       contextz.Database.EnsureCreated();
       var userManager = srvc.GetRequiredService<UserManager<InfraUser>>();

@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using GLOB.Domain.Model.Auth;
+using GLOB.Infra.Data.Auth;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
@@ -13,12 +14,12 @@ public class TokenService
   private readonly UserManager<InfraUser> _userManager;
   protected readonly Option_JwtSettings _jwt;
 
-  private readonly DBCtxProjectz _context;
+  private readonly DBCtxIdentity _context;
 
   public TokenService(
     IOptions<Option_JwtSettings> Option_JwtSettings,
     UserManager<InfraUser> userManager,
-    DBCtxProjectz context)
+    DBCtxIdentity context)
   {
     _jwt = Option_JwtSettings.Value;
     _userManager = userManager;

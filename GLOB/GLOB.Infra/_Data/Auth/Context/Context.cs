@@ -10,7 +10,7 @@ public partial class DBCtxIdentity : IdentityDbContext<InfraUser, InfraRole, str
 
   public string DOTNET_ENVIRONMENT { get; }
 
-  public DBCtxIdentity(DbContextOptions options, IServiceProvider sp) : base(options)
+  public DBCtxIdentity(DbContextOptions<DBCtxIdentity> options, IServiceProvider sp) : base(options)
   {
     _config = sp.GetSrvc<IConfiguration>();
     DOTNET_ENVIRONMENT = _config.GetValueStr("DOTNET_ENVIRONMENT");

@@ -2,6 +2,7 @@ using SBA.Projectz.Mapper;
 using SBA.Auth.Services;
 using GLOB.API.Clientz;
 using SBA.Projectz.Clientz;
+using GLOB.Infra.Data.Auth;
 
 namespace SBA.Projectz.DI;
 
@@ -23,7 +24,9 @@ public static partial class DI_Projectz
 
     // srvc.Add_Infra_DB_SQL_Identity<DBCtxIdentity, IUOW_Projectz, UOW_Projectz>(config);
     srvc.Add_Infra_Cache_Redis(config);
+    // srvc.Add_Infra_DB_SQL<DBCtx, IUOW_Infra, UOW_Infra>(config); // NO When using multiple (DbContext)
     srvc.Add_Infra_DB_SQL<DBCtxInfra, IUOW_Infra, UOW_Projectz>(config);
+    srvc.Add_Infra_DB_SQL<DBCtxIdentity, IUOW_Projectz, UOW_Projectz>(config);
     srvc.Add_Infra_DB_SQL_Identity<DBCtxProjectz, IUOW_Projectz, UOW_Projectz>(config);
 
     srvc.Add_API_Config_JWT_Option();
