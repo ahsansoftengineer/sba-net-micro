@@ -1,7 +1,6 @@
 using System.Security.Claims;
-using GLOB.API.Staticz;
+
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
 

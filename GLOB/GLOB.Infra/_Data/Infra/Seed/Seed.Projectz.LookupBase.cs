@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+
 
 namespace GLOB.Infra.Data.Sqlz;
 public static partial class SeedzInfra

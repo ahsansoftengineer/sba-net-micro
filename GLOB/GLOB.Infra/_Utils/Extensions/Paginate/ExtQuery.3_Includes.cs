@@ -1,6 +1,3 @@
-
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace GLOB.Infra.Utils.Extz;

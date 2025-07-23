@@ -1,6 +1,6 @@
 using GLOB.Domain.Model.Auth;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace GLOB.Infra.Data.Auth;
 public static partial class InfraSeedIdentity

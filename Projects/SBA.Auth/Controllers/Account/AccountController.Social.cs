@@ -1,6 +1,4 @@
-using GLOB.Domain.Model.Auth;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;
 

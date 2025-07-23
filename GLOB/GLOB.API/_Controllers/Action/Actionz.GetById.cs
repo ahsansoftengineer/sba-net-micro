@@ -1,6 +1,5 @@
 using GLOB.Infra.Repo;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace GLOB.API.Staticz;
 

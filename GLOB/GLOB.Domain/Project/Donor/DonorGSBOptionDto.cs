@@ -5,6 +5,6 @@ public class DonorGSBOptionSelf
 }
 public class DonorGSBOptionMarhoom
 {
-  public string name { get; set; }
+  public required string name { get; set; }
   public int amount { get; set; }
 }

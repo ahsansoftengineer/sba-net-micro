@@ -1,7 +1,6 @@
 namespace GLOB.API.Config.Middleware;
 using System.Net;
 using System.Text.Json;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
 public class GlobalExceptionMiddleware

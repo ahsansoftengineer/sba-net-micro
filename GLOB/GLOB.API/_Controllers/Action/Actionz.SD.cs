@@ -1,5 +1,4 @@
 using GLOB.Infra.Repo;
-using Microsoft.AspNetCore.Mvc;
 namespace GLOB.API.Staticz;
 
 public static partial class _Actionz
