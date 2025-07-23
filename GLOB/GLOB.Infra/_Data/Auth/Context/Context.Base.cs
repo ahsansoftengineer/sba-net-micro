@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace GLOB.Infra.Data.Auth;
-public partial class DBCtxIdentity : IdentityDbContext<InfraUser, InfraRole, string>
+// No DI
+public abstract partial class DBCtxIdentity : IdentityDbContext<InfraUser, InfraRole, string>
 {
   protected readonly IConfiguration _config;
 
@@ -19,7 +20,7 @@ public partial class DBCtxIdentity : IdentityDbContext<InfraUser, InfraRole, str
   protected override void OnModelCreating(ModelBuilder mb)
   {
     DBCtx.EntityMappingConfig(mb);
-    // mb.SeedInfraIdentity(); Handle From Auth Project
+    mb.SeedInfraIdentity(); //Handle From Auth Project
     base.OnModelCreating(mb);
   }
 }

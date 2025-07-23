@@ -11,7 +11,6 @@ public static partial class DI_Infra
   public static void Add_Infra_Cache_Redis(this IServiceCollection srvc, IConfiguration config)
   {
     string conn = config.GetConnectionString("Redis");
-    conn.Print("[Redis]");
     srvc.AddStackExchangeRedisCache(options =>
     {
       options.Configuration = conn;

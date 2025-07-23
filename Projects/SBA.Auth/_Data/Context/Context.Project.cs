@@ -5,7 +5,9 @@ namespace SBA.Projectz.Data;
 public partial class DBCtxProjectz : DBCtxIdentity
 {
   public DBCtxProjectz(IServiceProvider sp, DbContextOptions<DBCtxProjectz> options) : base(options, sp)
-  {}
+  {
+
+  }
 
   protected override void OnModelCreating(ModelBuilder mb)
   {

@@ -12,7 +12,7 @@ using SBA.Projectz.Data;
 namespace SBA.Auth.Migrations
 {
     [DbContext(typeof(DBCtxProjectz))]
-    [Migration("20250722073930_Init")]
+    [Migration("20250723093209_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -59,6 +59,35 @@ namespace SBA.Auth.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "b4206884-fc69-4a1b-a4ca-81f4cf594ee5",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Name = "InfraRole_1",
+                            NormalizedName = "INFRAROLE_1",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = "832f9537-20c4-49ca-9f12-b8c5f9515c17",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Name = "InfraRole_2",
+                            NormalizedName = "INFRAROLE_2",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = "8c40418c-4ac7-4f2e-9def-8ceeb5f5c556",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Name = "InfraRole_3",
+                            NormalizedName = "INFRAROLE_3",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        });
                 });
 
             modelBuilder.Entity("GLOB.Domain.Model.Auth.InfraUser", b =>
@@ -137,6 +166,71 @@ namespace SBA.Auth.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "22c74fbc-9b0d-4848-85db-f09d58750006",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "22c74fbc-9b0d-4848-85db-f09d58750006",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Email = "user@example.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            Name = "user",
+                            NormalizedEmail = "USER@EXAMPLE.COM",
+                            NormalizedUserName = "USER@EXAMPLE.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEH8TwXVwcbtXIghA7HXWdxBby6hNwCv2wymENQovHXetVwePKAuGoPmgOU3Ia5DQSQ==",
+                            PhoneNumber = "03212827700",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "22c74fbc-9b0d-4848-85db-f09d58750006",
+                            Status = 0,
+                            TwoFactorEnabled = false,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            UserName = "user@example.com"
+                        },
+                        new
+                        {
+                            Id = "46eb923d-8529-4b77-b311-96e98ea6ea06",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "46eb923d-8529-4b77-b311-96e98ea6ea06",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Email = "InfraUser_2@yopmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            Name = "InfraUser_2",
+                            NormalizedEmail = "INFRAUSER_2@YOPMAIL.COM",
+                            NormalizedUserName = "INFRAUSER_2@YOPMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEZrzvoO6E2eWvIg32NcDddabktkiL8E/8ypmrDVEmJqRN8O4QS9OsAkp/CNGU8Sww==",
+                            PhoneNumber = "03212827701",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "46eb923d-8529-4b77-b311-96e98ea6ea06",
+                            Status = 0,
+                            TwoFactorEnabled = false,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            UserName = "InfraUser_2@yopmail.com"
+                        },
+                        new
+                        {
+                            Id = "8118fea8-a644-4d67-9eca-1d689465a1bf",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "8118fea8-a644-4d67-9eca-1d689465a1bf",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Email = "InfraUser_3@yopmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            Name = "InfraUser_3",
+                            NormalizedEmail = "INFRAUSER_3@YOPMAIL.COM",
+                            NormalizedUserName = "INFRAUSER_3@YOPMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHqWcCARLcJyHEapPUKj0vgHWZcHRJ1c9/wYslis9UtW7XSZfqRhLNXztbD9ClGcdQ==",
+                            PhoneNumber = "03212827702",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "8118fea8-a644-4d67-9eca-1d689465a1bf",
+                            Status = 0,
+                            TwoFactorEnabled = false,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            UserName = "InfraUser_3@yopmail.com"
+                        });
                 });
 
             modelBuilder.Entity("GLOB.Domain.Model.Auth.RefreshToken", b =>
@@ -234,6 +328,41 @@ namespace SBA.Auth.Migrations
                     b.HasIndex("ProjectzLookupBaseId");
 
                     b.ToTable("ProjectzLookups");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "111-111-111",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "ProjectzLookup 1 Desc",
+                            Name = "ProjectzLookup 1",
+                            ProjectzLookupBaseId = 1,
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "222-222-222",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "ProjectzLookup 2 Desc",
+                            Name = "ProjectzLookup 2",
+                            ProjectzLookupBaseId = 2,
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Code = "333-333-333",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "ProjectzLookup 3 Desc",
+                            Name = "ProjectzLookup 3",
+                            ProjectzLookupBaseId = 3,
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        });
                 });
 
             modelBuilder.Entity("GLOB.Infra.Model.Base.ProjectzLookupBase", b =>
@@ -273,6 +402,35 @@ namespace SBA.Auth.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProjectzLookupBases");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "ProjectzLookupBase 1 Desc",
+                            Name = "ProjectzLookupBase 1",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "ProjectzLookupBase 2 Desc",
+                            Name = "ProjectzLookupBase 2",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "ProjectzLookupBase 3 Desc",
+                            Name = "ProjectzLookupBase 3",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

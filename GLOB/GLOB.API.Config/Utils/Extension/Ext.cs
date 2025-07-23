@@ -23,7 +23,7 @@ public static partial class Extz
   }
   public static void Print(this string value, string? heading = null)
   {
-    Console.WriteLine("--> {0} ~\t{1}\n", (heading ?? "[Message]"), value);
+    Console.WriteLine("--> {0}\t{1}\n", (heading ?? "[Message]"), value);
   }
   public static T GetSrvc<T>(this IServiceProvider sp)
     where T : class

@@ -4,9 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GLOB.Infra.Utils.Extz;
 
-public static partial class Ext
+internal static partial class Ext
 {
-  public static TService GetSrvc<TService>(this IServiceProvider sp)
+  internal static TService GetSrvc<TService>(this IServiceProvider sp)
     where TService: class
   {
     try
@@ -21,7 +21,7 @@ public static partial class Ext
       return null;
     }
   }
-  public static T GetSrvc<T>(this IApplicationBuilder app)
+  internal static T GetSrvc<T>(this IApplicationBuilder app)
     where T : notnull
   {
     return app.ApplicationServices.GetRequiredService<T>();

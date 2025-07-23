@@ -3,7 +3,7 @@
 
 ## Add Publish Projects to Local Feeds
 ```bash
-dotnet nuget add source "C:\Packages" --name LocalFeed 
+dotnet nuget add source "C:\Packages" --name Packages 
 dotnet nuget remove source Packages
 dotnet nuget list source
 
@@ -17,7 +17,7 @@ dotnet nuget list source
 ```bash
 dotnet build ./GLOB/GLOB.API.Config/GLOB.API.Config.csproj -c Release -p:PackageVersion=1.0.42
 dotnet pack ./GLOB/GLOB.API.Config/GLOB.API.Config.csproj -c Release -p:PackageVersion=1.0.42
-dotnet nuget push ./GLOB/GLOB.API.Config/bin/Release/GLOB.API.Config.1.0.42.nupkg --api-key oy2admcfuhtm3ub5pnu5qghl2y6ykti2u5ovdy5dl55i66m --source https://api.nuget.org/v3/index.json
+dotnet nuget push ./GLOB/GLOB.API.Config/bin/Release/GLOB.API.Config.1.0.42.nupkg --api-key oy2abz6ry2ev5umiibufqs64izjruy5duppzurlosmyoxye --source https://api.nuget.org/v3/index.json
 cp ./GLOB/GLOB.API.Config/bin/Release/GLOB.API.Config.1.0.42.nupkg /c/Packages/
 
 ```

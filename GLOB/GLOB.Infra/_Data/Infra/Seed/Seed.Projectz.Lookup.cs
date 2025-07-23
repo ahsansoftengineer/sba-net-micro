@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 namespace GLOB.Infra.Data.Sqlz;
 public static partial class SeedzInfra
 {
-  public static void SeedProjectzLookup(this DBCtx context)
+  public static void SeedProjectzLookup(this DBCtxInfra context)
   {
     if (!context.ProjectzLookups.Any(x => x.Id > 0))
     {

@@ -3,7 +3,7 @@ namespace GLOB.Infra.Data.Sqlz;
 public static partial class SeedzInfra
 {
   // // For DB Context (Normal) (Prod Automate) 
-  // public static void SeedTestInfra(this DBCtx context)
+  // public static void SeedTestInfra(this DBCtxInfra context)
   // {
   //   if (!context.TestInfras.Any(x => x.Id > 0))
   //   {
@@ -12,7 +12,7 @@ public static partial class SeedzInfra
   //   }
   // }
   // // For DB Context (Identity) (Prod Automate)
-  // public static void SeedTestInfra(this DBCtxIdentity context)
+  // public static void SeedTestInfra(this DBCtxInfraIdentity context)
   // {
   //   if (!context.TestInfras.Any(x => x.Id > 0))
   //   {

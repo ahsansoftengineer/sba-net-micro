@@ -18,7 +18,7 @@ public static partial class SeedzInfra
   {
     using(var srvcScp = app.ApplicationServices.CreateScope())
     {
-      DBCtx? context = srvcScp.ServiceProvider.GetSrvc<DBCtx>();
+      DBCtxInfra? context = srvcScp.ServiceProvider.GetSrvc<DBCtxInfra>();
       if (context != null)
       {
         "--> Infra -> Applying Migrations AppBuilder (Prod)".Print("[EF Core]");

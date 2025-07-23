@@ -13,6 +13,7 @@ public static partial class DI_Projectz
     // srvc.Add_API_Default_Srvc2();
 
     srvc.Add_Infra_Cache_Redis(config);
+
     srvc.Add_Infra_DB_SQL<DBCtxInfra, IUOW_Infra, UOW_Projectz>(config);
     srvc.Add_Infra_DB_SQL<DBCtxProjectz, IUOW_Projectz, UOW_Projectz>(config);
 

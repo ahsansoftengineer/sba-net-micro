@@ -18,7 +18,6 @@ public static partial class SeedProjectz
     { 
       var provider = srvcScp.ServiceProvider;
       DBCtxProjectz? context = provider.GetSrvc<DBCtxProjectz>();
-      DBCtx contextz = provider.GetSrvc<DBCtx>();
       if (context != null)
       {
         "--> Auth -> Applying Migrations AppBuilder".Print("[EF Core]");

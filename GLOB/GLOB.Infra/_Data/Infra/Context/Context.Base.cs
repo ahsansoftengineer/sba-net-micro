@@ -2,7 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace GLOB.Infra.Data.Sqlz;
-public partial class DBCtx : DbContext
+// No DI
+public abstract partial class DBCtx : DbContext
 {
   protected readonly IConfiguration _config;
 
@@ -20,9 +21,7 @@ public partial class DBCtx : DbContext
     EntityMappingConfig(mb);
     // OnModelCreatingEnumConfig(mb);
     // ConfigEnums(mb);
-    
     mb.SeedInfra();
-
     base.OnModelCreating(mb);
   }
   
