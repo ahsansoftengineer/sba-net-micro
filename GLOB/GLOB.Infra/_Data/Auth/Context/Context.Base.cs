@@ -4,13 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace GLOB.Infra.Data.Auth;
-public partial class DBCtxIdentity : IdentityDbContext<InfraUser, InfraRole, string>
+// No DI
+public abstract partial class DBCtxIdentity : IdentityDbContext<InfraUser, InfraRole, string>
 {
   protected readonly IConfiguration _config;
 
   public string DOTNET_ENVIRONMENT { get; }
 
-  public DBCtxIdentity(DbContextOptions<DBCtxIdentity> options, IServiceProvider sp) : base(options)
+  public DBCtxIdentity(DbContextOptions options, IServiceProvider sp) : base(options)
   {
     _config = sp.GetSrvc<IConfiguration>();
     DOTNET_ENVIRONMENT = _config.GetValueStr("DOTNET_ENVIRONMENT");

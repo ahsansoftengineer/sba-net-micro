@@ -6,14 +6,14 @@ namespace GLOB.Infra.Utils.Extz;
 public static class DBCtxExtensions
 {
     // For returning entities (SELECT)
-    public static List<T> ExecSP<T>(this DBCtx context, string procedureName, params SqlParameter[] parameters) where T : class
+    public static List<T> ExecSP<T>(this DBCtxInfra context, string procedureName, params SqlParameter[] parameters) where T : class
     {
         var sql = BuildSqlWithParams(procedureName, parameters.Length);
         return context.Set<T>().FromSqlRaw(sql, parameters).ToList();
     }
 
     // For non-queries (e.g., INSERT/UPDATE/DELETE)
-    public static int ExecSPNonQuery(this DBCtx context, string procedureName, params SqlParameter[] parameters)
+    public static int ExecSPNonQuery(this DBCtxInfra context, string procedureName, params SqlParameter[] parameters)
     {
         var sql = BuildSqlWithParams(procedureName, parameters.Length);
         return context.Database.ExecuteSqlRaw(sql, parameters);
@@ -30,14 +30,14 @@ public static class DBCtxExtensions
 }
 // var param = new SqlParameter("@RoleName", "Admin");
 
-// var users = DBCtx.ExecuteStoredProcedure<User>("GetUsersByRole", param);
+// var users = DBCtxInfra.ExecuteStoredProcedure<User>("GetUsersByRole", param);
 
 // var idParam = new SqlParameter("@Id", 1);
 // var nameParam = new SqlParameter("@Name", "UpdatedName");
 
-// var rowsAffected = DBCtx.ExecuteStoredProcedureNonQuery("UpdateUserName", idParam, nameParam);
+// var rowsAffected = DBCtxInfra.ExecuteStoredProcedureNonQuery("UpdateUserName", idParam, nameParam);
 
-// var users = DBCtx.Set<UserSummary>()
+// var users = DBCtxInfra.Set<UserSummary>()
 //     .FromSqlRaw("EXEC GetUserSummaries")
 //     .AsNoTracking()
 //     .ToList();

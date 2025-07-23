@@ -1,5 +1,3 @@
-using GLOB.Infra.Repo;
-
 namespace GLOB.Infra.UOW;
 public interface IUOW_Infra : IDisposable
 {

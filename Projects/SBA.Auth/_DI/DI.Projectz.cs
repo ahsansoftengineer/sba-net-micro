@@ -20,13 +20,12 @@ public static partial class DI_Projectz
     srvc.Add_API_Config_Authorization_JWT(config);
 
     srvc.Add_API_Config_Swagger(config);
-    srvc.Add_API_Config_Cors();
+    srvc.Add_API_Config_Cors_Auth();
 
-    // srvc.Add_Infra_DB_SQL_Identity<DBCtxIdentity, IUOW_Projectz, UOW_Projectz>(config);
     srvc.Add_Infra_Cache_Redis(config);
-    // srvc.Add_Infra_DB_SQL<DBCtx, IUOW_Infra, UOW_Infra>(config); // NO When using multiple (DbContext)
+    
     srvc.Add_Infra_DB_SQL<DBCtxInfra, IUOW_Infra, UOW_Projectz>(config);
-    srvc.Add_Infra_DB_SQL<DBCtxIdentity, IUOW_Projectz, UOW_Projectz>(config);
+    srvc.Add_Infra_DB_SQL<DBCtxInfraIdentity, IUOW_Projectz, UOW_Projectz>(config);
     srvc.Add_Infra_DB_SQL_Identity<DBCtxProjectz, IUOW_Projectz, UOW_Projectz>(config);
 
     srvc.Add_API_Config_JWT_Option();

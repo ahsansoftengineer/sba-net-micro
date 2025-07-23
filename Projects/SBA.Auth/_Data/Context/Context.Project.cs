@@ -1,17 +1,11 @@
-using GLOB.Domain.Model.Auth;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using GLOB.Infra.Data.Auth;
 using Microsoft.EntityFrameworkCore;
 
 namespace SBA.Projectz.Data;
-public partial class DBCtxProjectz : IdentityDbContext<InfraUser, InfraRole, string>
+public partial class DBCtxProjectz : DBCtxIdentity
 {
-  protected readonly IConfiguration _config;
-
-  public string DOTNET_ENVIRONMENT { get; }
-  public DBCtxProjectz(IServiceProvider sp, DbContextOptions<DBCtxProjectz> options) : base(options)
+  public DBCtxProjectz(IServiceProvider sp, DbContextOptions<DBCtxProjectz> options) : base(options, sp)
   {
-    _config = sp.GetSrvc<IConfiguration>();
-    DOTNET_ENVIRONMENT = _config.GetValueStr("DOTNET_ENVIRONMENT");
 
   }
 

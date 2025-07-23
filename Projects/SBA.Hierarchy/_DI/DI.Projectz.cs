@@ -14,7 +14,6 @@ public static partial class DI_Projectz
 
     srvc.Add_Infra_Cache_Redis(config);
 
-    // srvc.Add_Infra_DB_SQL<DBCtx, IUOW_Infra, UOW_Infra>(config); // NO When using multiple (DbContext)
     srvc.Add_Infra_DB_SQL<DBCtxInfra, IUOW_Infra, UOW_Projectz>(config);
     srvc.Add_Infra_DB_SQL<DBCtxProjectz, IUOW_Projectz, UOW_Projectz>(config);
 

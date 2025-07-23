@@ -13,14 +13,14 @@ public abstract class AccountBaseController<T> : API_1_InjectorController<T>
   protected readonly SignInManager<InfraUser> _signInManager;
   protected readonly TokenService _tokenService;
   protected readonly SmtpEmailSender _emailSender;
-  protected readonly DBCtxIdentity _ctx;
+  protected readonly DBCtxInfraIdentity _ctx;
 
   protected IUOW_Projectz _uowProjectz { get; }
   public AccountBaseController(
     IServiceProvider srvcProvider
   ) : base(srvcProvider)
   {
-    _ctx = _sp.GetSrvc<DBCtxIdentity>();
+    _ctx = _sp.GetSrvc<DBCtxInfraIdentity>();
     _uowProjectz = _sp.GetSrvc<IUOW_Projectz>();
 
     _userManager = _sp.GetSrvc<UserManager<InfraUser>>();
