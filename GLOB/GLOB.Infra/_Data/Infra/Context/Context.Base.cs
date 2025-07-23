@@ -21,9 +21,7 @@ public abstract partial class DBCtx : DbContext
     EntityMappingConfig(mb);
     // OnModelCreatingEnumConfig(mb);
     // ConfigEnums(mb);
-    
     mb.SeedInfra();
-
     base.OnModelCreating(mb);
   }
   

@@ -20,7 +20,7 @@ public abstract partial class DBCtxIdentity : IdentityDbContext<InfraUser, Infra
   protected override void OnModelCreating(ModelBuilder mb)
   {
     DBCtx.EntityMappingConfig(mb);
-    // mb.SeedInfraIdentity(); Handle From Auth Project
+    mb.SeedInfraIdentity(); //Handle From Auth Project
     base.OnModelCreating(mb);
   }
 }
