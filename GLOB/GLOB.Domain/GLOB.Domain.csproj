@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup Condition="'$(UseProjectReferences)' == 'true'">
-    <PackageReference Include="GLOB.Infra" Version="1.0.42" />
+    <PackageReference Include="GLOB.Infra" Version="1.0.43" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(UseProjectReferences)' == 'false'">
