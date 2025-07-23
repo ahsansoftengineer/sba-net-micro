@@ -43,28 +43,27 @@ public partial class API_RabbitMQ_Base : IDisposable
 
     channel.QueueBind(Route.Queue, Route.Exchange, Route.Key ??= "NameRoute");
 
-    Console.WriteLine("--> [Rabbit MQ] Connected Successfully. Exchange: {0} Queue {1}", 
-                          param.route.Exchange,
-                          param.route.Queue);
+    $"Connected Successfully. Exchange: {param.route.Exchange} Queue {param.route.Queue}".Print("[Rabbit MQ]"); 
     return channel;
   }
   public void PrintRoute(RabbitMQParam param, bool isPub)
   {
-    Console.WriteLine("--> [Rabbit MQ] " + (isPub ? "Publish" : "Subscribe") + " Successfully");
+    ((isPub ? "Publish" : "Subscribe") + " Successfully").Print("[Rabbit MQ]");
+    
     Console.WriteLine("-->\n\t Exchange: {0}\n\t Queue: {1}\n\t Route & Topic: {2}\n\t Headers: {3}\n\t",
                      param.route.Exchange,
                      param.route.Queue,
                      param.route.Key,
                      param.options.Headers
                      );
-    Console.WriteLine("-------------xxx-------------");
+    Ext.Print();
   }
 
   public void Dispose()
   {
     if (_connection != null && _connection.IsOpen)
     {
-      Console.WriteLine("--> [Rabbit MQ] Connection Getting Down. (Dispose)");
+      "Connection Getting Down. (Dispose)".Print("[Rabbit MQ]");
       _connection.Close();
       _connection.Dispose();
     }

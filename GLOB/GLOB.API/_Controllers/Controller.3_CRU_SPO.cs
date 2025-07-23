@@ -1,6 +1,4 @@
-using GLOB.API.Staticz;
-using GLOB.Infra.Utils.Paginate.Extz;
-using Microsoft.AspNetCore.Mvc;
+
 
 namespace GLOB.API.Controllers.Base;
 // Add, Read, Update, Delete, Status, Paginate, Options

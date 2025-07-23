@@ -1,9 +1,9 @@
 using LinqKit;
-using Microsoft.EntityFrameworkCore;
+
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace GLOB.Infra.Utils.Paginate.Extz;
+namespace GLOB.Infra.Utils.Extz;
 public static partial class ExtQuery
 {
   public static IQueryable<T> ToExtQueryFilter<T, TDtoSearch>(this IQueryable<T> source, TDtoSearch? DtoSearch)
@@ -37,7 +37,7 @@ public static partial class ExtQuery
       }
       catch (Exception e)
       {
-        Console.WriteLine("Property not Exist {0} Message : {1}", dtoPropInfo.Name, e.Message);
+        $"Property not Exist {dtoPropInfo.Name} Message : {e.Message}".Print("[Exception]");
       }
       if (entityProp != null)
       {

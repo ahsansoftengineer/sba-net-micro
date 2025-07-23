@@ -1,5 +1,5 @@
 using GLOB.Infra.Data.Auth;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace SBA.Projectz.Data;
 public partial class DBCtxProjectz : DBCtxIdentity

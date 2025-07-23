@@ -1,5 +1,4 @@
 // using Microsoft.AspNetCore.Authorization;
-// using Microsoft.AspNetCore.Mvc;
 
 // namespace SBA.Auth.Controllers;
 // public partial class ProfileController

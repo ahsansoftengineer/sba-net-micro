@@ -1,7 +1,5 @@
-using GLOB.Infra.Utils.Paginate.Extz;
 using GLOB.Infra.Repo;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace GLOB.API.Staticz;
 

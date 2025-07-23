@@ -1,11 +1,7 @@
-using GLOB.API.Staticz;
+
 using GLOB.Domain.Model.Auth;
 using GLOB.Infra.Contants;
-using GLOB.Infra.Utils.Paginate.Extz;
-using LinqKit;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 
 namespace SBA.Auth.Controllers;
 

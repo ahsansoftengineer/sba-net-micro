@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+
 
 namespace GLOB.Infra.UOW;
 public partial class UOW_Infra 

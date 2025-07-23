@@ -1,5 +1,5 @@
 using GLOB.Domain.Model.Auth;
-using Microsoft.EntityFrameworkCore;
+
 
 public static class EntityMapping
 {

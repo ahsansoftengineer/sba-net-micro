@@ -1,6 +1,6 @@
 using GLOB.Domain.Model.Auth;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+
 using Microsoft.Extensions.Configuration;
 
 namespace GLOB.Infra.Data.Auth;

@@ -1,6 +1,5 @@
-using GLOB.API.Staticz;
+
 using GLOB.Domain.Model.Auth;
-using GLOB.Infra.Utils.Paginate.Extz;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SBA.Auth.Controllers;

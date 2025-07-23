@@ -76,7 +76,7 @@ public partial class API_RabbitMQ_Base_Subs : BackgroundService
   //     }
   //     catch (Exception ex)
   //     {
-  //       Console.WriteLine($"[Rabbit MQ] Error in message handler: {ex.Message}");
+  //       ($"[Rabbit MQ] Error in message handler: {ex.Message}");
   //       if (!(param.options.AutoAck ?? true))
   //         channel.BasicNack(ea.DeliveryTag, false, requeue: true);
   //     }

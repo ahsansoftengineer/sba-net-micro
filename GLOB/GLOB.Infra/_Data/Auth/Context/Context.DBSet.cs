@@ -1,5 +1,5 @@
 using GLOB.Domain.Model.Auth;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace GLOB.Infra.Data.Auth;
 public abstract partial class DBCtxIdentity

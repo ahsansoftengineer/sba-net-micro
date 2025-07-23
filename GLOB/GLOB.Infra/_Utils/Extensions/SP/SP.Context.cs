@@ -1,5 +1,5 @@
 using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace GLOB.Infra.Utils.Extz;
 

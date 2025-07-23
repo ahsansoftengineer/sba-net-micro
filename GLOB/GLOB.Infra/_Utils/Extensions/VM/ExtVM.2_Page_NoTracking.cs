@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
 
-namespace GLOB.Infra.Utils.Paginate.Extz;
+
+namespace GLOB.Infra.Utils.Extz;
 
 public static partial class ExtResponse
 {

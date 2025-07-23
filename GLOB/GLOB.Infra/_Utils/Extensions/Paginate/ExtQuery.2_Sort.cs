@@ -1,6 +1,6 @@
 using System.Linq.Dynamic.Core;
 
-namespace GLOB.Infra.Utils.Paginate.Extz;
+namespace GLOB.Infra.Utils.Extz;
 public static partial class ExtQuery
 {
   public static IQueryable<T> ToExtQueryOrderBy<T>(this IQueryable<T> query, Sort? sort)
@@ -27,7 +27,7 @@ public static partial class ExtQuery
     }
     catch (Exception ex)
     {
-      Console.WriteLine("Property not exist {0} {1} on Type {2}", sort.By, ex.Message, nameof(T));
+      $"Property not exist {sort.By} {ex.Message} on Type {nameof(T)}".Print("[Exception]");
       return query;
     }
   }

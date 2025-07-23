@@ -1,5 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
-using GLOB.API.Staticz;
+
 using GLOB.Common.API;
 
 namespace GLOB.API.Controllers.Base;

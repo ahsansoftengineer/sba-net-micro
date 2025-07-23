@@ -1,9 +1,6 @@
-
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace GLOB.Infra.Utils.Paginate.Extz;
+namespace GLOB.Infra.Utils.Extz;
 public static partial class ExtQuery
 {
   public static IQueryable<T> ToExtQueryInclues<T>(this IQueryable<T> source, List<string?>? Include)

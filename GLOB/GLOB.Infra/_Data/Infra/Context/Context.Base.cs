@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+
 using Microsoft.Extensions.Configuration;
 
 namespace GLOB.Infra.Data.Sqlz;

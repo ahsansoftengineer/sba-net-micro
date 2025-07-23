@@ -1,6 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
 using GLOB.Infra.Repo;
-using GLOB.API.Staticz;
+
 
 namespace GLOB.API.Controllers.Base;
 // Read, Delete, Status
