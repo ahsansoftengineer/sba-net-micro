@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace GLOB.API.Config.Extz;
 
-public static partial class Extz
+public static partial class Ext
 {
   public static void Print(this object obj, string? heading = null)
   {
@@ -25,6 +25,12 @@ public static partial class Extz
   {
     Console.WriteLine("--> {0}\t{1}\n", (heading ?? "[Message]"), value);
   }
+
+  public static void Print()
+  {
+    Console.WriteLine("------------------------****-*-****------------------------");
+  }
+  
   public static T GetSrvc<T>(this IServiceProvider sp)
     where T : class
   {
@@ -34,8 +40,8 @@ public static partial class Extz
     }
     catch (Exception ex)
     {
-      Console.WriteLine($"------------------------****-*-****------------------------");
-      Console.WriteLine($"Please Regiseter Service in DI {typeof(T).Name}");
+      Print();
+      $"Please Regiseter Service in DI {typeof(T).Name}".Print("[DI]");
       ex.Print();
       return null;
     }

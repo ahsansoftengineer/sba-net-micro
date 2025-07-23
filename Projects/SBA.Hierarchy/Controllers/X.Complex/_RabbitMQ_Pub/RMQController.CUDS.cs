@@ -3,7 +3,6 @@ using RabbitMQ.Client;
 
 using GLOB.API.Clientz;
 using GLOB.API.Staticz;
-using GLOB.Infra.Utils.Paginate.Extz;
 using GLOB.Infra.Utils.Attributez;
 namespace SBA.Auth.Controllers;
 

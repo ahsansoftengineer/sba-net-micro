@@ -26,6 +26,11 @@ internal static partial class Ext
   {
     Console.WriteLine("--> {0} ~\t{1}\n", heading ?? "[Message]", value);
   }
+  private static void Prints(this string value)
+  {
+    Console.WriteLine(value);
+  }
+
   internal static string GetWebUrl(this IConfiguration configuration)
   {
     string hostName = configuration.GetValueStr("ASPNETCORE_URLS");

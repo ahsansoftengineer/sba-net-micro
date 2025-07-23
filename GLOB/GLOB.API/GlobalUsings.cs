@@ -18,3 +18,4 @@ global using GLOB.API.Controllers.Base;
 global using GLOB.Infra.Model.Base;
 global using GLOB.Infra.Enumz;
 global using GLOB.Infra.UOW;
+global using GLOB.Infra.Utils.Extz;
