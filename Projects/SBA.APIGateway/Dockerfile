@@ -1,8 +1,8 @@
 # Build:
-# docker build -t mansanhhub/srvc-sba-api-gateway -f Projects/SBA.APIGateway/Dockerfile .
-# docker push mansanhhub/srvc-sba-api-gateway
-# docker run -d --name srvc-sba-api-gateway -p 1104:1104 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-sba-api-gateway
-# docker rm -f srvc-sba-api-gateway
+# docker build -t mansanhhub/srvc-sba-gateway -f Projects/SBA.APIGateway/Dockerfile .
+# docker push mansanhhub/srvc-sba-gateway
+# docker run -d --name srvc-sba-gateway -p 1100:1100 -e DOTNET_ENVIRONMENT=Docker mansanhhub/srvc-sba-gateway
+# docker rm -f srvc-sba-gateway
 # docker exec -it <container_id> /bin/bash
 
 # http://localhost:1100/api/gateway/v1/swagger/index.html
@@ -37,7 +37,7 @@ WORKDIR /app/Projects/SBA.APIGateway
 COPY --from=build-env /app/out .
 
 # Runtime environment variables (can be overridden at runtime via CLI, Docker Compose, etc.)
-ENV ASPNETCORE_URLS=http://+:1104
+ENV ASPNETCORE_URLS=http://+:1100
 ENV DOTNET_ENVIRONMENT=Docker
 
 EXPOSE 1100
