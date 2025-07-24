@@ -6,15 +6,15 @@ public class SrvcInfo
   public string date = DateTime.Now.ToString("dd-MMM-yyyy HH:mm:ss");
   public void SendEmail(object data)
   {
-    $"Sending Email...: Short Running Task {date}".Print("[Task]");
+    $"Sending Email...: Short Running Job {date}".Print("[Job]");
   }
   public void SendNotification(object data)
   {
-    $"Sending Notification...: Short Running Task {date}".Print("[Task]");
+    $"Sending Notification...: Short Running Job {date}".Print("[Job]");
   }
   public void SendSMS(object data)
   {
-    $"Sending SMS...: Short Running Task {date}".Print("[Task]");
+    $"Sending SMS...: Short Running Job {date}".Print("[Job]");
   }
   
 }

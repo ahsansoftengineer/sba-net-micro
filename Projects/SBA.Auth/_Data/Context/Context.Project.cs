@@ -11,7 +11,6 @@ public partial class DBCtxProjectz : DBCtxIdentity
 
   protected override void OnModelCreating(ModelBuilder mb)
   {
-
     ConfigManyToOne(mb);
     ConfigProjectzMapping(mb);
     // ConfigMicroServiceArch(mb);

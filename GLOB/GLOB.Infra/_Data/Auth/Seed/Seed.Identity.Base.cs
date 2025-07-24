@@ -33,15 +33,14 @@ public static partial class InfraSeedIdentity
 
       if (context != null)
       {
-        "--> Infra Identity -> Applying Migrations AppBuilder (Prod)".Print("[EF Core]");
+        "Infra Identity -> Applying Migrations AppBuilder (Prod)".Print("[EF Core]");
         // context.Database.Migrate();
         {
+          app.SeedInfra();
           await roleManager.SeedInfraRole();
           await userManager.SeedInfraUser();
           // await context.SeedRefreshToken();
-          app.SeedInfra(); //context.SeedTestInfra();
           // context.SeedRefreshToken();
-          // context.SeedLE();
         }
       }
     }

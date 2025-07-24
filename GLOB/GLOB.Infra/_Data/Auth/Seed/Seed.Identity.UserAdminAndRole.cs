@@ -20,7 +20,6 @@ public static partial class InfraSeedIdentity
   private static async Task SeedRoles(this IServiceProvider srvc)
   {
     var roleManager = srvc.GetRequiredService<RoleManager<InfraRole>>();
-
     foreach (var role in ROLE.ROLES)
     {
       if (!await roleManager.RoleExistsAsync(role))
@@ -55,7 +54,6 @@ public static partial class InfraSeedIdentity
         IEnumerable<Claim> claims = [
           new Claim("ManageUsers", "true")
         ]; 
-        claims.Append(new Claim("", ""));
         await userManager.AddClaimsAsync(data, claims);
       }
     }
