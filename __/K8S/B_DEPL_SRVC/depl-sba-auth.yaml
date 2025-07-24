@@ -71,7 +71,7 @@ spec:
             - name: Clients__RabbitMQz__Password
               value: guest
             # - name: Clients__RabbitMQz__Uri
-            #   value: amqp://guest:guest@srvc-cip-rbmq-sba.default.svc.cluster.local/sba
+            #   value: amqp://guest:guest@srvc-cip-rbmq-sba.default.svc.cluster.local/
 ---
 #------------------------------------------------------------------------- 
 #### (2) API Cluster IP (Auth)
