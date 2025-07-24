@@ -7,8 +7,8 @@ public static partial class DI_API
     // srvc.Add_API_Config_Options(config);
     srvc.Add_API_Controller_Srvc_Extend(config);
 
-    srvc.Add_API_Config_Authentication_JWT(config);
-    srvc.Add_API_Config_Authorization_JWT(config);
+    // srvc.Add_API_Config_Authentication_JWT(config);
+    // srvc.Add_API_Config_Authorization_JWT(config);
 
     srvc.Add_API_Config_Swagger(config);
     srvc.Add_API_Config_Cors();

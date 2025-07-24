@@ -17,7 +17,7 @@ public static partial class DI_API
       app.UseMiddleware<GlobalExceptionMiddleware>();
     }
   }
-  public static void Add_API_Default_Middlewares(this IApplicationBuilder app)
+  public static void Use_API_Default_Middlewares(this IApplicationBuilder app)
   {
     app.Use_API_DevEnv();
 
