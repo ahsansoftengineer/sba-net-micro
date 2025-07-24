@@ -10,7 +10,6 @@ public static partial class DI_Projectz
 
     srvc.Add_API_Default_Srvc(config);
     srvc.Add_Projectz_Clientz(config);
-    // srvc.Add_API_Default_Srvc2();
 
     srvc.Add_Infra_Cache_Redis(config);
 

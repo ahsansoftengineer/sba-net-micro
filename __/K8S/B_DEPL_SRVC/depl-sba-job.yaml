@@ -64,7 +64,7 @@ spec:
             - name: Clients__RabbitMQz__Port
               value: "5672"
             - name: Clients__RabbitMQz__VirtualHost
-              value: /sba
+              value: /
             - name: Clients__RabbitMQz__Username
               value: admin
             - name: Clients__RabbitMQz__Password

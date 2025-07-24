@@ -23,25 +23,18 @@ public static partial class DI_Projectz
     srvc.Add_API_Config_Cors_Auth();
 
     srvc.Add_Infra_Cache_Redis(config);
-    
+
     srvc.Add_Infra_DB_SQL<DBCtxInfra, IUOW_Infra, UOW_Projectz>(config);
     srvc.Add_Infra_DB_SQL<DBCtxInfraIdentity, IUOW_Projectz, UOW_Projectz>(config);
     srvc.Add_Infra_DB_SQL_Identity<DBCtxProjectz, IUOW_Projectz, UOW_Projectz>(config);
 
     srvc.Add_API_Config_JWT_Option();
     // srvc.AddAuthorization();
-    srvc.Add_Projectz_Srvc2(config);
 
-  }
-  public static void Add_Projectz_Srvc2(this IServiceCollection srvc, IConfiguration config)
-  {
     srvc.AddAutoMapper(typeof(ProjectzMapper));
     srvc.AddScoped<SmtpEmailSender>();
     srvc.AddScoped<TokenService>();
-    srvc.Add_Projectz_Clientz(config);
-  }
-  public static void Add_Projectz_Clientz(this IServiceCollection srvc, IConfiguration config)
-  {
+    
     srvc.AddSingleton<UOW_API_Httpz>();
     srvc.Add_API_RabbitMQ(config);
     // Jackson
@@ -49,6 +42,5 @@ public static partial class DI_Projectz
 
     // Ahsan
     srvc.AddHostedService<RabbitMQ_ProjectzLookup>();
-    
   }
 }
