@@ -17,7 +17,7 @@ public static partial class DI_Projectz
         {
 
         });
-      if (config.GetValueStr("DOTNET_ENVIRONMENT") == "Development")
+      if (config.GetValueStr("DOTNET_ENVIRONMENT") == "Development" && false)
       {
         opt.UseSQLiteStorage(Path.Combine("../../../", config.GetConnectionString("SQLite")), new SQLiteStorageOptions
         {
@@ -66,6 +66,6 @@ public static partial class DI_Projectz
     //   });
     // });
 
-    app.Call_Hangfire_Recuring_Jobs();
+    // app.Call_Hangfire_Recuring_Jobs();
   }
 }
