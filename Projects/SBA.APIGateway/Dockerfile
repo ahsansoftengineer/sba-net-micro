@@ -19,7 +19,7 @@ WORKDIR /app
 COPY Projects/SBA.APIGateway/*.csproj ./Projects/SBA.APIGateway/
 
 # Restore dependencies
-RUN dotnet restore ./Projects/SBA.APIGateway/SBA.APIGateway.csproj
+RUN dotnet restore ./Projects/SBA.APIGateway/SBA.APIGateway.csproj --property:UseProjectReferences=true
 
 # Copy the rest of the source files
 # COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/

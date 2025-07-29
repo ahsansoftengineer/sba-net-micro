@@ -21,7 +21,7 @@ COPY GLOB/GLOB.Domain/*.csproj ./GLOB/GLOB.Domain/
 COPY Projects/SBA.Job/*.csproj ./Projects/SBA.Job/
 
 # Restore dependencies
-RUN dotnet restore ./Projects/SBA.Job/SBA.Job.csproj
+RUN dotnet restore ./Projects/SBA.Job/SBA.Job.csproj --property:UseProjectReferences=true
 
 # Copy the rest of the source files
 # COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/
