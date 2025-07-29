@@ -43,6 +43,7 @@ spec:
       containers:
         - name: srvc-sba-hierarchy
           image: mansanhhub/srvc-sba-hierarchy
+          imagePullPolicy: Always
           ports:
             - containerPort: 1106
           env:

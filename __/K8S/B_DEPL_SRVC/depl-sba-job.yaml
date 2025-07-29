@@ -41,6 +41,7 @@ spec:
       containers:
         - name: srvc-sba-job
           image: mansanhhub/srvc-sba-job
+          imagePullPolicy: Always
           ports:
             - containerPort: 1102
           env:

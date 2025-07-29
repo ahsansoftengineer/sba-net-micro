@@ -41,6 +41,7 @@ spec:
       containers:
         - name: srvc-sba-auth
           image: mansanhhub/srvc-sba-auth
+          imagePullPolicy: Always
           ports:
             - containerPort: 1104
           env:
