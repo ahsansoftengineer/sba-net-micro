@@ -22,7 +22,7 @@ COPY GLOB/GLOB.Domain/*.csproj ./GLOB/GLOB.Domain/
 COPY Projects/SBA.Hierarchy/*.csproj ./Projects/SBA.Hierarchy/
 
 # Restore dependencies
-RUN dotnet restore ./Projects/SBA.Hierarchy/SBA.Hierarchy.csproj
+RUN dotnet restore ./Projects/SBA.Hierarchy/SBA.Hierarchy.csproj --property:UseProjectReferences=true
 
 # Copy the rest of the source files
 # COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/

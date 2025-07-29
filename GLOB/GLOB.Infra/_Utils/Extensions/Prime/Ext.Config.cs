@@ -24,22 +24,22 @@ internal static partial class Ext
   }
   internal static void Print(this string value, string? heading = null)
   {
-    Console.WriteLine("--> {0} ~\t{1}\n", heading ?? "[Message]", value);
+    Console.WriteLine("--> {0} \t{1}\n", heading ?? "[Message]", value);
   }
   private static void Prints(this string value)
   {
     Console.WriteLine(value);
   }
 
-  internal static string GetWebUrl(this IConfiguration configuration)
+  internal static string GetWebUrl(this IConfiguration config)
   {
-    string hostName = configuration.GetValueStr("ASPNETCORE_URLS");
-    string prefix = configuration.GetValueStr("ASPNETCORE_ROUTE_PREFIX");
+    string hostName = config.GetValueStr("ASPNETCORE_URLS");
+    string prefix = config.GetValueStr("ASPNETCORE_ROUTE_PREFIX");
     return $"{hostName}/{prefix}";
   }
-  internal static string GetValueStr(this IConfiguration configuration, string key)
+  internal static string GetValueStr(this IConfiguration config, string key)
   {
-    string result = configuration.GetValue(key, default(string));
+    string result = config.GetValue(key, default(string));
     if (string.IsNullOrEmpty(result))
     {
       string msg = $"Env has no Value for [{key}]";

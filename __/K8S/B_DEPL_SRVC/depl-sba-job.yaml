@@ -41,6 +41,7 @@ spec:
       containers:
         - name: srvc-sba-job
           image: mansanhhub/srvc-sba-job
+          imagePullPolicy: Always
           ports:
             - containerPort: 1102
           env:
@@ -53,6 +54,8 @@ spec:
               value: "srvc-cip-redis-sba-dev:6379,password=P@55w0rd!123"
             - name: ConnectionStrings__SqlConnection
               value: "Server=srvc-cip-mssql-sba-dev.default.svc.cluster.local,1433;Initial Catalog=SBA_Job;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+            - name: ConnectionStrings__SQLite
+              value: "Job.SQLite.db"
 
             - name: Clients__Http_Host__Gateway
               value: http://srvc-cip-sba-gateway:1100
@@ -69,6 +72,16 @@ spec:
               value: admin
             - name: Clients__RabbitMQz__Password
               value: admin123
+
+            - name: Hangfire__Title
+              value: "Hangfire SBA App"
+            - name: Hangfire__Note
+              value: "Its a List But required only one"
+            - name: Hangfire__Users__0__User
+              value: "guest"
+            - name: Hangfire__Users__0__Pass
+              value: "guest"
+
 ---
 #------------------------------------------------------------------------- 
 #### (2) API Cluster IP (Job)
@@ -116,5 +129,5 @@ spec:
 
 ## ROUTES (K8S Node Port)
 # - http://localhost:31102/api/Job/v1/swagger/index.html
-# - http://localhost:31102/api/job/v1/_projectz-lookup/gets-lookup
-# - http://localhost:31102/api/job/v1/hangfire
+# - http://localhost:31102/api/Job/v1/_projectz-lookup/gets-lookup
+# - http://localhost:31102/api/Job/v1/hangfire

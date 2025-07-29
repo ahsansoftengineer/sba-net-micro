@@ -23,9 +23,9 @@
 - EntityShort CRUD
 
 ### Setup Microservice Debugger for All
-### Http Client Comm Services
-### RabbitMQ Servicies 
-### GRPC Servicies
+### Http Client Comm Services (Done)
+### RabbitMQ Servicies (Done)
+### GRPC Servicies (Pending)
 
 ### Task 1 Roles 
 - CRUD
@@ -38,11 +38,11 @@
 - CRUD
 - AddUserToRole
 
-### Task 3 Account
-- Register (Done)
-- Login ()
-- Logout (Done)
-- RefreshToken ()
+### Task 3 Account (Done)
+- Register
+- Login
+- Logout
+- RefreshToken
 
 ### Profile
 - PasswordForgot
@@ -56,7 +56,6 @@
 - Disable2FA
 
 ### Task 4 Login
-- Login
 - Google
 - Facebook
 - Apple

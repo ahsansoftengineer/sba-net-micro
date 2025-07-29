@@ -12,15 +12,15 @@ using SBA.Projectz.Data;
 namespace SBA.Job.Migrations
 {
     [DbContext(typeof(DBCtxProjectz))]
-    [Migration("20250712043443_InitNew")]
-    partial class InitNew
+    [Migration("20250729110430_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.7")
+                .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);

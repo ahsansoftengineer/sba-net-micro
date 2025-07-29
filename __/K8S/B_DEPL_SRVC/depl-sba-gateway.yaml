@@ -41,6 +41,7 @@ spec:
       containers:
         - name: srvc-sba-gateway
           image: mansanhhub/srvc-sba-gateway
+          imagePullPolicy: Always
           ports:
             - containerPort: 1100
           env:
