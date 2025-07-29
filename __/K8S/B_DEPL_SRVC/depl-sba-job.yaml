@@ -70,6 +70,16 @@ spec:
               value: admin
             - name: Clients__RabbitMQz__Password
               value: admin123
+
+            - name: Hangfire__Title
+              value: "Hangfire SBA App"
+            - name: Hangfire__Note
+              value: "Its a List But required only one"
+            - name: Hangfire__Users__0__User
+              value: "guest"
+            - name: Hangfire__Users__0__Pass
+              value: "guest"
+
 ---
 #------------------------------------------------------------------------- 
 #### (2) API Cluster IP (Job)
