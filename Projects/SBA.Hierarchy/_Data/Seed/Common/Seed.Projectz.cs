@@ -1,10 +1,10 @@
 
 
 namespace SBA.Projectz.Data;
-public static partial class SeedProjectz
+public static partial class SeedzProjectz
 {
   // Dev (When Running Migration throw CLI)
-  public static void Seed(this ModelBuilder mb)
+  public static void SeedProjectz(this ModelBuilder mb)
   {
     "Hierarchy -> SeedProjectz".Print("ModelBuilder");
     // .-*
@@ -27,7 +27,7 @@ public static partial class SeedProjectz
 
   }
   // Prod (When Running Migration throw Automation)
-  public static void Seed(this IApplicationBuilder app)
+  public static void SeedProjectz(this IApplicationBuilder app)
   {
     using (var srvcScp = app.ApplicationServices.CreateScope())
     {

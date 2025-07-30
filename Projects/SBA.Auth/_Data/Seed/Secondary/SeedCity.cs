@@ -2,7 +2,7 @@
 // 
 
 // namespace SBA.Projectz.Data;
-// public static partial class SeedProjectz
+// public static partial class SeedzProjectz
 // {
 //   public static void SeedCity(this DBCtxProjectz context)
 //   {

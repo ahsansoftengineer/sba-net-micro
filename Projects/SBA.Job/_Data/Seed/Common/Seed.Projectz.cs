@@ -1,10 +1,10 @@
 
 
 namespace SBA.Projectz.Data;
-public static partial class SeedProjectz
+public static partial class SeedzProjectz
 {
   // Dev (When Running Migration throw CLI)
-  public static void Seed(this ModelBuilder mb)
+  public static void SeedProjectz(this ModelBuilder mb)
   {
     "ModelBuilder --> Job -> SeedProjectz".Print("EF Core");
     // .-*
@@ -13,7 +13,7 @@ public static partial class SeedProjectz
 
   }
   // Prod (When Running Migration throw Automation)
-  public static void Seed(this IApplicationBuilder app)
+  public static void SeedProjectz(this IApplicationBuilder app)
   {
     using (var srvcScp = app.ApplicationServices.CreateScope())
     {
@@ -22,7 +22,7 @@ public static partial class SeedProjectz
       {
         "--> Job -> Applying Migrations AppBuilder".Print("EF Core");
         context.Database.EnsureCreated();
-        context.Database.Migrate();
+        // context.Database.Migrate();
         {
           // .-*
 

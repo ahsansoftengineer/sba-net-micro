@@ -10,7 +10,7 @@ public partial class DBCtxProjectz : DBCtx
     // ConfigMicroServiceArch(mb);
     if (DOTNET_ENVIRONMENT != "Development")
     {
-      SeedProjectz.Seed(mb);
+      SeedzProjectz.SeedProjectz(mb);
     }
 
     base.OnModelCreating(mb);
