@@ -19,7 +19,7 @@ public static partial class DI_Projectz
         {
 
         });
-      if (config.GetValueStr("DOTNET_ENVIRONMENT") == "Development" && false)
+      if (config.GetValueStr("DOTNET_ENVIRONMENT") == "Development")
       {
         opt.UseSQLiteStorage(Path.Combine("../../../", config.GetConnectionString("SQLite")), new SQLiteStorageOptions
         {

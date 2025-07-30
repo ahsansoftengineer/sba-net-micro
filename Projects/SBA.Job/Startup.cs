@@ -15,7 +15,7 @@ public class Startup
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
     app.Use_API_Default_Middlewares();
-    if (!env.IsDevelopment() || true)
+    if (!env.IsDevelopment())
     {
       app.Seed();
     }
