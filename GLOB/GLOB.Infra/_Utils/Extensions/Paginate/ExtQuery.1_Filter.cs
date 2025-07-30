@@ -37,7 +37,7 @@ public static partial class ExtQuery
       }
       catch (Exception e)
       {
-        $"Property not Exist {dtoPropInfo.Name} Message : {e.Message}".Print("[Exception]");
+        $"Property not Exist {dtoPropInfo.Name} Message : {e.Message}".Print("Exception");
       }
       if (entityProp != null)
       {

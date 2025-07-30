@@ -10,20 +10,20 @@ public static partial class Ext
     {
       string result = JsonConvert.SerializeObject(obj, Formatting.Indented);
       result = result.Replace("\"", "");
-      Console.WriteLine("--> {0} \n{1}", $"[{heading ?? "Object"}]", result);
+      Console.WriteLine("--> [{0}] \n{1}", heading ?? "Object", result);
     }
     catch (Exception ex)
     {
-      Console.WriteLine("--> Print Exception : " + ex.Message);
+      Console.WriteLine("--> [Print Exception] : " + ex.Message);
     }
   }
-  public static void Print(this Exception obj, string? heading = null)
+  public static void Print(this Exception ex, string? heading = null)
   {
-    obj.Message.Print($"[{heading ?? "Exception"}]");
+    ex.Message.Print($"[{heading ?? "Exception"}]");
   }
   public static void Print(this string value, string? heading = null)
   {
-    Console.WriteLine("--> {0}\t{1}\n", (heading ?? "[Message]"), value);
+    Console.WriteLine("--> [{0}]\t-\t{1}\n", (heading ?? "[Message]"), value);
   }
 
   public static void Print()
@@ -41,7 +41,7 @@ public static partial class Ext
     catch (Exception ex)
     {
       Print();
-      $"Please Regiseter Service in DI {typeof(T).Name}".Print("[DI]");
+      $"Please Regiseter Service in DI {typeof(T).Name}".Print("DI");
       ex.Print();
       return null;
     }

@@ -28,13 +28,13 @@ public partial class __RabbitMQController
         route = route 
       };
       _rmqPubs.Pubs(param);
-      $"--> RabbitMQ : CRUD - Pub - {route.Key}".Print();
+      $"RabbitMQ : CRUD - Pub - {route.Key}".Print();
       return param.payload.ToExtVMSingle().Ok();
     }
     catch (Exception ex)
     {
       // return ex.Ok();
-      return $"--> [Rabbit MQ] Error : {ex.Message}".ToExtVMSingle().Ok();
+      return $"[Rabbit MQ] Error : {ex.Message}".ToExtVMSingle().Ok();
     }
 
   }
@@ -55,13 +55,13 @@ public partial class __RabbitMQController
       };
 
       _rmqPubs.Pubs(param);
-      $"--> RabbitMQ : CRUD - Pub - {Route.Key}".Print();
+      $"CRUD - Pub - {Route.Key}".Print("Rabbit MQ");
       return param.payload.ToExtVMSingle().Ok();
     }
     catch (Exception ex)
     {
       // return ex.Ok();
-      return $"--> [Rabbit MQ] Error : {ex.Message}".ToExtVMSingle().Ok();
+      return $"[Rabbit MQ] Error : {ex.Message}".ToExtVMSingle().Ok();
     }
     
   }
@@ -82,13 +82,13 @@ public partial class __RabbitMQController
       };
 
       _rmqPubs.Pubs(param);
-      $"CRUD - Pub - {Route.Key}".Print("RabbitMQ");
+      $"CRUD - Pub - {Route.Key}".Print("Rabbit MQ");
       return param.payload.ToExtVMSingle().Ok();
     }
     catch (Exception ex)
     {
       // return ex.Ok();
-      return $"--> [Rabbit MQ] Error : {ex.Message}".ToExtVMSingle().Ok();
+      return $"[Rabbit MQ] Error : {ex.Message}".ToExtVMSingle().Ok();
     }
     
   }
@@ -110,13 +110,13 @@ public partial class __RabbitMQController
       };
 
       _rmqPubs.Pubs(param);
-      $"RabbitMQ : CRUD - Pub - {Route.Key}".Print();
+      $"CRUD - Pub - {Route.Key}".Print("Rabbit MQ");
       return param.payload.Ok();
     }
     catch (Exception ex)
     {
       // return ex.Ok();
-      return $"--> [Rabbit MQ] Error : {ex.Message}".ToExtVMSingle().Ok();
+      return $"[Rabbit MQ] Error : {ex.Message}".ToExtVMSingle().Ok();
     }
     
   }

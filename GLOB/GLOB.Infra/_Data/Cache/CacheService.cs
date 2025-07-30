@@ -22,7 +22,7 @@ public class RedisCacheService
     _server = _redis.GetServer(_redis.GetEndPoints().First());
 
     prefix = _config.GetValueStr("ASPNETCORE_ROUTE_PREFIX").Replace("/", "-");
-    prefix.Print("[Redis]");
+    prefix.Print("Redis");
   }
   public async Task Set(CacheModel cm)
   {
@@ -62,7 +62,7 @@ public class RedisCacheService
     var json = await _cache.GetStringAsync(Key);
     if (json != null && !string.IsNullOrEmpty(json))
     {
-      $"{Key}".Print("[Cache]");
+      $"{Key}".Print("Cache");
       return JsonConvert.DeserializeObject(json);
     }
     return json ?? default;
@@ -79,10 +79,10 @@ public class RedisCacheService
       var list = _server.Keys(pattern: Key.Replace("All", "*"));
       list.ForEach((item) =>
       {
-        item.Print("[Cache]");
+        item.Print("Cache");
       });
       // var parsedList = JsonConvert.DeserializeObject<List<object>>(list);
-      Key.Print("[Cache]");
+      Key.Print("Cache");
       // return JsonConvert.DeserializeObject();
       return null;
     }

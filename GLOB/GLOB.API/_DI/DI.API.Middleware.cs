@@ -6,7 +6,7 @@ public static partial class DI_API
   private static void Use_API_DevEnv(this IApplicationBuilder app)
   {
     var env = app.GetSrvc<IWebHostEnvironment>();
-    env.EnvironmentName.Print("[Env]");
+    env.EnvironmentName.Print("Env");
     if (!env.IsProduction())
     {
       app.UseDeveloperExceptionPage();

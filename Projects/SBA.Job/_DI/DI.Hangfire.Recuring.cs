@@ -18,7 +18,7 @@ public static partial class DI_Projectz
   // Send Email Every Minute
   public static void SendEmail(object data)
   {
-    "--> RecurringJob.AddOrUpdate<SrvcInfo> SendEmail(data) Minutely".Print("[Job]");
+    "--> RecurringJob.AddOrUpdate<SrvcInfo> SendEmail(data) Minutely".Print("Job");
     RecurringJob.AddOrUpdate<SrvcInfo>(
       recurringJobId: "job-notify-send-email",
       methodCall: x => x.SendEmail(data),
@@ -33,7 +33,7 @@ public static partial class DI_Projectz
 
   public static void SendNotification(object data)
   {
-    "--> RecurringJob.AddOrUpdate<SrvcInfo> x.SendNotification(data) Hourly".Print("[Job]");
+    "--> RecurringJob.AddOrUpdate<SrvcInfo> x.SendNotification(data) Hourly".Print("Job");
     RecurringJob.AddOrUpdate<SrvcInfo>(
       recurringJobId: "job-notify-send-notification",
       methodCall: x => x.SendNotification(data),
@@ -48,7 +48,7 @@ public static partial class DI_Projectz
 
   public static void SendSMS(object data)
   {
-    "--> RecurringJob.AddOrUpdate<SrvcInfo> x.SendSMS(data) Daily".Print("[Job]");
+    "--> RecurringJob.AddOrUpdate<SrvcInfo> x.SendSMS(data) Daily".Print("Job");
     RecurringJob.AddOrUpdate<SrvcInfo>(
       recurringJobId: "job-notify-send-sms",
       methodCall: x => x.SendSMS(data),

@@ -17,22 +17,22 @@ public partial class API_RabbitMQ_Base_Pubs
     {
       var channel = _rmq.SetPubSubDefault(param);
 
-      "Serializing Object".Print("[Rabbit MQ]");
+      "Serializing Object".Print("Rabbit MQ");
       var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(param.payload));
       var props = channel.CreateBasicProperties();
       props.ContentType = "application/json";
 
       if (param.options.Headers != null)
       {
-        "Settings Headers".Print("[Rabbit MQ]");
+        "Settings Headers".Print("Rabbit MQ");
         props.Headers = param.options.Headers;
       }
 
       if (!_rmq._connection.IsOpen)
-        "Connection Close, not sending".Print("[Rabbit MQ]");
+        "Connection Close, not sending".Print("Rabbit MQ");
       else
       {
-        "Connection Open, sending message...".Print("[Rabbit MQ]");
+        "Connection Open, sending message...".Print("Rabbit MQ");
         channel.BasicPublish(param.route.Exchange, param.route.Key, param.options.Mandatory ?? false, props, body);
         _rmq.PrintRoute(param, true);
       }
@@ -40,7 +40,7 @@ public partial class API_RabbitMQ_Base_Pubs
     }
     catch (Exception ex)
     {
-      $"[Rabbit MQ] Serialization failed: {ex.Message}".Print("[Rabbit MQ]");
+      $"[Rabbit MQ] Serialization failed: {ex.Message}".Print("Rabbit MQ");
       ex.StackTrace.Print();
     }
   }

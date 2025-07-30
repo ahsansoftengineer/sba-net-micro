@@ -1,7 +1,7 @@
 using GLOB.Hierarchy.Global;
 
 namespace SBA.Projectz.Data;
-public static partial class SeedProjectz
+public static partial class SeedzProjectz
 {
   // For DB Context (Normal) (Prod Automate) 
   public static void SeedGlobalLookupBase(this DBCtxProjectz context)
