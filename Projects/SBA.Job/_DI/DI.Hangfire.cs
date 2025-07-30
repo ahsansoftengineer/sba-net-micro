@@ -1,6 +1,8 @@
 using Hangfire;
+using Hangfire.SqlServer;
 using Hangfire.Storage.SQLite;
 using HangfireBasicAuthenticationFilter;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 
 namespace SBA.Projectz.DI;
@@ -28,7 +30,18 @@ public static partial class DI_Projectz
       }
       else
       {
-        opt.UseSqlServerStorage(config.GetConnectionString("SqlConnection"));
+        var seperateDB = config.GetConnectionString("SqlConnection");//.Replace("SBA_Job", "SBA_Hangfire");
+        seperateDB.EnsureDatabaseExists();
+        opt.UseSqlServerStorage(seperateDB, new SqlServerStorageOptions
+        {
+          PrepareSchemaIfNecessary = true,
+          // CommandBatchMaxTimeout = TimeSpan.FromHours(1),
+          // CommandTimeout = TimeSpan.FromMicroseconds(10),
+          // CountersAggregateInterval = TimeSpan.FromTicks(20),
+          // DashboardJobListLimit = 50,
+          // SchemaName = "Hangfire",
+          // SqlClientFactory = SqlClientFactory.Instance
+        });
       }
     });
     srvc.AddHangfireServer();
@@ -43,9 +56,9 @@ public static partial class DI_Projectz
       User = x.User,
       Pass = x.Pass
     }).ToList();
-    
+
     app.UseHangfireDashboard($"/{option.ASPNETCORE_ROUTE_PREFIX}/hangfire"
-      ,new DashboardOptions()
+      , new DashboardOptions()
       {
         DashboardTitle = $"Hangfire {option.Hangfire.Title}",
         AppPath = $"swagger/index.html", // Not Required -> Back To Site
@@ -55,7 +68,7 @@ public static partial class DI_Projectz
         Authorization = result
       }
      );
-    
+
     // app.UseEndpoints(endpoints =>
     // {
     //   // http://localhost:1102/api/Job/v1/hangfire
@@ -66,6 +79,28 @@ public static partial class DI_Projectz
     //   });
     // });
 
-    // app.Call_Hangfire_Recuring_Jobs();
+    app.Call_Hangfire_Recuring_Jobs();
+  }
+
+  public static void EnsureDatabaseExists(this string con)
+  {
+    "Ensuring DB Exsist".Print("[SQL]");
+    var builder = new SqlConnectionStringBuilder(con);
+    string db = builder.InitialCatalog;
+
+    // Use 'master' DB for checking and creation
+    builder.InitialCatalog = "master";
+
+    using var connection = new SqlConnection(builder.ConnectionString);
+    connection.Open();
+
+    var cmdText = $@"
+        IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = N'{db}')
+        BEGIN
+            CREATE DATABASE [{db}];
+        END";
+
+    using var command = new SqlCommand(cmdText, connection);
+    command.ExecuteNonQuery();
   }
 }
