@@ -11,7 +11,7 @@ public static partial class InfraSeedIdentity
   // Seed for Development through (CLI)
   public static void SeedInfraIdentity(this ModelBuilder mb)
   {
-    "--> ModelBuilder -> InfraSeedIdentity -> SeedInfra".Print("[EF Core]");
+    "--> ModelBuilder -> InfraSeedIdentity -> SeedInfra".Print("EF Core");
     mb.SeedInfra();
     mb.SeedInfraRole();
     mb.SeedInfraUser();
@@ -33,7 +33,7 @@ public static partial class InfraSeedIdentity
 
       if (context != null)
       {
-        "Infra Identity -> Applying Migrations AppBuilder (Prod)".Print("[EF Core]");
+        "Infra Identity -> Applying Migrations AppBuilder (Prod)".Print("EF Core");
         // context.Database.Migrate();
         {
           app.SeedInfra();

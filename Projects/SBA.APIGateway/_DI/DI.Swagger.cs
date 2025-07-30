@@ -18,7 +18,7 @@ public static partial class DI_Projectz
       var Option = app.GetSrvc<IOptions<Option_SwaggerServices>>();
       foreach (var service in Option?.Value?.Services)
       {
-        (service.Name + "  --  " + service.Url).Print("[Swagger]");
+        (service.Name + "  --  " + service.Url).Print("Swagger");
         c.SwaggerEndpoint(service.Url, service.Name);
       }
     });

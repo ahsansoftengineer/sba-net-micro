@@ -55,7 +55,7 @@ public partial class __RabbitMQController
       };
 
       _rmqPubs.Pubs(param);
-      $"CRUD - Pub - {Route.Key}".Print("[RabbitMQ]");
+      $"CRUD - Pub - {Route.Key}".Print("RabbitMQ");
       return param.payload.ToExtVMSingle().Ok();
     }
     catch (Exception ex)

@@ -6,7 +6,7 @@ public static partial class SeedProjectz
   // Dev (When Running Migration throw CLI)
   public static void Seed(this ModelBuilder mb)
   {
-    "ModelBuilder --> Job -> SeedProjectz".Print("[EF Core]");
+    "ModelBuilder --> Job -> SeedProjectz".Print("EF Core");
     // .-*
 
     // *-.
@@ -20,7 +20,7 @@ public static partial class SeedProjectz
       DBCtxProjectz? context = srvcScp.ServiceProvider.GetSrvc<DBCtxProjectz>();
       if (context != null)
       {
-        "--> Job -> Applying Migrations AppBuilder".Print("[EF Core]");
+        "--> Job -> Applying Migrations AppBuilder".Print("EF Core");
         context.Database.EnsureCreated();
         context.Database.Migrate();
         {

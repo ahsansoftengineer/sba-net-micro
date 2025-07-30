@@ -34,7 +34,7 @@ public static partial class SeedProjectz
       DBCtxProjectz? context = srvcScp.ServiceProvider.GetSrvc<DBCtxProjectz>();
       if (context != null)
       {
-        "Hierarchy -> Applying Migrations AppBuilder".Print("[EF Core]");
+        "Hierarchy -> Applying Migrations AppBuilder".Print("EF Core");
         context.Database.EnsureCreated();
         // context.Database.Migrate(); // Why I added this
         

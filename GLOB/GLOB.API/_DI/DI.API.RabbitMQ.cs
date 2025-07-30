@@ -39,7 +39,7 @@ public static partial class DI_API
       IConnection conn = factory.CreateConnection();
       conn.ConnectionShutdown += (_, e) =>
       {
-        ("Singleton connection shutdown: " + e.ReplyText).Print("[Rabbit MQ]");
+        ("Singleton connection shutdown: " + e.ReplyText).Print("Rabbit MQ");
       };
       return conn;
     });

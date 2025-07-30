@@ -84,7 +84,7 @@ public static partial class DI_Projectz
 
   public static void EnsureDatabaseExists(this string con)
   {
-    "Ensuring DB Exsist".Print("[SQL]");
+    "Ensuring DB Exsist".Print("SQL");
     var builder = new SqlConnectionStringBuilder(con);
     string db = builder.InitialCatalog;
 

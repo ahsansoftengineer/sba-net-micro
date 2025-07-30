@@ -8,7 +8,7 @@ public static partial class SeedzInfra
   // Seed for Development through (CLI)
   public static void SeedInfra(this ModelBuilder mb)
   {
-    "--> ModelBuilder -> Infra -> SeedzInfra (Dev)".Print("[EF Core]");
+    "--> ModelBuilder -> Infra -> SeedzInfra (Dev)".Print("EF Core");
     mb.SeedProjectzLookupBase();
     mb.SeedProjectzLookup();
   }
@@ -21,7 +21,7 @@ public static partial class SeedzInfra
       DBCtxInfra? context = srvcScp.ServiceProvider.GetSrvc<DBCtxInfra>();
       if (context != null)
       {
-        "--> Infra -> Applying Migrations AppBuilder (Prod)".Print("[EF Core]");
+        "--> Infra -> Applying Migrations AppBuilder (Prod)".Print("EF Core");
         // context.Database.Migrate();
         {
           context.SeedProjectzLookupBase();

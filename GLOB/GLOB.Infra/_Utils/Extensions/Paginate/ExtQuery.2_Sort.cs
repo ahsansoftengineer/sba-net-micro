@@ -27,7 +27,7 @@ public static partial class ExtQuery
     }
     catch (Exception ex)
     {
-      $"Property not exist {sort.By} {ex.Message} on Type {nameof(T)}".Print("[Exception]");
+      $"Property not exist {sort.By} {ex.Message} on Type {nameof(T)}".Print("Exception");
       return query;
     }
   }

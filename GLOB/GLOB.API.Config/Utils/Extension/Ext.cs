@@ -41,7 +41,7 @@ public static partial class Ext
     catch (Exception ex)
     {
       Print();
-      $"Please Regiseter Service in DI {typeof(T).Name}".Print("[DI]");
+      $"Please Regiseter Service in DI {typeof(T).Name}".Print("DI");
       ex.Print();
       return null;
     }
