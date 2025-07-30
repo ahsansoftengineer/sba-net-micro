@@ -10,7 +10,7 @@ public static partial class Ext
     {
       string result = JsonConvert.SerializeObject(obj, Formatting.Indented);
       result = result.Replace("\"", "");
-      Console.WriteLine("--> [{0}] \n{1}", $"[{heading ?? "Object"}]", result);
+      Console.WriteLine("--> [{0}] \n{1}", heading ?? "Object", result);
     }
     catch (Exception ex)
     {
