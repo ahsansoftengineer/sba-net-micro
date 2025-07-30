@@ -16,10 +16,8 @@ public static partial class SeedzProjectz
     { 
       var provider = srvcScp.ServiceProvider;
       DBCtxProjectz? context = provider.GetSrvc<DBCtxProjectz>();
-      if (context != null)
-      {
-        "--> Auth -> Applying Migrations AppBuilder".Print("EF Core");
-      }
+      context.Database.EnsureCreated();
+      "Auth -> EnsureCreated AppBuilder".Print("EF Core");
     }
   }
 

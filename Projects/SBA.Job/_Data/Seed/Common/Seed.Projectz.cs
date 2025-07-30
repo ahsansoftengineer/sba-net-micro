@@ -18,17 +18,8 @@ public static partial class SeedzProjectz
     using (var srvcScp = app.ApplicationServices.CreateScope())
     {
       DBCtxProjectz? context = srvcScp.ServiceProvider.GetSrvc<DBCtxProjectz>();
-      if (context != null)
-      {
-        "--> Job -> Applying Migrations AppBuilder".Print("EF Core");
-        context.Database.EnsureCreated();
-        // context.Database.Migrate();
-        {
-          // .-*
-
-          // *-.
-        }
-      }
+      "Job -> Applying Migrations AppBuilder".Print("EF Core");
+      context.Database.EnsureCreated();
     }
   }
 

@@ -15,11 +15,7 @@ public class Startup
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
     app.Use_API_Default_Middlewares();
-    if (!env.IsDevelopment() || true)
-    {
-      app.SeedInfra();
-      app.SeedProjectz();
-    }
+    app.SeedProjectz();
     app.Use_Hangfire(); // Pre DB is Required for Hangfire
   }
 }

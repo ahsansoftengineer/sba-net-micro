@@ -32,32 +32,8 @@ public static partial class SeedzProjectz
     using (var srvcScp = app.ApplicationServices.CreateScope())
     {
       DBCtxProjectz? context = srvcScp.ServiceProvider.GetSrvc<DBCtxProjectz>();
-      if (context != null)
-      {
-        "Hierarchy -> Applying Migrations AppBuilder".Print("EF Core");
-        context.Database.EnsureCreated();
-        // context.Database.Migrate(); // Why I added this
-        
-        {
-          // .-*
-          context.SeedGlobalLookupBase();
-          context.SeedOrg();
-          context.SeedBG();
-          context.SeedState();
-          context.SeedBank();
-          context.SeedBrand();
-          context.SeedIndustry();
-          context.SeedProfession();
-
-          // *-.
-          context.SeedGlobalLookup();
-          context.SeedSystemz();
-          context.SeedLE();
-          context.SeedOU();
-          context.SeedSU(); 
-          context.SeedCity(); 
-        }
-      }
+      "Hierarchy -> Applying Migrations AppBuilder".Print("EF Core");
+      context.Database.EnsureCreated();
     }
   }
 

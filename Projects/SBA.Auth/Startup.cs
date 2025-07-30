@@ -15,9 +15,6 @@ public class Startup
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
   {
     app.Use_API_Default_Middlewares();
-    if(!env.IsDevelopment() || true){
-      app.SeedInfra();
-      app.SeedProjectz().GetAwaiter().GetResult();
-    }
+    app.SeedProjectz().GetAwaiter().GetResult();
   }
 }
