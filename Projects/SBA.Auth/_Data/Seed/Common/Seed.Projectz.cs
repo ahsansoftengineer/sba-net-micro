@@ -7,7 +7,7 @@ public static partial class SeedProjectz
   // Dev (When Running Migration throw CLI)
   public static void Seed(this ModelBuilder mb)
   {
-    "-->  ModelBuilder --> Auth -> SeedProjectz".Print("[EF Core]");
+    "ModelBuilder --> Auth -> SeedProjectz".Print("[EF Core]");
   }
   // Prod (When Running Migration throw Automation)
   public static async Task Seed(this IApplicationBuilder app)

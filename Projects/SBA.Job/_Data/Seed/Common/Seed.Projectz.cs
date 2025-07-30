@@ -21,6 +21,7 @@ public static partial class SeedProjectz
       if (context != null)
       {
         "--> Job -> Applying Migrations AppBuilder".Print("[EF Core]");
+        context.Database.EnsureCreated();
         context.Database.Migrate();
         {
           // .-*

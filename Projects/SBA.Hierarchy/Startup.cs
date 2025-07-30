@@ -18,6 +18,7 @@ public class Startup
     app.Use_API_Default_Middlewares();
 
     if(!env.IsDevelopment()){
+      app.SeedInfra();
       app.Seed();
     }
   }

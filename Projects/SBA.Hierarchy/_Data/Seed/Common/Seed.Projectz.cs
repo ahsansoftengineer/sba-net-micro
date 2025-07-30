@@ -34,10 +34,10 @@ public static partial class SeedProjectz
       DBCtxProjectz? context = srvcScp.ServiceProvider.GetSrvc<DBCtxProjectz>();
       if (context != null)
       {
-        context.Database.EnsureCreated();
         "Hierarchy -> Applying Migrations AppBuilder".Print("[EF Core]");
-        // Why I added this
-        // context.Database.Migrate();
+        context.Database.EnsureCreated();
+        // context.Database.Migrate(); // Why I added this
+        
         {
           // .-*
           context.SeedGlobalLookupBase();
