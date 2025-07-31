@@ -17,7 +17,7 @@ global using GLOB.Infra.Model.Base;
 global using GLOB.Infra.Data.Sqlz;
 global using GLOB.Infra.UOW;
 global using GLOB.Infra.Enumz;
-global using GLOB.Infra.Utils.Extz;
+global using GLOB.Infra.Extz;
 
 global using SBA.Projectz.DI;
 global using SBA.Projectz.Data;

@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 
-namespace GLOB.Infra.Utils.Extz;
+namespace GLOB.Infra.Extz;
 
 public static partial class ExtQuery
 {

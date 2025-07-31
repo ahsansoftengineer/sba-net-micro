@@ -23,16 +23,16 @@ cp ./GLOB/GLOB.Extz/bin/Release/GLOB.Extz.1.0.5.nupkg /c/Packages/
 #### GLOB.API.Config (Specific)
 - oy2abz6ry2ev5umiibufqs64izjruy5duppzurlosmyoxye
 ```bash
-dotnet build ./GLOB/GLOB.API.Config/GLOB.API.Config.csproj -c Release -p:PackageVersion=1.0.5
-dotnet pack ./GLOB/GLOB.API.Config/GLOB.API.Config.csproj -c Release -p:PackageVersion=1.0.5
+dotnet build ./GLOB/GLOB.API.Config/GLOB.API.Config.csproj -c Release -p:PackageVersion=1.0.5 -p:UseProjectReferences=true
+dotnet pack ./GLOB/GLOB.API.Config/GLOB.API.Config.csproj -c Release -p:PackageVersion=1.0.5 -p:UseProjectReferences=true
 dotnet nuget push ./GLOB/GLOB.API.Config/bin/Release/GLOB.API.Config.1.0.5.nupkg --api-key oy2abz6ry2ev5umiibufqs64izjruy5duppzurlosmyoxye --source https://api.nuget.org/v3/index.json
 cp ./GLOB/GLOB.API.Config/bin/Release/GLOB.API.Config.1.0.5.nupkg /c/Packages/
 
 ```
 #### GLOB.Infra
 ```bash
-dotnet build ./GLOB/GLOB.Infra/GLOB.Infra.csproj -c Release -p:PackageVersion=1.0.5
-dotnet pack ./GLOB/GLOB.Infra/GLOB.Infra.csproj -c Release -p:PackageVersion=1.0.5
+dotnet build ./GLOB/GLOB.Infra/GLOB.Infra.csproj -c Release -p:PackageVersion=1.0.5 -p:UseProjectReferences=true
+dotnet pack ./GLOB/GLOB.Infra/GLOB.Infra.csproj -c Release -p:PackageVersion=1.0.5 -p:UseProjectReferences=true
 dotnet nuget push ./GLOB/GLOB.Infra/bin/Release/GLOB.Infra.1.0.5.nupkg --api-key oy2admcfuhtm3ub5pnu5qghl2y6ykti2u5ovdy5dl55i66m --source https://api.nuget.org/v3/index.json
 cp ./GLOB/GLOB.Infra/bin/Release/GLOB.Infra.1.0.5.nupkg /c/Packages/
 

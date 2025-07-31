@@ -1,6 +1,6 @@
 
 
-namespace GLOB.Infra.Utils.Extz;
+namespace GLOB.Infra.Extz;
 public static partial class ExtQuery
 {
   public static IQueryable<DtoSelect<TKey>> ToExtMapSelect<T, TKey>(this IQueryable<T> source)

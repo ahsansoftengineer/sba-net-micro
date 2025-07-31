@@ -2,7 +2,7 @@ using System.Net;
 using System.Text.Json.Serialization;
 
 
-namespace GLOB.Infra.Utils.Extz;
+namespace GLOB.Infra.Extz;
 
 public static partial class ExtResponse
 {
