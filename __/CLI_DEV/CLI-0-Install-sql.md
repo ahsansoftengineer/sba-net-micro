@@ -2,10 +2,12 @@
 ```bash
 docker pull mcr.microsoft.com/mssql/server:2022-latest
 docker image ls
-docker run --name dev-sba-sql -e 'HOMEBREW_NO_ENV_FILTERING=1' -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=P@55w0rd!123' -p 1430:1433 -d mcr.microsoft.com/mssql/server:2022-latest
+docker run --name sql-sba-dev -e 'HOMEBREW_NO_ENV_FILTERING=1' -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=P@55w0rd!123' -p 1430:1433 -d mcr.microsoft.com/mssql/server:2022-latest
 
-docker stop dev-sba-sql
-docker rm dev-sba-sql
+docker run --name sql-sba-stage -e 'HOMEBREW_NO_ENV_FILTERING=1' -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=P@55w0rd!123' -p 1431:1433 -d mcr.microsoft.com/mssql/server:2022-latest
+
+docker stop sql-sba-dev
+docker rm sql-sba-dev
 docker container ls
 docker ps
 ```

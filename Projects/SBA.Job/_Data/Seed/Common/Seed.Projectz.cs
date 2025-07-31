@@ -26,7 +26,14 @@ public static partial class SeedzProjectz
       {
         x.Print("Migrations");
       });
-      context.Database.Migrate();
+      if (context.Database.HasPendingModelChanges())
+      {
+        context.Database.EnsureCreated();
+      }
+      else
+      {
+        context.Database.Migrate();
+      }
     }
   }
 
