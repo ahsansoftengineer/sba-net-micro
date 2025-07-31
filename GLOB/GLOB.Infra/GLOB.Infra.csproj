@@ -11,6 +11,18 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(UseProjectReferences)' == ''">
+    <UseProjectReferences>false</UseProjectReferences>
+  </PropertyGroup>
+  
+  <ItemGroup Condition="'$(UseProjectReferences)' == 'true'">
+    <PackageReference Include="GLOB.Extz" Version="1.0.*" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UseProjectReferences)' == 'false'">
+    <ProjectReference Include="..\GLOB.Extz\GLOB.Extz.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="LinqKit.Core" Version="1.2.5" />

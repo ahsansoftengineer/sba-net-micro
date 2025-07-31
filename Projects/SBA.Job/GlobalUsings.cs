@@ -1,3 +1,6 @@
+// Project namespaces
+global using GLOB.Extz;
+
 global using Microsoft.EntityFrameworkCore;
 
 global using GLOB.API.Config.DI;

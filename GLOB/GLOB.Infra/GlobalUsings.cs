@@ -1,6 +1,10 @@
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.AspNetCore.Mvc;
 
+// Project namespaces
+global using GLOB.Extz;
+
+
 global using GLOB.Infra.Data.Auth;
 global using GLOB.Infra.Repo;
 global using GLOB.Infra.UOW;

@@ -9,6 +9,10 @@
     <NoWarn>CS0162;CS8604;CS1998;NETSDK1206</NoWarn>
   </PropertyGroup>
 
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  
   <PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(UseProjectReferences)' == ''">
     <UseProjectReferences>false</UseProjectReferences>
   </PropertyGroup>

@@ -6,7 +6,7 @@
 // using Microsoft.IdentityModel.Tokens;
 
 // namespace GLOB.Infra.Utils.Extz;
-// public static partial class Ext
+// public static partial class ExtsInfra
 // {
 //   public static string GenerateJwtToken(InfraUser user, Option_JwtSettings opt)
 //   {

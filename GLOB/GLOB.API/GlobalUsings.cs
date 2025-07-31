@@ -11,6 +11,8 @@ global using Microsoft.EntityFrameworkCore;
 global using Microsoft.AspNetCore.Mvc;
 
 // Project namespaces
+global using GLOB.Extz;
+
 global using GLOB.API.Config.DI;
 global using GLOB.API.Config.Middleware;
 global using GLOB.API.Config.Extz;

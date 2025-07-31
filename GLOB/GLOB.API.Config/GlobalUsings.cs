@@ -11,5 +11,7 @@ global using Microsoft.Extensions.Logging;
 global using Microsoft.Extensions.Hosting;
 
 // Project namespaces
+global using GLOB.Extz;
+
 global using GLOB.API.Config.Extz;
 global using GLOB.API.Config.Optionz;

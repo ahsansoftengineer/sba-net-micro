@@ -1,5 +1,5 @@
-namespace GLOB.Infra.Utils.Extz;
-internal static partial class Ext
+namespace GLOB.Extz;
+public static partial class Exts
 {
     public static bool HasValidProperty<T>(this string propertyName)
     {

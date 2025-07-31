@@ -1,6 +1,6 @@
 namespace GLOB.Extz;
 
-public static partial class Ext
+public static partial class Exts
 {
   public static T GetSrvc<T>(this IServiceProvider sp)
     where T : class
@@ -16,5 +16,10 @@ public static partial class Ext
       ex.Print();
       return null;
     }
+  }
+  public static T GetSrvc<T>(this IApplicationBuilder app)
+    where T : notnull
+  {
+    return app.ApplicationServices.GetRequiredService<T>();
   }
 }

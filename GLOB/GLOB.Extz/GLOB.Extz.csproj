@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>preview</LangVersion>
-    <!-- <NoWarn>CS0162;CS8604;CS1998;NETSDK1206</NoWarn> -->
+    <NoWarn>NU1603;CS8618;CS8767;CS8614;CS8604;CS8602;CS8600;CS8600;CS8603;CS8619;CS0162;CS1998;NETSDK1206</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

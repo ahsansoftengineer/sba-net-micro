@@ -1,6 +1,6 @@
 namespace GLOB.Extz;
 
-public static partial class Ext
+public static partial class Exts
 {
     public static void Print(this object obj, string? heading = null)
     {
