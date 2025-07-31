@@ -21,7 +21,7 @@ COPY GLOB/GLOB.Domain/*.csproj ./GLOB/GLOB.Domain/
 COPY Projects/SBA.Job/*.csproj ./Projects/SBA.Job/
 
 # Restore dependencies
-RUN dotnet restore ./Projects/SBA.Job/SBA.Job.csproj --property:UseProjectReferences=true
+RUN dotnet restore ./Projects/SBA.Job/SBA.Job.csproj --property:UseNuget=true
 
 # Copy the rest of the source files
 # COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/
@@ -33,7 +33,7 @@ COPY Projects/SBA.Job/ ./Projects/SBA.Job/
 
 # Build and publish
 WORKDIR /app/Projects/SBA.Job
-RUN dotnet publish -c Release -o /app/out --property:UseProjectReferences=true
+RUN dotnet publish -c Release -o /app/out --property:UseNuget=true
 
 # Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:9.0

@@ -1,16 +1,16 @@
 ### RUNNING PROJECTS
 - Change launch.json profile        : --launch-profile http
-- Change Project Ref csproj         : --property:UseProjectReferences=true
+- Change Project Ref csproj         : --property:UseNuget=true
 - Run ProjectName                   : --project ./Projects/SBA.APIGateway/
 
 ```bash
                                                                                                                      # http, https
-dotnet watch run --property:UseProjectReferences=true --launch-profile http --project ./Projects/SBA.APIGateway/     # 1100 1101
-dotnet watch run --property:UseProjectReferences=true --launch-profile http --project ./Projects/SBA.Auth/           # 1104 1105
-dotnet watch run --property:UseProjectReferences=true --launch-profile http --project ./Projects/SBA.Hierarchy/      # 1106 1107
-dotnet watch run --property:UseProjectReferences=true --launch-profile http --project ./Projects/SBA.Job/            # 1102 1103
-dotnet watch run --property:UseProjectReferences=true --launch-profile http --project ./Projects/SBA.Userz/          # 1108 1109
-dotnet watch run --property:UseProjectReferences=true --launch-profile http --project ./Projects/SBA.Orderz/         # 1110 1111
+dotnet watch run --property:UseNuget=true --launch-profile http --project ./Projects/SBA.APIGateway/     # 1100 1101
+dotnet watch run --property:UseNuget=true --launch-profile http --project ./Projects/SBA.Auth/           # 1104 1105
+dotnet watch run --property:UseNuget=true --launch-profile http --project ./Projects/SBA.Hierarchy/      # 1106 1107
+dotnet watch run --property:UseNuget=true --launch-profile http --project ./Projects/SBA.Job/            # 1102 1103
+dotnet watch run --property:UseNuget=true --launch-profile http --project ./Projects/SBA.Userz/          # 1108 1109
+dotnet watch run --property:UseNuget=true --launch-profile http --project ./Projects/SBA.Orderz/         # 1110 1111
 ```
 
 dotnet watch  

@@ -23,8 +23,8 @@ cp ./GLOB/GLOB.Extz/bin/Release/GLOB.Extz.1.0.6.nupkg /c/Packages/
 #### GLOB.API.Config (Specific)
 - oy2abz6ry2ev5umiibufqs64izjruy5duppzurlosmyoxye
 ```bash
-dotnet build ./GLOB/GLOB.API.Config/GLOB.API.Config.csproj -c Release -p:PackageVersion=1.0.6 -p:UseProjectReferences=true
-dotnet pack ./GLOB/GLOB.API.Config/GLOB.API.Config.csproj -c Release -p:PackageVersion=1.0.6 -p:UseProjectReferences=true
+dotnet build ./GLOB/GLOB.API.Config/GLOB.API.Config.csproj -c Release -p:PackageVersion=1.0.6 -p:UseNuget=true
+dotnet pack ./GLOB/GLOB.API.Config/GLOB.API.Config.csproj -c Release -p:PackageVersion=1.0.6 -p:UseNuget=true
 dotnet nuget push ./GLOB/GLOB.API.Config/bin/Release/GLOB.API.Config.1.0.6.nupkg --api-key oy2admcfuhtm3ub5pnu5qghl2y6ykti2u5ovdy5dl55i66m --source https://api.nuget.org/v3/index.json
 cp ./GLOB/GLOB.API.Config/bin/Release/GLOB.API.Config.1.0.6.nupkg /c/Packages/
 
@@ -32,10 +32,10 @@ cp ./GLOB/GLOB.API.Config/bin/Release/GLOB.API.Config.1.0.6.nupkg /c/Packages/
 #### GLOB.Infra
 ```bash
 # dotnet restore ./GLOB/GLOB.API/GLOB.API.csproj --source C:\Packages
-# dotnet build ./GLOB/GLOB.API/GLOB.API.csproj -c Release -p:UseProjectReferences=false
+# dotnet build ./GLOB/GLOB.API/GLOB.API.csproj -c Release -p:UseNuget=false
 
-dotnet build ./GLOB/GLOB.Infra/GLOB.Infra.csproj -c Release -p:PackageVersion=1.0.6 -p:UseProjectReferences=true
-dotnet pack ./GLOB/GLOB.Infra/GLOB.Infra.csproj -c Release -p:PackageVersion=1.0.6 -p:UseProjectReferences=true
+dotnet build ./GLOB/GLOB.Infra/GLOB.Infra.csproj -c Release -p:PackageVersion=1.0.6 -p:UseNuget=true
+dotnet pack ./GLOB/GLOB.Infra/GLOB.Infra.csproj -c Release -p:PackageVersion=1.0.6 -p:UseNuget=true
 dotnet nuget push ./GLOB/GLOB.Infra/bin/Release/GLOB.Infra.1.0.6.nupkg --api-key oy2admcfuhtm3ub5pnu5qghl2y6ykti2u5ovdy5dl55i66m --source https://api.nuget.org/v3/index.json
 cp ./GLOB/GLOB.Infra/bin/Release/GLOB.Infra.1.0.6.nupkg /c/Packages/
 
@@ -43,8 +43,8 @@ cp ./GLOB/GLOB.Infra/bin/Release/GLOB.Infra.1.0.6.nupkg /c/Packages/
 #### GLOB.API
 ```bash
 # dotnet restore ./GLOB/GLOB.API/GLOB.API.csproj --source C:\Packages
-dotnet build ./GLOB/GLOB.API/GLOB.API.csproj -c Release -p:PackageVersion=1.0.6 -p:UseProjectReferences=true
-dotnet pack ./GLOB/GLOB.API/GLOB.API.csproj -c Release -p:PackageVersion=1.0.6 -p:UseProjectReferences=true
+dotnet build ./GLOB/GLOB.API/GLOB.API.csproj -c Release -p:PackageVersion=1.0.6 -p:UseNuget=true
+dotnet pack ./GLOB/GLOB.API/GLOB.API.csproj -c Release -p:PackageVersion=1.0.6 -p:UseNuget=true
 dotnet nuget push ./GLOB/GLOB.API/bin/Release/GLOB.API.1.0.6.nupkg --api-key oy2admcfuhtm3ub5pnu5qghl2y6ykti2u5ovdy5dl55i66m --source https://api.nuget.org/v3/index.json
 cp ./GLOB/GLOB.API/bin/Release/GLOB.API.1.0.6.nupkg /c/Packages/
 

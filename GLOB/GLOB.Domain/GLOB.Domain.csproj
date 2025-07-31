@@ -13,15 +13,15 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
   
-  <PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(UseProjectReferences)' == ''">
-    <UseProjectReferences>false</UseProjectReferences>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(UseNuget)' == ''">
+    <UseNuget>false</UseNuget>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(UseProjectReferences)' == 'true'">
+  <ItemGroup Condition="'$(UseNuget)' == 'true'">
     <PackageReference Include="GLOB.Infra" Version="1.0.*" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(UseProjectReferences)' == 'false'">
+  <ItemGroup Condition="'$(UseNuget)' == 'false'">
     <ProjectReference Include="..\..\GLOB\GLOB.Infra\GLOB.Infra.csproj" />
   </ItemGroup>
 </Project>

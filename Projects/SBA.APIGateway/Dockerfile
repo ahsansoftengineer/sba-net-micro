@@ -19,7 +19,7 @@ WORKDIR /app
 COPY Projects/SBA.APIGateway/*.csproj ./Projects/SBA.APIGateway/
 
 # Restore dependencies
-RUN dotnet restore ./Projects/SBA.APIGateway/SBA.APIGateway.csproj --property:UseProjectReferences=true
+RUN dotnet restore ./Projects/SBA.APIGateway/SBA.APIGateway.csproj --property:UseNuget=true
 
 # Copy the rest of the source files
 # COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/
@@ -27,7 +27,7 @@ COPY Projects/SBA.APIGateway/ ./Projects/SBA.APIGateway/
 
 # Build and publish
 WORKDIR /app/Projects/SBA.APIGateway
-RUN dotnet publish -c Release -o /app/out --property:UseProjectReferences=true
+RUN dotnet publish -c Release -o /app/out --property:UseNuget=true
 
 # Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
