@@ -1,5 +1,7 @@
 
 
+using LinqKit;
+
 namespace SBA.Projectz.Data;
 public static partial class SeedzProjectz
 {
@@ -8,7 +10,8 @@ public static partial class SeedzProjectz
   {
     "ModelBuilder --> Job -> SeedProjectz".Print("EF Core");
     // .-*
-
+    mb.SeedGlobalLookupBase();
+    mb.SeedGlobalLookup();
     // *-.
 
   }
@@ -19,7 +22,11 @@ public static partial class SeedzProjectz
     {
       DBCtxProjectz? context = srvcScp.ServiceProvider.GetSrvc<DBCtxProjectz>();
       "Job -> Applying Migrations AppBuilder".Print("EF Core");
-      context.Database.EnsureCreated();
+      context.Database.GetMigrations().ToList().ForEach(x =>
+      {
+        x.Print("Migrations");
+      });
+      context.Database.Migrate();
     }
   }
 

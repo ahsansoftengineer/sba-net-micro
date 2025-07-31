@@ -12,8 +12,8 @@ using SBA.Projectz.Data;
 namespace SBA.Job.Migrations
 {
     [DbContext(typeof(DBCtxProjectz))]
-    [Migration("20250731054300_Init2")]
-    partial class Init2
+    [Migration("20250731062338_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,92 +24,6 @@ namespace SBA.Job.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookup", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnOrder(1);
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset?>("CreatedAt")
-                        .HasColumnType("datetimeoffset")
-                        .HasColumnName("Created_At");
-
-                    b.Property<string>("Desc")
-                        .HasMaxLength(250)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(250)")
-                        .HasColumnOrder(4);
-
-                    b.Property<int?>("GlobalLookupBaseId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(100)")
-                        .HasColumnOrder(3);
-
-                    b.Property<int?>("Status")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
-
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("datetimeoffset")
-                        .HasColumnName("Updated_At");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GlobalLookupBaseId");
-
-                    b.ToTable("GlobalLookups");
-                });
-
-            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookupBase", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnOrder(1);
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTimeOffset?>("CreatedAt")
-                        .HasColumnType("datetimeoffset")
-                        .HasColumnName("Created_At");
-
-                    b.Property<string>("Desc")
-                        .HasMaxLength(250)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(250)")
-                        .HasColumnOrder(4);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(100)")
-                        .HasColumnOrder(3);
-
-                    b.Property<int?>("Status")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
-
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("datetimeoffset")
-                        .HasColumnName("Updated_At");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("GlobalLookupBases");
-                });
 
             modelBuilder.Entity("GLOB.Infra.Model.Base.ProjectzLookup", b =>
                 {
@@ -261,15 +175,6 @@ namespace SBA.Job.Migrations
                         });
                 });
 
-            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookup", b =>
-                {
-                    b.HasOne("GLOB.Hierarchy.Global.GlobalLookupBase", "GlobalLookupBase")
-                        .WithMany("GlobalLookup")
-                        .HasForeignKey("GlobalLookupBaseId");
-
-                    b.Navigation("GlobalLookupBase");
-                });
-
             modelBuilder.Entity("GLOB.Infra.Model.Base.ProjectzLookup", b =>
                 {
                     b.HasOne("GLOB.Infra.Model.Base.ProjectzLookupBase", "ProjectzLookupBase")
@@ -278,11 +183,6 @@ namespace SBA.Job.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("ProjectzLookupBase");
-                });
-
-            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookupBase", b =>
-                {
-                    b.Navigation("GlobalLookup");
                 });
 
             modelBuilder.Entity("GLOB.Infra.Model.Base.ProjectzLookupBase", b =>
