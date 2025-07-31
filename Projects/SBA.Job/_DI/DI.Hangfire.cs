@@ -19,28 +19,37 @@ public static partial class DI_Projectz
         {
 
         });
-      if (config.GetValueStr("DOTNET_ENVIRONMENT") == "Development")
+      if (config.GetValueStr("DOTNET_ENVIRONMENT") == "Development" && false)
       {
         opt.UseSQLiteStorage(Path.Combine("../../../", config.GetConnectionString("SQLite")), new SQLiteStorageOptions
         {
-          QueuePollInterval = TimeSpan.FromSeconds(30), // Less frequent polling
-          JobExpirationCheckInterval = TimeSpan.FromHours(6), // Less frequent expiration checks
-          CountersAggregateInterval = TimeSpan.FromMinutes(30) // Less frequent counter updates
+          QueuePollInterval = TimeSpan.FromSeconds(15),
+          JobExpirationCheckInterval = TimeSpan.FromHours(1),
+          CountersAggregateInterval = TimeSpan.FromMinutes(5),
         });
       }
       else
       {
-        var seperateDB = config.GetConnectionString("SqlConnection");//.Replace("SBA_Job", "SBA_Hangfire");
+        // Danger: Hangfire Seperate DB is Required for Inital Migrations
+        // Note: Otherwise you dont have Projectz Migration Run
+        var seperateDB = config.GetConnectionString("SqlConnectionHangfire");
         seperateDB.EnsureDatabaseExists();
         opt.UseSqlServerStorage(seperateDB, new SqlServerStorageOptions
         {
           PrepareSchemaIfNecessary = true,
-          // CommandBatchMaxTimeout = TimeSpan.FromHours(1),
-          // CommandTimeout = TimeSpan.FromMicroseconds(10),
-          // CountersAggregateInterval = TimeSpan.FromTicks(20),
-          // DashboardJobListLimit = 50,
           // SchemaName = "Hangfire",
-          // SqlClientFactory = SqlClientFactory.Instance
+          CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+          CommandTimeout = TimeSpan.FromSeconds(30),
+          CountersAggregateInterval = TimeSpan.FromMinutes(5),
+          DashboardJobListLimit = 50,
+          // QueuePollInterval = TimeSpan.FromSeconds(15),
+          // SqlClientFactory = SqlClientFactory.Instance,
+          // UseRecommendedIsolationLevel = true,
+          // JobExpirationCheckInterval = TimeSpan.FromHours(1),
+          // EnableHeavyMigrations = false, // Only needed during major migration scenarios
+          // Whether to disable global locks (default: false; set to true only in clustered scenarios with care)
+          // DisableGlobalLocks = false,
+          // SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5)
         });
       }
     });

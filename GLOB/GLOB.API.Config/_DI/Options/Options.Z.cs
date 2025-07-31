@@ -17,6 +17,7 @@ public class Option_ConnectionStrings
 {
     public static string SectionName = "ConnectionStrings";
     public string? SqlConnection { get; set; }
+    public string? SqlConnectionHangfire { get; set; }
     public string? Redis { get; set; }
     public string? SQLite { get; set; }
 }
