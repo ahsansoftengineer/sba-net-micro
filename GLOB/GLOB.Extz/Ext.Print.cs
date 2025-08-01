@@ -12,20 +12,22 @@ public static partial class Exts
         }
         catch (Exception ex)
         {
-            Console.WriteLine("--> [Print Exception] : " + ex.Message);
+            ex.Print("💀 ENV Parse Failed 💥");
         }
     }
     public static void Print(this Exception ex, string? heading = null)
     {
-        ex.Message.Print($"[{heading ?? "Exception"}]");
+        
+        ex.Source.Print($"💀 {heading ?? "Kaboom"} 💥");
+        ex.Message.Print($"💀 {heading ?? "Msg"} 💥");
     }
     public static void Print(this string value, string? heading = null)
     {
-        Console.WriteLine("--> [{0}]\t-\t{1}\n", (heading ?? "[Message]"), value);
+        Console.WriteLine("➡️  [{0}]\t\t{1}\n", heading ?? "[Message]", value);
     }
     public static void Print()
     {
-        Console.WriteLine("------------------------****-*-****------------------------");
+        Console.WriteLine("🔥 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  💀 Error  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 🔥");
     }
 
 }
