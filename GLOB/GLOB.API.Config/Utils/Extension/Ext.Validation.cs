@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace GLOB.API.Config.Extz;
 
-public static partial class Ext
+public static partial class ExtsAPIConfig
 {
 
   public static IEnumerable<ErrorModel> ToExtValidationError(this ModelStateDictionary modelState)

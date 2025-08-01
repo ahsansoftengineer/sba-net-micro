@@ -22,6 +22,156 @@ namespace SBA.Job.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Created_At");
+
+                    b.Property<string>("Desc")
+                        .HasMaxLength(250)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(250)")
+                        .HasColumnOrder(4);
+
+                    b.Property<int?>("GlobalLookupBaseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Updated_At");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GlobalLookupBaseId");
+
+                    b.ToTable("GlobalLookups");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "111-111-111",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "GlobalLookup 1 Desc",
+                            GlobalLookupBaseId = 1,
+                            Name = "GlobalLookup 1",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "222-222-222",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "GlobalLookup 2 Desc",
+                            GlobalLookupBaseId = 2,
+                            Name = "GlobalLookup 2",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Code = "333-333-333",
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "GlobalLookup 3 Desc",
+                            GlobalLookupBaseId = 3,
+                            Name = "GlobalLookup 3",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        });
+                });
+
+            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookupBase", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Created_At");
+
+                    b.Property<string>("Desc")
+                        .HasMaxLength(250)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(250)")
+                        .HasColumnOrder(4);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Updated_At");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GlobalLookupBases");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "GlobalLookupBase 1 Desc",
+                            Name = "GlobalLookupBase 1",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "GlobalLookupBase 2 Desc",
+                            Name = "GlobalLookupBase 2",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
+                            Desc = "GlobalLookupBase 3 Desc",
+                            Name = "GlobalLookupBase 3",
+                            Status = 0,
+                            UpdatedAt = new DateTimeOffset(new DateTime(2025, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0))
+                        });
+                });
+
             modelBuilder.Entity("GLOB.Infra.Model.Base.ProjectzLookup", b =>
                 {
                     b.Property<int>("Id")
@@ -172,6 +322,132 @@ namespace SBA.Job.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SBA.Projectz.Data.NewTable", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Created_At");
+
+                    b.Property<string>("Desc")
+                        .HasMaxLength(250)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(250)")
+                        .HasColumnOrder(4);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Updated_At");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NewTables");
+                });
+
+            modelBuilder.Entity("SBA.Projectz.Data.NewTable2", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Created_At");
+
+                    b.Property<string>("Desc")
+                        .HasMaxLength(250)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(250)")
+                        .HasColumnOrder(4);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Updated_At");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NewTable2s");
+                });
+
+            modelBuilder.Entity("SBA.Projectz.Data.NewTable3", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTimeOffset?>("CreatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Created_At");
+
+                    b.Property<string>("Desc")
+                        .HasMaxLength(250)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(250)")
+                        .HasColumnOrder(4);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnOrder(3);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetimeoffset")
+                        .HasColumnName("Updated_At");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NewTable3s");
+                });
+
+            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookup", b =>
+                {
+                    b.HasOne("GLOB.Hierarchy.Global.GlobalLookupBase", "GlobalLookupBase")
+                        .WithMany("GlobalLookup")
+                        .HasForeignKey("GlobalLookupBaseId");
+
+                    b.Navigation("GlobalLookupBase");
+                });
+
             modelBuilder.Entity("GLOB.Infra.Model.Base.ProjectzLookup", b =>
                 {
                     b.HasOne("GLOB.Infra.Model.Base.ProjectzLookupBase", "ProjectzLookupBase")
@@ -180,6 +456,11 @@ namespace SBA.Job.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("ProjectzLookupBase");
+                });
+
+            modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookupBase", b =>
+                {
+                    b.Navigation("GlobalLookup");
                 });
 
             modelBuilder.Entity("GLOB.Infra.Model.Base.ProjectzLookupBase", b =>

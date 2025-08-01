@@ -9,12 +9,14 @@ dotnet new sln -o SBA
 
 ### GLOB NEW
 ```bash
-dotnet new webapi -o ./GLOB/GLOB.API.Config
-dotnet new webapi -o ./GLOB/GLOB.API
+dotnet new classlib -o ./GLOB/GLOB.Extz
+
+dotnet new classlib -o ./GLOB/GLOB.API.Config
+dotnet new classlib -o ./GLOB/GLOB.Infra
+
+dotnet new classlib -o ./GLOB/GLOB.API
 
 dotnet new classlib -o ./GLOB/GLOB.Domain
-dotnet new classlib -o ./GLOB/GLOB.Infra
-# dotnet new classlib -o ./GLOB/GLOB.Cache
 ```
 
 ### PROJECTZ NEW
@@ -31,17 +33,20 @@ dotnet new webapi -o ./Projects/SBA.Userz
 ```
 ### GLOB TO SOLUTION
 ```bash
+dotnet sln add ./GLOB/GLOB.Extz/GLOB.Extz.csproj
+
 dotnet sln add ./GLOB/GLOB.API.Config/GLOB.API.Config.csproj
+dotnet sln add ./GLOB/GLOB.Infra/GLOB.Infra.csproj
+
 dotnet sln add ./GLOB/GLOB.API/GLOB.API.csproj
 
 dotnet sln add ./GLOB/GLOB.Domain/GLOB.Domain.csproj
-dotnet sln add ./GLOB/GLOB.Infra/GLOB.Infra.csproj
-dotnet sln add ./GLOB/GLOB.Job/GLOB.Job.csproj
 ```
 
 ### PROJECTZ TO SOLUTION
 ```bash
 dotnet sln add ./Projects/SBA.APIGateway/SBA.APIGateway.csproj
+dotnet sln add ./Projects/SBA.Job/SBA.Job.csproj
 dotnet sln add ./Projects/SBA.Auth/SBA.Auth.csproj
 dotnet sln add ./Projects/SBA.Hierarchy/SBA.Hierarchy.csproj
 dotnet sln add ./Projects/SBA.Userz/SBA.Userz.csproj
@@ -51,9 +56,11 @@ dotnet sln add ./Projects/SBA.Orderz/SBA.Orderz.csproj
 ### GLOB RELATION
 ```bash
 dotnet build
-dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.Domain/ # WEB API
+dotnet add ./GLOB/GLOB.API.Config/ reference ./GLOB/GLOB.Extz/ 
+dotnet add ./GLOB/GLOB.Infra/ reference ./GLOB/GLOB.Extz/
 
-dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.API.Config/ # WEB API
+dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.Domain/
+dotnet add ./GLOB/GLOB.API/ reference ./GLOB/GLOB.API.Config/
 ```
 ### Project Relation
 ```bash

@@ -1,6 +1,6 @@
 using System.Linq.Dynamic.Core;
 
-namespace GLOB.Infra.Utils.Extz;
+namespace GLOB.Infra.Extz;
 public static partial class ExtQuery
 {
   public static IQueryable<T> ToExtQueryOrderBy<T>(this IQueryable<T> query, Sort? sort)

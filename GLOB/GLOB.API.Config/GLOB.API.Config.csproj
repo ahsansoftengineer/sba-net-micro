@@ -11,6 +11,17 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(UseNuget)' == ''">
+    <UseNuget>false</UseNuget>
+  </PropertyGroup>
+  
+  <ItemGroup Condition="'$(UseNuget)' == 'true'">
+    <PackageReference Include="GLOB.Extz" Version="1.0.*" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UseNuget)' == 'false'">
+    <ProjectReference Include="..\GLOB.Extz\GLOB.Extz.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AspNetCoreRateLimit" Version="5.0.0" />

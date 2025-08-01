@@ -3,7 +3,7 @@ using LinqKit;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace GLOB.Infra.Utils.Extz;
+namespace GLOB.Infra.Extz;
 public static partial class ExtQuery
 {
   public static IQueryable<T> ToExtQueryFilter<T, TDtoSearch>(this IQueryable<T> source, TDtoSearch? DtoSearch)

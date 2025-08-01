@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace GLOB.Infra.Utils.Extz;
+namespace GLOB.Infra.Extz;
 public static partial class ExtQuery
 {
   public static IQueryable<T> ToExtQueryInclues<T>(this IQueryable<T> source, List<string?>? Include)

@@ -22,7 +22,7 @@ COPY GLOB/GLOB.Domain/*.csproj ./GLOB/GLOB.Domain/
 COPY Projects/SBA.Hierarchy/*.csproj ./Projects/SBA.Hierarchy/
 
 # Restore dependencies
-RUN dotnet restore ./Projects/SBA.Hierarchy/SBA.Hierarchy.csproj --property:UseProjectReferences=true
+RUN dotnet restore ./Projects/SBA.Hierarchy/SBA.Hierarchy.csproj --property:UseNuget=true
 
 # Copy the rest of the source files
 # COPY GLOB/GLOB.API.Config/ ./GLOB/GLOB.API.Config/
@@ -34,7 +34,7 @@ COPY Projects/SBA.Hierarchy/ ./Projects/SBA.Hierarchy/
 
 # Build and publish
 WORKDIR /app/Projects/SBA.Hierarchy
-RUN dotnet publish -c Release -o /app/out --property:UseProjectReferences=true
+RUN dotnet publish -c Release -o /app/out --property:UseNuget=true
 
 # Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:9.0

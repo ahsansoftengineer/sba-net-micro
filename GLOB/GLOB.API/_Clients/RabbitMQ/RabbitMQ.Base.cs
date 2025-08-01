@@ -56,7 +56,7 @@ public partial class API_RabbitMQ_Base : IDisposable
                      param.route.Key,
                      param.options.Headers
                      );
-    Ext.Print();
+    Exts.Print();
   }
 
   public void Dispose()

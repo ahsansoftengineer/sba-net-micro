@@ -1,7 +1,7 @@
 using Microsoft.Data.SqlClient;
 
 
-namespace GLOB.Infra.Utils.Extz;
+namespace GLOB.Infra.Extz;
 
 public static class DBCtxExtensions
 {
