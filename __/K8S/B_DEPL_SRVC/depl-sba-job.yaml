@@ -5,6 +5,7 @@
 
 ## BASH BUILD Dockerfile srvc-sba-job
 ## -t tagname, -f file/reference, ./buildContext  
+# docker system prune
 # docker build -t mansanhhub/srvc-sba-job -f Projects/SBA.Job/Dockerfile .
 # kubectl get nodes -o wide
 # docker push mansanhhub/srvc-sba-job
@@ -54,9 +55,9 @@ spec:
             - name: ConnectionStrings__Redis
               value: "srvc-cip-redis-sba-dev:6379,password=P@55w0rd!123"
             - name: ConnectionStrings__SqlConnection
-              value: "Server=srvc-cip-mssql-sba-dev.default.svc.cluster.local,1433;Initial Catalog=SBA_Job;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+              value: "Server=srvc-cip-mssql-dev.default.svc.cluster.local,1433;Initial Catalog=SBA_Job;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
             - name: ConnectionStrings__SqlConnectionHangfire
-              value: "Server=srvc-cip-mssql-sba-dev.default.svc.cluster.local,1433;Initial Catalog=SBA_Job_Hangfire;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
+              value: "Server=srvc-cip-mssql-dev.default.svc.cluster.local,1433;Initial Catalog=SBA_Job_Hangfire;User ID=sa;Password=P@55w0rd!123;TrustServerCertificate=true;"
             - name: ConnectionStrings__SQLite
               value: "Job.SQLite.db"
 

@@ -19,7 +19,8 @@ public static partial class DI_Projectz
     // srvc.Add_API_Config_JWT_Option(); // Because of Identity
     srvc.AddAutoMapper(typeof(ProjectzMapper));
     srvc.Add_Hangfire(config);
-    await srvc.MigrateNoValidate<DBCtxProjectz>();
+    if (config.GetValueStr("DOTNET_ENVIRONMENT") != "Development")
+      await srvc.MigrateNoValidate<DBCtxProjectz>();
   }
   public static void Add_Projectz_Clientz(this IServiceCollection srvc, IConfiguration config)
   {

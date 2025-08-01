@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SBA.Projectz.Data;
 
@@ -11,9 +12,11 @@ using SBA.Projectz.Data;
 namespace SBA.Job.Migrations
 {
     [DbContext(typeof(DBCtxProjectz))]
-    partial class DBCtxProjectzModelSnapshot : ModelSnapshot
+    [Migration("20250801101702_Init5")]
+    partial class Init5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -398,45 +401,6 @@ namespace SBA.Job.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("NewTable2s");
-                });
-
-            modelBuilder.Entity("SBA.Projectz.Data.NewTable3", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnOrder(1);
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTimeOffset?>("CreatedAt")
-                        .HasColumnType("datetimeoffset")
-                        .HasColumnName("Created_At");
-
-                    b.Property<string>("Desc")
-                        .HasMaxLength(250)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(250)")
-                        .HasColumnOrder(4);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(100)")
-                        .HasColumnOrder(3);
-
-                    b.Property<int?>("Status")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
-
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("datetimeoffset")
-                        .HasColumnName("Updated_At");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("NewTable3s");
                 });
 
             modelBuilder.Entity("GLOB.Hierarchy.Global.GlobalLookup", b =>

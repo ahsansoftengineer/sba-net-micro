@@ -5,14 +5,15 @@ dotnet ef database update -p ./GLOB/GLOB.Infra -s SBA.Hierarchy --connection "Se
 dotnet ef database drop --force -p ./GLOB/GLOB.Infra -s SBA.Hierarchy --context DBCtxInfra
 dotnet ef migrations add Init -p ./GLOB/GLOB.Infra -s SBA.Hierarchy --context DBCtxInfra
 dotnet ef migrations remove  -p ./GLOB/GLOB.Infra -s SBA.Hierarchz --context DBCtxInfra
+# Below CMD NOT WORK USE launchSettings.json file
+# DOTNET_ENVIRONMENT=Stage dotnet ef database update -s ./Projects/SBA.Auth --context DBCtxProjectz
 ```
 ### JOB
 ```bash
 dotnet ef database drop --force -s ./Projects/SBA.Job --context DBCtxProjectz
-dotnet ef migrations add Init -s ./Projects/SBA.Job --context DBCtxProjectz
+dotnet ef migrations add Init6 -s ./Projects/SBA.Job --context DBCtxProjectz
 dotnet ef database update -s ./Projects/SBA.Job --context DBCtxProjectz
 dotnet ef migrations remove -s ./Projects/SBA.Job --context DBCtxProjectz
-DOTNET_ENVIRONMENT=Stage dotnet ef database update -s ./Projects/SBA.Job --context DBCtxProjectz
 ```
 ### HIERARCHY
 ```bash
@@ -20,7 +21,6 @@ dotnet ef database drop --force -s ./Projects/SBA.Hierarchy --context DBCtxProje
 dotnet ef migrations add Init -s ./Projects/SBA.Hierarchy --context DBCtxProjectz
 dotnet ef database update -s ./Projects/SBA.Hierarchy --context DBCtxProjectz
 dotnet ef migrations remove -s ./Projects/SBA.Hierarcy --context DBCtxProjectz
-DOTNET_ENVIRONMENT=Stage dotnet ef database update -s ./Projects/SBA.Hierarchy --context DBCtxProjectz
 ```
 ### AUTH
 ```bash
@@ -28,7 +28,6 @@ dotnet ef database drop --force -s ./Projects/SBA.Auth --context DBCtxProjectz
 dotnet ef migrations add Init -s ./Projects/SBA.Auth --context DBCtxProjectz
 dotnet ef database update -s ./Projects/SBA.Auth --context DBCtxProjectz
 dotnet ef migrations remove -s ./Projects/SBA.Auth --context DBCtxProjectz
-DOTNET_ENVIRONMENT=Stage dotnet ef database update -s ./Projects/SBA.Auth --context DBCtxProjectz
 
 ```
 
