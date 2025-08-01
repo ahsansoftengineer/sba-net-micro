@@ -16,6 +16,9 @@ public static partial class Exts_Infra
         using var scope = sp.CreateScope();
         var context = scope.ServiceProvider.GetSrvc<T>();
         var migrator = context.GetService<IMigrator>();
+        string con = context.Database.GetDbConnection().ConnectionString;
+        con.EnsureDatabaseExists();
+        // await context.Database.EnsureCreatedAsync();
         var pending = await context.Database.GetPendingMigrationsAsync();
 
         foreach (var migration in pending)
@@ -29,5 +32,6 @@ public static partial class Exts_Infra
         {
             "No pending migrations to apply. ✅".Print("EF Core");
         }
+        await Task.CompletedTask;
     }
 }

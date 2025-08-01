@@ -12,6 +12,7 @@ dotnet ef database drop --force -s ./Projects/SBA.Job --context DBCtxProjectz
 dotnet ef migrations add Init -s ./Projects/SBA.Job --context DBCtxProjectz
 dotnet ef database update -s ./Projects/SBA.Job --context DBCtxProjectz
 dotnet ef migrations remove -s ./Projects/SBA.Job --context DBCtxProjectz
+DOTNET_ENVIRONMENT=Stage dotnet ef database update -s ./Projects/SBA.Job --context DBCtxProjectz
 ```
 ### HIERARCHY
 ```bash
@@ -19,6 +20,7 @@ dotnet ef database drop --force -s ./Projects/SBA.Hierarchy --context DBCtxProje
 dotnet ef migrations add Init -s ./Projects/SBA.Hierarchy --context DBCtxProjectz
 dotnet ef database update -s ./Projects/SBA.Hierarchy --context DBCtxProjectz
 dotnet ef migrations remove -s ./Projects/SBA.Hierarcy --context DBCtxProjectz
+DOTNET_ENVIRONMENT=Stage dotnet ef database update -s ./Projects/SBA.Hierarchy --context DBCtxProjectz
 ```
 ### AUTH
 ```bash
@@ -26,6 +28,8 @@ dotnet ef database drop --force -s ./Projects/SBA.Auth --context DBCtxProjectz
 dotnet ef migrations add Init -s ./Projects/SBA.Auth --context DBCtxProjectz
 dotnet ef database update -s ./Projects/SBA.Auth --context DBCtxProjectz
 dotnet ef migrations remove -s ./Projects/SBA.Auth --context DBCtxProjectz
+DOTNET_ENVIRONMENT=Stage dotnet ef database update -s ./Projects/SBA.Auth --context DBCtxProjectz
+
 ```
 
 ### USERSZ

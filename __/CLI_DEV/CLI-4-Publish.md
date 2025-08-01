@@ -14,10 +14,10 @@ dotnet nuget list source
 
 #### GLOB.Extz
 ```bash
-dotnet build ./GLOB/GLOB.Extz/GLOB.Extz.csproj -c Release -p:PackageVersion=1.0.61
-dotnet pack ./GLOB/GLOB.Extz/GLOB.Extz.csproj -c Release -p:PackageVersion=1.0.61
-dotnet nuget push ./GLOB/GLOB.Extz/bin/Release/GLOB.Extz.1.0.61.nupkg --api-key oy2admcfuhtm3ub5pnu5qghl2y6ykti2u5ovdy5dl55i66m --source https://api.nuget.org/v3/index.json
-cp ./GLOB/GLOB.Extz/bin/Release/GLOB.Extz.1.0.61.nupkg /c/Packages/
+dotnet build ./GLOB/GLOB.Extz/GLOB.Extz.csproj -c Release -p:PackageVersion=1.0.62
+dotnet pack ./GLOB/GLOB.Extz/GLOB.Extz.csproj -c Release -p:PackageVersion=1.0.62
+dotnet nuget push ./GLOB/GLOB.Extz/bin/Release/GLOB.Extz.1.0.62.nupkg --api-key oy2admcfuhtm3ub5pnu5qghl2y6ykti2u5ovdy5dl55i66m --source https://api.nuget.org/v3/index.json
+cp ./GLOB/GLOB.Extz/bin/Release/GLOB.Extz.1.0.62.nupkg /c/Packages/
 ```
 
 #### GLOB.API.Config (Specific)

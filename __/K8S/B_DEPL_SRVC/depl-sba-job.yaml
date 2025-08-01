@@ -6,6 +6,7 @@
 ## BASH BUILD Dockerfile srvc-sba-job
 ## -t tagname, -f file/reference, ./buildContext  
 # docker build -t mansanhhub/srvc-sba-job -f Projects/SBA.Job/Dockerfile .
+# kubectl get nodes -o wide
 # docker push mansanhhub/srvc-sba-job
 # docker pull mansanhhub/srvc-sba-job
 
